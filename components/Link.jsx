@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { noop } from 'lodash';
+import { noop } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link as RRLink } from 'react-router-dom';

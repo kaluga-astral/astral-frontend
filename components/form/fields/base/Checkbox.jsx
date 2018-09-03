@@ -26,8 +26,8 @@ const ChekboxField = ({
           control={<Checkbox checked={checked} onChange={onChange} />}
           label={label}
         />
-        {(meta.error || meta.submitError) &&
-          meta.touched && <FormHelperText>{meta.error || meta.submitError}</FormHelperText>}
+        {(meta.error || meta.submitError)
+          && meta.touched && <FormHelperText>{meta.error || meta.submitError}</FormHelperText>}
       </FormControl>
     )}
   </Field>

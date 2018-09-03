@@ -9,7 +9,11 @@ const getActivePageNumber = (offset, count) => Math.ceil(((offset + count) / cou
 
 class Pagination extends Component {
   state = {
-    activePage: getActivePageNumber(this.props.offset, this.props.count),
+    get activePage() {
+      const { offset, count } = this.props;
+
+      return getActivePageNumber(offset, count);
+    },
   };
 
   componentWillReceiveProps = (nextProps) => {
@@ -21,16 +25,17 @@ class Pagination extends Component {
   };
 
   handleCountButtonClick = (e) => {
+    const { onChange } = this.props;
     const count = e.target.value;
 
-    this.props.onChange({ count, offset: 0 });
+    onChange({ count, offset: 0 });
   };
 
   handlePageButtonClick = (pageNumber) => {
-    const { count } = this.props;
+    const { count, onChange } = this.props;
     const offset = String((pageNumber - 1) * count);
 
-    this.props.onChange({ offset });
+    onChange({ offset });
   };
 
   render = () => {
@@ -56,6 +61,7 @@ class Pagination extends Component {
           <div className={classes.countPerPage}>
             {countPerPageVariants.map(number => (
               <button
+                type="button"
                 key={number}
                 value={number}
                 className={cn(classes.count, {

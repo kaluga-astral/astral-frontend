@@ -13,6 +13,10 @@ class Loading extends PureComponent {
     timedOut: false,
   };
 
+  pastDelayTimer = null;
+
+  timeOutTimer = null;
+
   componentDidMount = () => {
     this.pastDelayTimer = setTimeout(() => {
       this.setState({
@@ -31,10 +35,6 @@ class Loading extends PureComponent {
     clearTimeout(this.timeOutTimer);
   };
 
-  pastDelayTimer = null;
-
-  timeOutTimer = null;
-
   render = () => {
     const { pastDelay, timedOut } = this.state;
     const {
@@ -45,10 +45,10 @@ class Loading extends PureComponent {
     return (
       <Fragment>
         {pastDelay && <Loader className={classes.status} {...loaderProps} />}
-        {timedOut &&
-          !preventShowLoadingMessage && (
+        {timedOut
+          && !preventShowLoadingMessage && (
             <span className={classes.message}>Требуется еще немного времени</span>
-          )}
+        )}
       </Fragment>
     );
   };

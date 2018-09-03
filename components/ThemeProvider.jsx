@@ -1,47 +1,33 @@
 import PropTypes from 'prop-types';
+import { create } from 'jss';
 import React from 'react';
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import JssProvider from 'react-jss/lib/JssProvider';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import {
   MuiThemeProvider,
   createMuiTheme,
   createGenerateClassName,
   jssPreset,
 } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
-import JssProvider from 'react-jss/lib/JssProvider';
-import { create } from 'jss';
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+
+const styleNode = document.createComment('insertion-point-jss');
+document.head.insertBefore(styleNode, document.head.firstChild);
+
+const generateClassName = createGenerateClassName();
+const jss = create(jssPreset());
+jss.options.insertionPoint = 'insertion-point-jss';
 
 const theme = createMuiTheme({
-  overrides: {
-    MuiSvgIcon: {
-      root: {
-        fontSize: '20px',
-      },
-    },
-    MuiMuiListItemIcon: {
-      root: {
-        marginRight: '25px',
-      },
-    },
-    MuiListItemText: {
-      root: {
-        padding: 0,
-        fontSize: '14px',
-      },
-    },
-  },
   palette: {
     primary: {
-      light: '#005ea0',
-      main: '#0a90ed',
+      light: '#33a2ef',
+      main: '#008bec',
+      dark: '#0061a5',
     },
   },
 });
-const generateClassName = createGenerateClassName();
-const jss = create(jssPreset());
-
-jss.options.insertionPoint = 'jss-insertion-point';
 
 const ThemeProvider = ({ children }) => (
   <JssProvider jss={jss} generateClassName={generateClassName}>

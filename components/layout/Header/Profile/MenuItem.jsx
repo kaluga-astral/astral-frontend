@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 const HeaderProfileMenuItem = ({
   classes, className, children, onClick,
 }) => (
-  <button className={cn(classes.root, className)} onClick={onClick}>
+  <button type="button" className={cn(classes.root, className)} onClick={onClick}>
     {children}
   </button>
 );

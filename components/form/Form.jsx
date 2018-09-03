@@ -16,9 +16,9 @@ const Form = ({
 
       return (
         <form noValidate className={className} onSubmit={handleSubmit}>
-          {!preventShowError &&
-            submitFailed &&
-            submitError && <div className={classes.error}>{submitError}</div>}
+          {!preventShowError
+            && submitFailed
+            && submitError && <div className={classes.error}>{submitError}</div>}
           {children(formState)}
         </form>
       );

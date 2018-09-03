@@ -1,46 +1,60 @@
+import cn from 'classnames';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import ButtonBase from '@material-ui/core/ButtonBase';
+
+const Button = ({
+  classes, className: classNameProp, variant, color, ...props
+}) => {
+  const className = cn(
+    classes.root,
+    {
+      [classes.flat]: variant === 'flat',
+      [classes.flatPrimary]: color === 'primary' && variant === 'flat',
+    },
+    classNameProp,
+  );
+
+  return <ButtonBase className={className} {...props} />;
+};
 
 Button.defaultProps = {
-  variant: 'contained',
   color: 'primary',
+  variant: 'flat',
+};
+
+Button.propTypes = {
+  classes: PropTypes.shape().isRequired,
+  /**
+   * Цвет
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
+  /**
+   * Вариант использования
+   */
+  variant: PropTypes.oneOf(['flat', 'rounded', 'fab']),
 };
 
 export default withStyles(theme => ({
   root: {
-    height: '40px',
-    minWidth: '165px',
+    minWidth: '160px',
+    minHeight: '35px',
+    fontSize: '14px',
+    textTransform: 'initial',
+  },
+  flat: {
     borderRadius: '25px',
-    boxShadow: 'none',
-    textTransform: 'none',
-    fontSize: 14,
-    fontWeight: 300,
-    whiteSpace: 'nowrap',
   },
-  disabled: {
-    border: 0,
-  },
-  containedPrimary: {
-    background: '#0a90ed', // FIXME: цвета в тему
+  flatPrimary: {
     color: theme.palette.common.white,
+    background: theme.palette.primary.main,
     '&:hover': {
-      background: '#0a90ed', // FIXME: цвета в тему
-      boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.15)',
-    },
-    '&$disabled': {
-      border: 0,
+      boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.2), 0px 3px 10px rgba(0, 0, 0, 0.15)',
     },
   },
-  containedSecondary: {
-    border: '1px solid #0a90ed', // FIXME: цвета в тему
-    background: theme.palette.common.white,
-    color: '#0a90ed', // FIXME: цвета в тему
-    '&:hover': {
-      background: '#0a90ed', // FIXME: цвета в тему
-      color: theme.palette.common.white,
-    },
-    '&$disabled': {
-      border: 0,
-    },
+  flatSecondary: {
+    color: theme.palette.common.white,
+    background: theme.palette.primary.main,
   },
 }))(Button);

@@ -1,4 +1,4 @@
-import { noop } from 'lodash';
+import { noop } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Field } from 'react-final-form';
@@ -25,8 +25,8 @@ const EmailField = ({
       >
         {label && <InputLabel>{label}</InputLabel>}
         <Input type="tel" {...input} placeholder={placeholder} />
-        {(meta.error || meta.submitError) &&
-          meta.touched && <FormHelperText>{meta.error || meta.submitError}</FormHelperText>}
+        {(meta.error || meta.submitError)
+          && meta.touched && <FormHelperText>{meta.error || meta.submitError}</FormHelperText>}
       </FormControl>
     )}
   </Field>

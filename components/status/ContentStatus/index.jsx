@@ -1,4 +1,4 @@
-import { isFunction } from 'lodash';
+import { isFunction } from 'lodash-es';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';

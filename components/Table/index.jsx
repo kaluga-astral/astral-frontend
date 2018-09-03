@@ -1,4 +1,4 @@
-import { uniqueId } from 'lodash';
+import { uniqueId } from 'lodash-es';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -44,8 +44,8 @@ class Table extends Component {
             </TableHead>
           )}
           <TableBody>
-            {isFetching &&
-              new Array(10).fill().map(() => (
+            {isFetching
+              && new Array(10).fill().map(() => (
                 <TableRow key={uniqueId()}>
                   {columns.map(() => (
                     <TableCell key={uniqueId()}>
@@ -57,8 +57,8 @@ class Table extends Component {
                   ))}
                 </TableRow>
               ))}
-            {isFetching === false &&
-              error && (
+            {isFetching === false
+              && error && (
                 <TableRow>
                   <TableCell className={classes.failure} colSpan={columns.length}>
                     <div>
@@ -69,10 +69,10 @@ class Table extends Component {
                     </div>
                   </TableCell>
                 </TableRow>
-              )}
-            {isFetching === false &&
-              !error &&
-              data.length === 0 && (
+            )}
+            {isFetching === false
+              && !error
+              && data.length === 0 && (
                 <TableRow>
                   <TableCell className={classes.empty} colSpan={columns.length}>
                     <div
@@ -96,7 +96,7 @@ class Table extends Component {
                     </div>
                   </TableCell>
                 </TableRow>
-              )}
+            )}
             {isFetching === false && !error && data.length > 0 && data.map(renderRow)}
           </TableBody>
         </MUITable>

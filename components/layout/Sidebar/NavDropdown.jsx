@@ -18,17 +18,23 @@ class SidebarNavDropdown extends PureComponent {
   };
 
   componentDidUpdate = (prevProps) => {
-    if (prevProps.location.pathname !== this.props.location.pathname) {
+    const { location } = this.props;
+
+    if (prevProps.location.pathname !== location.pathname) {
       this.setExpanded();
     }
   };
 
   setExpanded = () => {
     const { children, location } = this.props;
+    // prettier-ignore
+    const expanded = React
+      .Children
+      .toArray(children)
+      .some(dropdownItem => pathToRegexp(location.pathname).test(dropdownItem.props.to));
 
     this.setState({
-      expanded: React.Children.toArray(children).some(dropdownItem =>
-        pathToRegexp(location.pathname).test(dropdownItem.props.to)),
+      expanded,
     });
   };
 

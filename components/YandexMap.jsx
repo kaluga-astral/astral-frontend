@@ -1,4 +1,4 @@
-import { merge } from 'lodash';
+import { merge } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 

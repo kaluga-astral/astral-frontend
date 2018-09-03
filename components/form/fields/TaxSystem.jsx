@@ -1,4 +1,4 @@
-import { map } from 'lodash';
+import { map } from 'lodash-es';
 import React from 'react';
 import Select from './base/Select';
 

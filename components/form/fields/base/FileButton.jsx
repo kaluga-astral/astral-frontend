@@ -1,6 +1,7 @@
 // FIXME: need refactoring
+/* eslint-disable */
 import axios from 'axios';
-import { merge } from 'lodash';
+import { merge } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
@@ -11,7 +12,7 @@ import Field from '../Field';
 
 const { CloudUpload } = material;
 
-const onValueChange = onChange => (value) => {
+const onValueChange = onChange => value => {
   onChange(value);
 };
 
@@ -24,7 +25,7 @@ class FileButtonField extends Component {
     this.uploadFile(file, onChange);
   };
 
-  onUploadDone = onChange => (response) => {
+  onUploadDone = onChange => response => {
     const fileGuid = response.data;
 
     this.setState(
@@ -52,16 +53,16 @@ class FileButtonField extends Component {
           },
         })
         .then(this.onUploadDone(onChange))
-        .catch(this.onUploadError(onChange)));
+        .catch(this.onUploadError(onChange)),
+    );
   };
 
   name = this.props.name || 'fileGuid';
+
   fileInput = React.createRef();
 
   render = () => {
-    const {
-      disabled, classes, accept, ...props
-    } = this.props;
+    const { disabled, classes, accept, ...props } = this.props;
     const { file } = this.state;
 
     return (
@@ -81,7 +82,7 @@ class FileButtonField extends Component {
               accept={accept}
               type="file"
               className={classes.input}
-              ref={(el) => {
+              ref={el => {
                 this.fileInput = el;
               }}
               multiple={false}

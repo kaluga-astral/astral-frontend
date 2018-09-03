@@ -3,8 +3,8 @@ import { PropTypes } from 'prop-types';
 import { cloneElement } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-const HeaderProfileMenuItemIcon = ({ classes, className, children }) =>
-  cloneElement(children, { className: cn(classes.root, className) });
+// eslint-disable-next-line max-len
+const HeaderProfileMenuItemIcon = ({ classes, className, children }) => cloneElement(children, { className: cn(classes.root, className) });
 
 HeaderProfileMenuItemIcon.defaultProps = {
   className: null,

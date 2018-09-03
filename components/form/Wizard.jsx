@@ -7,23 +7,30 @@ import SubmitButton from './SubmitButton';
 class FormWizard extends React.Component {
   state = {
     page: 0,
-    values: this.props.initialValues,
+    get values() {
+      const { initialValues } = this.props;
+
+      return initialValues;
+    },
   };
 
   next = (values) => {
+    const { children } = this.props;
+
     this.setState(state => ({
-      page: Math.min(state.page + 1, this.props.children.length - 1),
+      page: Math.min(state.page + 1, children.length - 1),
       values,
     }));
   };
 
-  previous = () =>
-    this.setState(state => ({
-      page: Math.max(state.page - 1, 0),
-    }));
+  previous = () => this.setState(state => ({
+    page: Math.max(state.page - 1, 0),
+  }));
 
   validate = (values) => {
-    const activePage = React.Children.toArray(this.props.children)[this.state.page];
+    const { children } = this.props;
+    const { page } = this.state;
+    const activePage = React.Children.toArray(children)[page];
 
     return activePage.props.validate ? activePage.props.validate(values) : {};
   };
@@ -52,12 +59,11 @@ class FormWizard extends React.Component {
         validate={this.validate}
         onSubmit={this.handleSubmit}
       >
-        {formProps =>
-          activePage.props.children(formProps, {
-            PrevButton: props => page > 0 && <Button onClick={this.previous} {...props} />,
-            NextButton: !isLastPage && SubmitButton,
-            SubmitButton: isLastPage && SubmitButton,
-          })
+        {formProps => activePage.props.children(formProps, {
+          PrevButton: props => page > 0 && <Button onClick={this.previous} {...props} />,
+          NextButton: !isLastPage && SubmitButton,
+          SubmitButton: isLastPage && SubmitButton,
+        })
         }
       </Form>
     );

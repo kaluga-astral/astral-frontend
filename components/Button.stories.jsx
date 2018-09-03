@@ -1,22 +1,20 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { text, array } from '@storybook/addon-knobs';
 
 import Button from './Button';
 
-const stories = storiesOf('Button', module);
+const children = text('children', 'Default text');
+const color = array('children', ['primary', 'secondary']);
 
-stories.addDecorator(withKnobs);
-
-stories.add('Основные', () => (
-  <Button disabled={boolean('disabled', false)} onClick={action('clicked')}>
-    {text('children', 'Default text')}
+storiesOf('Button', module).add('flat (default)', () => (
+  <Button color={color} onClick={action('clicked')}>
+    {children}
   </Button>
 ));
-
-stories.add('Альтернативные', () => (
-  <Button color="secondary" disabled={boolean('disabled', false)} onClick={action('clicked')}>
-    {text('children', 'Default text')}
-  </Button>
-));
+// .add('outlined', () => (
+//   <Button variant="outlined" onClick={action('clicked')}>
+//     {children}
+//   </Button>
+// ));

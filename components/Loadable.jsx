@@ -17,9 +17,9 @@ const Loading = withStyles({
 }) => {
   if (error) {
     return <div>Произошла ошибка</div>;
-  } else if (timedOut) {
+  } if (timedOut) {
     return <div>Требуется еще немного время</div>;
-  } else if (pastDelay) {
+  } if (pastDelay) {
     return (
       <div className={classes.pastDelay}>
         <Loader />
@@ -29,8 +29,7 @@ const Loading = withStyles({
   return null;
 });
 
-export default loader =>
-  Loadable({
-    loader,
-    loading: Loading,
-  });
+export default loader => Loadable({
+  loader,
+  loading: Loading,
+});

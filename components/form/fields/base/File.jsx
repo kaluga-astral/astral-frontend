@@ -1,5 +1,6 @@
 // FIXME: need refactoring
-// FIXME: need rename to FileDropzone
+// TODO: need rename to FileDropzone
+/* eslint-disable */
 import cn from 'classnames';
 import axios from 'axios';
 import { reduce, filter } from 'lodash';
@@ -12,7 +13,7 @@ import Field from '../Field';
 import Progress from '../../../status/Progress';
 import { Upload as UploadIcon, File as FileIcon } from '../../../icons';
 
-const onValueChange = (multiple, onChange) => (value) => {
+const onValueChange = (multiple, onChange) => value => {
   onChange(multiple ? [].concat(value) : value[0]);
 };
 
@@ -21,13 +22,13 @@ class FileField extends Component {
     files: [],
   };
 
-  onDrop = onChange => (files) => {
+  onDrop = onChange => files => {
     const currentLen = this.state.files.length;
 
     files.forEach((file, index) => this.uploadFile(file, currentLen + index, onChange));
   };
 
-  onUploadProgress = index => (event) => {
+  onUploadProgress = index => event => {
     // eslint-disable-next-line
     const percentComplete = Math.round((event.loaded * 100) / event.total);
 
@@ -35,18 +36,20 @@ class FileField extends Component {
       files: reduce(
         prevState.files,
         (result, value, i) =>
-          result.concat(index === i
-            ? {
-              ...value,
-              percentComplete,
-            }
-            : value),
+          result.concat(
+            index === i
+              ? {
+                  ...value,
+                  percentComplete,
+                }
+              : value,
+          ),
         [],
       ),
     }));
   };
 
-  onUploadDone = (index, onChange) => (response) => {
+  onUploadDone = (index, onChange) => response => {
     const fileGuid = response.data;
 
     this.setState(
@@ -54,13 +57,15 @@ class FileField extends Component {
         files: reduce(
           prevState.files,
           (result, value, i) =>
-            result.concat(index === i
-              ? {
-                ...value,
-                status: 'success',
-                fileGuid,
-              }
-              : value),
+            result.concat(
+              index === i
+                ? {
+                    ...value,
+                    status: 'success',
+                    fileGuid,
+                  }
+                : value,
+            ),
           [],
         ),
       }),
@@ -68,19 +73,21 @@ class FileField extends Component {
     );
   };
 
-  onUploadError = (index, onChange) => (error) => {
+  onUploadError = (index, onChange) => error => {
     this.setState(
       prevState => ({
         files: reduce(
           prevState.files,
           (result, value, i) =>
-            result.concat(index === i
-              ? {
-                ...value,
-                status: 'failure',
-                errorMessage: error.response.data.message || error.message,
-              }
-              : value),
+            result.concat(
+              index === i
+                ? {
+                    ...value,
+                    status: 'failure',
+                    errorMessage: error.response.data.message || error.message,
+                  }
+                : value,
+            ),
           [],
         ),
       }),
@@ -128,9 +135,7 @@ class FileField extends Component {
   name = this.props.name || (this.props.multiple ? 'fileGuids' : 'fileGuid');
 
   render = () => {
-    const {
-      disabled, multiple, classes, className, accept, ...props
-    } = this.props;
+    const { disabled, multiple, classes, className, accept, ...props } = this.props;
     const { files } = this.state;
 
     return (
@@ -151,7 +156,10 @@ class FileField extends Component {
                 onDrop={this.onDrop(onValueChange(multiple, onChange))}
               >
                 <UploadIcon className={classes.dropzone__uploadIcon} />
-                <span>Загрузить {multiple ? 'файлы' : 'файл'}</span>
+                <span>
+                  Загрузить
+                  {multiple ? 'файлы' : 'файл'}
+                </span>
               </Dropzone>
             )}
             {files.length > 0 && (

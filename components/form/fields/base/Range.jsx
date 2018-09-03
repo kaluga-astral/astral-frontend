@@ -1,10 +1,9 @@
-import { noop } from 'lodash';
+import { noop } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Field } from 'react-final-form';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
@@ -40,8 +39,8 @@ const RangeField = ({
           maxValue={maxValue}
           onChange={onChange}
         />
-        {(meta.error || meta.submitError) &&
-          meta.touched && <FormHelperText>{meta.error || meta.submitError}</FormHelperText>}
+        {(meta.error || meta.submitError)
+          && meta.touched && <FormHelperText>{meta.error || meta.submitError}</FormHelperText>}
       </FormControl>
     )}
   </Field>

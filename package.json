@@ -2,11 +2,13 @@
   "name": "astralnalog",
   "version": "0.1.0",
   "private": true,
+  "sideEffects": false,
   "scripts": {
-    "dev": "cosmos",
+    "precommit": "lint-staged",
+    "lint": "eslint \"**/*.jsx\" --fix",
     "test": "jest",
+    "dev": "start-storybook -p 6006",
     "build": "",
-    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
@@ -43,10 +45,13 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-a11y": "4.0.0-alpha.18",
     "@storybook/addon-actions": "4.0.0-alpha.18",
+    "@storybook/addon-info": "4.0.0-alpha.18",
     "@storybook/addon-knobs": "4.0.0-alpha.18",
     "@storybook/react": "4.0.0-alpha.18",
     "babel-core": "^7.0.0-0",
+    "babel-eslint": "^9.0.0",
     "babel-jest": "^23.4.2",
     "babel-loader": "^8.0.0",
     "eslint": "^5.3.0",
@@ -55,9 +60,8 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.0",
     "jest": "^23.4.1",
+    "lint-staged": "^7.2.2",
     "react": "^16.4.2",
-    "react-cosmos": "^4.6.4",
     "react-dom": "^16.4.2"
-  },
-  "sideEffects": false
+  }
 }
