@@ -4,9 +4,9 @@ import { number } from '@storybook/addon-knobs';
 
 import SquareLogo from './SquareLogo';
 
-storiesOf('Brand', module).add('SquareLogo', () => {
+storiesOf('brand', module).add('SquareLogo', () => {
   const width = number('width', 100);
-  const height = number('height', null);
+  const height = number('height', undefined);
 
   return <SquareLogo width={width} height={height} />;
 });
