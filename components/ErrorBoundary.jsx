@@ -1,17 +1,40 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import bugsnag from 'bugsnag-js';
+import React, { Component } from 'react';
 import createPlugin from 'bugsnag-react';
+import { withStyles } from '@material-ui/core/styles';
 
-const UnhandledError = () => <pre>An error has occurred</pre>;
+const UnhandledError = withStyles({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+  },
+})(({ classes }) => <pre className={classes.root}>An error has occurred</pre>);
 
-const ErrorBoundary = ({ bugsnagClient, children }) => {
-  const Component = bugsnagClient.use(createPlugin(React));
+class ErrorBoundary extends Component {
+  get bugsnagClient() {
+    const { apiKey } = this.props;
 
-  return <Component FallbackComponent={UnhandledError}>{children}</Component>;
-};
+    return bugsnag({
+      apiKey,
+      notifyReleaseStages: ['production', 'staging'],
+      logger: null,
+    });
+  }
+
+  render = () => {
+    const { children } = this.props;
+    const WrappedComponent = this.bugsnagClient.use(createPlugin(React));
+
+    return <WrappedComponent FallbackComponent={UnhandledError}>{children}</WrappedComponent>;
+  };
+}
 
 ErrorBoundary.propTypes = {
-  bugsnagClient: PropTypes.shape().isRequired,
+  apiKey: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
 

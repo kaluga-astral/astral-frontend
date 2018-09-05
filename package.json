@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^3.0.0",
+    "bugsnag-js": "^4.7.3",
     "bugsnag-react": "^1.1.1",
     "classnames": "^2.2.5",
     "downshift": "^2.0.16",
