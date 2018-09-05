@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import ProductLogo from './product-logo.png';
+import Background from './background.jpeg';
 
 const AccountAside = ({ className, classes, title }) => (
   <aside className={cn(classes.root, className)}>
@@ -36,6 +37,7 @@ export default withStyles(theme => ({
     alignItems: 'flex-end',
     flex: 1,
     backgroundColor: '#CCC',
+    backgroundImage: `url(${Background})`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     zIndex: 0,
