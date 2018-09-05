@@ -4,17 +4,21 @@ import React from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-const NavLink = ({ className, classes, ...props }) => (
-  <RRNavLink className={cn(classes.root, className)} {...props} />
+const NavLink = ({ classes, className, ...props }) => (
+  <RRNavLink {...props} className={cn(classes.root, className)} />
 );
 
 NavLink.defaultProps = {
   className: null,
+  onClick: null,
 };
 
 NavLink.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   className: PropTypes.string,
+  classes: PropTypes.shape({}).isRequired,
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default withStyles({
