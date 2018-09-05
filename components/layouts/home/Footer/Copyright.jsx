@@ -18,7 +18,7 @@ const HomeFooterCopyright = ({
       , ЗАО «Калуга Астрал»
     </p>
     {children}
-    <Button color="secondary" onClick={onQuestionClick}>
+    <Button className={classes.question} color="secondary" onClick={onQuestionClick}>
       Задать вопрос
     </Button>
   </div>
@@ -34,18 +34,29 @@ HomeFooterCopyright.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
     copyright: PropTypes.string,
+    question: PropTypes.string,
   }).isRequired,
   children: PropTypes.node,
   className: PropTypes.string,
   onQuestionClick: PropTypes.func,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   root: {
-
+    marginTop: '54px',
+    paddingTop: '41px',
+    borderTop: `1px solid ${theme.palette.common.white}`,
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   copyright: {
-
+    fontSize: '16px',
+    lineHeight: '19px',
+    fontWeight: 400,
+    color: theme.palette.common.white,
   },
-
-})(HomeFooterCopyright);
+  question: {
+    width: '200px',
+    height: '50px',
+  }
+}))(HomeFooterCopyright);

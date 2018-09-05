@@ -31,11 +31,15 @@ HomeFooterSection.propTypes = {
   children: PropTypes.node,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   root: {
 
   },
   title: {
-
+    margin: '0 auto 20px',
+    fontSize: '18px',
+    lineHeight: '21px',
+    fontWeight: 600,
+    color: theme.palette.common.white,
   },
-})(HomeFooterSection);
+}))(HomeFooterSection);

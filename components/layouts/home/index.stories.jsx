@@ -12,35 +12,37 @@ storiesOf('Layouts/Home', module).add('Layout', () => (
         Content
       </Main>
       <Footer>
-        <FooterInfo onSearch={action('Searched')} />
-        <FooterSection title="Section">
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-        </FooterSection>
-        <FooterSection title="Section">
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-        </FooterSection>
-        <FooterSection title="Section">
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-          <FooterSectionItem to="/">Product link</FooterSectionItem>
-        </FooterSection>
+        <Footer.Container>
+          <FooterInfo onSearch={action('Searched')} />
+          <FooterSection title="Section">
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+          </FooterSection>
+          <FooterSection title="Section">
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+          </FooterSection>
+          <FooterSection title="Section">
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+            <FooterSectionItem to="/">Product link</FooterSectionItem>
+          </FooterSection>
+        </Footer.Container>
         <FooterCopyright onQuestionClick={action('Question button clicked')} />
       </Footer>
     </HomeLayout>

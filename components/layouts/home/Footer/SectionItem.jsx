@@ -30,8 +30,15 @@ HomeFooterSectionItem.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   root: {
-
+    display: 'block',
+    fontSize: '16px',
+    color: theme.palette.common.white,
+    lineHeight: '30px',
+    textDecoration: 'none',
+    '&:visited': {
+      color: theme.palette.common.white,
+    },
   },
-})(HomeFooterSectionItem);
+}))(HomeFooterSectionItem);
