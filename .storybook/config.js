@@ -14,7 +14,7 @@ addDecorator(withKnobs);
 
 addDecorator(story => (
   <ThemeProvider>
-    <div style={{ margin: '10px' }}>{story()}</div>
+    <div style={{ margin: '10px', height: '100%' }}>{story()}</div>
   </ThemeProvider>
 ));
 
