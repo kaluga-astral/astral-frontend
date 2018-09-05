@@ -1,20 +1,33 @@
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-const HomeFooterSectionItem = ({ classes, name, place }) => (
-  <Link className={classes.root} to={place}>
-    {name}
+const HomeFooterSectionItem = ({
+  className,
+  classes,
+  children,
+  to,
+}) => (
+  <Link className={cn(classes.root, className)} to={to}>
+    {children}
   </Link>
 );
 
+HomeFooterSectionItem.defaultProps = {
+  className: null,
+  children: null,
+  to: '/',
+};
+
 HomeFooterSectionItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  place: PropTypes.string.isRequired,
+  to: PropTypes.string,
+  children: PropTypes.node,
   classes: PropTypes.shape({
     root: PropTypes.string,
   }).isRequired,
+  className: PropTypes.string,
 };
 
 export default withStyles({

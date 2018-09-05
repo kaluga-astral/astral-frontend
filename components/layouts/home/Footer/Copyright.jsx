@@ -1,10 +1,17 @@
+import { noop } from 'lodash-es';
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '../../../Button';
 
-const HomeFooterCopyright = ({ classes, children, onQuestionClick }) => (
-  <section className={classes.root}>
+const HomeFooterCopyright = ({
+  className,
+  classes,
+  children,
+  onQuestionClick,
+}) => (
+  <div className={cn(classes.root, className)}>
     <p className={classes.copyright}>
       © 2009-
       {new Date().getFullYear()}
@@ -14,21 +21,31 @@ const HomeFooterCopyright = ({ classes, children, onQuestionClick }) => (
     <Button color="secondary" onClick={onQuestionClick}>
       Задать вопрос
     </Button>
-  </section>
+  </div>
 );
 
 HomeFooterCopyright.defaultProps = {
   children: null,
+  className: null,
+  onQuestionClick: noop,
 };
 
 HomeFooterCopyright.propTypes = {
   classes: PropTypes.shape({
-
+    root: PropTypes.string,
+    copyright: PropTypes.string,
   }).isRequired,
   children: PropTypes.node,
-  onQuestionClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  onQuestionClick: PropTypes.func,
 };
 
 export default withStyles({
+  root: {
+
+  },
+  copyright: {
+
+  },
 
 })(HomeFooterCopyright);

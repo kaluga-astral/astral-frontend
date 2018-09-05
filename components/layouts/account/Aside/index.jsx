@@ -1,16 +1,22 @@
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import ProductLogo from './product-logo.png';
 
-const AccountAside = ({ classes, title }) => (
-  <aside className={classes.root}>
+const AccountAside = ({ className, classes, title }) => (
+  <aside className={cn(classes.root, className)}>
     <div className={classes.info}>
       <img src={ProductLogo} alt={title} className={classes.logo} />
       <h1 className={classes.title}>{title}</h1>
     </div>
   </aside>
 );
+
+AccountAside.defaultProps = {
+  className: null,
+  title: '',
+};
 
 AccountAside.propTypes = {
   classes: PropTypes.shape({
@@ -19,7 +25,8 @@ AccountAside.propTypes = {
     logo: PropTypes.string,
     title: PropTypes.string,
   }).isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default withStyles(theme => ({

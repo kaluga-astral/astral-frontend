@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React, { Fragment, PureComponent } from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import pathToRegexp from 'path-to-regexp';
 
-import Collapse from '../../../Collapse';
 import ListItemIcon from './ListItemIcon';
 import ListItemText from './ListItemText';
 

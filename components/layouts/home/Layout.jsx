@@ -21,7 +21,6 @@ HomeLayout.propTypes = {
 
 export default withStyles({
   root: {
-    display: 'flex',
-    height: '100%',
+
   },
 })(HomeLayout);

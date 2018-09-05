@@ -1,21 +1,34 @@
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-const AccountMain = ({ title, children, classes }) => (
-  <main className={classes.root}>
+const AccountMain = ({
+  className,
+  title,
+  children,
+  classes,
+}) => (
+  <main className={cn(classes.root, className)}>
     <h3 className={classes.title}>{title}</h3>
     {children}
   </main>
 );
 
+AccountMain.defaultProps = {
+  className: null,
+  children: null,
+  title: '',
+};
+
 AccountMain.propTypes = {
-  title: PropTypes.node.isRequired,
-  children: PropTypes.node.isRequired,
+  title: PropTypes.node,
+  children: PropTypes.node,
   classes: PropTypes.shape({
     root: PropTypes.string,
     title: PropTypes.string,
   }).isRequired,
+  className: PropTypes.string,
 };
 
 export default withStyles(theme => ({
