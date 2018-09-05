@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Fragment, PureComponent } from 'react';
+import Loader from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
-
-import Loader from '../Loader';
 
 const PAST_DELAY_TIMEOUT = 100;
 const TIME_OUT_TIMEOUT = 8000;
 
-class Loading extends PureComponent {
+class PlaceholderLoadingState extends PureComponent {
   state = {
     pastDelay: false,
     timedOut: false,
@@ -54,13 +53,13 @@ class Loading extends PureComponent {
   };
 }
 
-Loading.defaultProps = {
+PlaceholderLoadingState.defaultProps = {
   loaderProps: {
     preventShowLoadingMessage: false,
   },
 };
 
-Loading.propTypes = {
+PlaceholderLoadingState.propTypes = {
   loaderProps: PropTypes.shape({
     preventShowLoadingMessage: PropTypes.bool,
   }),
@@ -73,4 +72,4 @@ export default withStyles({
     marginTop: '20px',
     color: '#4e4e4e',
   },
-})(Loading);
+})(PlaceholderLoadingState);

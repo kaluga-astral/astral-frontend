@@ -2,7 +2,7 @@ import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 import { withKnobs } from '@storybook/addon-knobs';
-// import { withInfo } from '@storybook/addon-info';
+import { withInfo } from '@storybook/addon-info';
 
 import ThemeProvider from '../components/ThemeProvider';
 

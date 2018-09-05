@@ -4,36 +4,31 @@ import React, { Component } from 'react';
 import ReactPagination from 'react-js-pagination';
 import { withStyles } from '@material-ui/core/styles';
 
-// prettier-ignore
-const getActivePageNumber = (offset, count) => Math.ceil(((offset + count) / count) - 1) + 1;
+const getActivePageNumber = (offset, count) => Math.ceil((offset + count) / count - 1) + 1;
 
 class Pagination extends Component {
-  state = {
-    get activePage() {
-      const { offset, count } = this.props;
+  static getDerivedStateFromProps = (props) => {
+    const { offset, count } = props;
 
-      return getActivePageNumber(offset, count);
-    },
+    return {
+      activePage: getActivePageNumber(offset, count),
+    };
   };
 
-  componentWillReceiveProps = (nextProps) => {
-    const { offset, count } = nextProps;
-
-    this.setState({
-      activePage: getActivePageNumber(offset, count),
-    });
+  state = {
+    activePage: undefined,
   };
 
   handleCountButtonClick = (e) => {
     const { onChange } = this.props;
-    const count = e.target.value;
+    const count = Number(e.target.value);
 
     onChange({ count, offset: 0 });
   };
 
   handlePageButtonClick = (pageNumber) => {
     const { count, onChange } = this.props;
-    const offset = String((pageNumber - 1) * count);
+    const offset = (pageNumber - 1) * count;
 
     onChange({ offset });
   };
@@ -109,7 +104,7 @@ Pagination.propTypes = {
   hideFirstLastPages: PropTypes.bool,
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
-  offset: PropTypes.number.isRequired,
+  offset: PropTypes.number.isRequired, // eslint-disable-line
   count: PropTypes.number.isRequired,
   totalCount: PropTypes.number.isRequired,
   maxPages: PropTypes.number,
@@ -144,9 +139,9 @@ export default withStyles(theme => ({
     },
   },
   countActive: {
-    border: '1px solid #0A90ED',
+    border: `1px solid ${theme.palette.primary.main}`,
     color: theme.palette.common.white,
-    background: '#0A90ED', // ToDo: цвет в переменные темы
+    background: theme.palette.primary.main,
   },
   paginationInner: {
     display: 'flex',
@@ -167,7 +162,7 @@ export default withStyles(theme => ({
     color: theme.palette.common.black,
     textDecoration: 'none',
     '&:hover': {
-      color: '#0A90ED', // ToDo: цвет в переменные темы
+      color: theme.palette.primary.main,
     },
   },
   paginationActiveLink: {
@@ -175,7 +170,7 @@ export default withStyles(theme => ({
     fontWeight: 500,
     fontSize: '16px',
     color: theme.palette.common.white,
-    background: '#0A90ED', // ToDo: цвет в переменные темы
+    background: theme.palette.primary.main,
     '&:hover': {
       color: theme.palette.common.black,
     },

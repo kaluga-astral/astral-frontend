@@ -8,5 +8,5 @@ import DateFromNow from './DateFromNow';
 storiesOf('helpers', module).add('DateFromNow', () => {
   const value = moment(date('date', new Date('July 20 2018')));
 
-  return <DateFromNow date={value} />;
+  return <DateFromNow value={value} />;
 });

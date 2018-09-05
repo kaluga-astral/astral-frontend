@@ -1,21 +1,16 @@
 import cn from 'classnames';
-import { noop } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link as RRLink } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-const Link = ({
-  to, children, className, classes, onClick,
-}) => (
-  <RRLink to={to} className={cn(classes.root, className)} onClick={onClick}>
-    {children}
-  </RRLink>
+const Link = ({ classes, className, ...props }) => (
+  <RRLink {...props} className={cn(classes.root, className)} />
 );
 
 Link.defaultProps = {
   className: null,
-  onClick: noop,
+  onClick: null,
 };
 
 Link.propTypes = {

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-import Loading from './Loading';
-import Failure from './Failure';
+import Loading from './LoadingState';
+import Failure from './FailureState';
 
 const ContentStatus = ({
   isFetching, error, classes, className, loaderProps, children,

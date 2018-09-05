@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Button from '../../Button';
 
-const Failure = ({ error, classes, onRetry }) => (
+const PlaceholderFailureState = ({ error, classes, onRetry }) => (
   <Fragment>
     <div className={classes.status}>Произошла ошибка</div>
     <div className={classes.message}>
@@ -18,12 +18,12 @@ const Failure = ({ error, classes, onRetry }) => (
   </Fragment>
 );
 
-Failure.defaultProps = {
+PlaceholderFailureState.defaultProps = {
   error: null,
   onRetry: null,
 };
 
-Failure.propTypes = {
+PlaceholderFailureState.propTypes = {
   error: PropTypes.instanceOf(Error),
   classes: PropTypes.shape().isRequired,
   onRetry: PropTypes.func,
@@ -40,4 +40,4 @@ export default withStyles({
   retryButton: {
     marginTop: '10px',
   },
-})(Failure);
+})(PlaceholderFailureState);
