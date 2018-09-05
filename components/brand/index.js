@@ -1,4 +1,2 @@
-import ProductLogo from './ProductLogo';
-import SquareLogo from './SquareLogo';
-
-export { ProductLogo, SquareLogo };
+export { default as ProductLogo } from './ProductLogo';
+export { default as SquareLogo } from './SquareLogo';
