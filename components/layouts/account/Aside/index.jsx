@@ -2,32 +2,34 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import ProductLogo from './product-logo.png';
-import Background from './background.jpeg';
 
-const AccountAside = ({ className, classes, title }) => (
+import productLogo from './product-logo.png';
+import background from './background.jpeg';
+
+const AccountAside = ({
+  classes, className, productName, productDescription,
+}) => (
   <aside className={cn(classes.root, className)}>
-    <div className={classes.info}>
-      <img src={ProductLogo} alt={title} className={classes.logo} />
-      <h1 className={classes.title}>{title}</h1>
+    <div className={classes.productInfo}>
+      <img src={productLogo} alt={productName} className={classes.productlogo} />
+      <div>
+        <h1 className={classes.productName}>{productName}</h1>
+        {productDescription && <p className={classes.productDescription}>{productDescription}</p>}
+      </div>
     </div>
   </aside>
 );
 
 AccountAside.defaultProps = {
   className: null,
-  title: '',
+  productDescription: null,
 };
 
 AccountAside.propTypes = {
-  classes: PropTypes.shape({
-    root: PropTypes.string,
-    info: PropTypes.string,
-    logo: PropTypes.string,
-    title: PropTypes.string,
-  }).isRequired,
-  title: PropTypes.string,
+  classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
+  productName: PropTypes.string.isRequired,
+  productDescription: PropTypes.string,
 };
 
 export default withStyles(theme => ({
@@ -37,12 +39,12 @@ export default withStyles(theme => ({
     alignItems: 'flex-end',
     flex: 1,
     backgroundColor: '#CCC',
-    backgroundImage: `url(${Background})`,
+    backgroundImage: `url(${background})`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     zIndex: 0,
     '&::before': {
-      content: '',
+      content: '""',
       position: 'absolute',
       height: '200px',
       width: '100%',
@@ -50,21 +52,27 @@ export default withStyles(theme => ({
       zIndex: 1,
     },
   },
-  info: {
+  productInfo: {
     display: 'flex',
-    alignItems: 'center',
     width: '100%',
-    padding: '40px 60px',
+    padding: '0 75px 35px 75px',
+    fontWeight: 300,
+    color: theme.palette.common.white,
     zIndex: 2,
   },
-  logo: {
+  productlogo: {
     height: '40px',
     marginRight: '30px',
   },
-  title: {
+  productName: {
     margin: 0,
+    lineHeight: '40px',
     fontWeight: 300,
     fontSize: '30px',
-    color: theme.palette.common.white,
+  },
+  productDescription: {
+    margin: '10px 0 0 0',
+    lineHeight: '16px',
+    fontSize: '14px',
   },
 }))(AccountAside);

@@ -9,15 +9,12 @@ const AccountLayout = ({ classes, className, children }) => (
 
 AccountLayout.defaultProps = {
   className: null,
-  children: null,
 };
 
 AccountLayout.propTypes = {
-  classes: PropTypes.shape({
-    root: PropTypes.string,
-  }).isRequired,
+  classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 export default withStyles({

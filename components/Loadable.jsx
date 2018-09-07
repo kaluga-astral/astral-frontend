@@ -2,6 +2,7 @@ import React from 'react';
 import Loadable from 'react-loadable';
 import { withStyles } from '@material-ui/core/styles';
 
+import UnhandledError from './UnhandledError';
 import { Loader } from './status';
 
 const Loading = withStyles({
@@ -16,10 +17,17 @@ const Loading = withStyles({
   error, timedOut, pastDelay, classes,
 }) => {
   if (error) {
-    return <div>Произошла ошибка</div>;
-  } if (timedOut) {
-    return <div>Требуется еще немного время</div>;
-  } if (pastDelay) {
+    return <UnhandledError />;
+  }
+  if (timedOut) {
+    return (
+      <div className={classes.pastDelay}>
+        <Loader />
+        <div>Требуется еще немного время</div>
+      </div>
+    );
+  }
+  if (pastDelay) {
     return (
       <div className={classes.pastDelay}>
         <Loader />

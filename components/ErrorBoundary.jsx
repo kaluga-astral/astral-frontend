@@ -2,17 +2,8 @@ import PropTypes from 'prop-types';
 import bugsnag from 'bugsnag-js';
 import React, { Component } from 'react';
 import createPlugin from 'bugsnag-react';
-import { withStyles } from '@material-ui/core/styles';
 
-const UnhandledError = withStyles({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    height: '100%',
-  },
-})(({ classes }) => <pre className={classes.root}>An error has occurred</pre>);
+import UnhandledError from './UnhandledError';
 
 class ErrorBoundary extends Component {
   get bugsnagClient() {

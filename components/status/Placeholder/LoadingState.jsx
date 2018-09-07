@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Fragment, PureComponent } from 'react';
-import Loader from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
+
+import Loader from '../Loader';
 
 const PAST_DELAY_TIMEOUT = 100;
 const TIME_OUT_TIMEOUT = 8000;

@@ -5,6 +5,9 @@ import { Field } from 'react-final-form';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 
+import { compose } from '../../../../validations/helpers';
+import * as rules from '../../../../validations/rules';
+
 import FormControl from './FormControl';
 
 const FormField = ({
@@ -18,7 +21,19 @@ const FormField = ({
   inputProps,
   ...props
 }) => (
-  <Field name={name} parse={parse} validate={validate}>
+  <Field
+    allowNull={!required}
+    name={name}
+    parse={parse}
+    validate={
+      required
+        ? compose(
+          rules.required,
+          validate,
+        )
+        : validate
+    }
+  >
     {({ meta, input }) => (
       <FormControl required={required} error={meta.touched && !meta.valid} {...props}>
         {label && <InputLabel>{label}</InputLabel>}
