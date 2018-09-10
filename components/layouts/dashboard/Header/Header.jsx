@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-import Brand from './Brand';
-import MainTitle from './MainTitle';
-import Profile from './Profile/index';
-
 const DashboardHeader = ({ classes, className, children }) => (
   <header className={cn(classes.root, className)}>{children}</header>
 );
@@ -21,16 +17,13 @@ DashboardHeader.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export { Brand, MainTitle, Profile };
-
-export default withStyles({
+export default withStyles(theme => ({
   root: {
     display: 'flex',
-    position: 'relative',
     alignItems: 'center',
-    height: '60px',
-    borderBottom: '1px solid #F0F0F0',
-    background: '#fff',
+    height: '70px',
+    borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
+    background: theme.palette.common.white,
     zIndex: 2,
   },
-})(DashboardHeader);
+}))(DashboardHeader);

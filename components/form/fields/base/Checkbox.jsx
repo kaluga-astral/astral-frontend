@@ -1,3 +1,4 @@
+// FIXME: need refactoring
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Field } from 'react-final-form';
@@ -12,7 +13,18 @@ import * as rules from '../../../../validations/rules';
 const ChekboxField = ({
   fullWidth, disabled, required, validate, name, label, className,
 }) => (
-  <Field name={name} type="checkbox" validate={required ? compose(rules.required, validate) : null}>
+  <Field
+    name={name}
+    type="checkbox"
+    validate={
+      required
+        ? compose(
+          rules.required,
+          validate,
+        )
+        : null
+    }
+  >
     {({ input: { checked, onChange }, meta }) => (
       <FormControl
         disabled={disabled}

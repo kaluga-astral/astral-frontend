@@ -1,12 +1,11 @@
+import pathToRegexp from 'path-to-regexp';
 import PropTypes from 'prop-types';
 import React, { Fragment, PureComponent } from 'react';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
+import { withRouter } from 'react-router-dom';
 import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
-import pathToRegexp from 'path-to-regexp';
 
+import { MenuList, MenuItem } from '../../../../Menu';
 import ListItemIcon from './ListItemIcon';
 import ListItemText from './ListItemText';
 
@@ -56,17 +55,28 @@ class SidebarNavDropdown extends PureComponent {
               <Icon />
             </ListItemIcon>
           )}
-          <ListItemText primary={text} />
-          <svg width="10" height="5" viewBox="0 0 10 5">
+          <ListItemText>{text}</ListItemText>
+          <svg
+            style={{
+              transform: expanded ? 'rotateZ(180deg)' : null,
+              transition: 'all 0.5s ease 0s',
+            }}
+            width="12"
+            height="6"
+            viewBox="0 0 12 6"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
-              d="M0 0L5 5L10 0H0Z"
-              transform={expanded ? 'translate(0 5) scale(1 -1)' : null}
+              d="M0.0944805 0.263158L0.285453 0.0873065C0.411871 -0.0291022 0.616293 -0.0291022 0.742711 0.0873065L5.99849 4.92941L11.257 0.0873065C11.3834 -0.0291022 11.5878 -0.0291022 11.7142 0.0873065L11.9052 0.263158C12.0316 0.379567 12.0316 0.567802 11.9052 0.684211L6.22981 5.91269C6.10339 6.0291 5.89897 6.0291 5.77255 5.91269L0.0971699 0.684211C-0.0319376 0.567802 -0.0319376 0.379567 0.0944805 0.263158Z"
               fill="white"
             />
           </svg>
         </MenuItem>
         <Collapse in={expanded}>
-          <MenuList className={classes.list}>{children}</MenuList>
+          <MenuList disablePadding className={classes.list}>
+            {children}
+          </MenuList>
         </Collapse>
       </Fragment>
     );
@@ -83,15 +93,13 @@ SidebarNavDropdown.propTypes = {
   }).isRequired,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   mainNavItem: {
-    padding: '15px 25px',
+    padding: '10px 20px',
     fontSize: '20px',
-    '&:hover': {
-      textDecoration: 'none',
-    },
+    color: theme.palette.common.white,
   },
   list: {
-    background: '#0065B1', // FIXME: вынести цвета в тему
+    borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
   },
-})(withRouter(SidebarNavDropdown));
+}))(withRouter(SidebarNavDropdown));

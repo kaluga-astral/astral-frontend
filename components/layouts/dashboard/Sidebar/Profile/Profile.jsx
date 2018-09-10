@@ -10,7 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Avatar from '../../../../Avatar';
 
-class HeaderProfile extends Component {
+class DashboardSidebarProfile extends Component {
   state = {
     showMenu: false,
   };
@@ -31,7 +31,7 @@ class HeaderProfile extends Component {
   };
 
   handleClickAwayListenerClickAway = (event) => {
-    if (this.toggler.contains(event.target)) {
+    if (this.anchorEl.contains(event.target)) {
       return;
     }
 
@@ -42,7 +42,7 @@ class HeaderProfile extends Component {
 
   render = () => {
     const {
-      classes, className, avatarSrc, avatarAlt, userName, children,
+      classes, className, children, avatarSrc, avatarAlt, userName,
     } = this.props;
     const { showMenu } = this.state;
 
@@ -51,22 +51,17 @@ class HeaderProfile extends Component {
         <Button
           className={cn(classes.toggler)}
           buttonRef={(node) => {
-            this.toggler = node;
+            this.anchorEl = node;
           }}
           onClick={this.handleTogglerButtonClick}
           onBlur={this.handleTogglerButtonBlur}
         >
-          <span className={classes.userName}>{userName}</span>
-          <Avatar src={avatarSrc} onClick={this.onPopoverToggle}>
+          <Avatar className={classes.avatar} src={avatarSrc} onClick={this.onPopoverToggle}>
             {avatarAlt}
           </Avatar>
+          <div className={classes.userName}>{userName}</div>
         </Button>
-        <Popper
-          transition
-          disablePortal
-          open={showMenu}
-          anchorEl={this.toggler}
-        >
+        <Popper transition disablePortal open={showMenu} anchorEl={this.anchorEl}>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
               <Paper>
@@ -82,12 +77,12 @@ class HeaderProfile extends Component {
   };
 }
 
-HeaderProfile.defaultProps = {
+DashboardSidebarProfile.defaultProps = {
   className: null,
   avatarSrc: null,
 };
 
-HeaderProfile.propTypes = {
+DashboardSidebarProfile.propTypes = {
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   avatarSrc: PropTypes.string,
@@ -96,46 +91,42 @@ HeaderProfile.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   root: {
-    margin: '0 12.5px',
-    height: '60px',
-    '&:first-child': {
-      marginLeft: '25px',
-    },
-    '&:last-child': {
-      marginRight: '25px',
-    },
+    marginTop: 'auto',
+    borderTop: '0.5px solid rgba(255, 255, 255, 0.5)',
   },
   toggler: {
     display: 'flex',
-    alignItems: 'center',
-    height: '60px',
-    border: 'none',
-    padding: '0 20px',
+    justifyContent: 'flex-start',
+    width: '100%',
+    padding: '20px',
+    border: 0,
     background: 'inherit',
     cursor: 'pointer',
     '&:hover': {
-      background: 'rgba(10, 144, 237, 0.02)', // FIXME: цвета в тему
+      background: 'rgba(10, 144, 237, 0.02)',
     },
     '&:focus': {
       outline: 'none',
     },
   },
   avatar: {
-    width: 40,
-    borderRadius: '50%',
-    marginLeft: 10,
-    cursor: 'pointer',
+    width: 24,
+    height: 24,
+    marginRight: '15px',
+    fontSize: 16,
+    color: theme.palette.common.black,
+    background: theme.palette.common.white,
   },
   userName: {
     maxWidth: '300px',
-    marginRight: '15px',
+    lineHeight: '24px',
     whiteSpace: 'nowrap',
-    fontSize: 16,
-    fontWeight: 300,
-    color: '#0071C5', // FIXME: цвет в константы
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    fontSize: 16,
+    fontWeight: 500,
+    color: theme.palette.common.white,
   },
-})(HeaderProfile);
+}))(DashboardSidebarProfile);

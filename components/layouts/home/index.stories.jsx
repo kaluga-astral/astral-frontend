@@ -3,14 +3,14 @@ import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import HomeLayout, { Footer, Main } from './index';
-import { FooterInfo, FooterSection, FooterSectionItem, FooterCopyright } from './Footer';
+import {
+  FooterInfo, FooterSection, FooterSectionItem, FooterCopyright,
+} from './Footer';
 
-storiesOf('Layouts/Home', module).add('Layout', () => (
+storiesOf('layouts/home', module).add('default', () => (
   <MemoryRouter initialEntries={['/']}>
     <HomeLayout>
-      <Main>
-        Content
-      </Main>
+      <Main>Content</Main>
       <Footer>
         <Footer.Container>
           <FooterInfo onSearch={action('Searched')} />

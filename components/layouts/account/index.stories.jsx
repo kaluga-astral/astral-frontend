@@ -6,7 +6,7 @@ import Layout from './Layout';
 import Aside from './Aside';
 import Main from './Main';
 
-storiesOf('Layouts/Account/Layout', module)
+storiesOf('layouts/account', module)
   .add('with product description', () => (
     <MemoryRouter initialEntries={['/']}>
       <Layout>

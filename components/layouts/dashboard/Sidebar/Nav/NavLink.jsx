@@ -3,21 +3,21 @@ import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 
-import NavLink from '../../../NavLink';
+import NavLink from '../../../../NavLink';
+import Badge from './Badge';
 import ListItemIcon from './ListItemIcon';
 import ListItemText from './ListItemText';
-import Badge from './Badge';
 
 const SidebarNavLink = ({
-  classes, to, icon: Icon, text, badgeContent,
+  classes, icon: Icon, text, badgeContent, ...props
 }) => (
-  <MenuItem to={to} component={NavLink} activeClassName={classes.selected} classes={classes}>
+  <MenuItem component={NavLink} activeClassName={classes.selected} classes={classes} {...props}>
     {Icon && (
       <ListItemIcon>
         <Icon />
       </ListItemIcon>
     )}
-    <ListItemText primary={text} />
+    <ListItemText>{text}</ListItemText>
     {Boolean(badgeContent) && <Badge>{badgeContent}</Badge>}
   </MenuItem>
 );
@@ -37,18 +37,19 @@ SidebarNavLink.propTypes = {
   }).isRequired,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   root: {
-    padding: '15px 25px',
+    padding: '10px 20px',
     fontSize: '20px',
+    color: theme.palette.common.white,
     '&:hover': {
       textDecoration: 'none',
     },
   },
   selected: {
-    background: '#008bec', // FIXME: цвет в константы
+    background: theme.palette.primary.main,
     '&:hover': {
-      background: '#008bec', // FIXME: цвет в константы
+      background: theme.palette.primary.main,
     },
   },
-})(SidebarNavLink);
+}))(SidebarNavLink);

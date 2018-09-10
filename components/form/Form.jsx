@@ -3,27 +3,27 @@ import React from 'react';
 import { Form as FinalForm } from 'react-final-form';
 import { withStyles } from '@material-ui/core/styles';
 
-import SubmitButton from './SubmitButton';
-
 const Form = ({
-  preventShowError, children, className, onSubmit, classes, ...props
+  preventShowError, children, className, classes, ...props
 }) => (
-  <FinalForm
-    {...props}
-    onSubmit={onSubmit}
-    render={({ handleSubmit, ...formState }) => {
+  <FinalForm {...props}>
+    {({ handleSubmit, ...formState }) => {
       const { submitFailed, submitError } = formState;
 
       return (
         <form noValidate className={className} onSubmit={handleSubmit}>
           {!preventShowError
             && submitFailed
-            && submitError && <div className={classes.error}>{submitError}</div>}
+            && submitError && (
+              <div className={classes.error}>
+                {submitError.response.data.message || submitError.message}
+              </div>
+          )}
           {children(formState)}
         </form>
       );
     }}
-  />
+  </FinalForm>
 );
 
 Form.defaultProps = {
@@ -38,8 +38,6 @@ Form.propTypes = {
   children: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
-
-Form.SubmitButton = SubmitButton;
 
 export default withStyles({
   error: {

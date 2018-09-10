@@ -24,7 +24,6 @@ export default withStyles({
     flex: 1,
     width: '100%',
     overflowY: 'scroll',
-    background: '#FBFBFB', // FIXME: цвета в палитру
     zIndex: 1,
   },
 })(DashboardMain);

@@ -20,6 +20,6 @@ export default withStyles(theme => ({
     fontWeight: 500,
     fontSize: '14px',
     color: theme.palette.common.white,
-    background: '#0a90ed', // FIXME: цвет в константы
+    background: theme.palette.primary.main,
   },
 }))(Badge);

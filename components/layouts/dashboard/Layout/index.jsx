@@ -23,5 +23,6 @@ export default withStyles({
   root: {
     display: 'flex',
     height: '100%',
+    background: '#fafafa', // FIXME:
   },
 })(DashboardLayout);

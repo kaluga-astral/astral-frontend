@@ -18,13 +18,12 @@ DashboardSidebar.propTypes = {
   children: PropTypes.node,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   root: {
-    flex: '1 0 288px',
-    maxWidth: '288px',
-    boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.103884)',
-    background: '#005EA0', // FIXME: в переменные
-    overflowY: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '215px',
+    background: theme.palette.primary.dark,
     zIndex: 2,
   },
-})(DashboardSidebar);
+}))(DashboardSidebar);

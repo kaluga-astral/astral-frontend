@@ -1,3 +1,4 @@
+// FIXME: need refactoring
 import { noop } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
