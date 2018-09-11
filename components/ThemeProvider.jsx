@@ -9,8 +9,6 @@ import {
   createGenerateClassName,
   jssPreset,
 } from '@material-ui/core/styles';
-import MomentUtils from 'material-ui-pickers/utils/moment-utils';
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 
 const styleNode = document.createComment('insertion-point-jss');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -33,7 +31,7 @@ const ThemeProvider = ({ children }) => (
   <JssProvider jss={jss} generateClassName={generateClassName}>
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <MuiPickersUtilsProvider utils={MomentUtils}>{children}</MuiPickersUtilsProvider>
+      {children}
     </MuiThemeProvider>
   </JssProvider>
 );

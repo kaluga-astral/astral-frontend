@@ -19,18 +19,18 @@ HeaderMainTitle.propTypes = {
 
 export default withStyles({
   root: {
-    flex: 1,
-    margin: '0 12.5px',
+    display: 'flex',
+    alignItems: 'center',
+    height: '100%',
+    margin: 0,
+    padding: '0 30px',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     fontWeight: 'bold',
     fontSize: '20px',
-    '&:first-child': {
-      marginLeft: '25px',
-    },
-    '&:last-child': {
-      marginRight: '25px',
+    '&:not(:last-child)': {
+      borderRight: '0.5px solid rgba(0, 0, 0, 0.15)',
     },
   },
 })(HeaderMainTitle);

@@ -2,6 +2,7 @@ import pathToRegexp from 'path-to-regexp';
 import PropTypes from 'prop-types';
 import React, { Fragment, PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -25,12 +26,11 @@ class SidebarNavDropdown extends PureComponent {
   };
 
   setExpanded = () => {
-    const { children, location } = this.props;
+    const { children, location, autoExpand } = this.props;
+
     // prettier-ignore
-    const expanded = React
-      .Children
-      .toArray(children)
-      .some(dropdownItem => pathToRegexp(location.pathname).test(dropdownItem.props.to));
+    const isActive = dropdownItem => pathToRegexp(location.pathname).test(dropdownItem.props.to);
+    const expanded = autoExpand && React.Children.toArray(children).some(isActive);
 
     this.setState({
       expanded,
@@ -41,6 +41,10 @@ class SidebarNavDropdown extends PureComponent {
     this.setState(prevState => ({ expanded: !prevState.expanded }));
   };
 
+  handleClickAway = () => {
+    this.setExpanded();
+  };
+
   render = () => {
     const { expanded } = this.state;
     const {
@@ -48,42 +52,51 @@ class SidebarNavDropdown extends PureComponent {
     } = this.props;
 
     return (
-      <Fragment>
-        <MenuItem selected={expanded} className={classes.mainNavItem} onClick={this.toggleExpanded}>
-          {Icon && (
-            <ListItemIcon>
-              <Icon />
-            </ListItemIcon>
-          )}
-          <ListItemText>{text}</ListItemText>
-          <svg
-            style={{
-              transform: expanded ? 'rotateZ(180deg)' : null,
-              transition: 'all 0.5s ease 0s',
-            }}
-            width="12"
-            height="6"
-            viewBox="0 0 12 6"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+      <ClickAwayListener onClickAway={this.handleClickAway}>
+        <Fragment>
+          <MenuItem
+            selected={expanded}
+            className={classes.mainNavItem}
+            onClick={this.toggleExpanded}
           >
-            <path
-              d="M0.0944805 0.263158L0.285453 0.0873065C0.411871 -0.0291022 0.616293 -0.0291022 0.742711 0.0873065L5.99849 4.92941L11.257 0.0873065C11.3834 -0.0291022 11.5878 -0.0291022 11.7142 0.0873065L11.9052 0.263158C12.0316 0.379567 12.0316 0.567802 11.9052 0.684211L6.22981 5.91269C6.10339 6.0291 5.89897 6.0291 5.77255 5.91269L0.0971699 0.684211C-0.0319376 0.567802 -0.0319376 0.379567 0.0944805 0.263158Z"
-              fill="white"
-            />
-          </svg>
-        </MenuItem>
-        <Collapse in={expanded}>
-          <MenuList disablePadding className={classes.list}>
-            {children}
-          </MenuList>
-        </Collapse>
-      </Fragment>
+            {Icon && (
+              <ListItemIcon>
+                <Icon />
+              </ListItemIcon>
+            )}
+            <ListItemText>{text}</ListItemText>
+            <svg
+              style={{
+                transform: expanded ? 'rotateZ(180deg)' : null,
+                transition: 'all 0.5s ease 0s',
+              }}
+              width="12"
+              height="6"
+              viewBox="0 0 12 6"
+            >
+              <path
+                d="M0.0944805 0.263158L0.285453 0.0873065C0.411871 -0.0291022 0.616293 -0.0291022 0.742711 0.0873065L5.99849 4.92941L11.257 0.0873065C11.3834 -0.0291022 11.5878 -0.0291022 11.7142 0.0873065L11.9052 0.263158C12.0316 0.379567 12.0316 0.567802 11.9052 0.684211L6.22981 5.91269C6.10339 6.0291 5.89897 6.0291 5.77255 5.91269L0.0971699 0.684211C-0.0319376 0.567802 -0.0319376 0.379567 0.0944805 0.263158Z"
+                fill="white"
+              />
+            </svg>
+          </MenuItem>
+          <Collapse in={expanded}>
+            <MenuList disablePadding className={classes.list}>
+              {children}
+            </MenuList>
+          </Collapse>
+        </Fragment>
+      </ClickAwayListener>
     );
   };
 }
 
+SidebarNavDropdown.defaultProps = {
+  autoExpand: true,
+};
+
 SidebarNavDropdown.propTypes = {
+  autoExpand: PropTypes.bool,
   classes: PropTypes.shape().isRequired,
   icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
@@ -100,6 +113,6 @@ export default withStyles(theme => ({
     color: theme.palette.common.white,
   },
   list: {
-    borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
+    // borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
   },
 }))(withRouter(SidebarNavDropdown));

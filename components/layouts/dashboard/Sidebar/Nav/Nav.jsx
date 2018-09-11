@@ -6,8 +6,10 @@ const SidebarNav = props => <MenuList component="nav" {...props} />;
 
 export default withStyles({
   root: {
-    flex: 1,
     padding: 0,
     overflowY: 'scroll',
+    // '&:not(:last-child)': {
+    //   borderTop: '0.5px solid rgba(255, 255, 255, 0.5)',
+    // },
   },
 })(SidebarNav);

@@ -112,8 +112,8 @@ export default withStyles(theme => ({
     },
   },
   avatar: {
-    width: 24,
-    height: 24,
+    width: '32px',
+    height: '32px',
     marginRight: '15px',
     fontSize: 16,
     color: theme.palette.common.black,
