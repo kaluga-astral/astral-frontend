@@ -13,6 +13,8 @@ TextField.defaultProps = {
 };
 
 TextField.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
 };
 

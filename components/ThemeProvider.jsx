@@ -25,6 +25,11 @@ const theme = createMuiTheme({
       dark: '#0065b1',
     },
   },
+  overrides: {
+    MuiSvgIcon: {
+      root: { fontSize: 'inherit' },
+    },
+  },
 });
 
 const ThemeProvider = ({ children }) => (

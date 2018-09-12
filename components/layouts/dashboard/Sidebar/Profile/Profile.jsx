@@ -8,7 +8,9 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import { withStyles } from '@material-ui/core/styles';
 
+import { MenuList } from '../../../../Menu';
 import Avatar from '../../../../Avatar';
+import Item from './Item';
 
 class DashboardSidebarProfile extends Component {
   state = {
@@ -19,15 +21,6 @@ class DashboardSidebarProfile extends Component {
     this.setState(prevState => ({
       showMenu: !prevState.showMenu,
     }));
-  };
-
-  handleTogglerButtonBlur = (e) => {
-    if (e && e.relatedTarget) {
-      e.relatedTarget.click();
-    }
-    this.setState({
-      showMenu: false,
-    });
   };
 
   handleClickAwayListenerClickAway = (event) => {
@@ -42,7 +35,7 @@ class DashboardSidebarProfile extends Component {
 
   render = () => {
     const {
-      classes, className, children, avatarSrc, avatarAlt, userName,
+      classes, className, children, avatarSrc, avatarAlt, userName, userRole,
     } = this.props;
     const { showMenu } = this.state;
 
@@ -54,19 +47,21 @@ class DashboardSidebarProfile extends Component {
             this.anchorEl = node;
           }}
           onClick={this.handleTogglerButtonClick}
-          onBlur={this.handleTogglerButtonBlur}
         >
           <Avatar className={classes.avatar} src={avatarSrc} onClick={this.onPopoverToggle}>
             {avatarAlt}
           </Avatar>
-          <div className={classes.userName}>{userName}</div>
+          <div className={classes.user}>
+            <div className={classes.userName}>{userName}</div>
+            <div className={classes.userRole}>{userRole}</div>
+          </div>
         </Button>
         <Popper transition disablePortal open={showMenu} anchorEl={this.anchorEl}>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
-              <Paper>
+              <Paper className={classes.popperPaper}>
                 <ClickAwayListener onClickAway={this.handleClickAwayListenerClickAway}>
-                  {children}
+                  <MenuList>{children}</MenuList>
                 </ClickAwayListener>
               </Paper>
             </Grow>
@@ -77,18 +72,22 @@ class DashboardSidebarProfile extends Component {
   };
 }
 
+DashboardSidebarProfile.Item = Item;
+
 DashboardSidebarProfile.defaultProps = {
   className: null,
   avatarSrc: null,
+  userRole: null,
 };
 
 DashboardSidebarProfile.propTypes = {
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
+  children: PropTypes.node.isRequired,
   avatarSrc: PropTypes.string,
   avatarAlt: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  userRole: PropTypes.string,
 };
 
 export default withStyles(theme => ({
@@ -119,14 +118,19 @@ export default withStyles(theme => ({
     color: theme.palette.common.black,
     background: theme.palette.common.white,
   },
-  userName: {
-    maxWidth: '300px',
-    lineHeight: '24px',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    fontSize: 16,
-    fontWeight: 500,
+  user: {
+    textAlign: 'left',
     color: theme.palette.common.white,
+  },
+  userName: {
+    fontWeight: 500,
+    fontSize: '16px',
+  },
+  userRole: {
+    fontWeight: 300,
+    fontSize: '14px',
+  },
+  popperPaper: {
+    minWidth: '175px',
   },
 }))(DashboardSidebarProfile);

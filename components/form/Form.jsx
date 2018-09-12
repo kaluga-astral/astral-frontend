@@ -8,15 +8,14 @@ const Form = ({
 }) => (
   <FinalForm {...props}>
     {({ handleSubmit, ...formState }) => {
-      const { submitFailed, submitError } = formState;
+      const { submitError } = formState;
 
       return (
         <form noValidate className={className} onSubmit={handleSubmit}>
           {!preventShowError
-            && submitFailed
             && submitError && (
               <div className={classes.error}>
-                {submitError.response.data.message || submitError.message}
+                {(submitError || { response: { data: {} } }).response.data.message}
               </div>
           )}
           {children(formState)}
