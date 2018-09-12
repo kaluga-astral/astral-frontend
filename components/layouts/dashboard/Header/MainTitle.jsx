@@ -28,7 +28,7 @@ export default withStyles({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     fontWeight: 'bold',
-    fontSize: '20px',
+    fontSize: '24px',
     '&:not(:last-child)': {
       borderRight: '0.5px solid rgba(0, 0, 0, 0.15)',
     },
