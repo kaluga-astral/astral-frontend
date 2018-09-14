@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-const HeaderMainTitle = ({ children, classes, className }) => (
-  <h1 className={cn(classes.root, className)}>{children}</h1>
+const HeaderActions = ({ children, classes, className }) => (
+  <div className={cn(classes.root, className)}>{children}</div>
 );
 
-HeaderMainTitle.defaultProps = {
+HeaderActions.defaultProps = {
   className: null,
 };
 
-HeaderMainTitle.propTypes = {
+HeaderActions.propTypes = {
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
@@ -19,18 +19,9 @@ HeaderMainTitle.propTypes = {
 
 export default withStyles({
   root: {
-    display: 'flex',
-    alignItems: 'center',
-    height: '100%',
-    margin: 0,
     padding: '0 25px',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    fontWeight: 'bold',
-    fontSize: '24px',
     '&:not(:last-child)': {
       borderRight: '0.5px solid rgba(0, 0, 0, 0.15)',
     },
   },
-})(HeaderMainTitle);
+})(HeaderActions);

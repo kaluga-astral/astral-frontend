@@ -35,7 +35,7 @@ export default withStyles(theme => ({
     position: 'relative',
     flex: 1,
     height: '100%',
-    padding: '0 30px',
+    padding: '0 25px',
     '&:not(:last-child)': {
       borderRight: '0.5px solid rgba(0, 0, 0, 0.15)',
     },

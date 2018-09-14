@@ -113,6 +113,6 @@ export default withStyles(theme => ({
     color: theme.palette.common.white,
   },
   list: {
-    // borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
+    borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
   },
 }))(withRouter(SidebarNavDropdown));

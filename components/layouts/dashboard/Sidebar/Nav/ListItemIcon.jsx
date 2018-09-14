@@ -19,5 +19,6 @@ export default withStyles({
     width: '25px',
     height: '25px',
     marginRight: '15px',
+    fontSize: 'inherit',
   },
 })(SidebarListItemIcon);

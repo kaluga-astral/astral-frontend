@@ -40,7 +40,7 @@ SidebarNavLink.propTypes = {
 export default withStyles(theme => ({
   root: {
     padding: '10px 20px',
-    fontSize: '20px',
+    fontSize: '14px',
     color: theme.palette.common.white,
     '&:hover': {
       textDecoration: 'none',
