@@ -116,6 +116,7 @@ export default withStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'space-between',
+    margin: '10px 0',
   },
   countPerPage: {
     display: 'flex',
