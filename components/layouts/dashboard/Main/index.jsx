@@ -21,6 +21,8 @@ DashboardMain.propTypes = {
 
 export default withStyles({
   root: {
+    display: 'flex',
+    flexDirection: 'column',
     flex: 1,
     width: '100%',
     overflowY: 'scroll',

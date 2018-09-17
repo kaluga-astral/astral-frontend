@@ -11,6 +11,7 @@ class ErrorBoundary extends Component {
 
     return bugsnag({
       apiKey,
+      releaseStage: process.env.APP_ENV,
       notifyReleaseStages: ['production', 'staging'],
       logger: null,
     });
