@@ -40,7 +40,7 @@ const FormField = ({
         {label && <InputLabel>{label}</InputLabel>}
         {children({
           meta,
-          input: Object.assign({}, input, multiline, { placeholder, inputProps }),
+          input: Object.assign({}, input, { multiline, placeholder, inputProps }),
         })}
         {(meta.error || meta.submitError)
           && meta.touched && <FormHelperText>{meta.error || meta.submitError}</FormHelperText>}
@@ -53,7 +53,6 @@ FormField.defaultProps = {
   disabled: false,
   required: false,
   fullWidth: true,
-  multiline: false,
   margin: 'normal',
   className: null,
   validate: noop,
@@ -67,7 +66,6 @@ FormField.propTypes = {
   fullWidth: PropTypes.bool,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
-  multiline: PropTypes.bool,
   margin: PropTypes.string,
   name: PropTypes.string.isRequired,
   validate: PropTypes.func,
