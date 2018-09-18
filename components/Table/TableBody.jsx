@@ -26,6 +26,14 @@ const TableBodyStatus = withStyles({
 const TableBody = ({
   isFetching, data, error, renderRow, ...props
 }) => {
+  if (error) {
+    return (
+      <TableBodyStatus>
+        <span>{(error || { response: { data: {} } }).response.data.message}</span>
+      </TableBodyStatus>
+    );
+  }
+
   if (isFetching) {
     return (
       <TableBodyStatus>
@@ -38,14 +46,6 @@ const TableBody = ({
     return (
       <TableBodyStatus>
         <span>Ничего не найдено</span>
-      </TableBodyStatus>
-    );
-  }
-
-  if (error) {
-    return (
-      <TableBodyStatus>
-        <span>{(error || { response: { data: {} } }).response.data.message}</span>
       </TableBodyStatus>
     );
   }
