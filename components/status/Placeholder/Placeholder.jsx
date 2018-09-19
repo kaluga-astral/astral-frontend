@@ -44,7 +44,7 @@ export default withStyles({
     alignItems: 'center',
     flexDirection: 'column',
     height: '100%',
-    padding: '1em',
+    // padding: '1em',
     boxSizing: 'border-box',
   },
 })(ContentStatus);

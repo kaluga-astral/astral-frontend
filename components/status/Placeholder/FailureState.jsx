@@ -31,8 +31,7 @@ PlaceholderFailureState.propTypes = {
 
 export default withStyles({
   status: {
-    marginBottom: '10px',
-    fontSize: '24px',
+    fontSize: '1em',
   },
   message: {
     color: '#4e4e4e',
