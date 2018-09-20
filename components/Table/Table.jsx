@@ -1,4 +1,18 @@
-import Table from '@material-ui/core/Table';
+import cn from 'classnames';
+import React from 'react';
+import MuiTable from '@material-ui/core/Table';
 import { withStyles } from '@material-ui/core/styles';
 
-export default withStyles({})(Table);
+const Table = ({
+  classes, className, tableClassName, ...props
+}) => (
+  <div className={cn(classes.root, className)}>
+    <MuiTable className={tableClassName} {...props} />
+  </div>
+);
+
+export default withStyles({
+  root: {
+    flex: 1,
+  },
+})(Table);
