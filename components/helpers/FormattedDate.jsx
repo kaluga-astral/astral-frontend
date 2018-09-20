@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
-import { moment } from '../../utils';
+import { format as formateDate } from 'date-fns';
 
-const FormattedDate = ({ date, format }) => date.format(format);
+const FormattedDate = ({ date, format }) => formateDate(date, format);
 
 FormattedDate.defaultProps = {
-  format: 'LLLL',
+  format: 'DD.MM.YYYY',
 };
 
 FormattedDate.propTypes = {
-  date: PropTypes.instanceOf(moment).isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
   format: PropTypes.string,
 };
 
