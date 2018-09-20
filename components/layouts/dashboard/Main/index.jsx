@@ -26,6 +26,7 @@ export default withStyles({
     flex: 1,
     width: '100%',
     overflowY: 'scroll',
+    overflowX: 'hidden',
     zIndex: 1,
   },
 })(DashboardMain);

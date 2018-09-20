@@ -5,15 +5,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import Field from '../Field';
 
-const SelectField = ({
-  options, labelKey, valueKey, ...props
-}) => (
+const SelectField = ({ options, ...props }) => (
   <Field {...props}>
     {({ input }) => (
       <Select {...input}>
         {options.map(option => (
-          <MenuItem key={option[labelKey]} value={option[valueKey]}>
-            {option[labelKey]}
+          <MenuItem key={option.label} value={option.value}>
+            {option.label}
           </MenuItem>
         ))}
       </Select>
@@ -24,15 +22,16 @@ const SelectField = ({
 SelectField.defaultProps = {
   placeholder: 'Выберите значение',
   options: [],
-  labelKey: 'label',
-  valueKey: 'value',
 };
 
 SelectField.propTypes = {
   placeholder: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.object),
-  labelKey: PropTypes.string,
-  valueKey: PropTypes.string,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string,
+    }),
+  ),
 };
 
 export default SelectField;
