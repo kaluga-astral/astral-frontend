@@ -8,8 +8,8 @@ export default withStyles({
   root: {
     padding: 0,
     overflowY: 'scroll',
-    // '&:not(:last-child)': {
-    //   borderTop: '0.5px solid rgba(255, 255, 255, 0.5)',
-    // },
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
   },
 })(SidebarNav);
