@@ -1,5 +1,6 @@
 export { default as Button } from './Button';
 export { default as ErrorBoundary } from './ErrorBoundary';
+export { default as IconButton } from './IconButton';
 export { default as Loadable } from './Loadable';
 export { default as LinkAsButton } from './LinkAsButton';
 export { default as Pagination } from './Pagination';

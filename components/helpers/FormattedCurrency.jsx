@@ -7,7 +7,7 @@ FormattedCurrency.defaultProps = {
 };
 
 FormattedCurrency.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 
 export default FormattedCurrency;
