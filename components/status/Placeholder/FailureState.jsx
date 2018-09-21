@@ -8,7 +8,8 @@ const PlaceholderFailureState = ({ error, classes, onRetry }) => (
   <Fragment>
     <div className={classes.status}>Произошла ошибка</div>
     <div className={classes.message}>
-      {error.response ? error.response.data.message : error.message}
+      {console.log((error || { response: { data: {} } }).response.data.message || error.message)}
+      {(error || { response: { data: {} } }).response.data.message || error.message}
     </div>
     {onRetry && (
       <Button className={classes.retryButton} onClick={onRetry}>

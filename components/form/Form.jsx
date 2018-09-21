@@ -15,7 +15,8 @@ const Form = ({
           {!preventShowError
             && submitError && (
               <div className={classes.error}>
-                {(submitError || { response: { data: {} } }).response.data.message}
+                {(submitError || { response: { data: {} } }).response.data.message
+                  || submitError.message}
               </div>
           )}
           {children(formState)}
