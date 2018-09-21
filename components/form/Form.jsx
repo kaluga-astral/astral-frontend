@@ -40,7 +40,7 @@ Form.propTypes = {
 
 export default withStyles({
   error: {
-    padding: '25px',
+    padding: '12.5px 25px',
     fontWeight: 300,
     color: '#c00000', // FIXME: вынести цвета в тему
   },

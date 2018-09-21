@@ -3,6 +3,7 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
 
 import Loading from './LoadingState';
 import Failure from './FailureState';
@@ -17,7 +18,9 @@ const ContentStatus = ({
         {!isFetching && error && <Failure error={error} />}
       </div>
     )}
-    {!isFetching && !error && isFunction(children) && children()}
+    <Fade in={!isFetching && !error}>
+      <div>{!isFetching && !error && isFunction(children) && children()}</div>
+    </Fade>
   </Fragment>
 );
 
@@ -44,7 +47,7 @@ export default withStyles({
     alignItems: 'center',
     flexDirection: 'column',
     height: '100%',
-    // padding: '1em',
+    padding: '1em',
     boxSizing: 'border-box',
   },
 })(ContentStatus);

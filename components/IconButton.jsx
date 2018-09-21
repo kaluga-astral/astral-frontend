@@ -6,9 +6,9 @@ const IconButton = props => <MuiIconButton {...props} />;
 
 export default withStyles({
   root: {
-    width: '25px',
-    height: '25px',
-    lineHeight: '25px',
-    fontSize: '1em',
+    width: '40px',
+    height: '40px',
+    lineHeight: '40px',
+    fontSize: '18px',
   },
 })(IconButton);
