@@ -18,18 +18,20 @@ class SidebarNavDropdown extends PureComponent {
   };
 
   componentDidUpdate = (prevProps) => {
-    const { location } = this.props;
+    const { location, children } = this.props;
 
     if (prevProps.location.pathname !== location.pathname) {
+      this.setExpanded();
+    }
+    if (React.Children.count(prevProps.children) !== React.Children.count(children)) {
       this.setExpanded();
     }
   };
 
   setExpanded = () => {
-    const { children, location, autoExpand } = this.props;
+    const { children, match, autoExpand } = this.props;
 
-    // prettier-ignore
-    const isActive = dropdownItem => pathToRegexp(location.pathname).test(dropdownItem.props.to);
+    const isActive = dropdownItem => pathToRegexp(match.path).test(dropdownItem.props.to);
     const expanded = autoExpand && React.Children.toArray(children).some(isActive);
 
     this.setState({
@@ -101,8 +103,8 @@ SidebarNavDropdown.propTypes = {
   icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
+  match: PropTypes.shape({
+    path: PropTypes.string.isRequired,
   }).isRequired,
 };
 
