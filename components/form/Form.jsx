@@ -15,8 +15,7 @@ const Form = ({
           {!preventShowError
             && submitError && (
               <div className={classes.error}>
-                {(submitError || { response: { data: {} } }).response.data.message
-                  || submitError.message}
+                {(submitError || {}).message || 'Произошла ошибка'}
               </div>
           )}
           {children(formState)}

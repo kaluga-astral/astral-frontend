@@ -29,7 +29,7 @@ const TableBody = ({
   if (error) {
     return (
       <TableBodyStatus>
-        <span>{(error || { response: { data: {} } }).response.data.message}</span>
+        <span>{(error || {}).message || 'Произошла ошибка'}</span>
       </TableBodyStatus>
     );
   }
