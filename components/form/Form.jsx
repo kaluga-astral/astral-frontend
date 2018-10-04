@@ -13,11 +13,7 @@ const Form = ({
       return (
         <form noValidate className={className} onSubmit={handleSubmit}>
           {!preventShowError
-            && submitError && (
-              <div className={classes.error}>
-                {(submitError || {}).message || 'Произошла ошибка'}
-              </div>
-          )}
+            && submitError && <div className={classes.error}>{submitError || 'Произошла ошибка'}</div>}
           {children(formState)}
         </form>
       );

@@ -7,10 +7,7 @@ import Button from '../../Button';
 const PlaceholderFailureState = ({ error, classes, onRetry }) => (
   <Fragment>
     <div className={classes.status}>Произошла ошибка</div>
-    <div className={classes.message}>
-      {console.log((error || { response: { data: {} } }).response.data.message || error.message)}
-      {(error || { response: { data: {} } }).response.data.message || error.message}
-    </div>
+    <div className={classes.message}>{(error || {}).message}</div>
     {onRetry && (
       <Button className={classes.retryButton} onClick={onRetry}>
         Попробовать еще раз

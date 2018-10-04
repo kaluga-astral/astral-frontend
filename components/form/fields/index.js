@@ -1,6 +1,6 @@
 // base
 // export { default as Checkbox } from './base/Checkbox';
-// export { default as Email } from './base/Email';
+export { default as Email } from './base/Email';
 // export { default as File } from './base/File';
 // export { default as FileButton } from './base/FileButton';
 // export { default as Number } from './base/Number';
