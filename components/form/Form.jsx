@@ -1,49 +1,32 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Form as FinalForm } from 'react-final-form';
-import { withStyles } from '@material-ui/core/styles';
 
 import AutoSave from './AutoSave';
-import SnackbarError from './SnackbarError';
 
 const Form = ({
-  variantDisplayingError, autoSave, children, className, classes, ...props
+  autoSave, children, className, classes, component: Component, ...props
 }) => (
   <FinalForm {...props}>
-    {({ handleSubmit, ...formState }) => {
-      const { submitError } = formState;
-
-      return (
-        <form noValidate className={className} onSubmit={handleSubmit}>
-          {autoSave && <AutoSave />}
-          {variantDisplayingError === 'alert'
-            && submitError && <div className={classes.error}>{submitError}</div>}
-          {variantDisplayingError === 'snackbar'
-            && submitError && <SnackbarError message={submitError} />}
-          {children(formState)}
-        </form>
-      );
-    }}
+    {({ handleSubmit, ...formState }) => (
+      <Component onSubmit={handleSubmit}>
+        {autoSave && <AutoSave />}
+        {children(formState)}
+      </Component>
+    )}
   </FinalForm>
 );
 
 Form.defaultProps = {
   className: null,
-  variantDisplayingError: 'alert',
+  component: props => <form noValidate {...props} />,
 };
 
 Form.propTypes = {
-  variantDisplayingError: PropTypes.oneOf(['alert', 'snackbar']),
   className: PropTypes.string,
-  classes: PropTypes.shape({}).isRequired,
   children: PropTypes.func.isRequired,
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default withStyles({
-  error: {
-    margin: '12.5px 0',
-    fontWeight: 300,
-    color: '#c00000', // FIXME: вынести цвета в тему
-  },
-})(Form);
+export default Form;
