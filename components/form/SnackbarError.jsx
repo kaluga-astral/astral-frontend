@@ -40,7 +40,7 @@ class SnackbarError extends Component {
         ]}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'right',
         }}
         onClose={this.handleSnackbarClose}
       />
