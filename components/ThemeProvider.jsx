@@ -20,7 +20,7 @@ jss.options.insertionPoint = 'insertion-point-jss';
 const theme = createMuiTheme({
   palette: {
     background: {
-      default: 'white',
+      default: '#ffffff',
     },
     primary: {
       light: '#33a2ef',

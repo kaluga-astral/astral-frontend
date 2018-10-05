@@ -4,6 +4,7 @@ import { Form as FinalForm } from 'react-final-form';
 import { withStyles } from '@material-ui/core/styles';
 
 import AutoSave from './AutoSave';
+import SnackbarError from './SnackbarError';
 
 const Form = ({
   variantDisplayingError, autoSave, children, className, classes, ...props
@@ -17,8 +18,8 @@ const Form = ({
           {autoSave && <AutoSave />}
           {variantDisplayingError === 'alert'
             && submitError && <div className={classes.error}>{submitError}</div>}
-          {/* {variantDisplayingError === 'snackbar'
-            && submitError && <Snackbar open message="sdfsfsd" />} */}
+          {variantDisplayingError === 'snackbar'
+            && submitError && <SnackbarError message={submitError} />}
           {children(formState)}
         </form>
       );
@@ -41,7 +42,7 @@ Form.propTypes = {
 
 export default withStyles({
   error: {
-    padding: '12.5px 0',
+    margin: '12.5px 0',
     fontWeight: 300,
     color: '#c00000', // FIXME: вынести цвета в тему
   },
