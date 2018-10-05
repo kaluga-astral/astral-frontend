@@ -3,8 +3,10 @@ import React from 'react';
 import { Form as FinalForm } from 'react-final-form';
 import { withStyles } from '@material-ui/core/styles';
 
+import AutoSave from './AutoSave';
+
 const Form = ({
-  preventShowError, children, className, classes, ...props
+  variantDisplayingError, autoSave, children, className, classes, ...props
 }) => (
   <FinalForm {...props}>
     {({ handleSubmit, ...formState }) => {
@@ -12,8 +14,11 @@ const Form = ({
 
       return (
         <form noValidate className={className} onSubmit={handleSubmit}>
-          {!preventShowError
-            && submitError && <div className={classes.error}>{submitError || 'Произошла ошибка'}</div>}
+          {autoSave && <AutoSave />}
+          {variantDisplayingError === 'alert'
+            && submitError && <div className={classes.error}>{submitError}</div>}
+          {/* {variantDisplayingError === 'snackbar'
+            && submitError && <Snackbar open message="sdfsfsd" />} */}
           {children(formState)}
         </form>
       );
@@ -23,11 +28,11 @@ const Form = ({
 
 Form.defaultProps = {
   className: null,
-  preventShowError: false,
+  variantDisplayingError: 'alert',
 };
 
 Form.propTypes = {
-  preventShowError: PropTypes.bool,
+  variantDisplayingError: PropTypes.oneOf(['alert', 'snackbar']),
   className: PropTypes.string,
   classes: PropTypes.shape({}).isRequired,
   children: PropTypes.func.isRequired,
@@ -36,7 +41,7 @@ Form.propTypes = {
 
 export default withStyles({
   error: {
-    padding: '12.5px 25px',
+    padding: '12.5px 0',
     fontWeight: 300,
     color: '#c00000', // FIXME: вынести цвета в тему
   },

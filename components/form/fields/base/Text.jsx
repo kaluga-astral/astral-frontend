@@ -5,7 +5,9 @@ import Input from '@material-ui/core/Input';
 import Field from '../Field';
 
 const TextField = props => (
-  <Field {...props}>{({ input }) => <Input type="text" {...input} />}</Field>
+  <Field {...props} type="text">
+    {({ input }) => <Input {...input} />}
+  </Field>
 );
 
 TextField.defaultProps = {

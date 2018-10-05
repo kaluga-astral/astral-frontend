@@ -13,19 +13,23 @@ import FormControl from './FormControl';
 const FormField = ({
   required,
   children,
+  type,
   name,
   validate,
   label,
   placeholder,
   parse,
+  format,
   inputProps,
   multiline,
   ...props
 }) => (
   <Field
     allowNull={!required}
+    type={type}
     name={name}
     parse={parse}
+    format={format}
     validate={
       required
         ? compose(
@@ -60,6 +64,7 @@ FormField.defaultProps = {
   label: null,
   placeholder: null,
   inputProps: {},
+  type: undefined,
 };
 
 FormField.propTypes = {
@@ -67,6 +72,7 @@ FormField.propTypes = {
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   margin: PropTypes.string,
+  type: PropTypes.string, // .isRequired,
   name: PropTypes.string.isRequired,
   validate: PropTypes.func,
   parse: PropTypes.func,

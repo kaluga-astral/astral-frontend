@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 
 import Field from '../Field';
+import { MenuItem } from '../../../Menu';
 
-const SelectField = ({ options, ...props }) => (
+const SelectField = ({
+  multiple, classes, options, ...props
+}) => (
   <Field {...props}>
     {({ input }) => (
-      <Select {...input}>
+      <Select multiple={multiple} classes={classes} {...input}>
         {options.map(option => (
           <MenuItem key={option.label} value={option.value}>
             {option.label}
@@ -20,18 +23,19 @@ const SelectField = ({ options, ...props }) => (
 );
 
 SelectField.defaultProps = {
+  multiple: false,
   placeholder: 'Выберите значение',
-  options: [],
 };
 
 SelectField.propTypes = {
+  multiple: PropTypes.bool,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string,
-      value: PropTypes.string,
+      label: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     }),
-  ),
+  ).isRequired,
 };
 
-export default SelectField;
+export default withStyles({})(SelectField);

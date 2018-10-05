@@ -32,6 +32,9 @@ const theme = createMuiTheme({
     MuiSvgIcon: {
       root: { fontSize: 'inherit' },
     },
+    MuiInput: {
+      root: { fontSize: '1em' },
+    },
   },
 });
 

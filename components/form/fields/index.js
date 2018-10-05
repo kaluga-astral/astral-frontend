@@ -8,7 +8,7 @@ export { default as Password } from './base/Password';
 export { default as Phone } from './base/Phone';
 // export { default as Range } from './base/Range';
 export { default as Select } from './base/Select';
-// export { default as Switch } from './base/Switch';
+export { default as Switch } from './base/Switch';
 export { default as Text } from './base/Text';
 //
 // export { default as INN } from './INN';
