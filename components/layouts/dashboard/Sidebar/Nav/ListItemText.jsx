@@ -17,5 +17,7 @@ export default withStyles({
     padding: 0,
     fontWeight: 300,
     fontSize: '14px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   },
 })(SidebarListItemText);
