@@ -18,6 +18,9 @@ const jss = create(jssPreset());
 jss.options.insertionPoint = 'insertion-point-jss';
 
 const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
   palette: {
     background: {
       default: '#ffffff',
