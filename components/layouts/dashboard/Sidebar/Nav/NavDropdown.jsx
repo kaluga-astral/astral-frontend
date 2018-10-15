@@ -29,13 +29,11 @@ class SidebarNavDropdown extends PureComponent {
   };
 
   setExpanded = () => {
-    const { children, match, autoExpand } = this.props;
-
-    const isActive = dropdownItem => pathToRegexp(match.path).test(dropdownItem.props.to);
-    const expanded = autoExpand && React.Children.toArray(children).some(isActive);
+    const { children, location } = this.props;
+    const isActive = dropdownItem => pathToRegexp(location.pathname).test(dropdownItem.props.to);
 
     this.setState({
-      expanded,
+      expanded: React.Children.toArray(children).some(isActive),
     });
   };
 
@@ -94,11 +92,11 @@ class SidebarNavDropdown extends PureComponent {
 }
 
 SidebarNavDropdown.defaultProps = {
-  autoExpand: true,
+  // autoExpand: true,
 };
 
 SidebarNavDropdown.propTypes = {
-  autoExpand: PropTypes.bool,
+  // autoExpand: PropTypes.bool,
   classes: PropTypes.shape().isRequired,
   icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
@@ -106,6 +104,7 @@ SidebarNavDropdown.propTypes = {
   match: PropTypes.shape({
     path: PropTypes.string.isRequired,
   }).isRequired,
+  location: PropTypes.shape({}).isRequired,
 };
 
 export default withStyles(theme => ({
