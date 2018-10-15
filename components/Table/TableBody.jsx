@@ -2,7 +2,7 @@ import React from 'react';
 import MuiTableBody from '@material-ui/core/TableBody';
 import { withStyles } from '@material-ui/core/styles';
 
-import Loader from '../status/Loader';
+import Placeholder from '../status/Placeholder';
 import TableRow from './TableRow';
 import TableCell from './TableCell';
 
@@ -11,7 +11,6 @@ const TableBodyStatus = withStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '25px',
   },
 })(({ classes, children }) => (
   <MuiTableBody>
@@ -26,18 +25,10 @@ const TableBodyStatus = withStyles({
 const TableBody = ({
   isFetching, data, error, renderRow, ...props
 }) => {
-  if (error) {
+  if (error || isFetching) {
     return (
       <TableBodyStatus>
-        <span>{(error || {}).message || 'Произошла ошибка'}</span>
-      </TableBodyStatus>
-    );
-  }
-
-  if (isFetching) {
-    return (
-      <TableBodyStatus>
-        <Loader />
+        <Placeholder isFetching={isFetching} error={error} />
       </TableBodyStatus>
     );
   }

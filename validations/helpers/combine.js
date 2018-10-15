@@ -1,4 +1,4 @@
-import { isObject, keys, merge } from 'lodash';
+import { isObject, keys, merge } from 'lodash-es';
 
 export default rules => (values) => {
   if (!isObject(rules)) {
@@ -6,14 +6,13 @@ export default rules => (values) => {
   }
 
   return keys(rules).reduce(
-    (recordLevelErrors, fieldName) =>
-      merge(
-        recordLevelErrors,
-        rules[fieldName]
-          .map(fieldRule => fieldRule(values[fieldName]))
-          .filter(error => error)
-          .reduceRight((fieldLevelError, error) => ({ [fieldName]: error }), {}),
-      ),
+    (recordLevelErrors, fieldName) => merge(
+      recordLevelErrors,
+      rules[fieldName]
+        .map(fieldRule => fieldRule(values[fieldName]))
+        .filter(error => error)
+        .reduceRight((fieldLevelError, error) => ({ [fieldName]: error }), {}),
+    ),
     {},
   );
 };

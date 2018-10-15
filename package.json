@@ -22,6 +22,7 @@
     "downshift": "^2.0.16",
     "final-form": "4.10.0",
     "jss": "^9.8.1",
+    "lodash-es": "^4.17.11",
     "prop-types": "^15.6.2",
     "react-dropzone": "^5.0.1",
     "react-final-form": "3.6.5",
