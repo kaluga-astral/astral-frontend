@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-const HomeLayout = ({ classes, className, children }) => (
-  <div className={cn(classes.root, className)}>{children}</div>
+const HomeLayoutHeader = ({ classes, className, ...props }) => (
+  <header className={cn(classes.root, className)} {...props} />
 );
 
-HomeLayout.defaultProps = {
+HomeLayoutHeader.defaultProps = {
   className: null,
 };
 
-HomeLayout.propTypes = {
+HomeLayoutHeader.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
   }).isRequired,
@@ -19,8 +19,9 @@ HomeLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   root: {
-
+    height: '85px',
+    background: theme.palette.primary.dark,
   },
-})(HomeLayout);
+}))(HomeLayoutHeader);

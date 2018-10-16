@@ -3,24 +3,26 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-const HomeMain = ({ className, children, classes }) => (
-  <main className={cn(classes.root, className)}>{children}</main>
+const HomeLayout = ({ classes, className, children }) => (
+  <div className={cn(classes.root, className)}>{children}</div>
 );
 
-HomeMain.defaultProps = {
+HomeLayout.defaultProps = {
   className: null,
 };
 
-HomeMain.propTypes = {
-  children: PropTypes.node.isRequired,
+HomeLayout.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
   }).isRequired,
   className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default withStyles({
   root: {
-
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
   },
-})(HomeMain);
+})(HomeLayout);

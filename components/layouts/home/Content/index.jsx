@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-const HomeLayoutFooter = ({ classes, className, ...props }) => (
-  <footer className={cn(classes.root, className)} {...props} />
+const HomeLayoutContent = ({ classes, className, ...props }) => (
+  <div className={cn(classes.root, className)} {...props} />
 );
 
-HomeLayoutFooter.defaultProps = {
+HomeLayoutContent.defaultProps = {
   className: null,
 };
 
-HomeLayoutFooter.propTypes = {
+HomeLayoutContent.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
   }).isRequired,
@@ -21,6 +21,6 @@ HomeLayoutFooter.propTypes = {
 
 export default withStyles({
   root: {
-    height: '150px',
+    flex: 1,
   },
-})(HomeLayoutFooter);
+})(HomeLayoutContent);
