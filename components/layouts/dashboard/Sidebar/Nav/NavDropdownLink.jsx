@@ -10,10 +10,10 @@ import NavLink from './NavLink';
 
 // TODO:
 // get isActive() {
-//   const { location, to } = this.props;
-//   return pathToRegexp(location.pathname).test(to);
+// const { location, to } = this.props;
+// return pathToRegexp(location.pathname).test(to);
 // }
-const NavDropdownLinkIcon = ({ isActive }) => (
+const NavDropdownLinkIcon = () => (
   <SvgIcon viewBox="0 0 8 8">
     <circle cx="4" cy="4" r="3.75" stroke="white" strokeWidth="0.5" />
   </SvgIcon>

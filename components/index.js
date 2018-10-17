@@ -1,4 +1,6 @@
 export { default as Button } from './Button';
+export { default as BaseCSS } from './BaseCSS';
+export { default as Collapse } from './Collapse';
 export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as IconButton } from './IconButton';
 export { default as Loadable } from './Loadable';
