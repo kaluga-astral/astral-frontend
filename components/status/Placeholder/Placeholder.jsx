@@ -8,7 +8,7 @@ import Fade from '@material-ui/core/Fade';
 import Loading from './LoadingState';
 import Failure from './FailureState';
 
-const ContentStatus = ({
+const Placeholder = ({
   isFetching, error, classes, className, loaderProps, children,
 }) => (
   <Fragment>
@@ -24,14 +24,14 @@ const ContentStatus = ({
   </Fragment>
 );
 
-ContentStatus.defaultProps = {
+Placeholder.defaultProps = {
   error: null,
   loaderProps: {},
   className: null,
   children: null,
 };
 
-ContentStatus.propTypes = {
+Placeholder.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   error: PropTypes.instanceOf(Error),
   loaderProps: PropTypes.shape(),
@@ -50,4 +50,4 @@ export default withStyles({
     padding: '1em',
     boxSizing: 'border-box',
   },
-})(ContentStatus);
+})(Placeholder);
