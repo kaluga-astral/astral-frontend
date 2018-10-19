@@ -21,7 +21,6 @@ const FormField = ({
   parse,
   format,
   inputProps,
-  multiline,
   ...props
 }) => (
   <Field
@@ -44,7 +43,7 @@ const FormField = ({
         {label && <InputLabel>{label}</InputLabel>}
         {children({
           meta,
-          input: Object.assign({}, input, { multiline, placeholder, inputProps }),
+          input: Object.assign({}, input, { placeholder, inputProps }),
         })}
         {(meta.error || meta.submitError)
           && meta.touched && <FormHelperText>{meta.error || meta.submitError}</FormHelperText>}

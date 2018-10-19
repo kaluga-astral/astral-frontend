@@ -4,9 +4,9 @@ import Input from '@material-ui/core/Input';
 
 import Field from '../Field';
 
-const TextField = props => (
+const TextField = ({ multiline, ...props }) => (
   <Field {...props} type="text">
-    {({ input }) => <Input {...input} />}
+    {({ input }) => <Input multiline={multiline} {...input} />}
   </Field>
 );
 
