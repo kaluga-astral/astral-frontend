@@ -47,12 +47,25 @@ const SelectField = ({
           <Select
             {...input}
             disabled={disabled}
-            IconComponent={SelectIcon}
             multiple={multiple}
             className={className}
             renderValue={renderValue}
             inputProps={{ id: 'select-placeholder' }}
+            IconComponent={SelectIcon}
+            MenuProps={{
+              PaperProps: {
+                className: cn(classes.paperDefault, {
+                  [classes.primaryPaper]: variant === 'primary',
+                  [classes.secondaryPaper]: variant === 'secondary'
+                })
+              }
+            }}
           >
+            {multiple && (
+              <MenuItem value={options.map(option => option.value)}>
+                Выбрать все
+              </MenuItem>
+            )}
             {options.map(option => (
               <MenuItem key={option.label} value={option.value}>
                 {option.label}
@@ -93,6 +106,28 @@ export default withStyles(theme => ({
   },
   hiddenPlaceholder: {
     display: 'none'
+  },
+  paperDefault: {
+    boxShadow: '0px 2px 5px rgba(0, 0, 0, .1)',
+    width: 'fit-content',
+    '& > ul': {
+      paddingTop: '0',
+      paddingBottom: '0',
+      '& > li:first-child': {
+        borderTopLeftRadius: '4px',
+        borderTopRightRadius: '4px'
+      },
+      '& > li:last-child': {
+        borderBottomLeftRadius: '4px',
+        borderBottomRightRadius: '4px'
+      },
+    }
+  },
+  primaryPaper: {
+    margin: '56px auto'
+  },
+  secondaryPaper: {
+    margin: '65px auto'
   },
   secondary: {
     textIndent: '12px',

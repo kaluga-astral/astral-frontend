@@ -26,7 +26,8 @@ storiesOf('form/fields/base', module)
     const variant = 'secondary';
     const options = [
       { label: 'value 1', value: 1 },
-      { label: 'value 2', value: 2 }
+      { label: 'value 2', value: 2 },
+      { label: 'value 3', value: 3 }
     ];
 
     return (
