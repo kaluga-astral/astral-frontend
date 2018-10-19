@@ -1,7 +1,8 @@
 import cn from 'classnames';
+import { find } from 'lodash-es';
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -16,69 +17,115 @@ const SelectIcon = () => (
   </svg>
 );
 
-const SelectField = ({
-  disabled, multiple, classes, className: classNameProp, options, variant, renderValue, ...props
-}) => {
-  const className = cn(
-    {
-      [classes.primary]: variant === 'primary',
-      [classes.secondary]: variant === 'secondary',
-    },
-    classNameProp,
-  );
-  
-  return (
-    <Field {...props}>
-      {({ input }) => (
-        <React.Fragment>
-          <InputLabel
-            disabled={disabled}
-            focused={false}
-            shrink={false}
-            disableAnimation
-            htmlFor="select-placeholder"
-            className={cn(
-              { [classes.placeholder]: variant === 'secondary' },
-              { [classes.hiddenPlaceholder]: input.value }
-            )}
-          >
-            {input.placeholder}
-          </InputLabel>
-          <Select
-            {...input}
-            disabled={disabled}
-            multiple={multiple}
-            className={className}
-            renderValue={renderValue}
-            inputProps={{ id: 'select-placeholder' }}
-            IconComponent={SelectIcon}
-            MenuProps={{
-              PaperProps: {
-                className: cn(classes.paperDefault, {
-                  [classes.primaryPaper]: variant === 'primary',
-                  [classes.secondaryPaper]: variant === 'secondary'
-                })
-              }
-            }}
-          >
-            {multiple && (
-              <MenuItem value={options.map(option => option.value)}>
-                Выбрать все
-              </MenuItem>
-            )}
-            {options.map(option => (
-              <MenuItem key={option.label} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </React.Fragment>
-      )}
-    </Field>
-  );
-};
+class SelectField extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: props.multiple ? [] : ''
+    };
+  };
+
+  onChangeSelectValue = onChange => event => {
+    const { options, multiple, menuSelectText, menuCancelText } = this.props;
+    const { value } = event.target;
+    
+    if (multiple) {
+      const hasMenuSelectText = find(value, element => element === menuSelectText);
+      const hasMenuCancelText = find(value, element => element === menuCancelText);
+      
+      if (hasMenuSelectText) {
+        const optionsValue = options.map(option => option.value);
+
+        onChange(optionsValue);
+        return this.setState({ value: optionsValue });
+      } else if (hasMenuCancelText) {
+
+        onChange([]);
+        return this.setState({ value: [] });
+      }
+    }
+
+    onChange(value);
+    return this.setState({ value });
+  };
+
+  render = () => {
+    const { value } = this.state;
+    const {
+      disabled,
+      multiple,
+      classes,
+      options,
+      variant,
+      renderValue,
+      menuSelectText,
+      menuCancelText,
+      className: classNameProp,
+      ...props
+    } = this.props;
+
+    const className = cn(classNameProp, {
+      [classes.secondary]: variant === 'secondary'
+    });
+    
+    return (
+      <Field {...props}>
+        {({ input }) => (
+          <React.Fragment>
+            <InputLabel
+              disabled={disabled}
+              focused={false}
+              shrink={variant === 'primary' ? undefined : false}
+              disableAnimation={variant === 'secondary'}
+              htmlFor="select-placeholder"
+              className={cn(
+                { [classes.placeholder]: variant === 'secondary' },
+                { [classes.hiddenPlaceholder]: variant === 'secondary' && value.length > 0 }
+              )}
+            >
+              {input.placeholder}
+            </InputLabel>
+            <Select
+              {...input}
+              disabled={disabled}
+              multiple={multiple}
+              className={className}
+              renderValue={renderValue}
+              inputProps={{ id: 'select-placeholder' }}
+              value={value}
+              IconComponent={SelectIcon}
+              onChange={this.onChangeSelectValue(input.onChange)}
+              MenuProps={{
+                PaperProps: {
+                  className: cn(classes.paperDefault, {
+                    [classes.primaryPaper]: variant === 'primary',
+                    [classes.secondaryPaper]: variant === 'secondary'
+                  })
+                }
+              }}
+            >
+              {multiple && (
+                <MenuItem value={options.length === value.length ? menuCancelText : menuSelectText}>
+                  {options.length === value.length ? menuCancelText : menuSelectText}
+                </MenuItem>
+              )}
+              {options.map(option => (
+                <MenuItem key={option.label} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </React.Fragment>
+        )}
+      </Field>
+    );
+  };
+}
 
 SelectField.defaultProps = {
+  menuSelectText: 'Выбрать все',
+  menuCancelText: 'Снять все',
   multiple: false,
   placeholder: 'Выберите значение',
   variant: 'primary'
@@ -124,7 +171,7 @@ export default withStyles(theme => ({
     }
   },
   primaryPaper: {
-    margin: '56px auto'
+    margin: '56px auto',
   },
   secondaryPaper: {
     margin: '65px auto'
