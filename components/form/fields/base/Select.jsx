@@ -171,7 +171,7 @@ export default withStyles(theme => ({
     }
   },
   primaryPaper: {
-    margin: '56px auto',
+    margin: '53px auto',
   },
   secondaryPaper: {
     margin: '65px auto'
