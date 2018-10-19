@@ -39,7 +39,8 @@ class PlaceholderLoadingState extends PureComponent {
     const { pastDelay, timedOut } = this.state;
     const {
       classes,
-      loaderProps: { preventShowLoadingMessage, ...loaderProps },
+      preventShowLoadingMessage,
+      loaderProps: { ...loaderProps },
     } = this.props;
 
     return (
@@ -55,15 +56,12 @@ class PlaceholderLoadingState extends PureComponent {
 }
 
 PlaceholderLoadingState.defaultProps = {
-  loaderProps: {
-    preventShowLoadingMessage: false,
-  },
+  loaderProps: {},
 };
 
 PlaceholderLoadingState.propTypes = {
-  loaderProps: PropTypes.shape({
-    preventShowLoadingMessage: PropTypes.bool,
-  }),
+  preventShowLoadingMessage: PropTypes.bool.isRequired,
+  loaderProps: PropTypes.shape({}),
   classes: PropTypes.shape().isRequired,
 };
 
