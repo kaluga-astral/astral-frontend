@@ -19,7 +19,7 @@ const Placeholder = ({
       </div>
     )}
     <Fade in={!isFetching && !error}>
-      <div>{!isFetching && !error && isFunction(children) && children()}</div>
+      <div className={className}>{!isFetching && !error && isFunction(children) && children()}</div>
     </Fade>
   </Fragment>
 );
