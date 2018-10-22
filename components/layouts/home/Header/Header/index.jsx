@@ -22,8 +22,14 @@ HomeLayoutHeader.propTypes = {
 export default withStyles(theme => ({
   root: {
     display: 'flex',
+    alignItems: 'center',
     height: '85px',
     padding: '0 70px',
     background: theme.palette.primary.dark,
+    [theme.breakpoints.down('xs')]: {
+      height: '45px',
+      padding: '0 30px',
+      justifyContent: 'space-between',
+    },
   },
 }))(HomeLayoutHeader);

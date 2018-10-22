@@ -20,5 +20,9 @@ HomeLayoutProductTitle.propTypes = {
 };
 
 export default withStyles(theme => ({
-  root: {},
+  root: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
 }))(HomeLayoutProductTitle);
