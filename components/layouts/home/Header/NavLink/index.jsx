@@ -30,4 +30,10 @@ export default withStyles(theme => ({
     color: theme.palette.common.white,
     textDecoration: 'none',
   },
+  selected: {
+    background: theme.palette.primary.main,
+    '&:hover': {
+      background: theme.palette.primary.main,
+    },
+  },
 }))(HomeLayoutNavLink);
