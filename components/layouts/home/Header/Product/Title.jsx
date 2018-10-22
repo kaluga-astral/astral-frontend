@@ -21,7 +21,7 @@ HomeLayoutProductTitle.propTypes = {
 
 export default withStyles(theme => ({
   root: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
   },

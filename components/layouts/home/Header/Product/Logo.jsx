@@ -24,7 +24,7 @@ export default withStyles(theme => ({
     width: '40px',
     height: '40px',
     marginRight: '15px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       width: '20px',
       height: '20px',
       marginRight: 0,
