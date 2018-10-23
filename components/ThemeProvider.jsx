@@ -9,6 +9,7 @@ import {
   createGenerateClassName,
   jssPreset,
 } from '@material-ui/core/styles';
+import BaseCSS from './BaseCSS';
 
 const styleNode = document.createComment('insertion-point-jss');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -45,6 +46,7 @@ const ThemeProvider = ({ children }) => (
   <JssProvider jss={jss} generateClassName={generateClassName}>
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
+      <BaseCSS />
       {children}
     </MuiThemeProvider>
   </JssProvider>

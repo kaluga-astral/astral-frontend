@@ -6,7 +6,7 @@ import { text, select, boolean } from '@storybook/addon-knobs';
 import Button from './Button';
 
 storiesOf('Button', module)
-  .add('default', () => {
+  .add('flat (default)', () => {
     const disabled = boolean('disabled', false);
     const children = text('children', 'Default text');
     const color = select(
