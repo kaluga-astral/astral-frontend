@@ -1,7 +1,17 @@
 import React from 'react';
+import { FormSpy } from 'react-final-form';
+
 import { withStyles } from '@material-ui/core/styles';
 
-const FormErrorAlert = ({ classes, ...props }) => <div className={classes.root} {...props} />;
+const FormErrorAlert = ({ classes, ...props }) => (
+  <FormSpy subscription={{ submitError: true }}>
+    {({ submitError }) => (
+      <div className={classes.root} {...props}>
+        {submitError}
+      </div>
+    )}
+  </FormSpy>
+);
 
 export default withStyles({
   root: {
