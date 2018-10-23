@@ -5,9 +5,7 @@ import { FormSpy } from 'react-final-form';
 import Button from '../Button';
 import Loader from '../status/Loader';
 
-const SubmitButton = ({
-  disabled, children, ...props
-}) => (
+const SubmitButton = ({ disabled, children, ...props }) => (
   <FormSpy subscription={{ submitting: true }}>
     {({ submitting }) => (
       <Button disabled={disabled || submitting} type="submit" {...props}>
