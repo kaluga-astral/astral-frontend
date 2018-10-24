@@ -5,7 +5,13 @@ import { withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
 const Button = ({
-  disabled, classes, className: classNameProp, variant, color, ...props
+  disabled,
+  classes,
+  className: classNameProp,
+  variant,
+  color,
+  size,
+  ...props
 }) => {
   const className = cn(
     classes.root,
@@ -16,6 +22,12 @@ const Button = ({
       [classes.fab]: variant === 'fab',
       [classes.primary]: color === 'primary',
       [classes.secondary]: color === 'secondary',
+      [classes.small]: variant !== 'fab' && size === 'small',
+      [classes.medium]: variant !== 'fab' && size === 'medium',
+      [classes.large]: variant !== 'fab' && size === 'large',
+      [classes.smallFab]: variant == 'fab' && size === 'small',
+      [classes.mediumFab]: variant == 'fab' && size === 'medium',
+      [classes.largeFab]: variant == 'fab' && size === 'large',
     },
     classNameProp,
   );
@@ -26,6 +38,7 @@ const Button = ({
 Button.defaultProps = {
   color: 'primary',
   variant: 'flat',
+  size: 'medium',
 };
 
 Button.propTypes = {
@@ -38,6 +51,10 @@ Button.propTypes = {
    * Вариант использования
    */
   variant: PropTypes.oneOf(['flat', 'rounded', 'fab']),
+  /**
+   * Размер
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 export default withStyles(theme => ({
@@ -48,24 +65,18 @@ export default withStyles(theme => ({
     textTransform: 'initial',
   },
   flat: {
-    minWidth: '160px',
-    minHeight: '35px',
     borderRadius: '25px',
     '&$disabled': {
       opacity: '.3',
     },
   },
   rounded: {
-    minWidth: '160px',
-    minHeight: '35px',
     borderRadius: '4px',
     '&$disabled': {
       opacity: '.3',
     },
   },
   fab: {
-    height: '35px',
-    width: '35px',
     borderRadius: '50%',
     '&$disabled': {
       border: '1px solid rgba(0, 0, 0, 0.2)',
@@ -88,5 +99,29 @@ export default withStyles(theme => ({
       color: theme.palette.common.white,
       background: theme.palette.primary.main,
     },
+  },
+  small: {
+    minHeight: '30px',
+  },
+  smallFab: {
+    height: '30px',
+    width: '30px',
+  },
+
+  medium: {
+    minWidth: '160px',
+    minHeight: '35px',
+  },
+  mediumFab: {
+    height: '35px',
+    width: '35px',
+  },
+  large: {
+    minWidth: '220px',
+    minHeight: '50px',
+  },
+  largeFab: {
+    height: '50px',
+    width: '50px',
   },
 }))(Button);

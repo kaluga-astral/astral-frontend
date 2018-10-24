@@ -21,10 +21,17 @@ TableActionsCell.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+TableActionsCell.Item = withStyles({
+  root: {
+    margin: '0 5px',
+  },
+})(({ classes, ...props }) => <div className={classes.root} {...props} />);
+
 export default withStyles({
   root: {},
   wrapper: {
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
   },
 })(TableActionsCell);
