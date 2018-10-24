@@ -6,13 +6,15 @@ import { FORM_ERROR } from '../../constants/form';
 import AutoSave from './AutoSave';
 
 const submitForm = (formState, onSubmitSuccess, onSubmitFailure) => (promise) => {
-  promise.then((response) => {
-    if (response && response[FORM_ERROR]) {
-      onSubmitFailure({ ...formState });
-    } else {
-      onSubmitSuccess({ ...formState });
-    }
-  });
+  if (formState.valid) {
+    promise.then((response) => {
+      if (response && response[FORM_ERROR]) {
+        onSubmitFailure({ ...formState });
+      } else {
+        onSubmitSuccess({ ...formState });
+      }
+    });
+  }
 };
 
 const Form = ({
