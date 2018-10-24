@@ -1,17 +1,18 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { FormSpy } from 'react-final-form';
 
 import { withStyles } from '@material-ui/core/styles';
 
-const FormErrorAlert = ({ classes, ...props }) => (
+const FormErrorAlert = ({ classes }) => (
   <FormSpy subscription={{ submitError: true }}>
-    {({ submitError }) => (
-      <div className={classes.root} {...props}>
-        {submitError}
-      </div>
-    )}
+    {({ submitError }) => <div className={classes.root}>{submitError}</div>}
   </FormSpy>
 );
+
+FormErrorAlert.propTypes = {
+  classes: PropTypes.shape().isRequired,
+};
 
 export default withStyles({
   root: {
