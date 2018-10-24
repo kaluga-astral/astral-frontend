@@ -12,8 +12,5 @@ const Table = ({
 );
 
 export default withStyles({
-  root: {
-    flex: 1,
-    overflow: 'auto',
-  },
+  root: {},
 })(Table);
