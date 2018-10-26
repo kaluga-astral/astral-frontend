@@ -115,6 +115,7 @@ Pagination.propTypes = {
 export default withStyles(theme => ({
   root: {
     display: 'flex',
+    flexShrink: 0,
     justifyContent: 'space-between',
     margin: '25px',
   },

@@ -17,9 +17,16 @@ HeaderActions.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+HeaderActions.Item = withStyles({
+  root: {
+    display: 'inline-block',
+    margin: '0 12.5px',
+  },
+})(({ classes, ...props }) => <div className={classes.root} {...props} />);
+
 export default withStyles({
   root: {
-    padding: '0 25px',
+    padding: '0 12.5px',
     '&:not(:last-child)': {
       borderRight: '0.5px solid rgba(0, 0, 0, 0.15)',
     },
