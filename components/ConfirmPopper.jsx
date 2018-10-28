@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
 
 import Paper from './Paper';
@@ -24,7 +23,7 @@ const ConfirmPopper = ({
     {({ TransitionProps }) => (
       <Fade {...TransitionProps} timeout={350}>
         <Paper>
-          <Typography className={classes.message}>{message}</Typography>
+          <div className={classes.message}>{message}</div>
           <Button onClick={onConfirm} className={classes.confirmButton}>{confirmText}</Button>
           <Button onClick={onReject} className={classes.cancelButton}>{cancelText}</Button>
         </Paper>
