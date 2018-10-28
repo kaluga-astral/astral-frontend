@@ -12,9 +12,7 @@ class AutoSave extends Component {
     const { values: prevValues } = prevProps;
 
     if (!isEqual(prevValues, values)) {
-      submit(values).then((response) => {
-        console.log('submit.then', response);
-      });
+      submit(values);
     }
   };
 
