@@ -1,3 +1,3 @@
-export { default as DateDistanceInWordsStrict } from './DistanceInWordsStrict';
-export { default as DateDistanceInWordsToNow } from './DistanceInWordsToNow';
-export { default as DateFormat } from './Format';
+export { default as FormatDistance } from './FormatDistance';
+export { default as FormatDistanceStrict } from './FormatDistanceStrict';
+export { default as FormatDate } from './FormatDate';

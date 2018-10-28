@@ -19,10 +19,13 @@
     "bugsnag-js": "^4.7.3",
     "bugsnag-react": "^1.1.1",
     "classnames": "^2.2.5",
+    "date-fns": "2.0.0-alpha.16",
     "downshift": "^2.0.16",
     "final-form": "4.10.0",
     "jss": "^9.8.1",
     "lodash-es": "^4.17.11",
+    "material-ui-pickers": "^1.0.0",
+    "path-to-regexp": "^2.4.0",
     "prop-types": "^15.6.2",
     "react-dropzone": "^5.0.1",
     "react-final-form": "3.6.5",
@@ -33,10 +36,6 @@
     "react-text-mask": "^5.2.0"
   },
   "peerDependencies": {
-    "axios": "^0.17.1",
-    "date-fns": "^1.29.0",
-    "lodash-es": "^4.17.10",
-    "path-to-regexp": "^2.4.0",
     "react": ">=16.4.0",
     "react-router-dom": "^4.3.1"
   },

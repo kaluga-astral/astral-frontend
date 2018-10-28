@@ -24,7 +24,7 @@ export default withStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     height: '85px',
-    padding: '0 70px',
+    padding: '0 50px',
     background: theme.palette.primary.dark,
     [theme.breakpoints.down('xs')]: {
       height: '45px',

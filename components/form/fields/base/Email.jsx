@@ -9,12 +9,13 @@ const EmailField = props => (
 );
 
 EmailField.defaultProps = {
+  label: 'Email',
   placeholder: 'Введите email',
 };
 
 EmailField.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   placeholder: PropTypes.string,
 };
 

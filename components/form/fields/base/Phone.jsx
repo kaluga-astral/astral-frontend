@@ -7,25 +7,40 @@ import * as rules from '../../../../validations/rules';
 
 import Field from '../Field';
 
-const mask = [
-  '7',
-  ' ',
-  '(',
-  /[1-9]/,
-  /\d/,
-  /\d/,
-  ')',
-  ' ',
-  /\d/,
-  /\d/,
-  /\d/,
-  '-',
-  /\d/,
-  /\d/,
-  '-',
-  /\d/,
-  /\d/,
-];
+const PhoneMask = (props) => {
+  const { inputRef, ...other } = props;
+
+  return (
+    <MaskedInput
+      {...other}
+      ref={inputRef}
+      mask={[
+        '7',
+        ' ',
+        '(',
+        /[1-9]/,
+        /\d/,
+        /\d/,
+        ')',
+        ' ',
+        /\d/,
+        /\d/,
+        /\d/,
+        '-',
+        /\d/,
+        /\d/,
+        '-',
+        /\d/,
+        /\d/,
+      ]}
+      placeholderChar={'\u2000'}
+    />
+  );
+};
+
+PhoneMask.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+};
 
 const PhoneField = props => (
   <Field
@@ -33,26 +48,17 @@ const PhoneField = props => (
     parse={value => value.replace(/(-|\(|\)|\+|\+| )/g, '')}
     validate={rules.mustBePhone}
   >
-    {({ input }) => (
-      <Input
-        {...input}
-        type="tel"
-        inputComponent={({ inputRef, ...other }) => (
-          <MaskedInput {...other} ref={inputRef} mask={mask} placeholderChar={'\u2000'} />
-        )}
-      />
-    )}
+    {({ input }) => <Input {...input} type="tel" inputComponent={PhoneMask} />}
   </Field>
 );
 
 PhoneField.defaultProps = {
-  name: 'phone',
   label: 'Телефон',
   placeholder: 'Введите телефон',
 };
 
 PhoneField.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   label: PropTypes.string,
   placeholder: PropTypes.string,
 };

@@ -13,9 +13,7 @@ class PopperContainer extends Component {
       open: false,
     };
 
-    this.onClick = ({ currentTarget }) => (
-      this.setState(state => ({ anchorEl: currentTarget, open: !state.open }))
-    );
+    this.onClick = ({ currentTarget }) => this.setState(state => ({ anchorEl: currentTarget, open: !state.open }));
 
     this.onConfirm = () => this.setState(state => ({ anchorEl: null, open: !state.open }));
 
@@ -38,6 +36,5 @@ class PopperContainer extends Component {
     );
   }
 }
-
 
 storiesOf('Popper', module).add('ConfirmPopper', () => <PopperContainer />);

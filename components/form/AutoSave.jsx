@@ -8,12 +8,13 @@ class AutoSave extends Component {
     const {
       values,
       form: { submit },
-      onSubmit,
     } = this.props;
     const { values: prevValues } = prevProps;
 
     if (!isEqual(prevValues, values)) {
-      onSubmit(submit(values));
+      submit(values).then((response) => {
+        console.log('submit.then', response);
+      });
     }
   };
 
@@ -25,7 +26,6 @@ AutoSave.propTypes = {
   form: PropTypes.shape({
     submit: PropTypes.func.isRequired,
   }).isRequired,
-  onSubmit: PropTypes.func.isRequired,
 };
 
 const FormAutoSave = ({ onChange, ...props }) => (

@@ -9,6 +9,10 @@ import {
   createGenerateClassName,
   jssPreset,
 } from '@material-ui/core/styles';
+import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
+import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
+import ruLocale from 'date-fns/locale/ru';
+
 import BaseCSS from './BaseCSS';
 
 const styleNode = document.createComment('insertion-point-jss');
@@ -47,7 +51,9 @@ const ThemeProvider = ({ children }) => (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <BaseCSS />
-      {children}
+      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ruLocale}>
+        {children}
+      </MuiPickersUtilsProvider>
     </MuiThemeProvider>
   </JssProvider>
 );

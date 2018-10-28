@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import { distanceInWordsToNow } from 'date-fns';
+import { formatDistance } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
 
-const DateDistanceInWordsToNow = ({ date, options }) => distanceInWordsToNow(date, options);
+const DateDistanceInWordsToNow = ({ date, baseDate, options }) => formatDistance(date, baseDate, options);
 
 DateDistanceInWordsToNow.defaultProps = {
   options: {
@@ -12,7 +12,7 @@ DateDistanceInWordsToNow.defaultProps = {
 
 DateDistanceInWordsToNow.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
-  options: PropTypes.shape({}),
+  baseDate: PropTypes.instanceOf(Date).isRequired,
 };
 
 export default DateDistanceInWordsToNow;
