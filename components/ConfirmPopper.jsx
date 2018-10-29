@@ -36,6 +36,7 @@ ConfirmPopper.defaultProps = {
   message: 'Удалить?',
   cancelText: 'Нет',
   confirmText: 'Да',
+  anchorEl: null,
 };
 
 ConfirmPopper.propTypes = {
@@ -48,6 +49,7 @@ ConfirmPopper.propTypes = {
     confirmButton: PropTypes.string,
     cancelButton: PropTypes.string,
   }).isRequired,
+  anchorEl: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   onConfirm: PropTypes.func.isRequired,
   onReject: PropTypes.func.isRequired,
 };
