@@ -48,6 +48,8 @@ ConfirmPopper.propTypes = {
     confirmButton: PropTypes.string,
     cancelButton: PropTypes.string,
   }).isRequired,
+  onConfirm: PropTypes.func.isRequired,
+  onReject: PropTypes.func.isRequired,
 };
 
 export default withStyles({

@@ -3123,6 +3123,7 @@ data-urls@^1.0.0:
 date-fns@2.0.0-alpha.16:
   version "2.0.0-alpha.16"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.16.tgz#d249a6c9b799252652fb9e3f25460eaf9de86ac7"
+  integrity sha1-0kmmybeZJSZS+54/JUYOr53oasc=
 
 date-fns@^1.27.2:
   version "1.29.0"
@@ -6281,6 +6282,7 @@ material-colors@^1.2.1:
 material-ui-pickers@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/material-ui-pickers/-/material-ui-pickers-1.0.0.tgz#0cff916f604b3eb0116e10f7901e29fb6c88da64"
+  integrity sha512-+iGizL0lfyiU/+Ei3hZefy8I9WmE4GkxdBVqK64hOlgrEwZaiYefCWITZpUeAKcpJu00YwO7gr9/wv/RrmVGyA==
   dependencies:
     classnames "^2.2.6"
     keycode "^2.2.0"
@@ -7183,6 +7185,7 @@ path-to-regexp@^1.7.0:
 path-to-regexp@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-2.4.0.tgz#35ce7f333d5616f1c1e1bfe266c3aba2e5b2e704"
+  integrity sha512-G6zHoVqC6GGTQkZwF4lkuEyMbVOjoBKAEybQUypI1WTkqinCOrq2x6U2+phkJ1XsEMTy4LjtwPI7HW+NVrRR2w==
 
 path-type@^1.0.0:
   version "1.1.0"
@@ -7818,6 +7821,7 @@ react-style-proptype@^3.0.0:
 react-text-mask@=5.4.1:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/react-text-mask/-/react-text-mask-5.4.1.tgz#c3dd3e550e31d38b7c9da0178a2725960770e443"
+  integrity sha512-mGx1n0x0skktwsKcpgAGnrgExFlXDflbWEHh8PC1UaQP8+EdHkW7JYczTghsBo2rnVwU9/4A9x/2bVt3HY46/w==
   dependencies:
     prop-types "^15.5.6"
 
