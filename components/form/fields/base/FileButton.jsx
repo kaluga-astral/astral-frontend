@@ -25,13 +25,13 @@ class FileButtonField extends Component {
 
     uploadHook(formData)
       .then((fileGuid) => {
-        this.setState({ file }, () => {
+        this.setState({ file, error: null }, () => {
           onChange(fileGuid);
         });
       })
       .catch((error) => {
-        this.setState({ error }, () => {
-          onChange(file);
+        this.setState({ file: null, error }, () => {
+          onChange(uniq());
         });
       });
   };
