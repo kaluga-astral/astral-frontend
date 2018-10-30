@@ -19,7 +19,7 @@
     "bugsnag-js": "^4.7.3",
     "bugsnag-react": "^1.1.1",
     "classnames": "^2.2.5",
-    "date-fns": "2.0.0-alpha.16",
+    "date-fns": "2.0.0-alpha.25",
     "downshift": "^2.0.16",
     "final-form": "4.10.0",
     "jss": "^9.8.1",
