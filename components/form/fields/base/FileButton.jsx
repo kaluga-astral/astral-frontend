@@ -24,9 +24,9 @@ class FileButtonField extends Component {
     formData.append('file', file);
 
     uploadHook(formData)
-      .then(({ result }) => {
+      .then((fileGuid) => {
         this.setState({ file }, () => {
-          onChange(result);
+          onChange(fileGuid);
         });
       })
       .catch((error) => {
@@ -38,7 +38,13 @@ class FileButtonField extends Component {
 
   render = () => {
     const {
-      classes, accept, uploadHook, buttonText, Button, ...props
+      classes,
+      accept,
+      buttonText,
+      Button,
+      uploadHook,
+      mapResponseToResult,
+      ...props
     } = this.props;
     const { file } = this.state;
     console.log(file);
@@ -81,7 +87,7 @@ class FileButtonField extends Component {
 
 FileButtonField.defaultProps = {
   accept: null,
-  buttonText: 'Загрузить текст',
+  buttonText: 'Загрузить файл',
   Button: AppButton,
 };
 
@@ -90,7 +96,7 @@ FileButtonField.propTypes = {
   name: PropTypes.string.isRequired,
   accept: PropTypes.arrayOf(PropTypes.string),
   buttonText: PropTypes.string,
-  // Button: PropTypes.onOfType([PropTypes.string, PropTypes.func]),
+  Button: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   uploadHook: PropTypes.func.isRequired,
 };
 
