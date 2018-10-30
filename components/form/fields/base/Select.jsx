@@ -23,12 +23,12 @@ const SelectField = ({
 
 SelectField.defaultProps = {
   multiple: false,
-  placeholder: 'Выберите значение',
 };
 
 SelectField.propTypes = {
   multiple: PropTypes.bool,
-  placeholder: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.node.isRequired,
