@@ -4,9 +4,9 @@ import { boolean, text, select } from '@storybook/addon-knobs';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import LinkAsButton from './LinkAsButton';
+import ButtonAsLink from './ButtonAsLink';
 
-storiesOf('LinkAsButton', module).add('default', () => {
+storiesOf('ButtonAsLink', module).add('default', () => {
   const disabled = boolean('disabled', false);
   const children = text('children', 'Default text');
   const variant = select(
@@ -14,7 +14,7 @@ storiesOf('LinkAsButton', module).add('default', () => {
     {
       flat: 'flat',
       rounded: 'rounded',
-      fab: 'fab',
+      float: 'float',
     },
     'flat',
   );
@@ -37,9 +37,9 @@ storiesOf('LinkAsButton', module).add('default', () => {
 
   return (
     <MemoryRouter initialEntries={['/']}>
-      <LinkAsButton to="/" disabled={disabled} variant={variant} size={size} color={color}>
+      <ButtonAsLink to="/" disabled={disabled} variant={variant} size={size} color={color}>
         {children}
-      </LinkAsButton>
+      </ButtonAsLink>
     </MemoryRouter>
   );
 });

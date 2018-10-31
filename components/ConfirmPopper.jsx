@@ -24,8 +24,12 @@ const ConfirmPopper = ({
       <Fade {...TransitionProps} timeout={350}>
         <Paper>
           <div className={classes.message}>{message}</div>
-          <Button onClick={onConfirm} className={classes.confirmButton}>{confirmText}</Button>
-          <Button onClick={onReject} className={classes.cancelButton}>{cancelText}</Button>
+          <Button onClick={onConfirm} className={classes.confirmButton}>
+            {confirmText}
+          </Button>
+          <Button onClick={onReject} className={classes.cancelButton}>
+            {cancelText}
+          </Button>
         </Paper>
       </Fade>
     )}

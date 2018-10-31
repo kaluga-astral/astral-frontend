@@ -19,15 +19,15 @@ const Button = ({
       [classes.disabled]: disabled,
       [classes.flat]: variant === 'flat',
       [classes.rounded]: variant === 'rounded',
-      [classes.fab]: variant === 'fab',
+      [classes.float]: variant === 'float',
       [classes.primary]: color === 'primary',
       [classes.secondary]: color === 'secondary',
-      [classes.small]: variant !== 'fab' && size === 'small',
-      [classes.medium]: variant !== 'fab' && size === 'medium',
-      [classes.large]: variant !== 'fab' && size === 'large',
-      [classes.smallFab]: variant == 'fab' && size === 'small',
-      [classes.mediumFab]: variant == 'fab' && size === 'medium',
-      [classes.largeFab]: variant == 'fab' && size === 'large',
+      [classes.small]: variant !== 'float' && size === 'small',
+      [classes.medium]: variant !== 'float' && size === 'medium',
+      [classes.large]: variant !== 'float' && size === 'large',
+      [classes.smallFloat]: variant === 'float' && size === 'small',
+      [classes.mediumFloat]: variant === 'float' && size === 'medium',
+      [classes.largeFloat]: variant === 'float' && size === 'large',
     },
     classNameProp,
   );
@@ -50,7 +50,7 @@ Button.propTypes = {
   /**
    * Вариант использования
    */
-  variant: PropTypes.oneOf(['flat', 'rounded', 'fab']),
+  variant: PropTypes.oneOf(['flat', 'rounded', 'float']),
   /**
    * Размер
    */
@@ -76,7 +76,7 @@ export default withStyles(theme => ({
       opacity: '.3',
     },
   },
-  fab: {
+  float: {
     borderRadius: '50%',
     '&$disabled': {
       border: '1px solid rgba(0, 0, 0, 0.2)',
@@ -103,7 +103,7 @@ export default withStyles(theme => ({
   small: {
     minHeight: '30px',
   },
-  smallFab: {
+  smallFloat: {
     height: '30px',
     width: '30px',
   },
@@ -112,7 +112,7 @@ export default withStyles(theme => ({
     minWidth: '160px',
     minHeight: '35px',
   },
-  mediumFab: {
+  mediumFloat: {
     height: '35px',
     width: '35px',
   },
@@ -120,7 +120,7 @@ export default withStyles(theme => ({
     minWidth: '220px',
     minHeight: '50px',
   },
-  largeFab: {
+  largeFloat: {
     height: '50px',
     width: '50px',
   },
