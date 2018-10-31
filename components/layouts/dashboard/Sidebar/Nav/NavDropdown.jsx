@@ -30,6 +30,7 @@ class SidebarNavDropdown extends PureComponent {
 
   setExpanded = () => {
     const { children, location } = this.props;
+    // Boolean(location.pathname.match(item.to));
     const isActive = dropdownItem => pathToRegexp(location.pathname).test(dropdownItem.props.to);
 
     this.setState({

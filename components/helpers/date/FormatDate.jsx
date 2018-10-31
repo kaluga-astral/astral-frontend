@@ -6,7 +6,7 @@ const FormatDate = ({ date, format, options }) => formateDate(date, format, opti
 
 FormatDate.defaultProps = {
   date: PropTypes.instanceOf(Date).isRequired,
-  format: 'd.MM.YYYY',
+  format: 'd.MM.yy',
   options: {
     locale: ruLocale,
   },
