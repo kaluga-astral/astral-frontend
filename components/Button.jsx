@@ -2,7 +2,8 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import ButtonBase from '@material-ui/core/ButtonBase';
+
+import ButtonBase from './ButtonBase';
 
 const Button = ({
   disabled,
