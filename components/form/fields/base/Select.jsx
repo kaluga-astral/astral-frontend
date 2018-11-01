@@ -23,11 +23,12 @@ const SelectField = ({
 
 SelectField.defaultProps = {
   multiple: false,
+  label: null,
 };
 
 SelectField.propTypes = {
   multiple: PropTypes.bool,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
