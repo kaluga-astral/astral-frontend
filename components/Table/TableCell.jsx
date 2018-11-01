@@ -3,14 +3,14 @@ import { withStyles } from '@material-ui/core/styles';
 
 export default withStyles(theme => ({
   root: {
-    padding: '5px 12.5px',
+    padding: '5px 15px',
     fontSize: '14px',
     color: theme.palette.common.black,
     '&:first-child': {
-      paddingLeft: '25px',
+      paddingLeft: '30px',
     },
     '&:last-child': {
-      paddingRight: '25px',
+      paddingRight: '30px',
     },
   },
   head: {

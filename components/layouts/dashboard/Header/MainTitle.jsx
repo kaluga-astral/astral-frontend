@@ -23,7 +23,7 @@ export default withStyles({
     alignItems: 'center',
     height: '100%',
     margin: 0,
-    padding: '0 25px',
+    padding: '0 30px',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
