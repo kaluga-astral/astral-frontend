@@ -11,6 +11,7 @@ import Popper from './Popper';
 
 const ConfirmPopper = ({
   open,
+  placement,
   anchorEl,
   classes,
   confirmText,
@@ -19,7 +20,7 @@ const ConfirmPopper = ({
   onConfirm,
   onReject,
 }) => (
-  <Popper open={open} id="popper" anchorEl={anchorEl} transition>
+  <Popper open={open} id="popper" anchorEl={anchorEl} placement={placement} transition>
     {({ TransitionProps }) => (
       <Fade {...TransitionProps} timeout={350}>
         <Paper>
@@ -41,6 +42,7 @@ ConfirmPopper.defaultProps = {
   cancelText: 'Нет',
   confirmText: 'Да',
   anchorEl: null,
+  placement: 'bottom-end',
 };
 
 ConfirmPopper.propTypes = {
@@ -48,12 +50,13 @@ ConfirmPopper.propTypes = {
   confirmText: PropTypes.string,
   message: PropTypes.string,
   open: PropTypes.bool.isRequired,
+  placement: PropTypes.string,
   classes: PropTypes.shape({
     message: PropTypes.string,
     confirmButton: PropTypes.string,
     cancelButton: PropTypes.string,
   }).isRequired,
-  anchorEl: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  anchorEl: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   onConfirm: PropTypes.func.isRequired,
   onReject: PropTypes.func.isRequired,
 };
