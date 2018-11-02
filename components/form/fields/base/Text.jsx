@@ -11,12 +11,13 @@ const TextField = ({ multiline, ...props }) => (
 );
 
 TextField.defaultProps = {
-  placeholder: 'Введите текст',
+  label: null,
+  placeholder: null,
 };
 
 TextField.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   placeholder: PropTypes.string,
 };
 

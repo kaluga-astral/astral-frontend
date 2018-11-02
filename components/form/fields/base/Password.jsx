@@ -71,8 +71,8 @@ class PasswordField extends PureComponent {
 
 PasswordField.defaultProps = {
   name: 'password',
-  label: 'Пароль',
-  placeholder: 'Введите пароль',
+  label: null,
+  placeholder: null,
   withoutVisibilityButton: false,
 };
 

@@ -5,11 +5,11 @@ import { Form as FinalForm } from 'react-final-form';
 import AutoSave from './AutoSave';
 
 const Form = ({
-  autoSave, children, className, classes, onSubmit, ...props
+  autoSave, children, className, onSubmit, ...props
 }) => (
   <FinalForm {...props} onSubmit={onSubmit}>
     {({ handleSubmit, ...formRenderProps }) => (
-      <form noValidate onSubmit={handleSubmit}>
+      <form noValidate className={className} onSubmit={handleSubmit}>
         {autoSave && <AutoSave />}
         {children(formRenderProps)}
       </form>

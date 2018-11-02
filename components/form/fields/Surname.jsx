@@ -8,7 +8,7 @@ const SurnameField = props => <TextField {...props} />;
 SurnameField.defaultProps = {
   name: 'surname',
   label: 'Фамилия',
-  placeholder: 'Введите фамилию',
+  placeholder: null,
 };
 
 SurnameField.propTypes = {

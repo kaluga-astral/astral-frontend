@@ -15,11 +15,13 @@ const OGRNField = props => (
 
 OGRNField.defaultProps = {
   name: 'ogrn',
-  placeholder: 'Введите ОГРН абонента',
+  label: 'ОГРН',
+  placeholder: null,
 };
 
 OGRNField.propTypes = {
   name: PropTypes.string,
+  label: PropTypes.string,
   placeholder: PropTypes.string,
 };
 

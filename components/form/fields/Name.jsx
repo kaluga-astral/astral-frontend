@@ -8,7 +8,7 @@ const NameField = props => <TextField {...props} />;
 NameField.defaultProps = {
   name: 'name',
   label: 'Имя',
-  placeholder: 'Введите имя',
+  placeholder: null,
 };
 
 NameField.propTypes = {

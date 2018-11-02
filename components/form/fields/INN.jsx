@@ -15,11 +15,13 @@ const INNField = props => (
 
 INNField.defaultProps = {
   name: 'inn',
-  placeholder: 'Введите ИНН абонента',
+  label: 'ИНН',
+  placeholder: null,
 };
 
 INNField.propTypes = {
   name: PropTypes.string,
+  label: PropTypes.string,
   placeholder: PropTypes.string,
 };
 
