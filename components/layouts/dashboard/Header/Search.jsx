@@ -64,5 +64,6 @@ export default withStyles(theme => ({
       color: 'rgba(0, 0, 0, 0.3)',
       opacity: 1,
     },
+    '-webkit-appearance': 'textfield',
   },
 }))(HeaderSearch);
