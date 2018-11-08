@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-import Field from '../Field';
-import AppButton from '../../../Button';
+import Field from './Field';
+import AppButton from '../../Button';
 
 class FileButtonField extends Component {
   state = { file: null, error: null };
@@ -88,7 +88,7 @@ class FileButtonField extends Component {
 FileButtonField.defaultProps = {
   accept: null,
   buttonText: 'Загрузить файл',
-  Button: AppButton,
+  renderButton: AppButton,
 };
 
 FileButtonField.propTypes = {
@@ -96,7 +96,7 @@ FileButtonField.propTypes = {
   name: PropTypes.string.isRequired,
   accept: PropTypes.arrayOf(PropTypes.string),
   buttonText: PropTypes.string,
-  Button: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  renderButton: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   uploadHook: PropTypes.func.isRequired,
 };
 
