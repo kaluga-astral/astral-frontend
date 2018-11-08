@@ -88,7 +88,7 @@ class FileButtonField extends Component {
 FileButtonField.defaultProps = {
   accept: null,
   buttonText: 'Загрузить файл',
-  renderButton: AppButton,
+  Button: AppButton,
 };
 
 FileButtonField.propTypes = {
@@ -96,7 +96,7 @@ FileButtonField.propTypes = {
   name: PropTypes.string.isRequired,
   accept: PropTypes.arrayOf(PropTypes.string),
   buttonText: PropTypes.string,
-  renderButton: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  Button: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   uploadHook: PropTypes.func.isRequired,
 };
 
