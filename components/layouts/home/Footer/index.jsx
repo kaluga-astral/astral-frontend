@@ -20,7 +20,5 @@ HomeLayoutFooter.propTypes = {
 };
 
 export default withStyles({
-  root: {
-    height: '150px',
-  },
+  root: {},
 })(HomeLayoutFooter);
