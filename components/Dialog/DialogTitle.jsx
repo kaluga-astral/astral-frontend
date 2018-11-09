@@ -6,32 +6,24 @@ import IconButton from '../IconButton';
 
 import CloseIcon from './CloseIcon';
 
-const DialogTitle = ({
-  children,
-  onIconClick,
-  ...props
-}) => (
+const DialogTitle = ({ children, onClose, ...props }) => (
   <MuiDialogTitle {...props} disableTypography>
     {children}
-    <IconButton onClick={onIconClick}>
+    <IconButton onClick={onClose}>
       <CloseIcon />
     </IconButton>
   </MuiDialogTitle>
 );
 
-DialogTitle.defaultProps = {
-  onIconClick: () => { },
-};
-
 DialogTitle.propTypes = {
   children: PropTypes.node.isRequired,
-  onIconClick: PropTypes.func,
+  onIconClick: PropTypes.func.isRequired,
 };
 
 export default withStyles({
   root: {
     borderBottom: '1px solid #ededed',
-    padding: '32px',
+    padding: '25px 30px',
     fontWeight: 300,
     fontSize: '24px',
     display: 'flex',

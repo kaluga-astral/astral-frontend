@@ -6,4 +6,7 @@ const Dialog = props => <MuiDialog {...props} />;
 
 export default withStyles({
   root: {},
+  paper: {
+    borderRadius: '2px',
+  },
 })(Dialog);
