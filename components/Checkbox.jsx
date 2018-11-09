@@ -6,7 +6,6 @@ const Checkbox = props => <MuiCheckbox {...props} />;
 
 export default withStyles(theme => ({
   root: {
-    color: theme.palette.primary.main,
     '&$checked': {
       color: theme.palette.primary.main,
     },
