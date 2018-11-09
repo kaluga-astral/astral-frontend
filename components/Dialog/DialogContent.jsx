@@ -6,7 +6,7 @@ const DialogContent = props => <MuiDialogContent {...props} />;
 
 export default withStyles({
   root: {
-    padding: '15.5px 25px',
+    padding: '15px 30px',
     '&:first-child': {
       paddingTop: '25px',
     },

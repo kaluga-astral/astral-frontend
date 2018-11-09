@@ -10,7 +10,7 @@ const DialogTitle = ({ children, onClose, ...props }) => (
   <MuiDialogTitle {...props} disableTypography>
     {children}
     <IconButton onClick={onClose}>
-      <CloseIcon />
+      <CloseIcon fontSize="small" />
     </IconButton>
   </MuiDialogTitle>
 );
@@ -23,7 +23,7 @@ DialogTitle.propTypes = {
 export default withStyles({
   root: {
     borderBottom: '1px solid #ededed',
-    padding: '25px 30px',
+    padding: '15px 30px',
     fontWeight: 300,
     fontSize: '24px',
     display: 'flex',
