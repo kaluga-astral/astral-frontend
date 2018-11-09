@@ -1,5 +1,6 @@
 export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
+export { default as Checkbox } from './Checkbox';
 export { default as ButtonAsLink } from './ButtonAsLink';
 export { default as BaseCSS } from './BaseCSS';
 export { default as ClickAwayListener } from './ClickAwayListener';
