@@ -26,6 +26,7 @@ export default withStyles(theme => ({
     height: '85px',
     padding: '0 50px',
     background: theme.palette.primary.dark,
+    zIndex: 1,
     [theme.breakpoints.down('xs')]: {
       height: '45px',
       padding: '0 30px',

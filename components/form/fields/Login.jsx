@@ -8,7 +8,7 @@ const LoginField = props => <TextField {...props} />;
 LoginField.defaultProps = {
   name: 'login',
   label: 'Логин',
-  placeholder: 'Введите логин',
+  placeholder: null,
 };
 
 LoginField.propTypes = {

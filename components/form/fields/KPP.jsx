@@ -15,11 +15,13 @@ const KPPField = props => (
 
 KPPField.defaultProps = {
   name: 'kpp',
-  placeholder: 'Введите КПП абонента',
+  label: 'КПП',
+  placeholder: 'Введите КПП',
 };
 
 KPPField.propTypes = {
   name: PropTypes.string,
+  label: PropTypes.string,
   placeholder: PropTypes.string,
 };
 

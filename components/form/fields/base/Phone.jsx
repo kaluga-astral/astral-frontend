@@ -53,8 +53,8 @@ const PhoneField = props => (
 );
 
 PhoneField.defaultProps = {
-  label: 'Телефон',
-  placeholder: 'Введите телефон',
+  label: null,
+  placeholder: null,
 };
 
 PhoneField.propTypes = {

@@ -12,7 +12,7 @@ const SelectField = ({
     {({ input }) => (
       <Select multiple={multiple} classes={classes} renderValue={renderValue} {...input}>
         {options.map(option => (
-          <MenuItem key={option.label} value={option.value}>
+          <MenuItem key={option.key || option.value} value={option.value}>
             {option.label}
           </MenuItem>
         ))}
