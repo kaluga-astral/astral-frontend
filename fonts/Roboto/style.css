@@ -1,8 +1,8 @@
 @font-face {
   font-family: "Roboto";
   src: local("Roboto Light"), local("Roboto-Light"),
-    url("./roboto-v18-cyrillic_latin-300.woff2") format("woff2"),
-    url("./roboto-v18-cyrillic_latin-300.woff") format("woff");
+    url("./roboto-v18-300.woff2") format("woff2"),
+    url("./roboto-v18-300.woff") format("woff");
   font-style: normal;
   font-weight: 300;
   font-display: optional;
@@ -11,8 +11,8 @@
 @font-face {
   font-family: "Roboto";
   src: local("Roboto"), local("Roboto-Regular"),
-    url("./roboto-v18-cyrillic_latin-regular.woff2") format("woff2"),
-    url("./roboto-v18-cyrillic_latin-regular.woff") format("woff");
+    url("./roboto-v18-400.woff2") format("woff2"),
+    url("./roboto-v18-400.woff") format("woff");
   font-style: normal;
   font-weight: 400;
   font-display: optional;
@@ -21,8 +21,8 @@
 @font-face {
   font-family: "Roboto";
   src: local("Roboto Medium"), local("Roboto-Medium"),
-    url("./roboto-v18-cyrillic_latin-500.woff2") format("woff2"),
-    url("./roboto-v18-cyrillic_latin-500.woff") format("woff");
+    url("./roboto-v18-500.woff2") format("woff2"),
+    url("./roboto-v18-500.woff") format("woff");
   font-style: normal;
   font-weight: 500;
   font-display: optional;
