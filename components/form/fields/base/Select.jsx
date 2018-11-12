@@ -9,15 +9,25 @@ const SelectField = ({
   multiple, classes, options, renderValue, ...props
 }) => (
   <Field {...props}>
-    {({ input }) => (
-      <Select multiple={multiple} classes={classes} renderValue={renderValue} {...input}>
-        {options.map(option => (
-          <MenuItem key={option.key || option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </Select>
-    )}
+    {({ input: { value: inputValue, ...input } }) => {
+      const value = multiple ? [].concat(inputValue).filter(v => v) : inputValue;
+
+      return (
+        <Select
+          multiple={multiple}
+          classes={classes}
+          renderValue={renderValue}
+          value={value}
+          {...input}
+        >
+          {options.map(option => (
+            <MenuItem key={option.key || option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+      );
+    }}
   </Field>
 );
 
@@ -32,6 +42,7 @@ SelectField.propTypes = {
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
+      key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       label: PropTypes.node.isRequired,
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     }),
