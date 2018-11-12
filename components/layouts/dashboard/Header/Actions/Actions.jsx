@@ -3,8 +3,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-const HeaderActions = ({ children, classes, className }) => (
-  <div className={cn(classes.root, className)}>{children}</div>
+import Item from './Item';
+
+const HeaderActions = ({
+  children, classes, className, ...props
+}) => (
+  <div className={cn(classes.root, className)} {...props}>
+    {children}
+  </div>
 );
 
 HeaderActions.defaultProps = {
@@ -17,15 +23,11 @@ HeaderActions.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-HeaderActions.Item = withStyles({
-  root: {
-    display: 'inline-block',
-    margin: '0 12.5px',
-  },
-})(({ classes, ...props }) => <div className={classes.root} {...props} />);
+HeaderActions.Item = Item;
 
 export default withStyles({
   root: {
+    height: '100%',
     padding: '0 12.5px',
     '&:not(:last-child)': {
       borderRight: '0.5px solid rgba(0, 0, 0, 0.15)',
