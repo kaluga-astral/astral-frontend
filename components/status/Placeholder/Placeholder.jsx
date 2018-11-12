@@ -19,12 +19,11 @@ const Placeholder = ({
   <Fragment>
     {(isFetching || error) && (
       <div className={cn(classes.root, className)}>
-        {isFetching
-          && !error && (
-            <Loading
-              preventShowLoadingMessage={preventShowLoadingMessage}
-              loaderProps={loaderProps}
-            />
+        {isFetching && !error && (
+          <Loading
+            preventShowLoadingMessage={preventShowLoadingMessage}
+            loaderProps={loaderProps}
+          />
         )}
         {!isFetching && error && <Failure error={error} />}
       </div>
@@ -57,6 +56,7 @@ export default withStyles({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
+    height: 'fill-available',
     margin: '0 auto',
     padding: '10px',
     boxSizing: 'border-box',
