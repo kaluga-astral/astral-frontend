@@ -1,49 +1,49 @@
-import PropTypes from 'prop-types';
-import { create } from 'jss';
-import React from 'react';
-import JssProvider from 'react-jss/lib/JssProvider';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import PropTypes from "prop-types";
+import { create } from "jss";
+import React from "react";
+import JssProvider from "react-jss/lib/JssProvider";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import {
   MuiThemeProvider,
   createMuiTheme,
   createGenerateClassName,
-  jssPreset,
-} from '@material-ui/core/styles';
-import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
-import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
-import ruLocale from 'date-fns/locale/ru';
+  jssPreset
+} from "@material-ui/core/styles";
+import { MuiPickersUtilsProvider } from "material-ui-pickers";
+import DateFnsUtils from "@date-io/date-fns";
+import ruLocale from "date-fns/locale/ru";
 
-import BaseCSS from './BaseCSS';
+import BaseCSS from "./BaseCSS";
 
-const styleNode = document.createComment('insertion-point-jss');
+const styleNode = document.createComment("insertion-point-jss");
 document.head.insertBefore(styleNode, document.head.firstChild);
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
-jss.options.insertionPoint = 'insertion-point-jss';
+jss.options.insertionPoint = "insertion-point-jss";
 
 const theme = createMuiTheme({
   typography: {
-    useNextVariants: true,
+    useNextVariants: true
   },
   palette: {
     background: {
-      default: '#ffffff',
+      default: "#ffffff"
     },
     primary: {
-      light: '#33a2ef',
-      main: '#008bec',
-      dark: '#0065b1',
-    },
+      light: "#33a2ef",
+      main: "#008bec",
+      dark: "#0065b1"
+    }
   },
   overrides: {
     MuiSvgIcon: {
-      root: { fontSize: 'inherit' },
+      root: { fontSize: "inherit" }
     },
     MuiInput: {
-      root: { fontSize: '1em' },
-    },
-  },
+      root: { fontSize: "1em" }
+    }
+  }
 });
 
 const ThemeProvider = ({ children }) => (
@@ -59,7 +59,7 @@ const ThemeProvider = ({ children }) => (
 );
 
 ThemeProvider.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default ThemeProvider;

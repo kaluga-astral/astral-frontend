@@ -15,11 +15,12 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@date-io/date-fns": "^0.0.2",
     "@material-ui/core": "^3.3.2",
     "bugsnag-js": "^4.7.3",
     "bugsnag-react": "^1.1.1",
     "classnames": "^2.2.5",
-    "date-fns": "2.0.0-alpha.25",
+    "date-fns": "2.0.0-alpha.21",
     "downshift": "^2.0.16",
     "final-form": "4.10.0",
     "jss": "^9.8.1",
