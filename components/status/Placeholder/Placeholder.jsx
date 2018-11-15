@@ -1,11 +1,11 @@
-import { isFunction } from 'lodash-es';
-import cn from 'classnames';
-import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { isFunction } from "lodash-es";
+import cn from "classnames";
+import PropTypes from "prop-types";
+import React, { Fragment } from "react";
+import { withStyles } from "@material-ui/core/styles";
 
-import Loading from './LoadingState';
-import Failure from './FailureState';
+import Loading from "./LoadingState";
+import Failure from "./FailureState";
 
 const Placeholder = ({
   isFetching,
@@ -14,7 +14,7 @@ const Placeholder = ({
   className,
   preventShowLoadingMessage,
   loaderProps,
-  children,
+  children
 }) => (
   <Fragment>
     {(isFetching || error) && (
@@ -37,7 +37,7 @@ Placeholder.defaultProps = {
   loaderProps: {},
   className: null,
   children: null,
-  preventShowLoadingMessage: false,
+  preventShowLoadingMessage: false
 };
 
 Placeholder.propTypes = {
@@ -47,19 +47,20 @@ Placeholder.propTypes = {
   loaderProps: PropTypes.shape(),
   children: PropTypes.func,
   classes: PropTypes.shape().isRequired,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 export default withStyles({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    height: 'fill-available',
-    margin: '0 auto',
-    padding: '10px',
-    boxSizing: 'border-box',
-    overflow: 'hidden',
-  },
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    height: "fill-available",
+    minHeight: "max-content",
+    margin: "0 auto",
+    padding: "10px",
+    boxSizing: "border-box",
+    overflow: "hidden"
+  }
 })(Placeholder);
