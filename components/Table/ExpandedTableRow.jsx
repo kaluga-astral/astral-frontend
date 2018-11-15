@@ -3,19 +3,15 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 import Row from './TableRow';
-import Cell from './TableCell';
 
-const ExpandedTableRow = ({ classes, colSpan, children }) => (
+const ExpandedTableRow = ({ classes, children }) => (
   <Row className={classes.row}>
-    <Cell colSpan={colSpan} className={classes.cell}>
       {children}
-    </Cell>
   </Row>
 );
 
 ExpandedTableRow.propTypes = {
   classes: PropTypes.shape().isRequired,
-  colSpan: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
 };
 
