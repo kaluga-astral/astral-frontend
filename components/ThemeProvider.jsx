@@ -9,7 +9,7 @@ import {
   createGenerateClassName,
   jssPreset
 } from "@material-ui/core/styles";
-import { MuiPickersUtilsProvider } from "material-ui-pickers";
+import MuiPickersUtilsProvider from "material-ui-pickers/MuiPickersUtilsProvider";
 import DateFnsUtils from "@date-io/date-fns";
 import ruLocale from "date-fns/locale/ru";
 
