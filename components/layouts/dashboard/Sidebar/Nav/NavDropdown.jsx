@@ -2,7 +2,6 @@ import pathToRegexp from 'path-to-regexp';
 import PropTypes from 'prop-types';
 import React, { Fragment, PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -30,8 +29,8 @@ class SidebarNavDropdown extends PureComponent {
 
   setExpanded = () => {
     const { children, location } = this.props;
-    // Boolean(location.pathname.match(item.to));
     const isActive = dropdownItem => pathToRegexp(location.pathname).test(dropdownItem.props.to);
+
     this.setState({
       expanded: React.Children.toArray(children).some(isActive),
     });
@@ -85,12 +84,9 @@ class SidebarNavDropdown extends PureComponent {
   };
 }
 
-SidebarNavDropdown.defaultProps = {
-  // autoExpand: true,
-};
+SidebarNavDropdown.defaultProps = {};
 
 SidebarNavDropdown.propTypes = {
-  // autoExpand: PropTypes.bool,
   classes: PropTypes.shape().isRequired,
   icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
@@ -108,6 +104,7 @@ export default withStyles(theme => ({
     color: theme.palette.common.white,
   },
   list: {
+    backgroundColor: 'rgba(0, 0, 0, 0.14)',
     borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
   },
 }))(withRouter(SidebarNavDropdown));

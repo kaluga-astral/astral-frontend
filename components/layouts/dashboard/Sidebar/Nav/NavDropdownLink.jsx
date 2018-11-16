@@ -1,39 +1,29 @@
-// import pathToRegexp from 'path-to-regexp';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-// import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-import SvgIcon from '../../../../SvgIcon';
-import NavLink from './NavLink';
-
-// TODO:
-// get isActive() {
-// const { location, to } = this.props;
-// return pathToRegexp(location.pathname).test(to);
-// }
-const NavDropdownLinkIcon = () => (
-  <SvgIcon viewBox="0 0 8 8">
-    <circle cx="4" cy="4" r="3.75" stroke="white" strokeWidth="0.5" />
-  </SvgIcon>
-);
-// withRouter
-
-NavDropdownLinkIcon.propTypes = {
-  // isActive: PropTypes.bool.isRequired,
-};
+import { MenuItem } from '../../../../Menu';
+import SidebarNavLink from './NavLink';
+import DefaultIcon from './NavDropdownLinkIcon';
 
 const NavDropdownLink = ({
-  classes, className, icon, exact, to, text,
+  classes, className, icon: Icon, exact, to, text,
 }) => (
-  <NavLink className={cn(classes.root, className)} exact={exact} to={to} icon={icon} text={text} />
+  <MenuItem
+    component={SidebarNavLink}
+    className={cn(classes.root, className)}
+    exact={exact}
+    to={to}
+    text={text}
+    icon={() => <Icon to={to} />}
+  />
 );
 
 NavDropdownLink.defaultProps = {
   className: null,
   exact: false,
-  icon: NavDropdownLinkIcon,
+  icon: DefaultIcon,
 };
 
 NavDropdownLink.propTypes = {
@@ -43,9 +33,6 @@ NavDropdownLink.propTypes = {
   to: PropTypes.string.isRequired,
   icon: PropTypes.func,
   text: PropTypes.string.isRequired,
-  // location: PropTypes.shape({
-  //   pathname: PropTypes.isRequired,
-  // }).isRequired,
 };
 
 export default withStyles({
