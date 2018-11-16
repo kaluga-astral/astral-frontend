@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '../IconButton';
-import DialogContext from './Context';
 
+import IconButton from '../IconButton';
+import { Context } from './Dialog';
 import CloseIcon from './CloseIcon';
 
 const DialogTitle = ({ children, ...props }) => (
-  <DialogContext.Consumer>
+  <Context.Consumer>
     {({ onClose }) => (
       <MuiDialogTitle {...props} disableTypography>
         {children}
@@ -17,7 +17,7 @@ const DialogTitle = ({ children, ...props }) => (
         </IconButton>
       </MuiDialogTitle>
     )}
-  </DialogContext.Consumer>
+  </Context.Consumer>
 );
 
 DialogTitle.propTypes = {
