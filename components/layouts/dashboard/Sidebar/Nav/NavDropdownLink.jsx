@@ -8,11 +8,12 @@ import SidebarNavLink from './NavLink';
 import DefaultIcon from './NavDropdownLinkIcon';
 
 const NavDropdownLink = ({
-  classes, className, icon: Icon, exact, to, text,
+  hasNotification, classes, className, icon: Icon, exact, to, text,
 }) => (
   <MenuItem
     component={SidebarNavLink}
     className={cn(classes.root, className)}
+    hasNotification={hasNotification}
     exact={exact}
     to={to}
     text={text}
@@ -22,6 +23,7 @@ const NavDropdownLink = ({
 
 NavDropdownLink.defaultProps = {
   className: null,
+  hasNotification: false,
   exact: false,
   icon: DefaultIcon,
 };
@@ -29,6 +31,7 @@ NavDropdownLink.defaultProps = {
 NavDropdownLink.propTypes = {
   className: PropTypes.string,
   classes: PropTypes.shape().isRequired,
+  hasNotification: PropTypes.bool,
   exact: PropTypes.bool,
   to: PropTypes.string.isRequired,
   icon: PropTypes.func,

@@ -9,7 +9,7 @@ import ListItemIcon from './ListItemIcon';
 import ListItemText from './ListItemText';
 
 const SidebarNavLink = ({
-  classes, icon: Icon, text, badgeContent, ...props
+  classes, icon: Icon, text, hasNotification, ...props
 }) => (
   <MenuItem component={NavLink} activeClassName={classes.selected} classes={classes} {...props}>
     {Icon && (
@@ -18,20 +18,20 @@ const SidebarNavLink = ({
       </ListItemIcon>
     )}
     <ListItemText>{text}</ListItemText>
-    {Boolean(badgeContent) && <Badge>{badgeContent}</Badge>}
+    {Boolean(hasNotification) && <Badge />}
   </MenuItem>
 );
 
 SidebarNavLink.defaultProps = {
   icon: null,
-  badgeContent: null,
+  hasNotification: false,
 };
 
 SidebarNavLink.propTypes = {
   to: PropTypes.string.isRequired,
   icon: PropTypes.func,
   text: PropTypes.string.isRequired,
-  badgeContent: PropTypes.node,
+  hasNotification: PropTypes.bool,
   classes: PropTypes.shape({
     selected: PropTypes.string,
   }).isRequired,

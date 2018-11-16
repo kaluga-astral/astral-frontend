@@ -6,6 +6,7 @@ import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
 
 import { MenuList, MenuItem } from '../../../../Menu';
+import Badge from './Badge';
 import ListItemIcon from './ListItemIcon';
 import ListItemText from './ListItemText';
 
@@ -43,22 +44,19 @@ class SidebarNavDropdown extends PureComponent {
   render = () => {
     const { expanded } = this.state;
     const {
-      classes, icon: Icon, text, children,
+      hasNotification, classes, icon: Icon, text, children,
     } = this.props;
 
     return (
       <Fragment>
-        <MenuItem
-          selected={expanded}
-          className={classes.mainNavItem}
-          onClick={this.toggleExpanded}
-        >
+        <MenuItem selected={expanded} className={classes.mainNavItem} onClick={this.toggleExpanded}>
           {Icon && (
             <ListItemIcon>
               <Icon />
             </ListItemIcon>
           )}
           <ListItemText>{text}</ListItemText>
+          {hasNotification && <Badge />}
           <svg
             style={{
               transform: expanded ? 'rotateZ(180deg)' : null,
@@ -84,9 +82,12 @@ class SidebarNavDropdown extends PureComponent {
   };
 }
 
-SidebarNavDropdown.defaultProps = {};
+SidebarNavDropdown.defaultProps = {
+  hasNotification: false,
+};
 
 SidebarNavDropdown.propTypes = {
+  hasNotification: PropTypes.bool,
   classes: PropTypes.shape().isRequired,
   icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
