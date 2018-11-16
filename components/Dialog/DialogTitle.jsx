@@ -22,7 +22,6 @@ const DialogTitle = ({ children, ...props }) => (
 
 DialogTitle.propTypes = {
   children: PropTypes.node.isRequired,
-  onClose: PropTypes.func.isRequired,
 };
 
 export default withStyles({
