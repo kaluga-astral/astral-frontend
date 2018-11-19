@@ -33,7 +33,8 @@
     "react-input-range": "^1.3.0",
     "react-js-pagination": "^3.0.2",
     "react-jss": "^8.6.1",
-    "react-text-mask": "^5.2.0"
+    "react-text-mask": "^5.2.0",
+    "react-select": "2.1.1"
   },
   "peerDependencies": {
     "react": ">=16.6.0",
