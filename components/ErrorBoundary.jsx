@@ -7,12 +7,12 @@ import UnhandledError from './UnhandledError';
 
 class ErrorBoundary extends Component {
   get bugsnagClient() {
-    const { apiKey } = this.props;
+    const { apiKey, releaseStage } = this.props;
 
     return bugsnag({
       apiKey,
-      releaseStage: process.env.APP_ENV,
-      notifyReleaseStages: ['production', 'staging'],
+      releaseStage,
+      notifyReleaseStages: ['production', 'staging', 'development'],
       logger: null,
     });
   }
@@ -27,6 +27,7 @@ class ErrorBoundary extends Component {
 
 ErrorBoundary.propTypes = {
   apiKey: PropTypes.string.isRequired,
+  releaseStage: PropTypes.oneOf(['production', 'staging', 'development', 'local']).isRequired,
   children: PropTypes.node.isRequired,
 };
 

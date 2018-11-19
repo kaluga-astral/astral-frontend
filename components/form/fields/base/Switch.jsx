@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import PropTypes from "prop-types";
+import React from "react";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-import Field from '../Field';
+import Field from "../Field";
+import Switch from "../../../Switch";
 
 const SwitchField = props => (
   <Field {...props} type="checkbox">
@@ -14,12 +14,12 @@ const SwitchField = props => (
 );
 
 SwitchField.defaultProps = {
-  placeholder: 'Введите текст',
+  placeholder: "Введите текст"
 };
 
 SwitchField.propTypes = {
   name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.string
 };
 
 export default SwitchField;

@@ -6,6 +6,7 @@ const SidebarNav = props => <MenuList component="nav" {...props} />;
 
 export default withStyles({
   root: {
+    flex: 1,
     padding: 0,
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {

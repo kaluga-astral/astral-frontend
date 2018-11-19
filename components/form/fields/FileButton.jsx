@@ -6,14 +6,29 @@ import { withStyles } from '@material-ui/core/styles';
 import Field from './Field';
 
 class FileButtonField extends Component {
-  state = { file: null, error: null };
+  state = {
+    file: null,
+    meta: { isFetching: false, error: null, percentComplete: 0 },
+  };
 
   fileInput = React.createRef();
 
   validate = () => {
-    const { error } = this.state;
+    const {
+      meta: { error },
+    } = this.state;
 
     return error && error.message;
+  };
+
+  handleUploadProgress = (event) => {
+    this.setState(prevState => ({
+      ...prevState,
+      meta: {
+        ...prevState.meta,
+        percentComplete: (event.loaded / event.total) * 100,
+      },
+    }));
   };
 
   handleInputChange = onChange => (event) => {
@@ -22,17 +37,31 @@ class FileButtonField extends Component {
     const formData = new FormData();
     formData.append('file', file);
 
-    uploadHook(formData)
-      .then((fileGuid) => {
-        this.setState({ file, error: null }, () => {
-          onChange(fileGuid);
+    this.setState({ file, meta: { isFetching: true, error: null, percentComplete: 0 } }, () => {
+      uploadHook(formData, this.handleUploadProgress)
+        .then((fileGuid) => {
+          this.setState(
+            prevState => ({
+              ...prevState,
+              meta: { ...prevState.meta, isFetching: false, error: null },
+            }),
+            () => {
+              onChange(fileGuid);
+            },
+          );
+        })
+        .catch((error) => {
+          this.setState(
+            prevState => ({
+              ...prevState,
+              meta: { ...prevState.meta, isFetching: false, error },
+            }),
+            () => {
+              onChange(uniq());
+            },
+          );
         });
-      })
-      .catch((error) => {
-        this.setState({ file: null, error }, () => {
-          onChange(uniq());
-        });
-      });
+    });
   };
 
   render = () => {
@@ -45,8 +74,7 @@ class FileButtonField extends Component {
       renderButton,
       ...props
     } = this.props;
-    const { file } = this.state;
-    console.log(file);
+    const { file, meta } = this.state;
 
     return (
       <Field {...props} validate={this.validate}>
@@ -60,6 +88,7 @@ class FileButtonField extends Component {
                 onClick: () => this.fileInput.current.click(),
               },
               file,
+              meta,
             )}
             <input
               multiple={false}
@@ -85,6 +114,7 @@ FileButtonField.propTypes = {
   name: PropTypes.string.isRequired,
   accept: PropTypes.arrayOf(PropTypes.string),
   uploadHook: PropTypes.func.isRequired,
+  renderButton: PropTypes.func.isRequired,
 };
 
 export default withStyles({

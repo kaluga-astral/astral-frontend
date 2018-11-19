@@ -50,16 +50,18 @@ Placeholder.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
     height: 'fill-available',
+    minHeight: 'max-content',
     margin: '0 auto',
     padding: '10px',
     boxSizing: 'border-box',
     overflow: 'hidden',
+    color: theme.palette.primary.main,
   },
-})(Placeholder);
+}))(Placeholder);

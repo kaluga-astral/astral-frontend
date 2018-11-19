@@ -2,22 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '../IconButton';
 
+import IconButton from '../IconButton';
+import { Context } from './Dialog';
 import CloseIcon from './CloseIcon';
 
-const DialogTitle = ({ children, onClose, ...props }) => (
-  <MuiDialogTitle {...props} disableTypography>
-    {children}
-    <IconButton onClick={onClose}>
-      <CloseIcon fontSize="small" />
-    </IconButton>
-  </MuiDialogTitle>
+const DialogTitle = ({ children, ...props }) => (
+  <Context.Consumer>
+    {({ onClose }) => (
+      <MuiDialogTitle {...props} disableTypography>
+        {children}
+        <IconButton onClick={onClose}>
+          <CloseIcon fontSize="small" />
+        </IconButton>
+      </MuiDialogTitle>
+    )}
+  </Context.Consumer>
 );
 
 DialogTitle.propTypes = {
   children: PropTypes.node.isRequired,
-  onClose: PropTypes.func.isRequired,
 };
 
 export default withStyles({

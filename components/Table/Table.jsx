@@ -7,10 +7,13 @@ const Table = ({
   classes, className, tableClassName, ...props
 }) => (
   <div className={cn(classes.root, className)}>
-    <MuiTable className={tableClassName} {...props} />
+    <MuiTable className={cn(classes.table, tableClassName)} {...props} />
   </div>
 );
 
 export default withStyles({
-  root: {},
+  root: {
+    overflowX: 'scroll',
+  },
+  table: {},
 })(Table);

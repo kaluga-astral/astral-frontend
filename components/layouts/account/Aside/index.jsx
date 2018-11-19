@@ -4,7 +4,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 import productLogo from './product-logo.png';
-import background from './background.jpeg';
+import background from './background.jpg';
 
 const AccountAside = ({
   classes, className, productName, productDescription,
