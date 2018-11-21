@@ -40,6 +40,6 @@ NavDropdownLink.propTypes = {
 
 export default withStyles({
   root: {
-    fontSize: '8px',
+    fontSize: '12px',
   },
 })(NavDropdownLink);

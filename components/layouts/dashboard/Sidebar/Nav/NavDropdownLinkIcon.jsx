@@ -8,10 +8,10 @@ import SvgIcon from '../../../../SvgIcon';
 
 const NavDropdownLinkIcon = ({ classes, location, to }) => (
   <SvgIcon
-    viewBox="0 0 8 8"
+    viewBox="0 0 12 12"
     className={pathToRegexp(location.pathname).test(to) ? classes.filled : classes.bordered}
   >
-    <circle cx="4" cy="4" r="3.75" stroke="white" strokeWidth="0.5" />
+    <circle cx="6" cy="6" r="3.75" stroke="white" strokeWidth="0.5" />
   </SvgIcon>
 );
 
