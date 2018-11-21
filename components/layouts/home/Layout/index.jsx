@@ -21,8 +21,8 @@ HomeLayout.propTypes = {
 
 export default withStyles({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100%',
+    // display: 'flex',
+    // flexDirection: 'column',
+    // minHeight: '100%',
   },
 })(HomeLayout);
