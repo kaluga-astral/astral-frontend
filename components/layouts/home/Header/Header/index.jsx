@@ -25,6 +25,7 @@ HomeLayoutHeader.propTypes = {
 
 export default withStyles(theme => ({
   root: {
+    width: '100%',
     background: theme.palette.primary.dark,
     zIndex: 1,
   },
@@ -33,7 +34,7 @@ export default withStyles(theme => ({
     alignItems: 'center',
     height: '85px',
     maxWidth: theme.breakpoints.values.xl,
-    padding: '0 50px',
+    padding: '0 70px',
     margin: '0 auto',
     [theme.breakpoints.down('xs')]: {
       height: '45px',
