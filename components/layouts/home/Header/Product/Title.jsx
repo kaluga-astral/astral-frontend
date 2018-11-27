@@ -21,6 +21,7 @@ HomeLayoutProductTitle.propTypes = {
 
 export default withStyles(theme => ({
   root: {
+    marginLeft: '20px',
     [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
