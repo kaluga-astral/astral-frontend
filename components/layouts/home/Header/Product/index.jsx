@@ -34,6 +34,7 @@ export default withStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
+    marginRight: '20px',
     fontSize: '18px',
     color: theme.palette.common.white,
     textDecoration: 'none',

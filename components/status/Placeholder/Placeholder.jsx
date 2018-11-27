@@ -59,7 +59,7 @@ export default withStyles(theme => ({
     height: 'fill-available',
     minHeight: 'max-content',
     margin: '0 auto',
-    padding: '10px',
+    // padding: '10px',
     boxSizing: 'border-box',
     overflow: 'hidden',
     color: theme.palette.primary.main,

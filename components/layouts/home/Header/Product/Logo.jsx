@@ -23,11 +23,10 @@ export default withStyles(theme => ({
   root: {
     width: '40px',
     height: '40px',
-    marginRight: '15px',
+    // marginRight: '20px',
     [theme.breakpoints.down('xs')]: {
       width: '20px',
       height: '20px',
-      marginRight: 0,
     },
   },
 }))(HomeLayoutProductLogo);

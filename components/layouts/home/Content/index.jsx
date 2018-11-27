@@ -19,8 +19,10 @@ HomeLayoutContent.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   root: {
     flex: 1,
+    maxWidth: theme.breakpoints.values.xl,
+    margin: '0 auto',
   },
-})(HomeLayoutContent);
+}))(HomeLayoutContent);
