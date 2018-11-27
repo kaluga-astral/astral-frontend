@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Select from 'react-select';
+import Select, { components as defaultComponents } from 'react-select';
 import { isFunction } from 'lodash-es';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -17,8 +17,10 @@ const styles = theme => ({
     height: 250,
   },
   input: {
+    border: '1px solid #eee',
+    borderRadius: '4px',
     display: 'flex',
-    padding: 0,
+    padding: 0
   },
   valueContainer: {
     display: 'flex',
@@ -28,24 +30,28 @@ const styles = theme => ({
     overflow: 'hidden',
   },
   chip: {
-    margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
-  },
-  chipFocused: {
-    backgroundColor: emphasize(
-      theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700],
-      0.08,
-    ),
+    margin: `0 ${theme.spacing.unit / 4}px`,
+    fontWeight: 500,
+    borderRadius: 4,
+    padding: '7px 0',
+    backgroundColor: '#0a65b0',
+    color: '#fff',
+    height: 10
   },
   noOptionsMessage: {
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
   },
   singleValue: {
-    fontSize: 16,
+    fontSize: 14,
+    padding: '3px 12px',
+    fontWeight: 300
   },
   placeholder: {
     position: 'absolute',
     left: 2,
-    fontSize: 16,
+    fontSize: 14,
+    padding: '6px 10px',
+    color: '#D8D8D8'
   },
   paper: {
     position: 'absolute',
@@ -53,9 +59,11 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     left: 0,
     right: 0,
+    borderRadius: '4px'
   },
   divider: {
-    height: theme.spacing.unit * 2,
+    height: 300,
+    color: 'red'
   },
 });
 
@@ -80,6 +88,7 @@ function Control(props) {
     <TextField
       fullWidth
       InputProps={{
+        disableUnderline: true,
         inputComponent,
         inputProps: {
           className: props.selectProps.classes.input,
@@ -99,8 +108,9 @@ function Option(props) {
       buttonRef={props.innerRef}
       selected={props.isFocused}
       component="div"
+      className={props.selectProps.classes.menuItem}
       style={{
-        fontWeight: props.isSelected ? 500 : 400,
+        fontWeight: props.isSelected ? 400 : 300,
       }}
       {...props.innerProps}
     >
@@ -154,6 +164,16 @@ function Menu(props) {
   );
 }
 
+const DropdownIndicator = (props) => {
+  return components.DropdownIndicator && (
+    <defaultComponents.DropdownIndicator {...props}>
+      <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0.0944805 0.263158L0.285453 0.0873065C0.411871 -0.0291022 0.616293 -0.0291022 0.742711 0.0873065L5.99849 4.92941L11.257 0.0873065C11.3834 -0.0291022 11.5878 -0.0291022 11.7142 0.0873065L11.9052 0.263158C12.0316 0.379567 12.0316 0.567802 11.9052 0.684211L6.22981 5.91269C6.10339 6.0291 5.89897 6.0291 5.77255 5.91269L0.0971699 0.684211C-0.0319376 0.567802 -0.0319376 0.379567 0.0944805 0.263158Z" fill="black"/>
+      </svg>
+    </defaultComponents.DropdownIndicator>
+  );
+};
+
 const components = {
   Control,
   Menu,
@@ -163,26 +183,25 @@ const components = {
   Placeholder,
   SingleValue,
   ValueContainer,
+  DropdownIndicator
 };
 
 class Autocomplete extends React.Component {
-  state = {
-    value: null,
-  };
-
   handleChange = value => {
     const { onChange } = this.props;
     if (isFunction(onChange)) {
       onChange(value);
     }
-
-    this.setState({ value });
   };
 
   render() {
     const { classes, theme, options, value, placeholder, label, isMulti, isLoading, isDisabled, onInputChange, onMenuOpen } = this.props;
 
     const selectStyles = {
+      container: base => ({
+        ...base,
+        minWidth: 200
+      }),
       input: base => ({
         ...base,
         color: theme.palette.text.primary,
@@ -190,24 +209,34 @@ class Autocomplete extends React.Component {
           font: 'inherit',
         },
       }),
+      clearIndicator: base => ({
+        padding: '0px 8px'
+      }),
+      indicatorSeparator: base => ({
+        ...base,
+        display: 'none'
+      }),
     };
 
     return (
-      <Select
-        classes={classes}
-        styles={selectStyles}
-        options={options}
-        components={components}
-        value={value || this.state.value}
-        placeholder={placeholder}
-        textFieldProps={{ label, InputLabelProps: { shrink: true } }}
-        isMulti={isMulti}
-        isLoading={isLoading}
-        isDisabled={isDisabled}
-        onChange={this.handleChange}
-        onInputChange={onInputChange}
-        onMenuOpen={onMenuOpen}
-      />
+      <div className="autocomplete-wrapper">
+        <label>{label}</label>
+        <Select
+          classes={classes}
+          styles={selectStyles}
+          options={options}
+          components={components}
+          value={value || ''}
+          placeholder={placeholder}
+          // textFieldProps={{ label, InputLabelProps: { shrink: true } }}
+          isMulti={isMulti}
+          isLoading={isLoading}
+          isDisabled={isDisabled}
+          onChange={this.handleChange}
+          onInputChange={onInputChange}
+          onMenuOpen={onMenuOpen}
+        />
+      </div>
     );
   }
 }
