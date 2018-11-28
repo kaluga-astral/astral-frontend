@@ -18,4 +18,5 @@ export { default as Radio } from './Radio';
 export { default as RadioGroup } from './RadioGroup';
 export { default as Popper } from './Popper';
 export { default as SvgIcon } from './SvgIcon';
+export { default as Autocomplete } from './Autocomplete';
 export { default as ThemeProvider } from './ThemeProvider';
