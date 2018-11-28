@@ -33,7 +33,7 @@ const styles = theme => ({
     margin: `0 ${theme.spacing.unit / 4}px`,
     fontWeight: 500,
     borderRadius: 4,
-    padding: '7px 0',
+    padding: '12px 0',
     backgroundColor: '#0a65b0',
     color: '#fff',
     height: 10
