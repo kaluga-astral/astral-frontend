@@ -27,9 +27,11 @@ PlaceholderFailureState.propTypes = {
   onRetry: PropTypes.func,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   status: {
-    fontSize: '1em',
+    color: theme.palette.common.black,
+    fontSize: '1.3em',
+    marginBottom: '10px',
   },
   message: {
     color: '#4e4e4e',
@@ -37,4 +39,4 @@ export default withStyles({
   retryButton: {
     marginTop: '10px',
   },
-})(PlaceholderFailureState);
+}))(PlaceholderFailureState);
