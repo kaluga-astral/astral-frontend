@@ -1,8 +1,8 @@
+export { default as BugsnagProvider } from './BugsnagProvider';
 export { default as Button } from './Button';
+export { default as ButtonAsLink } from './ButtonAsLink';
 export { default as ButtonBase } from './ButtonBase';
 export { default as Checkbox } from './Checkbox';
-export { default as ButtonAsLink } from './ButtonAsLink';
-export { default as BaseCSS } from './BaseCSS';
 export { default as ClickAwayListener } from './ClickAwayListener';
 export { default as Collapse } from './Collapse';
 export { default as ConfirmPopper } from './ConfirmPopper';

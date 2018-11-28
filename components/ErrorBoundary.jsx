@@ -1,34 +1,28 @@
 import PropTypes from 'prop-types';
-import bugsnag from 'bugsnag-js';
-import React, { Component } from 'react';
-import createPlugin from 'bugsnag-react';
+import React from 'react';
 
+import { Context } from './BugsnagProvider';
 import UnhandledError from './UnhandledError';
 
-class ErrorBoundary extends Component {
-  get bugsnagClient() {
-    const { apiKey, releaseStage } = this.props;
+const ErrorBoundary = ({ children, beforeSend, FallbackComponent }) => (
+  <Context.Consumer>
+    {({ WrapComponent }) => (
+      <WrapComponent beforeSend={beforeSend} FallbackComponent={FallbackComponent}>
+        {children}
+      </WrapComponent>
+    )}
+  </Context.Consumer>
+);
 
-    return bugsnag({
-      apiKey,
-      releaseStage,
-      notifyReleaseStages: ['production', 'staging', 'development'],
-      logger: null,
-    });
-  }
-
-  render = () => {
-    const { children } = this.props;
-    const WrappedComponent = this.bugsnagClient.use(createPlugin(React));
-
-    return <WrappedComponent FallbackComponent={UnhandledError}>{children}</WrappedComponent>;
-  };
-}
+ErrorBoundary.defaultProps = {
+  beforeSend: null,
+  FallbackComponent: UnhandledError,
+};
 
 ErrorBoundary.propTypes = {
-  apiKey: PropTypes.string.isRequired,
-  releaseStage: PropTypes.oneOf(['production', 'staging', 'development', 'local']).isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.PropTypes.oneOfType([PropTypes.node]).isRequired,
+  beforeSend: PropTypes.func,
+  FallbackComponent: PropTypes.oneOfType([PropTypes.func]),
 };
 
 export default ErrorBoundary;
