@@ -31,7 +31,7 @@ export default withStyles({
   root: {},
   wrapper: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
 })(TableActionsCell);
