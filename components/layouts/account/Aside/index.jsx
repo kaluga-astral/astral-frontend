@@ -3,15 +3,21 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-import productLogo from './product-logo.png';
+import SquareLogo from '../../../brand/SquareLogo';
+
 import background from './background.jpg';
 
 const AccountAside = ({
-  classes, className, productName, productDescription,
+  classes,
+  className,
+  productName,
+  productLogo: ProductLogo,
+  productDescription,
+  // backgroundSrc,
 }) => (
   <aside className={cn(classes.root, className)}>
     <div className={classes.productInfo}>
-      <img src={productLogo} alt={productName} className={classes.productlogo} />
+      <ProductLogo className={classes.productlogo} />
       <div>
         <h1 className={classes.productName}>{productName}</h1>
         {productDescription && <p className={classes.productDescription}>{productDescription}</p>}
@@ -23,12 +29,15 @@ const AccountAside = ({
 AccountAside.defaultProps = {
   className: null,
   productDescription: null,
+  productLogo: props => <SquareLogo color="monochrome" {...props} />,
+  // backgroundSrc: background,
 };
 
 AccountAside.propTypes = {
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   productName: PropTypes.string.isRequired,
+  productLogo: PropTypes.oneOfType([PropTypes.func]),
   productDescription: PropTypes.string,
 };
 
