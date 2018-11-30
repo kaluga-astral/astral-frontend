@@ -17,13 +17,16 @@ DashboardHeader.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default withStyles(theme => ({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-    height: '70px',
-    borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
-    background: theme.palette.common.white,
-    zIndex: 2,
-  },
-}))(DashboardHeader);
+export default withStyles(
+  theme => ({
+    root: {
+      display: 'flex',
+      alignItems: 'center',
+      height: '70px',
+      borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
+      background: theme.palette.common.white,
+      zIndex: 2,
+    },
+  }),
+  { name: 'DashboardHeader' },
+)(DashboardHeader);

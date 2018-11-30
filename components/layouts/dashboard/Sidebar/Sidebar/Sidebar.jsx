@@ -18,12 +18,15 @@ DashboardSidebar.propTypes = {
   children: PropTypes.node,
 };
 
-export default withStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '215px',
-    background: theme.palette.primary.dark,
-    zIndex: 2,
-  },
-}))(DashboardSidebar);
+export default withStyles(
+  theme => ({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: '215px',
+      background: theme.palette.primary.dark,
+      zIndex: 2,
+    },
+  }),
+  { name: 'DashboardSidebar' },
+)(DashboardSidebar);

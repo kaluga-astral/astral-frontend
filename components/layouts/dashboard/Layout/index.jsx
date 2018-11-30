@@ -19,10 +19,13 @@ DashboardLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default withStyles({
-  root: {
-    display: 'flex',
-    height: '100%',
-    background: '#fafafa', // FIXME:
+export default withStyles(
+  {
+    root: {
+      display: 'flex',
+      height: '100%',
+      background: '#fafafa', // FIXME:
+    },
   },
-})(DashboardLayout);
+  { name: 'DashboardLayout' },
+)(DashboardLayout);

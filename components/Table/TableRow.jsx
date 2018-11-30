@@ -9,11 +9,14 @@ TableRow.defaultProps = {};
 
 TableRow.propTypes = {};
 
-export default withStyles({
-  root: {
-    '&$hover:hover': {
-      background: 'rgba(10, 144, 237, 0.05)',
+export default withStyles(
+  {
+    root: {
+      '&$hover:hover': {
+        background: 'rgba(10, 144, 237, 0.05)',
+      },
     },
+    hover: {},
   },
-  hover: {},
-})(TableRow);
+  { name: 'TableRow' },
+)(TableRow);
