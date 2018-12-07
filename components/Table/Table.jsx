@@ -13,7 +13,7 @@ const Table = ({
 
 export default withStyles({
   root: {
-    overflowX: 'scroll',
+    overflowX: 'auto',
   },
   table: {},
 })(Table);
