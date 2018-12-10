@@ -6,7 +6,7 @@ import Field from '../Field';
 import { MenuItem } from '../../../Menu';
 
 const SelectField = ({
-  multiple, classes, options, renderValue, ...props
+  multiple, classes, options, renderValue, renderMenuItem, ...props
 }) => (
   <Field {...props}>
     {({ input: { value: inputValue, ...input } }) => {
@@ -20,11 +20,7 @@ const SelectField = ({
           value={value}
           {...input}
         >
-          {options.map(option => (
-            <MenuItem key={option.key || option.value} value={option.value}>
-              <span style={{ color: option.color }}>{option.label}</span>
-            </MenuItem>
-          ))}
+          {options.map(renderMenuItem)}
         </Select>
       );
     }}
@@ -34,6 +30,11 @@ const SelectField = ({
 SelectField.defaultProps = {
   multiple: false,
   label: null,
+  renderMenuItem: option => (
+    <MenuItem key={option.key || option.value} value={option.value}>
+      {option.label}
+    </MenuItem>
+  ),
 };
 
 SelectField.propTypes = {
@@ -47,6 +48,7 @@ SelectField.propTypes = {
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     }),
   ).isRequired,
+  renderMenuItem: PropTypes.func,
 };
 
 export default SelectField;
