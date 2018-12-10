@@ -22,7 +22,7 @@ const SelectField = ({
         >
           {options.map(option => (
             <MenuItem key={option.key || option.value} value={option.value}>
-              {option.label}
+              <span style={{ color: option.color }}>{option.label}</span>
             </MenuItem>
           ))}
         </Select>
