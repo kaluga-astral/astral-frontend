@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { number, select } from '@storybook/addon-knobs';
 
-import Progress from './Progress';
+import Progress from '.';
 
 storiesOf('Progress', module)
   .add('default', () => <Progress />)
