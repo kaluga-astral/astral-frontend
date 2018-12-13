@@ -2,15 +2,22 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
+import cn from 'classnames';
+
 import Row from './TableRow';
 
-const ExpandedTableRow = ({ classes, children }) => (
-  <Row className={classes.row}>
-      {children}
+const ExpandedTableRow = ({ classes, className, children }) => (
+  <Row className={cn(classes.row, className)}>
+    {children}
   </Row>
 );
 
+ExpandedTableRow.defaultProps = {
+  className: null,
+};
+
 ExpandedTableRow.propTypes = {
+  className: PropTypes.string,
   classes: PropTypes.shape().isRequired,
   children: PropTypes.node.isRequired,
 };
