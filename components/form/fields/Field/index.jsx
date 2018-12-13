@@ -1,14 +1,14 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { noop } from "lodash-es";
-import { Field } from "react-final-form";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import InputLabel from "@material-ui/core/InputLabel";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { noop } from 'lodash-es';
+import { Field } from 'react-final-form';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import InputLabel from '@material-ui/core/InputLabel';
 
-import { compose } from "../../../../validations/helpers";
-import * as rules from "../../../../validations/rules";
+import { compose } from '../../../../validations/helpers';
+import * as rules from '../../../../validations/rules';
 
-import FormControl from "./FormControl";
+import FormControl from './FormControl';
 
 const FormField = ({
   id,
@@ -33,22 +33,18 @@ const FormField = ({
     validate={
       required
         ? compose(
-            rules.required,
-            validate
-          )
+          rules.required,
+          validate,
+        )
         : validate
     }
   >
     {({ meta, input }) => (
-      <FormControl
-        required={required}
-        error={meta.touched && !meta.valid}
-        {...props}
-      >
+      <FormControl required={required} error={meta.touched && !meta.valid} {...props}>
         {label && <InputLabel>{label}</InputLabel>}
         {children({
           meta,
-          input: Object.assign({}, input, { id, placeholder, inputProps })
+          input: Object.assign({}, input, { id, placeholder, inputProps }),
         })}
         {(meta.error || meta.submitError) && meta.touched && (
           <FormHelperText>{meta.error || meta.submitError}</FormHelperText>
@@ -62,14 +58,14 @@ FormField.defaultProps = {
   disabled: false,
   required: false,
   fullWidth: true,
-  margin: "normal",
+  margin: 'normal',
   className: null,
   validate: noop,
   parse: null,
   label: null,
   placeholder: null,
   inputProps: {},
-  type: undefined
+  type: undefined,
 };
 
 FormField.propTypes = {
@@ -85,7 +81,7 @@ FormField.propTypes = {
   placeholder: PropTypes.string,
   className: PropTypes.string,
   inputProps: PropTypes.shape(),
-  children: PropTypes.func.isRequired
+  children: PropTypes.func.isRequired,
 };
 
 export default FormField;
