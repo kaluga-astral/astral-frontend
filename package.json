@@ -17,7 +17,6 @@
   "dependencies": {
     "@bugsnag/js": "^5.0.0",
     "@bugsnag/plugin-react": "^5.0.0",
-    "@date-io/date-fns": "^0.0.2",
     "@material-ui/core": "^3.3.2",
     "classnames": "^2.2.5",
     "date-fns": "2.0.0-alpha.21",
@@ -25,7 +24,6 @@
     "final-form": "4.10.0",
     "jss": "^9.8.1",
     "lodash-es": "^4.17.11",
-    "material-ui-pickers": "^2.0.1",
     "path-to-regexp": "^2.4.0",
     "prop-types": "^15.6.2",
     "react-dropzone": "^5.0.1",
