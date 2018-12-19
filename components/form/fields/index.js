@@ -18,4 +18,5 @@ export { default as KPP } from './KPP';
 export { default as Login } from './Login';
 export { default as Name } from './Name';
 export { default as OGRN } from './OGRN';
+export { default as Patronymic } from './Patronymic';
 export { default as Surname } from './Surname';

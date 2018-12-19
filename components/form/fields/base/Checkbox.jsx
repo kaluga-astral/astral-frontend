@@ -15,7 +15,7 @@ const CheckboxField = ({ label, ...props }) => (
 
 CheckboxField.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
 };
 
 export default CheckboxField;

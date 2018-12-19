@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Select from '@material-ui/core/Select';
 
 import Field from '../Field';
+import Select from '../../../Select';
 import { MenuItem } from '../../../Menu';
 
 const SelectField = ({
