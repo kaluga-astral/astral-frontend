@@ -16,7 +16,7 @@ const DialogTitle = ({
       <MuiDialogTitle {...props} className={cn(classes.root, className)} disableTypography>
         <h1 className={classes.title}>{children}</h1>
         <IconButton onClick={onClose}>
-          <CloseIcon fontSize="small" />
+          <CloseIcon />
         </IconButton>
       </MuiDialogTitle>
     )}
