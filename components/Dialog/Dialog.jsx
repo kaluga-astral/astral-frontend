@@ -5,9 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 
 export const Context = React.createContext();
 
-const Dialog = ({ onClose, ...props }) => (
+const Dialog = ({ classes, onClose, ...props }) => (
   <Context.Provider value={{ onClose }}>
-    <MuiDialog {...props} onClose={onClose} />
+    <MuiDialog {...props} classes={classes} onClose={onClose} />
   </Context.Provider>
 );
 
