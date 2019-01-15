@@ -6,15 +6,21 @@ import Checkbox from '../../../Checkbox';
 import Field from '../Field';
 
 const CheckboxField = ({
-  label, icon, checkedIcon, ...props
+  label, icon, checkedIcon, indeterminateIcon, ...props
 }) => (
   <Field {...props} type="checkbox">
     {({ input: { value, ...input } }) => (
       <FormControlLabel
         label={label}
-        control={
-          <Checkbox icon={icon} checkedIcon={checkedIcon} {...input} value={String(value)} />
-        }
+        control={(
+          <Checkbox
+            icon={icon}
+            checkedIcon={checkedIcon}
+            indeterminateIcon={indeterminateIcon}
+            {...input}
+            value={String(value)}
+          />
+)}
       />
     )}
   </Field>
