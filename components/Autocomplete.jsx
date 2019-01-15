@@ -195,7 +195,7 @@ class Autocomplete extends React.Component {
   };
 
   render() {
-    const { classes, theme, options, value, placeholder, label, isMulti, isLoading, isDisabled, onInputChange, onMenuOpen } = this.props;
+    const { classes, theme, options, value, placeholder, label, isMulti, isLoading, isDisabled, onInputChange, onMenuOpen, loadingMessage, noOptionsMessage } = this.props;
 
     const selectStyles = {
       container: base => ({
@@ -235,6 +235,8 @@ class Autocomplete extends React.Component {
           onChange={this.handleChange}
           onInputChange={onInputChange}
           onMenuOpen={onMenuOpen}
+          loadingMessage={loadingMessage}
+          noOptionsMessage={noOptionsMessage}
         />
       </div>
     );
@@ -245,7 +247,9 @@ Autocomplete.defaultProps = {
   placeholder: 'Выберите значение',
   isMulti: false,
   isLoading: false,
-  isDisabled: false
+  isDisabled: false,
+  loadingMessage: ()=>{},
+  noOptionsMessage: ()=>{}
 };
 
 Autocomplete.propTypes = {
@@ -256,6 +260,8 @@ Autocomplete.propTypes = {
   options: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  loadingMessage: PropTypes.func,
+  noOptionsMessage: PropTypes.func
 };
 
 export default withStyles(styles, { withTheme: true })(Autocomplete);
