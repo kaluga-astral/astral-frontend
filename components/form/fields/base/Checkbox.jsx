@@ -8,7 +8,10 @@ import Field from '../Field';
 const CheckboxField = ({ label, icon, ...props }) => (
   <Field {...props} type="checkbox">
     {({ input: { value, ...input } }) => (
-      <FormControlLabel label={label} control={<Checkbox icon={icon} {...input} value={String(value)} />} />
+      <FormControlLabel
+        label={label}
+        control={<Checkbox icon={icon} {...input} value={String(value)} />}
+      />
     )}
   </Field>
 );
