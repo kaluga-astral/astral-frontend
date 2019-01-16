@@ -15,7 +15,8 @@ const PhoneMask = (props) => {
       {...other}
       ref={inputRef}
       mask={[
-        '7',
+        '+',
+        7,
         ' ',
         '(',
         /[1-9]/,
@@ -45,7 +46,7 @@ PhoneMask.propTypes = {
 const PhoneField = props => (
   <Field
     {...props}
-    parse={value => value.replace(/(-|\(|\)|\+|\+| )/g, '')}
+    parse={value => value.replace(/(-|\(|\)| )/g, '')}
     validate={rules.mustBePhone}
   >
     {({ input }) => <Input {...input} type="tel" inputComponent={PhoneMask} />}
