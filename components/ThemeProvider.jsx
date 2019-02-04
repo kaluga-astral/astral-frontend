@@ -2,57 +2,32 @@ import PropTypes from 'prop-types';
 import { create } from 'jss';
 import React from 'react';
 import JssProvider from 'react-jss/lib/JssProvider';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-  jssPreset,
-} from '@material-ui/core/styles';
+import { MuiThemeProvider, createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
-import BaseCSS from './BaseCSS';
+import BaseCss from './BaseCSS';
 
-const styleNode = document.createComment('insertion-point-jss');
-document.head.insertBefore(styleNode, document.head.firstChild);
+const insertionPoint = 'insertion-point-jss';
+const styleNode = document.createComment(insertionPoint);
 const generateClassName = createGenerateClassName();
-const jss = create(jssPreset());
-jss.options.insertionPoint = 'insertion-point-jss';
+const jss = create(
+  jssPreset({
+    insertionPoint,
+  }),
+);
 
-const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-  palette: {
-    background: {
-      default: '#ffffff',
-    },
-    primary: {
-      light: '#33a2ef',
-      main: '#008bec',
-      dark: '#0065b1',
-    },
-  },
-  overrides: {
-    MuiSvgIcon: {
-      root: { fontSize: 'inherit' },
-    },
-    MuiInput: {
-      root: { fontSize: '1em' },
-    },
-  },
-});
+document.head.insertBefore(styleNode, document.head.firstChild);
 
-const ThemeProvider = ({ children }) => (
+const ThemeProvider = ({ theme, children }) => (
   <JssProvider jss={jss} generateClassName={generateClassName}>
     <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      <BaseCSS />
+      <BaseCss />
       {children}
     </MuiThemeProvider>
   </JssProvider>
 );
 
 ThemeProvider.propTypes = {
+  theme: PropTypes.shape({}).isRequired,
   children: PropTypes.node.isRequired,
 };
 
