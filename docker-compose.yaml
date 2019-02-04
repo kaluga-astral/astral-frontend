@@ -1,0 +1,23 @@
+version: "3.3"
+
+networks:
+  astral-ui-kit:
+    driver: overlay
+  dev_proxy:
+    external:
+      name: proxy
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    networks:
+          - astral-ui-kit
+          - dev_proxy
+        deploy:
+          labels:
+            - traefik.backend=astral-ui-kit
+            - traefik.frontend.rule=HostRegexp:ui.astral-dev.net
+            - traefik.docker.network=proxy
+            - traefik.port=80
