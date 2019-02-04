@@ -5,10 +5,23 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '../../../Checkbox';
 import Field from '../Field';
 
-const CheckboxField = ({ label, ...props }) => (
+const CheckboxField = ({
+  label, icon, checkedIcon, indeterminateIcon, ...props
+}) => (
   <Field {...props} type="checkbox">
     {({ input: { value, ...input } }) => (
-      <FormControlLabel label={label} control={<Checkbox {...input} value={String(value)} />} />
+      <FormControlLabel
+        label={label}
+        control={(
+          <Checkbox
+            icon={icon}
+            checkedIcon={checkedIcon}
+            indeterminateIcon={indeterminateIcon}
+            {...input}
+            value={String(value)}
+          />
+)}
+      />
     )}
   </Field>
 );
