@@ -37,6 +37,8 @@ const Button = ({
 };
 
 Button.defaultProps = {
+  className: null,
+  disabled: false,
   color: 'primary',
   variant: 'flat',
   size: 'medium',
@@ -44,6 +46,8 @@ Button.defaultProps = {
 
 Button.propTypes = {
   classes: PropTypes.shape().isRequired,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
   /**
    * Цвет
    */
@@ -80,16 +84,14 @@ export default withStyles(theme => ({
   float: {
     borderRadius: '50%',
     '&$disabled': {
-      border: '1px solid rgba(0, 0, 0, 0.2)',
-      color: 'rgba(0, 0, 0, 0.2)',
-      background: theme.palette.common.white,
+      opacity: '.3',
     },
   },
   primary: {
     color: theme.palette.common.white,
     background: theme.palette.primary.main,
     '&:hover': {
-      boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.2), 0px 3px 10px rgba(0, 0, 0, 0.15)',
+      background: theme.palette.primary.dark,
     },
   },
   secondary: {
@@ -98,7 +100,8 @@ export default withStyles(theme => ({
     border: `1px solid ${theme.palette.primary.main}`,
     '&:hover': {
       color: theme.palette.common.white,
-      background: theme.palette.primary.main,
+      background: theme.palette.primary.dark,
+      border: `1px solid ${theme.palette.primary.dark}`,
     },
   },
   small: {
