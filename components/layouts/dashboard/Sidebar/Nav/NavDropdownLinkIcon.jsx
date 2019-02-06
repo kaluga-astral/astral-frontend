@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import SvgIcon from '../../../../SvgIcon';
 
-const NavDropdownLinkIcon = ({ classes, location, to }) => (
+const DasshboardNavDropdownLinkIcon = ({ classes, location, to }) => (
   <SvgIcon
     viewBox="0 0 12 12"
     className={pathToRegexp(location.pathname).test(to) ? classes.filled : classes.bordered}
@@ -15,17 +15,19 @@ const NavDropdownLinkIcon = ({ classes, location, to }) => (
   </SvgIcon>
 );
 
-NavDropdownLinkIcon.propTypes = {
+DasshboardNavDropdownLinkIcon.propTypes = {
   classes: PropTypes.shape().isRequired,
   location: PropTypes.shape().isRequired,
   to: PropTypes.string.isRequired,
 };
 
-export default withStyles({
-  bordered: {
-    fill: 'none',
-  },
-  filled: {
-    fill: 'white',
-  },
-})(withRouter(NavDropdownLinkIcon));
+export default withRouter(
+  withStyles({
+    bordered: {
+      fill: 'none',
+    },
+    filled: {
+      fill: 'white',
+    },
+  })(DasshboardNavDropdownLinkIcon),
+);

@@ -1,8 +1,27 @@
+import cn from 'classnames';
 import React from 'react';
-import MenuList from '@material-ui/core/MenuList';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-const SidebarNav = props => <MenuList component="nav" {...props} />;
+const DashboardSidebarNav = ({
+  classes, className, children, ...props
+}) => (
+  <nav className={cn(classes.root, className)} {...props}>
+    <ul className={classes.list}>
+      {children}
+    </ul>
+  </nav>
+);
+
+DashboardSidebarNav.defaultProps = {
+  className: null,
+};
+
+DashboardSidebarNav.propTypes = {
+  classes: PropTypes.shape().isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
 
 export default withStyles({
   root: {
@@ -13,4 +32,9 @@ export default withStyles({
       display: 'none',
     },
   },
-})(SidebarNav);
+  list: {
+    padding: 0,
+    margin: 0,
+    listStyle: 'none',
+  },
+})(DashboardSidebarNav);

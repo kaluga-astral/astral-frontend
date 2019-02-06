@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-import { MenuItem } from '../../../../Menu';
 import SidebarNavLink from './NavLink';
 import DefaultIcon from './NavDropdownLinkIcon';
 
-const NavDropdownLink = ({
+const DasshboardNavDropdownLink = ({
   hasNotification, classes, className, icon: Icon, exact, to, text,
 }) => (
-  <MenuItem
-    component={SidebarNavLink}
+  <SidebarNavLink
     className={cn(classes.root, className)}
     hasNotification={hasNotification}
     exact={exact}
@@ -21,14 +19,14 @@ const NavDropdownLink = ({
   />
 );
 
-NavDropdownLink.defaultProps = {
+DasshboardNavDropdownLink.defaultProps = {
   className: null,
   hasNotification: false,
   exact: false,
   icon: DefaultIcon,
 };
 
-NavDropdownLink.propTypes = {
+DasshboardNavDropdownLink.propTypes = {
   className: PropTypes.string,
   classes: PropTypes.shape().isRequired,
   hasNotification: PropTypes.bool,
@@ -42,4 +40,4 @@ export default withStyles({
   root: {
     fontSize: '12px',
   },
-})(NavDropdownLink);
+})(DasshboardNavDropdownLink);

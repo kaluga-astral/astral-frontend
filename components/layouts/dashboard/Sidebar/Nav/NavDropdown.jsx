@@ -1,16 +1,16 @@
+import cn from 'classnames';
 import pathToRegexp from 'path-to-regexp';
 import PropTypes from 'prop-types';
-import React, { Fragment, PureComponent } from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
 
-import { MenuList, MenuItem } from '../../../../Menu';
-import Badge from './Badge';
-import ListItemIcon from './ListItemIcon';
-import ListItemText from './ListItemText';
+import ButtonBase from '../../../../ButtonBase';
+import NavItemIcon from './NavItemIcon';
+import NavItemText from './NavItemText';
 
-class SidebarNavDropdown extends PureComponent {
+class DashboardSidebarNavDropdown extends Component {
   state = { expanded: undefined };
 
   componentDidMount = () => {
@@ -44,23 +44,21 @@ class SidebarNavDropdown extends PureComponent {
   render = () => {
     const { expanded } = this.state;
     const {
-      hasNotification, classes, icon: Icon, text, children,
+      hasNotification, classes, icon, text, children,
     } = this.props;
 
     return (
-      <Fragment>
-        <MenuItem selected={expanded} className={classes.mainNavItem} onClick={this.toggleExpanded}>
-          {Icon && (
-            <ListItemIcon>
-              <Icon />
-            </ListItemIcon>
-          )}
-          <ListItemText>{text}</ListItemText>
-          {hasNotification && <Badge />}
+      <li className={classes.root}>
+        <ButtonBase
+          className={cn(classes.toggler, { [classes.expanded]: expanded })}
+          onClick={this.toggleExpanded}
+        >
+          {icon && <NavItemIcon hasNotification={hasNotification} icon={icon} />}
+          <NavItemText>{text}</NavItemText>
           <svg
+            className={cn(classes.togglerIcon)}
             style={{
               transform: expanded ? 'rotateZ(180deg)' : null,
-              transition: 'all 0.5s ease 0s',
             }}
             width="12"
             height="6"
@@ -71,22 +69,20 @@ class SidebarNavDropdown extends PureComponent {
               fill="white"
             />
           </svg>
-        </MenuItem>
+        </ButtonBase>
         <Collapse in={expanded}>
-          <MenuList disablePadding className={classes.list}>
-            {children}
-          </MenuList>
+          <ul className={classes.list}>{children}</ul>
         </Collapse>
-      </Fragment>
+      </li>
     );
   };
 }
 
-SidebarNavDropdown.defaultProps = {
+DashboardSidebarNavDropdown.defaultProps = {
   hasNotification: false,
 };
 
-SidebarNavDropdown.propTypes = {
+DashboardSidebarNavDropdown.propTypes = {
   hasNotification: PropTypes.bool,
   classes: PropTypes.shape().isRequired,
   icon: PropTypes.func.isRequired,
@@ -95,17 +91,41 @@ SidebarNavDropdown.propTypes = {
   match: PropTypes.shape({
     path: PropTypes.string.isRequired,
   }).isRequired,
-  location: PropTypes.shape({}).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-export default withStyles(theme => ({
-  mainNavItem: {
-    padding: '10px 20px',
-    fontSize: '20px',
-    color: theme.palette.common.white,
-  },
-  list: {
-    backgroundColor: 'rgba(0, 0, 0, 0.14)',
-    borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
-  },
-}))(withRouter(SidebarNavDropdown));
+export default withRouter(
+  withStyles(theme => ({
+    root: {},
+    toggler: {
+      width: '100%',
+      justifyContent: 'flex-start',
+      padding: '15px 20px',
+      lineHeight: '20px',
+      fontSize: '16px',
+      fontWeight: theme.typography.fontWeightLight,
+      color: theme.palette.common.white,
+      '&:hover': {
+        background: theme.palette.action.hover,
+      },
+      '&$expanded': {
+        backgroundColor: theme.palette.action.selected,
+      },
+    },
+    expanded: {},
+    togglerIcon: {
+      flexShrink: 0,
+      marginLeft: '5px',
+      transition: 'all 0.5s ease 0s',
+    },
+    list: {
+      padding: 0,
+      margin: 0,
+      listStyle: 'none',
+      backgroundColor: 'rgba(0, 0, 0, 0.14)',
+      borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
+    },
+  }))(DashboardSidebarNavDropdown),
+);

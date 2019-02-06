@@ -1,55 +1,60 @@
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 
-import Badge from './Badge';
-import ListItemIcon from './ListItemIcon';
-import ListItemText from './ListItemText';
+import NavItemIcon from './NavItemIcon';
+import NavItemText from './NavItemText';
 
-const SidebarNavLink = ({
-  classes, icon: Icon, text, hasNotification, ...props
+const DashboardSidebarNavLink = ({
+  classes, className, icon, text, hasNotification, ...props
 }) => (
-  <MenuItem component={NavLink} activeClassName={classes.selected} classes={classes} {...props}>
-    {Icon && (
-      <ListItemIcon>
-        <Icon />
-      </ListItemIcon>
-    )}
-    <ListItemText>{text}</ListItemText>
-    {Boolean(hasNotification) && <Badge />}
-  </MenuItem>
+  <li className={cn(classes.root, className)}>
+    <NavLink className={classes.link} activeClassName={classes.active} {...props}>
+      {icon && <NavItemIcon hasNotification={hasNotification} icon={icon} />}
+      <NavItemText>{text}</NavItemText>
+    </NavLink>
+  </li>
 );
 
-SidebarNavLink.defaultProps = {
+DashboardSidebarNavLink.defaultProps = {
   icon: null,
   hasNotification: false,
+  className: null,
 };
 
-SidebarNavLink.propTypes = {
+DashboardSidebarNavLink.propTypes = {
   to: PropTypes.string.isRequired,
   icon: PropTypes.func,
   text: PropTypes.string.isRequired,
   hasNotification: PropTypes.bool,
+  className: PropTypes.string,
   classes: PropTypes.shape({
     selected: PropTypes.string,
   }).isRequired,
 };
 
-export default withStyles(theme => ({
-  root: {
-    padding: '10px 20px',
-    fontSize: '14px',
-    color: theme.palette.common.white,
-    '&:hover': {
+export default withStyles(
+  theme => ({
+    root: {},
+    link: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: '15px 20px',
+      lineHeight: '20px',
+      fontSize: '16px',
+      fontWeight: theme.typography.fontWeightLight,
+      color: theme.palette.common.white,
       textDecoration: 'none',
+      '&:hover': {
+        background: theme.palette.action.hover,
+      },
+      '&$active': {
+        background: theme.palette.primary.main,
+      },
     },
-  },
-  selected: {
-    background: theme.palette.primary.main,
-    '&:hover': {
-      background: theme.palette.primary.main,
-    },
-  },
-}))(SidebarNavLink);
+    active: {},
+  }),
+  { name: 'DashboardSidebarNavLink' },
+)(DashboardSidebarNavLink);
