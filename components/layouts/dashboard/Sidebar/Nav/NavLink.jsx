@@ -4,18 +4,19 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
+import ButtonBase from '../../../../ButtonBase';
 import NavItemIcon from './NavItemIcon';
 import NavItemText from './NavItemText';
 
 const DashboardSidebarNavLink = ({
   classes, className, icon, text, hasNotification, ...props
 }) => (
-  <li className={cn(classes.root, className)}>
+  <ButtonBase component="li" className={cn(classes.root, className)}>
     <NavLink className={classes.link} activeClassName={classes.active} {...props}>
       {icon && <NavItemIcon hasNotification={hasNotification} icon={icon} />}
       <NavItemText>{text}</NavItemText>
     </NavLink>
-  </li>
+  </ButtonBase>
 );
 
 DashboardSidebarNavLink.defaultProps = {
@@ -37,7 +38,10 @@ DashboardSidebarNavLink.propTypes = {
 
 export default withStyles(
   theme => ({
-    root: {},
+    root: {
+      display: 'list-item',
+      width: '100%',
+    },
     link: {
       display: 'flex',
       alignItems: 'center',

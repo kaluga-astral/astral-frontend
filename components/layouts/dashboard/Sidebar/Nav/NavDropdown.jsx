@@ -41,6 +41,14 @@ class DashboardSidebarNavDropdown extends Component {
     this.setState(prevState => ({ expanded: !prevState.expanded }));
   };
 
+  handleTogglerClick = () => {
+    this.toggleExpanded();
+  };
+
+  handleDropdownBlur = () => {
+    console.log('handleBlur');
+  };
+
   render = () => {
     const { expanded } = this.state;
     const {
@@ -48,10 +56,10 @@ class DashboardSidebarNavDropdown extends Component {
     } = this.props;
 
     return (
-      <li className={classes.root}>
+      <li className={classes.root} onBlur={this.handleDropdownBlur}>
         <ButtonBase
           className={cn(classes.toggler, { [classes.expanded]: expanded })}
-          onClick={this.toggleExpanded}
+          onClick={this.handleTogglerClick}
         >
           {icon && <NavItemIcon hasNotification={hasNotification} icon={icon} />}
           <NavItemText>{text}</NavItemText>
@@ -60,14 +68,13 @@ class DashboardSidebarNavDropdown extends Component {
             style={{
               transform: expanded ? 'rotateZ(180deg)' : null,
             }}
-            width="12"
-            height="6"
-            viewBox="0 0 12 6"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="white"
           >
-            <path
-              d="M0.0944805 0.263158L0.285453 0.0873065C0.411871 -0.0291022 0.616293 -0.0291022 0.742711 0.0873065L5.99849 4.92941L11.257 0.0873065C11.3834 -0.0291022 11.5878 -0.0291022 11.7142 0.0873065L11.9052 0.263158C12.0316 0.379567 12.0316 0.567802 11.9052 0.684211L6.22981 5.91269C6.10339 6.0291 5.89897 6.0291 5.77255 5.91269L0.0971699 0.684211C-0.0319376 0.567802 -0.0319376 0.379567 0.0944805 0.263158Z"
-              fill="white"
-            />
+            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+            <path fill="none" d="M0 0h24v24H0z" />
           </svg>
         </ButtonBase>
         <Collapse in={expanded}>
