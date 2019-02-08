@@ -45,10 +45,6 @@ class DashboardSidebarNavDropdown extends Component {
     this.toggleExpanded();
   };
 
-  handleDropdownBlur = () => {
-    console.log('handleBlur');
-  };
-
   render = () => {
     const { expanded } = this.state;
     const {
@@ -56,7 +52,7 @@ class DashboardSidebarNavDropdown extends Component {
     } = this.props;
 
     return (
-      <li className={classes.root} onBlur={this.handleDropdownBlur}>
+      <li className={classes.root}>
         <ButtonBase
           className={cn(classes.toggler, { [classes.expanded]: expanded })}
           onClick={this.handleTogglerClick}
