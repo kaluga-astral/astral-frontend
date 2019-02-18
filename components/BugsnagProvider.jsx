@@ -1,17 +1,10 @@
-import bugsnag from '@bugsnag/js';
 import PropTypes from 'prop-types';
 import React from 'react';
 import bugsnagReact from '@bugsnag/plugin-react';
 
 export const Context = React.createContext();
 
-const BugsnagProvider = ({ apiKey, releaseStage, children }) => {
-  const bugsnagClient = bugsnag({
-    apiKey,
-    releaseStage,
-    notifyReleaseStages: ['production', 'staging', 'development'],
-    logger: null,
-  });
+const BugsnagProvider = ({ bugsnagClient, children }) => {
   bugsnagClient.use(bugsnagReact, React);
   const WrapComponent = bugsnagClient.getPlugin('react');
 
@@ -19,8 +12,7 @@ const BugsnagProvider = ({ apiKey, releaseStage, children }) => {
 };
 
 BugsnagProvider.propTypes = {
-  apiKey: PropTypes.string.isRequired,
-  releaseStage: PropTypes.oneOf(['production', 'staging', 'development', 'local']).isRequired,
+  bugsnagClient: PropTypes.shape({}).isRequired,
   children: PropTypes.node.isRequired,
 };
 
