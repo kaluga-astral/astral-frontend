@@ -1,16 +1,16 @@
+import cn from 'classnames';
 import pathToRegexp from 'path-to-regexp';
 import PropTypes from 'prop-types';
-import React, { Fragment, PureComponent } from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
 
-import { MenuList, MenuItem } from '../../../../Menu';
-import Badge from './Badge';
-import ListItemIcon from './ListItemIcon';
-import ListItemText from './ListItemText';
+import ButtonBase from '../../../../ButtonBase';
+import NavItemIcon from './NavItemIcon';
+import NavItemText from './NavItemText';
 
-class SidebarNavDropdown extends PureComponent {
+class DashboardSidebarNavDropdown extends Component {
   state = { expanded: undefined };
 
   componentDidMount = () => {
@@ -41,52 +41,51 @@ class SidebarNavDropdown extends PureComponent {
     this.setState(prevState => ({ expanded: !prevState.expanded }));
   };
 
+  handleTogglerClick = () => {
+    this.toggleExpanded();
+  };
+
   render = () => {
     const { expanded } = this.state;
     const {
-      hasNotification, classes, icon: Icon, text, children,
+      hasNotification, classes, icon, text, children,
     } = this.props;
 
     return (
-      <Fragment>
-        <MenuItem selected={expanded} className={classes.mainNavItem} onClick={this.toggleExpanded}>
-          {Icon && (
-            <ListItemIcon>
-              <Icon />
-            </ListItemIcon>
-          )}
-          <ListItemText>{text}</ListItemText>
-          {hasNotification && <Badge />}
+      <li className={classes.root}>
+        <ButtonBase
+          className={cn(classes.toggler, { [classes.expanded]: expanded })}
+          onClick={this.handleTogglerClick}
+        >
+          {icon && <NavItemIcon hasNotification={hasNotification} icon={icon} />}
+          <NavItemText>{text}</NavItemText>
           <svg
+            className={cn(classes.togglerIcon)}
             style={{
               transform: expanded ? 'rotateZ(180deg)' : null,
-              transition: 'all 0.5s ease 0s',
             }}
-            width="12"
-            height="6"
-            viewBox="0 0 12 6"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="white"
           >
-            <path
-              d="M0.0944805 0.263158L0.285453 0.0873065C0.411871 -0.0291022 0.616293 -0.0291022 0.742711 0.0873065L5.99849 4.92941L11.257 0.0873065C11.3834 -0.0291022 11.5878 -0.0291022 11.7142 0.0873065L11.9052 0.263158C12.0316 0.379567 12.0316 0.567802 11.9052 0.684211L6.22981 5.91269C6.10339 6.0291 5.89897 6.0291 5.77255 5.91269L0.0971699 0.684211C-0.0319376 0.567802 -0.0319376 0.379567 0.0944805 0.263158Z"
-              fill="white"
-            />
+            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+            <path fill="none" d="M0 0h24v24H0z" />
           </svg>
-        </MenuItem>
+        </ButtonBase>
         <Collapse in={expanded}>
-          <MenuList disablePadding className={classes.list}>
-            {children}
-          </MenuList>
+          <ul className={classes.list}>{children}</ul>
         </Collapse>
-      </Fragment>
+      </li>
     );
   };
 }
 
-SidebarNavDropdown.defaultProps = {
+DashboardSidebarNavDropdown.defaultProps = {
   hasNotification: false,
 };
 
-SidebarNavDropdown.propTypes = {
+DashboardSidebarNavDropdown.propTypes = {
   hasNotification: PropTypes.bool,
   classes: PropTypes.shape().isRequired,
   icon: PropTypes.func.isRequired,
@@ -95,17 +94,41 @@ SidebarNavDropdown.propTypes = {
   match: PropTypes.shape({
     path: PropTypes.string.isRequired,
   }).isRequired,
-  location: PropTypes.shape({}).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-export default withStyles(theme => ({
-  mainNavItem: {
-    padding: '10px 20px',
-    fontSize: '20px',
-    color: theme.palette.common.white,
-  },
-  list: {
-    backgroundColor: 'rgba(0, 0, 0, 0.14)',
-    borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
-  },
-}))(withRouter(SidebarNavDropdown));
+export default withRouter(
+  withStyles(theme => ({
+    root: {},
+    toggler: {
+      width: '100%',
+      justifyContent: 'flex-start',
+      padding: '15px 20px',
+      lineHeight: '20px',
+      fontSize: '16px',
+      fontWeight: theme.typography.fontWeightLight,
+      color: theme.palette.common.white,
+      '&:hover': {
+        background: theme.palette.action.hover,
+      },
+      '&$expanded': {
+        backgroundColor: theme.palette.action.selected,
+      },
+    },
+    expanded: {},
+    togglerIcon: {
+      flexShrink: 0,
+      marginLeft: '5px',
+      transition: 'all 0.5s ease 0s',
+    },
+    list: {
+      padding: 0,
+      margin: 0,
+      listStyle: 'none',
+      backgroundColor: 'rgba(0, 0, 0, 0.14)',
+      borderBottom: '0.5px solid rgba(255, 255, 255, 0.5)',
+    },
+  }))(DashboardSidebarNavDropdown),
+);

@@ -12,6 +12,7 @@ const Dialog = ({ classes, onClose, ...props }) => (
 );
 
 Dialog.propTypes = {
+  classes: PropTypes.shape().isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
