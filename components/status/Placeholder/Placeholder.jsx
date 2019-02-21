@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-import Loading from './LoadingState';
-import Failure from './FailureState';
+import DefaultLoadingState from './LoadingState';
+import DefaultFailureState from './FailureState';
 
 const Placeholder = ({
   isFetching,
@@ -15,17 +15,19 @@ const Placeholder = ({
   preventShowLoadingMessage,
   loaderProps,
   children,
+  LoadingStateComponent,
+  FailureStateComponent,
 }) => (
   <Fragment>
     {(isFetching || error) && (
       <div className={cn(classes.root, className)}>
         {isFetching && !error && (
-          <Loading
+          <LoadingStateComponent
             preventShowLoadingMessage={preventShowLoadingMessage}
             loaderProps={loaderProps}
           />
         )}
-        {!isFetching && error && <Failure error={error} />}
+        {!isFetching && error && <FailureStateComponent error={error} />}
       </div>
     )}
     {!isFetching && !error && isFunction(children) && children()}
@@ -38,6 +40,8 @@ Placeholder.defaultProps = {
   className: null,
   children: null,
   preventShowLoadingMessage: false,
+  LoadingStateComponent: props => <DefaultLoadingState {...props} />,
+  FailureStateComponent: props => <DefaultFailureState {...props} />,
 };
 
 Placeholder.propTypes = {
@@ -48,9 +52,11 @@ Placeholder.propTypes = {
   children: PropTypes.func,
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
+  FailureStateComponent: PropTypes.func,
+  LoadingStateComponent: PropTypes.func,
 };
 
-export default withStyles(theme => ({
+export default withStyles({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -62,6 +68,5 @@ export default withStyles(theme => ({
     margin: '0 auto',
     boxSizing: 'border-box',
     overflow: 'hidden',
-    color: theme.palette.primary.main,
   },
-}))(Placeholder);
+})(Placeholder);
