@@ -18,5 +18,8 @@ export { default as KPP } from './KPP';
 export { default as Login } from './Login';
 export { default as Name } from './Name';
 export { default as OGRN } from './OGRN';
+export { default as OKPO } from './OKPO';
 export { default as Patronymic } from './Patronymic';
+export { default as RegNumberFSS } from './RegNumberFSS';
+export { default as RegNumberPFR } from './RegNumberPFR';
 export { default as Surname } from './Surname';
