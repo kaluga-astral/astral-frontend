@@ -21,13 +21,13 @@ const Placeholder = ({
   <Fragment>
     {(isFetching || error) && (
       <div className={cn(classes.root, className)}>
-        {isFetching && !error && (
+        {isFetching && !error && LoadingStateComponent && (
           <LoadingStateComponent
             preventShowLoadingMessage={preventShowLoadingMessage}
             loaderProps={loaderProps}
           />
         )}
-        {!isFetching && error && <FailureStateComponent error={error} />}
+        {!isFetching && error && FailureStateComponent && <FailureStateComponent error={error} />}
       </div>
     )}
     {!isFetching && !error && isFunction(children) && children()}
