@@ -7,58 +7,43 @@ import * as rules from '../../../validations/rules';
 
 import Field from './Field';
 
-const RegNumberPFRMask = (props) => {
+const DepartmentCodeMask = (props) => {
   const { inputRef, ...other } = props;
 
   return (
     <MaskedInput
       {...other}
       ref={inputRef}
-      mask={[
-        /\d/,
-        /\d/,
-        /\d/,
-        '-',
-        /\d/,
-        /\d/,
-        /\d/,
-        '-',
-        /\d/,
-        /\d/,
-        /\d/,
-        /\d/,
-        /\d/,
-        /\d/,
-      ]}
+      mask={[/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
       placeholderChar={'\u2000'}
     />
   );
 };
 
-RegNumberPFRMask.propTypes = {
+DepartmentCodeMask.propTypes = {
   inputRef: PropTypes.func.isRequired,
 };
 
-const RegNumberPFRField = props => (
+const DepartmentCodeField = props => (
   <Field
     {...props}
     parse={value => value.replace(/(-|\(|\)| )/g, '')}
-    validate={rules.mustBeRegNumberPFR}
+    validate={rules.mustBeDepartmentCode}
   >
-    {({ input }) => <Input {...input} inputComponent={RegNumberPFRMask} />}
+    {({ input }) => <Input {...input} inputComponent={DepartmentCodeMask} />}
   </Field>
 );
 
-RegNumberPFRField.defaultProps = {
-  name: 'regNumberPfr',
-  label: 'Рег. номер ПФР',
+DepartmentCodeField.defaultProps = {
+  name: null,
+  label: 'Код подразделения',
   placeholder: null,
 };
 
-RegNumberPFRField.propTypes = {
+DepartmentCodeField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
 };
 
-export default RegNumberPFRField;
+export default DepartmentCodeField;
