@@ -25,4 +25,5 @@ export { default as PassportSeries } from './PassportSeries';
 export { default as Patronymic } from './Patronymic';
 export { default as RegNumberFSS } from './RegNumberFSS';
 export { default as RegNumberPFR } from './RegNumberPFR';
+export { default as SNILS } from './SNILS';
 export { default as Surname } from './Surname';
