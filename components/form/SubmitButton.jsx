@@ -9,7 +9,7 @@ const SubmitButton = ({ disabled, children, ...props }) => (
   <FormSpy subscription={{ submitting: true }}>
     {({ submitting }) => (
       <Button disabled={disabled || submitting} type="submit" {...props}>
-        {submitting ? <Loader size={20} /> : children}
+        {submitting ? <Loader color="inherit" size={20} /> : children}
       </Button>
     )}
   </FormSpy>
