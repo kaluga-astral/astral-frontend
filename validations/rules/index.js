@@ -3,13 +3,14 @@ import mustBeDepartmentCode from './mustBeDepartmentCode';
 import mustBeEmail from './mustBeEmail';
 import mustBeINN from './mustBeINN';
 import mustBeKPP from './mustBeKPP';
+import mustBeOGRN from './mustBeOGRN';
+import mustBeOKPO from './mustBeOKPO';
 import mustBePassportNumber from './mustBePassportNumber';
 import mustBePassportSeries from './mustBePassportSeries';
 import mustBePhone from './mustBePhone';
 import mustBeRegNumberFSS from './mustBeRegNumberFSS';
 import mustBeRegNumberPFR from './mustBeRegNumberPFR';
-import mustBeOGRN from './mustBeOGRN';
-import mustBeOKPO from './mustBeOKPO';
+import mustBeSNILS from './mustBeSNILS';
 import required from './required';
 
 export {
@@ -25,5 +26,6 @@ export {
   mustBePhone,
   mustBeRegNumberFSS,
   mustBeRegNumberPFR,
+  mustBeSNILS,
   required,
 };
