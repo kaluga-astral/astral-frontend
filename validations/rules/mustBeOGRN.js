@@ -1,4 +1,4 @@
-import { isNaN } from 'lodash';
+import { isNaN } from 'lodash-es';
 
 export default (value) => {
   if (!value) return null;
