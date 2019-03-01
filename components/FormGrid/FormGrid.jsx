@@ -1,13 +1,12 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import './style.scss';
+import { withStyles } from '@material-ui/core/styles';
 
 const FormGrid = ({
-  className, component: Component, onSubmit, children, ...props
+  classes, className, component: Component, onSubmit, children, ...props
 }) => (
-  <Component onSubmit={onSubmit} className={cn('form', className)} {...props}>
+  <Component onSubmit={onSubmit} className={cn(classes.root, className)} {...props}>
     {children}
   </Component>
 );
@@ -21,6 +20,9 @@ FormGrid.propTypes = {
   children: PropTypes.func.isRequired,
   component: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  classes: PropTypes.shape().isRequired,
 };
 
-export default FormGrid;
+export default withStyles({
+  root: {},
+})(FormGrid);

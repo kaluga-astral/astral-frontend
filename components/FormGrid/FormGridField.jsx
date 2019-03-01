@@ -1,11 +1,12 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 
-import './style.scss';
-
-const FormGridField = ({ className, component: Component, ...props }) => (
-  <Component className={cn('form__field', className)} {...props} />
+const FormGridField = ({
+  classes, className, component: Component, ...props
+}) => (
+  <Component className={cn(classes.root, className)} {...props} />
 );
 
 FormGridField.defaultProps = {
@@ -15,6 +16,15 @@ FormGridField.defaultProps = {
 FormGridField.propTypes = {
   className: PropTypes.string,
   component: PropTypes.func.isRequired,
+  classes: PropTypes.shape().isRequired,
 };
 
-export default FormGridField;
+export default withStyles({
+  root: {
+    flex: 1,
+
+    '&:not(:last-child)': {
+      marginRight: '20px',
+    },
+  },
+})(FormGridField);

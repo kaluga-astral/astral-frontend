@@ -1,11 +1,12 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 
-import './style.scss';
-
-const FormGridRow = ({ className, children, ...props }) => (
-  <div {...props} className={cn('form__row', className)}>
+const FormGridRow = ({
+  classes, className, children, ...props
+}) => (
+  <div {...props} className={cn(classes.root, className)}>
     {children}
   </div>
 );
@@ -17,6 +18,11 @@ FormGridRow.defaultProps = {
 FormGridRow.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  classes: PropTypes.shape().isRequired,
 };
 
-export default FormGridRow;
+export default withStyles({
+  root: {
+    display: 'flex',
+  },
+})(FormGridRow);
