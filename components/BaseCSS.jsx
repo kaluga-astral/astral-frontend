@@ -46,6 +46,7 @@ class BaseCSS extends PureComponent {
       },
     } = this.props;
 
+    // TODO: loading fonts by import preload
     fontFamily
       .split(', ')
       .map(fontName => fontName.replace(/"/g, ''))

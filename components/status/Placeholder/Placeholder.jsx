@@ -52,8 +52,8 @@ Placeholder.propTypes = {
   children: PropTypes.func,
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
-  FailureStateComponent: PropTypes.func,
-  LoadingStateComponent: PropTypes.func,
+  FailureStateComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  LoadingStateComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };
 
 export default withStyles({
