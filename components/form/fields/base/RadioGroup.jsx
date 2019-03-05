@@ -12,6 +12,7 @@ const RadioGroupField = ({ options, ...props }) => (
       <RadioGroup name={name} value={String(value)}>
         {options.map(option => (
           <FormControlLabel
+            disabled={option.disabled}
             key={option.key || option.label + option.value}
             {...option}
             value={String(option.value)}
