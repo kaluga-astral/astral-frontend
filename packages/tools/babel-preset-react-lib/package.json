@@ -1,0 +1,16 @@
+{
+  "name": "@astral-frontend/babel-preset-react-lib",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./index.js",
+  "scripts": {},
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0"
+  },
+  "devDependencies": {},
+  "peerDependencies": {}
+}

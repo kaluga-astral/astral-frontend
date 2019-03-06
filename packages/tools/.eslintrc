@@ -1,0 +1,3 @@
+{
+  "extends": ["@astral-frontend/eslint-config-tools"]
+}

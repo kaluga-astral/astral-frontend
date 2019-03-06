@@ -1,0 +1,9 @@
+{
+  "name": "@astral-frontend/validations",
+  "version": "1.0.0",
+  "main": "./index.js",
+  "sideEffects": false,
+  "dependencies": {
+    "lodash-es": "^4.17.11"
+  }
+}

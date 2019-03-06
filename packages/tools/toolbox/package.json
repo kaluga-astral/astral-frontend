@@ -1,0 +1,10 @@
+{
+  "name": "@astral-frontend/toolbox",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./index.js",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {}
+}

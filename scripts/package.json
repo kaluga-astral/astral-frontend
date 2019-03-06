@@ -1,0 +1,12 @@
+{
+  "name": "@astral-frontend/assembly-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "bin": {
+    "assembly-scripts": "./index.js"
+  },
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {}
+}

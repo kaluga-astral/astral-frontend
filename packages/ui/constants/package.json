@@ -1,0 +1,16 @@
+{
+  "name": "@astral-frontend/constants",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "private": true,
+  "scripts": {
+    "build": "babel ./src --out-dir ./lib",
+    "postbuild": "assembly-scripts postbuild"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.11"
+  },
+  "devDependencies": {},
+  "peerDependencies": {},
+  "sideEffects": false
+}

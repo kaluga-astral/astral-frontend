@@ -1,0 +1,24 @@
+{
+  "name": "@astral-frontend/components",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./src/index.js",
+  "scripts": {
+    "percy": "react-percy",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build",
+    "build": "babel ./src --out-dir ./lib --ignore \"**/*.percy.jsx\"",
+    "postbuild": "assembly-scripts postbuild"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.9.2"
+  },
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.6.0",
+    "react-router-dom": ">=4.3.0"
+  },
+  "sideEffects": false
+}
