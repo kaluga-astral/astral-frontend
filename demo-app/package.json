@@ -1,0 +1,17 @@
+{
+  "name": "astral-frontend-demo-app",
+  "verssion": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "toolbox lint",
+    "build": "toolbox build"
+  },
+  "dependencies": {
+    "@astral-frontend/components": "^1.0.0",
+    "@astral-frontend/constants": "^1.0.0",
+    "@astral-frontend/forms": "^1.0.0"
+  },
+  "devDependencies": {
+    "@astral-frontend/toolbox": "^1.0.0"
+  }
+}
