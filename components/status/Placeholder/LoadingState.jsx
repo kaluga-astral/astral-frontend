@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
+import Wrapper from './Wrapper';
 import Loader from '../Loader';
 
 const PAST_DELAY_TIMEOUT = 100;
@@ -44,13 +45,12 @@ class PlaceholderLoadingState extends PureComponent {
     } = this.props;
 
     return (
-      <Fragment>
+      <Wrapper>
         {pastDelay && <Loader className={classes.status} {...loaderProps} />}
-        {timedOut
-          && !preventShowLoadingMessage && (
-            <span className={classes.message}>Требуется еще немного времени</span>
+        {timedOut && !preventShowLoadingMessage && (
+          <span className={classes.message}>Требуется еще немного времени</span>
         )}
-      </Fragment>
+      </Wrapper>
     );
   };
 }

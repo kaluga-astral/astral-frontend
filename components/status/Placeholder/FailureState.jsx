@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
+import Wrapper from './Wrapper';
 import Button from '../../Button';
 
 const PlaceholderFailureState = ({ error, classes, onRetry }) => (
-  <Fragment>
+  <Wrapper>
     <div className={classes.status}>Произошла ошибка</div>
     <div className={classes.message}>{(error || {}).message}</div>
     {onRetry && (
@@ -13,7 +14,7 @@ const PlaceholderFailureState = ({ error, classes, onRetry }) => (
         Попробовать еще раз
       </Button>
     )}
-  </Fragment>
+  </Wrapper>
 );
 
 PlaceholderFailureState.defaultProps = {

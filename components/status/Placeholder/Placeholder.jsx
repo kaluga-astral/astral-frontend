@@ -1,8 +1,6 @@
 import { isFunction } from 'lodash-es';
-import cn from 'classnames';
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import React from 'react';
 
 import DefaultLoadingState from './LoadingState';
 import DefaultFailureState from './FailureState';
@@ -10,29 +8,35 @@ import DefaultFailureState from './FailureState';
 const Placeholder = ({
   isFetching,
   error,
-  classes,
   className,
   preventShowLoadingMessage,
   loaderProps,
   children,
   LoadingStateComponent,
   FailureStateComponent,
-}) => (
-  <Fragment>
-    {(isFetching || error) && (
-      <div className={cn(classes.root, className)}>
-        {isFetching && !error && LoadingStateComponent && (
-          <LoadingStateComponent
-            preventShowLoadingMessage={preventShowLoadingMessage}
-            loaderProps={loaderProps}
-          />
-        )}
-        {!isFetching && error && FailureStateComponent && <FailureStateComponent error={error} />}
-      </div>
-    )}
-    {!isFetching && !error && isFunction(children) && children()}
-  </Fragment>
-);
+}) => {
+  if (isFetching && !error && LoadingStateComponent) {
+    return (
+      <LoadingStateComponent
+        className={className}
+        preventShowLoadingMessage={preventShowLoadingMessage}
+        loaderProps={loaderProps}
+      />
+    );
+  }
+
+  if (!isFetching && error && FailureStateComponent) {
+    return <FailureStateComponent className={className} error={error} />;
+  }
+
+  if (!isFetching && !error && isFunction(children)) {
+    return children();
+  }
+
+  return (
+    <DefaultFailureState error={new Error(`Error: isFetching: ${isFetching}, error: ${error}`)} />
+  );
+};
 
 Placeholder.defaultProps = {
   error: null,
@@ -50,23 +54,9 @@ Placeholder.propTypes = {
   preventShowLoadingMessage: PropTypes.bool,
   loaderProps: PropTypes.shape(),
   children: PropTypes.func,
-  classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   FailureStateComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   LoadingStateComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };
 
-export default withStyles({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    height: 'fill-available',
-    minHeight: 'max-content',
-    maxHeight: '100%',
-    margin: '0 auto',
-    boxSizing: 'border-box',
-    overflow: 'hidden',
-  },
-})(Placeholder);
+export default Placeholder;
