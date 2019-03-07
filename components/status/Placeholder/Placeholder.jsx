@@ -33,9 +33,7 @@ const Placeholder = ({
     return children();
   }
 
-  return (
-    <DefaultFailureState error={new Error(`Error: isFetching: ${isFetching}, error: ${error}`)} />
-  );
+  return null;
 };
 
 Placeholder.defaultProps = {
