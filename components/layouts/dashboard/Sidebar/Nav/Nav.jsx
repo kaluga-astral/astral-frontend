@@ -8,6 +8,22 @@ import { withStyles } from '@material-ui/core/styles';
 class DashboardSidebarNav extends Component {
   state = { expandedItemId: null };
 
+  componentDidMount = () => {
+    const { children } = this.props;
+    React.Children.toArray(children).some((child, index) => {
+      if (
+        React.Children.toArray(child.props.children)
+          .some(element => this.checkPathname(element.props.to))
+      ) {
+        this.setState({ expandedItemId: index });
+
+        return true;
+      }
+
+      return false;
+    });
+  };
+
   setExpanded = (id) => {
     const { expandedItemId } = this.state;
     if (id === expandedItemId) {
@@ -21,31 +37,33 @@ class DashboardSidebarNav extends Component {
     }
   };
 
-  checkPathname = (element) => {
+  checkPathname = (pathname) => {
     const { location } = this.props;
 
-    return pathToRegexp(location.pathname).test(element.props.to);
+    return pathToRegexp(location.pathname).test(pathname);
   };
 
-  isActive = (element, index) => {
+  isActive = (index) => {
     const { expandedItemId } = this.state;
-    const { children } = element.props;
 
-    return (
-      index === expandedItemId
-      || (React.Children.toArray(children).some(expandedChild => this.checkPathname(expandedChild))
-        && expandedItemId === null)
-    );
+    return index === expandedItemId;
   };
 
   addExtraProps = (element, index) => React.cloneElement(element, {
     onNavItemClick: () => this.setExpanded(index),
-    expanded: this.isActive(element, index) || undefined,
+    expanded: this.isActive(index) || undefined,
   });
 
   render = () => {
     const {
-      classes, className, children, staticContext, match, history, location, ...props
+      classes,
+      className,
+      children,
+      staticContext,
+      match,
+      history,
+      location,
+      ...props
     } = this.props;
     const childrenWithProps = React.Children
       .map(children, (child, index) => this.addExtraProps(child, index));
