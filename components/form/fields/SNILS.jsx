@@ -14,22 +14,7 @@ const SNILSMask = (props) => {
     <MaskedInput
       {...other}
       ref={inputRef}
-      mask={[
-        /\d/,
-        /\d/,
-        /\d/,
-        '-',
-        /\d/,
-        /\d/,
-        /\d/,
-        '-',
-        /\d/,
-        /\d/,
-        /\d/,
-        ' ',
-        /\d/,
-        /\d/,
-      ]}
+      mask={[/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, ' ', /\d/, /\d/]}
       placeholderChar={'\u2000'}
     />
   );
@@ -40,11 +25,7 @@ SNILSMask.propTypes = {
 };
 
 const SNILSField = props => (
-  <Field
-    {...props}
-    parse={value => value.replace(/(-|\(|\)| )/g, '')}
-    validate={rules.mustBeSNILS}
-  >
+  <Field {...props} validate={rules.mustBeSNILS}>
     {({ input }) => <Input {...input} inputComponent={SNILSMask} />}
   </Field>
 );
