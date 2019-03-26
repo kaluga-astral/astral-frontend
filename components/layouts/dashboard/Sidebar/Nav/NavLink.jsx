@@ -9,7 +9,13 @@ import NavItemIcon from './NavItemIcon';
 import NavItemText from './NavItemText';
 
 const DashboardSidebarNavLink = ({
-  classes, className, icon, text, hasNotification, ...props
+  classes,
+  className,
+  icon,
+  text,
+  hasNotification,
+  onNavItemClick,
+  ...props
 }) => (
   <ButtonBase component="li" className={cn(classes.root, className)}>
     <NavLink className={classes.link} activeClassName={classes.active} {...props}>
@@ -23,6 +29,7 @@ DashboardSidebarNavLink.defaultProps = {
   icon: null,
   hasNotification: false,
   className: null,
+  onNavItemClick: null,
 };
 
 DashboardSidebarNavLink.propTypes = {
@@ -34,6 +41,7 @@ DashboardSidebarNavLink.propTypes = {
   classes: PropTypes.shape({
     selected: PropTypes.string,
   }).isRequired,
+  onNavItemClick: PropTypes.func,
 };
 
 export default withStyles(
