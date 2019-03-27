@@ -1,28 +1,13 @@
 import cn from 'classnames';
-import pathToRegexp from 'path-to-regexp';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
+import DropdownContext from './DropdownContext';
+
 class DashboardSidebarNav extends Component {
   state = { expandedItemId: null };
-
-  componentDidMount = () => {
-    const { children } = this.props;
-    React.Children.toArray(children).some((child, index) => {
-      if (
-        React.Children.toArray(child.props.children)
-          .some(element => this.checkPathname(element.props.to))
-      ) {
-        this.setState({ expandedItemId: index });
-
-        return true;
-      }
-
-      return false;
-    });
-  };
 
   setExpanded = (id) => {
     const { expandedItemId } = this.state;
@@ -37,40 +22,23 @@ class DashboardSidebarNav extends Component {
     }
   };
 
-  checkPathname = (pathname) => {
-    const { location } = this.props;
-
-    return pathToRegexp(location.pathname).test(pathname);
-  };
-
-  isActive = (index) => {
-    const { expandedItemId } = this.state;
-
-    return index === expandedItemId;
-  };
-
-  addExtraProps = (element, index) => React.cloneElement(element, {
-    onNavItemClick: () => this.setExpanded(index),
-    expanded: this.isActive(index) || undefined,
-  });
-
   render = () => {
     const {
       classes,
       className,
       children,
       staticContext,
-      match,
-      history,
-      location,
       ...props
     } = this.props;
-    const childrenWithProps = React.Children
-      .map(children, (child, index) => this.addExtraProps(child, index));
+    const { expandedItemId } = this.state;
 
     return (
       <nav className={cn(classes.root, className)} {...props}>
-        <ul className={classes.list}>{childrenWithProps}</ul>
+        <DropdownContext.Provider
+          value={{ expandedItemId, onNavDropdownItemSelect: this.setExpanded }}
+        >
+          <ul className={classes.list}>{children}</ul>
+        </DropdownContext.Provider>
       </nav>
     );
   };
@@ -85,9 +53,6 @@ DashboardSidebarNav.propTypes = {
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  location: PropTypes.shape({}).isRequired,
-  match: PropTypes.shape({}).isRequired,
-  history: PropTypes.shape({}).isRequired,
   staticContext: PropTypes.shape({}),
 };
 
