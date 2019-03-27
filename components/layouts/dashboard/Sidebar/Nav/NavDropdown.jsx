@@ -38,6 +38,7 @@ class DashboardSidebarNavDropdown extends Component {
     } = this.props;
     const { id } = this.state;
     const { expandedItemId, onNavDropdownItemSelect } = this.context;
+
     return (
       <li className={classes.root}>
         <ButtonBase
