@@ -35,6 +35,7 @@ export default withStyles(theme => ({
     marginBottom: '10px',
   },
   message: {
+    margin: '0 15px',
     color: '#4e4e4e',
   },
   retryButton: {
