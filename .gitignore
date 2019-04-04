@@ -1,8 +1,7 @@
 .DS_Store
-node_modules
 .idea
-yarn-error.log
-storybook-static
 .cache
-lib
 .docz
+node_modules/
+lib/
+

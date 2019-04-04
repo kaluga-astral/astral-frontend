@@ -5,6 +5,9 @@
   "scripts": {},
   "dependencies": {},
   "devDependencies": {},
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@astral-frontend/components": "^1.0.0",
+    "react": ">=16.6.0"
+  },
   "sideEffects": false
 }

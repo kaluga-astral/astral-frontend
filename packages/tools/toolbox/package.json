@@ -2,9 +2,16 @@
   "name": "@astral-frontend/toolbox",
   "version": "1.0.0",
   "private": true,
-  "main": "./index.js",
+  "bin": {
+    "toolbox": "./index.js"
+  },
   "scripts": {},
-  "dependencies": {},
+  "dependencies": {
+    "@astral-frontend/webpack-config": "^1.0.0",
+    "chalk": "^2.4.2",
+    "react-dev-utils": "^8.0.0",
+    "webpack": "^4.29.6"
+  },
   "devDependencies": {},
   "peerDependencies": {}
 }

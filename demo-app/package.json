@@ -1,17 +1,26 @@
 {
   "name": "astral-frontend-demo-app",
-  "verssion": "1.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "lint": "toolbox lint",
     "build": "toolbox build"
   },
   "dependencies": {
     "@astral-frontend/components": "^1.0.0",
     "@astral-frontend/constants": "^1.0.0",
-    "@astral-frontend/forms": "^1.0.0"
+    "@astral-frontend/dashboard-layout": "^1.0.0",
+    "@astral-frontend/forms": "^1.0.0",
+    "@astral-frontend/server": "^1.0.0",
+    "@astral-frontend/styles": "^1.0.0",
+    "@astral-frontend/themes": "^1.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-helmet": "^5.2.0",
+    "react-router-dom": "^5.0.0"
   },
   "devDependencies": {
+    "@astral-frontend/eslint-config-ui": "^1.0.0",
     "@astral-frontend/toolbox": "^1.0.0"
   }
 }

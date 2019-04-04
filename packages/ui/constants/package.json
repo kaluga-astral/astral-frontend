@@ -7,10 +7,10 @@
     "build": "babel ./src --out-dir ./lib",
     "postbuild": "assembly-scripts postbuild"
   },
-  "dependencies": {
-    "lodash-es": "^4.17.11"
+  "dependencies": {},
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "^1.0.0"
   },
-  "devDependencies": {},
   "peerDependencies": {},
   "sideEffects": false
 }

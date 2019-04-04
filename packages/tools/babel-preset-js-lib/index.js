@@ -3,7 +3,8 @@ module.exports = () => ({
     [
       '@babel/preset-env',
       {
-        modules: 'cjs',
+        modules: false,
+        useBuiltIns: 'usage',
         loose: true,
       },
     ],

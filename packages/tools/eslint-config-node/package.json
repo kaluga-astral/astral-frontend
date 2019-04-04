@@ -1,5 +1,5 @@
 {
-  "name": "@astral-frontend/eslint-config-tools",
+  "name": "@astral-frontend/eslint-config-node",
   "version": "1.0.0",
   "private": true,
   "main": "./index.js",

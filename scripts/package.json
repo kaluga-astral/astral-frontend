@@ -6,7 +6,9 @@
     "assembly-scripts": "./index.js"
   },
   "scripts": {},
-  "dependencies": {},
+  "dependencies": {
+    "shelljs": "^0.8.3"
+  },
   "devDependencies": {},
   "peerDependencies": {}
 }

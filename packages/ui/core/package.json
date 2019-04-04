@@ -1,0 +1,15 @@
+{
+  "name": "@astral-frontend/core",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./index.js",
+  "scripts": {},
+  "dependencies": {
+    "@material-ui/core": "^3.9.2"
+  },
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "^1.0.0"
+  },
+  "peerDependencies": {},
+  "sideEffects": false
+}

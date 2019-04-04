@@ -1,3 +1,1 @@
-import Button from '@material-ui/core/Button';
-
-export default Button;
+export { Button as default } from '@astral-frontend/core';

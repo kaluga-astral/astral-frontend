@@ -1,0 +1,17 @@
+{
+  "name": "@astral-frontend/styles",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "@astral-frontend/core": "^1.0.0",
+    "prop-types": "^15.7.2",
+    "react-jss": "^8.6.1"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "react": ">=16.6.0"
+  },
+  "sideEffects": false
+}

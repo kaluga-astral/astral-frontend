@@ -5,20 +5,20 @@
   "main": "./src/index.js",
   "scripts": {
     "percy": "react-percy",
-    "docz:dev": "docz dev",
-    "docz:build": "docz build",
-    "build": "babel ./src --out-dir ./lib --ignore \"**/*.percy.jsx\"",
+    "build": "assembly-scripts build",
     "postbuild": "assembly-scripts postbuild"
   },
   "dependencies": {
-    "@material-ui/core": "^3.9.2"
+    "@astral-frontend/core": "^1.0.0",
+    "@astral-frontend/styles": "^1.0.0",
+    "classnames": "^2.2.6",
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "^1.0.0"
   },
   "peerDependencies": {
-    "react": ">=16.6.0",
-    "react-router-dom": ">=4.3.0"
+    "react": "^16.8.0"
   },
   "sideEffects": false
 }

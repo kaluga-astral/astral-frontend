@@ -1,0 +1,22 @@
+{
+  "name": "@astral-frontend/dashboard-layout",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./src/index.js",
+  "scripts": {},
+  "dependencies": {
+    "@astral-frontend/components": "^1.0.0",
+    "@astral-frontend/icons": "^1.0.0",
+    "@astral-frontend/styles": "^1.0.0",
+    "classnames": "^2.2.6",
+    "path-to-regexp": "^3.0.0",
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "@astral-frontend/components": "^1.0.0",
+    "react": "^16.8.0",
+    "react-router-dom": "^5.0.0"
+  },
+  "sideEffects": false
+}
