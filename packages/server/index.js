@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable global-require */
 const { Transform } = require('stream');
 const fs = require('fs');
 const path = require('path');
@@ -8,7 +6,7 @@ const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
 // const logger = require('morgan');
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+// const isDevelopment = process.env.NODE_ENV === 'development';
 
 const cache = cacheManager.caching({ store: 'memory', max: 100, ttl: 10 });
 const createCacheStream = (key) => {
@@ -64,26 +62,26 @@ const makeServer = ({ renderDocumentToStream }) => {
 
   app.use('/', staticFilesMiddleware);
 
-  if (isDevelopment) {
-    const webpack = require('webpack');
-    const webpackDevMiddleware = require('webpack-dev-middleware');
-    const webpackHotMiddleware = require('webpack-hot-middleware');
-    const webpackConfig = require('@astral-frontend/webpack-config');
+  // if (isDevelopment) {
+  //   const webpack = require('webpack');
+  //   const webpackDevMiddleware = require('webpack-dev-middleware');
+  //   const webpackHotMiddleware = require('webpack-hot-middleware');
+  //   const webpackConfig = require('@astral-frontend/webpack-config');
 
-    const webpackInstance = webpack(webpackConfig);
-    const clientCompiler = webpackInstance.compilers.find(
-      cmpl => cmpl.name === 'client',
-    );
-    // const serverCompiler = webpackInstance.compilers.find(cmpl => cmpl.name === 'server');
+  //   const webpackInstance = webpack(webpackConfig);
+  //   const clientCompiler = webpackInstance.compilers.find(
+  //     cmpl => cmpl.name === 'client',
+  //   );
+  //   // const serverCompiler = webpackInstance.compilers.find(cmpl => cmpl.name === 'server');
 
-    app.use(
-      webpackDevMiddleware(clientCompiler, {
-        hot: true,
-        stats: 'errors-only',
-      }),
-    );
-    app.use(webpackHotMiddleware(clientCompiler));
-  }
+  //   app.use(
+  //     webpackDevMiddleware(clientCompiler, {
+  //       hot: true,
+  //       stats: 'errors-only',
+  //     }),
+  //   );
+  //   app.use(webpackHotMiddleware(clientCompiler));
+  // }
 
   app.get('*', (request, response) => {
     const staticAssets = getStaticAssets();
