@@ -8,3 +8,4 @@ export { default as Document } from './Document';
 export { default as List } from './List';
 export { default as ListItem } from './ListItem';
 export { default as SvgIcon } from './SvgIcon';
+export { default as TextField } from './TextField';
