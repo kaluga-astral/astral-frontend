@@ -15,6 +15,7 @@ module.exports = merge(commonConfig, {
   plugins: [
     new HtmlWebpackPlugin({
       cache: true,
+      inject: false,
       template: path.resolve(appSrc, 'index.html'),
     }),
   ],
