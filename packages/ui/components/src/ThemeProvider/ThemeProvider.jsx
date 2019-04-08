@@ -19,6 +19,7 @@ const ThemeProvider = ({
 ThemeProvider.defaultProps = {
   sheetsRegistry: null,
   sheetsManager: null,
+  generateClassName: null,
 };
 
 ThemeProvider.propTypes = {
@@ -26,7 +27,7 @@ ThemeProvider.propTypes = {
   sheetsRegistry: PropTypes.shape({}),
   theme: PropTypes.shape({}).isRequired,
   sheetsManager: PropTypes.shape({}),
-  generateClassName: PropTypes.func.isRequired,
+  generateClassName: PropTypes.func,
 };
 
 export default ThemeProvider;

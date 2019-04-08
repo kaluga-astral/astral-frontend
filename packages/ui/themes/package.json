@@ -8,9 +8,7 @@
     "@astral-frontend/core": "^1.0.0",
     "lodash-es": "^4.17.11"
   },
-  "devDependencies": {
-    "@astral-frontend/babel-preset-js-lib": "^1.0.0"
-  },
+  "devDependencies": {},
   "peerDependencies": {},
   "sideEffects": false
 }

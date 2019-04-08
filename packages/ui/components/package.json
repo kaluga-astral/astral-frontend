@@ -11,14 +11,17 @@
   "dependencies": {
     "@astral-frontend/core": "^1.0.0",
     "@astral-frontend/styles": "^1.0.0",
+    "@bugsnag/plugin-react": "^6.0.0",
     "classnames": "^2.2.6",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-jss": "^8.6.1"
   },
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "^1.0.0"
   },
   "peerDependencies": {
-    "react": "^16.8.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "sideEffects": false
 }

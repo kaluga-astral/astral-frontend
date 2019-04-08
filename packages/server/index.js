@@ -1,106 +1,66 @@
-const { Transform } = require('stream');
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable global-require */
 const fs = require('fs');
 const path = require('path');
-const cacheManager = require('cache-manager');
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
-// const logger = require('morgan');
+const logger = require('morgan');
 
-// const isDevelopment = process.env.NODE_ENV === 'development';
+const appDir = fs.realpathSync(process.cwd());
+const appDist = path.resolve(appDir, 'dist');
 
-const cache = cacheManager.caching({ store: 'memory', max: 100, ttl: 10 });
-const createCacheStream = (key) => {
-  const bufferedChunks = [];
-  return new Transform({
-    transform(data, enc, cb) {
-      bufferedChunks.push(data);
-      cb(null, data);
-    },
-    flush(cb) {
-      cache.set(key, Buffer.concat(bufferedChunks));
-      cb();
-    },
-  });
-};
-const getStaticAssets = () => {
-  const mapStaticAssetURIsToTagProps = jsAssetsURI => ({
-    src: jsAssetsURI,
-  });
-  const {
-    main: { js: jsAssetURIs },
-  } = JSON.parse(
-    fs.readFileSync(
-      path.resolve(
-        fs.realpathSync(process.cwd()),
-        'dist',
-        'webpack-assets.json',
-      ),
-    ),
-  );
-  const js = jsAssetURIs.map(mapStaticAssetURIsToTagProps);
-
-  return {
-    js,
-  };
-};
-const staticFilesMiddleware = expressStaticGzip(
-  path.resolve(fs.realpathSync(process.cwd()), 'dist', 'client'),
-  {
-    index: false,
-    enableBrotli: true,
-    orderPreference: ['br', 'gz'],
-    setHeaders(res) {
-      res.setHeader('Cache-Control', 'public, max-age=31536000');
-    },
+const staticFilesMiddleware = expressStaticGzip(appDist, {
+  index: false,
+  enableBrotli: true,
+  orderPreference: ['br', 'gz'],
+  setHeaders(res) {
+    res.setHeader('Cache-Control', 'public, max-age=31536000');
   },
-);
+});
 
-const makeServer = ({ renderDocumentToStream }) => {
-  const app = express();
+const makeServer = () => {
+  const server = express();
 
-  // app.use(logger('combined'));
+  server.disable('x-powered-by');
 
-  app.use('/', staticFilesMiddleware);
+  server.use('/', staticFilesMiddleware);
 
-  // if (isDevelopment) {
-  //   const webpack = require('webpack');
-  //   const webpackDevMiddleware = require('webpack-dev-middleware');
-  //   const webpackHotMiddleware = require('webpack-hot-middleware');
-  //   const webpackConfig = require('@astral-frontend/webpack-config');
+  if (process.env.NODE_ENV === 'development') {
+    const webpack = require('webpack');
+    const webpackDevMiddleware = require('webpack-dev-middleware');
+    const {
+      development: webpackConfig,
+      // devServer: webpackDevServerConfig,
+    } = require('@astral-frontend/webpack-config');
+    const compiler = webpack(webpackConfig);
 
-  //   const webpackInstance = webpack(webpackConfig);
-  //   const clientCompiler = webpackInstance.compilers.find(
-  //     cmpl => cmpl.name === 'client',
-  //   );
-  //   // const serverCompiler = webpackInstance.compilers.find(cmpl => cmpl.name === 'server');
+    server.use(
+      webpackDevMiddleware(compiler, {
+        publicPath: webpackConfig.output.publicPath,
+        stats: 'minimal',
+      }),
+    );
 
-  //   app.use(
-  //     webpackDevMiddleware(clientCompiler, {
-  //       hot: true,
-  //       stats: 'errors-only',
-  //     }),
-  //   );
-  //   app.use(webpackHotMiddleware(clientCompiler));
-  // }
+    server.use('*', (req, res, next) => {
+      const filename = path.join(compiler.outputPath, 'index.html');
 
-  app.get('*', (request, response) => {
-    const staticAssets = getStaticAssets();
-    const routerContext = {};
-    const renderStream = renderDocumentToStream({
-      staticAssets,
-      request,
-      routerContext,
+      // eslint-disable-next-line consistent-return
+      compiler.outputFileSystem.readFile(filename, (err, result) => {
+        if (err) {
+          return next(err);
+        }
+        res.set('content-type', 'text/html');
+        res.send(result);
+        res.end();
+      });
     });
-    const cacheStream = createCacheStream(request.path);
+  }
 
-    response.writeHead(200, { 'Content-Type': 'text/html' });
-    response.write('<!DOCTYPE html>');
+  if (process.env.NODE_ENV === 'production') {
+    server.use(logger('combined'));
+  }
 
-    cacheStream.pipe(response);
-    renderStream.pipe(cacheStream);
-  });
-
-  return app;
+  return server;
 };
 
 module.exports = {

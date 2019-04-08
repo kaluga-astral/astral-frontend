@@ -10,6 +10,8 @@
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "^1.0.0"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
   "sideEffects": false
 }
