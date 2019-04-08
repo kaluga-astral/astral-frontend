@@ -14,6 +14,7 @@ const PhoneMask = (props) => {
     <MaskedInput
       {...other}
       ref={inputRef}
+      placeholder="+7 (  )  -  -"
       mask={[
         '+',
         7,
