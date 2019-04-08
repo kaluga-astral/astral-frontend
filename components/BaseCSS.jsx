@@ -51,7 +51,7 @@ class BaseCSS extends PureComponent {
       .split(', ')
       .map(fontName => fontName.replace(/"/g, ''))
       .filter(font => !localFallbackFonts.includes(font))
-      .forEach(font => import(/* webpackPreload: true */ `astralnalog/fonts/${font}/style.css`));
+      .forEach(font => import(/* webpackPreload: true */ `../../astralnalog/fonts/${font}/style.css`),);
   };
 
   render = () => null;
