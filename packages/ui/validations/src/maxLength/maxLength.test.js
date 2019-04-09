@@ -1,4 +1,4 @@
-import maxLength from '../maxLength';
+import maxLength from './maxLength';
 
 describe('`maxLength` validation rule', () => {
   test('should return an error object if value is invalid', () => {

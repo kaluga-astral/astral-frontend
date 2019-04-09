@@ -1,7 +1,10 @@
+/* eslint-disable */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Field as FinalFormField } from 'react-final-form';
 import { TextField as MuiTextField } from '@astral-frontend/components';
+
+// import { composeValidations } from '@astral-frontend/validations';
 
 const FormField = ({
   // ======FinalFormFieldProps======
@@ -22,31 +25,36 @@ const FormField = ({
   value,
   // ======MUITextFieldProps=====
   ...MuiTextFieldProps
-}) => (
-  <FinalFormField
-    allowNull={allowNull}
-    defaultValue={defaultValue}
-    format={format}
-    formatOnBlur={formatOnBlur}
-    initialValue={initialValue}
-    isEqual={isEqual}
-    name={name}
-    parse={parse}
-    render={({ input, meta }) => {
-      const error = meta.touched && !meta.valid;
-      const helperText = meta.error || meta.submitError;
+}) =>
+// const validate = compose(
+//   rules.required,
+//   validate,
+// );
 
-      return (
-        <MuiTextField {...MuiTextFieldProps} {...input} error={error} helperText={helperText} />
-      );
-    }}
-    subscription={subscription}
-    validate={validate}
-    validateFields={validateFields}
-    value={value}
-  />
-);
+  (
+    <FinalFormField
+      allowNull={allowNull}
+      defaultValue={defaultValue}
+      format={format}
+      formatOnBlur={formatOnBlur}
+      initialValue={initialValue}
+      isEqual={isEqual}
+      name={name}
+      parse={parse}
+      render={({ input, meta }) => {
+        const error = meta.touched && !meta.valid;
+        const helperText = meta.error || meta.submitError;
 
+        return (
+          <MuiTextField {...MuiTextFieldProps} {...input} error={error} helperText={helperText} />
+        );
+      }}
+      subscription={subscription}
+      validate={createValidationFunction()}
+      validateFields={validateFields}
+      value={value}
+    />
+  );
 FormField.defaultProps = {
   allowNull: false,
   defaultValue: false,
@@ -55,6 +63,7 @@ FormField.defaultProps = {
   initialValue: null,
   isEqual: null,
   parse: null,
+  // render: renderMuiTextField,
   subscription: null,
   validate: null,
   validateFields: null,
@@ -111,6 +120,11 @@ FormField.propTypes = {
    * и преобразует значение которое будет использовано как значение этого поля в форме.
    */
   parse: PropTypes.func,
+  /**
+   * Функция рендеринга параметрами которой являются FieldRenderProps
+   * объект { meta, input }
+   */
+  render: PropTypes.func,
   /** */
   subscription: PropTypes.func,
   /**

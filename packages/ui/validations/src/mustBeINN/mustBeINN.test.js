@@ -1,4 +1,4 @@
-import mustBeINN from '../mustBeINN';
+import mustBeINN from './mustBeINN';
 
 describe('`mustBeINN` validation rule', () => {
   test('should return an error object if value is invalid', () => {

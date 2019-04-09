@@ -1,4 +1,4 @@
-import minLength from '../minLength';
+import minLength from './minLength';
 
 describe('`minLength` validation rule', () => {
   test('should return an error object if value is invalid', () => {
