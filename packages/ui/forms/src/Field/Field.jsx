@@ -1,10 +1,9 @@
-/* eslint-disable */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Field as FinalFormField } from 'react-final-form';
 import { TextField as MuiTextField } from '@astral-frontend/components';
 
-// import { composeValidations } from '@astral-frontend/validations';
+import { mustBePresent, composeValidations } from '@astral-frontend/validations';
 
 const FormField = ({
   // ======FinalFormFieldProps======
@@ -25,13 +24,10 @@ const FormField = ({
   value,
   // ======MUITextFieldProps=====
   ...MuiTextFieldProps
-}) =>
-// const validate = compose(
-//   rules.required,
-//   validate,
-// );
+}) => {
+  const createValidationFunction = () => composeValidations(mustBePresent, validate);
 
-  (
+  return (
     <FinalFormField
       allowNull={allowNull}
       defaultValue={defaultValue}
@@ -55,6 +51,8 @@ const FormField = ({
       value={value}
     />
   );
+};
+
 FormField.defaultProps = {
   allowNull: false,
   defaultValue: false,
@@ -124,7 +122,7 @@ FormField.propTypes = {
    * Функция рендеринга параметрами которой являются FieldRenderProps
    * объект { meta, input }
    */
-  render: PropTypes.func,
+  // render: PropTypes.func,
   /** */
   subscription: PropTypes.func,
   /**
