@@ -58,7 +58,7 @@ const FormField = ({
 
 FormField.defaultProps = {
   allowNull: false,
-  defaultValue: false,
+  defaultValue: null,
   format: null,
   formatOnBlur: false,
   initialValue: null,
@@ -72,6 +72,7 @@ FormField.defaultProps = {
   required: false,
   select: false,
   variant: 'standard',
+  fullWidth: true,
 };
 
 FormField.propTypes = {
@@ -159,7 +160,7 @@ FormField.propTypes = {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */

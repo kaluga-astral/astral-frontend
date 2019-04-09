@@ -2,6 +2,7 @@ export { default as AstralSquareLogo } from './AstralSquareLogo';
 export { default as BugsnagProvider } from './BugsnagProvider';
 export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
+export { default as CircularProgress } from './CircularProgress';
 export { default as Collapse } from './Collapse';
 export { default as Paper } from './Paper';
 export { default as Placeholder } from './Placeholder';
