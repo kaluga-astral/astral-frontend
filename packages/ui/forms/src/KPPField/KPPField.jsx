@@ -1,16 +1,21 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { mustBeOGRN } from '@astral-frontend/validations';
+import { mustBeKPP } from '@astral-frontend/validations';
 
 import TextField from '../TextField';
 
 const KPPField = props => (
-  <TextField parse={value => value.replace(/[^\d]/g, '')} validate={mustBeOGRN} {...props} />
+  <TextField
+    inputProps={{ maxLength: 12 }}
+    parse={value => value.replace(/[^\d]/g, '')}
+    validate={mustBeKPP}
+    {...props}
+  />
 );
 
 KPPField.defaultProps = {
-  name: 'ogrn',
-  label: 'ОГРН',
+  name: 'kpp',
+  label: 'КПП',
   placeholder: null,
 };
 

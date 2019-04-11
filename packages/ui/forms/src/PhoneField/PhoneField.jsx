@@ -1,61 +1,24 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import MaskedInput from 'react-text-mask';
 import { mustBePhone } from '@astral-frontend/validations';
 
+import PhoneFieldMask from './PhoneFieldMask';
 import TextField from '../TextField';
-
-function TextMaskCustom(props) {
-  const { inputRef, ...other } = props;
-
-  return (
-    <MaskedInput
-      {...other}
-      ref={(ref) => {
-        inputRef(ref ? ref.inputElement : null);
-      }}
-      mask={[
-        '+',
-        7,
-        ' ',
-        '(',
-        /[1-9]/,
-        /\d/,
-        /\d/,
-        ')',
-        ' ',
-        /\d/,
-        /\d/,
-        /\d/,
-        '-',
-        /\d/,
-        /\d/,
-        '-',
-        /\d/,
-        /\d/,
-      ]}
-      placeholderChar={'\u2000'}
-      showMask
-    />
-  );
-}
-
-TextMaskCustom.propTypes = {
-  inputRef: PropTypes.func.isRequired,
-};
 
 const PhoneField = props => (
   <TextField
-    parse={value => value.replace(/(-|\(|\)| )/g, '')}
+    parse={value => value.replace(/\(|\)|-/g, '')}
     validate={mustBePhone}
-    inputComponent={TextMaskCustom}
+    InputProps={{
+      inputComponent: PhoneFieldMask,
+    }}
     {...props}
   />
 );
 
 PhoneField.defaultProps = {
   name: 'phone',
-  label: 'Телефон',
+  label: 'Номер телефона',
   placeholder: null,
 };
 

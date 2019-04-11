@@ -1,1 +1,7 @@
-export { InputBase as default } from '@astral-frontend/core';
+import React from 'react';
+
+import CircularProgress from '../CircularProgress';
+
+const Placeholder = () => <CircularProgress />;
+
+export default Placeholder;

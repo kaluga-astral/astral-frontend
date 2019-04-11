@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutMain = React.forwardRef(
-  ({ classes, className, children }, ref) => (
-    <main ref={ref} className={cn(classes.root, className)}>
-      {children}
-    </main>
-  ),
-);
+const DashboardLayoutMain = React.forwardRef(({ classes, className, children }, ref) => (
+  <main ref={ref} className={cn(classes.root, className)}>
+    {children}
+  </main>
+));
 
 DashboardLayoutMain.defaultProps = {
   className: null,
@@ -26,6 +24,7 @@ export default withStyles(
     root: {
       position: 'relative',
       flexGrow: 1,
+      overflowY: 'scroll',
     },
   }),
   { name: 'DashboardLayoutMain' },

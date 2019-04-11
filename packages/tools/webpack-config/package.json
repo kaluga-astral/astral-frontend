@@ -17,6 +17,7 @@
     "thread-loader": "^2.1.2",
     "webpack": "^4.29.6",
     "webpack-bundle-analyzer": "^3.2.0",
+    "webpack-deep-scope-plugin": "^1.6.0",
     "webpack-manifest-plugin": "^2.0.4",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"

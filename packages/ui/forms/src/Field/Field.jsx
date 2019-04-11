@@ -28,7 +28,21 @@ const FormField = ({
 }) => {
   const { required } = MuiTextFieldProps;
   // eslint-disable-next-line max-len
-  const createValidationFunction = () => (required ? composeValidations(mustBePresent, validate) : validate);
+  const createValidationFunction = () => {
+    if (required && validate) {
+      return composeValidations(mustBePresent, validate);
+    }
+
+    if (required && !validate) {
+      return mustBePresent;
+    }
+
+    if (!required && validate) {
+      return validate;
+    }
+
+    return null;
+  };
 
   return (
     <FinalFormField
@@ -57,22 +71,23 @@ const FormField = ({
 };
 
 FormField.defaultProps = {
-  allowNull: false,
-  defaultValue: null,
-  format: null,
-  formatOnBlur: false,
-  initialValue: null,
-  isEqual: null,
-  parse: null,
-  subscription: null,
-  validate: null,
-  validateFields: null,
-  value: null,
+  allowNull: undefined,
+  defaultValue: undefined,
+  format: undefined,
+  formatOnBlur: undefined,
+  initialValue: undefined,
+  isEqual: undefined,
+  parse: undefined,
+  subscription: undefined,
+  validate: undefined,
+  validateFields: undefined,
+  value: undefined,
   //
   required: false,
   select: false,
   variant: 'standard',
   fullWidth: true,
+  margin: 'normal',
 };
 
 FormField.propTypes = {

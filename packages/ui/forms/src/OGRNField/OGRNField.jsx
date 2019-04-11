@@ -5,7 +5,12 @@ import { mustBeOGRN } from '@astral-frontend/validations';
 import TextField from '../TextField';
 
 const OGRNField = props => (
-  <TextField parse={value => value.replace(/[^\d]/g, '')} validate={mustBeOGRN} {...props} />
+  <TextField
+    inputProps={{ maxLength: 15 }}
+    parse={value => value.replace(/[^\d]/g, '')}
+    validate={mustBeOGRN}
+    {...props}
+  />
 );
 
 OGRNField.defaultProps = {

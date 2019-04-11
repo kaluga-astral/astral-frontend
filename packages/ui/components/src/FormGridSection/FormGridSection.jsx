@@ -16,22 +16,19 @@ Title.propTypes = {
 };
 
 const FormGridSection = ({
-  classes, className, children, title, ...props
+  classes, className, children, ...props
 }) => (
   <div {...props} className={cn(classes.root, className)}>
-    <Title>{title}</Title>
     {children}
   </div>
 );
 
 FormGridSection.defaultProps = {
   className: null,
-  title: null,
 };
 
 FormGridSection.propTypes = {
   className: PropTypes.string,
-  title: PropTypes.string,
   children: PropTypes.node.isRequired,
   classes: PropTypes.shape().isRequired,
 };

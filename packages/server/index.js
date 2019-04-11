@@ -26,6 +26,7 @@ const makeServer = () => {
   server.use('/', staticFilesMiddleware);
 
   if (process.env.NODE_ENV === 'development') {
+    const httpProxyMiddleware = require('http-proxy-middleware');
     const webpack = require('webpack');
     const webpackDevMiddleware = require('webpack-dev-middleware');
     const {
@@ -33,6 +34,22 @@ const makeServer = () => {
       // devServer: webpackDevServerConfig,
     } = require('@astral-frontend/webpack-config');
     const compiler = webpack(webpackConfig);
+
+    // TODO: вынести в аппликейшон
+    server.use(
+      '/api',
+      httpProxyMiddleware({
+        target: 'http://localhost:32777/',
+      }),
+    );
+
+    server.use(
+      '/api/notifications',
+      httpProxyMiddleware({
+        ws: true,
+        target: 'ws://localhost:32777/',
+      }),
+    );
 
     server.use(
       webpackDevMiddleware(compiler, {
