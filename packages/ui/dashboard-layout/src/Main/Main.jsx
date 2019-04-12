@@ -23,6 +23,8 @@ export default withStyles(
   () => ({
     root: {
       position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
       flexGrow: 1,
       overflowY: 'scroll',
     },

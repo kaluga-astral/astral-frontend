@@ -21,7 +21,7 @@ export default withStyles(
   {
     root: {
       display: 'flex',
-      flexDirection: 'column',
+      // flexDirection: 'column',
       height: '100vh',
     },
   },

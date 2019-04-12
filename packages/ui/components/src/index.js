@@ -19,6 +19,7 @@ export { default as FormGridSection } from './FormGridSection';
 export { default as InputBase } from './InputBase';
 export { default as List } from './List';
 export { default as ListItem } from './ListItem';
+export { default as MenuItem } from './MenuItem';
 export { default as SvgIcon } from './SvgIcon';
 export { default as TextField } from './TextField';
 export { default as ThemeProvider } from './ThemeProvider';
