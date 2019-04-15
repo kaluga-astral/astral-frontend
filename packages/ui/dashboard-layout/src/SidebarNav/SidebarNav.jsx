@@ -1,14 +1,30 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { List } from '@astral-frontend/components';
 import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutSidebarNav = ({ classes, className, children }) => (
-  <nav className={cn(classes.root, className)}>
-    <List className={classes.list}>{children}</List>
-  </nav>
-);
+import DropdownContext from '../SidebarNavDropdown/DropdownContext';
+
+const DashboardLayoutSidebarNav = ({ classes, className, children }) => {
+  const [expandedItemId, setExpandedItemId] = useState(null);
+
+  const setExpanded = (id) => {
+    if (id === expandedItemId) {
+      setExpandedItemId(null);
+    } else {
+      setExpandedItemId(id);
+    }
+  };
+
+  return (
+    <DropdownContext.Provider value={{ expandedItemId, onNavDropdownItemSelect: setExpanded }}>
+      <nav className={cn(classes.root, className)}>
+        <List className={classes.list}>{children}</List>
+      </nav>
+    </DropdownContext.Provider>
+  );
+};
 
 DashboardLayoutSidebarNav.defaultProps = {
   className: null,
