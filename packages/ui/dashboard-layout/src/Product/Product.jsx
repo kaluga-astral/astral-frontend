@@ -34,7 +34,7 @@ export default withStyles(
       alignItems: 'center',
       flexShrink: 0,
       width: '260px',
-      height: '100%',
+      height: '76px',
       padding: '0 20px',
       color: theme.palette.primary.contrastText,
       backgroundColor: theme.palette.primary.dark,

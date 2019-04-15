@@ -1,13 +1,15 @@
+import { uniqueId } from 'lodash-es';
 import pathToRegexp from 'path-to-regexp';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Collapse, List } from '@astral-frontend/components';
 import { withStyles } from '@astral-frontend/styles';
 
 import SidebarNavItem from '../SidebarNavItem';
 import SidebarNavDropdownToggler from './SidebarNavDropdownToggler';
+import DropdownContext from './DropdownContext';
 
 const DashboardLayoutSidebarNavDropdown = ({
   classes,
@@ -17,37 +19,34 @@ const DashboardLayoutSidebarNavDropdown = ({
   children,
   location,
 }) => {
-  const getCurrentExpanded = () =>
-    // eslint-disable-next-line implicit-arrow-linebreak
-    React.Children.toArray(children).some(
-      ({ props: { to } }) =>
-        // eslint-disable-next-line implicit-arrow-linebreak
-        pathToRegexp(location.pathname).test(to),
-      // eslint-disable-next-line function-paren-newline
-    );
-  const [expanded, setExpanded] = React.useState(getCurrentExpanded());
-  const handleNavDropdownToggle = () => {
-    setExpanded(prevState => !prevState);
-  };
-  React.useEffect(() => {
-    setExpanded(getCurrentExpanded());
-  }, [location.pathname]);
+  const [id, setId] = useState(null);
+  const dropdownContext = useContext(DropdownContext);
+
+  useEffect(() => {
+    const { onNavDropdownItemSelect } = dropdownContext;
+    const itemId = uniqueId();
+    setId(itemId);
+    if (
+      React.Children.toArray(children).some(
+        child => child && pathToRegexp(location.pathname).test(child.props.to),
+      )
+    ) {
+      onNavDropdownItemSelect(itemId);
+    }
+  }, []);
 
   return (
     <li className={cn(classes.root, className)}>
       <SidebarNavItem
         component={SidebarNavDropdownToggler}
-        Icon={iconProps => (
-          <Icon className={cn(classes.icon, iconProps.className)} />
-        )}
-        Text={textProps => (
-          <div className={cn(classes.text, textProps.className)}>{text}</div>
-        )}
-        onToggle={handleNavDropdownToggle}
+        Icon={iconProps => <Icon className={cn(classes.icon, iconProps.className)} />}
+        Text={textProps => <div className={cn(classes.text, textProps.className)}>{text}</div>}
+        onToggle={() => dropdownContext.onNavDropdownItemSelect(id)}
+        expanded={id === dropdownContext.expandedItemId}
       />
       <Collapse
         unmountOnExit
-        in={expanded}
+        in={id === dropdownContext.expandedItemId}
         component={List}
         className={classes.list}
       >
