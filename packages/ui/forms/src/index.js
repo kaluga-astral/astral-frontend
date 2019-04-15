@@ -1,5 +1,6 @@
 export { FORM_ERROR } from 'final-form';
 
+export { default as AddressField } from './AddressField';
 export { default as DateField } from './DateField';
 export { default as EmailField } from './EmailField';
 export { default as ErrorAlert } from './ErrorAlert';
@@ -13,6 +14,7 @@ export { default as PassportIssuerIdField } from './PassportIssuerIdField';
 export { default as PassportNumberField } from './PassportNumberField';
 export { default as PassportSeriesField } from './PassportSeriesField';
 export { default as PhoneField } from './PhoneField';
+export { default as RadioGroupField } from './RadioGroupField';
 export { default as RegNumberFSSField } from './RegNumberFSSField';
 export { default as RegNumberPFRField } from './RegNumberPFRField';
 export { default as SelectField } from './SelectField';

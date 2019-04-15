@@ -42,7 +42,6 @@ FormGridSection.propTypes = {
 
 FormGridSection.Title = withStyles({
   root: {
-    marginBottom: 0,
   },
 })(Title);
 

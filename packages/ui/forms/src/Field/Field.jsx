@@ -18,7 +18,7 @@ const FormField = ({
   isEqual,
   name,
   parse,
-  // render,
+  render,
   subscription,
   validate,
   validateFields,
@@ -57,6 +57,10 @@ const FormField = ({
       render={({ input, meta }) => {
         const error = meta.touched && !meta.valid;
         const helperText = meta.error || meta.submitError;
+
+        if (render) {
+          return render({ ...input, ...MuiTextFieldProps, error, helperText });
+        }
 
         return (
           <MuiTextField {...MuiTextFieldProps} {...input} error={error} helperText={helperText} />

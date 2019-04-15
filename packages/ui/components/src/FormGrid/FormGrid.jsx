@@ -4,11 +4,9 @@ import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
 const FormGrid = ({
-  classes, className, component: Component, onSubmit, children, ...props
+  classes, className, component: Component, ...props
 }) => (
-  <Component onSubmit={onSubmit} className={cn(classes.root, className)} {...props}>
-    {children}
-  </Component>
+  <Component className={cn(classes.root, className)} {...props} />
 );
 
 FormGrid.defaultProps = {
@@ -17,9 +15,7 @@ FormGrid.defaultProps = {
 
 FormGrid.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.func.isRequired,
   component: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
   classes: PropTypes.shape().isRequired,
 };
 
