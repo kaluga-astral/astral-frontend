@@ -3,22 +3,29 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-const Title = ({ className, children }) => <h3 className={className}>{children}</h3>;
+// TODO: вынести в отдельный файл
+// TODO: FormGridSectionTitle
+const Title = ({
+  classes, className, component: Component, ...props
+}) => (
+  <Component className={cn(classes.root, className)} {...props} />
+);
 
 Title.defaultProps = {
-  children: null,
+  component: 'h3',
   className: null,
 };
 
 Title.propTypes = {
-  children: PropTypes.node,
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
   className: PropTypes.string,
+  classes: PropTypes.shape().isRequired,
 };
 
 const FormGridSection = ({
   classes, className, children, ...props
 }) => (
-  <div {...props} className={cn(classes.root, className)}>
+  <div className={cn(classes.root, className)} {...props}>
     {children}
   </div>
 );
@@ -33,7 +40,11 @@ FormGridSection.propTypes = {
   classes: PropTypes.shape().isRequired,
 };
 
-FormGridSection.Title = Title;
+FormGridSection.Title = withStyles({
+  root: {
+    marginBottom: 0,
+  },
+})(Title);
 
 export default withStyles({
   root: {},

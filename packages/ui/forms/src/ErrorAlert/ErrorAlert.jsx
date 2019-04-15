@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormSpy } from 'react-final-form';
@@ -6,7 +5,7 @@ import { withStyles } from '@astral-frontend/styles';
 
 const FormErrorAlert = ({ classes }) => (
   <FormSpy subscription={{ submitError: true }}>
-    {({ submitError }) => <div className={classes.root}>{submitError}</div>}
+    {({ submitError }) => (submitError ? <div className={classes.root}>{submitError}</div> : null)}
   </FormSpy>
 );
 
