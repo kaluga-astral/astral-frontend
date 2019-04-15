@@ -1,21 +1,10 @@
-function calcCheckNum(digitsOfvalue, weights) {
-  const checkSum = digitsOfvalue.reduce(
-    (sum, digit, i) => sum + digit * weights[i],
-    0,
-  );
-  // let checkSum = 0;
-  // digitsOfvalue.forEach((el, i) => {
-  //   checkSum += el * weights[i];
-  //   console.log(el, weights[i], i, checkSum);
-  // });
+function calcCheckNum(digitsOfINN, weights) {
+  const checkSum = digitsOfINN.reduce((sum, digit, i) => sum + digit * weights[i], 0);
   const checkNum = checkSum % 11;
+
   return checkNum > 9 ? checkNum % 10 : checkNum;
 }
 
-/**
- * Проверка ИНН на валидность
- * @param {ИНН} value
- */
 export default (value) => {
   if (Number(value) === 0) {
     return 'Неверный ИНН. Введите корректный ИНН.';
@@ -25,26 +14,22 @@ export default (value) => {
     return 'Неверный ИНН. Введите корректный ИНН.';
   }
 
-  const digitsOfvalue = value
+  const digitsOfINN = value
     .toString()
     .split('')
-
     .map(x => Number(x));
 
   if (
-    digitsOfvalue.length === 10
-    && calcCheckNum(digitsOfvalue, [2, 4, 10, 3, 5, 9, 4, 6, 8, 0])
-      !== digitsOfvalue[9]
+    digitsOfINN.length === 10
+    && calcCheckNum(digitsOfINN, [2, 4, 10, 3, 5, 9, 4, 6, 8, 0]) !== digitsOfINN[9]
   ) {
     return 'Неверный ИНН. Введите корректный ИНН.';
   }
 
   if (
-    digitsOfvalue.length === 12
-    && (calcCheckNum(digitsOfvalue, [7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0, 0])
-      !== digitsOfvalue[10]
-      || calcCheckNum(digitsOfvalue, [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0])
-        !== digitsOfvalue[11])
+    digitsOfINN.length === 12
+    && calcCheckNum(digitsOfINN, [7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0, 0]) !== digitsOfINN[10]
+    && calcCheckNum(digitsOfINN, [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0]) !== digitsOfINN[11]
   ) {
     return 'Неверный ИНН. Введите корректный ИНН.';
   }
