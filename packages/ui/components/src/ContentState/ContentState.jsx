@@ -1,12 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-// import ErrorBoundary from '../../ErrorBoundary';
-// import DefaultLoadingState from './LoadingState';
-// import DefaultFailureState from './FailureState';
-
-const DefaultLoadingState = () => <div>loading</div>;
-const DefaultFailureState = () => <div>failure</div>;
+import DefaultLoadingState from './LoadingState';
+import DefaultFailureState from './FailureState';
 
 const ContentState = ({
   isFetching,
