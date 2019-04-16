@@ -1,13 +1,10 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import { withStyles } from '@astral-frontend/styles';
 
 const DashboardLayoutSidebar = ({ classes, className, children }) => (
-  <BrowserRouter>
-    <aside className={cn(classes.root, className)}>{children}</aside>
-  </BrowserRouter>
+  <aside className={cn(classes.root, className)}>{children}</aside>
 );
 
 DashboardLayoutSidebar.defaultProps = {
