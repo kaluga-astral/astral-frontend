@@ -55,7 +55,11 @@ const ContentStateWrapper = ({ children, ...props }) => (
 );
 
 ContentStateWrapper.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.shape()]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape(),
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
 };
 
 export default ContentStateWrapper;
