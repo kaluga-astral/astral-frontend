@@ -75,6 +75,10 @@ module.exports = {
         test: /\.(pdf)$/,
         use: ['thread-loader', 'file-loader?minetype=application/pdf'],
       },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
 
