@@ -22,7 +22,7 @@ DashboardLayoutCurrentUserInfo.propTypes = {
 export default withStyles(
   () => ({
     root: {
-      margin: '0 15px',
+      margin: 'auto 15px 0',
       padding: '15px 0',
       borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
     },
