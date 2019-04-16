@@ -27,6 +27,7 @@ export default withStyles(
       flexDirection: 'column',
       flexGrow: 1,
       overflowY: 'scroll',
+      overflowX: 'hidden',
     },
   }),
   { name: 'DashboardLayoutMain' },
