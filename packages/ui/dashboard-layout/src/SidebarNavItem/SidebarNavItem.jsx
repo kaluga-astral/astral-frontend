@@ -50,6 +50,8 @@ export default withStyles(
       color: theme.palette.grey[600],
       '&$active': {
         color: theme.palette.primary.main,
+        borderRight: '3px solid',
+        borderRightColor: theme.palette.primary.main,
       },
     },
     active: {},

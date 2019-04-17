@@ -1,5 +1,4 @@
 export { default as ActionButton } from './ActionButton';
-export { default as Container } from './Container';
 export { default as Content } from './Content';
 export { default as ContentNav } from './ContentNav';
 export { default as CurrentUserInfo } from './CurrentUserInfo';

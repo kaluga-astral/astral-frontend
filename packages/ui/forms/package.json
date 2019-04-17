@@ -6,7 +6,9 @@
   "dependencies": {
     "@astral-frontend/styles": "^1.0.0",
     "@astral-frontend/validations": "^1.0.0",
+    "downshift": "^3.2.7",
     "final-form": "^4.12.0",
+    "lodash-es": "^4.17.11",
     "prop-types": "^15.7.2",
     "react-final-form": "^4.1.0",
     "react-text-mask": "^5.4.3"

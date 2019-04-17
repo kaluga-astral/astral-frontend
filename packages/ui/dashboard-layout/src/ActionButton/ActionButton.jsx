@@ -4,25 +4,24 @@ import React from 'react';
 import { ButtonBase } from '@astral-frontend/components';
 import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutActionButton = ({
-  classes, className, Icon, text,
-}) => (
-  <ButtonBase className={cn(classes.root, className)}>
-    {Icon && <Icon className={classes.icon} />}
-    <div className={classes.text}>{text}</div>
-  </ButtonBase>
+import Icon from './ActionButtonIcon';
+import Text from './ActionButtonText';
+
+const DashboardLayoutActionButton = ({ classes, className, children }) => (
+  <ButtonBase className={cn(classes.root, className)}>{children}</ButtonBase>
 );
+
+DashboardLayoutActionButton.Icon = Icon;
+DashboardLayoutActionButton.Text = Text;
 
 DashboardLayoutActionButton.defaultProps = {
   className: null,
-  Icon: null,
 };
 
 DashboardLayoutActionButton.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
-  Icon: PropTypes.func,
-  text: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default withStyles(
@@ -38,16 +37,12 @@ export default withStyles(
       color: theme.palette.common.white,
       fontSize: '14px',
       justifyContent: 'flex-start',
-    },
-    icon: {
-      fontSize: '32px',
-      marginRight: '15px',
-    },
-    text: {
-      textAlign: 'left',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
+      '&>:first-child': {
+        marginLeft: 0,
+      },
+      '&>:nth-child(2)': {
+        marginRight: 0,
+      },
     },
   }),
   { name: 'DashboardLayoutActionButton' },

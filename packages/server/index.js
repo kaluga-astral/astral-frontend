@@ -75,6 +75,10 @@ const makeServer = () => {
 
   if (process.env.NODE_ENV === 'production') {
     server.use(logger('combined'));
+
+    server.get('*', (req, res) => {
+      res.sendfile(path.resolve(appDist, 'index.html'));
+    });
   }
 
   return server;

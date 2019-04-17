@@ -1,7 +1,7 @@
 import mustBeINN from './mustBeINN';
 
 describe('`mustBeINN` validation rule', () => {
-  test('should return an error object if value is invalid', () => {
+  test('should return an error message if value is invalid', () => {
     expect(mustBeINN(222222222222)).toEqual('Неверный ИНН. Введите корректный ИНН.');
     expect(mustBeINN(2222222222)).toEqual('Неверный ИНН. Введите корректный ИНН.');
     expect(mustBeINN(123123123123)).toEqual('Неверный ИНН. Введите корректный ИНН.');

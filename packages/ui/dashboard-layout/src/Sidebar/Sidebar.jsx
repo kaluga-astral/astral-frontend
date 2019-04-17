@@ -24,6 +24,7 @@ export default withStyles(
       flexDirection: 'column',
       flexShrink: 0,
       width: '260px',
+      height: '100%',
       backgroundColor: theme.palette.background.paper,
     },
   }),

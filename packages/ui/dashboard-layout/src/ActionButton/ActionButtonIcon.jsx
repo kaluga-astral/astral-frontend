@@ -3,27 +3,26 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutContainer = ({ classes, className, children }) => (
+const DashboardLayoutActionButtonIcon = ({ classes, className, children }) => (
   <div className={cn(classes.root, className)}>{children}</div>
 );
 
-DashboardLayoutContainer.defaultProps = {
+DashboardLayoutActionButtonIcon.defaultProps = {
   className: null,
 };
 
-DashboardLayoutContainer.propTypes = {
+DashboardLayoutActionButtonIcon.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.shape({}).isRequired,
 };
 
 export default withStyles(
   () => ({
     root: {
-      display: 'flex',
-      flexGrow: 1,
-      overflow: 'hidden',
+      fontSize: '32px',
+      margin: '0 15px',
     },
   }),
-  { name: 'DashboardLayoutContainer' },
-)(DashboardLayoutContainer);
+  { name: 'DashboardLayoutActionButtonIcon' },
+)(DashboardLayoutActionButtonIcon);

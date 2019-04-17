@@ -26,11 +26,9 @@ DashboardLayoutCurrentUserInfo.propTypes = {
 
 export default withStyles(
   () => ({
-    avatarWrapper: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: '24px 0 16px 0',
-      margin: '0 68px 0 24px',
+    root: {
+      margin: 'auto 15px 0',
+      padding: '15px 0',
       borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
     },
     avatarImage: {

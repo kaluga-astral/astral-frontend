@@ -7,13 +7,14 @@ import { withStyles } from '@astral-frontend/styles';
 const DashboardLayoutSidebarNavDropdownToggler = ({
   classes,
   className,
-  // activeClassName,
+  expanded,
+  activeClassName,
   children,
   onToggle,
 }) => (
   <ButtonBase
     className={cn(classes.root, className, {
-      // [activeClassName]: expanded,
+      [activeClassName]: expanded,
     })}
     onClick={onToggle}
   >
@@ -21,9 +22,9 @@ const DashboardLayoutSidebarNavDropdownToggler = ({
     <svg
       className={classes.expandIcon}
       viewBox="0 0 24 24"
-      // style={{
-      //   transform: expanded ? 'rotateZ(90deg)' : null,
-      // }}
+      style={{
+        transform: expanded ? 'rotateZ(90deg)' : null,
+      }}
     >
       <path d="M8.295 7.70503L12.875 12.295L8.295 16.885L9.705 18.295L15.705 12.295L9.705 6.29503L8.295 7.70503Z" />
     </svg>
@@ -32,13 +33,14 @@ const DashboardLayoutSidebarNavDropdownToggler = ({
 
 DashboardLayoutSidebarNavDropdownToggler.defaultProps = {
   className: null,
-  // activeClassName: null,
+  activeClassName: null,
 };
 
 DashboardLayoutSidebarNavDropdownToggler.propTypes = {
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
-  // activeClassName: PropTypes.string,
+  activeClassName: PropTypes.string,
+  expanded: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onToggle: PropTypes.func.isRequired,
 };
@@ -46,11 +48,11 @@ DashboardLayoutSidebarNavDropdownToggler.propTypes = {
 export default withStyles(
   () => ({
     root: {},
-    // content: {
-    //   display: 'flex',
-    //   flexGrow: 1,
-    //   marginRight: '10px',
-    // },
+    content: {
+      display: 'flex',
+      flexGrow: 1,
+      marginRight: '10px',
+    },
     expandIcon: {
       flexShrink: 0,
       width: '20px',
