@@ -3,10 +3,15 @@ import React from 'react';
 // import { mustBePassportSeries } from '@astral-frontend/validations';
 
 import TextField from '../TextField';
+import PassportIssuerIdFieldMask from './PassportIssuerIdFieldMask';
 
 const PassportIssuerIdField = props => (
   <TextField
     // validate={mustBePassportSeries}
+    parse={value => value.replace(/(-|\(|\)| )/g, '')}
+    InputProps={{
+      inputComponent: PassportIssuerIdFieldMask,
+    }}
     {...props}
   />
 );
