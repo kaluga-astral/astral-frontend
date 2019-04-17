@@ -14,7 +14,7 @@ DashboardLayoutActionButtonIcon.defaultProps = {
 DashboardLayoutActionButtonIcon.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
-  children: PropTypes.object.isRequired,
+  children: PropTypes.shape({}).isRequired,
 };
 
 export default withStyles(
