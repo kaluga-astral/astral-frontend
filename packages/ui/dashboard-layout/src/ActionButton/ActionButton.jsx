@@ -15,13 +15,13 @@ DashboardLayoutActionButton.Icon = Icon;
 DashboardLayoutActionButton.Text = Text;
 
 DashboardLayoutActionButton.defaultProps = {
-  className: null
+  className: null,
 };
 
 DashboardLayoutActionButton.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export default withStyles(
@@ -38,12 +38,12 @@ export default withStyles(
       fontSize: '14px',
       justifyContent: 'flex-start',
       '&>:first-child': {
-        marginLeft: 0
+        marginLeft: 0,
       },
       '&>:nth-child(2)': {
-        marginRight: 0
-      }
-    }
+        marginRight: 0,
+      },
+    },
   }),
-  { name: 'DashboardLayoutActionButton' }
+  { name: 'DashboardLayoutActionButton' },
 )(DashboardLayoutActionButton);
