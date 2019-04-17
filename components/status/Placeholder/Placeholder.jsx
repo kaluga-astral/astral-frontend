@@ -2,7 +2,6 @@ import { isFunction } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import ErrorBoundary from '../../ErrorBoundary';
 import DefaultLoadingState from './LoadingState';
 import DefaultFailureState from './FailureState';
 
@@ -16,7 +15,7 @@ const Placeholder = ({
   LoadingStateComponent,
   FailureStateComponent,
 }) => (
-  <ErrorBoundary>
+  <>
     {isFetching && !error && LoadingStateComponent && (
       <LoadingStateComponent
         className={className}
@@ -28,7 +27,7 @@ const Placeholder = ({
       <FailureStateComponent className={className} error={error} />
     )}
     {!isFetching && !error && isFunction(children) && children()}
-  </ErrorBoundary>
+  </>
 );
 
 Placeholder.defaultProps = {
