@@ -6,17 +6,23 @@ import { withStyles } from '@astral-frontend/styles';
 import ActionButton from '../ActionButton';
 
 const DashboardLayoutContentNav = ({
-  classes, className, actionTitle, actionIcon, children,
+  classes,
+  className,
+  actionTitle,
+  actionIcon: ActionIcon,
+  children,
 }) => (
   <nav className={cn(classes.root, className)}>
     <div className={classes.wrapper}>{children}</div>
-    {actionTitle && (
-      <ActionButton
-        iconPosition="right"
-        text={actionTitle}
-        Icon={actionIcon}
-        className={classes.action}
-      />
+    {(actionTitle || ActionIcon) && (
+      <ActionButton className={classes.action}>
+        {actionTitle && <ActionButton.Text>{actionTitle}</ActionButton.Text>}
+        {ActionIcon && (
+          <ActionButton.Icon>
+            <ActionIcon />
+          </ActionButton.Icon>
+        )}
+      </ActionButton>
     )}
   </nav>
 );

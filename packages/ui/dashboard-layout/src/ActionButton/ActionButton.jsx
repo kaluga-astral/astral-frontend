@@ -4,31 +4,24 @@ import React from 'react';
 import { ButtonBase } from '@astral-frontend/components';
 import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutActionButton = ({
-  classes, className, Icon, iconPosition, text,
-}) => (
-  <ButtonBase
-    className={cn(classes.root, className, { [classes.rootReversed]: iconPosition === 'right' })}
-  >
-    {Icon && (
-      <Icon className={cn(classes.icon, { [classes.iconReversed]: iconPosition === 'right' })} />
-    )}
-    <div className={classes.text}>{text}</div>
-  </ButtonBase>
+import Icon from './ActionButtonIcon';
+import Text from './ActionButtonText';
+
+const DashboardLayoutActionButton = ({ classes, className, children }) => (
+  <ButtonBase className={cn(classes.root, className)}>{children}</ButtonBase>
 );
 
+DashboardLayoutActionButton.Icon = Icon;
+DashboardLayoutActionButton.Text = Text;
+
 DashboardLayoutActionButton.defaultProps = {
-  className: null,
-  Icon: null,
-  iconPosition: 'left',
+  className: null
 };
 
 DashboardLayoutActionButton.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
-  Icon: PropTypes.func,
-  iconPosition: PropTypes.oneOf(['left', 'right']),
-  text: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default withStyles(
@@ -44,24 +37,13 @@ export default withStyles(
       color: theme.palette.common.white,
       fontSize: '14px',
       justifyContent: 'flex-start',
-    },
-    rootReversed: {
-      flexDirection: 'row-reverse',
-    },
-    icon: {
-      fontSize: '32px',
-      marginRight: '15px',
-    },
-    iconReversed: {
-      margin: 0,
-      marginLeft: '15px',
-    },
-    text: {
-      textAlign: 'left',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
-    },
+      '&>:first-child': {
+        marginLeft: 0
+      },
+      '&>:nth-child(2)': {
+        marginRight: 0
+      }
+    }
   }),
-  { name: 'DashboardLayoutActionButton' },
+  { name: 'DashboardLayoutActionButton' }
 )(DashboardLayoutActionButton);
