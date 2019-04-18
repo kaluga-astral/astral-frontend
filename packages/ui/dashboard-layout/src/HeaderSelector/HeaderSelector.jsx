@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { withStyles } from '@astral-frontend/styles';
 import {
-  CompanyIcon,
-  CompanyListIcon,
-  ArrayIcon,
+  OrganizationIcon,
+  OrganizationListIcon,
+  ArrowIcon,
 } from '@astral-frontend/icons';
 
 import {
@@ -28,13 +28,12 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
     <div className={cn(classes.selectorWrapper, className)}>
       <div style={{ maxWidth: '160px' }}>{value}</div>
       <Avatar className={cn(classes.companyAvatar, className)}>
-        <CompanyListIcon
+        <OrganizationListIcon
           className={cn(classes.companyListIcon, className)}
           viewBox="0 0 16 16"
         />
       </Avatar>
-      <ArrayIcon
-        aria-owns={anchorEl ? 'simple-menu' : undefined}
+      <ArrowIcon
         aria-haspopup="true"
         className={
           !open
@@ -48,12 +47,7 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
         }}
       />
       {COMPANYS.length > 1 ? (
-        <Popper
-          id={open ? 'simple-popper' : null}
-          open={open}
-          anchorEl={anchorEl}
-          transition
-        >
+        <Popper open={open} anchorEl={anchorEl} transition>
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={350}>
               <Paper className={cn(classes.popper, className)}>
@@ -69,7 +63,7 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
                     <div
                       className={cn(classes.popperContentCompanys, className)}
                     >
-                      <CompanyIcon
+                      <OrganizationIcon
                         className={cn(classes.popperContentIcon, className)}
                         viewBox="0 0 20 18"
                       />
@@ -91,7 +85,7 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
                     <div
                       className={cn(classes.popperContentCompanys, className)}
                     >
-                      <CompanyIcon
+                      <OrganizationIcon
                         className={cn(classes.popperContentIcon, className)}
                         viewBox="0 0 20 18"
                       />
@@ -113,7 +107,7 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
                     <div
                       className={cn(classes.popperContentCompanys, className)}
                     >
-                      <CompanyIcon
+                      <OrganizationIcon
                         className={cn(classes.popperContentIcon, className)}
                         viewBox="0 0 20 18"
                       />
@@ -141,12 +135,7 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
           )}
         </Popper>
       ) : (
-        <Popper
-          id={open ? 'simple-popper' : null}
-          open={open}
-          anchorEl={anchorEl}
-          transition
-        >
+        <Popper open={open} anchorEl={anchorEl} transition>
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={350}>
               <Paper
@@ -156,7 +145,7 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
                 }}
               >
                 <div className={cn(classes.emptyPopperContent, className)}>
-                  <CompanyIcon
+                  <OrganizationIcon
                     className={cn(classes.emptyPopperContentIcon, className)}
                     viewBox="0 0 19 19"
                   />

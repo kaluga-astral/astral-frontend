@@ -8,7 +8,7 @@ import { Avatar } from '@astral-frontend/core';
 
 const DashboardLayoutCurrentUserInfo = ({ classes, className }) => (
   <div>
-    <div className={cn(classes.avatarWrapper, className)}>
+    <div className={cn(classes.root, className)}>
       <Avatar className={cn(classes.avatarImage, className)}>TT</Avatar>
       <div className={cn(classes.avatarLabel, className)}>Тестов Тест</div>
     </div>
@@ -27,6 +27,8 @@ DashboardLayoutCurrentUserInfo.propTypes = {
 export default withStyles(
   () => ({
     root: {
+      display: 'flex',
+      alignItems: 'center',
       margin: 'auto 15px 0',
       padding: '15px 0',
       borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
