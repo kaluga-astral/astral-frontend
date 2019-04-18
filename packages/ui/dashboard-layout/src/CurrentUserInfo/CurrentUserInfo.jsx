@@ -7,11 +7,9 @@ import { withStyles } from '@astral-frontend/styles';
 import { Avatar } from '@astral-frontend/core';
 
 const DashboardLayoutCurrentUserInfo = ({ classes, className }) => (
-  <div>
-    <div className={cn(classes.root, className)}>
-      <Avatar className={cn(classes.avatarImage, className)}>TT</Avatar>
-      <div className={cn(classes.avatarLabel, className)}>Тестов Тест</div>
-    </div>
+  <div className={cn(classes.root, className)}>
+    <Avatar className={cn(classes.avatar, className)}>TT</Avatar>
+    <div className={cn(classes.label, className)}>Тестов Тест</div>
   </div>
 );
 
@@ -29,15 +27,15 @@ export default withStyles(
     root: {
       display: 'flex',
       alignItems: 'center',
-      margin: 'auto 15px 0',
+      margin: 'auto 15px 0px 15px',
       padding: '15px 0',
       borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
     },
-    avatarImage: {
+    avatar: {
       color: '#fff',
       backgroundColor: '#4E30C7',
     },
-    avatarLabel: {
+    label: {
       marginLeft: '5px',
       color: '#072D57',
       fontSize: '14px',

@@ -25,7 +25,7 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
   const [value, setValue] = useState(COMPANYS[0]);
 
   return (
-    <div className={cn(classes.selectorWrapper, className)}>
+    <div className={cn(classes.root, className)}>
       <div style={{ maxWidth: '160px' }}>{value}</div>
       <Avatar className={cn(classes.companyAvatar, className)}>
         <OrganizationListIcon
@@ -171,7 +171,7 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
 
 export default withStyles(
   () => ({
-    selectorWrapper: {
+    root: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
