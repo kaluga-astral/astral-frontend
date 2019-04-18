@@ -1,10 +1,8 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
-
-import { Avatar } from '@astral-frontend/core';
+import { Avatar } from '@astral-frontend/components';
 
 const DashboardLayoutCurrentUserInfo = ({ classes, className }) => (
   <div className={cn(classes.root, className)}>
@@ -23,7 +21,7 @@ DashboardLayoutCurrentUserInfo.propTypes = {
 };
 
 export default withStyles(
-  () => ({
+  theme => ({
     root: {
       display: 'flex',
       alignItems: 'center',
@@ -33,11 +31,11 @@ export default withStyles(
     },
     avatar: {
       color: '#fff',
-      backgroundColor: '#4E30C7',
+      backgroundColor: theme.palette.primary.dark,
     },
     label: {
       marginLeft: '5px',
-      color: '#072D57',
+      color: theme.palette.text.primary.main,
       fontSize: '14px',
     },
   }),

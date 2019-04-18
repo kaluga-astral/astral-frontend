@@ -1,4 +1,5 @@
 export { default as AstralSquareLogo } from './AstralSquareLogo';
+export { default as Avatar } from './Avatar';
 export { default as BugsnagProvider } from './BugsnagProvider';
 export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
