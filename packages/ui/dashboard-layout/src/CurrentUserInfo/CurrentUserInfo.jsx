@@ -4,13 +4,12 @@ import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 import { Avatar } from '@astral-frontend/components';
 
-const DashboardLayoutCurrentUserInfo = ({ classes, className }) => (
+const DashboardLayoutCurrentUserInfo = ({ classes, className, ...props }) => (
   <div className={cn(classes.root, className)}>
-    <Avatar className={cn(classes.avatar, className)}>TT</Avatar>
-    <div className={cn(classes.label, className)}>Тестов Тест</div>
+    <Avatar className={cn(classes.avatar, className)}>{props.avatarAlt}</Avatar>
+    <div className={cn(classes.label, className)}>{props.userName}</div>
   </div>
 );
-
 DashboardLayoutCurrentUserInfo.defaultProps = {
   className: null,
 };
@@ -18,6 +17,8 @@ DashboardLayoutCurrentUserInfo.defaultProps = {
 DashboardLayoutCurrentUserInfo.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
+  avatarAlt: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
 };
 
 export default withStyles(
