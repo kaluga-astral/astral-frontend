@@ -31,7 +31,7 @@ export default withStyles(
       alignItems: 'center',
       flexShrink: 0,
       height: '65px',
-      padding: '10px 20px',
+      padding: '0 20px',
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
       fontSize: '14px',
