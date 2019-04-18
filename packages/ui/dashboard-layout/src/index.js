@@ -4,7 +4,7 @@ export { default as ContentNav } from './ContentNav';
 export { default as CurrentUserInfo } from './CurrentUserInfo';
 export { default as Header } from './Header';
 export { default as HeaderSearch } from './HeaderSearch';
-export { default as HeaderSelector } from './HeaderSelector';
+export { default as OrganizationSelector } from './OrganizationSelector';
 export { default as Layout } from './Layout';
 export { default as Main } from './Main';
 export { default as MainModal } from './MainModal';

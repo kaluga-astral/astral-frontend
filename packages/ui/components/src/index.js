@@ -8,6 +8,8 @@ export { default as Collapse } from './Collapse';
 export { default as ContentState } from './ContentState';
 export { default as Dialog } from './Dialog';
 export { default as DialogContent } from './DialogContent';
+export { default as Fade } from './Fade';
+export { default as Popper } from './Popper';
 export { default as Paper } from './Paper';
 export { default as Placeholder } from './Placeholder';
 export { default as Radio } from './Radio';

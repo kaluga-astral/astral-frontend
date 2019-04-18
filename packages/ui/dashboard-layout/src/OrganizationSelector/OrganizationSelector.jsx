@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -10,8 +9,12 @@ import {
 } from '@astral-frontend/icons';
 
 import {
- Avatar, Popper, Paper, Fade, MenuItem 
-} from '@astral-frontend/core';
+  Avatar,
+  Popper,
+  Paper,
+  Fade,
+  MenuItem,
+} from '@astral-frontend/components';
 
 const COMPANYS = [
   'ОАО “Фантики и Ребята”',
