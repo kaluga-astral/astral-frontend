@@ -33,7 +33,6 @@ export default withStyles(
       display: 'flex',
       alignItems: 'center',
       flexShrink: 0,
-      width: '260px',
       height: '75px',
       padding: '0 20px',
       color: theme.palette.primary.contrastText,

@@ -30,7 +30,6 @@ export default withStyles(
       display: 'flex',
       alignItems: 'center',
       flexShrink: 0,
-      width: '260px',
       height: '65px',
       padding: '10px 20px',
       backgroundColor: theme.palette.primary.main,
