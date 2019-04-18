@@ -22,17 +22,17 @@ const COMPANYS = [
   'ЗАО “Любители зимней рыбалки”',
 ];
 
-const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
+const DashboardLayoutOrganizationSelector = ({ classes, className }) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [value, setValue] = useState(COMPANYS[0]);
 
   return (
     <div className={cn(classes.root, className)}>
-      <div style={{ maxWidth: '160px' }}>{value}</div>
-      <Avatar className={cn(classes.companyAvatar, className)}>
+      <div className={cn(classes.organizationName, className)}>{value}</div>
+      <Avatar className={cn(classes.organizationAvatar, className)}>
         <OrganizationListIcon
-          className={cn(classes.companyListIcon, className)}
+          className={cn(classes.organizationListIcon, className)}
           viewBox="0 0 16 16"
         />
       </Avatar>
@@ -64,7 +64,10 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
                     }}
                   >
                     <div
-                      className={cn(classes.popperContentCompanys, className)}
+                      className={cn(
+                        classes.popperContentOrganizations,
+                        className,
+                      )}
                     >
                       <OrganizationIcon
                         className={cn(classes.popperContentIcon, className)}
@@ -86,7 +89,10 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
                     }}
                   >
                     <div
-                      className={cn(classes.popperContentCompanys, className)}
+                      className={cn(
+                        classes.popperContentOrganizations,
+                        className,
+                      )}
                     >
                       <OrganizationIcon
                         className={cn(classes.popperContentIcon, className)}
@@ -108,7 +114,10 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
                     }}
                   >
                     <div
-                      className={cn(classes.popperContentCompanys, className)}
+                      className={cn(
+                        classes.popperContentOrganizations,
+                        className,
+                      )}
                     >
                       <OrganizationIcon
                         className={cn(classes.popperContentIcon, className)}
@@ -121,7 +130,12 @@ const DashboardLayoutCurrentOrganizationSelector = ({ classes, className }) => {
                       </div>
                     </div>
                   </MenuItem>
-                  <div className={cn(classes.popperContentCompanys, className)}>
+                  <div
+                    className={cn(
+                      classes.popperContentOrganizations,
+                      className,
+                    )}
+                  >
                     <button
                       type="button"
                       className={cn(
@@ -180,19 +194,22 @@ export default withStyles(
       justifyContent: 'space-between',
       width: '270px',
     },
-    companyAvatar: {
+    organizationName: {
+      maxWidth: '160px',
+    },
+    organizationAvatar: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       color: '#fff',
       backgroundColor: '#4E30C7',
     },
-    companyLabel: {
+    organizationLabel: {
       marginLeft: '5px',
       color: '#072D57',
       fontSize: '14px',
     },
-    companyListIcon: {
+    organizationListIcon: {
       width: '16px',
       height: '16px',
     },
@@ -232,7 +249,7 @@ export default withStyles(
       width: '270px',
       height: '252px',
     },
-    popperContentCompanys: {
+    popperContentOrganizations: {
       display: 'flex',
     },
     popperContentMenuItem: {
@@ -280,13 +297,13 @@ export default withStyles(
     },
   }),
   { name: 'DashboardLayoutCurrentOrganizationSelector' },
-)(DashboardLayoutCurrentOrganizationSelector);
+)(DashboardLayoutOrganizationSelector);
 
-DashboardLayoutCurrentOrganizationSelector.defaultProps = {
+DashboardLayoutOrganizationSelector.defaultProps = {
   className: null,
 };
 
-DashboardLayoutCurrentOrganizationSelector.propTypes = {
+DashboardLayoutOrganizationSelector.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
 };
