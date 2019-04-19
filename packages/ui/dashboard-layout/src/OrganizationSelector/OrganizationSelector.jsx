@@ -16,16 +16,10 @@ import {
   MenuItem,
 } from '@astral-frontend/components';
 
-const COMPANYS = [
-  'ОАО “Фантики и Ребята”',
-  'ОАО “Компания друзей”',
-  'ЗАО “Любители зимней рыбалки”',
-];
-
-const DashboardLayoutOrganizationSelector = ({ classes, className }) => {
+const DashboardLayoutOrganizationSelector = ({ classes, className, items }) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [value, setValue] = useState(COMPANYS[0]);
+  const [value, setValue] = useState(items[0].name);
 
   return (
     <div className={cn(classes.root, className)}>
@@ -49,87 +43,41 @@ const DashboardLayoutOrganizationSelector = ({ classes, className }) => {
           setAnchorEl(e.target);
         }}
       />
-      {COMPANYS.length > 1 ? (
+      {items.length > 1 ? (
         <Popper open={open} anchorEl={anchorEl} transition>
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={350}>
               <Paper className={cn(classes.popper, className)}>
                 <div className={cn(classes.popperContent, className)}>
-                  <MenuItem
-                    className={cn(classes.popperContentMenuItem, className)}
-                    onClick={() => {
-                      setAnchorEl(null);
-                      setOpen(prevOpen => !prevOpen);
-                      setValue(COMPANYS[0]);
-                    }}
-                  >
-                    <div
-                      className={cn(
-                        classes.popperContentOrganizations,
-                        className,
-                      )}
+                  {items.map((item, index) => (
+                    <MenuItem
+                      className={cn(classes.popperContentMenuItem, className)}
+                      onClick={() => {
+                        setAnchorEl(null);
+                        setOpen(prevOpen => !prevOpen);
+                        setValue(item.name);
+                      }}
+                      key={index}
                     >
-                      <OrganizationIcon
-                        className={cn(classes.popperContentIcon, className)}
-                        viewBox="0 0 20 18"
-                      />
                       <div
-                        className={cn(classes.popperContentLabel, className)}
+                        className={cn(
+                          classes.popperContentOrganizations,
+                          className,
+                        )}
                       >
-                        {COMPANYS[0]}
+                        <OrganizationIcon
+                          className={cn(classes.popperContentIcon, className)}
+                          viewBox="0 0 20 18"
+                        />
+                        <div
+                          className={cn(classes.popperContentLabel, className)}
+                        >
+                          {item.name}
+                        </div>
                       </div>
-                    </div>
-                  </MenuItem>
-                  <MenuItem
-                    className={cn(classes.popperContentMenuItem, className)}
-                    onClick={() => {
-                      setAnchorEl(null);
-                      setOpen(prevOpen => !prevOpen);
-                      setValue(COMPANYS[1]);
-                    }}
-                  >
-                    <div
-                      className={cn(
-                        classes.popperContentOrganizations,
-                        className,
-                      )}
-                    >
-                      <OrganizationIcon
-                        className={cn(classes.popperContentIcon, className)}
-                        viewBox="0 0 20 18"
-                      />
-                      <div
-                        className={cn(classes.popperContentLabel, className)}
-                      >
-                        {COMPANYS[1]}
-                      </div>
-                    </div>
-                  </MenuItem>
-                  <MenuItem
-                    className={cn(classes.popperContentMenuItem, className)}
-                    onClick={() => {
-                      setAnchorEl(null);
-                      setOpen(prevOpen => !prevOpen);
-                      setValue(COMPANYS[2]);
-                    }}
-                  >
-                    <div
-                      className={cn(
-                        classes.popperContentOrganizations,
-                        className,
-                      )}
-                    >
-                      <OrganizationIcon
-                        className={cn(classes.popperContentIcon, className)}
-                        viewBox="0 0 20 18"
-                      />
-                      <div
-                        className={cn(classes.popperContentLabel, className)}
-                      >
-                        {COMPANYS[2]}
-                      </div>
-                    </div>
-                  </MenuItem>
+                    </MenuItem>
+                  ))}
+
                   <div
                     className={cn(
                       classes.popperContentOrganizations,
@@ -306,4 +254,5 @@ DashboardLayoutOrganizationSelector.defaultProps = {
 DashboardLayoutOrganizationSelector.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
