@@ -7,7 +7,6 @@ import {
   OrganizationListIcon,
   ArrowIcon,
 } from '@astral-frontend/icons';
-
 import {
   Avatar,
   Popper,
@@ -16,14 +15,20 @@ import {
   MenuItem,
 } from '@astral-frontend/components';
 
-const DashboardLayoutOrganizationSelector = ({ classes, className, items }) => {
+const DashboardLayoutOrganizationsSelector = ({
+  classes,
+  className,
+  items,
+}) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [value, setValue] = useState(items[0].name);
+  const [currentOrganization, setValue] = useState(items[0].name);
 
   return (
     <div className={cn(classes.root, className)}>
-      <div className={cn(classes.organizationName, className)}>{value}</div>
+      <div className={cn(classes.organizationName, className)}>
+        {currentOrganization}
+      </div>
       <Avatar className={cn(classes.organizationAvatar, className)}>
         <OrganizationListIcon
           className={cn(classes.organizationListIcon, className)}
@@ -245,13 +250,13 @@ export default withStyles(
     },
   }),
   { name: 'DashboardLayoutCurrentOrganizationSelector' },
-)(DashboardLayoutOrganizationSelector);
+)(DashboardLayoutOrganizationsSelector);
 
-DashboardLayoutOrganizationSelector.defaultProps = {
+DashboardLayoutOrganizationsSelector.defaultProps = {
   className: null,
 };
 
-DashboardLayoutOrganizationSelector.propTypes = {
+DashboardLayoutOrganizationsSelector.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
