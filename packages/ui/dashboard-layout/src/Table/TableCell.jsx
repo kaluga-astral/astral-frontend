@@ -36,6 +36,7 @@ export default withStyles(theme => ({
     wordBreak: 'break-all',
     [theme.breakpoints.down('xs')]: {
       minHeight: '30px',
+      padding: '5px 0',
     },
   },
 }))(TableCell);

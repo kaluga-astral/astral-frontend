@@ -25,7 +25,8 @@ export default withStyles(theme => ({
     gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
     columnGap: '15px',
     [theme.breakpoints.down('xs')]: {
-      gridTemplateColumns: '1fr !important',
+      display: 'flex',
+      flexDirection: 'column',
     },
   },
 }))(TableRow);
