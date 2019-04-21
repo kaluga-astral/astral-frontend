@@ -11,11 +11,11 @@ const astralEDOThemeOptions = {
       500: 'rgba(29, 63, 102, 0.45)',
       600: 'rgba(29, 63, 102, 0.62)',
     },
-    text: {
-      primary: {
-        main: '#072d57',
-      },
-    },
+    // text: {
+    //   primary: {
+    //     main: '#072d57',
+    //   },
+    // },
   },
 };
 
