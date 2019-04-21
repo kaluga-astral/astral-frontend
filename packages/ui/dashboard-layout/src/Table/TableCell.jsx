@@ -28,11 +28,12 @@ TableCell.propTypes = {
 
 export default withStyles(theme => ({
   root: {
-    wordBreak: 'break-all',
     display: 'flex',
-    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
     minHeight: '65px',
-    padding: '10px',
+    padding: '10px 0',
+    wordBreak: 'break-all',
     [theme.breakpoints.down('xs')]: {
       minHeight: '30px',
     },
