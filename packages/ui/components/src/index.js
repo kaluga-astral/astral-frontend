@@ -24,6 +24,7 @@ export { default as FormGridSection } from './FormGridSection';
 export { default as IconButton } from './IconButton';
 export { default as InputAdornment } from './InputAdornment';
 export { default as InputBase } from './InputBase';
+export { default as LinearProgress } from './LinearProgress';
 export { default as List } from './List';
 export { default as ListItem } from './ListItem';
 export { default as MenuItem } from './MenuItem';
