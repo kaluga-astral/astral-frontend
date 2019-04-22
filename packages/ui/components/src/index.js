@@ -11,6 +11,7 @@ export { default as Paper } from './Paper';
 export { default as Placeholder } from './Placeholder';
 export { default as Radio } from './Radio';
 export { default as RadioGroup } from './RadioGroup';
+export { default as RootRef } from './RootRef';
 export { default as Slide } from './Slide';
 export { default as Step } from './Step';
 export { default as StepLabel } from './StepLabel';
