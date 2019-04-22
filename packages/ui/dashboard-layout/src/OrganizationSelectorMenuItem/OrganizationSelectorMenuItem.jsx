@@ -6,12 +6,22 @@ import { MenuItem } from '@astral-frontend/components';
 import { OrganizationIcon } from '@astral-frontend/icons';
 import OrganizationSelectorAddButton from '../OrganizationSelectorAddButton/OrganizationSelectorAddButton';
 
-const OrganizationSelectorMenuItem = ({ classes, className, items }) => (
+const OrganizationSelectorMenuItem = ({
+  classes,
+  className,
+  items,
+  open,
+  currentOrg,
+}) => (
   <div className={cn(classes.popperContent, className)}>
     {items.map((item, index) => (
       <MenuItem
         className={cn(classes.popperContentMenuItem, className)}
         key={index}
+        onClick={() => {
+          open(false);
+          currentOrg(items[index].name);
+        }}
       >
         <div className={cn(classes.popperContentOrganizations, className)}>
           <OrganizationIcon
@@ -38,6 +48,8 @@ OrganizationSelectorMenuItem.propTypes = {
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  open: PropTypes.func.isRequired,
+  currentOrg: PropTypes.func.isRequired,
 };
 
 export default withStyles(

@@ -24,6 +24,7 @@ const DashboardLayoutOrganizationsSelector = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [currentItem, setItem] = useState(items[0].name);
 
   return (
     <div className={cn(classes.root, className)}>
@@ -35,7 +36,7 @@ const DashboardLayoutOrganizationsSelector = ({
         className={cn(classes.button, className)}
       >
         <div className={cn(classes.organizationName, className)}>
-          {items[0].name}
+          {currentItem}
         </div>
 
         <Avatar className={cn(classes.organizationAvatar, className)}>
@@ -60,7 +61,11 @@ const DashboardLayoutOrganizationsSelector = ({
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={350}>
               <Paper className={cn(classes.popper, className)}>
-                <OrganizationSelectorMenuItem items={items} open={setOpen} />
+                <OrganizationSelectorMenuItem
+                  items={items}
+                  open={setOpen}
+                  currentOrg={setItem}
+                />
               </Paper>
             </Fade>
           )}
