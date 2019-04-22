@@ -56,12 +56,7 @@ const DashboardLayoutOrganizationsSelector = ({
       </ButtonBase>
 
       {items.length > 1 ? (
-        <Popper
-          id={open ? 'simple-popper' : null}
-          open={open}
-          anchorEl={anchorEl}
-          transition
-        >
+        <Popper open={open} anchorEl={anchorEl} transition>
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={350}>
               <Paper className={cn(classes.popper, className)}>
