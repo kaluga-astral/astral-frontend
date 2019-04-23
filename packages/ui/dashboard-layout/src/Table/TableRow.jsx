@@ -28,5 +28,11 @@ export default withStyles(theme => ({
       display: 'flex',
       flexDirection: 'column',
     },
+    '&:hover': {
+      backgroundColor: '#f3f0fd',
+      '& *': {
+        color: theme.palette.primary.main,
+      },
+    },
   },
 }))(TableRow);
