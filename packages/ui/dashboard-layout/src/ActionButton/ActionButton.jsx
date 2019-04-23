@@ -7,13 +7,13 @@ import { withStyles } from '@astral-frontend/styles';
 import Icon from './ActionButtonIcon';
 import Text from './ActionButtonText';
 
-const DashboardLayoutActionButton = ({ classes, className, children }) => (
-  <ButtonBase className={cn(classes.root, className)}>{children}</ButtonBase>
+const DashboardLayoutActionButton = ({
+  classes, className, children, ...props
+}) => (
+  <ButtonBase className={cn(classes.root, className)} {...props}>
+    {children}
+  </ButtonBase>
 );
-
-DashboardLayoutActionButton.Icon = Icon;
-DashboardLayoutActionButton.Text = Text;
-
 DashboardLayoutActionButton.defaultProps = {
   className: null,
 };
@@ -23,6 +23,10 @@ DashboardLayoutActionButton.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
+
+DashboardLayoutActionButton.Icon = Icon;
+
+DashboardLayoutActionButton.Text = Text;
 
 export default withStyles(
   theme => ({
