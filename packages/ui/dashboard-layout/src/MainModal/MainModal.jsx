@@ -33,17 +33,14 @@ const DashboardLayoutMainModal = ({
   return (
     <Transition in={transitionIn} appear>
       {state => (
-        <div
-          className={cn(classes.root, className)}
-          style={{ ...defaultStyle, ...transitionStyles[state] }}
-        >
+        <div className={cn(classes.root)} style={{ ...defaultStyle, ...transitionStyles[state] }}>
           <div className={classes.header}>
             <IconButton className={classes.icon} onClick={handleBackButtonClick}>
               <BackIcon />
             </IconButton>
-            <h2>{title}</h2>
+            <h3>{title}</h3>
           </div>
-          {children}
+          <div className={cn(classes.container, className)}>{children}</div>
         </div>
       )}
     </Transition>
@@ -65,12 +62,11 @@ DashboardLayoutMainModal.propTypes = {
 export default withStyles(
   theme => ({
     root: {
-      position: 'absolute',
+      position: 'fixed',
       top: 0,
       height: '100%',
       width: '40%',
       minWidth: '550px',
-      padding: '25px',
       backgroundColor: theme.palette.background.paper,
       boxShadow: '0px 4px 56px rgba(0, 0, 0, 0.1)',
       borderTop: `1px solid ${theme.palette.grey[100]}`,
@@ -79,10 +75,15 @@ export default withStyles(
     header: {
       display: 'flex',
       alignItems: 'center',
+      padding: '25px 25px 0',
     },
     icon: {
       padding: 0,
       marginRight: '15px',
+    },
+    container: {
+      padding: '0 25px',
+      height: '100%',
     },
   }),
   { name: 'DashboardLayoutMainModal' },

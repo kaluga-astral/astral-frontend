@@ -9,8 +9,12 @@ import Row from './TableRow';
 import Cell from './TableCell';
 // import Footer from './TableFooter';
 
-const Table = ({ classes, className, children }) => (
-  <div className={cn(classes.root, className)}>{children}</div>
+const Table = ({
+  classes, className, children, ...props
+}) => (
+  <div {...props} className={cn(classes.root, className)}>
+    {children}
+  </div>
 );
 
 Table.Header = Header;

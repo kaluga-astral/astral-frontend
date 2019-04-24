@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-const TableRow = ({ classes, className, children }) => (
-  <div className={cn(classes.root, className)}>{children}</div>
+const TableRow = ({
+  classes, className, children, ...props
+}) => (
+  <div {...props} className={cn(classes.root, className)}>
+    {children}
+  </div>
 );
 
 TableRow.defaultProps = {
@@ -30,6 +34,7 @@ export default withStyles(theme => ({
     },
     '&:hover': {
       backgroundColor: '#f3f0fd',
+      borderLeft: `4px solid ${theme.palette.primary.main}`,
       '& *': {
         color: theme.palette.primary.main,
       },

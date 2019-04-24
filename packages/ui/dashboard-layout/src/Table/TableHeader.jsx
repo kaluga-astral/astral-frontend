@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-const TableHeader = ({ classes, className, children }) => (
-  <div className={cn(classes.root, className)}>{children}</div>
+const TableHeader = ({
+  classes, className, children, ...props
+}) => (
+  <div {...props} className={cn(classes.root, className)}>
+    {children}
+  </div>
 );
 
 TableHeader.defaultProps = {
