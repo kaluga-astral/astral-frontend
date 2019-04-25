@@ -14,6 +14,8 @@ import { withStyles } from '@astral-frontend/styles';
 
 import Item from './Item';
 
+const buttonRef = React.createRef();
+
 class DashboardLayoutCurrentUserInfo extends Component {
   state = {
     showMenu: false,
@@ -26,7 +28,7 @@ class DashboardLayoutCurrentUserInfo extends Component {
   };
 
   handleClickAwayListenerClickAway = (event) => {
-    if (this.anchorEl.contains(event.target)) {
+    if (buttonRef.current.contains(event.target)) {
       return;
     }
 
@@ -45,9 +47,7 @@ class DashboardLayoutCurrentUserInfo extends Component {
       <div className={cn(classes.root, className)}>
         <ButtonBase
           className={cn(classes.toggler)}
-          buttonRef={(node) => {
-            this.anchorEl = node;
-          }}
+          buttonRef={buttonRef}
           onClick={this.handleTogglerButtonClick}
         >
           <Avatar className={classes.avatar} src={avatarSrc} onClick={this.onPopoverToggle}>
@@ -57,7 +57,7 @@ class DashboardLayoutCurrentUserInfo extends Component {
             <div className={classes.userName}>{userName}</div>
           </div>
         </ButtonBase>
-        <Popper transition disablePortal open={showMenu} anchorEl={this.anchorEl}>
+        <Popper transition open={showMenu} anchorEl={buttonRef.current}>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
               <Paper className={classes.popperPaper}>

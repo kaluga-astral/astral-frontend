@@ -4,10 +4,7 @@ import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
 const DashboardLayoutPageTitle = ({
-  classes,
-  className,
-  children,
-  ...props
+  classes, className, children, ...props
 }) => (
   <h1 className={cn(classes.root, className)} {...props}>
     {children}
@@ -29,8 +26,8 @@ export default withStyles(
     root: {
       display: 'flex',
       alignItems: 'center',
-      padding: '0 15px',
-      margin: 0,
+      flexGrow: 1,
+      margin: '0 15px',
       height: '100%',
       fontSize: '18px',
     },
