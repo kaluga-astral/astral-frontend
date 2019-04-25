@@ -6,7 +6,7 @@ import TextField from '../TextField';
 
 const KPPField = props => (
   <TextField
-    inputProps={{ maxLength: 12 }}
+    inputProps={{ maxLength: 9 }}
     parse={value => value.replace(/[^\d]/g, '')}
     validate={mustBeKPP}
     {...props}
