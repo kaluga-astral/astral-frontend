@@ -25,6 +25,7 @@ TableRow.propTypes = {
 export default withStyles(theme => ({
   root: {
     display: 'grid',
+    borderLeft: '4px solid rgba(0, 0, 0, 0)',
     borderBottom: '1px solid rgba(29, 63, 102, 0.09)',
     gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
     columnGap: '15px',

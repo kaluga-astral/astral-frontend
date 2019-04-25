@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Field as FinalFormField } from 'react-final-form';
+import { OnChange } from 'react-final-form-listeners';
 import { TextField as MuiTextField } from '@astral-frontend/components';
 
 import { mustBePresent, composeValidations } from '@astral-frontend/validations';
@@ -23,6 +24,7 @@ const FormField = ({
   validate,
   validateFields,
   value,
+  onChange,
   // ======MUITextFieldProps=====
   ...MuiTextFieldProps
 }) => {
@@ -45,32 +47,39 @@ const FormField = ({
   };
 
   return (
-    <FinalFormField
-      allowNull={allowNull}
-      defaultValue={defaultValue}
-      format={format}
-      formatOnBlur={formatOnBlur}
-      initialValue={initialValue}
-      isEqual={isEqual}
-      name={name}
-      parse={parse}
-      render={({ input, meta }) => {
-        const error = meta.touched && !meta.valid;
-        const helperText = meta.error || meta.submitError;
+    <>
+      <FinalFormField
+        allowNull={allowNull}
+        defaultValue={defaultValue}
+        format={format}
+        formatOnBlur={formatOnBlur}
+        initialValue={initialValue}
+        isEqual={isEqual}
+        name={name}
+        parse={parse}
+        render={({ input, meta }) => {
+          const error = meta.touched && !meta.valid;
+          const helperText = meta.error || meta.submitError;
 
-        if (render) {
-          return render({ ...input, ...MuiTextFieldProps, error, helperText });
-        }
+          if (render) {
+            return render({ ...input, ...MuiTextFieldProps, error, helperText });
+          }
 
-        return (
-          <MuiTextField {...MuiTextFieldProps} {...input} error={error} helperText={helperText} />
-        );
-      }}
-      subscription={subscription}
-      validate={createValidationFunction()}
-      validateFields={validateFields}
-      value={value}
-    />
+          return (
+            <MuiTextField {...MuiTextFieldProps} {...input} error={error} helperText={helperText} />
+          );
+        }}
+        subscription={subscription}
+        validate={createValidationFunction()}
+        validateFields={validateFields}
+        value={value}
+      />
+      <OnChange name={name}>
+        {value => {
+          onChange && onChange(value);
+        }}
+      </OnChange>
+    </>
   );
 };
 
