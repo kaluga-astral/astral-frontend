@@ -31,5 +31,7 @@ export { default as ListItem } from './ListItem';
 export { default as MenuItem } from './MenuItem';
 export { default as SvgIcon } from './SvgIcon';
 export { default as Switch } from './Switch';
+export { default as Tab } from './Tab';  
+export { default as Tabs } from './Tabs';
 export { default as TextField } from './TextField';
 export { default as ThemeProvider } from './ThemeProvider';
