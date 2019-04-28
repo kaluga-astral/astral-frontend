@@ -14,7 +14,11 @@ const DashboardLayoutOrganizationSelectorItem = ({ classes, className, name }) =
 );
 
 export default withStyles({
-  root: {},
-  icon: {},
-  name: {},
+  root: {
+  },
+  avatar: {
+  },
+  icon: {
+    color: '#6746EB',
+  },
 })(DashboardLayoutOrganizationSelectorItem);

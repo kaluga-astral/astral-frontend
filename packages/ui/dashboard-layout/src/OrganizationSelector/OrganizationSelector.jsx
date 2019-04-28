@@ -4,8 +4,8 @@ import React from 'react';
 import {
   Popper, Grow, Paper, ClickAwayListener, MenuList,
 } from '@astral-frontend/components';
-import { withStyles } from '@astral-frontend/styles';
 
+import { withStyles } from '@astral-frontend/styles';
 import CurrentOrganization from './OrganizationSelectorCurrentOrganization';
 import OrganizationSelectorItem from './OrganizationSelectorItem';
 import OrganizationSelectorNotFoundPlaceholder from './OrganizationSelectorNotFoundPlaceholder';
@@ -57,8 +57,10 @@ DashboardLayoutOrganizationSelector.NotFoundPlaceholder = OrganizationSelectorNo
 
 export default withStyles({
   root: {
+    width: '269px',
+    height: '64px',
+    right: '4px',
     display: 'flex',
-    alignItems: 'center',
-    margin: '0 15px',
+    justifyContent: 'space-around',
   },
 })(DashboardLayoutOrganizationSelector);

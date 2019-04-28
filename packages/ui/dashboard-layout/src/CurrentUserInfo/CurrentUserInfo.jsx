@@ -92,12 +92,19 @@ DashboardLayoutCurrentUserInfo.propTypes = {
 export default withStyles(theme => ({
   root: {
     borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
+    width: '260px',
+    height: '80px',
+    display: 'flex',
+    flexDirection: 'center',
+    alignItems: 'center',
+
+    margin: '0 auto',
   },
   toggler: {
     display: 'flex',
-    justifyContent: 'flex-start',
+    // justifyContent: 'flex-start',
     width: '100%',
-    padding: '20px',
+    // padding: '20px',
     border: 0,
     background: 'inherit',
     cursor: 'pointer',
@@ -119,7 +126,7 @@ export default withStyles(theme => ({
   user: {
     textAlign: 'left',
     // TODO: вынести в palette
-    color: '#072d57',
+    // color: '#072d57',
   },
   userName: {
     fontWeight: 400,
