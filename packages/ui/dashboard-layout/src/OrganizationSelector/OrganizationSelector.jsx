@@ -11,6 +11,7 @@ import OrganizationSelectorItem from './OrganizationSelectorItem';
 import OrganizationSelectorNotFoundPlaceholder from './OrganizationSelectorNotFoundPlaceholder';
 
 const buttonRef = React.createRef();
+
 const DashboardLayoutOrganizationSelector = ({
   classes,
   className,
@@ -22,7 +23,6 @@ const DashboardLayoutOrganizationSelector = ({
   const handleTogglerButtonClick = () => {
     setOpen(prevValue => !prevValue);
   };
-
   const handleClickAwayListenerClickAway = (event) => {
     if (!buttonRef.current.contains(event.target)) {
       setOpen(false);
