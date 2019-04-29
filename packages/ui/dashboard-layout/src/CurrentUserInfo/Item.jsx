@@ -31,7 +31,6 @@ export default withStyles({
     marginBottom: '10px',
     height: 'auto',
     padding: '10px 15px',
-
   },
   icon: {
     display: 'flex',

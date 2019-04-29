@@ -12,9 +12,13 @@ const DashboardLayoutOrganizationSelectorItem = ({ classes, className, name }) =
   </MenuItem>
 );
 
+DashboardLayoutOrganizationSelectorItem.defaultProps = {
+  className: null,
+};
+
 DashboardLayoutOrganizationSelectorItem.propTypes = {
   classes: PropTypes.shape().isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   name: PropTypes.string.isRequired,
 };
 

@@ -23,12 +23,16 @@ const DashboardLayoutOrganizationSelectorCurrentOrganization = ({
   </ButtonBase>
 );
 
-DashboardLayoutOrganizationSelectorCurrentOrganization.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  className: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+DashboardLayoutOrganizationSelectorCurrentOrganization.defaultProps = {
+  className: null,
 };
 
+
+DashboardLayoutOrganizationSelectorCurrentOrganization.propTypes = {
+  classes: PropTypes.shape().isRequired,
+  className: PropTypes.string,
+  name: PropTypes.string.isRequired,
+};
 
 export default withStyles({
   root: {

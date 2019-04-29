@@ -4,7 +4,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@astral-frontend/styles';
 
-// FIXME: описать PropTypes и удалить eslint-disable react/prop-types
 const OrganizationSelectorNotFoundPlaceholder = ({
   classes,
   className,
@@ -16,10 +15,13 @@ const OrganizationSelectorNotFoundPlaceholder = ({
     <Link className={classes.link} to={addLinkHref}>добавить огранизацию</Link>
   </div>
 );
+OrganizationSelectorNotFoundPlaceholder.defaultProps = {
+  className: null,
+};
 
 OrganizationSelectorNotFoundPlaceholder.propTypes = {
   classes: PropTypes.shape().isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   name: PropTypes.string.isRequired,
   addLinkHref: PropTypes.string.isRequired,
 };

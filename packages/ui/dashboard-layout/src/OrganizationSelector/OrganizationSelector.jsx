@@ -11,7 +11,6 @@ import OrganizationSelectorItem from './OrganizationSelectorItem';
 import OrganizationSelectorNotFoundPlaceholder from './OrganizationSelectorNotFoundPlaceholder';
 
 const buttonRef = React.createRef();
-
 const DashboardLayoutOrganizationSelector = ({
   classes,
   className,
@@ -23,7 +22,6 @@ const DashboardLayoutOrganizationSelector = ({
   const handleTogglerButtonClick = () => {
     setOpen(prevValue => !prevValue);
   };
-
 
   const handleClickAwayListenerClickAway = (event) => {
     if (!buttonRef.current.contains(event.target)) {
@@ -52,10 +50,13 @@ const DashboardLayoutOrganizationSelector = ({
     </div>
   );
 };
-// Валидация PropTypes
+DashboardLayoutOrganizationSelector.defaultProps = {
+  className: null,
+};
+
 DashboardLayoutOrganizationSelector.propTypes = {
   classes: PropTypes.shape().isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
   currentOrganization: PropTypes.string.isRequired,
   NotFoundPlaceholder: PropTypes.oneOfType([
