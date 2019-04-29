@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 import {
   Popper, Grow, Paper, ClickAwayListener, MenuList,
@@ -12,7 +12,6 @@ import OrganizationSelectorNotFoundPlaceholder from './OrganizationSelectorNotFo
 
 const buttonRef = React.createRef();
 
-// FIXME: описать PropTypes и удалить eslint-disable react/prop-types
 const DashboardLayoutOrganizationSelector = ({
   classes,
   className,
@@ -24,6 +23,8 @@ const DashboardLayoutOrganizationSelector = ({
   const handleTogglerButtonClick = () => {
     setOpen(prevValue => !prevValue);
   };
+
+
   const handleClickAwayListenerClickAway = (event) => {
     if (!buttonRef.current.contains(event.target)) {
       setOpen(false);
@@ -50,6 +51,18 @@ const DashboardLayoutOrganizationSelector = ({
       </Popper>
     </div>
   );
+};
+// Валидация PropTypes
+DashboardLayoutOrganizationSelector.propTypes = {
+  classes: PropTypes.shape().isRequired,
+  className: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  currentOrganization: PropTypes.string.isRequired,
+  NotFoundPlaceholder: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.object.isRequired,
+    PropTypes.func.isRequired,
+  ]).isRequired,
 };
 
 DashboardLayoutOrganizationSelector.Item = OrganizationSelectorItem;

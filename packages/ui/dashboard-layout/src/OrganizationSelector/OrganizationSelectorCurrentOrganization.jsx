@@ -1,11 +1,10 @@
-/* eslint-disable react/prop-types */
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { ButtonBase, Avatar, SvgIcon } from '@astral-frontend/components';
 import { withStyles } from '@astral-frontend/styles';
 import { ArrowIcon } from '@astral-frontend/icons';
 
-// FIXME: описать PropTypes и удалить eslint-disable react/prop-types
 const DashboardLayoutOrganizationSelectorCurrentOrganization = ({
   classes,
   className,
@@ -23,6 +22,13 @@ const DashboardLayoutOrganizationSelectorCurrentOrganization = ({
 
   </ButtonBase>
 );
+
+DashboardLayoutOrganizationSelectorCurrentOrganization.propTypes = {
+  classes: PropTypes.shape().isRequired,
+  className: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
 
 export default withStyles({
   root: {
