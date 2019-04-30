@@ -1,14 +1,25 @@
 import mustBeOKPO from './mustBeOKPO';
 
-describe('`mustBeOKPO ` validation rule', () => {
-  test('should return an error object if value is invalid', () => {
-    expect(mustBeOKPO(1515151515151515)).toEqual('Введите корректный ОКПО.');
-    expect(mustBeOKPO(999999999)).toEqual('Введите корректный ОКПО.');
-  });
+describe('mustBeOKPO', () => {
+  it('должна возвращать сообщение об ошибке если value < 8 символов', () => {
+    const value = new Array(7).fill('1').join();
 
-  test('should return empty object if data is valid', () => {
-    expect(mustBeOKPO(60419202)).toEqual(null);
-    expect(mustBeOKPO('47296611')).toEqual(null);
-    // expect(mustBeOKPO("03146721980003")).toEqual(null);
+    expect(mustBeOKPO(value)).toEqual('Неверный ОКПО. Введите корректный ОКПО.');
+  });
+  it('должна возвращать сообщение об ошибке если value > 8 символов и value < 10 символов', () => {
+    const value = new Array(9).fill('1').join();
+
+    expect(mustBeOKPO(value)).toEqual('Неверный ОКПО. Введите корректный ОКПО.');
+  });
+  it('должна возвращать сообщение об ошибке если value > 10 символов', () => {
+    const value = new Array(11).fill('1').join();
+
+    expect(mustBeOKPO(value)).toEqual('Неверный ОКПО. Введите корректный ОКПО.');
+  });
+  it('должна возвращать null если value является валидным ОКПО ЮЛ', () => {
+    expect(mustBeOKPO('48357148')).toEqual(null);
+  });
+  it('должна возвращать null если value является валидным ОКПО ИП', () => {
+    expect(mustBeOKPO('0191592889')).toEqual(null);
   });
 });
