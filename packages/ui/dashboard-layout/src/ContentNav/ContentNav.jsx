@@ -26,11 +26,12 @@ DashboardLayoutContentNav.propTypes = {
 };
 
 export default withStyles(
-  () => ({
+  theme => ({
     root: {
-      height: '65px',
-      backgroundColor: 'white',
       display: 'flex',
+      height: '65px',
+      backgroundColor: theme.palette.common.white,
+      borderTop: '1px solid rgba(29, 63, 102, 0.09)',
     },
   }),
   { name: 'DashboardLayoutContent' },

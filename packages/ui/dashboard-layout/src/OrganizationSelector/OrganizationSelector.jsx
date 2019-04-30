@@ -55,10 +55,10 @@ DashboardLayoutOrganizationSelector.defaultProps = {
 };
 
 DashboardLayoutOrganizationSelector.propTypes = {
-  classes: PropTypes.shape().isRequired,
+  classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  currentOrganization: PropTypes.string.isRequired,
+  currentOrganization: PropTypes.shape({}).isRequired,
   NotFoundPlaceholder: PropTypes.oneOfType([
     PropTypes.string.isRequired,
     PropTypes.object.isRequired,

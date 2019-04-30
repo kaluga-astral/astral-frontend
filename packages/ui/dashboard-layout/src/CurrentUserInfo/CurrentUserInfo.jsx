@@ -82,25 +82,12 @@ export default withStyles(theme => ({
   root: {
     borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
     width: '260px',
-    height: '80px',
-    display: 'flex',
-    flexDirection: 'center',
-    alignItems: 'center',
-    margin: '0 auto',
   },
   toggler: {
-    display: 'flex',
+    justifyContent: 'left',
     width: '100%',
     height: '100%',
-    border: 0,
-    background: 'inherit',
-    cursor: 'pointer',
-    '&:hover': {
-      background: 'rgba(10, 144, 237, 0.02)',
-    },
-    '&:focus': {
-      outline: 'none',
-    },
+    padding: '20px',
   },
   avatar: {
     width: '40px',
