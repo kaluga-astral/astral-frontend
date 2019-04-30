@@ -1,18 +1,34 @@
-// import cn from 'classnames';
+import cn from 'classnames';
 import PropTypes from 'prop-types';
-// import React from 'react';
+import React from 'react';
+import { MenuItem } from '@astral-frontend/components';
 import { withStyles } from '@astral-frontend/styles';
 
-const DashboardSidebarProfileItem = () => null;
+const DashboardSidebarProfileItem = ({
+  classes, className, Icon, text, ...props
+}) => (
+  <MenuItem className={cn(classes.root, className)} {...props}>
+    <div className={classes.icon}>
+      <Icon />
+    </div>
+    <div className={classes.text}>{text}</div>
+  </MenuItem>
+);
+
+DashboardSidebarProfileItem.defaultProps = {
+  className: null,
+};
 
 DashboardSidebarProfileItem.propTypes = {
   classes: PropTypes.shape().isRequired,
-  icon: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  Icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
 };
 
 export default withStyles({
   root: {
+    marginBottom: '10px',
     height: 'auto',
     padding: '10px 15px',
   },

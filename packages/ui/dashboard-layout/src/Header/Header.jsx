@@ -21,6 +21,7 @@ export default withStyles(
   theme => ({
     root: {
       display: 'flex',
+      alignItems: 'center',
       height: '75px',
       flexShrink: 0,
       backgroundColor: theme.palette.background.paper,

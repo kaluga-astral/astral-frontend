@@ -8,6 +8,7 @@ export { default as mustBePhone } from './mustBePhone';
 export { default as mustBeOGRN } from './mustBeOGRN';
 export { default as mustBePresent } from './mustBePresent';
 export { default as mustBeOKPO } from './mustBeOKPO';
+export { default as mustBePassportIssuerId } from './mustBePassportIssuerId';
 export { default as mustBePassportNumber } from './mustBePassportNumber';
 export { default as mustBePassportSeries } from './mustBePassportSeries';
 export { default as mustBeRegNumberFSS } from './mustBeRegNumberFSS';

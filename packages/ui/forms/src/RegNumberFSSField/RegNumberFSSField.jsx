@@ -6,6 +6,7 @@ import TextField from '../TextField';
 
 const RegNumberFssField = props => (
   <TextField
+    inputProps={{ maxLength: 15 }}
     parse={value => value.replace(/(-|\(|\)| )/g, '')}
     validate={mustBeRegNumberFSS}
     {...props}

@@ -39,6 +39,7 @@ DashboardLayoutSidebarNav.propTypes = {
 export default withStyles(
   () => ({
     root: {
+      flexGrow: 1,
       padding: 0,
       overflowY: 'scroll',
       '&::-webkit-scrollbar': {

@@ -43,7 +43,7 @@ export default withStyles(
       display: 'flex',
       alignItems: 'center',
       width: '100%',
-      padding: '15px 20px',
+      padding: '20px',
       lineHeight: '20px',
       textAlign: 'left',
       textDecoration: 'none',
