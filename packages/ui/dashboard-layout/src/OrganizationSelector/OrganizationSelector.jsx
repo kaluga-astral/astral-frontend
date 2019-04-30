@@ -71,10 +71,7 @@ DashboardLayoutOrganizationSelector.NotFoundPlaceholder = OrganizationSelectorNo
 
 export default withStyles({
   root: {
-    width: '269px',
-    height: '64px',
-    right: '4px',
     display: 'flex',
-    justifyContent: 'space-around',
+    height: '100%',
   },
 })(DashboardLayoutOrganizationSelector);
