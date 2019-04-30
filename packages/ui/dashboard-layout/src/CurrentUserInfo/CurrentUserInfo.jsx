@@ -62,63 +62,6 @@ const DashboardLayoutCurrentUserInfo = ({
   );
 };
 
-// class DashboardLayoutCurrentUserInfo extends Component {
-//   state = {
-//     showMenu: false,
-//   };
-
-//   handleTogglerButtonClick = () => {
-//     this.setState(prevState => ({
-//       showMenu: !prevState.showMenu,
-//     }));
-//   };
-
-//   handleClickAwayListenerClickAway = (event) => {
-//     if (buttonRef.current.contains(event.target)) {
-//       return;
-//     }
-
-//     this.setState({
-//       showMenu: false,
-//     });
-//   };
-
-//   render = () => {
-//     const {
-//       classes, className, children, avatarSrc, avatarAlt, userName,
-//     } = this.props;
-//     const { showMenu } = this.state;
-
-//     return (
-//       <div className={cn(classes.root, className)}>
-//         <ButtonBase
-//           className={cn(classes.toggler)}
-//           buttonRef={buttonRef}
-//           onClick={this.handleTogglerButtonClick}
-//         >
-//           <Avatar className={classes.avatar} src={avatarSrc} onClick={this.onPopoverToggle}>
-//             {avatarAlt}
-//           </Avatar>
-//           <div className={classes.user}>
-//             <div className={classes.userName}>{userName}</div>
-//           </div>
-//         </ButtonBase>
-//         <Popper transition open={showMenu} anchorEl={buttonRef.current}>
-//           {({ TransitionProps }) => (
-//             <Grow {...TransitionProps}>
-//               <Paper className={classes.popperPaper}>
-//                 <ClickAwayListener onClickAway={this.handleClickAwayListenerClickAway}>
-//                   <MenuList disablePadding>{children}</MenuList>
-//                 </ClickAwayListener>
-//               </Paper>
-//             </Grow>
-//           )}
-//         </Popper>
-//       </div>
-//     );
-//   };
-// }
-
 DashboardLayoutCurrentUserInfo.Item = Item;
 
 DashboardLayoutCurrentUserInfo.defaultProps = {
@@ -143,14 +86,12 @@ export default withStyles(theme => ({
     display: 'flex',
     flexDirection: 'center',
     alignItems: 'center',
-
     margin: '0 auto',
   },
   toggler: {
     display: 'flex',
-    // justifyContent: 'flex-start',
     width: '100%',
-    // padding: '20px',
+    height: '100%',
     border: 0,
     background: 'inherit',
     cursor: 'pointer',
