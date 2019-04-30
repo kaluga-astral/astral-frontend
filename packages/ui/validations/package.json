@@ -8,7 +8,9 @@
   "dependencies": {
     "lodash-es": "^4.17.11"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^24.7.1"
+  },
   "peerDependencies": {},
   "sideEffects": false
 }
