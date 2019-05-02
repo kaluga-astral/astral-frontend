@@ -1,7 +1,6 @@
 {
   "private": true,
   "workspaces": [
-    "demo-app",
     "packages/*",
     "packages/*/*",
     "scripts"
