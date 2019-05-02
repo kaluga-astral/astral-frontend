@@ -5,11 +5,11 @@ container: node:12
 steps:
   - script: printenv
 
-jobs:
-  - job: BuildAndReleaseComponents
-    steps:
-      - script: yarn workspace @astral-frontend/components run build
-      - script: yarn workspace @astral-frontend/components run release
+# jobs:
+#   - job: BuildAndReleaseComponents
+#     steps:
+#       - script: yarn workspace @astral-frontend/components run build
+#       - script: yarn workspace @astral-frontend/components run release
 
   # - stage: Test
   #   jobs:
