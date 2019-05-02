@@ -1,16 +1,14 @@
 name: $(Date:yyyy-MM-dd).$(Rev:r)
 
-resources:
-  containers:
-    - container: node
-      image: node:12
-
 jobs:
   - job: BuildAndReleaseComponents
-    container: node
     steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: 12
+      - script: yarn install
       - script: yarn workspace @astral-frontend/components run build
-      - script: yarn workspace @astral-frontend/components run release
+      # - script: yarn workspace @astral-frontend/components run release
   # - stage: Test
   #   jobs:
   #     - job: TestOnWindows
