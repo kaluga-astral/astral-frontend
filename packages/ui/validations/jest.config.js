@@ -5,5 +5,4 @@ module.exports = {
   },
   transformIgnorePatterns: ['/node_modules/(?!(lodash-es)/)'],
   moduleFileExtensions: ['js', 'jsx'],
-  /* ... */
 };
