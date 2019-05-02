@@ -1,19 +1,23 @@
-import { isNaN } from 'lodash-es';
 
-export default (value) => {
-  if (!value) return null;
+function mustBeOGRN(value) {
+  let ogrn;
+  if (typeof ogrn === 'number') {
+    ogrn = value.toString();
+  } else if (typeof ogrn !== 'string') {
+    ogrn = '';
+  }
+  if (!ogrn.length) {
+    return 'Неверный ОГРН. Введите корректный ОГРН.';
+  } if (/[^0-9]/.test(ogrn)) {
+    return 'Неверный ОГРН. Введите корректный ОГРН.';
+  } if (ogrn.length !== 13) {
+    return 'Неверный ОГРН. Введите корректный ОГРН.';
+  }
+  const n13 = parseInt((parseInt(ogrn.slice(0, -1), 10) % 11).toString().slice(-1), 10);
+  if (n13 === parseInt(ogrn[12], 10)) {
+    return null;
+  }
+  return 'Неверный ОГРН. Введите корректный ОГРН.';
+}
 
-  if (isNaN(Number(value))) return 'Неверный ОГРН. Введите корректный ОГРН.';
-
-  const ogrn = value.split('');
-
-  if (ogrn.length !== 13 && ogrn.length !== 15) return 'Неверный ОГРН. Введите корректный ОГРН.';
-
-  const delimeter = ogrn.length === 13 ? 11 : 13;
-
-  const checksum = ogrn.pop();
-  const lastNumber = Number(ogrn.join('')) % delimeter;
-  const validOgrn = lastNumber === 10 ? 0 : lastNumber;
-
-  return `${validOgrn}` === checksum ? null : 'Неверный ОГРН. Введите корректный ОГРН.';
-};
+export default mustBeOGRN;

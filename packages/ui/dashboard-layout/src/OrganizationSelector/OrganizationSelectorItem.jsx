@@ -22,12 +22,10 @@ DashboardLayoutOrganizationSelectorItem.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-export default withStyles({
-  root: {
-  },
-  avatar: {
-  },
+export default withStyles(theme => ({
+  root: {},
   icon: {
-    color: '#6746EB',
+    color: theme.palette.primary.main,
   },
-})(DashboardLayoutOrganizationSelectorItem);
+  name: {},
+}))(DashboardLayoutOrganizationSelectorItem);

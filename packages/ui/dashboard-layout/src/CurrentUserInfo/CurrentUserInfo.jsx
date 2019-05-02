@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { PropTypes } from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import {
   ClickAwayListener,
   ButtonBase,
@@ -16,62 +16,51 @@ import Item from './Item';
 
 const buttonRef = React.createRef();
 
-class DashboardLayoutCurrentUserInfo extends Component {
-  state = {
-    showMenu: false,
+const DashboardLayoutCurrentUserInfo = ({
+  classes,
+  className,
+  children,
+  avatarSrc,
+  avatarAlt,
+  userName,
+}) => {
+  const [open, setOpen] = React.useState(false);
+  const handleTogglerButtonClick = () => {
+    setOpen(prevState => !prevState.showMenu);
   };
-
-  handleTogglerButtonClick = () => {
-    this.setState(prevState => ({
-      showMenu: !prevState.showMenu,
-    }));
-  };
-
-  handleClickAwayListenerClickAway = (event) => {
-    if (buttonRef.current.contains(event.target)) {
-      return;
+  const handleClickAwayListenerClickAway = (event) => {
+    if (!buttonRef.current.contains(event.target)) {
+      setOpen(false);
     }
-
-    this.setState({
-      showMenu: false,
-    });
   };
-
-  render = () => {
-    const {
-      classes, className, children, avatarSrc, avatarAlt, userName,
-    } = this.props;
-    const { showMenu } = this.state;
-
-    return (
-      <div className={cn(classes.root, className)}>
-        <ButtonBase
-          className={cn(classes.toggler)}
-          buttonRef={buttonRef}
-          onClick={this.handleTogglerButtonClick}
-        >
-          <Avatar className={classes.avatar} src={avatarSrc} onClick={this.onPopoverToggle}>
-            {avatarAlt}
-          </Avatar>
-          <div className={classes.user}>
-            <div className={classes.userName}>{userName}</div>
-          </div>
-        </ButtonBase>
-        <Popper transition open={showMenu} anchorEl={buttonRef.current}>
-          {({ TransitionProps }) => (
-            <Grow {...TransitionProps}>
-              <Paper className={classes.popperPaper}>
-                <ClickAwayListener onClickAway={this.handleClickAwayListenerClickAway}>
-                  <MenuList disablePadding>{children}</MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
-    );
-  };
-}
+  return (
+    <div className={cn(classes.root, className)}>
+      <ButtonBase
+        className={cn(classes.toggler)}
+        buttonRef={buttonRef}
+        onClick={handleTogglerButtonClick}
+      >
+        <Avatar className={classes.avatar} src={avatarSrc}>
+          {avatarAlt}
+        </Avatar>
+        <div className={classes.user}>
+          <div className={classes.userName}>{userName}</div>
+        </div>
+      </ButtonBase>
+      <Popper transition open={open} anchorEl={buttonRef.current}>
+        {({ TransitionProps }) => (
+          <Grow {...TransitionProps}>
+            <Paper className={classes.popperPaper}>
+              <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
+                <MenuList disablePadding>{children}</MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    </div>
+  );
+};
 
 DashboardLayoutCurrentUserInfo.Item = Item;
 
@@ -93,27 +82,12 @@ export default withStyles(theme => ({
   root: {
     borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
     width: '260px',
-    height: '80px',
-    display: 'flex',
-    flexDirection: 'center',
-    alignItems: 'center',
-
-    margin: '0 auto',
   },
   toggler: {
-    display: 'flex',
-    // justifyContent: 'flex-start',
+    justifyContent: 'left',
     width: '100%',
-    // padding: '20px',
-    border: 0,
-    background: 'inherit',
-    cursor: 'pointer',
-    '&:hover': {
-      background: 'rgba(10, 144, 237, 0.02)',
-    },
-    '&:focus': {
-      outline: 'none',
-    },
+    height: '100%',
+    padding: '20px',
   },
   avatar: {
     width: '40px',
@@ -136,50 +110,3 @@ export default withStyles(theme => ({
     minWidth: '175px',
   },
 }))(DashboardLayoutCurrentUserInfo);
-
-// import cn from 'classnames';
-// import PropTypes from 'prop-types';
-// import React from 'react';
-// import { withStyles } from '@astral-frontend/styles';
-// import { Avatar } from '@astral-frontend/components';
-
-// const DashboardLayoutCurrentUserInfo = ({
-//   classes, className, avatarAlt, userName, ...props
-// }) => (
-//   <div className={cn(classes.root, className)} {...props}>
-//     <Avatar className={cn(classes.avatar, className)}>{avatarAlt}</Avatar>
-//     <div className={cn(classes.label, className)}>{userName}</div>
-//   </div>
-// );
-// DashboardLayoutCurrentUserInfo.defaultProps = {
-//   className: null,
-// };
-
-// DashboardLayoutCurrentUserInfo.propTypes = {
-//   classes: PropTypes.shape({}).isRequired,
-//   className: PropTypes.string,
-//   avatarAlt: PropTypes.string.isRequired,
-//   userName: PropTypes.string.isRequired,
-// };
-
-// export default withStyles(
-//   theme => ({
-//     root: {
-//       display: 'flex',
-//       alignItems: 'center',
-//       margin: 'auto 15px 0px 15px',
-//       padding: '15px 0',
-//       borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
-//     },
-//     avatar: {
-//       color: '#fff',
-//       backgroundColor: theme.palette.primary.dark,
-//     },
-//     label: {
-//       marginLeft: '5px',
-//       color: theme.palette.text.primary.main,
-//       fontSize: '14px',
-//     },
-//   }),
-//   { name: 'DashboardLayoutCurrentUserInfo' },
-// )(DashboardLayoutCurrentUserInfo);

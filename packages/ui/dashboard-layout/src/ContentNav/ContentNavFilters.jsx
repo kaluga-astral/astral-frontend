@@ -25,7 +25,6 @@ export default withStyles(
       alignItems: 'center',
       height: '100%',
       marginLeft: '15px',
-      borderTop: '1px solid rgba(29, 63, 102, 0.09)',
       '&>*': {
         marginRight: '40px',
       },
