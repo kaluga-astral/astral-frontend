@@ -34,13 +34,16 @@ const DashboardLayoutMainModal = ({
     <Transition in={transitionIn} appear>
       {state => (
         <div className={cn(classes.root)} style={{ ...defaultStyle, ...transitionStyles[state] }}>
-          <div className={classes.header}>
-            <IconButton className={classes.icon} onClick={handleBackButtonClick}>
-              <BackIcon />
-            </IconButton>
-            <h3>{title}</h3>
+          <div className={classes.empty}>&nbsp;</div>
+          <div className={classes.content}>
+            <div className={classes.header}>
+              <IconButton className={classes.icon} onClick={handleBackButtonClick}>
+                <BackIcon />
+              </IconButton>
+              <h3>{title}</h3>
+            </div>
+            <div className={cn(classes.container, className)}>{children}</div>
           </div>
-          <div className={cn(classes.container, className)}>{children}</div>
         </div>
       )}
     </Transition>
@@ -62,10 +65,17 @@ DashboardLayoutMainModal.propTypes = {
 export default withStyles(
   theme => ({
     root: {
+      display: 'flex',
       position: 'fixed',
       top: 0,
       height: '100%',
-      width: '40%',
+      width: '100%',
+    },
+    empty: {
+      flex: 2,
+    },
+    content: {
+      flex: 1,
       minWidth: '550px',
       backgroundColor: theme.palette.background.paper,
       boxShadow: '0px 4px 56px rgba(0, 0, 0, 0.1)',
