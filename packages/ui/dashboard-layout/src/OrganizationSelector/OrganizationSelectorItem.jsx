@@ -5,8 +5,10 @@ import { MenuItem } from '@astral-frontend/components';
 import { OrganizationIcon } from '@astral-frontend/icons';
 import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutOrganizationSelectorItem = ({ classes, className, name }) => (
-  <MenuItem className={cn(classes.root, className)}>
+const DashboardLayoutOrganizationSelectorItem = ({
+  classes, className, name, ...props
+}) => (
+  <MenuItem className={cn(classes.root, className)} {...props}>
     <OrganizationIcon className={classes.icon} />
     <div className={classes.name}>{name}</div>
   </MenuItem>
