@@ -7,6 +7,12 @@
   },
   "scripts": {},
   "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/npm": "^5.1.4",
+    "@semantic-release/release-notes-generator": "^7.1.4",
+    "semantic-release": "^15.13.3",
     "shelljs": "^0.8.3"
   },
   "devDependencies": {},
