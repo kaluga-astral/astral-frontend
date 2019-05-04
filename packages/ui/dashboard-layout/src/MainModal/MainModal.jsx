@@ -31,7 +31,7 @@ const DashboardLayoutMainModal = ({
   };
 
   return (
-    <Transition in={transitionIn} appear>
+    <Transition timeout={0} in={transitionIn} appear>
       {state => (
         <div className={cn(classes.root)} style={{ ...defaultStyle, ...transitionStyles[state] }}>
           <div className={classes.empty}>&nbsp;</div>
@@ -52,12 +52,13 @@ const DashboardLayoutMainModal = ({
 
 DashboardLayoutMainModal.defaultProps = {
   className: null,
+  title: null,
 };
 
 DashboardLayoutMainModal.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   children: PropTypes.node.isRequired,
   history: PropTypes.shape({}).isRequired,
 };

@@ -29,7 +29,7 @@ export default withStyles(
   theme => ({
     root: {
       display: 'flex',
-      height: '65px',
+      minHeight: '65px',
       backgroundColor: theme.palette.common.white,
       borderTop: '1px solid rgba(29, 63, 102, 0.09)',
     },
