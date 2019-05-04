@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
+import ListItem from '../ListItem';
+
 export const Context = React.createContext();
 
 const TableRow = ({
@@ -18,14 +20,14 @@ const TableRow = ({
 
   return (
     <Context.Provider value={{ hovered }}>
-      <li
+      <ListItem
         className={cn(classes.root, className)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         {...props}
       >
         {children}
-      </li>
+      </ListItem>
     </Context.Provider>
   );
 };

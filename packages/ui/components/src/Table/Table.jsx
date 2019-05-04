@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
+import List from '../List';
+
 const Table = ({
   classes, className, children, ...props
 }) => (
-  <ol {...props} className={cn(classes.root, className)}>
+  <List component="ol" disablePadding {...props} className={cn(classes.root, className)}>
     {children}
-  </ol>
+  </List>
 );
 
 Table.defaultProps = {
