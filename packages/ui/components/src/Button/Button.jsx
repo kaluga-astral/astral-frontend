@@ -17,7 +17,8 @@ const Button = ({
   const className = cn(
     classes.root,
     {
-      [classes.disabled]: disabled,
+      [classes.disabledText]: disabled && variant === 'text',
+      [classes.text]: variant === 'text',
       [classes.small]: size === 'small',
       [classes.medium]: size === 'medium',
       [classes.large]: size === 'large',
@@ -55,9 +56,13 @@ Button.propTypes = {
 };
 
 export default withStyles(theme => ({
-  disabled: {
-    background: theme.palette.grey[100],
-    color: theme.palette.grey[500],
+  disabledText: {
+    opacity: '0.5',
+  },
+  text: {
+    '&:hover': {
+      background: 'rgba(29, 63, 102, 0.05)',
+    },
   },
   root: {
     padding: '0 10px',

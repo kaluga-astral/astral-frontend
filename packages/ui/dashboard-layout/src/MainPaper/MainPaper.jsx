@@ -26,7 +26,6 @@ export default withStyles(
   () => ({
     root: {
       flexGrow: 1,
-      padding: '15px',
       margin: '15px',
     },
   }),
