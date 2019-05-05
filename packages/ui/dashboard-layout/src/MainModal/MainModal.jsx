@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import { Transition } from 'react-transition-group';
 import { withRouter } from 'react-router-dom';
 
@@ -11,10 +11,8 @@ import { withStyles } from '@astral-frontend/styles';
 const TRANSITION_DURATION = 400;
 
 const DashboardLayoutMainModal = ({
-  classes, className, title, children, history, open,
+  classes, className, title, children, open, onClose,
 }) => {
-  // const [transitionIn, setTransitionIn] = useState(open);
-
   const defaultStyle = {
     transition: `right ${TRANSITION_DURATION}ms ease-in-out`,
     right: '-100%',
@@ -25,11 +23,6 @@ const DashboardLayoutMainModal = ({
     exited: { right: '-100%' },
   };
 
-  const handleBackButtonClick = () => {
-    // setTransitionIn(false);
-    // setTimeout(() => history.goBack(), TRANSITION_DURATION);
-  };
-
   return (
     <Transition timeout={0} in={open} appear>
       {state => (
@@ -37,7 +30,7 @@ const DashboardLayoutMainModal = ({
           <div className={classes.empty}>&nbsp;</div>
           <div className={classes.content}>
             <div className={classes.header}>
-              <IconButton className={classes.icon} onClick={handleBackButtonClick}>
+              <IconButton className={classes.icon} onClick={onClose}>
                 <BackIcon />
               </IconButton>
               <h3>{title}</h3>
@@ -53,6 +46,7 @@ const DashboardLayoutMainModal = ({
 DashboardLayoutMainModal.defaultProps = {
   className: null,
   title: null,
+  open: false,
 };
 
 DashboardLayoutMainModal.propTypes = {
@@ -61,6 +55,8 @@ DashboardLayoutMainModal.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node.isRequired,
   history: PropTypes.shape({}).isRequired,
+  open: PropTypes.bool,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default withStyles(
