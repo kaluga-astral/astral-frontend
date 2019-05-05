@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Transition } from 'react-transition-group';
 import { withRouter } from 'react-router-dom';
 
@@ -13,6 +13,12 @@ const TRANSITION_DURATION = 400;
 const DashboardLayoutMainModal = ({
   classes, className, title, children, open, onClose,
 }) => {
+  const [transitionIn, setTransitionIn] = useState(false);
+
+  useEffect(() => {
+    setTransitionIn(open);
+  }, [open]);
+
   const defaultStyle = {
     transition: `right ${TRANSITION_DURATION}ms ease-in-out`,
     right: '-100%',
@@ -23,14 +29,19 @@ const DashboardLayoutMainModal = ({
     exited: { right: '-100%' },
   };
 
+  const handleBackButtonClick = () => {
+    setTransitionIn(false);
+    setTimeout(() => onClose(), TRANSITION_DURATION);
+  };
+
   return (
-    <Transition timeout={0} in={open} appear>
+    <Transition timeout={TRANSITION_DURATION} in={transitionIn} appear>
       {state => (
         <div className={cn(classes.root)} style={{ ...defaultStyle, ...transitionStyles[state] }}>
           <div className={classes.empty}>&nbsp;</div>
           <div className={classes.content}>
             <div className={classes.header}>
-              <IconButton className={classes.icon} onClick={onClose}>
+              <IconButton className={classes.icon} onClick={handleBackButtonClick}>
                 <BackIcon />
               </IconButton>
               <h3>{title}</h3>
