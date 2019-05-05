@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -12,7 +14,13 @@ const TableRowSelector = ({
   const { hovered } = React.useContext(TableRowContext);
 
   return (
-    <div className={cn(classes.root, className)} {...props}>
+    <div
+      className={cn(classes.root, className)}
+      onClick={(event) => {
+        event.stopPropagation();
+      }}
+      {...props}
+    >
       {hovered || selected ? (
         <Checkbox checked={selected} onChange={onSelect} />
       ) : (
@@ -43,6 +51,11 @@ export default withStyles(theme => ({
     bottom: 0,
     left: 0,
     position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '70px',
+    padding: '0 15px',
   },
   icon: {
     fill: theme.palette.primary.main,

@@ -11,9 +11,9 @@ import { withStyles } from '@astral-frontend/styles';
 const TRANSITION_DURATION = 400;
 
 const DashboardLayoutMainModal = ({
-  classes, className, title, children, history,
+  classes, className, title, children, history, open,
 }) => {
-  const [transitionIn, setTransitionIn] = useState(true);
+  // const [transitionIn, setTransitionIn] = useState(open);
 
   const defaultStyle = {
     transition: `right ${TRANSITION_DURATION}ms ease-in-out`,
@@ -26,12 +26,12 @@ const DashboardLayoutMainModal = ({
   };
 
   const handleBackButtonClick = () => {
-    setTransitionIn(false);
-    setTimeout(() => history.goBack(), TRANSITION_DURATION);
+    // setTransitionIn(false);
+    // setTimeout(() => history.goBack(), TRANSITION_DURATION);
   };
 
   return (
-    <Transition timeout={0} in={transitionIn} appear>
+    <Transition timeout={0} in={open} appear>
       {state => (
         <div className={cn(classes.root)} style={{ ...defaultStyle, ...transitionStyles[state] }}>
           <div className={classes.empty}>&nbsp;</div>

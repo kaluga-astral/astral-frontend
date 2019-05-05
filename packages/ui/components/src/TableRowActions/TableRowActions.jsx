@@ -38,5 +38,8 @@ export default withStyles(() => ({
     bottom: 0,
     right: 0,
     position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    paddingRight: '10px',
   },
 }))(TableRowActions);

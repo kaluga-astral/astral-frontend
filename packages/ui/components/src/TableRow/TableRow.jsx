@@ -4,11 +4,12 @@ import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
 import ListItem from '../ListItem';
+import TableRowSelector from '../TableRowSelector';
 
 export const Context = React.createContext();
 
 const TableRow = ({
-  classes, className, children, ...props
+  classes, className, children, Icon, selected, onSelect, ...props
 }) => {
   const [hovered, setHovered] = React.useState(false);
   const handleMouseEnter = () => {
@@ -21,11 +22,13 @@ const TableRow = ({
   return (
     <Context.Provider value={{ hovered }}>
       <ListItem
+        component="li"
         className={cn(classes.root, className)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         {...props}
       >
+        {onSelect && <TableRowSelector Icon={Icon} selected={selected} onSelect={onSelect} />}
         {children}
       </ListItem>
     </Context.Provider>
@@ -35,19 +38,25 @@ const TableRow = ({
 TableRow.defaultProps = {
   children: null,
   className: null,
+  Icon: null,
+  selected: null,
+  onSelect: null,
 };
 
 TableRow.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   classes: PropTypes.shape({}).isRequired,
+  Icon: PropTypes.func,
+  selected: PropTypes.bool,
+  onSelect: PropTypes.func,
 };
 
 export default withStyles(theme => ({
   root: {
     position: 'relative',
     display: 'grid',
-    paddingLeft: '50px',
+    paddingLeft: '70px',
     borderLeft: '4px solid rgba(0, 0, 0, 0)',
     borderBottom: '1px solid rgba(29, 63, 102, 0.09)',
     gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',

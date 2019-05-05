@@ -27,11 +27,9 @@ export default withStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    minHeight: '65px',
     padding: '10px 0',
     wordBreak: 'break-all',
     [theme.breakpoints.down('xs')]: {
-      minHeight: '30px',
       padding: '5px 0',
     },
   },
