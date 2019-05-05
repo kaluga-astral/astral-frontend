@@ -33,7 +33,7 @@ const DashboardLayoutOrganizationSelector = ({
     <div className={cn(classes.root, className)}>
       <CurrentOrganization
         buttonRef={buttonRef}
-        name={currentOrganization.name}
+        name={currentOrganization && currentOrganization.name}
         onClick={handleTogglerButtonClick}
       />
       <Popper transition open={open} anchorEl={buttonRef.current}>
