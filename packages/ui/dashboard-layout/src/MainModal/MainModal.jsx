@@ -20,13 +20,13 @@ const DashboardLayoutMainModal = ({
   }, [open]);
 
   const defaultStyle = {
-    transition: `right ${TRANSITION_DURATION}ms ease-in-out`,
-    right: '-100%',
+    transition: `transform ${TRANSITION_DURATION}ms ease-in-out`,
+    transform: 'translateX(100%)',
   };
 
   const transitionStyles = {
-    entered: { right: 0 },
-    exited: { right: '-100%' },
+    entered: { transform: 'translateX(-20%)' },
+    exited: { transform: 'translateX(100%)' },
   };
 
   const handleBackButtonClick = () => {
