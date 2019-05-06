@@ -10,8 +10,6 @@ import CurrentOrganization from './OrganizationSelectorCurrentOrganization';
 import OrganizationSelectorItem from './OrganizationSelectorItem';
 import OrganizationSelectorNotFoundPlaceholder from './OrganizationSelectorNotFoundPlaceholder';
 
-const buttonRef = React.createRef();
-
 const DashboardLayoutOrganizationSelector = ({
   classes,
   className,
@@ -20,23 +18,26 @@ const DashboardLayoutOrganizationSelector = ({
   NotFoundPlaceholder,
 }) => {
   const [open, setOpen] = React.useState(false);
-  const handleTogglerButtonClick = () => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleTogglerButtonClick = (event) => {
+    const { currentTarget } = event;
+
     setOpen(prevValue => !prevValue);
+    setAnchorEl(currentTarget);
   };
-  const handleClickAwayListenerClickAway = (event) => {
-    if (!buttonRef.current.contains(event.target)) {
-      setOpen(false);
-    }
+
+  const handleClickAwayListenerClickAway = () => {
+    setOpen(false);
   };
 
   return (
     <div className={cn(classes.root, className)}>
       <CurrentOrganization
-        buttonRef={buttonRef}
         name={currentOrganization && currentOrganization.name}
         onClick={handleTogglerButtonClick}
       />
-      <Popper transition open={open} anchorEl={buttonRef.current}>
+      <Popper transition open={open} anchorEl={anchorEl}>
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
             <Paper className={classes.popperPaper}>
