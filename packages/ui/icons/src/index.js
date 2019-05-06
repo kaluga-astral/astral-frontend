@@ -4,6 +4,7 @@ export { default as CheckCircleIcon } from './CheckCircleIcon';
 export { default as DeleteIcon } from './DeleteIcon';
 export { default as DocumentIcon } from './DocumentIcon';
 export { default as EditIcon } from './EditIcon';
+export { default as SaveIcon } from './SaveIcon';
 export { default as SearchIcon } from './SearchIcon';
 export { default as SendIcon } from './SendIcon';
 export { default as OrganizationIcon } from './OrganizationIcon';
