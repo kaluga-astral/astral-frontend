@@ -14,11 +14,15 @@ const OrganizationSelectorNotFoundPlaceholder = ({
 }) => (
   <div className={cn(classes.root, className)} {...props}>
     <OrganizationNotFoundIcon className={classes.icon} />
-      <div className={classes.text}>
-         <p>Мы не нашли других ваших
-         компаний. Добавьте их в систему чтобы удобно отслеживать документоооборт </p>
-       </div>
-    <Link className={classes.link} to={addLinkHref}>добавить огранизацию</Link>
+    <div className={classes.text}>
+      <p>
+        Мы не нашли других ваших компаний. Добавьте их в систему чтобы удобно отслеживать
+        документоооборт
+      </p>
+    </div>
+    <Link className={classes.link} to={addLinkHref}>
+      добавить огранизацию
+    </Link>
   </div>
 );
 OrganizationSelectorNotFoundPlaceholder.defaultProps = {

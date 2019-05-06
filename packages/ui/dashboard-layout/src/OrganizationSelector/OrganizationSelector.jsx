@@ -37,7 +37,7 @@ const DashboardLayoutOrganizationSelector = ({
         name={currentOrganization && currentOrganization.name}
         onClick={handleTogglerButtonClick}
       />
-      <Popper transition open={open} anchorEl={anchorEl}>
+      <Popper transition open={open} anchorEl={anchorEl} onClick={() => setOpen(false)}>
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
             <Paper className={classes.popperPaper}>
