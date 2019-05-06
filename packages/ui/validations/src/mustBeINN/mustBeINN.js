@@ -10,7 +10,7 @@ const calcCheckNum = (digitsOfvalue, weights) => {
  * @param {ИНН} value
  */
 const mustBeINN = (value) => {
-  if (!/^(\d{10,12})$/.test(value)) {
+  if (!/^(\d{10})$/.test(value) && !/^(\d{12})$/.test(value)) {
     return 'Неверный ИНН. Введите корректный ИНН.';
   }
 
