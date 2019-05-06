@@ -21,7 +21,6 @@ const DashboardLayoutSidebarNavDropdown = ({
 }) => {
   const [id, setId] = useState(null);
   const dropdownContext = useContext(DropdownContext);
-
   useEffect(() => {
     const { onNavDropdownItemSelect } = dropdownContext;
     const itemId = uniqueId();
