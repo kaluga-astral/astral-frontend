@@ -1,8 +1,14 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
-  Popper, Grow, Paper, ClickAwayListener, MenuList,
+  Popper,
+  Grow,
+  Paper,
+  ClickAwayListener,
+  MenuList,
+  Button,
 } from '@astral-frontend/components';
 
 import { withStyles } from '@astral-frontend/styles';
@@ -19,14 +25,12 @@ const DashboardLayoutOrganizationSelector = ({
 }) => {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
   const handleTogglerButtonClick = (event) => {
     const { currentTarget } = event;
 
     setOpen(prevValue => !prevValue);
     setAnchorEl(currentTarget);
   };
-
   const handleClickAwayListenerClickAway = () => {
     setOpen(false);
   };
@@ -42,7 +46,21 @@ const DashboardLayoutOrganizationSelector = ({
           <Grow {...TransitionProps}>
             <Paper className={classes.popperPaper}>
               <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-                {children.length > 0 ? <MenuList>{children}</MenuList> : <NotFoundPlaceholder />}
+                {children.length > 0 ? (
+                  <div>
+                    <MenuList disablePadding>{children}</MenuList>
+                    <Button
+                      size="small"
+                      component={Link}
+                      to="/abonents/add"
+                      className={classes.addButton}
+                    >
+                      + Добавить организацию
+                    </Button>
+                  </div>
+                ) : (
+                  <NotFoundPlaceholder />
+                )}
               </ClickAwayListener>
             </Paper>
           </Grow>
@@ -51,6 +69,7 @@ const DashboardLayoutOrganizationSelector = ({
     </div>
   );
 };
+
 DashboardLayoutOrganizationSelector.defaultProps = {
   className: null,
 };
@@ -74,5 +93,11 @@ export default withStyles({
   root: {
     display: 'flex',
     height: '100%',
+  },
+  addButton: {
+    width: '100%',
+    fontWeight: 'bold',
+    justifyContent: 'left',
+    padding: '15px',
   },
 })(DashboardLayoutOrganizationSelector);

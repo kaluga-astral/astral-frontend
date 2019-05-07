@@ -28,7 +28,7 @@ const TableRow = ({
         onMouseLeave={handleMouseLeave}
         {...props}
       >
-        {onSelect && <TableRowSelector Icon={Icon} selected={selected} onSelect={onSelect} />}
+        <TableRowSelector Icon={Icon} selected={selected} onSelect={onSelect} />
         {children}
       </ListItem>
     </Context.Provider>
@@ -38,7 +38,7 @@ const TableRow = ({
 TableRow.defaultProps = {
   children: null,
   className: null,
-  Icon: null,
+  Icon: undefined,
   selected: null,
   onSelect: null,
 };
@@ -71,6 +71,10 @@ export default withStyles(theme => ({
       '& *': {
         color: theme.palette.primary.main,
       },
+    },
+    '&:first-child': {
+      color: theme.palette.gray[600],
+      fontWeight: 'bold',
     },
   },
 }))(TableRow);

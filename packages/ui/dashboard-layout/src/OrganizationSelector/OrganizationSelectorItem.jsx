@@ -28,6 +28,7 @@ export default withStyles(theme => ({
   root: {},
   icon: {
     color: theme.palette.primary.main,
+    marginRight: '15px',
   },
   name: {},
 }))(DashboardLayoutOrganizationSelectorItem);

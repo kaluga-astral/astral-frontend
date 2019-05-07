@@ -13,11 +13,6 @@ const astralEDOThemeOptions = {
       600: 'rgba(29, 63, 102, 0.62)',
     },
   },
-  breakpoints: {
-    values: {
-      sm: 700,
-    },
-  },
 };
 
 class AstralEDOTheme extends AstralTheme {

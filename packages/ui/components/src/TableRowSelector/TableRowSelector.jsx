@@ -12,6 +12,13 @@ const TableRowSelector = ({
   classes, className, children, Icon, selected, onSelect, ...props
 }) => {
   const { hovered } = React.useContext(TableRowContext);
+  const renderChildren = () => {
+    if (onSelect && (hovered || selected)) {
+      return <Checkbox checked={selected} onChange={onSelect} />;
+    }
+
+    return <Icon className={classes.icon} />;
+  };
 
   return (
     <div
@@ -21,11 +28,7 @@ const TableRowSelector = ({
       }}
       {...props}
     >
-      {hovered || selected ? (
-        <Checkbox checked={selected} onChange={onSelect} />
-      ) : (
-        <Icon className={classes.icon} />
-      )}
+      {renderChildren()}
     </div>
   );
 };
@@ -34,6 +37,7 @@ TableRowSelector.defaultProps = {
   children: null,
   className: null,
   Icon: () => null,
+  onSelect: null,
 };
 
 TableRowSelector.propTypes = {
@@ -41,7 +45,7 @@ TableRowSelector.propTypes = {
   className: PropTypes.string,
   classes: PropTypes.shape({}).isRequired,
   selected: PropTypes.bool.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
   Icon: PropTypes.func,
 };
 
