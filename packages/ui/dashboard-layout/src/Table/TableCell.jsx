@@ -34,6 +34,7 @@ export default withStyles(theme => ({
     minHeight: '70px',
     padding: '10px 0',
     wordBreak: 'break-all',
+    overflow: 'hidden',
     [theme.breakpoints.down('xs')]: {
       minHeight: '30px',
       padding: '5px 0',

@@ -98,6 +98,7 @@ export default withStyles(
       display: 'flex',
       alignItems: 'center',
       padding: '25px 25px 0',
+      wordBreak: 'break-all',
     },
     icon: {
       padding: 0,
