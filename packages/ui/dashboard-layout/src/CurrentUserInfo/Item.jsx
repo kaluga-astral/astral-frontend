@@ -5,11 +5,15 @@ import { MenuItem } from '@astral-frontend/components';
 import { withStyles } from '@astral-frontend/styles';
 
 const DashboardSidebarProfileItem = ({
-  classes, className, Icon, text, ...props
+  classes,
+  className,
+  Icon,
+  text,
+  ...props
 }) => (
   <MenuItem className={cn(classes.root, className)} {...props}>
     <div className={classes.icon}>
-      <Icon />
+      <Icon viewBox="-5 0 24 12" />
     </div>
     <div className={classes.text}>{text}</div>
   </MenuItem>
