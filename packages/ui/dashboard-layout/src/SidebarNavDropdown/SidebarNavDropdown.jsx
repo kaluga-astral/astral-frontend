@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { Collapse, List } from '@astral-frontend/components';
 import { withStyles } from '@astral-frontend/styles';
 
-import SidebarNavDropdownItem from './SidebarNavDropdownItem';
+import SidebarNavItem from '../SidebarNavItem';
 import SidebarNavDropdownToggler from './SidebarNavDropdownToggler';
 import DropdownContext from './DropdownContext';
 
@@ -36,7 +36,7 @@ const DashboardLayoutSidebarNavDropdown = ({
 
   return (
     <li className={cn(classes.root, className)}>
-      <SidebarNavDropdownItem
+      <SidebarNavItem
         component={SidebarNavDropdownToggler}
         Icon={iconProps => <Icon className={cn(classes.icon, iconProps.className)} />}
         Text={textProps => <div className={cn(classes.text, textProps.className)}>{text}</div>}
