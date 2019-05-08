@@ -25,27 +25,28 @@ const DashboardLayoutOrganizationSelector = ({
 }) => {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const handleTogglerButtonClick = (event) => {
     const { currentTarget } = event;
-
     setOpen(prevValue => !prevValue);
     setAnchorEl(currentTarget);
   };
+
   const handleClickAwayListenerClickAway = () => {
     setOpen(false);
   };
 
   return (
     <div className={cn(classes.root, className)}>
-      <CurrentOrganization
-        name={currentOrganization && currentOrganization.name}
-        onClick={handleTogglerButtonClick}
-      />
-      <Popper transition open={open} anchorEl={anchorEl} onClick={() => setOpen(false)}>
-        {({ TransitionProps }) => (
-          <Grow {...TransitionProps}>
-            <Paper className={classes.popperPaper}>
-              <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
+      <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
+        <CurrentOrganization
+          name={currentOrganization && currentOrganization.name}
+          onClick={handleTogglerButtonClick}
+        />
+        <Popper transition open={open} anchorEl={anchorEl} onClick={() => setOpen(false)}>
+          {({ TransitionProps }) => (
+            <Grow {...TransitionProps}>
+              <Paper className={classes.popperPaper}>
                 {children.length > 0 ? (
                   <div>
                     <MenuList disablePadding>{children}</MenuList>
@@ -61,11 +62,11 @@ const DashboardLayoutOrganizationSelector = ({
                 ) : (
                   <NotFoundPlaceholder />
                 )}
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </ClickAwayListener>
     </div>
   );
 };
@@ -93,6 +94,11 @@ export default withStyles({
   root: {
     display: 'flex',
     height: '100%',
+  },
+  popperPaper: {
+    maxHeight: '325px',
+    overflowY: 'auto',
+    boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.09)',
   },
   addButton: {
     width: '100%',
