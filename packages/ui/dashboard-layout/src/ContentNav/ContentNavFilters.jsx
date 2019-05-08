@@ -24,7 +24,7 @@ export default withStyles(
       flex: 1,
       alignItems: 'center',
       height: '100%',
-      marginLeft: '15px',
+      marginLeft: '34px',
       '&>*': {
         marginRight: '40px',
       },
