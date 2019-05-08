@@ -37,6 +37,7 @@ TableRowSelector.defaultProps = {
   children: null,
   className: null,
   Icon: () => null,
+  selected: null,
   onSelect: null,
 };
 
@@ -44,7 +45,7 @@ TableRowSelector.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   classes: PropTypes.shape({}).isRequired,
-  selected: PropTypes.bool.isRequired,
+  selected: PropTypes.bool,
   onSelect: PropTypes.func,
   Icon: PropTypes.func,
 };
