@@ -1,10 +1,7 @@
-const mustBeSNILS = (value) => {
-  if (!/^(\d{11})$/.test(value)) {
-    return 'Неверный СНИЛС. Введите корректный СНИЛС.';
-  }
-
-  return null;
-};
+const mustBeSNILS = () => null;
+// if (!/^(\d{11})$/.test(value)) {
+//   return 'Неверный СНИЛС. Введите корректный СНИЛС.';
+// }
 
 // const snils = value
 //   .toString()

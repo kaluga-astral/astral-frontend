@@ -8,14 +8,11 @@ const DashboardLayoutSidebarNavDropdownToggler = ({
   classes,
   className,
   expanded,
-  activeClassName,
   children,
   onToggle,
 }) => (
   <ButtonBase
-    className={cn(classes.root, className, {
-      [activeClassName]: expanded,
-    })}
+    className={cn(classes.root, className)}
     onClick={onToggle}
   >
     {children}
@@ -33,13 +30,11 @@ const DashboardLayoutSidebarNavDropdownToggler = ({
 
 DashboardLayoutSidebarNavDropdownToggler.defaultProps = {
   className: null,
-  activeClassName: null,
 };
 
 DashboardLayoutSidebarNavDropdownToggler.propTypes = {
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
-  activeClassName: PropTypes.string,
   expanded: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onToggle: PropTypes.func.isRequired,

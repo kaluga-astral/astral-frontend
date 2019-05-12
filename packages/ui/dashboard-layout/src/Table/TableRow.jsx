@@ -4,9 +4,12 @@ import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
 const TableRow = ({
-  classes, className, children, ...props
+  classes, className, disableHoverEffect, children, ...props
 }) => (
-  <div {...props} className={cn(classes.root, className)}>
+  <div
+    {...props}
+    className={cn(classes.root, className, { [classes.withHover]: !disableHoverEffect })}
+  >
     {children}
   </div>
 );
@@ -14,12 +17,14 @@ const TableRow = ({
 TableRow.defaultProps = {
   children: null,
   className: null,
+  disableHoverEffect: false,
 };
 
 TableRow.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   classes: PropTypes.shape({}).isRequired,
+  disableHoverEffect: PropTypes.bool,
 };
 
 export default withStyles(theme => ({
@@ -33,6 +38,8 @@ export default withStyles(theme => ({
       display: 'flex',
       flexDirection: 'column',
     },
+  },
+  withHover: {
     '&:hover': {
       backgroundColor: '#f3f0fd',
       borderLeft: `4px solid ${theme.palette.primary.main}`,

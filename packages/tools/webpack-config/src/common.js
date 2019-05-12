@@ -31,7 +31,7 @@ module.exports = {
         use: [
           'thread-loader',
           {
-            loader: 'babel-loader',
+            loader: require.resolve('babel-loader'),
             options: {
               presets: ['@astral-frontend/babel-preset-react-app'],
             },

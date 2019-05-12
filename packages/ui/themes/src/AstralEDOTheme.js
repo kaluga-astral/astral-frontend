@@ -8,13 +8,9 @@ const astralEDOThemeOptions = {
     },
     gray: {
       100: 'rgba(29, 63, 102, 0.09)',
+      300: 'rgba(29, 63, 102, 0.24)',
       500: 'rgba(29, 63, 102, 0.45)',
       600: 'rgba(29, 63, 102, 0.62)',
-    },
-  },
-  breakpoints: {
-    values: {
-      sm: 700,
     },
   },
 };

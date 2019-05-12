@@ -31,9 +31,10 @@ export default withStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    minHeight: '65px',
+    minHeight: '70px',
     padding: '10px 0',
     wordBreak: 'break-all',
+    overflow: 'hidden',
     [theme.breakpoints.down('xs')]: {
       minHeight: '30px',
       padding: '5px 0',

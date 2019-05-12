@@ -11,6 +11,7 @@ const PhoneFieldMask = (props) => {
       ref={(ref) => {
         inputRef(ref ? ref.inputElement : null);
       }}
+      placeholder="+7(   )   -  -  "
       mask={[
         '+',
         '7',

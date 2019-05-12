@@ -11,6 +11,11 @@ const astralThemeOptions = {
     },
   },
   overrides: {
+    MuiStepper: {
+      root: {
+        padding: '15px 0',
+      },
+    },
     MuiList: {
       padding: {
         paddingTop: '15px',

@@ -17,7 +17,9 @@ const Button = ({
   const className = cn(
     classes.root,
     {
-      [classes.disabled]: disabled,
+      [classes.disabledText]: disabled && (variant === 'text' || variant === 'textBlock'),
+      [classes.text]: variant === 'text',
+      [classes.textBlock]: variant === 'textBlock',
       [classes.small]: size === 'small',
       [classes.medium]: size === 'medium',
       [classes.large]: size === 'large',
@@ -55,10 +57,6 @@ Button.propTypes = {
 };
 
 export default withStyles(theme => ({
-  disabled: {
-    background: theme.palette.grey[100],
-    color: theme.palette.grey[500],
-  },
   root: {
     padding: '0 10px',
     fontSize: '14px',
@@ -67,13 +65,28 @@ export default withStyles(theme => ({
     minHeight: '100%',
     color: theme.palette.primary.main,
   },
+  disabledText: {
+    opacity: '0.5',
+  },
+  text: {
+    borderRadius: '4px',
+    '&:hover': {
+      background: 'rgba(29, 63, 102, 0.05)',
+    },
+  },
+  textBlock: {
+    '&:hover': {
+      background: 'rgba(29, 63, 102, 0.05)',
+    },
+  },
   small: {
-    maxHeight: '32px',
+    minHeight: '32px',
   },
   medium: {
-    maxHeight: '48px',
+    minHeight: '48px',
+    height: '100%',
   },
   large: {
-    maxHeight: '64px',
+    minHeight: '64px',
   },
 }))(Button);

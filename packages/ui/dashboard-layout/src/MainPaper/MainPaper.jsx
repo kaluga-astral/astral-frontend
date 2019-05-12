@@ -5,29 +5,37 @@ import { Paper } from '@astral-frontend/components';
 import { withStyles } from '@astral-frontend/styles';
 
 const DashboardLayoutMainPaper = ({
-  classes, className, children, ...props
+  classes, className, children, disablePadding, ...props
 }) => (
-  <Paper elevation={0} className={cn(classes.root, className)} {...props}>
+  <Paper
+    elevation={0}
+    className={cn(classes.root, className, { [classes.padding]: !disablePadding })}
+    {...props}
+  >
     {children}
   </Paper>
 );
 
 DashboardLayoutMainPaper.defaultProps = {
   className: null,
+  disablePadding: false,
 };
 
 DashboardLayoutMainPaper.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  disablePadding: PropTypes.bool,
 };
 
 export default withStyles(
   () => ({
     root: {
       flexGrow: 1,
-      padding: '15px',
       margin: '15px',
+    },
+    padding: {
+      padding: '15px',
     },
   }),
   { name: 'DashboardLayoutMainPaper' },

@@ -5,10 +5,15 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { withStyles } from '@astral-frontend/styles';
 
 const DashboardLayoutContentNavItem = ({
-  classes, className, title, count, to,
+  classes, className, text, count, to,
 }) => (
-  <NavLink exact to={to} activeClassName={classes.active} className={cn(classes.root, className)}>
-    <span>{title}</span>
+  <NavLink
+    exact
+    to={to}
+    activeClassName={classes.active}
+    className={cn(classes.root, className)}
+  >
+    <span>{text}</span>
     <div className={classes.count}>{count}</div>
   </NavLink>
 );
@@ -20,7 +25,7 @@ DashboardLayoutContentNavItem.defaultProps = {
 DashboardLayoutContentNavItem.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
   to: PropTypes.string.isRequired,
 };
@@ -39,15 +44,17 @@ export default withStyles(
         color: 'white',
       },
     },
-    title: {},
+    text: {},
     count: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       height: '20px',
       marginLeft: '10px',
       padding: '0 5px',
       backgroundColor: 'rgba(29, 63, 102, 0.09)',
       color: 'rgba(29, 63, 102, 0.45)',
       borderRadius: '4px',
-      textAlign: 'center',
     },
   }),
   { name: 'DashboardLayoutContentNavItem' },

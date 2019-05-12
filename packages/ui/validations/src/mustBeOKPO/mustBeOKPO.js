@@ -1,10 +1,7 @@
-const mustBeOKPO = (value) => {
-  if (!/^(\d{8,10})$/.test(value)) {
-    return 'Неверный ОКПО. Введите корректный ОКПО.';
-  }
-
-  return null;
-};
+const mustBeOKPO = () => null;
+// if (!/^(\d{8,10})$/.test(value)) {
+//   return 'Неверный ОКПО. Введите корректный ОКПО.';
+// }
 
 export default mustBeOKPO;
 
