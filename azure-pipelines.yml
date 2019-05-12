@@ -1,22 +1,105 @@
 name: $(Date:yyyy-MM-dd).$(Rev:r)
 
-jobs:
-  - job: BuildAndReleaseComponents
-    steps:
-      - task: NodeTool@0
-        inputs:
-          versionSpec: 12
-      - script: yarn install
-      - script: yarn workspace @astral-frontend/components run build
-      # - script: yarn workspace @astral-frontend/components run release
+stages:
+  - stage: Build
+    jobs:
+      - job: BuildComponents
+        displayName: ui/components
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12'
+          - script: yarn install
+          - script: yarn workspace @astral-frontend/components run build
+      - job: BuildConstants
+        displayName: ui/constants
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12'
+          - script: yarn install
+          - script: yarn workspace @astral-frontend/constants run build
+      - job: BuildCore
+        displayName: ui/core
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12'
+          - script: yarn install
+          - script: yarn workspace @astral-frontend/core run build
+      - job: BuildDashboardLayout
+        displayName: ui/dashboard-layout
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12'
+          - script: yarn install
+          - script: yarn workspace @astral-frontend/dashboard-layout run build
+
+      # - job: BuildDashboardFonts
+      #   displayName: ui/fonts
+      #   steps:
+      #     - task: NodeTool@0
+      #       inputs:
+      #         versionSpec: '12'
+      #     - script: yarn install
+      #     - script: yarn workspace @astral-frontend/fonts run build
+      - job: BuildForms
+        displayName: ui/forms
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12'
+          - script: yarn install
+          - script: yarn workspace @astral-frontend/forms run build
+      - job: BuildIcons
+        displayName: ui/icons
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12'
+          - script: yarn install
+          - script: yarn workspace @astral-frontend/icons run build
+      - job: BuildStyles
+        displayName: ui/styles
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12'
+          - script: yarn install
+          - script: yarn workspace @astral-frontend/styles run build
+      - job: BuildThemes
+        displayName: ui/themes
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12'
+          - script: yarn install
+          - script: yarn workspace @astral-frontend/themes run build
+      - job: BuildValidations
+        displayName: ui/validations
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12'
+          - script: yarn install
+          - script: yarn workspace @astral-frontend/validations run build
   # - stage: Test
   #   jobs:
-  #     - job: TestOnWindows
+  #     - job: TestValidations
+  #       displayName: ui/validations
   #       steps:
-  #         - script: echo Testing on Windows!
-  #     - job: TestOnLinux
-  #       steps:
-  #         - script: echo Testing on Linux!
+  #         - task: NodeTool@0
+  #           inputs:
+  #             versionSpec: '12'
+  #         - script: yarn install
+  #         - script: yarn workspace @astral-frontend/validations run test --ci --reporters=jest-junit
+  #         - task: PublishTestResults@2
+  #           condition: succeededOrFailed()
+  #           inputs:
+  #             testRunner: JUnit
+  #             testResultsFiles: '**/junit.xml'
+
   # - stage: Release
   #   jobs:
   #     - job: Release

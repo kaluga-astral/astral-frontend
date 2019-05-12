@@ -1,6 +1,7 @@
 export { default as ActionButton } from './ActionButton';
 export { default as Content } from './Content';
 export { default as ContentNav } from './ContentNav';
+export { default as ContentNavFilters } from './ContentNavFilters';
 export { default as CurrentUserInfo } from './CurrentUserInfo';
 export { default as Header } from './Header';
 export { default as HeaderSearch } from './HeaderSearch';

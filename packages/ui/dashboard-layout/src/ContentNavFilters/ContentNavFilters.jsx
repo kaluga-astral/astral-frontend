@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-import Action from './ContentNavAction';
-import Item from './ContentNavItem';
+import Action from '../ContentNav/ContentNavAction';
+import Item from './ContentNavFiltersItem';
 
 const DashboardLayoutContentNavFilters = ({ classes, children }) => (
   <div className={classes.root}>{children}</div>
