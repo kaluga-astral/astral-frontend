@@ -39,33 +39,35 @@ const DashboardLayoutOrganizationSelector = ({
   return (
     <div className={cn(classes.root, className)}>
       <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-        <CurrentOrganization
-          name={currentOrganization && currentOrganization.name}
-          onClick={handleTogglerButtonClick}
-        />
-        <Popper transition open={open} anchorEl={anchorEl} onClick={() => setOpen(false)}>
-          {({ TransitionProps }) => (
-            <Grow {...TransitionProps}>
-              <Paper className={classes.popperPaper}>
-                {children.length > 0 ? (
-                  <div>
-                    <MenuList disablePadding>{children}</MenuList>
-                    <Button
-                      size="small"
-                      component={Link}
-                      to="/abonents/add"
-                      className={classes.addButton}
-                    >
-                      + Добавить организацию
-                    </Button>
-                  </div>
-                ) : (
-                  <NotFoundPlaceholder />
-                )}
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
+        <>
+          <CurrentOrganization
+            name={currentOrganization && currentOrganization.name}
+            onClick={handleTogglerButtonClick}
+          />
+          <Popper transition open={open} anchorEl={anchorEl} onClick={() => setOpen(false)}>
+            {({ TransitionProps }) => (
+              <Grow {...TransitionProps}>
+                <Paper className={classes.popperPaper}>
+                  {children.length > 0 ? (
+                    <div>
+                      <MenuList disablePadding>{children}</MenuList>
+                      <Button
+                        size="small"
+                        component={Link}
+                        to="/abonents/add"
+                        className={classes.addButton}
+                      >
+                        + Добавить организацию
+                      </Button>
+                    </div>
+                  ) : (
+                    <NotFoundPlaceholder />
+                  )}
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </>
       </ClickAwayListener>
     </div>
   );
@@ -94,6 +96,8 @@ export default withStyles({
   root: {
     display: 'flex',
     height: '100%',
+    flexGrow: 1,
+    justifyContent: 'flex-end',
   },
   popperPaper: {
     maxHeight: '325px',
