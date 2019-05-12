@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "main": "./index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "assembly-scripts build",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
   "dependencies": {
     "@material-ui/core": "^3.9.2"
   },

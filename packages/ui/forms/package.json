@@ -2,7 +2,11 @@
   "name": "@astral-frontend/forms",
   "version": "1.0.0",
   "main": "./src/index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "assembly-scripts build",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
   "dependencies": {
     "@astral-frontend/styles": "^1.0.0",
     "@astral-frontend/validations": "^1.0.0",
