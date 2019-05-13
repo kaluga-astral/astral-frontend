@@ -1,5 +1,8 @@
 name: $(Date:yyyy-MM-dd).$(Rev:r)
 
+queue:
+  name: DockerPool
+
 jobs:
   - job: BuildComponents
     displayName: ui/components
