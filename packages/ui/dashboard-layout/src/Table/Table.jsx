@@ -7,7 +7,7 @@ import Header from './TableHeader';
 import Body from './TableBody';
 import Row from './TableRow';
 import Cell from './TableCell';
-// import Footer from './TableFooter';
+import Footer from './TableFooter';
 
 const Table = ({
   classes, className, children, ...props
@@ -18,6 +18,7 @@ const Table = ({
 );
 
 Table.Header = Header;
+Table.Footer = Footer;
 Table.Body = Body;
 Table.Row = Row;
 Table.Cell = Cell;
