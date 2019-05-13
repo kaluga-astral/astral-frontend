@@ -1,7 +1,9 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { withStyles } from '@astral-frontend/styles';
+import { List } from '@astral-frontend/components';
 
 import Header from './TableHeader';
 import Body from './TableBody';
@@ -12,9 +14,9 @@ import Footer from './TableFooter';
 const Table = ({
   classes, className, children, ...props
 }) => (
-  <div {...props} className={cn(classes.root, className)}>
+  <List {...props} disablePadding className={cn(classes.root, className)}>
     {children}
-  </div>
+  </List>
 );
 
 Table.Header = Header;
