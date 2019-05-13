@@ -15,6 +15,7 @@ export {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
 } from './ExpansionPanel';
+export { default as Document } from './Document';
 export { default as Fade } from './Fade';
 export { default as Popper } from './Popper';
 export { default as Paper } from './Paper';
@@ -22,11 +23,11 @@ export { default as Placeholder } from './Placeholder';
 export { default as Radio } from './Radio';
 export { default as RadioGroup } from './RadioGroup';
 export { default as RootRef } from './RootRef';
+export { default as Select } from './Select';
 export { default as Slide } from './Slide';
 export { default as Step } from './Step';
 export { default as StepLabel } from './StepLabel';
 export { default as Stepper } from './Stepper';
-export { default as Document } from './Document';
 export { default as FormControlLabel } from './FormControlLabel';
 export { default as FormGrid } from './FormGrid';
 export { default as FormGridField } from './FormGridField';
