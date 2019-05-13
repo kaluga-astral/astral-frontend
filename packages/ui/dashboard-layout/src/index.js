@@ -11,6 +11,7 @@ export { default as Main } from './Main';
 export { default as MainModal } from './MainModal';
 export { default as MainPaper } from './MainPaper';
 export { default as PageTitle } from './PageTitle';
+export { default as Pagination } from './Pagination';
 export { default as Product } from './Product';
 export { default as Sidebar } from './Sidebar';
 export { default as SidebarNav } from './SidebarNav';

@@ -15,6 +15,7 @@
     "classnames": "^2.2.6",
     "path-to-regexp": "^3.0.0",
     "prop-types": "^15.7.2",
+    "react-js-pagination": "^3.0.2",
     "react-transition-group": "^4.0.0"
   },
   "devDependencies": {},
