@@ -2,16 +2,19 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
+import { ListItem } from '@astral-frontend/components';
 
 const TableRow = ({
   classes, className, disableHoverEffect, children, ...props
 }) => (
-  <div
+  <ListItem
     {...props}
+    button={!disableHoverEffect}
+    disablePadding
     className={cn(classes.root, className, { [classes.withHover]: !disableHoverEffect })}
   >
     {children}
-  </div>
+  </ListItem>
 );
 
 TableRow.defaultProps = {
