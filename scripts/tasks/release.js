@@ -4,8 +4,6 @@ module.exports = async () => {
   try {
     const result = await semanticRelease(
       {
-        dryRun: true,
-
         branch: 'next',
 
         plugins: [
