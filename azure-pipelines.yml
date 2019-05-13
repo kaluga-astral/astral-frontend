@@ -1,28 +1,87 @@
 name: $(Date:yyyy-MM-dd).$(Rev:r)
 
 jobs:
-  - job: Build
+  - job: BuildComponents
+    displayName: ui/components
     steps:
       - task: NodeTool@0
         inputs:
           versionSpec: '12'
-      - script: npm install
+      - script: yarn install
       - script: yarn workspace @astral-frontend/components run build
       - script: yarn workspace @astral-frontend/components run release
-      - script: yarn workspace @astral-frontend/constants run build
-      - script: yarn workspace @astral-frontend/core run build
-      - script: yarn workspace @astral-frontend/dashboard-layout run build
-      # - script: yarn workspace @astral-frontend/fonts run build
-      - script: yarn workspace @astral-frontend/forms run build
-      - script: yarn workspace @astral-frontend/icons run build
-      - script: yarn workspace @astral-frontend/styles run build
-      - script: yarn workspace @astral-frontend/themes run build
-      - script: yarn workspace @astral-frontend/validations run build
-      - script: yarn workspace @astral-frontend/validations run build
-
-  - job: Test
+  - job: BuildConstants
+    displayName: ui/constants
     steps:
-      - script: npm test
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '12'
+      - script: yarn install
+      - script: yarn workspace @astral-frontend/constants run build
+  - job: BuildCore
+    displayName: ui/core
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '12'
+      - script: yarn install
+      - script: yarn workspace @astral-frontend/core run build
+  - job: BuildDashboardLayout
+    displayName: ui/dashboard-layout
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '12'
+      - script: yarn install
+      - script: yarn workspace @astral-frontend/dashboard-layout run build
+  # - job: BuildDashboardFonts
+  #   displayName: ui/fonts
+  #   steps:
+  #     - task: NodeTool@0
+  #       inputs:
+  #         versionSpec: '12'
+  #     - script: yarn install
+  #     - script: yarn workspace @astral-frontend/fonts run build
+  - job: BuildForms
+    displayName: ui/forms
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '12'
+      - script: yarn install
+      - script: yarn workspace @astral-frontend/forms run build
+  - job: BuildIcons
+    displayName: ui/icons
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '12'
+      - script: yarn install
+      - script: yarn workspace @astral-frontend/icons run build
+  - job: BuildStyles
+    displayName: ui/styles
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '12'
+      - script: yarn install
+      - script: yarn workspace @astral-frontend/styles run build
+  - job: BuildThemes
+    displayName: ui/themes
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '12'
+      - script: yarn install
+      - script: yarn workspace @astral-frontend/themes run build
+  - job: BuildValidations
+    displayName: ui/validations
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '12'
+      - script: yarn install
+      - script: yarn workspace @astral-frontend/validations run build
 
 # stages:
 #   - stage: Build
