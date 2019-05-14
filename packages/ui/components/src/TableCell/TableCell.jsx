@@ -26,7 +26,8 @@ export default withStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     padding: '10px 0',
     wordBreak: 'break-all',
     [theme.breakpoints.down('xs')]: {
