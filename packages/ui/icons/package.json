@@ -1,7 +1,6 @@
 {
   "name": "@astral-frontend/icons",
   "version": "1.0.0",
-  "private": true,
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
