@@ -6,9 +6,6 @@ module.exports = async () => {
       {
         branch: 'next',
 
-        // repositoryUrl:
-        //   `https://oauth:${process.env.SYSTEM_ACCESSTOKEN}@10.0.3.4:22/DefaultCollection/%D0%90%D1%81%D1%82%D1%80%D0%B0%D0%BB%20Front-end/_git/ui-kit`,
-
         plugins: [
           '@semantic-release/commit-analyzer',
           '@semantic-release/release-notes-generator',
