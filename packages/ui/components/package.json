@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/components",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "./src/index.js",
   "scripts": {
     "percy": "react-percy",
@@ -9,15 +9,15 @@
     "release": "assembly-scripts release"
   },
   "dependencies": {
-    "@astral-frontend/core": "^1.0.0",
-    "@astral-frontend/styles": "^1.0.0",
+    "@astral-frontend/core": "^0.1.0",
+    "@astral-frontend/styles": "^0.1.0",
     "@bugsnag/plugin-react": "^6.0.0",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
     "react-jss": "^8.6.1"
   },
   "devDependencies": {
-    "@astral-frontend/assembly-scripts": "^1.0.0"
+    "@astral-frontend/assembly-scripts": "^0.1.0"
   },
   "peerDependencies": {
     "react": "^16.8.0",
