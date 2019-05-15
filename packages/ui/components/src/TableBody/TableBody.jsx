@@ -1,1 +1,1 @@
-export { Fragment as default } from 'react';
+export { TableBody as default } from '@astral-frontend/core';
