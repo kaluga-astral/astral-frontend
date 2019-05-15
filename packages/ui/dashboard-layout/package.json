@@ -1,22 +1,26 @@
 {
   "name": "@astral-frontend/dashboard-layout",
-  "version": "1.0.0",
-  "private": true,
+  "version": "0.1.0",
   "main": "./src/index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "assembly-scripts build",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
   "dependencies": {
-    "@astral-frontend/components": "^1.0.0",
-    "@astral-frontend/icons": "^1.0.0",
-    "@astral-frontend/styles": "^1.0.0",
+    "@astral-frontend/components": "^0.1.0",
+    "@astral-frontend/icons": "^0.1.0",
+    "@astral-frontend/styles": "^0.1.0",
     "classnames": "^2.2.6",
+    "nanoid": "^2.0.1",
     "path-to-regexp": "^3.0.0",
     "prop-types": "^15.7.2",
+    "react-js-pagination": "^3.0.2",
     "react-transition-group": "^4.0.0"
   },
   "devDependencies": {},
   "peerDependencies": {
-    "@astral-frontend/components": "^1.0.0",
-    "lodash-es": "^4.17.11",
+    "@astral-frontend/components": "^0.1.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-router-dom": "^5.0.0"

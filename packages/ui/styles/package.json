@@ -1,11 +1,14 @@
 {
   "name": "@astral-frontend/styles",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "./src/index.js",
-  "private": true,
-  "scripts": {},
+  "scripts": {
+    "build": "assembly-scripts build",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
   "dependencies": {
-    "@astral-frontend/core": "^1.0.0",
+    "@astral-frontend/core": "^0.1.0",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {},

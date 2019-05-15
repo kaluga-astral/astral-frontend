@@ -1,11 +1,15 @@
 {
   "name": "@astral-frontend/forms",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "./src/index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "assembly-scripts build",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
   "dependencies": {
-    "@astral-frontend/styles": "^1.0.0",
-    "@astral-frontend/validations": "^1.0.0",
+    "@astral-frontend/styles": "^0.1.0",
+    "@astral-frontend/validations": "^0.1.0",
     "downshift": "^3.2.7",
     "final-form": "^4.12.0",
     "lodash-es": "^4.17.11",
@@ -16,7 +20,7 @@
   },
   "devDependencies": {},
   "peerDependencies": {
-    "@astral-frontend/components": "^1.0.0",
+    "@astral-frontend/components": "^0.1.0",
     "react": ">=16.6.0"
   },
   "sideEffects": false

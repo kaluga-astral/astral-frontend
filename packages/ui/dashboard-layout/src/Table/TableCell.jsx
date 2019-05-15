@@ -29,6 +29,7 @@ TableCell.propTypes = {
 export default withStyles(theme => ({
   root: {
     display: 'flex',
+    flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     minHeight: '70px',
