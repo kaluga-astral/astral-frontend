@@ -1,4 +1,4 @@
-import { uniqueId } from 'lodash-es';
+import nanoid from 'nanoid';
 import pathToRegexp from 'path-to-regexp';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
@@ -23,7 +23,7 @@ const DashboardLayoutSidebarNavDropdown = ({
   const dropdownContext = useContext(DropdownContext);
   useEffect(() => {
     const { onNavDropdownItemSelect } = dropdownContext;
-    const itemId = uniqueId();
+    const itemId = nanoid();
     setId(itemId);
     if (
       React.Children.toArray(children).some(
