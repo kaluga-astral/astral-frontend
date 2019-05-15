@@ -42,6 +42,7 @@ export { default as List } from './List';
 export { default as ListItem } from './ListItem';
 export { default as MenuItem } from './MenuItem';
 export { default as MenuList } from './MenuList';
+export { default as Pagination } from './Pagination';
 export { default as SvgIcon } from './SvgIcon';
 export { default as Switch } from './Switch';
 export { default as Tab } from './Tab';
