@@ -10,7 +10,6 @@ const TableRow = ({
   <ListItem
     {...props}
     button={!disableHoverEffect}
-    disablePadding
     className={cn(classes.root, className, { [classes.withHover]: !disableHoverEffect })}
   >
     {children}

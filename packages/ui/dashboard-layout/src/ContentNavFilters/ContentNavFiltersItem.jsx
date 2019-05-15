@@ -8,8 +8,8 @@ const DashboardLayoutContentNavItem = ({
   classes, className, text, count, to,
 }) => (
   <NavLink
-    exact
     to={to}
+    isActive={() => to === window.location.pathname + window.location.search}
     activeClassName={classes.active}
     className={cn(classes.root, className)}
   >
