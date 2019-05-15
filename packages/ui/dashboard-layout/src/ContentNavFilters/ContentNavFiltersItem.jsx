@@ -26,7 +26,7 @@ DashboardLayoutContentNavItem.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   text: PropTypes.string.isRequired,
-  count: PropTypes.number.isRequired,
+  count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   to: PropTypes.string.isRequired,
 };
 
