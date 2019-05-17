@@ -41,19 +41,13 @@ export default withStyles(
     root: {
       flexGrow: 1,
       padding: 0,
-      // overflowY: 'scroll',
-      // '::-webkit-scrollbar': {
-      //   display: 'none',
-      // },
-      overflow: 'hidden',
-      // overflowY: 'scroll',
-      // scrollbarWidth: 'none',
-      // msOverflowStyle: 'none',
+      overflowY: 'scroll',
+      scrollbarWidth: 'none',
+      '-ms-overflow-style': 'none',
+      '&::-webkit-scrollbar': {
+        display: 'none',
+      },
     },
-    //   root::webkitScrollbar: {
-    //   width: 0,
-    //   height: 0,
-    // },
     list: {},
   }),
   { name: 'DashboardLayoutSidebarNav' },

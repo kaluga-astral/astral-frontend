@@ -8,7 +8,6 @@
     "release": "assembly-scripts release"
   },
   "dependencies": {
-    "@astral-frontend/styles": "^0.1.0",
     "@astral-frontend/core": "^0.1.0",
     "prop-types": "^15.7.2"
   },

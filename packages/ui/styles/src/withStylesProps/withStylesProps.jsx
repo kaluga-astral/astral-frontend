@@ -1,5 +1,6 @@
 import React from 'react';
-import { withStyles } from '@astral-frontend/styles';
+
+import withStyles from '../withStyles';
 
 const withStylesProps = styles => Component => (props) => {
   const Comp = withStyles(styles(props))(Component);
