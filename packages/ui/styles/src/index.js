@@ -1,1 +1,2 @@
-export { createGenerateClassName, withStyles } from '@astral-frontend/core/styles';
+export { default as withStyles } from './withStyles';
+export { default as withStylesProps } from './withStylesProps';
