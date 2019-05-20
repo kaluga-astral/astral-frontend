@@ -42,8 +42,6 @@ export default withStyles(
       flexGrow: 1,
       padding: 0,
       overflowY: 'scroll',
-      scrollbarWidth: 'none',
-      '-ms-overflow-style': 'none',
       '&::-webkit-scrollbar': {
         display: 'none',
       },

@@ -1,0 +1,36 @@
+---
+menu: dashboard-layout
+name: ActionButton
+---
+
+import { Playground, Props } from "docz";
+import { MemoryRouter } from "react-router-dom";
+import { SaveIcon } from "@astral-frontend/icons";
+
+import ActionButton from "./ActionButton";
+
+# ActionButton
+
+<Props of={ActionButton} />
+
+## Basic code
+
+```
+  <ActionButton>
+    <ActionButton.Icon>
+      <SaveIcon />
+    </ActionButton.Icon>
+    <ActionButton.Text>Новое заявление</ActionButton.Text>
+  </ActionButton>
+```
+
+## Basic usage
+
+<Playground>
+  <ActionButton>
+    <ActionButton.Icon>
+      <SaveIcon />
+    </ActionButton.Icon>
+    <ActionButton.Text>Новое заявление</ActionButton.Text>
+  </ActionButton>
+</Playground>

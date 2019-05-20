@@ -1,0 +1,28 @@
+---
+menu: dashboard-layout
+name: Product
+---
+
+import { Playground, Props } from "docz";
+import { MemoryRouter } from "react-router-dom";
+import { SaveIcon } from "@astral-frontend/icons";
+
+import Product from "./Product";
+
+# Product
+
+<Props of={Product} />
+
+## Basic code
+
+```
+  <Product Logo={SaveIcon} title="title"/>
+```
+
+## Basic usage
+
+<Playground>
+  <MemoryRouter initialEntries={['/']}>
+    <Product Logo={SaveIcon} title="title"/>
+  </MemoryRouter>
+</Playground>

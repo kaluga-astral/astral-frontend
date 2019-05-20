@@ -1,0 +1,42 @@
+---
+menu: dashboard-layout
+name: ContentNavFilters
+---
+
+import { Playground, Props } from "docz";
+import { MemoryRouter } from "react-router-dom";
+import { SaveIcon } from "@astral-frontend/icons";
+
+import ContentNavFilters from "./ContentNavFilters";
+import Content from "../Content";
+
+# ContentNavFilters
+
+<Props of={ContentNavFilters} />
+<Props of={ContentNavFilters.Item} />
+
+## Basic code
+
+```
+  <Content>
+    <ContentNavFilters>
+      <ContentNavFilters.Item text="title йцк" to="/rw" count={0} />
+      <ContentNavFilters.Item text="title йцк" to="/rw" count={124} />
+      <ContentNavFilters.Item text="title йк" to="/rw" count={3} />
+    </ContentNavFilters>
+   </Content>
+```
+
+## Basic usage
+
+<Playground>
+  <MemoryRouter initialEntries={['/']}>
+    <Content>
+      <ContentNavFilters>
+        <ContentNavFilters.Item text="title йцк" to="/rw" count={0} />
+        <ContentNavFilters.Item text="title йцк" to="/rw" count={124} />
+        <ContentNavFilters.Item text="title йк" to="/rw" count={3} />
+      </ContentNavFilters>
+    </Content>
+  </MemoryRouter>
+</Playground>

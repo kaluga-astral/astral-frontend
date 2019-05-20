@@ -1,0 +1,31 @@
+---
+menu: dashboard-layout
+name: CurrentUserInfo
+---
+
+import { Playground, Props } from "docz";
+import { MemoryRouter } from "react-router-dom";
+import { SaveIcon } from "@astral-frontend/icons";
+
+import CurrentUserInfo from "./CurrentUserInfo";
+
+# CurrentUserInfo
+
+<Props of={CurrentUserInfo} />
+<Props of={CurrentUserInfo.Item} />
+
+## Basic code
+
+```
+  <CurrentUserInfo avatarAlt="AA" avatarSrc={null} userName="userName">
+    <CurrentUserInfo.Item Icon={SaveIcon} text="Выйти" />
+  </CurrentUserInfo>
+```
+
+## Basic usage
+
+<Playground>
+  <CurrentUserInfo avatarAlt="AA" avatarSrc={null} userName="userName">
+    <CurrentUserInfo.Item Icon={SaveIcon} text="Выйти" />
+  </CurrentUserInfo>
+</Playground>
