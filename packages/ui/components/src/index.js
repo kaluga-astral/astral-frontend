@@ -43,6 +43,7 @@ export { default as ListItem } from './ListItem';
 export { default as MenuItem } from './MenuItem';
 export { default as MenuList } from './MenuList';
 export { default as Pagination } from './Pagination';
+export { default as SelectableTableCell } from './SelectableTableCell';
 export { default as SvgIcon } from './SvgIcon';
 export { default as SwipeableDrawer } from './SwipeableDrawer';
 export { default as Switch } from './Switch';
