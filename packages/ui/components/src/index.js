@@ -54,3 +54,4 @@ export { default as TableRow } from './TableRow';
 export { default as Tabs } from './Tabs';
 export { default as TextField } from './TextField';
 export { default as ThemeProvider } from './ThemeProvider';
+export { default as Typography } from './Typography';
