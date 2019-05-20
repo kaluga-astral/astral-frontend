@@ -7,6 +7,7 @@ import TableRowContext from './TableRowContext';
 
 const TableRow = ({ children, ...props }) => {
   const [hovered, setHovered] = useState(false);
+
   return (
     <MuiTableRow
       onMouseEnter={() => setHovered(true)}
