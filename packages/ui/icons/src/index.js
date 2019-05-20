@@ -1,6 +1,6 @@
 export { default as ArrowIcon } from './ArrowIcon';
 export { default as BackIcon } from './BackIcon';
-export { default as CheckCircleIcon } from './CheckCircleIcon';
+export { default as CheckedCircleIcon } from './CheckedCircleIcon';
 export { default as DeleteIcon } from './DeleteIcon';
 export { default as DocumentIcon } from './DocumentIcon';
 export { default as EditIcon } from './EditIcon';
@@ -9,3 +9,4 @@ export { default as SearchIcon } from './SearchIcon';
 export { default as SendIcon } from './SendIcon';
 export { default as OrganizationIcon } from './OrganizationIcon';
 export { default as OrganizationNotFoundIcon } from './OrganizationNotFoundIcon';
+export { default as UncheckedCircleIcon } from './UnchekedCircleIcon';

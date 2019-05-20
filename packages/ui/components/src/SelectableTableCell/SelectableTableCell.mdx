@@ -1,0 +1,26 @@
+---
+menu: components
+name: SelectableTableCell
+---
+
+import { Playground, Props } from "docz";
+import { SaveIcon } from "@astral-frontend/icons";
+impoprt { Checkbox } from "@astral-frontend/components"; 
+
+import SelectableTableCell from "./SelectableTableCell";
+
+# SelectableTableCell
+
+<Props of={SelectableTableCell} />
+
+## Basic code
+
+```
+ <SelectableTableCell Icon={SaveIcon} Selector={Checkbox} onSelect={()=>console.log('selected') selected={()=>false}} />
+```
+
+## Basic usage
+
+<Playground>
+  <SelectableTableCell Icon={SaveIcon} Selector={Checkbox} onSelect={()=>console.log('selected')} selected={()=>false} />
+</Playground>
