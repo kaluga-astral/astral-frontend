@@ -26,7 +26,6 @@ export default withStyles(
     root: {
       display: 'flex',
       alignItems: 'center',
-      flexGrow: 1,
       margin: '0 15px',
       height: '100%',
       fontSize: '18px',
