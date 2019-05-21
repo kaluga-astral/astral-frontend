@@ -20,5 +20,6 @@ DashboardLayoutMainModalContent.propTypes = {
 export default withStyles({
   root: {
     flexGrow: 1,
+    overflow: 'auto',
   },
 })(DashboardLayoutMainModalContent);

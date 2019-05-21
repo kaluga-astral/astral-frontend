@@ -19,11 +19,15 @@ const Input = withStyles(theme => ({
 }))(InputBase);
 
 const DashboardLayoutHeaderSearch = ({
-  classes, className, onChange, ...props
+  classes,
+  className,
+  inputValue,
+  onInputChange,
+  ...props
 }) => (
   <div className={cn(classes.root, className)}>
     <SearchIcon className={classes.icon} />
-    <Input onChange={e => onChange(e.target.value)} {...props} />
+    <Input value={inputValue} onChange={onInputChange} {...props} />
   </div>
 );
 
@@ -36,7 +40,8 @@ DashboardLayoutHeaderSearch.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   placeholder: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onInputChange: PropTypes.func.isRequired,
 };
 
 export default withStyles(

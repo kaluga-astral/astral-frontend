@@ -1,0 +1,56 @@
+---
+menu: dashboard-layout
+name: Table
+---
+
+import { Playground, Props } from "docz";
+import { MemoryRouter } from "react-router-dom";
+import { SaveIcon } from "@astral-frontend/icons";
+
+import Table from "./Table";
+
+# Table
+
+<Props of={Table} />
+
+## Basic code
+
+```
+<Table>
+    <Table.Header>
+      <Table.Row>
+        <Table.Cell>header 1</Table.Cell>
+        <Table.Cell>header 1</Table.Cell>
+        <Table.Cell>header 1</Table.Cell>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>Cell 1</Table.Cell>
+        <Table.Cell>Cell 1</Table.Cell>
+        <Table.Cell>Cell 1</Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table>
+```
+
+## Basic usage
+
+<Playground>
+  <Table>
+    <Table.Header>
+      <Table.Row>
+        <Table.Cell>header 1</Table.Cell>
+        <Table.Cell>header 1</Table.Cell>
+        <Table.Cell>header 1</Table.Cell>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>Cell 1</Table.Cell>
+        <Table.Cell>Cell 1</Table.Cell>
+        <Table.Cell>Cell 1</Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table>
+</Playground>

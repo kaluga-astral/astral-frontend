@@ -1,0 +1,36 @@
+---
+menu: dashboard-layout
+name: MainModal
+---
+
+import { Playground, Props } from "docz";
+import { MemoryRouter } from "react-router-dom";
+import { SaveIcon } from "@astral-frontend/icons";
+
+import MainModal from "./index";
+
+# MainModal
+
+<Props of={MainModal} />
+
+## Basic code
+
+```
+  <MainModal title="title" open={true} onClose={() => console.log('close model')}>
+    some MainModal content
+  </MainModal>
+```
+
+## Basic usage
+
+
+<Playground>
+  <MemoryRouter initialEntries={['/']}>
+    <MainModal open={true} onClose={() => console.log('close model')}>
+      <MainModal.Title>title</MainModal.Title>
+      <MainModal.Content>
+            some MainModal content
+      </MainModal.Content>
+    </MainModal>
+  </MemoryRouter>
+</Playground>
