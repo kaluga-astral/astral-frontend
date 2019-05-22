@@ -40,7 +40,11 @@ const FormField = ({
     }
 
     if (!required && validate) {
-      return validate;
+      return composeValidations(value => {
+        if (value) {
+          validate(validate);
+        }
+      });
     }
 
     return null;
