@@ -244,7 +244,7 @@ FormField.propTypes = {
   /**
    * The label content.
    */
-  label: PropTypes.node.isRequired,
+  label: PropTypes.node,
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
