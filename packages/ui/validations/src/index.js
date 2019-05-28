@@ -1,6 +1,7 @@
 export { default as composeValidations } from './composeValidations';
 export { default as maxLength } from './maxLength';
 export { default as minLength } from './minLength';
+export { default as mustBeDatePeriod } from './mustBeDatePeriod';
 export { default as mustBeEmail } from './mustBeEmail';
 export { default as mustBeINN } from './mustBeINN';
 export { default as mustBeKPP } from './mustBeKPP';
