@@ -63,7 +63,7 @@ const FormField = ({
         parse={parse}
         render={({ input, meta }) => {
           const error = meta.touched && !meta.valid;
-          const helperText = meta.error || meta.submitError;
+          const helperText = meta.error && meta.touched ? meta.error : null;
 
           if (render) {
             return render({ ...input, ...MuiTextFieldProps, error, helperText });

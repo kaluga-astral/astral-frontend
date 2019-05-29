@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-const FormGridField = ({
-  classes, className, component: Component, ...props
-}) => (
-  <Component className={cn(classes.root, className)} {...props} />
+import FlexItem from '../FlexItem';
+
+const FormGridField = ({ classes, className, ...props }) => (
+  <FlexItem className={cn(classes.root, className)} {...props} />
 );
 
 FormGridField.defaultProps = {
@@ -21,8 +21,6 @@ FormGridField.propTypes = {
 
 export default withStyles({
   root: {
-    flex: 1,
-
     '&:not(:last-child)': {
       marginRight: '20px',
     },
