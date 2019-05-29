@@ -15,7 +15,7 @@ const DashboardLayoutMainModalTitle = ({ classes, className, children }) => {
       <IconButton className={classes.backButton} onClick={handleBackButtonClick}>
         <BackIcon />
       </IconButton>
-      <div className={classes.text}>{children}</div>
+      <h2 className={classes.text}>{children}</h2>
     </div>
   );
 };
@@ -33,7 +33,7 @@ DashboardLayoutMainModalTitle.propTypes = {
 export default withStyles({
   root: {
     display: 'flex',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     padding: '15px 0 20px 0',
   },
   backButton: {
@@ -41,5 +41,5 @@ export default withStyles({
   },
   text: {
     flexGrow: 1,
-  }
+  },
 })(DashboardLayoutMainModalTitle);
