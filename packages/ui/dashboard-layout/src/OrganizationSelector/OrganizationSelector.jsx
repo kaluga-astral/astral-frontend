@@ -111,5 +111,9 @@ export default withStyles({
     fontWeight: 'bold',
     justifyContent: 'left',
     padding: '15px',
+    position: 'sticky',
+    bottom: 0,
+    zIndex: 1000,
+    backgroundColor: 'white !important',
   },
 })(DashboardLayoutOrganizationSelector);

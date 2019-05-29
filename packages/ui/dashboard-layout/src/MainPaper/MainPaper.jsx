@@ -31,6 +31,7 @@ DashboardLayoutMainPaper.propTypes = {
 export default withStyles(
   () => ({
     root: {
+      position: 'relative',
       flexGrow: 1,
       margin: '15px',
     },

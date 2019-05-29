@@ -40,7 +40,11 @@ const FormField = ({
     }
 
     if (!required && validate) {
-      return validate;
+      return composeValidations(value => {
+        if (value) {
+          validate(validate);
+        }
+      });
     }
 
     return null;
@@ -59,7 +63,7 @@ const FormField = ({
         parse={parse}
         render={({ input, meta }) => {
           const error = meta.touched && !meta.valid;
-          const helperText = meta.error || meta.submitError;
+          const helperText = meta.error && meta.touched ? meta.error : null;
 
           if (render) {
             return render({ ...input, ...MuiTextFieldProps, error, helperText });
@@ -240,7 +244,7 @@ FormField.propTypes = {
   /**
    * The label content.
    */
-  label: PropTypes.node.isRequired,
+  label: PropTypes.node,
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
