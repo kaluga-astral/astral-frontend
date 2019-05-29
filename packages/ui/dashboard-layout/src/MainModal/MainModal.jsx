@@ -55,6 +55,8 @@ DashboardLayoutMainModal.propTypes = {
 export default withStyles(
   theme => ({
     root: {
+      display: 'flex',
+      flexDirection: 'column',
       position: 'absolute',
       right: 0,
       top: 0,
