@@ -114,6 +114,6 @@ export default withStyles({
     position: 'sticky',
     bottom: 0,
     zIndex: 1000,
-    backgrounColor: 'white !important',
+    backgroundColor: 'white !important',
   },
 })(DashboardLayoutOrganizationSelector);
