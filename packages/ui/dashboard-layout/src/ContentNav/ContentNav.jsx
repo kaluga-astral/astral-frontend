@@ -3,13 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-import Action from './ContentNavAction';
-
 const DashboardLayoutContentNav = ({ classes, className, children }) => (
   <nav className={cn(classes.root, className)}>{children}</nav>
 );
-
-DashboardLayoutContentNav.Action = Action;
 
 DashboardLayoutContentNav.defaultProps = {
   className: null,

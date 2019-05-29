@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
+import FlexContainer from '../FlexContainer';
+
 const FormGridRow = ({
   classes, className, children, ...props
 }) => (
-  <div {...props} className={cn(classes.root, className)}>
+  <FlexContainer {...props} className={cn(classes.root, className)}>
     {children}
-  </div>
+  </FlexContainer>
 );
 
 FormGridRow.defaultProps = {
@@ -22,7 +24,5 @@ FormGridRow.propTypes = {
 };
 
 export default withStyles({
-  root: {
-    display: 'flex',
-  },
+  root: {},
 })(FormGridRow);

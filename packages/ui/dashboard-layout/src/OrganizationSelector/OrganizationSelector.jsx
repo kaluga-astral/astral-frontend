@@ -81,7 +81,9 @@ DashboardLayoutOrganizationSelector.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  currentOrganization: PropTypes.shape({}).isRequired,
+  currentOrganization: PropTypes.shape({
+    name: PropTypes.string,
+  }).isRequired,
   NotFoundPlaceholder: PropTypes.oneOfType([
     PropTypes.string.isRequired,
     PropTypes.object.isRequired,

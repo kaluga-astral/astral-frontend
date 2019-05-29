@@ -1,0 +1,32 @@
+---
+menu: dashboard-layout
+name: PageTitle
+---
+
+import { Playground, Props } from "docz";
+import { MemoryRouter } from "react-router-dom";
+import { SaveIcon } from "@astral-frontend/icons";
+
+import PageTitle from "./PageTitle";
+
+# PageTitle
+
+<Props of={PageTitle} />
+
+## Basic code
+
+```
+  <PageTitle>
+    PageTitle
+  </PageTitle>
+```
+
+## Basic usage
+
+<Playground>
+  <MemoryRouter initialEntries={['/']}>
+      <PageTitle>
+        PageTitle
+      </PageTitle>
+  </MemoryRouter>
+</Playground>

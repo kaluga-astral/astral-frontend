@@ -10,6 +10,7 @@
     "docz:build": "docz build"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
     "@percy/react": "^0.4.6",
     "babel-jest": "^24.7.1",
     "docz": "^1.2.0",
