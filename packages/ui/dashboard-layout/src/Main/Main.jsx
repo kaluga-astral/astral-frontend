@@ -26,7 +26,7 @@ export default withStyles(
       display: 'flex',
       flexDirection: 'column',
       flexGrow: 1,
-      overflowY: 'scroll',
+      overflowY: 'hidden',
       overflowX: 'hidden',
     },
   }),

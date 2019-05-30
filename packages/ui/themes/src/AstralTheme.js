@@ -27,6 +27,12 @@ const astralThemeOptions = {
         boxShadow: 'none',
       },
     },
+    MuiTableCell: {
+      root: {
+        paddingTop: '10px',
+        paddingBottom: '10px',
+      },
+    },
   },
 };
 

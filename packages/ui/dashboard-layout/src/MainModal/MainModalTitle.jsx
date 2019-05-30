@@ -40,6 +40,7 @@ export default withStyles({
     margin: '0 5px',
   },
   text: {
+    padding: '12px',
     flexGrow: 1,
   },
 })(DashboardLayoutMainModalTitle);

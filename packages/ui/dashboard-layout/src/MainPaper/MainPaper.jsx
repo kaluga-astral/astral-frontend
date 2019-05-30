@@ -31,9 +31,9 @@ DashboardLayoutMainPaper.propTypes = {
 export default withStyles(
   () => ({
     root: {
-      position: 'relative',
       flexGrow: 1,
       margin: '15px',
+      overflowY: 'scroll',
     },
     padding: {
       padding: '15px',
