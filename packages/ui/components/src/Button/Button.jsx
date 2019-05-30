@@ -20,6 +20,9 @@ const Button = ({
       [classes.disabledText]: disabled && (variant === 'text' || variant === 'textBlock'),
       [classes.text]: variant === 'text',
       [classes.textBlock]: variant === 'textBlock',
+      [classes.regular]: variant === 'regular',
+      [classes.primaryMainBackground]:
+        color === 'primary' && (variant !== 'text' && variant !== 'textBlock'),
       [classes.small]: size === 'small',
       [classes.medium]: size === 'medium',
       [classes.large]: size === 'large',
@@ -79,6 +82,9 @@ export default withStyles(theme => ({
       background: 'rgba(29, 63, 102, 0.05)',
     },
   },
+  regular: {
+    borderRadius: '4px',
+  },
   small: {
     minHeight: '32px',
   },
@@ -88,5 +94,10 @@ export default withStyles(theme => ({
   },
   large: {
     minHeight: '64px',
+    minWidth: '160px',
+  },
+  primaryMainBackground: {
+    background: theme.palette.primary.main,
+    color: theme.palette.common.white,
   },
 }))(Button);

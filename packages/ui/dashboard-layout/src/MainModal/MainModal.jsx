@@ -67,6 +67,7 @@ export default withStyles(
       borderTop: `1px solid ${theme.palette.grey[100]}`,
       transition: `transform ${TRANSITION_DURATION}ms ease-in-out`,
       transform: 'translateX(100%)',
+      zIndex: 2,
     },
   }),
   { name: 'DashboardLayoutMainModal' },
