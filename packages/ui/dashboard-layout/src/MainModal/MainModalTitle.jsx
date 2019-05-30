@@ -34,12 +34,12 @@ export default withStyles({
   root: {
     display: 'flex',
     alignItems: 'flex-start',
-    padding: '15px 0 20px 0',
   },
   backButton: {
     margin: '0 5px',
   },
   text: {
+    padding: '12px',
     flexGrow: 1,
-  }
+  },
 })(DashboardLayoutMainModalTitle);
