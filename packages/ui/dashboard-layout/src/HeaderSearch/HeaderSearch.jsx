@@ -34,13 +34,14 @@ const DashboardLayoutHeaderSearch = ({
 DashboardLayoutHeaderSearch.defaultProps = {
   className: null,
   placeholder: 'Поиск',
+  inputValue: '',
 };
 
 DashboardLayoutHeaderSearch.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   placeholder: PropTypes.string,
-  inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onInputChange: PropTypes.func.isRequired,
 };
 
