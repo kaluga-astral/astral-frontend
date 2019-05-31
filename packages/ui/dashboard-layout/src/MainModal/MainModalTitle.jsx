@@ -35,6 +35,7 @@ export default withStyles({
     display: 'flex',
     alignItems: 'center',
     padding: '15px 0 20px 0',
+    wordBreak: 'break-all',
   },
   backButton: {
     margin: '0 5px',
