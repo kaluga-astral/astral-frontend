@@ -13,7 +13,7 @@ const FlexItem = ({
 FlexItem.defaultProps = {
   className: null,
   component: 'div',
-  grow: null,
+  grow: 1,
 };
 
 FlexItem.propTypes = {
