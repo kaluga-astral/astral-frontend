@@ -8,6 +8,7 @@ import TableRowContext from './TableRowContext';
 
 const TableRowActions = ({ classes, ...props }) => {
   const tableRowContext = React.useContext(TableRowContext);
+
   return (
     <MuiTableCell
       className={cn(classes.root, { [classes.visible]: tableRowContext.hovered })}
