@@ -25,7 +25,9 @@ TableRow.propTypes = {
 
 export default withStyles(theme => ({
   root: {
+    position: 'relative',
     borderLeft: '4px solid transparent',
+    transform: 'scale(1, 1)',
     '&$hover:hover': {
       borderLeft: `4px solid ${theme.palette.primary.main}`,
       backgroundColor: theme.palette.action.hover,
