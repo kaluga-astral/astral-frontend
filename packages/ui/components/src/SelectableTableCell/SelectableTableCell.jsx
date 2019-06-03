@@ -11,12 +11,12 @@ import SelectableTableCellDefaultSelector from './SelectableTableCellDefaultSele
 const SelectableTableCell = ({
   Icon, selected, renderSelector, onChange, classes, ...props
 }) => {
-  const { hovered } = React.useContext(TableRowContext);
+  const { hovered: tableRowHovered } = React.useContext(TableRowContext);
 
   return (
     <TableCell padding="checkbox" className={classes.root} {...props}>
       <div className={classes.wrapper}>
-        {hovered || selected ? renderSelector({ selected, onChange }) : <Icon />}
+        {tableRowHovered || selected ? renderSelector({ selected, onChange }) : <Icon />}
       </div>
     </TableCell>
   );

@@ -1,21 +1,29 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import { TableRow as MuiTableRow } from '@astral-frontend/core';
 import { withStyles } from '@astral-frontend/styles';
 
 import TableRowContext from './TableRowContext';
 
 const TableRow = ({ children, ...props }) => {
-  const [hovered, setHovered] = useState(false);
+  const [hovered, setHovered] = React.useState(false);
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+  const onMouseLeave = () => {
+    setHovered(false);
+  };
 
   return (
-    <MuiTableRow
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      {...props}
-    >
-      <TableRowContext.Provider value={{ hovered }}>{children}</TableRowContext.Provider>
-    </MuiTableRow>
+    <TableRowContext.Provider value={{ hovered }}>
+      <MuiTableRow
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={onMouseLeave}
+        {...props}
+      >
+        {children}
+      </MuiTableRow>
+    </TableRowContext.Provider>
   );
 };
 
