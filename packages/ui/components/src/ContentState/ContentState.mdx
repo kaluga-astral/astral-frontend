@@ -1,0 +1,33 @@
+---
+menu: components
+name: ContentState
+---
+
+import ContentState from './ContentState';
+import CircularProgress from '../CircularProgress';
+
+# ContentState
+
+<Props of={ContentState} />
+
+## Basic code
+
+```
+  <ContentState component="div" isFetching LoadingStateComponent={CircularProgress}>
+    Children
+  </ContentState>
+  <ContentState component="div" isFetching={false} error={new Error()} FailureStateComponent={() => (<div>ошибка</div>)}>
+    Children
+  </ContentState>
+```
+
+## Basic usage
+
+<Playground>
+  <ContentState component="div" isFetching LoadingStateComponent={CircularProgress}>
+    Children
+  </ContentState>
+  <ContentState component="div" isFetching={false} error={new Error()} FailureStateComponent={() => (<div>ошибка</div>)}>
+    Children
+  </ContentState>
+</Playground>

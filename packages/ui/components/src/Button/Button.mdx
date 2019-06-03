@@ -7,4 +7,59 @@ import Button from './Button';
 
 # Button
 
-<Button>123</Button>
+<Props of={Button} />
+
+  ###Цвет
+  color: oneOf(['primary', 'secondary']),
+   
+   
+  ###Вариант использования
+  variant: PropTypes.oneOf(['text', 'textBlock']),
+  
+  
+  ###Размер
+  size: oneOf(['small', 'medium', 'large']),
+  
+## Basic code
+
+```
+  ## variant usage
+  <Playground>
+    <Button variant="text" color="primary">text</Button>
+    <Button variant="textBlock" color="primary">textBlock</Button>
+  </Playground>
+  
+  ## Size usage
+  <Playground>
+    <Button variant="textBlock" size="small" color="primary">small</Button>
+    <Button variant="textBlock" size="medium" color="primary">medium</Button>
+    <Button variant="textBlock" size="large" color="primary">large</Button>
+  </Playground>
+  
+  ## color usage
+  <Playground>
+    <Button variant="textBlock" color="primary">primary</Button>
+    <Button variant="textBlock" color="secondary">secondary</Button>
+  </Playground>
+```
+
+
+## variant usage
+<Playground>
+  <Button variant="text" color="primary">text</Button>
+  <Button variant="textBlock" color="primary">textBlock</Button>
+</Playground>
+
+## Size usage
+<Playground>
+  <Button variant="textBlock" size="small" color="primary">small</Button>
+  <Button variant="textBlock" size="medium" color="primary">medium</Button>
+  <Button variant="textBlock" size="large" color="primary">large</Button>
+</Playground>
+
+## color usage
+<Playground>
+  <Button variant="textBlock" color="primary">primary</Button>
+  <Button variant="textBlock" color="secondary">secondary</Button>
+</Playground>
+

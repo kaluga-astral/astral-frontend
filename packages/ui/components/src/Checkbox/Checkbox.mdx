@@ -1,0 +1,26 @@
+---
+menu: components
+name: Checkbox
+---
+
+import Checkbox from './Checkbox';
+
+# Checkbox
+
+<Props of={Checkbox} />
+
+## Basic code
+
+```
+  <Checkbox checked onChange={(value) => console.log('checket', value)} value="checkedA" />
+  <Checkbox onChange={(value) => console.log('checket', value)} value="checkedB" />
+```
+
+## Basic usage
+
+<Playground>
+  <a href="https://material-ui.com/components/checkboxes/" target="_blank">material-ui.com/components/checkboxes/</a>
+  <br/>
+  <Checkbox checked onChange={(value) => console.log('checket', value)} value="checkedA" />
+  <Checkbox onChange={(value) => console.log('checket', value)} value="checkedB" />
+</Playground>

@@ -52,7 +52,7 @@ Button.propTypes = {
   /**
    * Вариант использования
    */
-  variant: PropTypes.oneOf(['regular', 'text', 'regularBlock', 'textBlock']),
+  variant: PropTypes.oneOf(['text', 'textBlock']),
   /**
    * Размер
    */
