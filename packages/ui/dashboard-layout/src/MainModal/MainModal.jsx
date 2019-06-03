@@ -14,12 +14,17 @@ const transitionStyles = {
 };
 
 const DashboardLayoutMainModal = ({
-  classes, className, children, open, onClose,
+  classes, className, children, open, onClose, onOpen,
 }) => {
   const [transitionIn, setTransitionIn] = React.useState(open);
+
   React.useEffect(() => {
     setTransitionIn(open);
+    if (onOpen) {
+      setTimeout(() => onOpen(), TRANSITION_DURATION * 2);
+    }
   }, [open]);
+
   const handleBackButtonClick = () => {
     setTransitionIn(false);
     setTimeout(() => onClose(), TRANSITION_DURATION);
@@ -41,6 +46,7 @@ const DashboardLayoutMainModal = ({
 DashboardLayoutMainModal.defaultProps = {
   className: null,
   open: false,
+  onOpen: null,
 };
 
 DashboardLayoutMainModal.propTypes = {
@@ -50,6 +56,7 @@ DashboardLayoutMainModal.propTypes = {
   history: PropTypes.shape({}).isRequired,
   open: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
+  onOpen: PropTypes.func,
 };
 
 export default withStyles(
