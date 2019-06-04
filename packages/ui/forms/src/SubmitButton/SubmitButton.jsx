@@ -4,13 +4,13 @@ import { FormSpy } from 'react-final-form';
 import { Button } from '@astral-frontend/components';
 
 const FormSubmitButton = ({
-  disabled, ButtonComponent, children, ...props
+  disabled, component: Component, children, ...props
 }) => (
   <FormSpy subscription={{ submitting: true }}>
     {({ submitting }) => (
-      <ButtonComponent disabled={disabled} fetching={submitting} type="submit" {...props}>
+      <Component disabled={disabled} loading={submitting} type="submit" {...props}>
         {children}
-      </ButtonComponent>
+      </Component>
     )}
   </FormSpy>
 );
@@ -18,13 +18,13 @@ const FormSubmitButton = ({
 FormSubmitButton.defaultProps = {
   disabled: false,
   className: null,
-  ButtonComponent: Button,
+  component: Button,
 };
 
 FormSubmitButton.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  ButtonComponent: PropTypes.func,
+  component: PropTypes.func,
   children: PropTypes.node.isRequired,
 };
 

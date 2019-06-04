@@ -7,11 +7,11 @@ import ButtonBase from '../ButtonBase';
 import CircularProgress from '../CircularProgress';
 
 
-const definedIsText = variant => (variant === 'text' || variant === 'textBlock');
-const definedIsBlock = variant => (variant === 'textBlock' || variant === 'regularBlock');
+const getIsBlockVariant = variant => (variant === 'text' || variant === 'textBlock');
+const getIsTextVariant = variant => (variant === 'textBlock' || variant === 'regularBlock');
 
 const Button = ({
-  fetching,
+  loading,
   disabled,
   classes,
   className: classNameProp,
@@ -21,37 +21,37 @@ const Button = ({
   children,
   ...props
 }) => {
-  const isText = definedIsText(variant);
-  const isBlock = definedIsBlock(variant);
+  const isTextVariant = getIsBlockVariant(variant);
+  const isBlockVariant = getIsTextVariant(variant);
 
   const className = cn(
     classes.root,
     {
-      [classes.disabledText]: disabled && isText,
-      [classes.disabledBlock]: disabled && !isText,
-      [classes.fetching]: fetching,
+      [classes.disabledText]: disabled && isTextVariant,
+      [classes.disabledBlock]: disabled && !isTextVariant,
+      [classes.loading]: loading,
       [classes.text]: variant === 'text',
       [classes.textBlock]: variant === 'textBlock',
       [classes.regular]: variant === 'regular',
       [classes.regularBlock]: variant === 'regularBlock',
       [classes.primaryMainBackground]:
-        color === 'primary' && !isText,
-      [classes.small]: size === 'small' && !isBlock,
-      [classes.medium]: size === 'medium' && !isBlock,
-      [classes.large]: size === 'large' && !isBlock,
-      [classes.smallBlock]: size === 'small' && isBlock,
-      [classes.mediumBlock]: size === 'medium' && isBlock,
-      [classes.largeBlock]: size === 'large' && isBlock,
+        color === 'primary' && !isTextVariant,
+      [classes.small]: size === 'small' && !isBlockVariant,
+      [classes.medium]: size === 'medium' && !isBlockVariant,
+      [classes.large]: size === 'large' && !isBlockVariant,
+      [classes.smallBlock]: size === 'small' && isBlockVariant,
+      [classes.mediumBlock]: size === 'medium' && isBlockVariant,
+      [classes.largeBlock]: size === 'large' && isBlockVariant,
     },
     classNameProp,
   );
 
   return (
     <div className={classes.wrapper}>
-      <ButtonBase disabled={disabled || fetching} className={className} {...props}>
+      <ButtonBase disabled={disabled || loading} className={className} {...props}>
         {children}
       </ButtonBase>
-      {fetching ? <CircularProgress className={classes.loader} size={20} /> : null}
+      {loading ? <CircularProgress className={classes.loader} size={20} /> : null}
     </div>
   );
 };
@@ -59,7 +59,7 @@ const Button = ({
 Button.defaultProps = {
   className: null,
   disabled: false,
-  fetching: false,
+  loading: false,
   color: 'primary',
   variant: 'text',
   size: 'medium',
@@ -67,7 +67,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
   disabled: PropTypes.bool,
-  fetching: PropTypes.bool,
+  loading: PropTypes.bool,
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
@@ -145,8 +145,8 @@ export default withStyles(theme => ({
     position: 'absolute',
     top: '50%',
     left: '50%',
-    marginTop: -10,
-    marginLeft: -10,
+    marginTop: '-10px',
+    marginLeft: '-10px',
     color: theme.palette.primary.main,
   },
   disabledText: {
@@ -156,7 +156,7 @@ export default withStyles(theme => ({
     backgroundColor: theme.palette.grey[100],
     color: theme.palette.grey[500],
   },
-  fetching: {
+  loading: {
     color: 'transparent',
     backgroundColor: theme.palette.grey[100],
   },

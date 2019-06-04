@@ -13,10 +13,10 @@ import CircularProgress from '../CircularProgress';
 ## Basic code
 
 ```
-  <ContentState component="div" isFetching LoadingStateComponent={CircularProgress}>
+  <ContentState component="div" loading LoadingStateComponent={CircularProgress}>
     Children
   </ContentState>
-  <ContentState component="div" isFetching={false} error={new Error()} FailureStateComponent={() => (<div>ошибка</div>)}>
+  <ContentState component="div" loading={false} error={new Error()} FailureStateComponent={() => (<div>ошибка</div>)}>
     Children
   </ContentState>
 ```
@@ -24,10 +24,10 @@ import CircularProgress from '../CircularProgress';
 ## Basic usage
 
 <Playground>
-  <ContentState component="div" isFetching LoadingStateComponent={CircularProgress}>
+  <ContentState component="div" loading LoadingStateComponent={CircularProgress}>
     Children
   </ContentState>
-  <ContentState component="div" isFetching={false} error={new Error()} FailureStateComponent={() => (<div>ошибка</div>)}>
+  <ContentState component="div" loading={false} error={new Error()} FailureStateComponent={() => (<div>ошибка</div>)}>
     Children
   </ContentState>
 </Playground>

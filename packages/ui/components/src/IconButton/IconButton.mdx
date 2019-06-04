@@ -24,7 +24,7 @@ size: oneOf([['small', 'medium']),
 ## Basic code
 
 ```
-<IconButton fetching={false} disabled={false} variant="text" color="primary" size="medium">text</Button>
+<IconButton loading={false} disabled={false} variant="text" color="primary" size="medium">text</Button>
 ```
 
 
@@ -32,11 +32,11 @@ size: oneOf([['small', 'medium']),
 <Playground>
   <h3>small</h3>
   <IconButton size="small" variant="iconButton" color="primary"><SaveIcon /></IconButton>
-  <IconButton size="small" fetching variant="iconButton" color="primary"><SaveIcon /></IconButton>
+  <IconButton size="small" loading variant="iconButton" color="primary"><SaveIcon /></IconButton>
   <IconButton size="small" disabled variant="iconButton" color="primary"><SaveIcon /></IconButton>
   <h3>medium</h3>
   <IconButton variant="iconButton" color="primary"><SaveIcon /></IconButton>
-  <IconButton fetching variant="iconButton" color="primary"><SaveIcon /></IconButton>
+  <IconButton loading variant="iconButton" color="primary"><SaveIcon /></IconButton>
   <IconButton disabled variant="iconButton" color="primary"><SaveIcon /></IconButton>
 </Playground>
 
@@ -44,10 +44,10 @@ size: oneOf([['small', 'medium']),
 <Playground>
   <h3>small</h3>
   <IconButton size="small" variant="fab" color="primary"><SaveIcon /></IconButton>
-  <IconButton size="small" fetching variant="fab" color="primary"><SaveIcon /></IconButton>
+  <IconButton size="small" loading variant="fab" color="primary"><SaveIcon /></IconButton>
   <IconButton size="small" disabled variant="fab" color="primary"><SaveIcon /></IconButton>
    <h3>medium</h3>
   <IconButton variant="fab" color="primary"><SaveIcon /></IconButton>
-  <IconButton fetching variant="fab" color="primary"><SaveIcon /></IconButton>
+  <IconButton loading variant="fab" color="primary"><SaveIcon /></IconButton>
   <IconButton disabled variant="fab" color="primary"><SaveIcon /></IconButton>
 </Playground>

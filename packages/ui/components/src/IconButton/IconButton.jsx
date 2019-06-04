@@ -6,10 +6,12 @@ import { withStyles } from '@astral-frontend/styles';
 import { Fab, IconButton } from '@astral-frontend/core';
 import CircularProgress from '../CircularProgress';
 
-const defineCircularSize = size => (size === 'small' ? 12 : 16);
+const SMALL_CIRCULAR_SIZE = 12;
+const MEDIUM_CIRCULAR_SIZE = 16;
+const getSizeOfCircularProgress = size => (size === 'small' ? SMALL_CIRCULAR_SIZE : MEDIUM_CIRCULAR_SIZE);
 
 const Button = ({
-  fetching,
+  loading,
   disabled,
   classes,
   className: classNameProp,
@@ -22,7 +24,7 @@ const Button = ({
   const className = cn(
     classes.root,
     {
-      [classes.fetching]: fetching,
+      [classes.loading]: loading,
       [classes.small]: size === 'small',
       [classes.medium]: size === 'medium',
       [classes.primaryMainBackground]: variant === 'fab',
@@ -30,22 +32,22 @@ const Button = ({
     classNameProp,
   );
 
-  const ButtonComponent = variant === 'fab' ? Fab : IconButton;
+  const Component = variant === 'fab' ? Fab : IconButton;
 
   return (
-    <ButtonComponent disabled={disabled || fetching} className={className} {...props}>
-      {fetching
-        ? <CircularProgress className={classes.loader} size={defineCircularSize(size)} />
+    <Component disabled={disabled || loading} className={className} {...props}>
+      {loading
+        ? <CircularProgress className={classes.loader} size={getSizeOfCircularProgress(size)} />
         : children
       }
-    </ButtonComponent>
+    </Component>
   );
 };
 
 Button.defaultProps = {
   className: null,
   disabled: false,
-  fetching: false,
+  loading: false,
   color: 'primary',
   variant: 'text',
   size: 'medium',
@@ -53,7 +55,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
   disabled: PropTypes.bool,
-  fetching: PropTypes.bool,
+  loading: PropTypes.bool,
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
@@ -96,7 +98,7 @@ export default withStyles(theme => ({
       backgroundColor: theme.palette.primary.dark,
     },
   },
-  fetching: {
+  loading: {
     color: 'transparent',
   },
 }))(Button);
