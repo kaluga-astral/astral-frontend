@@ -1,0 +1,38 @@
+---
+menu: form
+name: SubmitButton
+---
+
+import SubmitButton from './SubmitButton';
+
+# SubmitButton
+
+<Props of={SubmitButton} />
+
+  ###Цвет
+  color: oneOf(['primary', 'secondary']),
+   
+   
+  ###Вариант использования
+  variant: PropTypes.oneOf(['text', 'textBlock', 'regular', 'regularBlock']),
+  
+  
+  ###Размер
+  size: oneOf(['small', 'medium', 'large']),
+  
+  ###Компонент для заметы дефолтной кнопки
+  ButtonComponent
+  
+## Basic code
+
+```
+<SubmitButton fetching={false} disabled={false} variant="text" color="primary" size="medium">text</Button>
+```
+
+
+
+
+## Basic usage
+<Playground>
+   <SubmitButton variant="regular" size="medium" color="primary">regular</SubmitButton>
+</Playground>

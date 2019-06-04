@@ -1,0 +1,53 @@
+---
+menu: components
+name: IconButton
+---
+
+import IconButton from './IconButton';
+import { SaveIcon } from "@astral-frontend/icons";
+
+# Button
+
+<Props of={IconButton} />
+
+###Цвет
+color: oneOf(['primary', 'secondary']),
+   
+   
+###Вариант использования
+variant: PropTypes.oneOf(['text', 'textBlock', 'regular', 'regularBlock']),
+  
+  
+###Размер
+size: oneOf(['small', 'medium', 'large']),
+  
+## Basic code
+
+```
+<IconButton fetching={false} disabled={false} variant="text" color="primary" size="medium">text</Button>
+```
+
+
+## IconButton usage
+<Playground>
+  <h3>small</h3>
+  <IconButton size="small" variant="iconButton" color="primary"><SaveIcon /></IconButton>
+  <IconButton size="small" fetching variant="iconButton" color="primary"><SaveIcon /></IconButton>
+  <IconButton size="small" disabled variant="iconButton" color="primary"><SaveIcon /></IconButton>
+  <h3>medium</h3>
+  <IconButton variant="iconButton" color="primary"><SaveIcon /></IconButton>
+  <IconButton fetching variant="iconButton" color="primary"><SaveIcon /></IconButton>
+  <IconButton disabled variant="iconButton" color="primary"><SaveIcon /></IconButton>
+</Playground>
+
+## Fab usage
+<Playground>
+  <h3>small</h3>
+  <IconButton size="small" variant="fab" color="primary"><SaveIcon /></IconButton>
+  <IconButton size="small" fetching variant="fab" color="primary"><SaveIcon /></IconButton>
+  <IconButton size="small" disabled variant="fab" color="primary"><SaveIcon /></IconButton>
+   <h3>medium</h3>
+  <IconButton variant="fab" color="primary"><SaveIcon /></IconButton>
+  <IconButton fetching variant="fab" color="primary"><SaveIcon /></IconButton>
+  <IconButton disabled variant="fab" color="primary"><SaveIcon /></IconButton>
+</Playground>
