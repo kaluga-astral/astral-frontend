@@ -21,7 +21,7 @@ const DashboardLayoutMainModal = ({
   React.useEffect(() => {
     setTransitionIn(open);
     if (onOpen) {
-      setTimeout(() => onOpen(), TRANSITION_DURATION * 2);
+      setTimeout(() => onOpen(), TRANSITION_DURATION * 3);
     }
   }, [open]);
 
