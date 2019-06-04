@@ -14,7 +14,13 @@ const transitionStyles = {
 };
 
 const DashboardLayoutMainModal = ({
-  classes, className, children, open, onClose, onOpen,
+  classes,
+  className,
+  children,
+  open,
+  onClose,
+  onOpen,
+  size,
 }) => {
   const [transitionIn, setTransitionIn] = React.useState(open);
 
@@ -34,7 +40,14 @@ const DashboardLayoutMainModal = ({
     <MainModalContext.Provider value={{ handleBackButtonClick }}>
       <Transition timeout={TRANSITION_DURATION} in={transitionIn} appear>
         {state => (
-          <div className={cn(className, classes.root)} style={transitionStyles[state]}>
+          <div
+            className={cn(className, classes.root, {
+              [classes.small]: size === 'small',
+              [classes.medium]: size === 'medium',
+              [classes.large]: size === 'large',
+            })}
+            style={transitionStyles[state]}
+          >
             {children}
           </div>
         )}
@@ -47,6 +60,7 @@ DashboardLayoutMainModal.defaultProps = {
   className: null,
   open: false,
   onOpen: null,
+  size: 'small',
 };
 
 DashboardLayoutMainModal.propTypes = {
@@ -57,6 +71,7 @@ DashboardLayoutMainModal.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
   onOpen: PropTypes.func,
+  size: PropTypes.oneOf(['small', 'meduim', 'large']),
 };
 
 export default withStyles(
@@ -68,13 +83,21 @@ export default withStyles(
       right: 0,
       top: 0,
       bottom: 0,
-      width: '50%',
       backgroundColor: theme.palette.background.paper,
       boxShadow: '0px 4px 56px rgba(0, 0, 0, 0.1)',
       borderTop: `1px solid ${theme.palette.grey[100]}`,
       transition: `transform ${TRANSITION_DURATION}ms ease-in-out`,
       transform: 'translateX(100%)',
       zIndex: 2,
+    },
+    small: {
+      width: '40%',
+    },
+    meduim: {
+      width: '60%',
+    },
+    large: {
+      width: '80%',
     },
   }),
   { name: 'DashboardLayoutMainModal' },
