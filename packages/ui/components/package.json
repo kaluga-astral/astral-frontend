@@ -1,7 +1,7 @@
 {
   "name": "@astral-frontend/components",
-  "version": "0.1.1",
-  "main": "./src/index.js",
+  "version": "0.1.6",
+  "main": "./lib/index.js",
   "scripts": {
     "percy": "react-percy",
     "build": "assembly-scripts build",

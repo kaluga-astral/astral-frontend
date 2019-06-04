@@ -198,10 +198,6 @@ FormField.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default value of the `input` element.
-   */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
    * If `true`, the `input` element will be disabled.
    */
   disabled: PropTypes.bool,

@@ -1,0 +1,51 @@
+---
+menu: components
+name: Dialog
+---
+
+import Dialog from './Dialog';
+import DialogContent from '../DialogContent';
+
+# Dialog
+
+<Props of={Dialog} />
+
+## Basic code
+
+```
+    <Dialog onClose={() => console.log('exit')} open={true}>
+        <DialogTitle id="simple-dialog-title">TITLE</DialogTitle>
+        <DialogContent>
+        CONTENT
+        </DialogContent>
+        <DialogActions>
+          <button color="primary">
+            Disagree
+          </button>
+          <button color="primary">
+            Agree
+          </button>
+        </DialogActions>
+     </Dialog>
+```
+
+## Basic usage
+
+<Playground>
+  <a href="https://material-ui.com/components/dialogs/#dialogs" target="_blank">material-ui.com/components/dialogs/</a>
+  <br/>
+    <Dialog onClose={() => console.log('exit')} open={true}>
+        <DialogTitle id="simple-dialog-title">TITLE</DialogTitle>
+        <DialogContent>
+        CONTENT
+        </DialogContent>
+        <DialogActions>
+          <button color="primary">
+            Disagree
+          </button>
+          <button color="primary">
+            Agree
+          </button>
+        </DialogActions>
+     </Dialog>
+</Playground>

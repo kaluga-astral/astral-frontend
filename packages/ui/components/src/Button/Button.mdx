@@ -7,4 +7,70 @@ import Button from './Button';
 
 # Button
 
-<Button>123</Button>
+<Props of={Button} />
+
+###Цвет
+color: oneOf(['primary', 'secondary']),
+   
+   
+###Вариант использования
+variant: PropTypes.oneOf(['text', 'textBlock', 'regular', 'regularBlock']),
+  
+  
+###Размер
+size: oneOf(['small', 'medium', 'large']),
+  
+## Basic code
+
+```
+<Button loading={false} disabled={false} variant="text" color="primary" size="medium">text</Button>
+```
+
+
+## variant usage
+<Playground>
+  <Button variant="text" color="primary">text</Button>
+  <Button variant="textBlock" color="primary">textBlock</Button>
+  <Button variant="regular" color="primary">regular</Button>
+  <Button variant="regularBlock" color="primary">regularBlock</Button>
+</Playground>
+
+## Size usage
+<Playground>
+  <Button variant="regular" size="small" color="primary">small</Button>
+  <Button variant="regular" size="medium" color="primary">medium</Button>
+  <Button variant="regular" size="large" color="primary">large</Button>
+  <Button variant="regularBlock" size="small" color="primary">small</Button>
+  <Button variant="regularBlock" size="medium" color="primary">medium</Button>
+  <Button variant="regularBlock" size="large" color="primary">large</Button>
+</Playground>
+
+## color usage
+<Playground>
+  <Button variant="regular" color="primary">primary</Button>
+  <Button variant="regular" color="secondary">secondary</Button>
+</Playground>
+
+
+## loading and disabled usage
+<Playground>
+    <h4>regular</h4>
+   <Button variant="regular" size="medium" color="primary">regular</Button>
+   <Button loading variant="regular" size="medium" color="primary">regular</Button>
+   <Button disabled variant="regular" size="medium" color="primary">regular</Button>
+   <br />
+   <h4>regularBlock</h4>
+   <Button variant="regularBlock" size="medium" color="primary">regularBlock</Button>
+   <Button loading variant="regularBlock" size="medium" color="primary">regularBlock</Button>
+   <Button disabled variant="regularBlock" size="medium" color="primary">regularBlock</Button>
+     <br />
+   <h4>text</h4>
+   <Button variant="text" size="medium" color="primary">text</Button>
+   <Button loading variant="text" size="medium" color="primary">text</Button>
+   <Button disabled variant="text" size="medium" color="primary">text</Button>
+     <br />
+   <h4>textBlock</h4>
+   <Button variant="textBlock" size="medium" color="primary">teasfasfasfxtBlock</Button>
+   <Button loading variant="textBlock" size="medium" color="primary">teasfasfasfxtBlock</Button>
+   <Button disabled variant="textBlock" size="medium" color="primary">teasfasfasfxtBlock</Button>
+</Playground>
