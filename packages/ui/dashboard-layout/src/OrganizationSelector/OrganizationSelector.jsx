@@ -25,13 +25,12 @@ const DashboardLayoutOrganizationSelector = ({
 }) => {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
   const handleTogglerButtonClick = (event) => {
     const { currentTarget } = event;
+
     setOpen(prevValue => !prevValue);
     setAnchorEl(currentTarget);
   };
-
   const handleClickAwayListenerClickAway = () => {
     setOpen(false);
   };
@@ -97,9 +96,10 @@ DashboardLayoutOrganizationSelector.NotFoundPlaceholder = OrganizationSelectorNo
 export default withStyles({
   root: {
     display: 'flex',
-    height: '100%',
     flexGrow: 1,
     justifyContent: 'flex-end',
+    width: '300px',
+    height: '100%',
   },
   popperPaper: {
     maxHeight: '325px',

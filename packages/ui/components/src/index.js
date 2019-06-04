@@ -17,6 +17,9 @@ export {
 } from './ExpansionPanel';
 export { default as Document } from './Document';
 export { default as Fade } from './Fade';
+export { default as FlexContainer } from './FlexContainer';
+export { default as FlexItem } from './FlexItem';
+export { default as FormattedCurrency } from './FormattedCurrency';
 export { default as Popper } from './Popper';
 export { default as Paper } from './Paper';
 export { default as Placeholder } from './Placeholder';
@@ -58,5 +61,3 @@ export { default as Tabs } from './Tabs';
 export { default as TextField } from './TextField';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as Typography } from './Typography';
-export { default as FlexContainer } from './FlexContainer';
-export { default as FlexItem } from './FlexItem';

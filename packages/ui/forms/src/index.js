@@ -1,4 +1,5 @@
 export { FORM_ERROR } from 'final-form';
+export { useForm, useFormState } from 'react-final-form';
 
 export { default as AddressField } from './AddressField';
 export { default as DateField } from './DateField';
