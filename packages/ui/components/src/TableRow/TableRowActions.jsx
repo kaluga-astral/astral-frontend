@@ -11,6 +11,9 @@ const TableRowActions = ({ classes, ...props }) => {
 
   return (
     <MuiTableCell
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
       className={cn(classes.root, { [classes.visible]: tableRowContext.hovered })}
       {...props}
     />
