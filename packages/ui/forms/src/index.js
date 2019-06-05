@@ -8,6 +8,7 @@ export { default as ErrorAlert } from './ErrorAlert';
 export { default as Form } from './Form';
 export { default as INNField } from './INNField';
 export { default as KPPField } from './KPPField';
+export { default as NumberField } from './NumberField';
 export { default as OGRNField } from './OGRNField';
 export { default as OKPOField } from './OKPOField';
 export { default as PassportIssueDateField } from './PassportIssueDateField';

@@ -69,8 +69,10 @@ const FormField = ({
             return render({ ...input, ...MuiTextFieldProps, error, helperText });
           }
 
+          console.log(MuiTextFieldProps);
+
           return (
-            <MuiTextField {...MuiTextFieldProps} {...input} error={error} helperText={helperText} />
+            <MuiTextField {...input} {...MuiTextFieldProps} error={error} helperText={helperText} />
           );
         }}
         subscription={subscription}
