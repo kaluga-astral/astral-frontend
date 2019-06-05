@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-import { Fab, IconButton } from '@astral-frontend/core';
+import { IconButton } from '@astral-frontend/core';
 import CircularProgress from '../CircularProgress';
 
 const SMALL_CIRCULAR_SIZE = 12;
@@ -27,21 +27,18 @@ const Button = ({
       [classes.loading]: loading,
       [classes.small]: size === 'small',
       [classes.medium]: size === 'medium',
-      [classes.primaryMainBackground]: variant === 'fab',
     },
     classNameProp,
   );
 
-  const Component = variant === 'fab' ? Fab : IconButton;
-
   return (
-    <Component disabled={disabled || loading} className={className} {...props}>
+    <IconButton disabled={disabled || loading} className={className} {...props}>
       {loading ? (
         <CircularProgress className={classes.loader} size={getSizeOfCircularProgress(size)} />
       ) : (
         children
       )}
-    </Component>
+    </IconButton>
   );
 };
 
@@ -50,7 +47,6 @@ Button.defaultProps = {
   disabled: false,
   loading: false,
   color: 'primary',
-  variant: 'regular',
   size: 'medium',
 };
 
