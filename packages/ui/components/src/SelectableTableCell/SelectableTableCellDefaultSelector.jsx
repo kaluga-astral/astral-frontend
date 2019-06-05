@@ -10,6 +10,9 @@ const SelectableTableCellDefaultSelector = ({ selected, onChange }) => (
     icon={<UncheckedCircleIcon />}
     checkedIcon={<CheckedCircleIcon />}
     color="primary"
+    onClick={(e) => {
+      e.stopPropagation();
+    }}
     onChange={onChange}
   />
 );
