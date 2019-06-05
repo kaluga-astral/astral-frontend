@@ -70,7 +70,7 @@ const FormField = ({
           }
 
           return (
-            <MuiTextField {...MuiTextFieldProps} {...input} error={error} helperText={helperText} />
+            <MuiTextField {...input} {...MuiTextFieldProps} error={error} helperText={helperText} />
           );
         }}
         subscription={subscription}
