@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-import { Fab, IconButton } from '@astral-frontend/core';
+import { IconButton } from '@astral-frontend/core';
 import CircularProgress from '../CircularProgress';
 
 const SMALL_CIRCULAR_SIZE = 12;
@@ -27,20 +27,18 @@ const Button = ({
       [classes.loading]: loading,
       [classes.small]: size === 'small',
       [classes.medium]: size === 'medium',
-      [classes.primaryMainBackground]: variant === 'fab',
     },
     classNameProp,
   );
 
-  const Component = variant === 'fab' ? Fab : IconButton;
-
   return (
-    <Component disabled={disabled || loading} className={className} {...props}>
-      {loading
-        ? <CircularProgress className={classes.loader} size={getSizeOfCircularProgress(size)} />
-        : children
-      }
-    </Component>
+    <IconButton disabled={disabled || loading} className={className} {...props}>
+      {loading ? (
+        <CircularProgress className={classes.loader} size={getSizeOfCircularProgress(size)} />
+      ) : (
+        children
+      )}
+    </IconButton>
   );
 };
 
@@ -49,7 +47,6 @@ Button.defaultProps = {
   disabled: false,
   loading: false,
   color: 'primary',
-  variant: 'text',
   size: 'medium',
 };
 
@@ -75,20 +72,21 @@ Button.propTypes = {
 
 export default withStyles(theme => ({
   root: {
-    textTransform: 'initial',
-    fontSize: 0,
-    minHeight: '100%',
-    boxShadow: 'none',
-    padding: 0,
-    color: theme.palette.primary.main,
+    padding: '5px', // TODO: перенести в overides
+    // textTransform: 'initial',
+    // fontSize: 0,
+    // minHeight: '100%',
+    // boxShadow: 'none',
+    // padding: 0,
+    // color: theme.palette.primary.main,
   },
   small: {
-    height: '24px',
-    width: '24px',
+    // height: '24px',
+    // width: '24px',
   },
   medium: {
-    height: '32px',
-    width: '32px',
+    // height: '32px',
+    // width: '32px',
   },
   primaryMainBackground: {
     backgroundColor: theme.palette.primary.main,
