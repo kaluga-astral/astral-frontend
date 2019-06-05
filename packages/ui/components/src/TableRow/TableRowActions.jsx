@@ -23,6 +23,8 @@ TableRowActions.propTypes = {
 
 export default withStyles(theme => ({
   root: {
+    display: 'flex',
+    alignItems: 'center',
     position: 'fixed',
     right: 0,
     top: '1px',
