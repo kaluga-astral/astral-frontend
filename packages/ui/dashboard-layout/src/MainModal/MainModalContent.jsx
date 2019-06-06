@@ -29,6 +29,6 @@ export default withStyles({
     overflow: 'auto',
   },
   padding: {
-    padding: '20px',
+    padding: '0 20px',
   },
 })(DashboardLayoutMainModalContent);

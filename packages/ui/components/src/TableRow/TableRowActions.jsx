@@ -11,6 +11,9 @@ const TableRowActions = ({ classes, ...props }) => {
 
   return (
     <MuiTableCell
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
       className={cn(classes.root, { [classes.visible]: tableRowContext.hovered })}
       {...props}
     />
@@ -23,6 +26,8 @@ TableRowActions.propTypes = {
 
 export default withStyles(theme => ({
   root: {
+    display: 'flex',
+    alignItems: 'center',
     position: 'fixed',
     right: 0,
     top: '1px',
