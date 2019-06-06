@@ -3,7 +3,7 @@ import React from 'react';
 
 import { withStyles } from '@astral-frontend/styles';
 
-import { TableRowContext } from '../TableRow';
+import { __Context as TableRowContext } from '../TableRow';
 import TableCell from '../TableCell';
 
 import SelectableTableCellDefaultSelector from './SelectableTableCellDefaultSelector';
