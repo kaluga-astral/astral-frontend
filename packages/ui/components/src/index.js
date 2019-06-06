@@ -57,6 +57,7 @@ export { default as TableBody } from './TableBody';
 export { default as TableCell } from './TableCell';
 export { default as TableHead } from './TableHead';
 export { default as TableRow } from './TableRow';
+export { default as TableRowActions } from './TableRowActions';
 export { default as Tabs } from './Tabs';
 export { default as TextField } from './TextField';
 export { default as ThemeProvider } from './ThemeProvider';

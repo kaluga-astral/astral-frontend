@@ -5,7 +5,7 @@ import { withStyles } from '@astral-frontend/styles';
 
 import TableRowContext from './TableRowContext';
 
-const TableRow = ({ children, ...props }) => {
+const TableRow = ({ children, Actions, ...props }) => {
   const [hovered, setHovered] = React.useState(false);
   const handleMouseEnter = () => {
     setHovered(true);
@@ -22,12 +22,18 @@ const TableRow = ({ children, ...props }) => {
         {...props}
       >
         {children}
+        <Actions />
       </MuiTableRow>
     </TableRowContext.Provider>
   );
 };
 
+TableRow.defaultProps = {
+  Actions: () => null,
+};
+
 TableRow.propTypes = {
+  Actions: PropTypes.node,
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
 };
 
