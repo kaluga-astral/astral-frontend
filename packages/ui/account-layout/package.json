@@ -1,7 +1,10 @@
 {
   "name": "@astral-frontend/account-layout",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./lib/index.js",
+  "files": [
+    "./lib/*"
+  ],
   "scripts": {
     "build": "assembly-scripts build",
     "postbuild": "assembly-scripts postbuild",
