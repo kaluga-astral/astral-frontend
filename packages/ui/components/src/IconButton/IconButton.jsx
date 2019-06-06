@@ -77,7 +77,7 @@ export default withStyles(theme => ({
   root: {
     textTransform: 'initial',
     fontSize: 0,
-    minHeight: '100%',
+    minHeight: 'auto',
     boxShadow: 'none',
     padding: 0,
     color: theme.palette.primary.main,
