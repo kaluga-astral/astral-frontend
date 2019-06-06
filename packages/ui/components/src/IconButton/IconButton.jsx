@@ -15,7 +15,6 @@ const Button = ({
   disabled,
   classes,
   className: classNameProp,
-  variant,
   color,
   size,
   children,
@@ -61,10 +60,6 @@ Button.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
-   * Вариант использования
-   */
-  variant: PropTypes.oneOf(['regular', 'fab']),
-  /**
    * Размер
    */
   size: PropTypes.oneOf(['small', 'medium']),
@@ -75,7 +70,7 @@ export default withStyles(theme => ({
     padding: '5px', // TODO: перенести в overides
     // textTransform: 'initial',
     // fontSize: 0,
-    // minHeight: '100%',
+    // minHeight: 'auto',
     // boxShadow: 'none',
     // padding: 0,
     // color: theme.palette.primary.main,
