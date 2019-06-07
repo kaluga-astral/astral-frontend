@@ -42,7 +42,7 @@ const FormField = ({
     if (!required && validate) {
       return composeValidations(value => {
         if (value) {
-          validate(validate);
+          return validate(validate);
         }
       });
     }
