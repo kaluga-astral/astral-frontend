@@ -21,6 +21,8 @@
   "devDependencies": {},
   "peerDependencies": {
     "@astral-frontend/components": "^0.1.0",
+    "@astral-frontend/core": "^0.1.0",
+    "@astral-frontend/icons": "^0.1.0",
     "react": ">=16.6.0"
   },
   "sideEffects": false
