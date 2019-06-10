@@ -6,7 +6,6 @@ import { withStyles } from '@astral-frontend/styles';
 import ButtonBase from '../ButtonBase';
 import CircularProgress from '../CircularProgress';
 
-
 const getIsBlockVariant = variant => (variant === 'text' || variant === 'textBlock');
 const getIsTextVariant = variant => (variant === 'textBlock' || variant === 'regularBlock');
 
