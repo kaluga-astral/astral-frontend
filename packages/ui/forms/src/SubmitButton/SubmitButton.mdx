@@ -34,5 +34,7 @@ import SubmitButton from './SubmitButton';
 
 ## Basic usage
 <Playground>
-   <SubmitButton variant="regular" size="medium" color="primary">regular</SubmitButton>
+  <Form onSubmit={(values) => console.log('onSubmit', values)}>
+    {() => (<SubmitButton variant="regular" size="medium" color="primary">regular</SubmitButton>)}
+  </Form>
 </Playground>
