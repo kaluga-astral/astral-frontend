@@ -6,6 +6,7 @@ export { default as DateField } from './DateField';
 export { default as EmailField } from './EmailField';
 export { default as ErrorAlert } from './ErrorAlert';
 export { default as Form } from './Form';
+export { default as FormSpy } from './FormSpy';
 export { default as INNField } from './INNField';
 export { default as KPPField } from './KPPField';
 export { default as NumberField } from './NumberField';
