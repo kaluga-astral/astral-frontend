@@ -10,18 +10,20 @@ const CheckboxField = ({ label, checkedIcon, ...props }) => (
     type="checkbox"
     render={({
       disabled,
-      checked,
       required,
+      checked,
       value,
       error,
       onChange,
+      onBlur,
+      onFocus,
     }) => (
       <FormControlLabel
-        onChange={onChange}
-        value={String(value)}
+        disabled={disabled}
         required={required}
         checked={checked}
-        disabled={disabled}
+        value={String(value)}
+        label={label}
         error={error || ''}
         control={(
           <Checkbox
@@ -29,7 +31,9 @@ const CheckboxField = ({ label, checkedIcon, ...props }) => (
             checkedIcon={checkedIcon}
           />
         )}
-        label={label}
+        onChange={onChange}
+        onBlur={onBlur}
+        onFocus={onFocus}
       />
     )}
   />
