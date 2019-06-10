@@ -12,6 +12,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.2.0",
     "@percy/react": "^0.4.6",
+    "react-router-dom": "5.0.1",
     "babel-jest": "^24.7.1",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",

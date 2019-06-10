@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@astral-frontend/core": "^0.1.0",
+    "@material-ui/styles": "^4.0.0",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {},

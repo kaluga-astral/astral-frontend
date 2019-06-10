@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import VisibilityButton from './VisibilityButton';
-import TextField from '../TextField';
+import Field from '../Field';
 
 const PasswordField = (props) => {
   const [isVisible, setIsVisible] = useState(false);
+  const handleVisibilityButtonClick = () => setIsVisible(!isVisible);
 
   return (
-    <TextField
+    <Field
       {...props}
       type={isVisible ? 'text' : 'password'}
       InputProps={{
         endAdornment: (
           <VisibilityButton
             isVisible={isVisible}
-            onClick={() => setIsVisible(!isVisible)}
+            onClick={handleVisibilityButtonClick}
           />),
       }}
     />
