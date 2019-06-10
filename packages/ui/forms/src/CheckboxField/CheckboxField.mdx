@@ -1,0 +1,25 @@
+---
+menu: forms
+name: CheckboxField
+---
+
+import Form from '../Form';
+import CheckboxField from './CheckboxField';
+
+# CheckboxField
+
+<Props of={CheckboxField} />
+
+## Basic code
+
+```
+<CheckboxField label="CheckboxField" name="CheckboxField" />
+```
+
+## Basic usage
+
+<Playground>
+  <Form onSubmit={(values) => console.log('onSubmit', values)}>
+    {() => (<CheckboxField label="CheckboxField" name="CheckboxField" />)}
+  </Form>
+</Playground>
