@@ -93,7 +93,7 @@ export default withStyles(
     small: {
       width: '40%',
     },
-    meduim: {
+    medium: {
       width: '60%',
     },
     large: {
