@@ -40,7 +40,7 @@ const CheckboxField = ({ label, checkedIcon, ...props }) => (
 );
 
 CheckboxField.defaultProps = {
-  label: '',
+  label: null,
   checkedIcon: undefined,
 };
 
