@@ -1,0 +1,25 @@
+---
+menu: forms
+name: PhoneField
+---
+
+import Form from '../Form';
+import PhoneField from './PhoneField';
+
+# PhoneField
+
+<Props of={PhoneField} />
+
+## Basic code
+
+```
+  <PhoneField />
+```
+
+## Basic usage
+
+<Playground>
+  <Form onSubmit={(values) => console.log('onSubmit', values)}>
+    {() => (<PhoneField />)}
+  </Form>
+</Playground>

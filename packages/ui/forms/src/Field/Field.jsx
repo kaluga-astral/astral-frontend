@@ -24,6 +24,7 @@ const FormField = ({
   validate,
   validateFields,
   value,
+  type,
   onChange,
   // ======MUITextFieldProps=====
   ...MuiTextFieldProps
@@ -61,6 +62,7 @@ const FormField = ({
         isEqual={isEqual}
         name={name}
         parse={parse}
+        type={type}
         render={({ input, meta }) => {
           const error = meta.touched && !meta.valid;
           const helperText = meta.error && meta.touched ? meta.error : null;
@@ -105,6 +107,7 @@ FormField.defaultProps = {
   variant: 'standard',
   fullWidth: true,
   margin: 'none',
+  type: undefined,
 };
 
 FormField.propTypes = {

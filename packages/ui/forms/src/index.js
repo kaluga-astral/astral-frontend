@@ -1,5 +1,5 @@
 export { FORM_ERROR } from 'final-form';
-export { useForm, useFormState } from 'react-final-form';
+export { useForm, useFormState, Field as FinalFormField } from 'react-final-form';
 
 export { default as AddressField } from './AddressField';
 export { default as DateField } from './DateField';
@@ -23,3 +23,5 @@ export { default as SelectField } from './SelectField';
 export { default as SNILSField } from './SNILSField';
 export { default as SubmitButton } from './SubmitButton';
 export { default as TextField } from './TextField';
+export { default as CheckboxField } from './CheckboxField';
+export { default as Field } from './Field';
