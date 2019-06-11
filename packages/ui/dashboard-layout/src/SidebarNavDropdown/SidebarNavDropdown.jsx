@@ -1,9 +1,8 @@
 import nanoid from 'nanoid';
-import pathToRegexp from 'path-to-regexp';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, matchPath } from 'react-router-dom';
 import { Collapse, List } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
@@ -52,9 +51,7 @@ const DashboardLayoutSidebarNavDropdown = ({
   };
 
   React.useEffect(() => {
-    const expandedByRouterReason = React.Children.toArray(children).some(
-      child => child && pathToRegexp(location.pathname).test(child.props.to),
-    );
+    const expandedByRouterReason = React.Children.toArray(children).some(child => !!matchPath(location.pathname, child.props.to));
 
     if (expandedByRouterReason) {
       setExpandedNavDropdownId(id);

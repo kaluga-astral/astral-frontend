@@ -12,7 +12,6 @@
     "@astral-frontend/styles": "^0.1.0",
     "classnames": "^2.2.6",
     "nanoid": "^2.0.1",
-    "path-to-regexp": "^3.0.0",
     "prop-types": "^15.7.2",
     "react-js-pagination": "^3.0.2",
     "react-transition-group": "^4.0.0"
