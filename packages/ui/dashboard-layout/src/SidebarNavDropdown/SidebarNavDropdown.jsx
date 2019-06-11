@@ -51,7 +51,9 @@ const DashboardLayoutSidebarNavDropdown = ({
   };
 
   React.useEffect(() => {
-    const expandedByRouterReason = React.Children.toArray(children).some(child => !!matchPath(location.pathname, child.props.to));
+    // prettier-ignore
+    const expandedByRouterReason = React.Children.toArray(children)
+      .some(child => Boolean(matchPath(location.pathname, child.props.to)));
 
     if (expandedByRouterReason) {
       setExpandedNavDropdownId(id);
