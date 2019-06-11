@@ -24,7 +24,7 @@ FormSubmitButton.defaultProps = {
 FormSubmitButton.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  component: PropTypes.func,
+  component: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string, PropTypes.func]),
   children: PropTypes.node.isRequired,
 };
 
