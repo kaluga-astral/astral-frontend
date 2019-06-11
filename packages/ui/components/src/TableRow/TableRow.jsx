@@ -16,11 +16,7 @@ const TableRow = ({ children, Actions, ...props }) => {
 
   return (
     <TableRowContext.Provider value={{ hovered }}>
-      <MuiTableRow
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={onMouseLeave}
-        {...props}
-      >
+      <MuiTableRow onMouseEnter={handleMouseEnter} onMouseLeave={onMouseLeave} {...props}>
         {children}
         <Actions />
       </MuiTableRow>
@@ -33,8 +29,8 @@ TableRow.defaultProps = {
 };
 
 TableRow.propTypes = {
-  Actions: PropTypes.node,
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  Actions: PropTypes.func,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
 };
 
 export default withStyles(theme => ({
