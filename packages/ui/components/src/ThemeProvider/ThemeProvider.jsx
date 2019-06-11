@@ -6,10 +6,10 @@ import { MuiThemeProvider } from '@astral-frontend/core';
 import GlobalCSS from './GlobalCSS';
 
 const ThemeProvider = ({
-  children, sheetsRegistry, theme, sheetsManager, generateClassName,
+  children, sheetsRegistry, theme, generateClassName,
 }) => (
   <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-    <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+    <MuiThemeProvider theme={theme}>
       <GlobalCSS />
       {children}
     </MuiThemeProvider>
@@ -18,7 +18,6 @@ const ThemeProvider = ({
 
 ThemeProvider.defaultProps = {
   sheetsRegistry: null,
-  sheetsManager: null,
   generateClassName: null,
 };
 
@@ -26,7 +25,6 @@ ThemeProvider.propTypes = {
   children: PropTypes.node.isRequired,
   sheetsRegistry: PropTypes.shape({}),
   theme: PropTypes.shape({}).isRequired,
-  sheetsManager: PropTypes.shape({}),
   generateClassName: PropTypes.func,
 };
 

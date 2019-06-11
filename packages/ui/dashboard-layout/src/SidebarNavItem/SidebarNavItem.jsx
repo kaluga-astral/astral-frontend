@@ -1,43 +1,9 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutSidebarNavItem = ({
-  classes,
-  className,
-  component: Component,
-  Icon,
-  Text,
-  ...props
-}) => (
-  <Component
-    className={cn(classes.root, className)}
-    activeClassName={classes.active}
-    {...props}
-  >
-    {Icon && (
-      <div className={classes.icon}>
-        <Icon />
-      </div>
-    )}
-    <Text className={classes.text} />
-  </Component>
-);
-
-DashboardLayoutSidebarNavItem.defaultProps = {
-  className: null,
-};
-
-DashboardLayoutSidebarNavItem.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  className: PropTypes.string,
-  component: PropTypes.func.isRequired,
-  Icon: PropTypes.func.isRequired,
-  Text: PropTypes.func.isRequired,
-};
-
-export default withStyles(
+const useStyles = makeStyles(
   theme => ({
     root: {
       display: 'flex',
@@ -67,5 +33,44 @@ export default withStyles(
       flexGrow: 1,
     },
   }),
-  { name: 'DashboardLayoutSidebarNavItemMainComponent' },
-)(DashboardLayoutSidebarNavItem);
+  {
+    name: 'DashboardLayoutSidebarNavItem',
+  },
+);
+
+const DashboardLayoutSidebarNavItem = React.forwardRef(
+  ({
+    className, component: Component, Icon, Text, ...props
+  }, ref) => {
+    const classes = useStyles();
+
+    return (
+      <Component
+        ref={ref}
+        className={cn(classes.root, className)}
+        activeClassName={classes.active}
+        {...props}
+      >
+        {Icon && (
+          <div className={classes.icon}>
+            <Icon />
+          </div>
+        )}
+        <Text className={classes.text} />
+      </Component>
+    );
+  },
+);
+
+DashboardLayoutSidebarNavItem.defaultProps = {
+  className: null,
+};
+
+DashboardLayoutSidebarNavItem.propTypes = {
+  className: PropTypes.string,
+  component: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string, PropTypes.func]).isRequired,
+  Icon: PropTypes.func.isRequired,
+  Text: PropTypes.func.isRequired,
+};
+
+export default DashboardLayoutSidebarNavItem;
