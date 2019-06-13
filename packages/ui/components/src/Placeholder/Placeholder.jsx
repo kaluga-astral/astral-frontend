@@ -1,27 +1,38 @@
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
 
 import CircularProgress from '../CircularProgress';
 
-const Placeholder = ({ classes }) => (
-  <div className={classes.root}>
-    <CircularProgress />
-  </div>
-);
-
-Placeholder.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-};
-
-export default withStyles({
+const useStyles = makeStyles({
   root: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 'fill-available',
+    minHeight: '100%',
   },
-})(Placeholder);
+});
+
+const Placeholder = ({ className }) => {
+  const classes = useStyles();
+
+  return (
+    <div className={cn(classes.root, className)}>
+      <CircularProgress />
+    </div>
+  );
+};
+
+Placeholder.defaultProps = {
+  className: null,
+};
+
+Placeholder.propTypes = {
+  className: PropTypes.string,
+};
+
+export default Placeholder;
 
 // import PropTypes from 'prop-types';
 // import React, { PureComponent } from 'react';

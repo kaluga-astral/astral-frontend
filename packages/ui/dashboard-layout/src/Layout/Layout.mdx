@@ -50,6 +50,11 @@ import CurrentUserInfo from "../CurrentUserInfo";
             <SidebarNavDropdown.Item text="Исходящие" to="/documents/outgoing" />
             <SidebarNavDropdown.Item text="Черновики" to="/documents/drafts" />
           </SidebarNavDropdown>
+          <SidebarNavLink
+            Icon={SaveIcon}
+            to="Сформированные"
+            text="Сформированные"
+          />        
         </SidebarNav>
         <CurrentUserInfo avatarAlt="AA" avatarSrc={null} userName="userName">
           <CurrentUserInfo.Item Icon={SaveIcon} text="Выйти" />
@@ -95,6 +100,11 @@ import CurrentUserInfo from "../CurrentUserInfo";
             <SidebarNavDropdown.Item text="Исходящие" to="/documents/outgoing" />
             <SidebarNavDropdown.Item text="Черновики" to="/documents/drafts" />
           </SidebarNavDropdown>
+          <SidebarNavLink
+            Icon={SaveIcon}
+            to="Сформированные"
+            text="Сформированные"
+          />        
         </SidebarNav>
         <CurrentUserInfo avatarAlt="AA" avatarSrc={null} userName="userName">
           <CurrentUserInfo.Item Icon={SaveIcon} text="Выйти" />
@@ -105,7 +115,7 @@ import CurrentUserInfo from "../CurrentUserInfo";
           <PageTitle>
             Title
           </PageTitle>
-          <HeaderSearch />
+          <HeaderSearch onInputChange={() => console.log('onInputChange')}/>
         </Header>
         <Main>
           MAIN
