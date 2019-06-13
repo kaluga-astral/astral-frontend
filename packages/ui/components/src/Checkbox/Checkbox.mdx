@@ -4,23 +4,78 @@ name: Checkbox
 ---
 
 import Checkbox from './Checkbox';
+import { CheckboxA, LabelCheckbox } from './Checkbox.docz';
+import { Props } from 'docz'
 
 # Checkbox
 
 <Props of={Checkbox} />
 
-## Basic code
+## Props
+  - disabled: bool
+  - checked: bool
+  - labelPlacement: oneOf(['end', 'start', 'top', 'bottom']),
+  - error: oneOfType([PropTypes.bool, PropTypes.string])
+  - className: string
+  - helperText: string,
+  - label: node
+  - onBlur: func
+  - onFocus: func
+  - value: any
+  - onChange: func.isRequired
+
+default:
+  - labelPlacement = 'end'
+
+## Example with label
 
 ```
-  <Checkbox checked onChange={(value) => console.log('checket', value)} value="checkedA" />
-  <Checkbox onChange={(value) => console.log('checket', value)} value="checkedB" />
+const ExampleCheckbox = () => {
+  const checkboxValue = 'check A value';
+  const [currentValue, setCurrentValue] = useState(null);
+
+  console.log('check A value', currentValue);
+
+  return (
+    <Checkbox
+      checked={currentValue === checkboxValue}
+      label="label"
+      value={checkboxValue}
+      onChange={(event) => {
+        const { target } = event;
+        const { checked, value } = target;
+
+        if (checked) setCurrentValue(value);
+        if (!checked) setCurrentValue(null);
+      }}
+    />
+  );
+};
 ```
 
-## Basic usage
+## Without label
 
 <Playground>
-  <a href="https://material-ui.com/components/checkboxes/" target="_blank">material-ui.com/components/checkboxes/</a>
-  <br/>
-  <Checkbox checked onChange={(value) => console.log('checket', value)} value="checkedA" />
-  <Checkbox onChange={(value) => console.log('checket', value)} value="checkedB" />
+  <CheckboxA />
+</Playground>
+
+## With label
+
+<Playground>
+  <LabelCheckbox checkboxValue="checkbox B value" label="end label checkbox" />
+  <LabelCheckbox checkboxValue="checkbox C value" label="start label checkbox" labelPlacement="start" />
+  <LabelCheckbox checkboxValue="checkbox D value" label="top label checkbox" labelPlacement="top" />
+  <LabelCheckbox checkboxValue="checkbox E value" label="top label checkbox" labelPlacement="bottom" />
+</Playground>
+
+## Disabled
+
+<Playground>
+  <LabelCheckbox disabled label="disabled checkbox" />
+</Playground>
+
+## Errors
+
+<Playground>
+  <LabelCheckbox error={true} helperText="error text" label="error checkbox" />
 </Playground>

@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Checkbox, FormControlLabel } from '@astral-frontend/components';
+import { Checkbox } from '@astral-frontend/components';
 
 import Field from '../Field';
 
-const CheckboxField = ({ label, checkedIcon, ...props }) => (
+const CheckboxField = ({
+  label, labelPlacement, className, ...props
+}) => (
   <Field
     {...props}
     type="checkbox"
@@ -12,25 +14,23 @@ const CheckboxField = ({ label, checkedIcon, ...props }) => (
       disabled,
       required,
       checked,
+      helperText,
       value,
       error,
       onChange,
       onBlur,
       onFocus,
     }) => (
-      <FormControlLabel
+      <Checkbox
         disabled={disabled}
         required={required}
         checked={checked}
-        value={String(value)}
+        value={value}
+        className={className}
         label={label}
-        error={error || ''}
-        control={(
-          <Checkbox
-            value={String(value)}
-            checkedIcon={checkedIcon}
-          />
-        )}
+        labelPlacement={labelPlacement}
+        helperText={helperText}
+        error={error}
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
@@ -41,13 +41,15 @@ const CheckboxField = ({ label, checkedIcon, ...props }) => (
 
 CheckboxField.defaultProps = {
   label: null,
-  checkedIcon: undefined,
+  labelPlacement: 'end',
+  className: null,
 };
 
 CheckboxField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
-  checkedIcon: PropTypes.element,
+  labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
+  className: PropTypes.string,
 };
 
 export default CheckboxField;
