@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: '100%',
+    minHeight: 'fill-available',
   },
 });
 
