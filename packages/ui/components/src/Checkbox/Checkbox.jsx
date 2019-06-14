@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Checkbox as BaseCheckbox, FormHelperText, makeStyles } from '@astral-frontend/core';
+import { Checkbox as MuiCheckbox, makeStyles } from '@astral-frontend/core';
 import { CheckedCircleIcon, UncheckedCircleIcon } from '@astral-frontend/icons';
 
 import FormControlLabel from '../FormControlLabel';
-import FormControl from '../FormControl';
 
 const useStyles = makeStyles(theme => ({
   checkedIcon: {
@@ -23,72 +22,58 @@ const useStyles = makeStyles(theme => ({
   },
 }), { withTheme: true });
 
-const Checkbox = ({
+const BaseCheckbox = ({
   disabled,
   checked,
   label,
   labelPlacement,
   className,
-  helperText,
-  error,
   value,
   onChange,
   onBlur,
   onFocus,
-  ...props
 }) => {
   const classes = useStyles({ disabled });
 
   return (
-    <FormControl
-      {...props}
+    <FormControlLabel
+      checked={checked}
       disabled={disabled}
-      error={Boolean(error)}
-      component="fieldset"
+      label={label}
+      labelPlacement={labelPlacement}
       className={className}
-    >
-      <FormControlLabel
-        checked={checked}
-        label={label}
-        labelPlacement={labelPlacement}
-        classes={{ disabled: classes.disabledLabel }}
-        control={(
-          <BaseCheckbox
-            value={String(value)}
-            color="primary"
-            className={classes.checkbox}
-            icon={<UncheckedCircleIcon className={classes.uncheckedIcon} />}
-            checkedIcon={<CheckedCircleIcon className={classes.checkedIcon} />}
-          />
-        )}
-        onChange={onChange}
-        onBlur={onBlur}
-        onFocus={onFocus}
-      />
-      <FormHelperText>{helperText}</FormHelperText>
-    </FormControl>
+      classes={{ disabled: classes.disabledLabel }}
+      control={(
+        <MuiCheckbox
+          value={String(value)}
+          color="primary"
+          className={classes.checkbox}
+          icon={<UncheckedCircleIcon className={classes.uncheckedIcon} />}
+          checkedIcon={<CheckedCircleIcon className={classes.checkedIcon} />}
+        />
+      )}
+      onChange={onChange}
+      onBlur={onBlur}
+      onFocus={onFocus}
+    />
   );
 };
 
-Checkbox.defaultProps = {
+BaseCheckbox.defaultProps = {
   disabled: false,
   checked: false,
   labelPlacement: 'end',
   className: null,
-  helperText: null,
   label: '',
-  error: '',
   onBlur: null,
   onFocus: null,
 };
 
-Checkbox.propTypes = {
+BaseCheckbox.propTypes = {
   disabled: PropTypes.bool,
   checked: PropTypes.bool,
   labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
-  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   className: PropTypes.string,
-  helperText: PropTypes.string,
   label: PropTypes.node,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
@@ -97,4 +82,4 @@ Checkbox.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default Checkbox;
+export default BaseCheckbox;

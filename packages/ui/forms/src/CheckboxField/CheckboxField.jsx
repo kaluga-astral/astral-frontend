@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Checkbox } from '@astral-frontend/components';
+import { Checkbox, FormControl } from '@astral-frontend/components';
+import { FormHelperText } from '@astral-frontend/core';
 
 import Field from '../Field';
 
@@ -12,7 +13,6 @@ const CheckboxField = ({
     type="checkbox"
     render={({
       disabled,
-      required,
       checked,
       helperText,
       value,
@@ -21,20 +21,23 @@ const CheckboxField = ({
       onBlur,
       onFocus,
     }) => (
-      <Checkbox
-        disabled={disabled}
-        required={required}
-        checked={checked}
-        value={value}
+      <FormControl
+        error={Boolean(error)}
+        component="fieldset"
         className={className}
-        label={label}
-        labelPlacement={labelPlacement}
-        helperText={helperText}
-        error={error}
-        onChange={onChange}
-        onBlur={onBlur}
-        onFocus={onFocus}
-      />
+      >
+        <Checkbox
+          disabled={disabled}
+          checked={checked}
+          value={value}
+          label={label}
+          labelPlacement={labelPlacement}
+          onChange={onChange}
+          onBlur={onBlur}
+          onFocus={onFocus}
+        />
+        <FormHelperText>{helperText}</FormHelperText>
+      </FormControl>
     )}
   />
 );

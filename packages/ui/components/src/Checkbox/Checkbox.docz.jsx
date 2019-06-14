@@ -24,7 +24,7 @@ const CheckboxBaseExample = () => {
 };
 
 const CheckboxExtendedExample = ({
-  disabled, label, labelPlacement, checkboxValue, error, helperText,
+  disabled, label, labelPlacement, checkboxValue,
 }) => {
   const [currentValue, setCurrentValue] = useState(null);
 
@@ -35,8 +35,6 @@ const CheckboxExtendedExample = ({
       disabled={disabled}
       checked={currentValue === checkboxValue}
       label={label}
-      error={error}
-      helperText={helperText}
       labelPlacement={labelPlacement}
       value={checkboxValue}
       onChange={(event) => {
