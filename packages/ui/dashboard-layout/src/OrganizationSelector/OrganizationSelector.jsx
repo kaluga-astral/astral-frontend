@@ -38,7 +38,7 @@ const DashboardLayoutOrganizationSelector = ({
   return (
     <div className={cn(classes.root, className)}>
       <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-        <>
+        <div>
           <CurrentOrganization
             name={currentOrganization && currentOrganization.name}
             onClick={handleTogglerButtonClick}
@@ -66,7 +66,7 @@ const DashboardLayoutOrganizationSelector = ({
               </Grow>
             )}
           </Popper>
-        </>
+        </div>
       </ClickAwayListener>
     </div>
   );
