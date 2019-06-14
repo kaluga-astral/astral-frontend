@@ -1,0 +1,64 @@
+---
+menu: components
+name: Radio
+---
+
+import Radio from './Radio';
+import { RadioBaseExample, RadioExtendedExample } from './Radio.docz';
+import { Playground, Props } from 'docz';
+
+# Radio
+
+<Props of={Radio} />
+
+## Base Example
+
+```
+const RadioBaseExample = () => {
+  const [currentValue, setCurrentValue] = useState(null);
+
+  const handleChange = event => {
+    const { target } = event;
+
+    console.log('radio value', target.value);
+
+    setCurrentValue(target.value);
+  };
+
+  return (
+    <>
+      <Radio
+        checked={currentValue === 'a'}
+        value="a"
+        onChange={handleChange}
+      />
+      <Radio
+        checked={currentValue === 'b'}
+        value="b"
+        onChange={handleChange}
+      />
+    </>
+  );
+};
+```
+
+## Without label
+
+<Playground>
+  <RadioBaseExample />
+</Playground>
+
+## With label
+
+<Playground>
+  <RadioExtendedExample label="end label radio" />
+  <RadioExtendedExample label="start label radio" labelPlacement="start" />
+  <RadioExtendedExample label="top label radio" labelPlacement="top" />
+  <RadioExtendedExample label="top label radio" labelPlacement="bottom" />
+</Playground>
+
+## Disabled
+
+<Playground>
+  <RadioExtendedExample disabled label="disabled radio" />
+</Playground>
