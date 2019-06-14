@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/nodejs
 
 const build = require('./tasks/build');
 const postbuild = require('./tasks/postbuild');
