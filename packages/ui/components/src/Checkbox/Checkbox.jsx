@@ -5,16 +5,21 @@ import { CheckedCircleIcon, UncheckedCircleIcon } from '@astral-frontend/icons';
 
 import FormControlLabel from '../FormControlLabel';
 
+/* eslint-disable */
+const getIconColor = theme => ({ disabled }) =>
+  (disabled ? theme.palette.grey[500] : theme.palette.primary.main);
+/* eslint-enable */
+
 const useStyles = makeStyles(theme => ({
   checkedIcon: {
     width: 20,
     height: 20,
-    fill: theme.palette.primary.main,
+    fill: getIconColor(theme),
   },
   uncheckedIcon: {
     width: 20,
     height: 20,
-    stroke: ({ disabled }) => (disabled ? theme.palette.grey[500] : theme.palette.primary.main),
+    stroke: getIconColor(theme),
     fill: 'transparent',
   },
   disabledLabel: {
