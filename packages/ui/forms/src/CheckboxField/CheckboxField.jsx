@@ -13,6 +13,7 @@ const CheckboxField = ({
     type="checkbox"
     render={({
       disabled,
+      fullWidth,
       checked,
       helperText,
       value,
@@ -22,6 +23,7 @@ const CheckboxField = ({
       onFocus,
     }) => (
       <FormControl
+        fullWidth={fullWidth}
         error={Boolean(error)}
         component="fieldset"
         className={className}
@@ -43,16 +45,18 @@ const CheckboxField = ({
 );
 
 CheckboxField.defaultProps = {
+  fullWidth: false,
   label: null,
   labelPlacement: 'end',
   className: null,
 };
 
 CheckboxField.propTypes = {
-  name: PropTypes.string.isRequired,
+  fullWidth: PropTypes.bool,
   label: PropTypes.string,
   labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
   className: PropTypes.string,
+  name: PropTypes.string.isRequired,
 };
 
 export default CheckboxField;
