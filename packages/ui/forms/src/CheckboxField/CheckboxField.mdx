@@ -31,12 +31,12 @@ import { Playground, Props } from 'docz'
 <Playground>
   <Form onSubmit={(values) => console.log('onSubmit', values)}>
     {() => (
-      <>
+     <div style={{ display: 'grid', 'grid-template-columns': 'auto', 'justify-content': 'start', 'grid-gap': '20px' }}>
         <LabelCheckbox name="check1" label="end label checkbox" />
         <LabelCheckbox name="check2" label="start label checkbox" labelPlacement="start" />
         <LabelCheckbox name="check3" label="top label checkbox" labelPlacement="top" />
         <LabelCheckbox name="check4" label="top label checkbox" labelPlacement="bottom" />
-      </>
+      </div>
     )}
   </Form>
 </Playground>

@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
   disabledLabel: {
     cursor: 'not-allowed !important',
   },
+  label: {
+    margin: 0,
+  },
 }), { withTheme: true });
 
 const BaseCheckbox = ({
@@ -47,7 +50,10 @@ const BaseCheckbox = ({
       label={label}
       labelPlacement={labelPlacement}
       className={className}
-      classes={{ disabled: classes.disabledLabel }}
+      classes={{
+        root: classes.label,
+        disabled: classes.disabledLabel,
+      }}
       control={(
         <MuiCheckbox
           value={String(value)}

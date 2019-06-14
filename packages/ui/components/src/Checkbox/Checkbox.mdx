@@ -44,10 +44,12 @@ const CheckboxBaseExample = () => {
 ## With label
 
 <Playground>
-  <CheckboxExtendedExample checkboxValue="checkbox B value" label="end label checkbox" />
-  <CheckboxExtendedExample checkboxValue="checkbox C value" label="start label checkbox" labelPlacement="start" />
-  <CheckboxExtendedExample checkboxValue="checkbox D value" label="top label checkbox" labelPlacement="top" />
-  <CheckboxExtendedExample checkboxValue="checkbox E value" label="top label checkbox" labelPlacement="bottom" />
+  <div style={{ display: 'grid', 'grid-template-columns': 'auto', 'justify-content': 'start', 'grid-gap': '20px' }}>
+    <CheckboxExtendedExample checkboxValue="checkbox B value" label="end label checkbox" />
+    <CheckboxExtendedExample checkboxValue="checkbox C value" label="start label checkbox" labelPlacement="start" />
+    <CheckboxExtendedExample checkboxValue="checkbox D value" label="top label checkbox" labelPlacement="top" />
+    <CheckboxExtendedExample checkboxValue="checkbox E value" label="top label checkbox" labelPlacement="bottom" />
+  </div>
 </Playground>
 
 ## Disabled
