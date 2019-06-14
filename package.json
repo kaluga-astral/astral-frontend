@@ -20,5 +20,6 @@
     "jest": "^24.7.1",
     "lint-staged": "^8.1.5",
     "react-router-dom": "5.0.1"
-  }
+  },
+  "dependencies": {}
 }

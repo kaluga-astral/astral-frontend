@@ -6,112 +6,144 @@ import { makeStyles } from '@astral-frontend/styles';
 import ButtonBase from '../ButtonBase';
 import CircularProgress from '../CircularProgress';
 
-const getIsBlockVariant = variant => variant === 'text' || variant === 'textBlock';
-const getIsTextVariant = variant => variant === 'textBlock' || variant === 'regularBlock';
+import Content from './Content';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    padding: '0 20px',
-    fontSize: '14px',
-    fontWeight: 500,
-    textTransform: 'initial',
-    minHeight: '100%',
-    color: theme.palette.text.primary,
-  },
-  text: {
-    borderRadius: '4px',
-    '&:hover': {
-      background: theme.palette.grey[100],
-    },
-  },
-  textBlock: {
-    '&:hover': {
-      background: theme.palette.grey[100],
-    },
-  },
-  regular: {
-    borderRadius: '4px',
-  },
-  regularBlock: {},
-  small: {
-    minHeight: '32px',
-  },
-  medium: {
-    minHeight: '40px',
-  },
-  large: {
-    minHeight: '48px',
-  },
-  smallBlock: {
-    minHeight: '32px',
-  },
-  mediumBlock: {
-    minHeight: '48px',
-  },
-  largeBlock: {
-    minHeight: '64px',
-  },
-  primaryMainBackground: {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
+const useStyles = makeStyles((theme) => {
+  const getMinHeight = ({ size }) => {
+    switch (size) {
+      case 'extraSmall':
+        return '20px';
+      case 'small':
+        return '32px';
+      case 'medium':
+        return '40px';
+      case 'large':
+        return '48px';
+      default:
+        return null;
+    }
+  };
+  const getPadding = ({ size }) => {
+    if (size === 'extraSmall') {
+      return '3px 10px';
+    }
 
-    '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
-    },
-  },
-  loader: {
-    color: theme.palette.primary.main,
-  },
-  disabledText: {
-    opacity: '0.5',
-  },
-  disabledBlock: {
-    backgroundColor: theme.palette.grey[100],
-    color: theme.palette.grey[500],
-  },
-  loading: {
-    color: 'transparent',
-    backgroundColor: theme.palette.grey[100],
-  },
-}));
+    return '5px 20px';
+  };
+  const getBorderRadius = ({ variant }) => {
+    if (variant === 'textBlock' || variant === 'regularBlock') {
+      return '0';
+    }
 
-const Button = ({
-  loading,
-  disabled,
-  className: classNameProp,
-  variant,
-  color,
-  size,
-  children,
-  ...props
-}) => {
-  const classes = useStyles();
-  const isTextVariant = getIsBlockVariant(variant);
-  const isBlockVariant = getIsTextVariant(variant);
-  const className = cn(
-    classes.root,
-    {
-      [classes.disabledText]: disabled && isTextVariant,
-      [classes.disabledBlock]: disabled && !isTextVariant,
-      [classes.loading]: loading,
-      [classes.text]: variant === 'text',
-      [classes.textBlock]: variant === 'textBlock',
-      [classes.regular]: variant === 'regular',
-      [classes.regularBlock]: variant === 'regularBlock',
-      [classes.primaryMainBackground]: color === 'primary' && !isTextVariant,
-      [classes.small]: size === 'small' && !isBlockVariant,
-      [classes.medium]: size === 'medium' && !isBlockVariant,
-      [classes.large]: size === 'large' && !isBlockVariant,
-      [classes.smallBlock]: size === 'small' && isBlockVariant,
-      [classes.mediumBlock]: size === 'medium' && isBlockVariant,
-      [classes.largeBlock]: size === 'large' && isBlockVariant,
+    return '4px';
+  };
+  const getFontSize = ({ size }) => {
+    if (size === 'extraSmall') {
+      return '10px';
+    }
+    if (size === 'small') {
+      return '12px';
+    }
+
+    return '14px';
+  };
+  const getBackgroundColor = ({ disabled, loading, variant }) => {
+    if (variant === 'text' || variant === 'textBlock') {
+      return null;
+    }
+
+    if (disabled || loading) {
+      return theme.palette.grey[100];
+    }
+
+    if (variant === 'regular' || variant === 'regularBlock') {
+      return theme.palette.primary.main;
+    }
+
+    return null;
+  };
+  const getColor = ({ disabled, loading, variant }) => {
+    if (variant === 'regular' || variant === 'regularBlock') {
+      if (disabled) {
+        return theme.palette.grey[400];
+      }
+
+      if (loading) {
+        return theme.palette.grey[100];
+      }
+
+      return theme.palette.common.white;
+    }
+
+    if (variant === 'text' || variant === 'textBlock') {
+      if (disabled) {
+        return theme.palette.grey[400];
+      }
+
+      if (loading) {
+        return 'transparent';
+      }
+
+      return theme.palette.text.primary;
+    }
+
+    return theme.palette.common.white;
+  };
+  const getHoverBackgroundColor = ({ disabled, loading, variant }) => {
+    if (disabled || loading) {
+      return null;
+    }
+
+    if (variant === 'text' || variant === 'textBlock') {
+      return theme.palette.grey[100];
+    }
+
+    return theme.palette.primary.dark;
+  };
+
+  return {
+    root: {
+      position: 'relative',
+      minHeight: getMinHeight,
+      padding: getPadding,
+      borderRadius: getBorderRadius,
+      fontSize: getFontSize,
+      backgroundColor: getBackgroundColor,
+      color: getColor,
+      '&:hover': {
+        backgroundColor: getHoverBackgroundColor,
+      },
     },
-    classNameProp,
-  );
+    content: {},
+    loader: {
+      position: 'absolute',
+    },
+  };
+});
+
+const getLoaderSize = (size) => {
+  if (size === 'extraSmall') {
+    return '10px';
+  }
+
+  return '14px';
+};
+
+const Button = (props) => {
+  const {
+    disabled, loading, variant, color, size, className, children, ...rootProps
+  } = props;
+  const classes = useStyles(props);
+  const loaderSize = getLoaderSize(size);
 
   return (
-    <ButtonBase disabled={disabled || loading} className={className} {...props}>
-      {loading ? <CircularProgress className={classes.loader} size={20} /> : children}
+    <ButtonBase
+      disabled={disabled || loading}
+      className={cn(classes.root, className)}
+      {...rootProps}
+    >
+      <Content>{children}</Content>
+      {loading && <CircularProgress className={classes.loader} size={loaderSize} />}
     </ButtonBase>
   );
 };
@@ -128,8 +160,6 @@ Button.defaultProps = {
 Button.propTypes = {
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
   /**
    * Цвет
    */
@@ -141,7 +171,9 @@ Button.propTypes = {
   /**
    * Размер
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['extraSmall', 'small', 'medium', 'large']),
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default Button;
