@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Checkbox from './Checkbox';
 
-const CheckboxA = () => {
+const CheckboxBaseExample = () => {
   const checkboxValue = 'check A value';
   const [currentValue, setCurrentValue] = useState(null);
 
@@ -23,7 +23,7 @@ const CheckboxA = () => {
   );
 };
 
-const LabelCheckbox = ({
+const CheckboxExtendedExample = ({
   disabled, label, labelPlacement, checkboxValue, error, helperText,
 }) => {
   const [currentValue, setCurrentValue] = useState(null);
@@ -50,4 +50,4 @@ const LabelCheckbox = ({
   );
 };
 
-export { CheckboxA, LabelCheckbox };
+export { CheckboxBaseExample, CheckboxExtendedExample };

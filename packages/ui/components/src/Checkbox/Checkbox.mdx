@@ -4,37 +4,19 @@ name: Checkbox
 ---
 
 import Checkbox from './Checkbox';
-import { CheckboxA, LabelCheckbox } from './Checkbox.docz';
-import { Props } from 'docz'
+import { CheckboxBaseExample, CheckboxExtendedExample } from './Checkbox.docz';
+import { Playground, Props } from 'docz'
 
 # Checkbox
 
 <Props of={Checkbox} />
 
-## Props
-  - disabled: bool
-  - checked: bool
-  - labelPlacement: oneOf(['end', 'start', 'top', 'bottom']),
-  - error: oneOfType([PropTypes.bool, PropTypes.string])
-  - className: string
-  - helperText: string,
-  - label: node
-  - onBlur: func
-  - onFocus: func
-  - value: any
-  - onChange: func.isRequired
-
-default:
-  - labelPlacement = 'end'
-
 ## Example with label
 
 ```
-const ExampleCheckbox = () => {
+const CheckboxBaseExample = () => {
   const checkboxValue = 'check A value';
   const [currentValue, setCurrentValue] = useState(null);
-
-  console.log('check A value', currentValue);
 
   return (
     <Checkbox
@@ -56,26 +38,26 @@ const ExampleCheckbox = () => {
 ## Without label
 
 <Playground>
-  <CheckboxA />
+  <CheckboxBaseExample />
 </Playground>
 
 ## With label
 
 <Playground>
-  <LabelCheckbox checkboxValue="checkbox B value" label="end label checkbox" />
-  <LabelCheckbox checkboxValue="checkbox C value" label="start label checkbox" labelPlacement="start" />
-  <LabelCheckbox checkboxValue="checkbox D value" label="top label checkbox" labelPlacement="top" />
-  <LabelCheckbox checkboxValue="checkbox E value" label="top label checkbox" labelPlacement="bottom" />
+  <CheckboxExtendedExample checkboxValue="checkbox B value" label="end label checkbox" />
+  <CheckboxExtendedExample checkboxValue="checkbox C value" label="start label checkbox" labelPlacement="start" />
+  <CheckboxExtendedExample checkboxValue="checkbox D value" label="top label checkbox" labelPlacement="top" />
+  <CheckboxExtendedExample checkboxValue="checkbox E value" label="top label checkbox" labelPlacement="bottom" />
 </Playground>
 
 ## Disabled
 
 <Playground>
-  <LabelCheckbox disabled label="disabled checkbox" />
+  <CheckboxExtendedExample disabled label="disabled checkbox" />
 </Playground>
 
 ## Errors
 
 <Playground>
-  <LabelCheckbox error={true} helperText="error text" label="error checkbox" />
+  <CheckboxExtendedExample error={true} helperText="error text" label="error checkbox" />
 </Playground>
