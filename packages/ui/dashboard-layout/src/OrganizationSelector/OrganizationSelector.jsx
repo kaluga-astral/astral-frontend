@@ -22,6 +22,7 @@ const DashboardLayoutOrganizationSelector = ({
   children,
   currentOrganization,
   NotFoundPlaceholder,
+  ...props
 }) => {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -43,7 +44,13 @@ const DashboardLayoutOrganizationSelector = ({
             name={currentOrganization && currentOrganization.name}
             onClick={handleTogglerButtonClick}
           />
-          <Popper transition open={open} anchorEl={anchorEl} onClick={() => setOpen(false)}>
+          <Popper
+            transition
+            open={open}
+            anchorEl={anchorEl}
+            onClick={() => setOpen(false)}
+            {...props}
+          >
             {({ TransitionProps }) => (
               <Grow {...TransitionProps}>
                 <Paper className={classes.popperPaper}>
