@@ -1,14 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Radio as BaseRadio, makeStyles } from '@astral-frontend/core';
+import { Radio as BaseRadio } from '@astral-frontend/core';
 
 import FormControlLabel from '../FormControlLabel';
-
-const useStyles = makeStyles({
-  disabledLabel: {
-    cursor: 'not-allowed !important',
-  },
-});
 
 const Radio = ({
   disabled,
@@ -21,25 +15,20 @@ const Radio = ({
   onBlur,
   onFocus,
   ...props
-}) => {
-  const classes = useStyles({ disabled });
-
-  return (
-    <FormControlLabel
-      {...props}
-      checked={checked}
-      disabled={disabled}
-      className={className}
-      label={label}
-      labelPlacement={labelPlacement}
-      value={String(value)}
-      classes={{ disabled: classes.disabledLabel }}
-      control={<BaseRadio color="primary" onChange={onChange} />}
-      onBlur={onBlur}
-      onFocus={onFocus}
-    />
-  );
-};
+}) => (
+  <FormControlLabel
+    {...props}
+    checked={checked}
+    disabled={disabled}
+    className={className}
+    label={label}
+    labelPlacement={labelPlacement}
+    value={String(value)}
+    control={<BaseRadio color="primary" onChange={onChange} />}
+    onBlur={onBlur}
+    onFocus={onFocus}
+  />
+);
 
 Radio.defaultProps = {
   disabled: false,
