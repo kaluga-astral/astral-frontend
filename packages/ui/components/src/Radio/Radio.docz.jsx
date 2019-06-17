@@ -29,10 +29,10 @@ const RadioBaseExample = () => {
   );
 };
 
-const RadioExtendedExample = ({ disabled, label, labelPlacement }) => {
+const RadioExtendedExample = ({ checked = true, disabled, label, labelPlacement }) => {
   return (
     <Radio
-      checked
+      checked={checked}
       disabled={disabled}
       value="a"
       label={label}

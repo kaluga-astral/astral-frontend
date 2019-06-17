@@ -20,25 +20,21 @@ const Radio = ({
   onChange,
   onBlur,
   onFocus,
+  ...props
 }) => {
   const classes = useStyles({ disabled });
 
   return (
     <FormControlLabel
+      {...props}
       checked={checked}
       disabled={disabled}
-      color="primary"
       className={className}
       label={label}
       labelPlacement={labelPlacement}
+      value={String(value)}
       classes={{ disabled: classes.disabledLabel }}
-      control={(
-        <BaseRadio
-          value={String(value)}
-          color="primary"
-        />
-        )}
-      onChange={onChange}
+      control={<BaseRadio color="primary" onChange={onChange} />}
       onBlur={onBlur}
       onFocus={onFocus}
     />
@@ -53,6 +49,7 @@ Radio.defaultProps = {
   label: '',
   onBlur: null,
   onFocus: null,
+  onChange: null,
 };
 
 Radio.propTypes = {
@@ -63,9 +60,9 @@ Radio.propTypes = {
   label: PropTypes.node,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
+  onChange: PropTypes.func,
   // eslint-disable-next-line
   value: PropTypes.any,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default Radio;
