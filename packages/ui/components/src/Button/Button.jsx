@@ -8,6 +8,10 @@ import CircularProgress from '../CircularProgress';
 
 import Content from './Content';
 
+const getIsTextVariant = variant => variant === 'text' || variant === 'textBlock';
+const getIsBlockVariant = variant => variant === 'textBlock' || variant === 'regularBlock';
+const getIsRegularVariant = variant => variant === 'regular' || variant === 'regularBlock';
+
 const useStyles = makeStyles((theme) => {
   const getMinHeight = ({ size }) => {
     switch (size) {
@@ -31,7 +35,9 @@ const useStyles = makeStyles((theme) => {
     return '5px 20px';
   };
   const getBorderRadius = ({ variant }) => {
-    if (variant === 'textBlock' || variant === 'regularBlock') {
+    const isBlockVariant = getIsBlockVariant(variant);
+
+    if (isBlockVariant) {
       return '0';
     }
 
@@ -48,7 +54,10 @@ const useStyles = makeStyles((theme) => {
     return '14px';
   };
   const getBackgroundColor = ({ disabled, loading, variant }) => {
-    if (variant === 'text' || variant === 'textBlock') {
+    const isTextVariant = getIsTextVariant(variant);
+    const isRegularVariant = getIsRegularVariant(variant);
+
+    if (isTextVariant) {
       return null;
     }
 
@@ -56,26 +65,17 @@ const useStyles = makeStyles((theme) => {
       return theme.palette.grey[100];
     }
 
-    if (variant === 'regular' || variant === 'regularBlock') {
+    if (isRegularVariant) {
       return theme.palette.primary.main;
     }
 
     return null;
   };
   const getColor = ({ disabled, loading, variant }) => {
-    if (variant === 'regular' || variant === 'regularBlock') {
-      if (disabled) {
-        return theme.palette.grey[400];
-      }
+    const isTextVariant = getIsTextVariant(variant);
+    const isRegularVariant = getIsRegularVariant(variant);
 
-      if (loading) {
-        return theme.palette.grey[100];
-      }
-
-      return theme.palette.common.white;
-    }
-
-    if (variant === 'text' || variant === 'textBlock') {
+    if (isTextVariant) {
       if (disabled) {
         return theme.palette.grey[400];
       }
@@ -87,14 +87,28 @@ const useStyles = makeStyles((theme) => {
       return theme.palette.text.primary;
     }
 
+    if (isRegularVariant) {
+      if (disabled) {
+        return theme.palette.grey[400];
+      }
+
+      if (loading) {
+        return theme.palette.grey[100];
+      }
+
+      return theme.palette.common.white;
+    }
+
     return theme.palette.common.white;
   };
   const getHoverBackgroundColor = ({ disabled, loading, variant }) => {
+    const isTextVariant = getIsTextVariant(variant);
+
     if (disabled || loading) {
       return null;
     }
 
-    if (variant === 'text' || variant === 'textBlock') {
+    if (isTextVariant) {
       return theme.palette.grey[100];
     }
 
