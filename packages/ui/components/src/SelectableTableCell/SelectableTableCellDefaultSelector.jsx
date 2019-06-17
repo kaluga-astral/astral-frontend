@@ -6,7 +6,6 @@ import Checkbox from '../Checkbox';
 const SelectableTableCellDefaultSelector = ({ selected, onChange }) => (
   <Checkbox
     checked={selected}
-    color="primary"
     onClick={(e) => {
       e.stopPropagation();
     }}

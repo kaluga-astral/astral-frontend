@@ -22,15 +22,12 @@ const useStyles = makeStyles(theme => ({
     stroke: getIconColor(theme),
     fill: 'transparent',
   },
-  disabledLabel: {
-    cursor: 'not-allowed !important',
-  },
   label: {
     margin: 0,
   },
 }), { withTheme: true });
 
-const BaseCheckbox = ({
+const Checkbox = ({
   disabled,
   checked,
   label,
@@ -40,18 +37,21 @@ const BaseCheckbox = ({
   onChange,
   onBlur,
   onFocus,
+  ...props
 }) => {
   const classes = useStyles({ disabled });
 
   return (
     <FormControlLabel
+      {...props}
       checked={checked}
       disabled={disabled}
       label={label}
       labelPlacement={labelPlacement}
       className={className}
       classes={{
-        root: classes.label,
+        // чтобы не было margin'a без label
+        root: !label && classes.label,
         disabled: classes.disabledLabel,
       }}
       control={(
@@ -70,7 +70,7 @@ const BaseCheckbox = ({
   );
 };
 
-BaseCheckbox.defaultProps = {
+Checkbox.defaultProps = {
   disabled: false,
   checked: false,
   labelPlacement: 'end',
@@ -80,7 +80,7 @@ BaseCheckbox.defaultProps = {
   onFocus: null,
 };
 
-BaseCheckbox.propTypes = {
+Checkbox.propTypes = {
   disabled: PropTypes.bool,
   checked: PropTypes.bool,
   labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
@@ -93,4 +93,4 @@ BaseCheckbox.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default BaseCheckbox;
+export default Checkbox;

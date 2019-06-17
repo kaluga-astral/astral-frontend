@@ -38,7 +38,7 @@ const CheckboxField = ({
           onBlur={onBlur}
           onFocus={onFocus}
         />
-        <FormHelperText>{helperText}</FormHelperText>
+        {helperText && <FormHelperText>{helperText}</FormHelperText>}
       </FormControl>
     )}
   />
