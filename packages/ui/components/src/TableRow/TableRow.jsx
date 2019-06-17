@@ -5,7 +5,7 @@ import { withStyles } from '@astral-frontend/styles';
 
 import TableRowContext from './TableRowContext';
 
-const TableRow = ({ children, ...props }) => {
+const TableRow = ({ children, Actions, ...props }) => {
   const [hovered, setHovered] = React.useState(false);
   const handleMouseEnter = () => {
     setHovered(true);
@@ -16,19 +16,21 @@ const TableRow = ({ children, ...props }) => {
 
   return (
     <TableRowContext.Provider value={{ hovered }}>
-      <MuiTableRow
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={onMouseLeave}
-        {...props}
-      >
+      <MuiTableRow onMouseEnter={handleMouseEnter} onMouseLeave={onMouseLeave} {...props}>
         {children}
+        <Actions />
       </MuiTableRow>
     </TableRowContext.Provider>
   );
 };
 
+TableRow.defaultProps = {
+  Actions: () => null,
+};
+
 TableRow.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  Actions: PropTypes.func,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
 };
 
 export default withStyles(theme => ({

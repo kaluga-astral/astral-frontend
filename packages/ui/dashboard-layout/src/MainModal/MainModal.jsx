@@ -71,7 +71,7 @@ DashboardLayoutMainModal.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
   onOpen: PropTypes.func,
-  size: PropTypes.oneOf(['small', 'meduim', 'large']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 export default withStyles(
@@ -93,7 +93,7 @@ export default withStyles(
     small: {
       width: '40%',
     },
-    meduim: {
+    medium: {
       width: '60%',
     },
     large: {

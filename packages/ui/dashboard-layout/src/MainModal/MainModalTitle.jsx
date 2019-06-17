@@ -15,7 +15,7 @@ const DashboardLayoutMainModalTitle = ({ classes, className, children }) => {
       <IconButton className={classes.backButton} onClick={handleBackButtonClick}>
         <BackIcon />
       </IconButton>
-      <h2 className={classes.text}>{children}</h2>
+      <div className={classes.text}>{children}</div>
     </div>
   );
 };

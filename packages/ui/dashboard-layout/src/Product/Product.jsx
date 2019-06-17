@@ -7,9 +7,9 @@ import { withStyles } from '@astral-frontend/styles';
 const DefaultLogo = props => <AstralSquareLogo color="monochrome" {...props} />;
 
 const DashboardLayoutProduct = ({
-  classes, className, Logo, title,
+  classes, className, Logo, title, ...props
 }) => (
-  <div className={cn(classes.root, className)}>
+  <div className={cn(classes.root, className)} {...props}>
     <Logo className={classes.logo} />
     <div className={classes.title}>{title}</div>
   </div>

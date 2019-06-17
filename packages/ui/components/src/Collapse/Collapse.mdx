@@ -1,0 +1,50 @@
+---
+menu: components
+name: Collapse
+---
+
+import Collapse from './Collapse';
+
+# Collapse
+
+<Props of={Collapse} />
+
+## Basic code
+
+```
+    <Collapse in={true} timeout="auto" unmountOnExit>
+        <div>
+          Children
+        </div>
+        <div>
+          Children
+        </div>
+    </Collapse>
+```
+
+## Basic usage
+
+<Playground>
+  <a href="https://material-ui.com/api/collapse/" target="_blank">material-ui.com/api/collapse/</a>
+  <br/>
+  collapse true 
+  <br/>
+    <Collapse in={true} timeout="auto" unmountOnExit>
+        <div>
+          Children
+        </div>
+        <div>
+          Children
+        </div>
+    </Collapse>
+      collapse false 
+      <br/>
+    <Collapse in={false} timeout="auto" unmountOnExit>
+        <div>
+          Children
+        </div>
+        <div>
+          Children
+        </div>
+    </Collapse>
+</Playground>

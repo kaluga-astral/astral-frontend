@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormSpy } from 'react-final-form';
-import { Button, CircularProgress } from '@astral-frontend/components';
+import { Button } from '@astral-frontend/components';
 
-const FormSubmitButton = ({ disabled, children, ...props }) => (
+const FormSubmitButton = ({
+  disabled, component: Component, children, ...props
+}) => (
   <FormSpy subscription={{ submitting: true }}>
     {({ submitting }) => (
-      <Button disabled={disabled || submitting} type="submit" {...props}>
-        {submitting ? <CircularProgress color="inherit" size={20} /> : children}
-      </Button>
+      <Component disabled={disabled} loading={submitting} type="submit" {...props}>
+        {children}
+      </Component>
     )}
   </FormSpy>
 );
@@ -16,11 +18,13 @@ const FormSubmitButton = ({ disabled, children, ...props }) => (
 FormSubmitButton.defaultProps = {
   disabled: false,
   className: null,
+  component: Button,
 };
 
 FormSubmitButton.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
+  component: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string, PropTypes.func]),
   children: PropTypes.node.isRequired,
 };
 

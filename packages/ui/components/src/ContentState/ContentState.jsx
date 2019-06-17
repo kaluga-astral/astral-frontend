@@ -4,7 +4,7 @@ import React, { Fragment } from 'react';
 import Placeholder from '../Placeholder';
 
 const ContentState = ({
-  isFetching,
+  loading,
   error,
   children,
   component: Component,
@@ -12,7 +12,7 @@ const ContentState = ({
   FailureStateComponent,
 }) => {
   const renderChildren = () => {
-    if (isFetching) {
+    if (loading) {
       return <LoadingStateComponent />;
     }
 
@@ -35,7 +35,7 @@ ContentState.defaultProps = {
 };
 
 ContentState.propTypes = {
-  isFetching: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
   error: PropTypes.instanceOf(Error),
   children: PropTypes.oneOfType([
     PropTypes.string,

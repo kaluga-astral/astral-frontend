@@ -1,0 +1,41 @@
+---
+menu: components
+name: IconButton
+---
+
+import IconButton from './IconButton';
+import { SaveIcon } from "@astral-frontend/icons";
+
+# IconButton
+
+<Props of={IconButton} />
+
+###Цвет
+color: oneOf(['primary', 'secondary']),
+   
+   
+###Вариант использования
+variant: PropTypes.oneOf(['regular', 'fab']),
+  
+  
+###Размер
+size: oneOf([['small', 'medium']),
+  
+## Basic code
+
+```
+<IconButton loading={false} disabled={false} variant="text" color="primary" size="medium">text</Button>
+```
+
+
+## IconButton usage
+<Playground>
+  <h3>small</h3>
+  <IconButton size="small" variant="iconButton" color="primary"><SaveIcon /></IconButton>
+  <IconButton size="small" loading variant="iconButton" color="primary"><SaveIcon /></IconButton>
+  <IconButton size="small" disabled variant="iconButton" color="primary"><SaveIcon /></IconButton>
+  <h3>medium</h3>
+  <IconButton variant="iconButton" color="primary"><SaveIcon /></IconButton>
+  <IconButton loading variant="iconButton" color="primary"><SaveIcon /></IconButton>
+  <IconButton disabled variant="iconButton" color="primary"><SaveIcon /></IconButton>
+</Playground>

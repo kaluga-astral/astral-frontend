@@ -24,6 +24,7 @@ const FormField = ({
   validate,
   validateFields,
   value,
+  type,
   onChange,
   // ======MUITextFieldProps=====
   ...MuiTextFieldProps
@@ -42,7 +43,7 @@ const FormField = ({
     if (!required && validate) {
       return composeValidations(value => {
         if (value) {
-          validate(validate);
+          return validate(value);
         }
       });
     }
@@ -61,6 +62,7 @@ const FormField = ({
         isEqual={isEqual}
         name={name}
         parse={parse}
+        type={type}
         render={({ input, meta }) => {
           const error = meta.touched && !meta.valid;
           const helperText = meta.error && meta.touched ? meta.error : null;
@@ -70,7 +72,7 @@ const FormField = ({
           }
 
           return (
-            <MuiTextField {...MuiTextFieldProps} {...input} error={error} helperText={helperText} />
+            <MuiTextField {...input} {...MuiTextFieldProps} error={error} helperText={helperText} />
           );
         }}
         subscription={subscription}
@@ -104,7 +106,8 @@ FormField.defaultProps = {
   select: false,
   variant: 'standard',
   fullWidth: true,
-  margin: 'normal',
+  margin: 'none',
+  type: undefined,
 };
 
 FormField.propTypes = {
@@ -197,10 +200,6 @@ FormField.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The default value of the `input` element.
-   */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * If `true`, the `input` element will be disabled.
    */

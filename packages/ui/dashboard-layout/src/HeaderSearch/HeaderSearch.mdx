@@ -18,7 +18,7 @@ import HeaderSearch from "./HeaderSearch";
 
 ```
   <Header>
-    <HeaderSearch onChange={(value) => console.log('HeaderSearch', value)} />
+    <HeaderSearch onInputChange={(event) => console.log('HeaderSearch', event.target.value)} />
   </Header>
 ```
 
@@ -26,6 +26,6 @@ import HeaderSearch from "./HeaderSearch";
 
 <Playground>
   <Header>
-    <HeaderSearch onChange={(value) => console.log('HeaderSearch', value)} />
+    <HeaderSearch onInputChange={(event) => console.log('HeaderSearch', event.target.value)} />
   </Header>
 </Playground>

@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { withStyles } from '@astral-frontend/styles';
 
 const FormGridField = ({
@@ -15,7 +16,7 @@ FormGridField.defaultProps = {
 
 FormGridField.propTypes = {
   className: PropTypes.string,
-  component: PropTypes.func.isRequired,
+  component: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string, PropTypes.func]).isRequired,
   classes: PropTypes.shape().isRequired,
 };
 

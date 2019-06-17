@@ -1,12 +1,15 @@
 export { FORM_ERROR } from 'final-form';
+export { useForm, useFormState, Field as FinalFormField } from 'react-final-form';
 
 export { default as AddressField } from './AddressField';
 export { default as DateField } from './DateField';
 export { default as EmailField } from './EmailField';
 export { default as ErrorAlert } from './ErrorAlert';
 export { default as Form } from './Form';
+export { default as FormSpy } from './FormSpy';
 export { default as INNField } from './INNField';
 export { default as KPPField } from './KPPField';
+export { default as NumberField } from './NumberField';
 export { default as OGRNField } from './OGRNField';
 export { default as OKPOField } from './OKPOField';
 export { default as PassportIssueDateField } from './PassportIssueDateField';
@@ -21,3 +24,6 @@ export { default as SelectField } from './SelectField';
 export { default as SNILSField } from './SNILSField';
 export { default as SubmitButton } from './SubmitButton';
 export { default as TextField } from './TextField';
+export { default as CheckboxField } from './CheckboxField';
+export { default as Field } from './Field';
+export { default as PasswordField } from './PasswordField';

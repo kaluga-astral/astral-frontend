@@ -1,76 +1,16 @@
 import nanoid from 'nanoid';
-import pathToRegexp from 'path-to-regexp';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect, useContext } from 'react';
-import { withRouter } from 'react-router-dom';
+import React from 'react';
+import { withRouter, matchPath } from 'react-router-dom';
 import { Collapse, List } from '@astral-frontend/components';
-import { withStyles } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarNavItem from '../SidebarNavItem';
 import SidebarNavDropdownToggler from './SidebarNavDropdownToggler';
-import DropdownContext from './DropdownContext';
+import SidebarNavDropdownContext from './SidebarNavDropdownContext';
 
-const DashboardLayoutSidebarNavDropdown = ({
-  classes,
-  className,
-  Icon,
-  text,
-  children,
-  location,
-}) => {
-  const [id, setId] = useState(null);
-  const dropdownContext = useContext(DropdownContext);
-  useEffect(() => {
-    const { onNavDropdownItemSelect } = dropdownContext;
-    const itemId = nanoid();
-    setId(itemId);
-    if (
-      React.Children.toArray(children).some(
-        child => child && pathToRegexp(location.pathname).test(child.props.to),
-      )
-    ) {
-      onNavDropdownItemSelect(itemId);
-    }
-  }, []);
-
-  return (
-    <li className={cn(classes.root, className)}>
-      <SidebarNavItem
-        component={SidebarNavDropdownToggler}
-        Icon={iconProps => <Icon className={cn(classes.icon, iconProps.className)} />}
-        Text={textProps => <div className={cn(classes.text, textProps.className)}>{text}</div>}
-        onToggle={() => dropdownContext.onNavDropdownItemSelect(id)}
-        expanded={id === dropdownContext.expandedItemId}
-      />
-      <Collapse
-        unmountOnExit
-        in={id === dropdownContext.expandedItemId}
-        component={List}
-        className={classes.list}
-      >
-        {children}
-      </Collapse>
-    </li>
-  );
-};
-
-DashboardLayoutSidebarNavDropdown.defaultProps = {
-  className: null,
-};
-
-DashboardLayoutSidebarNavDropdown.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  className: PropTypes.string,
-  Icon: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-export default withStyles(
+const useStyles = makeStyles(
   theme => ({
     root: {},
     list: {
@@ -86,5 +26,74 @@ export default withStyles(
       fontWeight: theme.typography.fontWeightMedium,
     },
   }),
-  { name: 'DashboardLayoutSidebarNavDropdown' },
-)(withRouter(DashboardLayoutSidebarNavDropdown));
+  {
+    name: 'DashboardLayoutSidebarNavDropdown',
+  },
+);
+
+const DashboardLayoutSidebarNavDropdown = ({
+  className, Icon, text, children, location,
+}) => {
+  const classes = useStyles();
+  const id = React.useMemo(() => nanoid(), []);
+  const [expanded, setExpanded] = React.useState(false);
+  const { expandedNavDropdownId, setExpandedNavDropdownId } = React.useContext(
+    SidebarNavDropdownContext,
+  );
+  const handleSidebarNavItemToggle = () => {
+    const expandedByUserReason = expandedNavDropdownId === id;
+
+    if (expandedByUserReason) {
+      setExpandedNavDropdownId(null);
+    } else {
+      setExpandedNavDropdownId(id);
+    }
+  };
+
+  React.useEffect(() => {
+    // prettier-ignore
+    const expandedByRouterReason = React.Children.toArray(children)
+      .some(child => Boolean(matchPath(location.pathname, child.props.to)));
+
+    if (expandedByRouterReason) {
+      setExpandedNavDropdownId(id);
+    } else {
+      setExpandedNavDropdownId(false);
+    }
+    setExpanded(expandedByRouterReason);
+  }, [location.pathname]);
+  React.useEffect(() => {
+    setExpanded(id === expandedNavDropdownId);
+  }, [expandedNavDropdownId]);
+
+  return (
+    <li className={cn(classes.root, className)}>
+      <SidebarNavItem
+        expanded={expanded}
+        Icon={iconProps => <Icon className={cn(classes.icon, iconProps.className)} />}
+        Text={textProps => <div className={cn(classes.text, textProps.className)}>{text}</div>}
+        component={SidebarNavDropdownToggler}
+        onToggle={handleSidebarNavItemToggle}
+      />
+      <Collapse unmountOnExit in={expanded} component={List} className={classes.list}>
+        {children}
+      </Collapse>
+    </li>
+  );
+};
+
+DashboardLayoutSidebarNavDropdown.defaultProps = {
+  className: null,
+};
+
+DashboardLayoutSidebarNavDropdown.propTypes = {
+  className: PropTypes.string,
+  Icon: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+export default withRouter(DashboardLayoutSidebarNavDropdown);

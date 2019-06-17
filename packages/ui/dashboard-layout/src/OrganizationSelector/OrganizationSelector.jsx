@@ -22,16 +22,16 @@ const DashboardLayoutOrganizationSelector = ({
   children,
   currentOrganization,
   NotFoundPlaceholder,
+  ...props
 }) => {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
   const handleTogglerButtonClick = (event) => {
     const { currentTarget } = event;
+
     setOpen(prevValue => !prevValue);
     setAnchorEl(currentTarget);
   };
-
   const handleClickAwayListenerClickAway = () => {
     setOpen(false);
   };
@@ -39,12 +39,18 @@ const DashboardLayoutOrganizationSelector = ({
   return (
     <div className={cn(classes.root, className)}>
       <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-        <>
+        <div>
           <CurrentOrganization
             name={currentOrganization && currentOrganization.name}
             onClick={handleTogglerButtonClick}
           />
-          <Popper transition open={open} anchorEl={anchorEl} onClick={() => setOpen(false)}>
+          <Popper
+            transition
+            open={open}
+            anchorEl={anchorEl}
+            onClick={() => setOpen(false)}
+            {...props}
+          >
             {({ TransitionProps }) => (
               <Grow {...TransitionProps}>
                 <Paper className={classes.popperPaper}>
@@ -67,7 +73,7 @@ const DashboardLayoutOrganizationSelector = ({
               </Grow>
             )}
           </Popper>
-        </>
+        </div>
       </ClickAwayListener>
     </div>
   );
@@ -97,9 +103,10 @@ DashboardLayoutOrganizationSelector.NotFoundPlaceholder = OrganizationSelectorNo
 export default withStyles({
   root: {
     display: 'flex',
-    height: '100%',
     flexGrow: 1,
     justifyContent: 'flex-end',
+    width: '300px',
+    height: '100%',
   },
   popperPaper: {
     maxHeight: '325px',

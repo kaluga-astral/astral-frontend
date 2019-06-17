@@ -15,7 +15,7 @@ FormGrid.defaultProps = {
 
 FormGrid.propTypes = {
   className: PropTypes.string,
-  component: PropTypes.func.isRequired,
+  component: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string, PropTypes.func]).isRequired,
   classes: PropTypes.shape().isRequired,
 };
 
