@@ -5,15 +5,12 @@
   "scripts": {
     "build": "assembly-scripts build",
     "postbuild": "assembly-scripts postbuild",
-    "release": "assembly-scripts release",
-    "test": "jest"
+    "release": "assembly-scripts release"
   },
   "dependencies": {
     "lodash-es": "^4.17.11"
   },
-  "devDependencies": {
-    "jest": "^24.7.1"
-  },
+  "devDependencies": {},
   "peerDependencies": {},
   "sideEffects": false
 }
