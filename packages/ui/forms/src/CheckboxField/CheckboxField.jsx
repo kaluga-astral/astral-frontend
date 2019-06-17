@@ -1,53 +1,62 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Checkbox, FormControlLabel } from '@astral-frontend/components';
+import { Checkbox, FormControl } from '@astral-frontend/components';
+import { FormHelperText } from '@astral-frontend/core';
 
 import Field from '../Field';
 
-const CheckboxField = ({ label, checkedIcon, ...props }) => (
+const CheckboxField = ({
+  label, labelPlacement, className, ...props
+}) => (
   <Field
     {...props}
     type="checkbox"
     render={({
       disabled,
-      required,
+      fullWidth,
       checked,
+      helperText,
       value,
       error,
       onChange,
       onBlur,
       onFocus,
     }) => (
-      <FormControlLabel
-        disabled={disabled}
-        required={required}
-        checked={checked}
-        value={String(value)}
-        label={label}
-        error={error || ''}
-        control={(
-          <Checkbox
-            value={String(value)}
-            checkedIcon={checkedIcon}
-          />
-        )}
-        onChange={onChange}
-        onBlur={onBlur}
-        onFocus={onFocus}
-      />
+      <FormControl
+        fullWidth={fullWidth}
+        error={Boolean(error)}
+        component="fieldset"
+        className={className}
+      >
+        <Checkbox
+          disabled={disabled}
+          checked={checked}
+          value={value}
+          label={label}
+          labelPlacement={labelPlacement}
+          onChange={onChange}
+          onBlur={onBlur}
+          onFocus={onFocus}
+        />
+        {helperText && <FormHelperText>{helperText}</FormHelperText>}
+      </FormControl>
     )}
   />
 );
 
 CheckboxField.defaultProps = {
+  fullWidth: false,
   label: null,
-  checkedIcon: undefined,
+  labelPlacement: 'end',
+  className: null,
 };
 
 CheckboxField.propTypes = {
-  name: PropTypes.string.isRequired,
+  fullWidth: PropTypes.bool,
   label: PropTypes.string,
-  checkedIcon: PropTypes.element,
+  labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
+  className: PropTypes.string,
+  name: PropTypes.string.isRequired,
 };
 
 export default CheckboxField;
