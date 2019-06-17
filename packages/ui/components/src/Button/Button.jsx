@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => {
       case 'medium':
         return '40px';
       case 'large':
-        return '48px';
+        return '64px';
       default:
         return null;
     }
@@ -127,7 +127,11 @@ const useStyles = makeStyles((theme) => {
       '&:hover': {
         backgroundColor: getHoverBackgroundColor,
       },
+      '&$disabled': {
+        // TODO
+      },
     },
+    disabled: {},
     content: {},
     loader: {
       position: 'absolute',
