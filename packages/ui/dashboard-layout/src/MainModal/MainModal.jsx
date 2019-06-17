@@ -38,7 +38,7 @@ const DashboardLayoutMainModal = ({
 
   return (
     <MainModalContext.Provider value={{ handleBackButtonClick }}>
-      <Transition timeout={TRANSITION_DURATION} in={transitionIn} appear>
+      <Transition timeout={TRANSITION_DURATION} appear={open} in={transitionIn} unmountOnExit>
         {state => (
           <div
             className={cn(className, classes.root, {
