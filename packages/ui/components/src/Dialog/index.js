@@ -1,2 +1,2 @@
 export { default } from './Dialog';
-export { default as DialogContext } from './DialogContext';
+export { default as __Context } from './DialogContext';
