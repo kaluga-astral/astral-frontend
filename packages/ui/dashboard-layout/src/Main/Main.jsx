@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutMain = React.forwardRef(({ classes, className, children }, ref) => (
-  <main ref={ref} className={cn(classes.root, className)}>
-    {children}
-  </main>
-));
+import MainContext from './MainContext';
+
+const ref = React.createRef();
+
+const DashboardLayoutMain = ({ classes, className, children }) => (
+  <MainContext.Provider value={{ ref }}>
+    <main ref={ref} className={cn(classes.root, className)}>
+      {children}
+    </main>
+  </MainContext.Provider>
+);
 
 DashboardLayoutMain.defaultProps = {
   className: null,

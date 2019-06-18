@@ -8,7 +8,10 @@ import { withStyles } from '@astral-frontend/styles';
 import MainModalContext from './MainModalContext';
 
 const DashboardLayoutMainModalTitle = ({ classes, className, children }) => {
-  const { handleBackButtonClick } = React.useContext(MainModalContext);
+  const { onClose } = React.useContext(MainModalContext);
+  const handleBackButtonClick = React.useCallback(() => {
+    onClose();
+  });
 
   return (
     <div className={cn(classes.root, className)}>

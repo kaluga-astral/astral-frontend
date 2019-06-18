@@ -16,6 +16,7 @@ export {
   ExpansionPanelDetails,
 } from './ExpansionPanel';
 export { default as Document } from './Document';
+export { default as Drawer } from './Drawer';
 export { default as Fade } from './Fade';
 export { default as FlexContainer } from './FlexContainer';
 export { default as FlexItem } from './FlexItem';
