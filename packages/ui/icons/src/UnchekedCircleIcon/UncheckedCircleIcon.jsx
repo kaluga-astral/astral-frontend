@@ -2,13 +2,9 @@ import React from 'react';
 import { SvgIcon } from '@astral-frontend/core';
 
 const UncheckedCircleIcon = props => (
-  <SvgIcon viewBox="0 0 24 24" {...props}>
+  <SvgIcon viewBox="0 0 20 20" {...props}>
     <path
-      fill="none"
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-      stroke="#6746EB"
+      d="M19.5 10C19.5 15.2467 15.2467 19.5 10 19.5C4.75329 19.5 0.5 15.2467 0.5 10C0.5 4.75329 4.75329 0.5 10 0.5C15.2467 0.5 19.5 4.75329 19.5 10Z"
     />
   </SvgIcon>
 );

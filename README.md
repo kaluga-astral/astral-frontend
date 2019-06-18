@@ -1,1 +1,1 @@
-UI-Kit
+UI-Kit v1.0

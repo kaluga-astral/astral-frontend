@@ -5,6 +5,7 @@ name: CheckboxField
 
 import Form from '../Form';
 import CheckboxField from './CheckboxField';
+import { Playground, Props } from 'docz'
 
 # CheckboxField
 
@@ -16,10 +17,43 @@ import CheckboxField from './CheckboxField';
 <CheckboxField label="CheckboxField" name="CheckboxField" />
 ```
 
-## Basic usage
+## Without label
 
 <Playground>
   <Form onSubmit={(values) => console.log('onSubmit', values)}>
-    {() => (<CheckboxField label="CheckboxField" name="CheckboxField" />)}
+    {() => (<CheckboxField name="check" />)}
+  </Form>
+</Playground>
+
+## With label
+
+<Playground>
+  <Form onSubmit={(values) => console.log('onSubmit', values)}>
+    {() => (
+      <>
+        <CheckboxField name="check1" label="end label checkbox" />
+        <CheckboxField name="check2" label="start label checkbox" labelPlacement="start" />
+        <CheckboxField name="check3" label="top label checkbox" labelPlacement="top" />
+        <CheckboxField name="check4" label="top label checkbox" labelPlacement="bottom" />
+      </>
+    )}
+  </Form>
+</Playground>
+
+## Disabled
+
+<Playground>
+  <Form onSubmit={(values) => console.log('onSubmit', values)}>
+    {() => (<CheckboxField disabled name="disabled" label="disabled checkbox" />)}
+  </Form>
+</Playground>
+
+## Errors
+
+<Playground>
+  <Form initialValues={{ errorField: false }} onSubmit={(values) => console.log('onSubmit', values)}>
+    {() => (
+      <CheckboxField required name="errorField" label="error checkbox" />
+    )}
   </Form>
 </Playground>
