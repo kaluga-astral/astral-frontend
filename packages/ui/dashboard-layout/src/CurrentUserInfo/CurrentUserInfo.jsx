@@ -44,7 +44,7 @@ const DashboardLayoutCurrentUserInfo = ({
           {avatarAlt}
         </Avatar>
         <div className={classes.user}>
-          <div className={classes.userName}>{userName}</div>
+          <div className={classes.userName}>{userName.length > 20 ? (`${userName.slice(0, 20)}...`) : ({ userName }) }</div>
         </div>
       </ButtonBase>
       <Popper transition open={open} anchorEl={buttonRef.current}>
