@@ -6,6 +6,8 @@ const release = require('./tasks/release');
 
 const [, , task] = process.argv;
 
+console.table('env', process.env);
+
 switch (task) {
   case 'build':
     build();
