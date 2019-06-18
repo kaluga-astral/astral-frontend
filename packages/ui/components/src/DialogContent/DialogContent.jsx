@@ -13,6 +13,7 @@ const useStyles = makeStyles({
 
 const DialogContent = (props) => {
   const classes = useStyles();
+
   return (
     <MuiDialogContent {...props} classes={classes} />
   );

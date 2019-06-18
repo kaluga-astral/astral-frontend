@@ -6,7 +6,7 @@ import { makeStyles } from '@astral-frontend/styles';
 import { CrossIcon } from '@astral-frontend/icons';
 
 import IconButton from '../IconButton';
-import DialogContext from '../Dialog/DialogContext';
+import { DialogContext } from '../Dialog';
 
 const useStyles = makeStyles({
   root: {
@@ -43,7 +43,7 @@ const DialogTitle = ({
 };
 
 DialogTitle.defaultProps = {
-  className: '',
+  className: null,
 };
 
 DialogTitle.propTypes = {

@@ -17,7 +17,7 @@ const Dialog = ({ onClose, open, ...props }) => {
 
   return (
     <DialogContext.Provider value={{ onClose }}>
-      <MuiDialog {...props} classes={classes} onClose={onClose} />
+      <MuiDialog {...props} open={open} classes={classes} onClose={onClose} />
     </DialogContext.Provider>
   );
 };
