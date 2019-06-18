@@ -1,19 +1,10 @@
----
-menu: components
-name: Dialog
----
-import { Props, Playground } from 'docz';
+import React, { useState } from 'react';
+import Dialog from './Dialog';
+import DialogContent from '../DialogContent';
+import DialogTitle from '../DialogTitle';
+import DialogActions from '../DialogActions';
+import Button from '../Button';
 
-import Dialog from './Dialog.docz';
-import DialogProps from './Dialog';
-
-# Dialog
-
-<Props of={DialogProps} />
-
-## Basic code
-
-```
 const DialogExample = () => {
   const [open, setOpen] = useState(false);
   const handleModalOpen = () => setOpen(true);
@@ -39,10 +30,5 @@ const DialogExample = () => {
     </>
   );
 };
-```
 
-## Basic usage
-
-<Playground>
-  <Dialog />
-</Playground>
+export default DialogExample;

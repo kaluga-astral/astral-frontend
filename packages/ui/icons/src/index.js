@@ -12,3 +12,4 @@ export { default as OrganizationNotFoundIcon } from './OrganizationNotFoundIcon'
 export { default as UncheckedCircleIcon } from './UnchekedCircleIcon';
 export { default as VisibilityIcon } from './VisibilityIcon';
 export { default as VisibilityOffIcon } from './VisibilityOffIcon';
+export { default as CrossIcon } from './CrossIcon';
