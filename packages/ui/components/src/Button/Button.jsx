@@ -127,7 +127,11 @@ const useStyles = makeStyles((theme) => {
       '&:hover': {
         backgroundColor: getHoverBackgroundColor,
       },
+      '&$disabled': {
+        // TODO: #24046
+      },
     },
+    dissabled: {},
     content: {},
     loader: {
       position: 'absolute',
