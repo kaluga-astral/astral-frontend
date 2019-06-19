@@ -1,30 +1,70 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { RadioGroup, Radio, FormControlLabel } from '@astral-frontend/components';
+import { RadioGroup, Radio, FormControl } from '@astral-frontend/components';
+import { FormLabel, FormHelperText } from '@astral-frontend/core';
 
 import Field from '../Field';
 
-const FormRadioGroupField = ({ options, ...props }) => (
+const FormRadioGroupField = ({
+  fullWidth, row, className, groupLabel, labelPlacement, options, ...props
+}) => (
   <Field
     {...props}
-    render={inputProps => (
-      <RadioGroup name={inputProps.name} value={inputProps.value}>
-        {options.map(option => (
-          <FormControlLabel
-            {...option}
-            key={option.key || option.label}
-            value={String(option.value)}
-            control={<Radio onChange={e => inputProps.onChange(e.target.value)} />}
-          />
-        ))}
-      </RadioGroup>
+    render={({
+      name, helperText, error,
+    }) => (
+      <FormControl
+        fullWidth={fullWidth}
+        error={Boolean(error)}
+        component="fieldset"
+        className={className}
+      >
+        {groupLabel && <FormLabel component="legend">{groupLabel}</FormLabel>}
+        <RadioGroup row={row}>
+          {options.map(option => (
+            <Field
+              key={option.key || option.label}
+              name={name}
+              type="radio"
+              labelPlacement={labelPlacement}
+              value={String(option.value)}
+              render={({
+                checked, onChange, onFocus, onBlur,
+              }) => (
+                <Radio
+                  {...option}
+                  checked={checked}
+                  labelPlacement={labelPlacement}
+                  value={String(option.value)}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  onChange={onChange}
+                />
+              )}
+            />
+          ))}
+        </RadioGroup>
+        {helperText && <FormHelperText>{helperText}</FormHelperText>}
+      </FormControl>
     )}
   />
 );
 
-FormRadioGroupField.defaultProps = {};
+FormRadioGroupField.defaultProps = {
+  fullWidth: false,
+  row: false,
+  labelPlacement: 'end',
+  className: null,
+  groupLabel: null,
+};
 
 FormRadioGroupField.propTypes = {
+  fullWidth: PropTypes.bool,
+  row: PropTypes.bool,
+  labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
+  className: PropTypes.string,
+  /** Главный label === Mui FormLabel */
+  groupLabel: PropTypes.string,
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
