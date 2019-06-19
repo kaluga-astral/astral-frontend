@@ -43,9 +43,7 @@ const DashboardLayoutCurrentUserInfo = ({
         <Avatar className={classes.avatar} src={avatarSrc}>
           {avatarAlt}
         </Avatar>
-        <div className={classes.user}>
-          <div className={classes.userName}>{userName.length > 20 ? (`${userName.slice(0, 20)}...`) : ({ userName }) }</div>
-        </div>
+        <div className={classes.userName}>{userName}</div>
       </ButtonBase>
       <Popper transition open={open} anchorEl={buttonRef.current}>
         {({ TransitionProps }) => (
@@ -84,9 +82,9 @@ export default withStyles(theme => ({
     width: '260px',
   },
   toggler: {
-    justifyContent: 'left',
     width: '100%',
     height: '100%',
+    display: 'flex',
     padding: '20px',
   },
   avatar: {
@@ -97,16 +95,13 @@ export default withStyles(theme => ({
     color: theme.palette.common.white,
     background: theme.palette.primary.dark,
   },
-  user: {
-    textAlign: 'left',
-    // TODO: вынести в palette
-    // color: '#072d57',
-  },
   userName: {
     fontWeight: 400,
     fontSize: '14px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   },
   popperPaper: {
-    minWidth: '175px',
+    minWidth: '0px',
   },
 }))(DashboardLayoutCurrentUserInfo);

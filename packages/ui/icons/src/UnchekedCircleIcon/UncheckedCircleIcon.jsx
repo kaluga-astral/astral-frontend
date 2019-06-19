@@ -12,4 +12,3 @@ const UncheckedCircleIcon = props => (
 );
 
 export default UncheckedCircleIcon;
-
