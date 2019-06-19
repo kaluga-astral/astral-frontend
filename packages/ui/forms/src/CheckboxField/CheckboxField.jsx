@@ -53,9 +53,9 @@ CheckboxField.defaultProps = {
 
 CheckboxField.propTypes = {
   fullWidth: PropTypes.bool,
-  label: PropTypes.string,
   labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
   className: PropTypes.string,
+  label: PropTypes.node,
   name: PropTypes.string.isRequired,
 };
 
