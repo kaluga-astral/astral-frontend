@@ -5,25 +5,26 @@ import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles({
-  root: ({ direction, alignItems, justifyContent }) => ({
+  root: props => ({
     display: 'flex',
-    flexDirection: direction,
-    alignItems,
-    justifyContent,
+    flexDirection: props.direction,
+    alignItems: props.alignItems,
+    justifyContent: props.justifyContent,
   }),
 });
 
-const FlexContainer = ({
-  className,
-  component: Component,
-  direction,
-  alignItems,
-  justifyContent,
-  ...props
-}) => {
-  const classes = useStyles({ direction, alignItems, justifyContent });
+const FlexContainer = (props) => {
+  const {
+    className,
+    component: Component,
+    direction,
+    alignItems,
+    justifyContent,
+    ...other
+  } = props;
+  const classes = useStyles(props);
 
-  return <Component className={cn(classes.root, className)} {...props} />;
+  return <Component className={cn(classes.root, className)} {...other} />;
 };
 
 FlexContainer.defaultProps = {
