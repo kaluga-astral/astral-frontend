@@ -6,7 +6,7 @@ import { makeStyles } from '@astral-frontend/styles';
 import { CrossIcon } from '@astral-frontend/icons';
 
 import IconButton from '../IconButton';
-import { DialogContext } from '../Dialog';
+import { __Context } from '../Dialog';
 
 const useStyles = makeStyles({
   root: {
@@ -30,7 +30,7 @@ const DialogTitle = ({
   children, className, ...props
 }) => {
   const classes = useStyles();
-  const { onClose } = useContext(DialogContext);
+  const { onClose } = useContext(__Context);
 
   return (
     <MuiDialogTitle {...props} className={cn(classes.root, className)} disableTypography>
