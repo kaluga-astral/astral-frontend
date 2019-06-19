@@ -102,6 +102,6 @@ export default withStyles(theme => ({
     textOverflow: 'ellipsis',
   },
   popperPaper: {
-    minWidth: '0px',
+    minWidth: '175px',
   },
 }))(DashboardLayoutCurrentUserInfo);
