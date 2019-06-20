@@ -4,14 +4,14 @@ import { mustBePassportIssuerId } from '@astral-frontend/validations';
 
 import MaskField from '../MaskField';
 
-const PASSPORT_MASK = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
-const removeSpecialSymbols = value => value.replace(/\(|\)|-/g, '');
+const PASSPORT_ISSSUER_ID_MASK = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+const removeSpecialSymbols = value => value.replace(/-/g, '');
 
 const PassportIssuerIdField = props => (
   <MaskField
     validate={mustBePassportIssuerId}
     parse={removeSpecialSymbols}
-    mask={PASSPORT_MASK}
+    mask={PASSPORT_ISSSUER_ID_MASK}
     {...props}
   />
 );
@@ -19,7 +19,7 @@ const PassportIssuerIdField = props => (
 PassportIssuerIdField.defaultProps = {
   name: 'issuerId',
   label: 'Код подразделения',
-  placeholder: '   -   ',
+  placeholder: '000-000',
 };
 
 PassportIssuerIdField.propTypes = {

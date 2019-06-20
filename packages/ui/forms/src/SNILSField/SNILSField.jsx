@@ -17,7 +17,7 @@ const SNILSField = props => (
 SNILSField.defaultProps = {
   name: 'snils',
   label: 'СНИЛС',
-  placeholder: '   -   -      ',
+  placeholder: '000-000-000 00',
 };
 
 SNILSField.propTypes = {

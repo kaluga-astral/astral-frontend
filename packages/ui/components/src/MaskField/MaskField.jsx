@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-text-mask';
 
-const TextMask = ({
+const MaskField = ({
   inputRef, ...props
 }) => (
   <MaskedInput
@@ -13,8 +13,12 @@ const TextMask = ({
   />
 );
 
-TextMask.propTypes = {
-  inputRef: PropTypes.func.isRequired,
+MaskField.defaultProps = {
+  inputRef: () => {},
 };
 
-export default TextMask;
+MaskField.propTypes = {
+  inputRef: PropTypes.func,
+};
+
+export default MaskField;
