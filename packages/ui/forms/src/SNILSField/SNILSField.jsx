@@ -2,15 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { mustBeSNILS } from '@astral-frontend/validations';
 
-import TextField from '../TextField';
-import SNILSFieldMask from './SNILSFieldMask';
+import MaskField from '../MaskField';
+
+const SNILS_MASK = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, ' ', /\d/, /\d/];
 
 const SNILSField = props => (
-  <TextField
+  <MaskField
     validate={mustBeSNILS}
-    InputProps={{
-      inputComponent: SNILSFieldMask,
-    }}
+    mask={SNILS_MASK}
     {...props}
   />
 );
@@ -18,7 +17,7 @@ const SNILSField = props => (
 SNILSField.defaultProps = {
   name: 'snils',
   label: 'СНИЛС',
-  placeholder: null,
+  placeholder: '000-000-000 00',
 };
 
 SNILSField.propTypes = {
