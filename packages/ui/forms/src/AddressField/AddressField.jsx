@@ -25,41 +25,50 @@ const FormAddressField = ({ classes, inputValueDebounceTimeout, ...props }) => {
   return (
     <Field
       {...props}
-      render={({ placeholder, onChange, value, ...fieldProps }) => (
-        <Downshift
-          id="address-field"
-          onInputValueChange={handleInputValueChange}
-          itemToString={item => (item ? item.value : '')}
-          onChange={item => onChange(item.data)}
-        >
-          {({
-            getInputProps,
-            getItemProps,
-            getMenuProps,
-            highlightedIndex,
-            isOpen,
-          }) => (
-            <div className={classes.root}>
-              <MuiTextField
-                type="text"
-                fullWidth
-                margin="normal"
-                InputProps={getInputProps({
-                  placeholder,
-                })}
-                {...fieldProps}
-              />
-              <Menu
-                getMenuProps={getMenuProps}
-                getItemProps={getItemProps}
-                highlightedIndex={highlightedIndex}
-                isOpen={isOpen}
-                suggestions={suggestions}
-              />
-            </div>
-          )}
-        </Downshift>
-      )}
+      render={({
+        placeholder,
+        onChange,
+        onSelect,
+        inputValue,
+        value,
+        ...fieldProps
+      }) => (
+          <Downshift
+            id="address-field"
+            onInputValueChange={handleInputValueChange}
+            itemToString={item => (item ? item.value : '')}
+            onChange={item => onChange(item.data)}
+            onSelect={item => onSelect(item.value)}
+            inputValue={inputValue}
+          >
+            {({
+              getInputProps,
+              getItemProps,
+              getMenuProps,
+              highlightedIndex,
+              isOpen,
+            }) => (
+                <div className={classes.root}>
+                  <MuiTextField
+                    type="text"
+                    fullWidth
+                    margin="normal"
+                    InputProps={getInputProps({
+                      placeholder,
+                    })}
+                    {...fieldProps}
+                  />
+                  <Menu
+                    getMenuProps={getMenuProps}
+                    getItemProps={getItemProps}
+                    highlightedIndex={highlightedIndex}
+                    isOpen={isOpen}
+                    suggestions={suggestions}
+                  />
+                </div>
+              )}
+          </Downshift>
+        )}
     />
   );
 };
