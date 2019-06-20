@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@astral-frontend/core/styles';
+import { withStyles } from '@astral-frontend/styles';
 
 const AstralSquareLogo = ({ classes, color, ...props }) => {
   const oddClassName = cn({
