@@ -1,26 +1,26 @@
 ---
 menu: forms
-name: PhoneField
+name: PassportIssuerIdField
 ---
 
 import { Props, Playground } from 'docz';
 import Form from '../Form';
-import PhoneField from './PhoneField';
+import PassportIssuerIdField from './PassportIssuerIdField';
 
-# PhoneField
+# PassportIssuerIdField
 
-<Props of={PhoneField} />
+<Props of={PassportIssuerIdField} />
 
 ## Basic code
 
 ```
-  <PhoneField />
+  <PassportIssuerIdField />
 ```
 
 ## Basic usage
 
 <Playground>
   <Form onSubmit={(values) => console.log('onSubmit', values)}>
-    {() => (<PhoneField />)}
+    {() => (<PassportIssuerIdField />)}
   </Form>
 </Playground>

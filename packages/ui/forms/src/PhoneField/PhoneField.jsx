@@ -2,16 +2,34 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { mustBePhone } from '@astral-frontend/validations';
 
-import PhoneFieldMask from './PhoneFieldMask';
-import TextField from '../TextField';
+import MaskField from '../MaskField';
+
+const PHONE_MASK = [
+  '+',
+  '7',
+  '(',
+  /\d/,
+  /\d/,
+  /\d/,
+  ')',
+  /\d/,
+  /\d/,
+  /\d/,
+  '-',
+  /\d/,
+  /\d/,
+  '-',
+  /\d/,
+  /\d/,
+];
+
+const removeSpecialSymbols = value => value.replace(/\(|\)|-/g, '');
 
 const PhoneField = props => (
-  <TextField
-    parse={value => value.replace(/\(|\)|-/g, '')}
+  <MaskField
+    parse={removeSpecialSymbols}
     validate={mustBePhone}
-    InputProps={{
-      inputComponent: PhoneFieldMask,
-    }}
+    mask={PHONE_MASK}
     {...props}
   />
 );
@@ -19,7 +37,7 @@ const PhoneField = props => (
 PhoneField.defaultProps = {
   name: 'phone',
   label: 'Номер телефона',
-  placeholder: null,
+  placeholder: '+7(   )   -  -  ',
 };
 
 PhoneField.propTypes = {

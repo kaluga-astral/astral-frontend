@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/components",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "main": "./src/index.js",
   "scripts": {
     "percy": "react-percy",
@@ -15,6 +15,7 @@
     "@bugsnag/plugin-react": "^6.0.0",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
+    "react-text-mask": "^5.4.3",
     "react-jss": "^8.6.1"
   },
   "devDependencies": {
