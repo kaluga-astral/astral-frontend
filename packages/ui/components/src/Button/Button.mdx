@@ -1,77 +1,253 @@
 ---
-menu: components
+menu: packages/components
 name: Button
 ---
 
-import { Playground, Props } from 'docz';
+import SvgIcon from '../SvgIcon';
 import Button from './Button';
 
 # Button
 
 <Props of={Button} />
 
-###Цвет
-color: oneOf(['primary', 'secondary']),
-   
-   
-###Вариант использования
-variant: PropTypes.oneOf(['text', 'textBlock', 'regular', 'regularBlock']),
-  
-  
-###Размер
-size: oneOf(['small', 'medium', 'large']),
-  
 ## Basic code
 
 ```
-<Button loading={false} disabled={false} variant="text" color="primary" size="medium">text</Button>
+import { Button } from '@astral-frontend/components';
+
+<Button>text</Button>
 ```
 
+## Variants of usage
 
-## variant usage
+### Regular
+
+#### Extra small
+
 <Playground>
-  <Button variant="text" color="primary">text</Button>
-  <Button variant="textBlock" color="primary">textBlock</Button>
-  <Button variant="regular" color="primary">regular</Button>
-  <Button variant="regularBlock" color="primary">regularBlock</Button>
+  <Button variant="regular" size="extraSmall">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="regular" size="extraSmall">
+    Button
+  </Button>
+  <Button loading variant="regular" size="extraSmall">
+    Button
+  </Button>
 </Playground>
 
-## Size usage
+#### Small
+
 <Playground>
-  <Button variant="regular" size="small" color="primary">small</Button>
-  <Button variant="regular" size="medium" color="primary">medium</Button>
-  <Button variant="regular" size="large" color="primary">large</Button>
-  <Button variant="regularBlock" size="small" color="primary">small</Button>
-  <Button variant="regularBlock" size="medium" color="primary">medium</Button>
-  <Button variant="regularBlock" size="large" color="primary">large</Button>
+  <Button variant="regular" size="small">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="regular" size="small">
+    Button
+  </Button>
+  <Button loading variant="regular" size="small">
+    Button
+  </Button>
 </Playground>
 
-## color usage
+#### Medium
+
 <Playground>
-  <Button variant="regular" color="primary">primary</Button>
-  <Button variant="regular" color="secondary">secondary</Button>
+  <Button variant="regular" size="medium">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="regular" size="medium">
+    Button
+  </Button>
+  <Button loading variant="regular" size="medium">
+    Button
+  </Button>
 </Playground>
 
+#### Large
 
-## loading and disabled usage
 <Playground>
-    <h4>regular</h4>
-   <Button variant="regular" size="medium" color="primary">regular</Button>
-   <Button loading variant="regular" size="medium" color="primary">regular</Button>
-   <Button disabled variant="regular" size="medium" color="primary">regular</Button>
-   <br />
-   <h4>regularBlock</h4>
-   <Button variant="regularBlock" size="medium" color="primary">regularBlock</Button>
-   <Button loading variant="regularBlock" size="medium" color="primary">regularBlock</Button>
-   <Button disabled variant="regularBlock" size="medium" color="primary">regularBlock</Button>
-     <br />
-   <h4>text</h4>
-   <Button variant="text" size="medium" color="primary">text</Button>
-   <Button loading variant="text" size="medium" color="primary">text</Button>
-   <Button disabled variant="text" size="medium" color="primary">text</Button>
-     <br />
-   <h4>textBlock</h4>
-   <Button variant="textBlock" size="medium" color="primary">teasfasfasfxtBlock</Button>
-   <Button loading variant="textBlock" size="medium" color="primary">teasfasfasfxtBlock</Button>
-   <Button disabled variant="textBlock" size="medium" color="primary">teasfasfasfxtBlock</Button>
+  <Button variant="regular" size="large">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="regular" size="large">
+    Button
+  </Button>
+  <Button loading variant="regular" size="large">
+    Button
+  </Button>
+</Playground>
+
+### Text
+
+#### Extra small
+
+<Playground>
+  <Button variant="text" size="extraSmall">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="text" size="extraSmall">
+    Button
+  </Button>
+  <Button loading variant="text" size="extraSmall">
+    Button
+  </Button>
+</Playground>
+
+#### Small
+
+<Playground>
+  <Button variant="text" size="small">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="text" size="small">
+    Button
+  </Button>
+  <Button loading variant="text" size="small">
+    Button
+  </Button>
+</Playground>
+
+#### Medium
+
+<Playground>
+  <Button variant="text" size="medium">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="text" size="medium">
+    Button
+  </Button>
+  <Button loading variant="text" size="medium">
+    Button
+  </Button>
+</Playground>
+
+#### Large
+
+<Playground>
+  <Button variant="text" size="large">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="text" size="large">
+    Button
+  </Button>
+  <Button loading variant="text" size="large">
+    Button
+  </Button>
+</Playground>
+
+### Regular block
+
+#### Extra small
+
+<Playground>
+  <Button variant="regularBlock" size="extraSmall">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="regularBlock" size="extraSmall">
+    Button
+  </Button>
+  <Button loading variant="regularBlock" size="extraSmall">
+    Button
+  </Button>
+</Playground>
+
+#### Small
+
+<Playground>
+  <Button variant="regularBlock" size="small">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="regularBlock" size="small">
+    Button
+  </Button>
+  <Button loading variant="regularBlock" size="small">
+    Button
+  </Button>
+</Playground>
+
+#### Medium
+
+<Playground>
+  <Button variant="regularBlock" size="medium">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="regularBlock" size="medium">
+    Button
+  </Button>
+  <Button loading variant="regularBlock" size="medium">
+    Button
+  </Button>
+</Playground>
+
+#### Large
+
+<Playground>
+  <Button variant="regularBlock" size="large">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="regularBlock" size="large">
+    Button
+  </Button>
+  <Button loading variant="regularBlock" size="large">
+    Button
+  </Button>
+</Playground>
+
+### Text block
+
+#### Extra small
+
+<Playground>
+  <Button variant="textBlock" size="extraSmall">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="textBlock" size="extraSmall">
+    Button
+  </Button>
+  <Button loading variant="textBlock" size="extraSmall">
+    Button
+  </Button>
+</Playground>
+
+#### Small
+
+<Playground>
+  <Button variant="textBlock" size="small">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="textBlock" size="small">
+    Button
+  </Button>
+  <Button loading variant="textBlock" size="small">
+    Button
+  </Button>
+</Playground>
+
+#### Medium
+
+<Playground>
+  <Button variant="textBlock" size="medium">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="textBlock" size="medium">
+    Button
+  </Button>
+  <Button loading variant="textBlock" size="medium">
+    Button
+  </Button>
+</Playground>
+
+#### Large
+
+<Playground>
+  <Button variant="textBlock" size="large">
+    Long text for this button is ok
+  </Button>
+  <Button disabled variant="textBlock" size="large">
+    Button
+  </Button>
+  <Button loading variant="textBlock" size="large">
+    Button
+  </Button>
 </Playground>
