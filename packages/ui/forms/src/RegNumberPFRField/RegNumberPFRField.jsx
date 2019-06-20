@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { mustBeRegNumberPFR } from '@astral-frontend/validations';
 
-import TextField from '../TextField';
-import RegNumberPFRFieldMask from './RegNumberPFRFieldMask';
+import MaskField from '../MaskField';
+
+const REG_NUMBER_PFRF_MASK = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
+const removeSpecialSymbols = value => value.replace(/\(|\)|-/g, '');
 
 const RegNumberPFRField = props => (
-  <TextField
-    parse={value => value.replace(/(-|\(|\)| )/g, '')}
+  <MaskField
+    parse={removeSpecialSymbols}
     validate={mustBeRegNumberPFR}
-    InputProps={{
-      inputComponent: RegNumberPFRFieldMask,
-    }}
+    mask={REG_NUMBER_PFRF_MASK}
     {...props}
   />
 );
@@ -19,7 +19,7 @@ const RegNumberPFRField = props => (
 RegNumberPFRField.defaultProps = {
   name: 'regNumberPfr',
   label: 'Рег. номер ПФР',
-  placeholder: null,
+  placeholder: '   -   -      ',
 };
 
 RegNumberPFRField.propTypes = {
