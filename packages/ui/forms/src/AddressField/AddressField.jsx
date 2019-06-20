@@ -28,8 +28,7 @@ const FormAddressField = ({ classes, inputValueDebounceTimeout, ...props }) => {
       render={({
         placeholder,
         onChange,
-        onSelect,
-        inputValue,
+        downshiftProps,
         value,
         ...fieldProps
       }) => (
@@ -38,8 +37,7 @@ const FormAddressField = ({ classes, inputValueDebounceTimeout, ...props }) => {
             onInputValueChange={handleInputValueChange}
             itemToString={item => (item ? item.value : '')}
             onChange={item => onChange(item.data)}
-            onSelect={item => onSelect(item.value)}
-            inputValue={inputValue}
+            {...downshiftProps}
           >
             {({
               getInputProps,
