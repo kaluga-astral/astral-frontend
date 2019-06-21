@@ -7,21 +7,21 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import MainModalContext from './MainModalContext';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    padding: '15px 0 20px 0',
+    padding: '20px 0',
     wordBreak: 'break-all',
+    borderBottom: `1px solid ${theme.palette.grey[100]}`,
   },
   backButton: {
-    margin: '0 5px',
+    margin: '0 10px',
   },
-  text: {
-    padding: '12px',
+  content: {
     flexGrow: 1,
   },
-});
+}));
 
 const DashboardLayoutMainModalTitle = ({ className, children }) => {
   const classes = useStyles();
@@ -35,7 +35,7 @@ const DashboardLayoutMainModalTitle = ({ className, children }) => {
       <IconButton className={classes.backButton} onClick={handleBackButtonClick}>
         <BackIcon />
       </IconButton>
-      <div className={classes.text}>{children}</div>
+      <div className={classes.content}>{children}</div>
     </div>
   );
 };
