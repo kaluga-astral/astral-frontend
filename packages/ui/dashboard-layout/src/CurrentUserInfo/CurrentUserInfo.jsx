@@ -49,6 +49,7 @@ const DashboardLayoutCurrentUserInfo = ({
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
             <Paper className={classes.popperPaper}>
+              
               <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
                 <MenuList disablePadding>{children}</MenuList>
               </ClickAwayListener>
@@ -82,9 +83,9 @@ export default withStyles(theme => ({
     width: '260px',
   },
   toggler: {
+    display: 'flex',
     width: '100%',
     height: '100%',
-    display: 'flex',
     padding: '20px',
   },
   avatar: {

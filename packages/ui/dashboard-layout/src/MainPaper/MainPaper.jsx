@@ -33,7 +33,7 @@ export default withStyles(
     root: {
       flexGrow: 1,
       margin: '15px',
-      overflowY: 'scroll',
+      overflowY: 'auto',
     },
     padding: {
       padding: '15px',
