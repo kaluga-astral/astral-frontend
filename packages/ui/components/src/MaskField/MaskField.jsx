@@ -1,24 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MaskedInput from 'react-text-mask';
+
+import MaskInput from './MaskInput';
+import TextField from '../TextField';
 
 const MaskField = ({
-  inputRef, ...props
+  placeholder, placeholderChar, mask, ...props
 }) => (
-  <MaskedInput
-    {...props}
-    ref={(ref) => {
-      inputRef(ref ? ref.inputElement : null);
+  <TextField
+    InputProps={{
+      inputComponent: MaskInput,
     }}
+    // eslint-disable-next-line
+    inputProps={{
+      mask,
+      placeholderChar,
+      placeholder,
+    }}
+    {...props}
   />
 );
 
 MaskField.defaultProps = {
-  inputRef: () => {},
+  placeholder: null,
+  placeholderChar: '\u2000',
 };
 
 MaskField.propTypes = {
-  inputRef: PropTypes.func,
+  mask: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp)]),
+  ).isRequired,
+  placeholder: PropTypes.string,
+  placeholderChar: PropTypes.string,
 };
 
 export default MaskField;

@@ -1,1 +1,1 @@
-export { default } from './MuiMaskField';
+export { default } from './MaskField';
