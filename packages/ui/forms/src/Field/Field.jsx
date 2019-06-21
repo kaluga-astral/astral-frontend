@@ -50,7 +50,7 @@ const FormField = ({
   ...MuiTextFieldProps
 }) => {
   const { required } = MuiTextFieldProps;
-  const validationFunction = useMemo(createValidationFunction(required, validate), []);
+  const validationFunction = useMemo(createValidationFunction(required, validate), [required, validate]);
 
   return (
     <>
