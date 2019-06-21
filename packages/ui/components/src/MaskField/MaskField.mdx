@@ -1,19 +1,19 @@
 ---
 menu: components
-name: MaskField
+name: MaskInput
 ---
 
 import { Props, Playground } from 'docz';
-import MaskField from './MaskField';
+import MaskInput from './index';
 
-# MaskField
+# MaskInput
 
-<Props of={MaskField} />
+<Props of={MaskInput} />
 
 ## Basic code
 
 ```
-<MaskField
+<MaskInput
  name="maskField" mask={[
    '+',
    /\d/,
@@ -25,8 +25,9 @@ import MaskField from './MaskField';
 ## Basic usage
 
 <Playground>
-  <a href="https://text-mask.github.io/text-mask/" target="_blank">text-mask</a>
-    <MaskField 
+  <a href="https://text-mask.github.io/text-mask/" target="_blank">text-mask</a><br/>
+    <MaskInput 
+    label="mask"
         placeholder="placeholder"
                 mask={[
                  '+',

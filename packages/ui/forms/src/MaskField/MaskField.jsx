@@ -4,19 +4,9 @@ import { MaskField } from '@astral-frontend/components';
 
 import TextField from '../TextField';
 
-const InputTextMask = ({
-  placeholder, placeholderChar, mask, ...props
-}) => (
+const InputTextMask = props => (
   <TextField
-    InputProps={{
-      inputComponent: MaskField,
-    }}
-    // eslint-disable-next-line
-    inputProps={{
-      mask,
-      placeholderChar,
-      placeholder,
-    }}
+    render={MaskField}
     {...props}
   />
 );
