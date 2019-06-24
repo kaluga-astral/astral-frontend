@@ -50,7 +50,10 @@ const FormField = ({
   ...MuiTextFieldProps
 }) => {
   const { required } = MuiTextFieldProps;
-  const validationFunction = useMemo(() => createValidationFunction(required, validate), [required, validate]);
+  const validationFunction = useMemo(() => createValidationFunction(required, validate), [
+    required,
+    validate,
+  ]);
 
   return (
     <>
@@ -83,7 +86,9 @@ const FormField = ({
       />
       {onChange && (
         <OnChange name={name}>
-          {value => { onChange(value) }}
+          {value => {
+            onChange(value);
+          }}
         </OnChange>
       )}
     </>

@@ -2,11 +2,28 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { TableCell as MuiTableCell } from '@astral-frontend/core';
-import { withStyles } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
 
 import { __Context as TableRowContext } from '../TableRow';
 
-const TableRowActions = ({ classes, ...props }) => {
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'fixed',
+    right: 0,
+    top: '1px',
+    bottom: '2px',
+    border: 'none',
+    visibility: 'hidden',
+  },
+  visible: {
+    visibility: 'visible',
+  },
+});
+
+const TableRowActions = (props) => {
+  const classes = useStyles(props);
   const { hovered: tableRowHovered } = React.useContext(TableRowContext);
 
   return (
@@ -24,19 +41,4 @@ TableRowActions.propTypes = {
   classes: PropTypes.shape({}).isRequired,
 };
 
-export default withStyles(theme => ({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-    position: 'fixed',
-    right: 0,
-    top: '1px',
-    bottom: '2px',
-    border: 'none',
-    visibility: 'hidden',
-    backgroundColor: theme.palette.action.hover,
-  },
-  visible: {
-    visibility: 'visible',
-  },
-}))(TableRowActions);
+export default TableRowActions;
