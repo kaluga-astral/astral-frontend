@@ -308,4 +308,4 @@ FormField.propTypes = {
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
-export default React.memo(FormField);
+export default FormField;
