@@ -22,6 +22,7 @@
     "@percy/react": "^0.4.6",
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.6",
+    "core-js": "2.6.9",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "eslint": "^5.16.0",
