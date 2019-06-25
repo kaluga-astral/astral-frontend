@@ -1,13 +1,13 @@
 ---
 menu: forms
-name: MaskField
+name: MaskInput
 ---
 
 import { Props, Playground } from 'docz';
 import Form from '../Form';
-import MaskField from './MaskField';
+import MaskField from './index';
 
-# MaskField
+# MaskInput
 
 <Props of={MaskField} />
 
@@ -15,11 +15,7 @@ import MaskField from './MaskField';
 
 ```
 <MaskField
- name="maskField" mask={[
-   '+',
-   /\d/,
-   /\d/,
-  ]}
+ name="maskField" mask={['+', /\d/,/\d/]}
 />
 ```
 
@@ -28,7 +24,7 @@ import MaskField from './MaskField';
 <Playground>
   <a href="https://text-mask.github.io/text-mask/" target="_blank">text-mask</a>
   <Form onSubmit={(values) => console.log('onSubmit', values)}>
-    {() => ( <MaskField 
+    {(formProps) => console.log('formProps', formProps) || ( <MaskField 
                 name="maskField" 
                 label="label"
                 placeholder="placeholder"

@@ -15,7 +15,9 @@
     "prop-types": "^15.7.2",
     "react-js-pagination": "^3.0.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "react-router-dom": "5.0.1"
+  },
   "peerDependencies": {
     "@astral-frontend/components": "^0.1.0",
     "react": "^16.8.0",

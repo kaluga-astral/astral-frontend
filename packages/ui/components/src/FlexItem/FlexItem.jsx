@@ -22,7 +22,7 @@ const FlexItem = (props) => {
 FlexItem.defaultProps = {
   className: null,
   component: 'div',
-  grow: 1,
+  grow: 0,
 };
 
 FlexItem.propTypes = {
