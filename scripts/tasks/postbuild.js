@@ -11,4 +11,6 @@ module.exports = () => {
     './lib/package.json',
     JSON.stringify({ ...packageData, main: './index.js' }, null, 2),
   );
+
+  fs.createReadStream('../../../.npmrc').pipe(fs.createWriteStream('./lib/.npmrc'));
 };
