@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/styles",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
@@ -8,9 +8,7 @@
     "release": "assembly-scripts release"
   },
   "dependencies": {
-    "@astral-frontend/core": "^0.1.0",
-    "@material-ui/styles": "^4.0.0",
-    "prop-types": "^15.7.2"
+    "@material-ui/styles": "^4.0.0"
   },
   "devDependencies": {},
   "peerDependencies": {

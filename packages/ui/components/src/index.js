@@ -10,12 +10,15 @@ export { default as Collapse } from './Collapse';
 export { default as ContentState } from './ContentState';
 export { default as Dialog } from './Dialog';
 export { default as DialogContent } from './DialogContent';
+export { default as DialogTitle } from './DialogTitle';
+export { default as DialogActions } from './DialogActions';
 export {
   default as ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
 } from './ExpansionPanel';
 export { default as Document } from './Document';
+export { default as Drawer } from './Drawer';
 export { default as Fade } from './Fade';
 export { default as FlexContainer } from './FlexContainer';
 export { default as FlexItem } from './FlexItem';
@@ -62,3 +65,4 @@ export { default as Tabs } from './Tabs';
 export { default as TextField } from './TextField';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as Typography } from './Typography';
+export { default as MaskField } from './MaskField';

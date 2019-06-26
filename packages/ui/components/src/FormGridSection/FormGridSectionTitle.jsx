@@ -5,8 +5,6 @@ import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
 import FormGridSectionContext from './FormGridSectionContext';
-import FlexContainer from '../FlexContainer';
-import FlexItem from '../FlexItem';
 import Button from '../Button';
 
 const FormGridSectionTitleCollapseToggler = () => {
@@ -29,12 +27,12 @@ const FormGridSectionTitle = ({
   const { collapsable } = React.useContext(FormGridSectionContext);
 
   return (
-    <FlexContainer className={cn(classes.root, className)} {...props}>
-      <FlexItem grow={1} component="h3" className={classes.text}>
+    <div className={cn(classes.root, className)} {...props}>
+      <div component="h3" className={classes.text}>
         {children}
-      </FlexItem>
+      </div>
       {collapsable && <FormGridSectionTitleCollapseToggler />}
-    </FlexContainer>
+    </div>
   );
 };
 
@@ -49,8 +47,11 @@ FormGridSectionTitle.propTypes = {
 };
 
 export default withStyles({
-  root: {},
+  root: {
+    display: 'flex',
+  },
   text: {
+    flex: 1,
     margin: '0',
     lineHeight: '24px',
     fontSize: '14px',
