@@ -48,6 +48,7 @@ export { default as InputLabel } from './InputLabel';
 export { default as LinearProgress } from './LinearProgress';
 export { default as List } from './List';
 export { default as ListItem } from './ListItem';
+export { default as ListSubheader } from './ListSubheader';
 export { default as MenuItem } from './MenuItem';
 export { default as MenuList } from './MenuList';
 export { default as Pagination } from './Pagination';

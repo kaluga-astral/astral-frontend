@@ -26,7 +26,6 @@ FlexItem.defaultProps = {
 };
 
 FlexItem.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   component: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string]),
   grow: PropTypes.number,
