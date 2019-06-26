@@ -3,7 +3,6 @@ import React from 'react';
 import { Drawer } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import { __Context as MainContext } from '../Main';
 import MainModalContext from './MainModalContext';
 
 const useStyles = makeStyles(() => {
