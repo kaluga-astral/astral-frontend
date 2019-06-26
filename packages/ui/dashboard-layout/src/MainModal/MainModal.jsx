@@ -3,7 +3,6 @@ import React from 'react';
 import { Drawer } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import { __Context as MainContext } from '../Main';
 import MainModalContext from './MainModalContext';
 
 const useStyles = makeStyles(() => {
@@ -30,18 +29,17 @@ const useStyles = makeStyles(() => {
 const DashboardLayoutMainModal = (props) => {
   const { onClose } = props;
   const classes = useStyles(props);
-  const { ref } = React.useContext(MainContext);
 
   return (
     <MainModalContext.Provider value={{ onClose }}>
       <Drawer
         {...props}
         classes={classes}
-        PaperProps={{ style: { position: 'absolute' } }}
+        PaperProps={{ style: { top: '140px' } }}
+        transitionDuration={400}
         ModalProps={{
           hideBackdrop: true,
-          container: ref && ref.current,
-          style: { position: 'absolute' },
+          style: { top: '140px' },
         }}
         variant="temporary"
         anchor="right"
