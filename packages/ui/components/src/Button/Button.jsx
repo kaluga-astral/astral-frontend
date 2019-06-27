@@ -151,7 +151,7 @@ const Button = (props) => {
   const {
     disabled, loading, variant, color, size, className, children, ...rootProps
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles();
   const loaderSize = getLoaderSize(size);
 
   return (

@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { TableCell as MuiTableCell } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
@@ -37,8 +36,6 @@ const TableRowActions = (props) => {
   );
 };
 
-TableRowActions.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-};
+TableRowActions.propTypes = {};
 
 export default TableRowActions;
