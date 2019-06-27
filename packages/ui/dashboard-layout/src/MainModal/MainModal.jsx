@@ -35,7 +35,7 @@ const DashboardLayoutMainModal = (props) => {
       <Drawer
         {...props}
         classes={classes}
-        PaperProps={{ style: { top: '140px' } }}
+        PaperProps={{ style: { top: '140px', paddingBottom: '140px' } }}
         transitionDuration={400}
         ModalProps={{
           hideBackdrop: true,
