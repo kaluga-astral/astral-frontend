@@ -66,3 +66,4 @@ export { default as TextField } from './TextField';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as Typography } from './Typography';
 export { default as MaskField } from './MaskField';
+export { default as Badge } from './Badge';
