@@ -16,13 +16,13 @@ export default withStyles(
         margin: 0,
         padding: 0,
       },
-      // body: {
+      body: {
       //   backgroundColor: theme.palette.background.default,
-      //   ...theme.typography.body2,
-      //   '@media print': {
-      //     backgroundColor: theme.palette.common.white,
-      //   },
-      // },
+        ...theme.typography.body2,
+        '@media print': {
+          backgroundColor: theme.palette.common.white,
+        },
+      },
       '*, *::before, *::after': {
         boxSizing: 'inherit',
       },
