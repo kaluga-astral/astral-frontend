@@ -17,7 +17,7 @@ export default withStyles(
         padding: 0,
       },
       body: {
-      //   backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         ...theme.typography.body2,
         '@media print': {
           backgroundColor: theme.palette.common.white,
