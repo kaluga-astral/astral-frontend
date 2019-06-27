@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es';
-import { createMuiTheme } from '@astral-frontend/core';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const themeOptions = {
   typography: {
