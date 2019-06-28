@@ -4,33 +4,63 @@ name: MainModal
 ---
 
 import { Playground, Props } from "docz";
-import { MemoryRouter } from "react-router-dom";
-import { SaveIcon } from "@astral-frontend/icons";
 
-import MainModal from "./index";
+import MainModal from './MainModal';
+import MainModalExample from './MainModal.docz';
 
 # MainModal
 
 <Props of={MainModal} />
 
+**Для того, чтобы модалка была не на весь экран, а была в контейнере, прокинуть в container прокинуть ref контейнера. Необходимо, чтобы сама модалка тоже находилась в контейнере**
+
 ## Basic code
 
 ```
-  <MainModal title="title" open={true} onClose={() => console.log('close model')}>
-    some MainModal content
-  </MainModal>
+const MainModalExample = ({ size }) => {
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef();
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div ref={containerRef}>
+      <button type="button" onClick={handleOpen}>Open modal</button>
+      <ThemeProvider theme={new AstralEDOTheme()}>
+        <MainModal open={open} size={size} container={containerRef.current} onClose={handleClose}>
+          <MainModalTitle>
+              Title
+          </MainModalTitle>
+          <MainModalContent>
+              Content
+          </MainModalContent>
+        </MainModal>
+      </ThemeProvider>
+    </div>
+  );
+};
 ```
 
-## Basic usage
-
+## Medium modal
 
 <Playground>
-  <MemoryRouter initialEntries={['/']}>
-    <MainModal open={true} onClose={() => console.log('close model')}>
-      <MainModal.Title>title</MainModal.Title>
-      <MainModal.Content>
-            some MainModal content
-      </MainModal.Content>
-    </MainModal>
-  </MemoryRouter>
+  <MainModalExample />
+</Playground>
+
+## Small modal
+
+<Playground>
+  <MainModalExample size="small" />
+</Playground>
+
+## Large modal в контейнере
+
+<Playground>
+  <MainModalExample contain size="large" />
 </Playground>

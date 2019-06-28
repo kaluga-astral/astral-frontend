@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import { IconButton } from '@astral-frontend/components';
 import { BackIcon } from '@astral-frontend/icons';
 import { makeStyles } from '@astral-frontend/styles';
@@ -11,31 +11,34 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    padding: '20px 0',
     wordBreak: 'break-all',
-    borderBottom: `1px solid ${theme.palette.grey[100]}`,
   },
   backButton: {
-    margin: '0 10px',
+    marginRight: 15,
   },
-  content: {
+  title: {
+    margin: 0,
     flexGrow: 1,
+    fontStyle: 'bold',
+    color: theme.palette.primary.main,
+  },
+  backIcon: {
+    width: 18,
+    height: 12,
+    fill: theme.palette.primary.main,
   },
 }));
 
 const DashboardLayoutMainModalTitle = ({ className, children }) => {
   const classes = useStyles();
-  const { onClose } = React.useContext(MainModalContext);
-  const handleBackButtonClick = React.useCallback(() => {
-    onClose();
-  });
+  const { onClose } = useContext(MainModalContext);
 
   return (
     <div className={cn(classes.root, className)}>
-      <IconButton className={classes.backButton} onClick={handleBackButtonClick}>
-        <BackIcon />
+      <IconButton className={classes.backButton} onClick={onClose}>
+        <BackIcon className={classes.backIcon} />
       </IconButton>
-      <div className={classes.content}>{children}</div>
+      <h2 className={classes.title}>{children}</h2>
     </div>
   );
 };

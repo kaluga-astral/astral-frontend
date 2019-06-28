@@ -10,16 +10,13 @@ const useStyles = makeStyles({
     overflowY: 'auto',
     overflowX: 'hidden',
   },
-  padding: {
-    padding: '20px',
-  },
 });
 
-const DashboardLayoutMainModalContent = ({ className, children, disablePadding }) => {
+const DashboardLayoutMainModalContent = ({ className, children }) => {
   const classes = useStyles();
 
   return (
-    <div className={cn(classes.root, className, { [classes.padding]: !disablePadding })}>
+    <div className={cn(classes.root, className)}>
       {children}
     </div>
   );
@@ -27,13 +24,11 @@ const DashboardLayoutMainModalContent = ({ className, children, disablePadding }
 
 DashboardLayoutMainModalContent.defaultProps = {
   className: null,
-  disablePadding: false,
 };
 
 DashboardLayoutMainModalContent.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  disablePadding: PropTypes.bool,
 };
 
 export default DashboardLayoutMainModalContent;
