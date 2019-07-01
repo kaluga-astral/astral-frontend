@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
-import { Drawer } from '@astral-frontend/components';
+import React from 'react';
+import { Drawer, ClickAwayListener } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
-import { ClickAwayListener } from '@astral-frontend/core';
 
 import MainModalContext from './MainModalContext';
 
-const useStyles = makeStyles(() => {
+const getContainerPosition = ({ container }) => (container ? 'absolute' : null);
+
+const useDrawerStyles = makeStyles(() => {
   const getWidth = ({ size }) => {
     switch (size) {
       case 'small':
@@ -25,28 +26,33 @@ const useStyles = makeStyles(() => {
       width: getWidth,
       padding: 24,
       boxShadow: '0px 4px 56px rgba(0, 0, 0, 0.1)',
+      position: getContainerPosition,
+    },
+    modal: {
+      position: props => `${getContainerPosition(props)} !important`,
     },
   };
 });
 
+const useBackdropStyles = makeStyles(() => ({
+  root: {
+    position: getContainerPosition,
+    backgroundColor: 'transparent',
+  },
+}));
+
 const DashboardLayoutMainModal = ({
   anchor,
+  size,
   ModalProps,
-  PaperProps,
   BackdropProps,
   onClose,
   container,
   children,
   ...props
 }) => {
-  const classes = useStyles(props);
-  const modalPositionStyle = container ? { position: 'absolute' } : {};
-
-  // для того, чтобы Drawer был в контейнере
-  useEffect(() => {
-    /* eslint-disable-next-line */
-    if (container) container.style.position = 'relative';
-  }, [container]);
+  const drawerClasses = useDrawerStyles({ size, container });
+  const backdropClasses = useBackdropStyles({ container });
 
   // ClickAwayListener нужен когда модалка находится не на уровне body
   return (
@@ -54,25 +60,17 @@ const DashboardLayoutMainModal = ({
       <ClickAwayListener onClickAway={onClose}>
         <Drawer
           {...props}
-          classes={classes}
+          classes={drawerClasses}
           transitionDuration={400}
           ModalProps={{
             disablePortal: Boolean(container),
             onBackdropClick: onClose,
             onEscapeKeyDown: onClose,
-            style: modalPositionStyle,
             container,
             ...ModalProps,
           }}
-          PaperProps={{
-            style: modalPositionStyle,
-            ...PaperProps,
-          }}
           BackdropProps={{
-            style: {
-              backgroundColor: 'transparent',
-              ...modalPositionStyle,
-            },
+            classes: backdropClasses,
             ...BackdropProps,
           }}
           anchor={anchor}

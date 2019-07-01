@@ -12,7 +12,7 @@ import MainModalExample from './MainModal.docz';
 
 <Props of={MainModal} />
 
-**Для того, чтобы модалка была не на весь экран, а была в контейнере, прокинуть в container прокинуть ref контейнера. Необходимо, чтобы сама модалка тоже находилась в контейнере**
+**Для того, чтобы модалка была не на весь экран, а была в контейнере, прокинуть в container прокинуть ref контейнера, контейнер сделать position: relative. Необходимо, чтобы сама модалка тоже находилась в контейнере**
 
 ## Basic code
 
@@ -30,7 +30,7 @@ const MainModalExample = ({ size }) => {
   };
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{ position: 'relative' }}>
       <button type="button" onClick={handleOpen}>Open modal</button>
       <ThemeProvider theme={new AstralEDOTheme()}>
         <MainModal open={open} size={size} container={containerRef.current} onClose={handleClose}>

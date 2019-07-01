@@ -20,7 +20,7 @@ const MainModalExample = ({ size, contain }) => {
   };
 
   return (
-    <div style={{ height: contain && 800 }} ref={containerRef}>
+    <div style={{ height: contain && 800, position: 'relative' }} ref={containerRef}>
       <button type="button" onClick={handleOpen}>Open modal</button>
       <ThemeProvider theme={new AstralEDOTheme()}>
         <MainModal open={open} size={size} container={contain ? containerRef.current : null} onClose={handleClose}>
