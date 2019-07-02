@@ -10,14 +10,42 @@ import {
   Avatar,
   Popper,
 } from '@astral-frontend/components';
-import { withStyles } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
 
 import Item from './Item';
 
-const buttonRef = React.createRef();
+const useStyles = makeStyles(theme => ({
+  root: {
+    borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
+    width: '260px',
+  },
+  toggler: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    padding: '20px',
+  },
+  avatar: {
+    width: '40px',
+    height: '40px',
+    marginRight: '15px',
+    fontSize: 18,
+    color: theme.palette.common.white,
+    background: theme.palette.primary.dark,
+  },
+  userName: {
+    fontWeight: 400,
+    fontSize: '14px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    width: '',
+  },
+  popperPaper: {
+    minWidth: '175px',
+  },
+}));
 
 const DashboardLayoutCurrentUserInfo = ({
-  classes,
   className,
   children,
   avatarSrc,
@@ -25,6 +53,8 @@ const DashboardLayoutCurrentUserInfo = ({
   userName,
 }) => {
   const [open, setOpen] = React.useState(false);
+  const classes = useStyles();
+  const buttonRef = React.createRef();
   const handleTogglerButtonClick = () => {
     setOpen(prevState => !prevState.showMenu);
   };
@@ -43,9 +73,7 @@ const DashboardLayoutCurrentUserInfo = ({
         <Avatar className={classes.avatar} src={avatarSrc}>
           {avatarAlt}
         </Avatar>
-        <div className={classes.user}>
-          <div className={classes.userName}>{userName}</div>
-        </div>
+        <div className={classes.userName}>{userName}</div>
       </ButtonBase>
       <Popper transition open={open} anchorEl={buttonRef.current}>
         {({ TransitionProps }) => (
@@ -78,35 +106,4 @@ DashboardLayoutCurrentUserInfo.propTypes = {
   userName: PropTypes.string.isRequired,
 };
 
-export default withStyles(theme => ({
-  root: {
-    borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
-    width: '260px',
-  },
-  toggler: {
-    justifyContent: 'left',
-    width: '100%',
-    height: '100%',
-    padding: '20px',
-  },
-  avatar: {
-    width: '40px',
-    height: '40px',
-    marginRight: '15px',
-    fontSize: 18,
-    color: theme.palette.common.white,
-    background: theme.palette.primary.dark,
-  },
-  user: {
-    textAlign: 'left',
-    // TODO: вынести в palette
-    // color: '#072d57',
-  },
-  userName: {
-    fontWeight: 400,
-    fontSize: '14px',
-  },
-  popperPaper: {
-    minWidth: '175px',
-  },
-}))(DashboardLayoutCurrentUserInfo);
+export default DashboardLayoutCurrentUserInfo;
