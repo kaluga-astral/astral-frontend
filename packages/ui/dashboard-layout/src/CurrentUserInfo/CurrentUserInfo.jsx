@@ -11,10 +11,9 @@ import {
   Popper,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
- 
-import Item from './Item';> ({
-const useStyles = makeStyles(theme => const useStyles = makeStyles(theme =
-const buttonRef = React.createRef();
+
+import Item from './Item';
+
 const useStyles = makeStyles(theme => ({
   root: {
     borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
@@ -39,23 +38,23 @@ const useStyles = makeStyles(theme => ({
     fontSize: '14px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    width: '',
   },
   popperPaper: {
     minWidth: '175px',
   },
 }));
- 
+
 const DashboardLayoutCurrentUserInfo = ({
-  classes,
   className,
   children,
   avatarSrc,
   avatarAlt,
   userName,
 }) => {
-  const [open, setOpen] = React.useStat> ort Item from './Item';
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
+  const buttonRef = React.createRef();
   const handleTogglerButtonClick = () => {
     setOpen(prevState => !prevState.showMenu);
   };
@@ -80,7 +79,6 @@ const DashboardLayoutCurrentUserInfo = ({
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
             <Paper className={classes.popperPaper}>
-              
               <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
                 <MenuList disablePadding>{children}</MenuList>
               </ClickAwayListener>
@@ -91,14 +89,14 @@ const DashboardLayoutCurrentUserInfo = ({
     </div>
   );
 };
- 
+
 DashboardLayoutCurrentUserInfo.Item = Item;
- 
+
 DashboardLayoutCurrentUserInfo.defaultProps = {
   className: null,
   avatarSrc: null,
 };
- 
+
 DashboardLayoutCurrentUserInfo.propTypes = {
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
@@ -107,3 +105,5 @@ DashboardLayoutCurrentUserInfo.propTypes = {
   avatarAlt: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
 };
+
+export default DashboardLayoutCurrentUserInfo;
