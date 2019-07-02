@@ -1,0 +1,26 @@
+---
+menu: forms
+name: SNILSField
+---
+
+import { Props, Playground } from 'docz';
+import Form from '../Form';
+import SNILSField from './SNILSField';
+
+# SNILSField
+
+<Props of={SNILSField} />
+
+## Basic code
+
+```
+  <SNILSField />
+```
+
+## Basic usage
+
+<Playground>
+  <Form onSubmit={(values) => console.log('onSubmit', values)}>
+    {() => (<SNILSField />)}
+  </Form>
+</Playground>

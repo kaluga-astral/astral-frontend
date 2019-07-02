@@ -22,10 +22,15 @@ const useStyles = makeStyles(theme => ({
     stroke: getIconColor(theme),
     fill: 'transparent',
   },
-  label: {
+  noLabel: {
     margin: 0,
   },
+  endLabel: {
+    marginLeft: -9,
+  },
 }), { withTheme: true });
+
+const END_LABEL_PLACEMENT = 'end';
 
 const Checkbox = ({
   disabled,
@@ -40,6 +45,7 @@ const Checkbox = ({
   ...props
 }) => {
   const classes = useStyles({ disabled });
+  const endLabelPlacement = labelPlacement === END_LABEL_PLACEMENT;
 
   return (
     <FormControlLabel
@@ -50,9 +56,7 @@ const Checkbox = ({
       labelPlacement={labelPlacement}
       className={className}
       classes={{
-        // чтобы не было margin'a без label
-        root: !label && classes.label,
-        disabled: classes.disabledLabel,
+        root: (endLabelPlacement && label) ? classes.endLabel : classes.noLabel,
       }}
       control={(
         <MuiCheckbox

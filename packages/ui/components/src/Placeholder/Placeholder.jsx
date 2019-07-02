@@ -14,22 +14,37 @@ const useStyles = makeStyles({
   },
 });
 
-const Placeholder = ({ className }) => {
+const Placeholder = ({ className, state, error }) => {
   const classes = useStyles();
+  const renderChildren = () => {
+    switch (state) {
+      case 'loading':
+        return <CircularProgress />;
+      case 'failure':
+        return (
+          <div>
+            <div>Произошла ошибка</div>
+            <div>{error.message}</div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
 
-  return (
-    <div className={cn(classes.root, className)}>
-      <CircularProgress />
-    </div>
-  );
+  return <div className={cn(classes.root, className)}>{renderChildren()}</div>;
 };
 
 Placeholder.defaultProps = {
   className: null,
+  state: null,
+  error: null,
 };
 
 Placeholder.propTypes = {
   className: PropTypes.string,
+  state: PropTypes.oneOf(['loading', 'failure']),
+  error: PropTypes.instanceOf(Error),
 };
 
 export default Placeholder;

@@ -26,6 +26,7 @@ const FormAddressField = ({ classes, inputValueDebounceTimeout, ...props }) => {
     <Field
       {...props}
       render={({
+<<<<<<< HEAD
         placeholder,
         onChange,
         downshiftProps,
@@ -67,6 +68,41 @@ const FormAddressField = ({ classes, inputValueDebounceTimeout, ...props }) => {
               )}
           </Downshift>
         )}
+=======
+        value, placeholder, onChange, downshiftProps, ...fieldProps
+      }) => (
+        <Downshift
+          id="address-field"
+          onInputValueChange={handleInputValueChange}
+          itemToString={item => (item ? item.value : '')}
+          onChange={item => onChange(item.data)}
+          {...downshiftProps}
+        >
+          {({
+            getInputProps, getItemProps, getMenuProps, highlightedIndex, isOpen,
+          }) => (
+            <div className={classes.root}>
+              <MuiTextField
+                type="text"
+                fullWidth
+                margin="normal"
+                InputProps={getInputProps({
+                  placeholder,
+                })}
+                {...fieldProps}
+              />
+              <Menu
+                getMenuProps={getMenuProps}
+                getItemProps={getItemProps}
+                highlightedIndex={highlightedIndex}
+                isOpen={isOpen}
+                suggestions={suggestions}
+              />
+            </div>
+          )}
+        </Downshift>
+      )}
+>>>>>>> f56de9f593e20b3ca07688e4e2b197242b0a500c
     />
   );
 };

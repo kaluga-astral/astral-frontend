@@ -1,5 +1,12 @@
 export { FORM_ERROR } from 'final-form';
-export { useForm, useFormState, Field as FinalFormField } from 'react-final-form';
+export {
+  useForm,
+  useFormState,
+  /**
+   * @deprecated since version 1.1.x
+   */
+  Field as FinalFormField,
+} from 'react-final-form';
 
 export { default as AddressField } from './AddressField';
 export { default as DateField } from './DateField';
@@ -7,6 +14,7 @@ export { default as EmailField } from './EmailField';
 export { default as ErrorAlert } from './ErrorAlert';
 export { default as Form } from './Form';
 export { default as FormSpy } from './FormSpy';
+export { default as HiddenField } from './HiddenField';
 export { default as INNField } from './INNField';
 export { default as KPPField } from './KPPField';
 export { default as NumberField } from './NumberField';
@@ -27,3 +35,4 @@ export { default as TextField } from './TextField';
 export { default as CheckboxField } from './CheckboxField';
 export { default as Field } from './Field';
 export { default as PasswordField } from './PasswordField';
+export { default as MaskField } from './MaskField';

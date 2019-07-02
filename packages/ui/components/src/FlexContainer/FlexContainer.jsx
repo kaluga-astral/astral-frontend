@@ -2,17 +2,30 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { withStylesProps } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
 
-const FlexContainer = ({
-  classes,
-  className,
-  component: Component,
-  direction,
-  alignItems,
-  justifyContent,
-  ...props
-}) => <Component className={cn(classes.root, className)} {...props} />;
+const useStyles = makeStyles({
+  root: props => ({
+    display: 'flex',
+    flexDirection: props.direction,
+    alignItems: props.alignItems,
+    justifyContent: props.justifyContent,
+  }),
+});
+
+const FlexContainer = (props) => {
+  const {
+    className,
+    component: Component,
+    direction,
+    alignItems,
+    justifyContent,
+    ...other
+  } = props;
+  const classes = useStyles(props);
+
+  return <Component className={cn(classes.root, className)} {...other} />;
+};
 
 FlexContainer.defaultProps = {
   className: null,
@@ -23,7 +36,6 @@ FlexContainer.defaultProps = {
 };
 
 FlexContainer.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   component: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string]),
   direction: PropTypes.oneOf([
@@ -63,11 +75,4 @@ FlexContainer.propTypes = {
   ]),
 };
 
-export default withStylesProps(props => ({
-  root: {
-    display: 'flex',
-    flexDirection: props.direction,
-    alignItems: props.alignItems,
-    justifyContent: props.justifyContent,
-  },
-}))(FlexContainer);
+export default FlexContainer;

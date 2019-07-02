@@ -1,15 +1,29 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutMainModalContent = ({
-  classes, className, children, disablePadding,
-}) => (
-  <div className={cn(classes.root, className, { [classes.padding]: !disablePadding })}>
-    {children}
-  </div>
-);
+import { makeStyles } from '@astral-frontend/styles';
+
+const useStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+    overflowY: 'auto',
+    overflowX: 'hidden',
+  },
+  padding: {
+    padding: '20px',
+  },
+});
+
+const DashboardLayoutMainModalContent = ({ className, children, disablePadding }) => {
+  const classes = useStyles();
+
+  return (
+    <div className={cn(classes.root, className, { [classes.padding]: !disablePadding })}>
+      {children}
+    </div>
+  );
+};
 
 DashboardLayoutMainModalContent.defaultProps = {
   className: null,
@@ -17,18 +31,9 @@ DashboardLayoutMainModalContent.defaultProps = {
 };
 
 DashboardLayoutMainModalContent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   disablePadding: PropTypes.bool,
 };
 
-export default withStyles({
-  root: {
-    flexGrow: 1,
-    overflow: 'auto',
-  },
-  padding: {
-    padding: '0 20px',
-  },
-})(DashboardLayoutMainModalContent);
+export default DashboardLayoutMainModalContent;

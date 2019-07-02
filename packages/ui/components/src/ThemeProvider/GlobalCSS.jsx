@@ -1,4 +1,4 @@
-import { withStyles } from '@astral-frontend/core/styles';
+import { withStyles } from '@astral-frontend/styles';
 
 const GlobalCSS = () => null;
 
