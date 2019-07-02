@@ -1,11 +1,31 @@
 /* eslint-disable */
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Field as FinalFormField } from 'react-final-form';
 import { OnChange } from 'react-final-form-listeners';
 import { TextField as MuiTextField } from '@astral-frontend/components';
 
 import { mustBePresent, composeValidations } from '@astral-frontend/validations';
+
+const createValidationFunction = (required, validate) => {
+  if (required && validate) {
+    return composeValidations(mustBePresent, validate);
+  }
+
+  if (required && !validate) {
+    return mustBePresent;
+  }
+
+  if (!required && validate) {
+    return composeValidations(value => {
+      if (value) {
+        return validate(value);
+      }
+    });
+  }
+
+  return null;
+};
 
 const FormField = ({
   // ======FinalFormFieldProps======
@@ -30,26 +50,10 @@ const FormField = ({
   ...MuiTextFieldProps
 }) => {
   const { required } = MuiTextFieldProps;
-  // eslint-disable-next-line max-len
-  const createValidationFunction = () => {
-    if (required && validate) {
-      return composeValidations(mustBePresent, validate);
-    }
-
-    if (required && !validate) {
-      return mustBePresent;
-    }
-
-    if (!required && validate) {
-      return composeValidations(value => {
-        if (value) {
-          return validate(value);
-        }
-      });
-    }
-
-    return null;
-  };
+  const validationFunction = useMemo(() => createValidationFunction(required, validate), [
+    required,
+    validate,
+  ]);
 
   return (
     <>
@@ -76,15 +80,17 @@ const FormField = ({
           );
         }}
         subscription={subscription}
-        validate={createValidationFunction()}
+        validate={validationFunction}
         validateFields={validateFields}
         value={value}
       />
-      <OnChange name={name}>
-        {value => {
-          onChange && onChange(value);
-        }}
-      </OnChange>
+      {onChange && (
+        <OnChange name={name}>
+          {value => {
+            onChange(value);
+          }}
+        </OnChange>
+      )}
     </>
   );
 };

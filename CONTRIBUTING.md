@@ -117,3 +117,10 @@ const FlexItem = ({
 
 <FlexItem component={TextField} name="fieldName" />
 ```
+
+Все контексты, не предназначенные для изменения, импортятся из index.js файла как __Context.
+
+```
+export { default } from './Dialog';
+export { default as __Context } from './DialogContext';
+```

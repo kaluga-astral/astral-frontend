@@ -4,7 +4,9 @@
  * @param {string} value - Валидируемое значение
  */
 const mustBeSNILS = (value) => {
-  if (!/^\d{3}-\d{3}-\d{3} \d{2}$/.test(value)) {
+  const preparedValue = value.replace(/\D/g, '');
+
+  if (!/^(\d{11})$/.test(preparedValue)) {
     return 'Неверный СНИЛС. Введите корректный СНИЛС.';
   }
 

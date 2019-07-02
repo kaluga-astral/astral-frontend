@@ -2,29 +2,33 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { withStylesProps } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
 
-const FlexItem = ({
-  classes, className, component: Component, grow, ...props
-}) => (
-  <Component className={cn(classes.root, className)} {...props} />
-);
+const useStyles = makeStyles({
+  root: {
+    flexGrow: props => props.grow,
+  },
+});
+
+const FlexItem = (props) => {
+  const {
+    className, component: Component, grow, ...other
+  } = props;
+  const classes = useStyles(props);
+
+  return <Component className={cn(classes.root, className)} {...other} />;
+};
 
 FlexItem.defaultProps = {
   className: null,
   component: 'div',
-  grow: 1,
+  grow: 0,
 };
 
 FlexItem.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   component: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string]),
   grow: PropTypes.number,
 };
 
-export default withStylesProps(props => ({
-  root: {
-    flexGrow: props.grow,
-  },
-}))(FlexItem);
+export default FlexItem;
