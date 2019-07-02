@@ -3,7 +3,7 @@ import Theme from './Theme';
 
 const astralThemeOptions = {
   typography: {
-    fontFamily: '"Roboto", system-ui, sans-serif',
+    fontFamily: '"Manrope", sans-serif, system-ui',
   },
   palette: {
     background: {
