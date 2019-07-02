@@ -1,9 +1,18 @@
 {
   "name": "@astral-frontend/fonts",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./index.js",
-  "dependencies": {},
-  "devDependencies": {},
-  "peerDependencies": {},
+  "scripts": {
+    "build": "assembly-scripts build",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
+  "dependencies": {
+    "@astral-frontend/styles": "^0.1.0",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
   "sideEffects": false
 }
