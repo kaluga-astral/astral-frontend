@@ -1,39 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { TableRow as MuiTableRow } from '@astral-frontend/core';
-import { withStyles } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
 
 import TableRowContext from './TableRowContext';
 
-const TableRow = ({ children, Actions, ...props }) => {
-  const [hovered, setHovered] = React.useState(false);
-  const handleMouseEnter = () => {
-    setHovered(true);
-  };
-  const onMouseLeave = () => {
-    setHovered(false);
-  };
-
-  return (
-    <TableRowContext.Provider value={{ hovered }}>
-      <MuiTableRow onMouseEnter={handleMouseEnter} onMouseLeave={onMouseLeave} {...props}>
-        {children}
-        <Actions />
-      </MuiTableRow>
-    </TableRowContext.Provider>
-  );
-};
-
-TableRow.defaultProps = {
-  Actions: () => null,
-};
-
-TableRow.propTypes = {
-  Actions: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
-};
-
-export default withStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative',
     borderLeft: '4px solid transparent',
@@ -46,4 +18,42 @@ export default withStyles(theme => ({
   hover: {
     cursor: 'pointer',
   },
-}))(TableRow);
+}));
+
+const TableRow = ({ children, Actions, ...props }) => {
+  const classes = useStyles();
+  const [hovered, setHovered] = React.useState(false);
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+  const onMouseLeave = () => {
+    setHovered(false);
+  };
+
+  return (
+    <TableRowContext.Provider value={{ hovered }}>
+      <MuiTableRow
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={onMouseLeave}
+        classes={classes}
+        {...props}
+      >
+        {children}
+        <Actions />
+      </MuiTableRow>
+    </TableRowContext.Provider>
+  );
+};
+
+TableRow.defaultProps = {
+  Actions: () => null,
+  hover: false,
+};
+
+TableRow.propTypes = {
+  hover: PropTypes.bool,
+  Actions: PropTypes.func,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
+};
+
+export default TableRow;

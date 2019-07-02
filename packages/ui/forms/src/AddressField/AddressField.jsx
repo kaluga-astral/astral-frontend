@@ -25,19 +25,18 @@ const FormAddressField = ({ classes, inputValueDebounceTimeout, ...props }) => {
   return (
     <Field
       {...props}
-      render={({ placeholder, onChange, value, ...fieldProps }) => (
+      render={({
+        value, placeholder, onChange, downshiftProps, ...fieldProps
+      }) => (
         <Downshift
           id="address-field"
           onInputValueChange={handleInputValueChange}
           itemToString={item => (item ? item.value : '')}
           onChange={item => onChange(item.data)}
+          {...downshiftProps}
         >
           {({
-            getInputProps,
-            getItemProps,
-            getMenuProps,
-            highlightedIndex,
-            isOpen,
+            getInputProps, getItemProps, getMenuProps, highlightedIndex, isOpen,
           }) => (
             <div className={classes.root}>
               <MuiTextField

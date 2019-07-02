@@ -4,8 +4,8 @@ import { Form as FinalForm } from 'react-final-form';
 
 const Form = ({ children, className, ...props }) => (
   <FinalForm {...props}>
-    {({ handleSubmit, ...formRenderProps }) => (
-      <form noValidate className={className} onSubmit={handleSubmit}>
+    {formRenderProps => (
+      <form noValidate className={className} onSubmit={formRenderProps.handleSubmit}>
         {children(formRenderProps)}
       </form>
     )}
