@@ -43,10 +43,6 @@ const useStyles = makeStyles(theme => ({
   popperPaper: {
     minWidth: '175px',
   },
-  popper: {
-    marginTop: '-135px',
-    marginLeft: '45px',
-  },
 }));
 
 const DashboardLayoutCurrentUserInfo = ({
@@ -57,16 +53,20 @@ const DashboardLayoutCurrentUserInfo = ({
   userName,
 }) => {
   const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const classes = useStyles();
   const buttonRef = React.createRef();
-  const handleTogglerButtonClick = () => {
-    setOpen(prevState => !prevState.showMenu);
+  const handleTogglerButtonClick = (event) => {
+    const { currentTarget } = event;
+    setOpen(prevValue => !prevValue);
+    setAnchorEl(currentTarget);
   };
   const handleClickAwayListenerClickAway = (event) => {
     if (!buttonRef.current.contains(event.target)) {
       setOpen(false);
     }
   };
+
   return (
     <div className={cn(classes.root, className)}>
       <ButtonBase
@@ -79,7 +79,13 @@ const DashboardLayoutCurrentUserInfo = ({
         </Avatar>
         <div className={classes.userName}>{userName}</div>
       </ButtonBase>
-      <Popper className={classes.popper} transition open={open} anchorEl={buttonRef.current}>
+      <Popper
+        placement="top"
+        transition
+        open={open}
+        anchorEl={anchorEl}
+        onClick={() => setOpen(false)}
+      >
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
             <Paper className={classes.popperPaper}>
