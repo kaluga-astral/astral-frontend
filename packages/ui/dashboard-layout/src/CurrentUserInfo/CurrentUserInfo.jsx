@@ -79,7 +79,7 @@ const DashboardLayoutCurrentUserInfo = ({
         </Avatar>
         <div className={classes.userName}>{userName}</div>
       </ButtonBase>
-      <Popper className={classes.ml} transition open={open} anchorEl={buttonRef.current}>
+      <Popper className={classes.popper} transition open={open} anchorEl={buttonRef.current}>
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
             <Paper className={classes.popperPaper}>
