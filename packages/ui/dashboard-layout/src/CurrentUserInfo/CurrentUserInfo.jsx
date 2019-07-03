@@ -53,39 +53,45 @@ const DashboardLayoutCurrentUserInfo = ({
   userName,
 }) => {
   const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const classes = useStyles();
   const buttonRef = React.createRef();
-  const handleTogglerButtonClick = () => {
-    setOpen(prevState => !prevState.showMenu);
+  const handleTogglerButtonClick = (event) => {
+    const { currentTarget } = event;
+    setOpen(prevValue => !prevValue);
+    setAnchorEl(currentTarget);
   };
   const handleClickAwayListenerClickAway = (event) => {
     if (!buttonRef.current.contains(event.target)) {
       setOpen(false);
     }
   };
+
   return (
     <div className={cn(classes.root, className)}>
-      <ButtonBase
-        className={cn(classes.toggler)}
-        buttonRef={buttonRef}
-        onClick={handleTogglerButtonClick}
-      >
-        <Avatar className={classes.avatar} src={avatarSrc}>
-          {avatarAlt}
-        </Avatar>
-        <div className={classes.userName}>{userName}</div>
-      </ButtonBase>
-      <Popper transition open={open} anchorEl={buttonRef.current}>
-        {({ TransitionProps }) => (
-          <Grow {...TransitionProps}>
-            <Paper className={classes.popperPaper}>
-              <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-                <MenuList disablePadding>{children}</MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+      <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
+        <div>
+          <ButtonBase
+            className={cn(classes.toggler)}
+            buttonRef={buttonRef}
+            onClick={handleTogglerButtonClick}
+          >
+            <Avatar className={classes.avatar} src={avatarSrc}>
+              {avatarAlt}
+            </Avatar>
+            <div className={classes.userName}>{userName}</div>
+          </ButtonBase>
+          <Popper placement="top" transition open={open} anchorEl={anchorEl}>
+            {({ TransitionProps }) => (
+              <Grow {...TransitionProps}>
+                <Paper className={classes.popperPaper}>
+                  <MenuList disablePadding>{children}</MenuList>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </div>
+      </ClickAwayListener>
     </div>
   );
 };
