@@ -43,6 +43,10 @@ const useStyles = makeStyles(theme => ({
   popperPaper: {
     minWidth: '175px',
   },
+  popper: {
+    marginTop: '-135px',
+    marginLeft: '45px',
+  },
 }));
 
 const DashboardLayoutCurrentUserInfo = ({
@@ -75,7 +79,7 @@ const DashboardLayoutCurrentUserInfo = ({
         </Avatar>
         <div className={classes.userName}>{userName}</div>
       </ButtonBase>
-      <Popper transition open={open} anchorEl={buttonRef.current}>
+      <Popper className={classes.ml} transition open={open} anchorEl={buttonRef.current}>
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
             <Paper className={classes.popperPaper}>
