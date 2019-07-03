@@ -22,7 +22,9 @@ import ManropeboldWoff2 from './binary/Manropebold.woff2';
 import ManropeboldWoff from './binary/Manropebold.woff';
 import ManropeboldTtf from './binary/Manropebold.ttf';
 
-const MONROPE_FONTS_TYPES = [
+const MANROPE_FONT_NAME = 'Manrope';
+
+const MANROPE_FONTS_CONNECT_INFO = [
   {
     srcList: [
       { url: ManropesemiboldWoff2, format: 'woff2' },
@@ -79,4 +81,9 @@ const MONROPE_FONTS_TYPES = [
   },
 ];
 
-export default MONROPE_FONTS_TYPES;
+const MANROPE_FONTS_CONFIG = {
+  name: MANROPE_FONT_NAME,
+  connectInfo: MANROPE_FONTS_CONNECT_INFO,
+};
+
+export default MANROPE_FONTS_CONFIG;

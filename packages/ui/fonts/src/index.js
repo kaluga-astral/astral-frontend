@@ -1,2 +1,2 @@
-export { default as DefaultFont } from './DefaultFont';
-export { default as ManropeFont } from './Manrope';
+export { default as FONTS_CONFIGS } from './fontsConfigs';
+export { default as LOCAL_FALLBACK_FONTS } from './localFallbackFonts';
