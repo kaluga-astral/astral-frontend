@@ -4,7 +4,7 @@ import { JssProvider } from 'react-jss';
 import { MuiThemeProvider } from '@astral-frontend/core';
 
 import GlobalCSS from './GlobalCSS';
-// import FontsConnector from './FontsConnector';
+import FontsConnector from './FontsConnector';
 
 const ThemeProvider = ({
   children, sheetsRegistry, theme, generateClassName,
@@ -12,7 +12,7 @@ const ThemeProvider = ({
   <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
     <MuiThemeProvider theme={theme}>
       <GlobalCSS />
-      {/* <FontsConnector /> */}
+      <FontsConnector />
       {children}
     </MuiThemeProvider>
   </JssProvider>
