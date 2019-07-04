@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => {
 
     return '14px';
   };
-  const getBackgroundColor = ({ disabled, loading, variant }) => {
+  const getBackgroundColor = ({ loading, variant }) => {
     const isTextVariant = getIsTextVariant(variant);
     const isRegularVariant = getIsRegularVariant(variant);
 
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => {
       return null;
     }
 
-    if (disabled || loading) {
+    if (loading) {
       return theme.palette.grey[100];
     }
 
@@ -71,15 +71,25 @@ const useStyles = makeStyles((theme) => {
 
     return null;
   };
-  const getColor = ({ disabled, loading, variant }) => {
+  const getDisabledBackgroundColor = ({ variant }) => {
     const isTextVariant = getIsTextVariant(variant);
     const isRegularVariant = getIsRegularVariant(variant);
 
     if (isTextVariant) {
-      if (disabled) {
-        return theme.palette.grey[400];
-      }
+      return null;
+    }
 
+    if (isRegularVariant) {
+      return theme.palette.grey[100];
+    }
+
+    return null;
+  };
+  const getColor = ({ loading, variant }) => {
+    const isTextVariant = getIsTextVariant(variant);
+    const isRegularVariant = getIsRegularVariant(variant);
+
+    if (isTextVariant) {
       if (loading) {
         return 'transparent';
       }
@@ -88,10 +98,6 @@ const useStyles = makeStyles((theme) => {
     }
 
     if (isRegularVariant) {
-      if (disabled) {
-        return theme.palette.grey[400];
-      }
-
       if (loading) {
         return theme.palette.grey[100];
       }
@@ -101,10 +107,10 @@ const useStyles = makeStyles((theme) => {
 
     return theme.palette.common.white;
   };
-  const getHoverBackgroundColor = ({ disabled, loading, variant }) => {
+  const getHoverBackgroundColor = ({ loading, variant }) => {
     const isTextVariant = getIsTextVariant(variant);
 
-    if (disabled || loading) {
+    if (loading) {
       return null;
     }
 
@@ -127,11 +133,11 @@ const useStyles = makeStyles((theme) => {
       '&:hover': {
         backgroundColor: getHoverBackgroundColor,
       },
-      '&$disabled': {
-        // TODO: #24046
+      '&:disabled': {
+        backgroundColor: getDisabledBackgroundColor,
+        color: theme.palette.grey[400],
       },
     },
-    dissabled: {},
     content: {},
     loader: {
       position: 'absolute',

@@ -4,9 +4,9 @@ import babelPresetReactApp from '@astral-frontend/babel-preset-react-app';
 export default {
   title: 'Astral UI-Kit',
   description: 'Документация к UI-Kit',
+  wrapper: 'docz/Wrapper.jsx',
   modifyBabelRc: () => ({
     babelrc: false,
-    presets: [babelPresetReactApp],
-    plugins: ['@babel/plugin-proposal-export-default-from'],
+    ...babelPresetReactApp(),
   }),
 };

@@ -26,13 +26,14 @@ const FormAddressField = ({ classes, inputValueDebounceTimeout, ...props }) => {
     <Field
       {...props}
       render={({
-        value, placeholder, onChange, ...fieldProps
+        value, placeholder, onChange, downshiftProps, ...fieldProps
       }) => (
         <Downshift
           id="address-field"
           onInputValueChange={handleInputValueChange}
           itemToString={item => (item ? item.value : '')}
           onChange={item => onChange(item.data)}
+          {...downshiftProps}
         >
           {({
             getInputProps, getItemProps, getMenuProps, highlightedIndex, isOpen,
