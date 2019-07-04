@@ -45,7 +45,6 @@ const useFont = props => makeStyles(theme => ({
 }), { name: 'fonts' })();
 
 const FontsConnector = ({ children, ...props }) => {
-  // чтобы при каждом перерендере не генерились заново font-face
   useFont(props);
 
   return children;
