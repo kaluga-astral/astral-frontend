@@ -9,21 +9,48 @@ import {
   ClickAwayListener,
   MenuList,
   Button,
+  FlexContainer,
 } from '@astral-frontend/components';
 
-import { withStyles } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
+
 import CurrentOrganization from './OrganizationSelectorCurrentOrganization';
 import OrganizationSelectorItem from './OrganizationSelectorItem';
 import OrganizationSelectorNotFoundPlaceholder from './OrganizationSelectorNotFoundPlaceholder';
 
+const useStyles = makeStyles(
+  () => ({
+    root: {
+      maxWidth: '300px',
+      height: '100%',
+    },
+    popperPaper: {
+      maxHeight: '325px',
+      overflowY: 'auto',
+      boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.09)',
+    },
+    addButton: {
+      width: '100%',
+      fontWeight: 'bold',
+      justifyContent: 'left',
+      padding: '15px',
+      position: 'sticky',
+      bottom: 0,
+      zIndex: 1000,
+      backgroundColor: 'white !important',
+    },
+  }),
+  { name: 'DashboardLayoutOrganizationSelector' },
+);
+
 const DashboardLayoutOrganizationSelector = ({
-  classes,
   className,
   children,
   currentOrganization,
   NotFoundPlaceholder,
   ...props
 }) => {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleTogglerButtonClick = (event) => {
@@ -37,7 +64,7 @@ const DashboardLayoutOrganizationSelector = ({
   };
 
   return (
-    <div className={cn(classes.root, className)}>
+    <FlexContainer justifyContent="flex-end" className={cn(classes.root, className)}>
       <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
         <div>
           <CurrentOrganization
@@ -75,7 +102,7 @@ const DashboardLayoutOrganizationSelector = ({
           </Popper>
         </div>
       </ClickAwayListener>
-    </div>
+    </FlexContainer>
   );
 };
 
@@ -100,27 +127,4 @@ DashboardLayoutOrganizationSelector.propTypes = {
 DashboardLayoutOrganizationSelector.Item = OrganizationSelectorItem;
 DashboardLayoutOrganizationSelector.NotFoundPlaceholder = OrganizationSelectorNotFoundPlaceholder;
 
-export default withStyles({
-  root: {
-    display: 'flex',
-    flexGrow: 1,
-    justifyContent: 'flex-end',
-    width: '300px',
-    height: '100%',
-  },
-  popperPaper: {
-    maxHeight: '325px',
-    overflowY: 'auto',
-    boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.09)',
-  },
-  addButton: {
-    width: '100%',
-    fontWeight: 'bold',
-    justifyContent: 'left',
-    padding: '15px',
-    position: 'sticky',
-    bottom: 0,
-    zIndex: 1000,
-    backgroundColor: 'white !important',
-  },
-})(DashboardLayoutOrganizationSelector);
+export default DashboardLayoutOrganizationSelector;

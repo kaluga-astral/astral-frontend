@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme => ({
     fontSize: '14px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    width: '',
   },
   popperPaper: {
     minWidth: '175px',
