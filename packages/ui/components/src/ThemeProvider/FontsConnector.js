@@ -1,5 +1,3 @@
-// eslint-disable-next-line
-import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@astral-frontend/styles';
 import { FONTS_CONFIGS, LOCAL_FALLBACK_FONTS } from '@astral-frontend/fonts';
@@ -47,6 +45,7 @@ const useFont = props => makeStyles(theme => ({
 }), { name: 'fonts' })();
 
 const FontsConnector = ({ children, ...props }) => {
+  // чтобы при каждом перерендере не генерились заново font-face
   useFont(props);
 
   return children;
