@@ -4,14 +4,19 @@ import React from 'react';
 
 import { makeStyles } from '@astral-frontend/styles';
 
-const useStyles = makeStyles({
-  root: props => ({
-    display: 'flex',
-    flexDirection: props.direction,
-    alignItems: props.alignItems,
-    justifyContent: props.justifyContent,
-  }),
-});
+const useStyles = makeStyles(
+  {
+    root: props => ({
+      display: 'flex',
+      flexDirection: props.direction,
+      alignItems: props.alignItems,
+      justifyContent: props.justifyContent,
+    }),
+  },
+  {
+    name: 'FlexContainer',
+  },
+);
 
 const FlexContainer = (props) => {
   const {

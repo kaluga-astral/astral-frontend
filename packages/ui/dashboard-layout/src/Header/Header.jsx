@@ -22,7 +22,6 @@ const DashboardLayoutHeader = ({ className, children }) => {
   return (
     <FlexContainer
       component="header"
-      alignItems="center"
       className={cn(classes.root, className)}
     >
       {children}

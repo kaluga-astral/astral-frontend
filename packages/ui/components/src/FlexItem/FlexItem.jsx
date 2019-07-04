@@ -4,11 +4,18 @@ import React from 'react';
 
 import { makeStyles } from '@astral-frontend/styles';
 
-const useStyles = makeStyles({
-  root: {
-    flexGrow: props => props.grow,
+const useStyles = makeStyles(
+  {
+    root: {
+      alignSelf: props => props.alignSelf,
+      flexGrow: props => props.grow,
+      flexShrink: props => props.shrink,
+    },
   },
-});
+  {
+    name: 'FlexItem',
+  },
+);
 
 const FlexItem = (props) => {
   const {
@@ -23,12 +30,35 @@ FlexItem.defaultProps = {
   className: null,
   component: 'div',
   grow: 0,
+  shrink: 1,
+  alignSelf: 'auto',
 };
 
 FlexItem.propTypes = {
   className: PropTypes.string,
   component: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string]),
+  alignSelf: PropTypes.oneOf([
+    'auto',
+    'normal',
+    'center',
+    'start',
+    'end',
+    'self-start',
+    'self-end',
+    'flex-start',
+    'flex-end',
+    'baseline',
+    'first baseline',
+    'last baseline',
+    'stretch',
+    'safe center',
+    'unsafe center',
+    'inherit',
+    'initial',
+    'unset',
+  ]),
   grow: PropTypes.number,
+  shrink: PropTypes.number,
 };
 
 export default FlexItem;

@@ -21,6 +21,7 @@ import OrganizationSelectorNotFoundPlaceholder from './OrganizationSelectorNotFo
 const useStyles = makeStyles(
   () => ({
     root: {
+      margin: '0 0 0 15px',
       maxWidth: '300px',
       height: '100%',
     },
@@ -64,45 +65,43 @@ const DashboardLayoutOrganizationSelector = ({
   };
 
   return (
-    <FlexContainer justifyContent="flex-end" className={cn(classes.root, className)}>
-      <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-        <div>
-          <CurrentOrganization
-            name={currentOrganization && currentOrganization.name}
-            onClick={handleTogglerButtonClick}
-          />
-          <Popper
-            transition
-            open={open}
-            anchorEl={anchorEl}
-            onClick={() => setOpen(false)}
-            {...props}
-          >
-            {({ TransitionProps }) => (
-              <Grow {...TransitionProps}>
-                <Paper className={classes.popperPaper}>
-                  {children.length > 0 ? (
-                    <div>
-                      <MenuList disablePadding>{children}</MenuList>
-                      <Button
-                        size="small"
-                        component={Link}
-                        to="/abonents/add"
-                        className={classes.addButton}
-                      >
-                        + Добавить организацию
-                      </Button>
-                    </div>
-                  ) : (
-                    <NotFoundPlaceholder />
-                  )}
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-        </div>
-      </ClickAwayListener>
-    </FlexContainer>
+    <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
+      <FlexContainer justifyContent="flex-end" className={cn(classes.root, className)}>
+        <CurrentOrganization
+          name={currentOrganization && currentOrganization.name}
+          onClick={handleTogglerButtonClick}
+        />
+        <Popper
+          transition
+          open={open}
+          anchorEl={anchorEl}
+          onClick={() => setOpen(false)}
+          {...props}
+        >
+          {({ TransitionProps }) => (
+            <Grow {...TransitionProps}>
+              <Paper className={classes.popperPaper}>
+                {children.length > 0 ? (
+                  <div>
+                    <MenuList disablePadding>{children}</MenuList>
+                    <Button
+                      size="small"
+                      component={Link}
+                      to="/abonents/add"
+                      className={classes.addButton}
+                    >
+                      + Добавить организацию
+                    </Button>
+                  </div>
+                ) : (
+                  <NotFoundPlaceholder />
+                )}
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </FlexContainer>
+    </ClickAwayListener>
   );
 };
 

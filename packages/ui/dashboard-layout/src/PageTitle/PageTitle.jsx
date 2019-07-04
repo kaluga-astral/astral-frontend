@@ -8,7 +8,7 @@ import { makeStyles } from '@astral-frontend/styles';
 const useStyles = makeStyles(
   () => ({
     root: {
-      margin: '0 15px',
+      margin: '0 0 0 15px',
       fontSize: '18px',
     },
   }),
@@ -19,7 +19,7 @@ const DashboardLayoutPageTitle = ({ className, children, ...props }) => {
   const classes = useStyles();
 
   return (
-    <FlexItem component="h1" grow={1} className={cn(classes.root, className)} {...props}>
+    <FlexItem component="h1" alignSelf="center" className={cn(classes.root, className)} {...props}>
       {children}
     </FlexItem>
   );
