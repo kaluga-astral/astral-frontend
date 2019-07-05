@@ -4,7 +4,7 @@ import { mustBeKPP } from '@astral-frontend/validations';
 
 import MaskField from '../MaskField';
 
-const ORGANIZATION_MASK = [
+const KPP_MASK = [
   /\d/,
   /\d/,
   /\d/,
@@ -17,7 +17,7 @@ const ORGANIZATION_MASK = [
 
 const KPPField = props => (
   <MaskField
-    mask={ORGANIZATION_MASK}
+    mask={KPP_MASK}
     validate={mustBeKPP}
     {...props}
   />
