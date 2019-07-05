@@ -69,7 +69,7 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ['thread-loader', 'file-loader'],
+        use: ['thread-loader', 'url-loader'], // хз почему file-loader не работает
       },
       {
         test: /\.(pdf)$/,
