@@ -1,16 +1,15 @@
-import React from 'react';
-import { createPortal } from 'react-dom';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@astral-frontend/styles';
+import { Portal } from '@astral-frontend/core';
 
 import Drawer from '../Drawer';
 import SlideModalTitle from './SlideModalTitle';
 import SlideModalContent from './SlideModalContent';
-import SlideModalFooter from './SlideModalFooter';
 
 import SlideModalContext from './SlideModalContext';
 
-const getContainerPosition = ({ container }) => (container ? 'absolute' : 'fixed');
+const getContainerPosition = ({ contain }) => (contain ? 'absolute' : null);
 
 const useDrawerStyles = makeStyles(() => {
   const getWidth = ({ size }) => {
@@ -29,63 +28,102 @@ const useDrawerStyles = makeStyles(() => {
   return {
     paper: {
       width: getWidth,
-      padding: 24,
-      boxShadow: '0px 4px 56px rgba(0, 0, 0, 0.1)',
       position: getContainerPosition,
+      padding: '24px 24px 0',
+      boxShadow: '0 5px 20px rgba(0, 0, 0, 0.1)',
+      borderLeft: 'none',
     },
   };
 });
 
 const SlideModal = ({
+  open,
+  disablePortal,
   anchor,
   size,
+  transitionDuration,
   onClose,
-  container,
+  containerRef,
   children,
   ...props
 }) => {
-  const drawerClasses = useDrawerStyles({ size, container });
+  const [containerNode, setContainerNode] = useState(null);
+  const [unmountChildren, setUnmountChildren] = useState(false);
+  const drawerClasses = useDrawerStyles({ size, contain: Boolean(containerRef) });
 
-  console.log('container', container);
-  return createPortal(
-    <div>
-      <SlideModalContext.Provider value={{ onClose }}>
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      onClose();
+    }
+  };
+
+  // нужен перерендер для обновления ref контейнера
+  useEffect(() => {
+    if (containerRef) setContainerNode(containerRef.current);
+  }, []);
+
+  // unmountChildren - оптимизация содержимого drawer
+  // unmountChildren (а не open) для того, чтобы children не пропадало раньше окончания анимации
+  useEffect(() => {
+    if (open) {
+      document.addEventListener('keydown', handleKeyDown);
+
+      setUnmountChildren(false);
+    }
+
+    if (!open) {
+      document.removeEventListener('keydown', handleKeyDown);
+
+      setTimeout(
+        () => { setUnmountChildren(true); },
+        transitionDuration + 100,
+      );
+    }
+  }, [open]);
+
+  return (
+    <Portal disablePortal={disablePortal} container={containerNode}>
+      <SlideModalContext.Provider value={{ open, onClose }}>
         <Drawer
           {...props}
+          open={open}
           classes={drawerClasses}
-          transitionDuration={400}
+          transitionDuration={transitionDuration}
           anchor={anchor}
           variant="persistent"
         >
-          {children}
+          {!unmountChildren && children}
         </Drawer>
       </SlideModalContext.Provider>
-    </div>,
-    container,
+    </Portal>
   );
 };
 
 SlideModal.defaultProps = {
+  disablePortal: false,
   children: null,
-  container: null,
+  containerRef: null,
+  transitionDuration: 400,
   anchor: 'right',
   size: 'medium',
 };
 
 SlideModal.propTypes = {
+  disablePortal: PropTypes.bool,
+  transitionDuration: PropTypes.number,
   anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  container: PropTypes.instanceOf(Element),
-  // Mui Modal props
+  // ref
+  containerRef: PropTypes.shape(),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
 SlideModal.Title = SlideModalTitle;
 SlideModal.Content = SlideModalContent;
-SlideModal.Footer = SlideModalFooter;
 
 export default SlideModal;

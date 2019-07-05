@@ -8,16 +8,16 @@ import { Playground, Props } from "docz";
 import SlideModal from './SlideModal';
 import SlideModalExample from './SlideModal.docz';
 
-# MainModal
+# SlideModal
 
 <Props of={SlideModal} />
 
-**Для того, чтобы модалка была не на весь экран, а была в контейнере надо в container прокинуть ref контейнера, контейнер сделать position: relative.**
+**Для того, чтобы модалка была не на весь экран, а была в контейнере надо в containerRef прокинуть ref контейнера, контейнеру сделать position: relative и overflow: hidden.**
 
 ## Basic code
 
 ```
-const SlideModalExample = ({ size }) => {
+const SlideModalExample = () => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef();
 
@@ -30,10 +30,10 @@ const SlideModalExample = ({ size }) => {
   };
 
   return (
-    <div ref={containerRef} style={{ position: 'relative' }}>
+    <div ref={containerRef} style={{ position: 'relative', overflow: 'hidden' }}>
       <button type="button" onClick={handleOpen}>Open modal</button>
       <ThemeProvider theme={new AstralEDOTheme()}>
-        <MainModal open={open} size={size} container={containerRef.current} onClose={handleClose}>
+        <MainModal open={open} containerRef={containerRef} onClose={handleClose}>
           <MainModal.Title>
               Title
           </MainModal.Title>

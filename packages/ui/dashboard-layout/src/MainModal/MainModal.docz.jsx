@@ -1,15 +1,14 @@
 /* eslint-disable */
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from '@astral-frontend/components';
 import { AstralEDOTheme } from '@astral-frontend/themes';
 
 import MainModal from './MainModal';
-import MainModalTitle from './MainModalTitle';
-import MainModalContent from './MainModalContent';
+import Main from '../Main';
+import Header from '../Header';
 
-const MainModalExample = ({ size, contain }) => {
+const MainModalExample = ({ size }) => {
   const [open, setOpen] = useState(false);
-  const containerRef = useRef();
 
   const handleOpen = () => {
     setOpen(true);
@@ -20,19 +19,22 @@ const MainModalExample = ({ size, contain }) => {
   };
 
   return (
-    <div style={{ height: contain && 800, position: 'relative' }} ref={containerRef}>
-      <button type="button" onClick={handleOpen}>Open modal</button>
       <ThemeProvider theme={new AstralEDOTheme()}>
-        <MainModal open={open} size={size} container={contain ? containerRef.current : null} onClose={handleClose}>
-          <MainModalTitle>
+        <Header>Header</Header>
+        <Main>
+          Main
+          <button type="button" onClick={handleOpen}>Open modal</button>
+          <div style={{ height: 500 }} />
+          <MainModal open={open} size={size} onClose={handleClose}>
+            <MainModal.Title>
               Title
-          </MainModalTitle>
-          <MainModalContent>
+            </MainModal.Title>
+            <MainModal.Content>
               Content
-          </MainModalContent>
-        </MainModal>
+            </MainModal.Content>
+          </MainModal>
+        </Main>
       </ThemeProvider>
-    </div>
   );
 };
 
