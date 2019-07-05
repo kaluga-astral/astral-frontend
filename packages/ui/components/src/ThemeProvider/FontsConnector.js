@@ -1,5 +1,3 @@
-// eslint-disable-next-line
-import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@astral-frontend/styles';
 import { FONTS_CONFIGS, LOCAL_FALLBACK_FONTS } from '@astral-frontend/fonts';
