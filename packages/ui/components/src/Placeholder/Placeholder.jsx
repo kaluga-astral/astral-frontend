@@ -4,15 +4,17 @@ import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
 import CircularProgress from '../CircularProgress';
+import FlexContainer from '../FlexContainer';
 
-const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 'fill-available',
-  },
-});
+const useStyles = makeStyles(
+  () => ({
+    root: {
+      minHeight: 'fill-available',
+      margin: '0 15px',
+    },
+  }),
+  { name: 'Placeholder' },
+);
 
 const Placeholder = ({ className, state, error }) => {
   const classes = useStyles();
@@ -32,7 +34,15 @@ const Placeholder = ({ className, state, error }) => {
     }
   };
 
-  return <div className={cn(classes.root, className)}>{renderChildren()}</div>;
+  return (
+    <FlexContainer
+      alignItems="center"
+      justifyContent="center"
+      className={cn(classes.root, className)}
+    >
+      {renderChildren()}
+    </FlexContainer>
+  );
 };
 
 Placeholder.defaultProps = {

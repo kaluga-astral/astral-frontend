@@ -9,7 +9,7 @@ const getDownloadableFontsFamily = fontFamilyString => fontFamilyString
   .filter(font => !LOCAL_FALLBACK_FONTS.includes(font));
 
 const getSrc = srcList => srcList
-  .map(({ url, format }) => `url('${url}') format(${format})`)
+  .map(({ url, format }) => `url('${url}') format('${format}')`)
   .join(', ');
 
 const generateFontsFace = (fontsConfig, fontFamily, fontDisplay) => fontsConfig.map((fontFace) => {
