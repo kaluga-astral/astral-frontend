@@ -4,6 +4,8 @@ import { MaskField } from '@astral-frontend/components';
 
 import TextField from '../TextField';
 
+const removeSpaceSymbols = value => value.replace(/\s/g, '');
+
 const InputTextMask = props => (
   <TextField
     render={MaskField}
@@ -14,6 +16,7 @@ const InputTextMask = props => (
 InputTextMask.defaultProps = {
   label: null,
   placeholder: null,
+  parse: removeSpaceSymbols,
   placeholderChar: '\u2000',
 };
 
@@ -24,6 +27,7 @@ InputTextMask.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   placeholderChar: PropTypes.string,
+  parse: PropTypes.func,
 };
 
 export default InputTextMask;

@@ -23,7 +23,7 @@ const PHONE_MASK = [
   /\d/,
 ];
 
-const removeSpecialSymbols = value => value.replace(/\(|\)|-/g, '');
+const removeSpecialSymbols = value => value.replace(/\(|\)|-|\s/g, '');
 
 const PhoneField = props => (
   <MaskField

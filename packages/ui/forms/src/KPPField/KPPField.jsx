@@ -2,12 +2,27 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { mustBeKPP } from '@astral-frontend/validations';
 
-import TextField from '../TextField';
+import MaskField from '../MaskField';
 
-const KPPField = props => (
-  <TextField
-    inputProps={{ maxLength: 9 }}
-    parse={value => value.replace(/[^\d]/g, '')}
+const ORGANIZATION_VARIANT = 'organization';
+const ORGANIZATION_MASK = [
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  /[\d|A-Z]/,
+  /[\d|A-Z]/,
+  /\d/,
+  /\d/,
+];
+const OTHERS_MASK = new Array(9).fill(/\d/);
+
+const getMaskByVariant = variant => (variant === ORGANIZATION_VARIANT
+  ? ORGANIZATION_MASK : OTHERS_MASK);
+
+const KPPField = ({ variant, ...props }) => (
+  <MaskField
+    mask={getMaskByVariant(variant)}
     validate={mustBeKPP}
     {...props}
   />
@@ -16,13 +31,13 @@ const KPPField = props => (
 KPPField.defaultProps = {
   name: 'kpp',
   label: 'КПП',
-  placeholder: null,
+  variant: 'others',
 };
 
 KPPField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
-  placeholder: PropTypes.string,
+  variant: PropTypes.oneOf(['others', ORGANIZATION_VARIANT]),
 };
 
 export default KPPField;
