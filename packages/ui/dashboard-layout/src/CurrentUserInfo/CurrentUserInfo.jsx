@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme => ({
     fontSize: '14px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    width: '',
   },
   popperPaper: {
     minWidth: '175px',
@@ -104,7 +103,6 @@ DashboardLayoutCurrentUserInfo.defaultProps = {
 };
 
 DashboardLayoutCurrentUserInfo.propTypes = {
-  classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   avatarSrc: PropTypes.string,

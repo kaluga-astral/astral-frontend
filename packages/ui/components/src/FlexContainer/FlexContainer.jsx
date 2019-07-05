@@ -4,16 +4,21 @@ import React from 'react';
 
 import { makeStyles } from '@astral-frontend/styles';
 
-const useStyles = makeStyles({
-  root: props => ({
-    display: 'flex',
-    flexDirection: props.direction,
-    alignItems: props.alignItems,
-    justifyContent: props.justifyContent,
-  }),
-});
+const useStyles = makeStyles(
+  {
+    root: props => ({
+      display: 'flex',
+      flexDirection: props.direction,
+      alignItems: props.alignItems,
+      justifyContent: props.justifyContent,
+    }),
+  },
+  {
+    name: 'FlexContainer',
+  },
+);
 
-const FlexContainer = (props) => {
+const FlexContainer = React.forwardRef((props, ref) => {
   const {
     className,
     component: Component,
@@ -24,8 +29,8 @@ const FlexContainer = (props) => {
   } = props;
   const classes = useStyles(props);
 
-  return <Component className={cn(classes.root, className)} {...other} />;
-};
+  return <Component ref={ref} className={cn(classes.root, className)} {...other} />;
+});
 
 FlexContainer.defaultProps = {
   className: null,
