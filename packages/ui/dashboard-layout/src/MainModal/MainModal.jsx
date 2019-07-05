@@ -21,14 +21,12 @@ DashboardLayoutMainModal.Title = SlideModal.Title;
 DashboardLayoutMainModal.Content = SlideModal.Content;
 
 DashboardLayoutMainModal.defaultProps = {
-  disablePortal: false,
   children: null,
   anchor: 'right',
   size: 'medium',
 };
 
 DashboardLayoutMainModal.propTypes = {
-  disablePortal: PropTypes.bool,
   anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   children: PropTypes.oneOfType([
