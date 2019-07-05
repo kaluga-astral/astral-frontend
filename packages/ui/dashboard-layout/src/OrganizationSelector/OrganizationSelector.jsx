@@ -8,7 +8,7 @@ import {
   Paper,
   ClickAwayListener,
   MenuList,
-  Button,
+  MenuItem,
   FlexContainer,
 } from '@astral-frontend/components';
 
@@ -22,23 +22,12 @@ const useStyles = makeStyles(
   () => ({
     root: {
       margin: '0 0 0 15px',
-      maxWidth: '300px',
       height: '100%',
     },
     popperPaper: {
       maxHeight: '325px',
       overflowY: 'auto',
       boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.09)',
-    },
-    addButton: {
-      width: '100%',
-      fontWeight: 'bold',
-      justifyContent: 'left',
-      padding: '15px',
-      position: 'sticky',
-      bottom: 0,
-      zIndex: 1000,
-      backgroundColor: 'white !important',
     },
   }),
   { name: 'DashboardLayoutOrganizationSelector' },
@@ -47,6 +36,7 @@ const useStyles = makeStyles(
 const DashboardLayoutOrganizationSelector = ({
   className,
   children,
+  addLinkHref,
   currentOrganization,
   NotFoundPlaceholder,
   ...props
@@ -63,45 +53,37 @@ const DashboardLayoutOrganizationSelector = ({
   const handleClickAwayListenerClickAway = () => {
     setOpen(false);
   };
+  const renderChildren = () => {
+    if (children.length > 0) {
+      return (
+        <MenuList disablePadding>
+          {children}
+          <MenuItem component={Link} to={addLinkHref}>
+            + Добавить организацию
+          </MenuItem>
+        </MenuList>
+      );
+    }
+
+    return <NotFoundPlaceholder />;
+  };
 
   return (
-    <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-      <FlexContainer justifyContent="flex-end" className={cn(classes.root, className)}>
+    <FlexContainer justifyContent="flex-end" className={cn(classes.root, className)}>
+      <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
         <CurrentOrganization
           name={currentOrganization && currentOrganization.name}
           onClick={handleTogglerButtonClick}
         />
-        <Popper
-          transition
-          open={open}
-          anchorEl={anchorEl}
-          onClick={() => setOpen(false)}
-          {...props}
-        >
-          {({ TransitionProps }) => (
-            <Grow {...TransitionProps}>
-              <Paper className={classes.popperPaper}>
-                {children.length > 0 ? (
-                  <div>
-                    <MenuList disablePadding>{children}</MenuList>
-                    <Button
-                      size="small"
-                      component={Link}
-                      to="/abonents/add"
-                      className={classes.addButton}
-                    >
-                      + Добавить организацию
-                    </Button>
-                  </div>
-                ) : (
-                  <NotFoundPlaceholder />
-                )}
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </FlexContainer>
-    </ClickAwayListener>
+      </ClickAwayListener>
+      <Popper transition open={open} anchorEl={anchorEl} {...props}>
+        {({ TransitionProps }) => (
+          <Grow {...TransitionProps}>
+            <Paper className={classes.popperPaper}>{renderChildren()}</Paper>
+          </Grow>
+        )}
+      </Popper>
+    </FlexContainer>
   );
 };
 
@@ -110,9 +92,9 @@ DashboardLayoutOrganizationSelector.defaultProps = {
 };
 
 DashboardLayoutOrganizationSelector.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  addLinkHref: PropTypes.string.isRequired,
   currentOrganization: PropTypes.shape({
     name: PropTypes.string,
   }).isRequired,

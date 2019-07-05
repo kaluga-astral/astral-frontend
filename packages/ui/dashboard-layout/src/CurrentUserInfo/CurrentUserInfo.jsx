@@ -103,7 +103,6 @@ DashboardLayoutCurrentUserInfo.defaultProps = {
 };
 
 DashboardLayoutCurrentUserInfo.propTypes = {
-  classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   avatarSrc: PropTypes.string,

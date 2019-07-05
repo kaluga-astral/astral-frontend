@@ -19,7 +19,7 @@ const useStyles = makeStyles(
 
 const FlexItem = (props) => {
   const {
-    className, component: Component, grow, ...other
+    className, component: Component, grow, shrink, alignSelf, ...other
   } = props;
   const classes = useStyles(props);
 
