@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/assembly-scripts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "bin": {
     "assembly-scripts": "./index.js"
@@ -13,7 +13,8 @@
     "@semantic-release/npm": "^5.1.4",
     "@semantic-release/release-notes-generator": "^7.1.4",
     "semantic-release": "^15.13.3",
-    "shelljs": "^0.8.3"
+    "shelljs": "^0.8.3",
+    "recursive-copy": "^2.0.10"
   },
   "devDependencies": {},
   "peerDependencies": {}
