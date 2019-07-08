@@ -4,8 +4,6 @@ import { makeStyles } from '@astral-frontend/styles';
 import { Portal } from '@astral-frontend/core';
 
 import Drawer from '../Drawer';
-import SlideModalTitle from './SlideModalTitle';
-import SlideModalContent from './SlideModalContent';
 
 import SlideModalContext from './SlideModalContext';
 
@@ -122,8 +120,5 @@ SlideModal.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
-
-SlideModal.Title = SlideModalTitle;
-SlideModal.Content = SlideModalContent;
 
 export default SlideModal;

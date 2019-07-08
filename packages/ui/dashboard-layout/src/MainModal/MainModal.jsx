@@ -17,9 +17,6 @@ const DashboardLayoutMainModal = ({
   );
 };
 
-DashboardLayoutMainModal.Title = SlideModal.Title;
-DashboardLayoutMainModal.Content = SlideModal.Content;
-
 DashboardLayoutMainModal.defaultProps = {
   children: null,
   anchor: 'right',

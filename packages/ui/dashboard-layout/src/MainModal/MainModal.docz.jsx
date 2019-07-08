@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ThemeProvider } from '@astral-frontend/components';
 import { AstralEDOTheme } from '@astral-frontend/themes';
 
-import MainModal from './MainModal';
+import MainModal from './index';
 import Main from '../Main';
 import Header from '../Header';
 
