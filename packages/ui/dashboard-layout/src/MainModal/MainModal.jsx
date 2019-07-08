@@ -1,59 +1,36 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import { Drawer } from '@astral-frontend/components';
-import { makeStyles } from '@astral-frontend/styles';
+import React, { useContext } from 'react';
+import { SlideModal } from '@astral-frontend/components';
 
-import MainModalContext from './MainModalContext';
+import { __Context as MainContext } from '../Main';
 
-const useStyles = makeStyles(() => {
-  const getWidth = ({ size }) => {
-    switch (size) {
-      case 'small':
-        return '40%';
-      case 'medium':
-        return '60%';
-      case 'large':
-        return '80%';
-      default:
-        return null;
-    }
-  };
-
-  return {
-    paper: {
-      width: getWidth,
-    },
-  };
-});
-
-const DashboardLayoutMainModal = (props) => {
-  const { onClose } = props;
-  const classes = useStyles(props);
+const DashboardLayoutMainModal = ({
+  children,
+  ...props
+}) => {
+  const { ref: mainRef } = useContext(MainContext);
 
   return (
-    <MainModalContext.Provider value={{ onClose }}>
-      <Drawer
-        {...props}
-        classes={classes}
-        PaperProps={{ style: { top: '140px', paddingBottom: '140px' } }}
-        transitionDuration={400}
-        ModalProps={{
-          hideBackdrop: true,
-          style: { top: '140px' },
-        }}
-        variant="temporary"
-        anchor="right"
-      />
-    </MainModalContext.Provider>
+    <SlideModal {...props} containerRef={mainRef}>
+      {children}
+    </SlideModal>
   );
 };
 
 DashboardLayoutMainModal.defaultProps = {
+  children: null,
+  anchor: 'right',
   size: 'medium',
 };
 
 DashboardLayoutMainModal.propTypes = {
+  anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+  open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 

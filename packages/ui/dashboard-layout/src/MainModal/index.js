@@ -1,10 +1,8 @@
-import MainModal from './MainModal';
-import MainModalContent from './MainModalContent';
-import MainModalFooter from './MainModalFooter';
-import MainModalTitle from './MainModalTitle';
+import { SlideModal } from '@astral-frontend/components';
 
-MainModal.Content = MainModalContent;
-MainModal.Footer = MainModalFooter;
-MainModal.Title = MainModalTitle;
+import MainModal from './MainModal';
+
+MainModal.Title = SlideModal.Title;
+MainModal.Content = SlideModal.Content;
 
 export default MainModal;

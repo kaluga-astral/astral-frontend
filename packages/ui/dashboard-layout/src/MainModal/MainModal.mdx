@@ -4,10 +4,9 @@ name: MainModal
 ---
 
 import { Playground, Props } from "docz";
-import { MemoryRouter } from "react-router-dom";
-import { SaveIcon } from "@astral-frontend/icons";
 
-import MainModal from "./index";
+import MainModal from './MainModal';
+import MainModalExample from './MainModal.docz';
 
 # MainModal
 
@@ -16,21 +15,47 @@ import MainModal from "./index";
 ## Basic code
 
 ```
-  <MainModal title="title" open={true} onClose={() => console.log('close model')}>
-    some MainModal content
-  </MainModal>
+const MainModalExample = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <Main>
+      <button type="button" onClick={handleOpen}>Open modal</button>
+      <MainModal open={open} onClose={handleClose}>
+        <MainModal.Title>
+          Title
+        </MainModal.Title>
+        <MainModal.Content>
+          Content
+        </MainModal.Content>
+      </MainModal>
+    </Main>
+  );
+};
 ```
 
-## Basic usage
-
+## Medium modal
 
 <Playground>
-  <MemoryRouter initialEntries={['/']}>
-    <MainModal open={true} onClose={() => console.log('close model')}>
-      <MainModal.Title>title</MainModal.Title>
-      <MainModal.Content>
-            some MainModal content
-      </MainModal.Content>
-    </MainModal>
-  </MemoryRouter>
+  <MainModalExample />
+</Playground>
+
+## Small modal
+
+<Playground>
+  <MainModalExample size="small" />
+</Playground>
+
+## Large modal
+
+<Playground>
+  <MainModalExample size="large" />
 </Playground>
