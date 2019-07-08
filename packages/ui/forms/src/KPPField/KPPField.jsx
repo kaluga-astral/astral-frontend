@@ -13,6 +13,7 @@ const KPP_MASK = [
   /[\d|A-Z]/,
   /\d/,
   /\d/,
+  /\d/,
 ];
 
 const KPPField = props => (
