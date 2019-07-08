@@ -8,4 +8,3 @@ const OrganizationNotFoundIcon = props => (
 );
 
 export default OrganizationNotFoundIcon;
-

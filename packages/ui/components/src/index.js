@@ -8,6 +8,7 @@ export { default as CircularProgress } from './CircularProgress';
 export { default as ClickAwayListener } from './ClickAwayListener';
 export { default as Collapse } from './Collapse';
 export { default as ContentState } from './ContentState';
+export { default as SlideModal } from './SlideModal';
 export { default as Dialog } from './Dialog';
 export { default as DialogContent } from './DialogContent';
 export { default as DialogTitle } from './DialogTitle';

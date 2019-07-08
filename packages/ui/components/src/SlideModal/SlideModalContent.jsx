@@ -10,30 +10,25 @@ const useStyles = makeStyles({
     overflowY: 'auto',
     overflowX: 'hidden',
   },
-  padding: {
-    padding: '20px',
-  },
 });
 
-const DashboardLayoutMainModalContent = ({ className, children, disablePadding }) => {
+const SlideModalContent = ({ className, children }) => {
   const classes = useStyles();
 
   return (
-    <div className={cn(classes.root, className, { [classes.padding]: !disablePadding })}>
+    <div className={cn(classes.root, className)}>
       {children}
     </div>
   );
 };
 
-DashboardLayoutMainModalContent.defaultProps = {
+SlideModalContent.defaultProps = {
   className: null,
-  disablePadding: false,
 };
 
-DashboardLayoutMainModalContent.propTypes = {
+SlideModalContent.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  disablePadding: PropTypes.bool,
 };
 
-export default DashboardLayoutMainModalContent;
+export default SlideModalContent;
