@@ -1,87 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@astral-frontend/styles';
+
 import { Portal } from '@astral-frontend/core';
 
-import Drawer from '../Drawer';
-
+import SlideModalDrawer from './SlideModalDrawer';
 import SlideModalContext from './SlideModalContext';
 
-const getContainerPosition = ({ contain }) => (contain ? 'absolute' : null);
-
-const useDrawerStyles = makeStyles(() => {
-  const getWidth = ({ size }) => {
-    switch (size) {
-      case 'small':
-        return '40%';
-      case 'medium':
-        return '60%';
-      case 'large':
-        return '80%';
-      default:
-        return null;
-    }
-  };
-
-  return {
-    paper: {
-      width: getWidth,
-      position: getContainerPosition,
-      padding: '24px 24px 0',
-      boxShadow: '0 5px 20px rgba(0, 0, 0, 0.1)',
-      borderLeft: 'none',
-    },
-  };
-});
+const ESCAPE_KEY_CODE = 'Escape';
 
 const SlideModal = ({
-  open,
-  disablePortal,
-  anchor,
-  size,
-  transitionDuration,
-  onClose,
-  containerRef,
-  children,
-  ...props
+  open, disablePortal, onClose, containerRef, children, ...props
 }) => {
-  const [containerNode, setContainerNode] = useState(null);
-  const drawerClasses = useDrawerStyles({ size, contain: Boolean(containerRef) });
-
-  const handleKeyDown = (event) => {
-    if (event.key === 'Escape') {
+  const handleKeyDown = React.useCallback((event) => {
+    if (event.key === ESCAPE_KEY_CODE) {
       onClose();
     }
-  };
+  }, []);
 
-  // нужен перерендер для обновления ref контейнера
-  useEffect(() => {
-    if (containerRef) setContainerNode(containerRef.current);
-  }, [containerRef]);
-
-  useEffect(() => {
+  React.useEffect(() => {
     if (open) {
       document.addEventListener('keydown', handleKeyDown);
-    }
-
-    if (!open) {
+    } else {
       document.removeEventListener('keydown', handleKeyDown);
     }
   }, [open]);
 
   return (
-    <Portal disablePortal={disablePortal} container={containerNode}>
+    <Portal disablePortal={disablePortal} container={containerRef.current}>
       <SlideModalContext.Provider value={{ open, onClose }}>
-        <Drawer
-          {...props}
-          open={open}
-          classes={drawerClasses}
-          transitionDuration={transitionDuration}
-          anchor={anchor}
-          variant="persistent"
-        >
+        <SlideModalDrawer open={open} contain={disablePortal} {...props}>
           {children}
-        </Drawer>
+        </SlideModalDrawer>
       </SlideModalContext.Provider>
     </Portal>
   );
@@ -91,22 +40,12 @@ SlideModal.defaultProps = {
   disablePortal: false,
   children: null,
   containerRef: null,
-  transitionDuration: { enter: 400, exit: 250 },
-  anchor: 'right',
-  size: 'medium',
 };
 
 SlideModal.propTypes = {
   disablePortal: PropTypes.bool,
-  transitionDuration: PropTypes.shape(),
-  anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  // ref
   containerRef: PropTypes.shape(),
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
