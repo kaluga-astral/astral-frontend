@@ -46,7 +46,6 @@ const SlideModal = ({
   ...props
 }) => {
   const [containerNode, setContainerNode] = useState(null);
-  const [unmountChildren, setUnmountChildren] = useState(false);
   const drawerClasses = useDrawerStyles({ size, contain: Boolean(containerRef) });
 
   const handleKeyDown = (event) => {
@@ -58,24 +57,15 @@ const SlideModal = ({
   // нужен перерендер для обновления ref контейнера
   useEffect(() => {
     if (containerRef) setContainerNode(containerRef.current);
-  }, []);
+  }, [containerRef]);
 
-  // unmountChildren - оптимизация содержимого drawer
-  // unmountChildren (а не open) для того, чтобы children не пропадало раньше окончания анимации
   useEffect(() => {
     if (open) {
       document.addEventListener('keydown', handleKeyDown);
-
-      setUnmountChildren(false);
     }
 
     if (!open) {
       document.removeEventListener('keydown', handleKeyDown);
-
-      setTimeout(
-        () => { setUnmountChildren(true); },
-        transitionDuration + 100,
-      );
     }
   }, [open]);
 
@@ -90,7 +80,7 @@ const SlideModal = ({
           anchor={anchor}
           variant="persistent"
         >
-          {!unmountChildren && children}
+          {open && children}
         </Drawer>
       </SlideModalContext.Provider>
     </Portal>
@@ -101,14 +91,14 @@ SlideModal.defaultProps = {
   disablePortal: false,
   children: null,
   containerRef: null,
-  transitionDuration: 400,
+  transitionDuration: { enter: 400, exit: 250 },
   anchor: 'right',
   size: 'medium',
 };
 
 SlideModal.propTypes = {
   disablePortal: PropTypes.bool,
-  transitionDuration: PropTypes.number,
+  transitionDuration: PropTypes.shape(),
   anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   // ref
