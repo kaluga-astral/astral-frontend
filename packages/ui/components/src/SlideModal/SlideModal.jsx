@@ -80,7 +80,7 @@ const SlideModal = ({
           anchor={anchor}
           variant="persistent"
         >
-          {open && children}
+          {children}
         </Drawer>
       </SlideModalContext.Provider>
     </Portal>
