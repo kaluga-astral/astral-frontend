@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const DashboardLayoutSlideModalFooter = ({
+const SlideModalFooter = ({
   className, children, disablePadding, ...props
 }) => {
   const classes = useStyles();
@@ -30,15 +30,15 @@ const DashboardLayoutSlideModalFooter = ({
   );
 };
 
-DashboardLayoutSlideModalFooter.defaultProps = {
+SlideModalFooter.defaultProps = {
   className: null,
   disablePadding: false,
 };
 
-DashboardLayoutSlideModalFooter.propTypes = {
+SlideModalFooter.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   disablePadding: PropTypes.bool,
 };
 
-export default DashboardLayoutSlideModalFooter;
+export default SlideModalFooter;
