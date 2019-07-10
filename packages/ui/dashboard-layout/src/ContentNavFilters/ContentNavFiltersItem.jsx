@@ -5,19 +5,19 @@ import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(
-  () => ({
+  theme => ({
     root: {
       display: 'flex',
       color: 'rgba(29, 63, 102, 0.62)',
       textDecoration: 'none',
     },
-    // active: {
-    //   color: theme.palette.primary.main,
-    //   '& div': {
-    //     backgroundColor: theme.palette.primary.main,
-    //     color: 'white',
-    //   },
-    // },
+    active: {
+      color: theme.palette.primary.main,
+      '& div': {
+        backgroundColor: theme.palette.primary.main,
+        color: 'white',
+      },
+    },
     text: {},
     count: {
       display: 'flex',
@@ -34,25 +34,35 @@ const useStyles = makeStyles(
   { name: 'DashboardLayoutContentNavItem' },
 );
 
-const DashboardLayoutContentNavItem = ({ className, text, count }) => {
+const DashboardLayoutContentNavItem = ({
+  active,
+  text,
+  count,
+  component: Component,
+  className,
+  ...props
+}) => {
   const classes = useStyles();
 
   return (
-    <div className={cn(classes.root, className)}>
-      <div className={classes.text}>{text}</div>
+    <Component className={cn(classes.root, { [classes.active]: active }, className)} {...props}>
+      <span className={classes.text}>{text}</span>
       <div className={classes.count}>{count}</div>
-    </div>
+    </Component>
   );
 };
 
 DashboardLayoutContentNavItem.defaultProps = {
   className: null,
+  component: 'div',
 };
 
 DashboardLayoutContentNavItem.propTypes = {
-  className: PropTypes.string,
+  active: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,
   count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  component: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string]),
+  className: PropTypes.string,
 };
 
 export default DashboardLayoutContentNavItem;
