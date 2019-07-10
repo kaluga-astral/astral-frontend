@@ -1,7 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-
-import { Portal } from '@astral-frontend/core';
 
 import SlideModalDrawer from './SlideModalDrawer';
 import SlideModalContext from './SlideModalContext';
@@ -11,6 +10,18 @@ const ESCAPE_KEY_CODE = 'Escape';
 const SlideModal = ({
   open, disablePortal, onClose, containerRef, children, ...props
 }) => {
+  const portalContent = (
+    <SlideModalContext.Provider value={{ open, onClose }}>
+      <SlideModalDrawer
+        open={open}
+        contain={!disablePortal}
+        SlideProps={{ mountOnEnter: true, unMountOnExit: true }}
+        {...props}
+      >
+        {children}
+      </SlideModalDrawer>
+    </SlideModalContext.Provider>
+  );
   const handleKeyDown = React.useCallback((event) => {
     if (event.key === ESCAPE_KEY_CODE) {
       onClose();
@@ -25,15 +36,7 @@ const SlideModal = ({
     }
   }, [open]);
 
-  return (
-    <Portal disablePortal={disablePortal} container={containerRef.current}>
-      <SlideModalContext.Provider value={{ open, onClose }}>
-        <SlideModalDrawer open={open} contain={disablePortal} {...props}>
-          {children}
-        </SlideModalDrawer>
-      </SlideModalContext.Provider>
-    </Portal>
-  );
+  return containerRef ? ReactDOM.createPortal(portalContent, containerRef.current) : portalContent;
 };
 
 SlideModal.defaultProps = {
