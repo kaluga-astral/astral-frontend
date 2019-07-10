@@ -1,23 +1,10 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutContentNav = ({ classes, className, children }) => (
-  <nav className={cn(classes.root, className)}>{children}</nav>
-);
+import { makeStyles } from '@astral-frontend/styles';
 
-DashboardLayoutContentNav.defaultProps = {
-  className: null,
-};
-
-DashboardLayoutContentNav.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
-
-export default withStyles(
+const useStyles = makeStyles(
   theme => ({
     root: {
       display: 'flex',
@@ -28,4 +15,21 @@ export default withStyles(
     },
   }),
   { name: 'DashboardLayoutContent' },
-)(DashboardLayoutContentNav);
+);
+
+const DashboardLayoutContentNav = ({ className, children }) => {
+  const classes = useStyles();
+
+  return <nav className={cn(classes.root, className)}>{children}</nav>;
+};
+
+DashboardLayoutContentNav.defaultProps = {
+  className: null,
+};
+
+DashboardLayoutContentNav.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
+
+export default DashboardLayoutContentNav;

@@ -1,49 +1,23 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutContentNavItem = ({
-  classes, className, text, count, to,
-}) => (
-  <NavLink
-    to={to}
-    isActive={() => to === window.location.pathname + window.location.search}
-    activeClassName={classes.active}
-    className={cn(classes.root, className)}
-  >
-    <span>{text}</span>
-    <div className={classes.count}>{count}</div>
-  </NavLink>
-);
+import { makeStyles } from '@astral-frontend/styles';
 
-DashboardLayoutContentNavItem.defaultProps = {
-  className: null,
-};
-
-DashboardLayoutContentNavItem.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  className: PropTypes.string,
-  text: PropTypes.string.isRequired,
-  count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  to: PropTypes.string.isRequired,
-};
-
-export default withStyles(
-  theme => ({
+const useStyles = makeStyles(
+  () => ({
     root: {
       display: 'flex',
       color: 'rgba(29, 63, 102, 0.62)',
       textDecoration: 'none',
     },
-    active: {
-      color: theme.palette.primary.main,
-      '& div': {
-        backgroundColor: theme.palette.primary.main,
-        color: 'white',
-      },
-    },
+    // active: {
+    //   color: theme.palette.primary.main,
+    //   '& div': {
+    //     backgroundColor: theme.palette.primary.main,
+    //     color: 'white',
+    //   },
+    // },
     text: {},
     count: {
       display: 'flex',
@@ -58,4 +32,27 @@ export default withStyles(
     },
   }),
   { name: 'DashboardLayoutContentNavItem' },
-)(withRouter(DashboardLayoutContentNavItem));
+);
+
+const DashboardLayoutContentNavItem = ({ className, text, count }) => {
+  const classes = useStyles();
+
+  return (
+    <div className={cn(classes.root, className)}>
+      <div className={classes.text}>{text}</div>
+      <div className={classes.count}>{count}</div>
+    </div>
+  );
+};
+
+DashboardLayoutContentNavItem.defaultProps = {
+  className: null,
+};
+
+DashboardLayoutContentNavItem.propTypes = {
+  className: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+};
+
+export default DashboardLayoutContentNavItem;
