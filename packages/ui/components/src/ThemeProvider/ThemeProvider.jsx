@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { JssProvider } from 'react-jss';
-import { MuiThemeProvider } from '@astral-frontend/core';
+import { ThemeProvider as MuiThemeProvider } from '@astral-frontend/styles';
 
 import GlobalCSS from './GlobalCSS';
 import FontsConnector from './FontsConnector';
