@@ -6,12 +6,11 @@ import { makeStyles } from '@astral-frontend/styles';
 const useStyles = makeStyles(
   () => ({
     root: {
-      padding: '10px 20px',
       // FIXME
       color: 'rgba(29, 63, 102, 0.62)',
     },
     head: {
-      padding: '20px',
+      padding: '15px',
       fontSize: '12px',
       fontWeight: 'bold',
     },
