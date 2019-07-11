@@ -15,7 +15,7 @@ const SlideModal = ({
       <SlideModalDrawer
         open={open}
         contain={!disablePortal}
-        SlideProps={{ mountOnEnter: true, unMountOnExit: true }}
+        SlideProps={{ mountOnEnter: true, unmountOnExit: true, appear: true }}
         {...props}
       >
         {children}
