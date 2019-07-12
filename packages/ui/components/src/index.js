@@ -13,11 +13,9 @@ export { default as Dialog } from './Dialog';
 export { default as DialogContent } from './DialogContent';
 export { default as DialogTitle } from './DialogTitle';
 export { default as DialogActions } from './DialogActions';
-export {
-  default as ExpansionPanel,
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
-} from './ExpansionPanel';
+export { default as ExpansionPanel } from './ExpansionPanel';
+export { default as ExpansionPanelDetails } from './ExpansionPanelDetails';
+export { default as ExpansionPanelSummary } from './ExpansionPanelSummary';
 export { default as Document } from './Document';
 export { default as Drawer } from './Drawer';
 export { default as Fade } from './Fade';

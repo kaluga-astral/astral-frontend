@@ -1,1 +1,1 @@
-export { default, ExpansionPanelSummary, ExpansionPanelDetails } from './ExpansionPanel';
+export { default } from './ExpansionPanel';
