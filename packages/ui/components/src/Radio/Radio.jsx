@@ -24,9 +24,10 @@ const Radio = ({
     label={label}
     labelPlacement={labelPlacement}
     value={String(value)}
-    control={<BaseRadio color="primary" onChange={onChange} />}
+    control={<BaseRadio color="primary" />}
     onBlur={onBlur}
     onFocus={onFocus}
+    onChange={onChange}
   />
 );
 
