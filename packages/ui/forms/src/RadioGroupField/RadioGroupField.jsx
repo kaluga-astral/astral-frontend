@@ -6,13 +6,17 @@ import { FormLabel, FormHelperText } from '@astral-frontend/core';
 import Field from '../Field';
 
 const FormRadioGroupField = ({
-  fullWidth, row, className, groupLabel, labelPlacement, options, ...props
+  fullWidth,
+  row,
+  className,
+  groupLabel,
+  labelPlacement,
+  options,
+  ...props
 }) => (
   <Field
     {...props}
-    render={({
-      name, helperText, error,
-    }) => (
+    render={({ name, helperText, error }) => (
       <FormControl
         fullWidth={fullWidth}
         error={Boolean(error)}
