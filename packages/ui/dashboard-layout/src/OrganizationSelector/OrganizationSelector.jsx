@@ -29,6 +29,13 @@ const useStyles = makeStyles(
       overflowY: 'auto',
       boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.09)',
     },
+    addButton: {
+      width: '100%',
+      position: 'sticky',
+      bottom: 0,
+      zIndex: 1000,
+      backgroundColor: 'white',
+    },
   }),
   { name: 'DashboardLayoutOrganizationSelector' },
 );
@@ -58,7 +65,7 @@ const DashboardLayoutOrganizationSelector = ({
       return (
         <MenuList disablePadding>
           {children}
-          <MenuItem component={Link} to={addLinkHref}>
+          <MenuItem className={classes.addButton} component={Link} to={addLinkHref}>
             + Добавить организацию
           </MenuItem>
         </MenuList>
