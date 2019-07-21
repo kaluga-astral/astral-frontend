@@ -13,19 +13,12 @@ const SlideModal = ({
   onClose,
   containerRef,
   children,
-  appear,
-  mountOnEnter,
-  unmountOnExit,
+  SlideProps,
   ...props
 }) => {
   const portalContent = (
     <SlideModalContext.Provider value={{ open, onClose }}>
-      <SlideModalDrawer
-        open={open}
-        contain={!disablePortal}
-        SlideProps={{ mountOnEnter, unmountOnExit, appear }}
-        {...props}
-      >
+      <SlideModalDrawer open={open} contain={!disablePortal} SlideProps={SlideProps} {...props}>
         {children}
       </SlideModalDrawer>
     </SlideModalContext.Provider>
@@ -51,9 +44,11 @@ SlideModal.defaultProps = {
   disablePortal: false,
   children: null,
   containerRef: null,
-  appear: true,
-  mountOnEnter: true,
-  unmountOnExit: true,
+  SlideProps: {
+    appear: true,
+    mountOnEnter: true,
+    unmountOnExit: true,
+  },
 };
 
 SlideModal.propTypes = {
@@ -62,9 +57,7 @@ SlideModal.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  appear: PropTypes.bool,
-  mountOnEnter: PropTypes.bool,
-  unmountOnExit: PropTypes.bool,
+  SlideProps: PropTypes.shape(),
 };
 
 export default SlideModal;
