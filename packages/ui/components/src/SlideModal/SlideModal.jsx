@@ -8,14 +8,22 @@ import SlideModalContext from './SlideModalContext';
 const ESCAPE_KEY_CODE = 'Escape';
 
 const SlideModal = ({
-  open, disablePortal, onClose, containerRef, children, ...props
+  open,
+  disablePortal,
+  onClose,
+  containerRef,
+  children,
+  appear,
+  mountOnEnter,
+  unmountOnExit,
+  ...props
 }) => {
   const portalContent = (
     <SlideModalContext.Provider value={{ open, onClose }}>
       <SlideModalDrawer
         open={open}
         contain={!disablePortal}
-        SlideProps={{ mountOnEnter: true, unmountOnExit: true, appear: true }}
+        SlideProps={{ mountOnEnter, unmountOnExit, appear }}
         {...props}
       >
         {children}
@@ -43,6 +51,9 @@ SlideModal.defaultProps = {
   disablePortal: false,
   children: null,
   containerRef: null,
+  appear: true,
+  mountOnEnter: true,
+  unmountOnExit: true,
 };
 
 SlideModal.propTypes = {
@@ -51,6 +62,9 @@ SlideModal.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  appear: PropTypes.bool,
+  mountOnEnter: PropTypes.bool,
+  unmountOnExit: PropTypes.bool,
 };
 
 export default SlideModal;
