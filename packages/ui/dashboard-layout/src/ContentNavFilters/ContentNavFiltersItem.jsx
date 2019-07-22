@@ -1,36 +1,10 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutContentNavItem = ({
-  classes, className, text, count, to,
-}) => (
-  <NavLink
-    to={to}
-    isActive={() => to === window.location.pathname + window.location.search}
-    activeClassName={classes.active}
-    className={cn(classes.root, className)}
-  >
-    <span>{text}</span>
-    <div className={classes.count}>{count}</div>
-  </NavLink>
-);
+import { makeStyles } from '@astral-frontend/styles';
 
-DashboardLayoutContentNavItem.defaultProps = {
-  className: null,
-};
-
-DashboardLayoutContentNavItem.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  className: PropTypes.string,
-  text: PropTypes.string.isRequired,
-  count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  to: PropTypes.string.isRequired,
-};
-
-export default withStyles(
+const useStyles = makeStyles(
   theme => ({
     root: {
       display: 'flex',
@@ -58,4 +32,37 @@ export default withStyles(
     },
   }),
   { name: 'DashboardLayoutContentNavItem' },
-)(withRouter(DashboardLayoutContentNavItem));
+);
+
+const DashboardLayoutContentNavItem = ({
+  active,
+  text,
+  count,
+  component: Component,
+  className,
+  ...props
+}) => {
+  const classes = useStyles();
+
+  return (
+    <Component className={cn(classes.root, { [classes.active]: active }, className)} {...props}>
+      <span className={classes.text}>{text}</span>
+      <div className={classes.count}>{count}</div>
+    </Component>
+  );
+};
+
+DashboardLayoutContentNavItem.defaultProps = {
+  className: null,
+  component: 'div',
+};
+
+DashboardLayoutContentNavItem.propTypes = {
+  active: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired,
+  count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  component: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string]),
+  className: PropTypes.string,
+};
+
+export default DashboardLayoutContentNavItem;
