@@ -10,6 +10,9 @@ const useStyles = makeStyles(
       display: 'flex',
       color: 'rgba(29, 63, 102, 0.62)',
       textDecoration: 'none',
+      '&:not(:last-child)': {
+        marginRight: '30px',
+      },
     },
     active: {
       color: theme.palette.primary.main,

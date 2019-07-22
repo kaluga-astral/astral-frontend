@@ -10,10 +10,6 @@ const useStyles = makeStyles(
       flex: 1,
       alignItems: 'center',
       height: '100%',
-      marginLeft: '34px',
-      '&>*': {
-        marginRight: '40px',
-      },
     },
   }),
   { name: 'DashboardLayoutContentNavFilters' },
