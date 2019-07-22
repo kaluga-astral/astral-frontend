@@ -39,15 +39,9 @@ const makeServer = () => {
     server.use(
       '/api',
       httpProxyMiddleware({
-        target: 'http://localhost:32777/',
-      }),
-    );
-
-    server.use(
-      '/api/notifications',
-      httpProxyMiddleware({
         ws: true,
-        target: 'ws://localhost:32777/',
+        logLevel: 'debug',
+        target: 'http://localhost:32777/',
       }),
     );
 
