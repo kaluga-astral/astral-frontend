@@ -2,26 +2,29 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { FlexContainer } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(
   theme => ({
     root: {
-      display: 'flex',
       minHeight: '65px',
-      padding: '0 15px',
       alignItems: 'center',
       backgroundColor: theme.palette.common.white,
       borderTop: '1px solid rgba(29, 63, 102, 0.09)',
     },
   }),
-  { name: 'DashboardLayoutContent' },
+  { name: 'DashboardLayoutContentNav' },
 );
 
 const DashboardLayoutContentNav = ({ className, children }) => {
   const classes = useStyles();
 
-  return <nav className={cn(classes.root, className)}>{children}</nav>;
+  return (
+    <FlexContainer component="nav" className={cn(classes.root, className)}>
+      {children}
+    </FlexContainer>
+  );
 };
 
 DashboardLayoutContentNav.defaultProps = {
