@@ -9,7 +9,7 @@ const DashboardLayoutMainModal = ({
   ...props
 }) => {
   const { ref: mainRef } = useContext(MainContext);
-  const containerRef = mainRef.current ? mainRef : null;
+  const containerRef = mainRef && mainRef.current ? mainRef : null;
 
   return (
     <SlideModal {...props} containerRef={containerRef}>
