@@ -9,9 +9,10 @@ const DashboardLayoutMainModal = ({
   ...props
 }) => {
   const { ref: mainRef } = useContext(MainContext);
+  const containerRef = mainRef.current ? mainRef : null;
 
   return (
-    <SlideModal {...props} containerRef={mainRef}>
+    <SlideModal {...props} containerRef={containerRef}>
       {children}
     </SlideModal>
   );
