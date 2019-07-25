@@ -50,6 +50,7 @@ const DashboardLayoutCurrentUserInfo = ({
   avatarSrc,
   avatarAlt,
   userName,
+  ...props
 }) => {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -67,7 +68,7 @@ const DashboardLayoutCurrentUserInfo = ({
   };
 
   return (
-    <div className={cn(classes.root, className)}>
+    <div {...props} className={cn(classes.root, className)}>
       <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
         <div>
           <ButtonBase
