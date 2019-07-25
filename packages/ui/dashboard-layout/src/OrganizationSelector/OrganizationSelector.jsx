@@ -76,14 +76,14 @@ const DashboardLayoutOrganizationSelector = ({
   };
 
   return (
-    <FlexContainer justifyContent="flex-end" className={cn(classes.root, className)}>
+    <FlexContainer {...props} justifyContent="flex-end" className={cn(classes.root, className)}>
       <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
         <CurrentOrganization
           name={currentOrganization && currentOrganization.name}
           onClick={handleTogglerButtonClick}
         />
       </ClickAwayListener>
-      <Popper transition open={open} anchorEl={anchorEl} {...props}>
+      <Popper transition open={open} anchorEl={anchorEl}>
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
             <Paper className={classes.popperPaper}>{renderChildren()}</Paper>
