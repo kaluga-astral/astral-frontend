@@ -56,12 +56,13 @@ const DashboardLayoutContentNavItem = ({
 };
 
 DashboardLayoutContentNavItem.defaultProps = {
+  active: false,
   className: null,
   component: 'div',
 };
 
 DashboardLayoutContentNavItem.propTypes = {
-  active: PropTypes.bool.isRequired,
+  active: PropTypes.bool,
   text: PropTypes.string.isRequired,
   count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   component: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string]),
