@@ -15,6 +15,7 @@ export { default as ErrorAlert } from './ErrorAlert';
 export { default as Form } from './Form';
 export { default as FormSpy } from './FormSpy';
 export { default as HiddenField } from './HiddenField';
+export { default as IGKField } from './IGKField';
 export { default as INNField } from './INNField';
 export { default as KPPField } from './KPPField';
 export { default as NumberField } from './NumberField';

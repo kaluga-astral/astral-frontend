@@ -3,6 +3,7 @@ export { default as maxLength } from './maxLength';
 export { default as minLength } from './minLength';
 export { default as mustBeDatePeriod } from './mustBeDatePeriod';
 export { default as mustBeEmail } from './mustBeEmail';
+export { default as mustBeIGK } from './mustBeIGK';
 export { default as mustBeINN } from './mustBeINN';
 export { default as mustBeKPP } from './mustBeKPP';
 export { default as mustBePhone } from './mustBePhone';
