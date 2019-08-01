@@ -15,6 +15,7 @@ const calcCheckSum = digitsOfValue => digitsOfValue
   .reduce((sum, currentValue, index) => sum + currentValue * (9 - index), 0);
 
 const mustBeSNILS = (value) => {
+  console.log(value);
   if (!/^(\d{3})-(\d{3})-(\d{3})\s(\d{2})$/.test(value)) {
     return ERROR_MESSAGE;
   }

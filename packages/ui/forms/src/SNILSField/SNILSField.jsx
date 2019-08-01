@@ -8,6 +8,7 @@ const SNILS_MASK = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\
 
 const SNILSField = props => (
   <MaskField
+    parse={v => v}
     validate={mustBeSNILS}
     mask={SNILS_MASK}
     {...props}
