@@ -83,7 +83,7 @@ const DashboardLayoutOrganizationSelector = ({
           onClick={handleTogglerButtonClick}
         />
       </ClickAwayListener>
-      <Popper transition open={open} anchorEl={anchorEl}>
+      <Popper transition open={open} anchorEl={anchorEl} style={{ zIndex: 1300 }}>
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
             <Paper className={classes.popperPaper}>{renderChildren()}</Paper>
