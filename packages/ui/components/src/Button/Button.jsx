@@ -138,9 +138,14 @@ const useStyles = makeStyles((theme) => {
         color: theme.palette.grey[400],
       },
     },
-    content: {},
     loader: {
       position: 'absolute',
+      // именно этот способ центрирования работает в IE (и соответсвенно в остальных браузерах)
+      top: 0,
+      right: 0,
+      left: 0,
+      bottom: 0,
+      margin: 'auto',
     },
   };
 });
@@ -166,7 +171,7 @@ const Button = (props) => {
       className={cn(classes.root, className)}
       {...rootProps}
     >
-      <Content>{children}</Content>
+      <Content loading={loading}>{children}</Content>
       {loading && <CircularProgress className={classes.loader} size={loaderSize} />}
     </ButtonBase>
   );
