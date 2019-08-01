@@ -13,11 +13,17 @@ import Placeholder from './Placeholder';
 ## Basic code
 
 ```
-  <Placeholder />
+  <Placeholder state="loading" />
 ```
 
-## Basic usage
+## Loading
 
 <Playground>
-  <Placeholder />
+  <Placeholder state="loading" />
+</Playground>
+
+## Error
+
+<Playground>
+  <Placeholder state="failure" error={new Error('Error message')} />
 </Playground>

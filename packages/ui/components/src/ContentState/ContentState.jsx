@@ -6,6 +6,7 @@ import Placeholder from '../Placeholder';
 const ContentState = ({
   loading,
   error,
+  PlaceholderProps,
   children,
   component: Component,
   LoadingStateComponent,
@@ -13,11 +14,11 @@ const ContentState = ({
 }) => {
   const renderChildren = () => {
     if (loading) {
-      return <LoadingStateComponent />;
+      return <LoadingStateComponent {...PlaceholderProps} />;
     }
 
     if (error) {
-      return <FailureStateComponent error={error} />;
+      return <FailureStateComponent {...PlaceholderProps} error={error} />;
     }
 
     return children;
@@ -28,14 +29,16 @@ const ContentState = ({
 
 ContentState.defaultProps = {
   error: null,
+  PlaceholderProps: {},
   component: Fragment,
-  LoadingStateComponent: () => <Placeholder state="loading" />,
+  LoadingStateComponent: props => <Placeholder {...props} state="loading" />,
   // eslint-disable-next-line react/prop-types
-  FailureStateComponent: ({ error }) => <Placeholder state="failure" error={error} />,
+  FailureStateComponent: ({ error, ...props }) => <Placeholder {...props} state="failure" error={error} />,
 };
 
 ContentState.propTypes = {
   loading: PropTypes.bool.isRequired,
+  PlaceholderProps: PropTypes.shape({}),
   error: PropTypes.instanceOf(Error),
   children: PropTypes.oneOfType([
     PropTypes.string,
