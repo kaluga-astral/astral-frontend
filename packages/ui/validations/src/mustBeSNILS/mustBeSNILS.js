@@ -3,44 +3,60 @@
  *
  * @param {string} value - Валидируемое значение
  */
+const ERROR_MESSAGE = 'Неверный СНИЛС. Введите корректный СНИЛС.';
+
+const RESTRICTED_VALUES = ['00000000000'];
+const DEFAULT_CHECKED_SUMM = [0, 100, 101];
+
+const calcCheckSum = digitsOfValue => digitsOfValue
+  .slice(0, 9)
+  .split('')
+  .map(Number)
+  .reduce((sum, currentValue, index) => sum + currentValue * (9 - index), 0);
+
 const mustBeSNILS = (value) => {
-  const preparedValue = value.replace(/\D/g, '');
-  const checkSum = parseInt(preparedValue.slice(9), 10);
-  const snilsInArrayFormat = preparedValue.split('');
+  if (!/^(\d{3})-(\d{3})-(\d{3})\s(\d{2})$/.test(value)) {
+    return ERROR_MESSAGE;
+  }
+  const digitsOfValue = value.replace(/\D/g, '');
 
-  const sum = snilsInArrayFormat[0] * 9
-    + snilsInArrayFormat[1] * 8
-    + snilsInArrayFormat[2] * 7
-    + snilsInArrayFormat[3] * 6
-    + snilsInArrayFormat[4] * 5
-    + snilsInArrayFormat[5] * 4
-    + snilsInArrayFormat[6] * 3
-    + snilsInArrayFormat[7] * 2
-    + snilsInArrayFormat[8] * 1;
-
-  if (sum < 100) {
-    if (sum === checkSum) {
-      return null;
-    }
-    return 'Неверный СНИЛС. Введите корректный СНИЛС.';
+  if (!/^(\d{11})$/.test(digitsOfValue)) {
+    return ERROR_MESSAGE;
+  }
+  if (RESTRICTED_VALUES.includes(digitsOfValue)) {
+    return ERROR_MESSAGE;
   }
 
-  if (sum === 100 || sum === 101) {
-    if (checkSum === 0) {
+  const checkSum = Number(digitsOfValue.slice(9, 11));
+  const calculatedCheckSum = calcCheckSum(digitsOfValue);
+
+  if (calculatedCheckSum < DEFAULT_CHECKED_SUMM[1]) {
+    if (calculatedCheckSum === checkSum) {
       return null;
     }
-    return 'Неверный СНИЛС. Введите корректный СНИЛС.';
+    return ERROR_MESSAGE;
   }
 
-  if (sum > 101) {
-    if (sum % 101 === checkSum || (sum % 101 === 100 && checkSum === 0)) {
+  if (
+    calculatedCheckSum === DEFAULT_CHECKED_SUMM[1]
+    || calculatedCheckSum === DEFAULT_CHECKED_SUMM[2]
+  ) {
+    if (checkSum === DEFAULT_CHECKED_SUMM[0]) {
       return null;
     }
-    return 'Неверный СНИЛС. Введите корректный СНИЛС.';
+
+    return ERROR_MESSAGE;
   }
 
-  if (!/^(\d{11})$/.test(preparedValue)) {
-    return 'Неверный СНИЛС. Введите корректный СНИЛС.';
+  if (calculatedCheckSum > DEFAULT_CHECKED_SUMM[2]) {
+    if (
+      calculatedCheckSum % DEFAULT_CHECKED_SUMM[2] === checkSum
+      || (calculatedCheckSum % DEFAULT_CHECKED_SUMM[2] === DEFAULT_CHECKED_SUMM[1]
+        && checkSum === DEFAULT_CHECKED_SUMM[0])
+    ) {
+      return null;
+    }
+    return ERROR_MESSAGE;
   }
 
   return null;
