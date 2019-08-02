@@ -12,6 +12,7 @@ const FormDateField = ({ inputProps: { min, max, ...restInputProps }, ...props }
     }}
     inputProps={{ min, max, ...restInputProps }}
     {...props}
+    parse={value => (!new Date().getFullYear() ? max : value)}
     validate={value => mustBeDatePeriod(min, value, max)}
   />
 );
