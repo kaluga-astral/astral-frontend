@@ -18,6 +18,8 @@ import CurrentOrganization from './OrganizationSelectorCurrentOrganization';
 import OrganizationSelectorItem from './OrganizationSelectorItem';
 import OrganizationSelectorNotFoundPlaceholder from './OrganizationSelectorNotFoundPlaceholder';
 
+const rootRef = React.createRef();
+
 const useStyles = makeStyles(
   () => ({
     root: {
@@ -50,12 +52,8 @@ const DashboardLayoutOrganizationSelector = ({
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleTogglerButtonClick = (event) => {
-    const { currentTarget } = event;
-
+  const handleTogglerButtonClick = () => {
     setOpen(prevValue => !prevValue);
-    setAnchorEl(currentTarget);
   };
   const handleClickAwayListenerClickAway = () => {
     setOpen(false);
@@ -63,7 +61,14 @@ const DashboardLayoutOrganizationSelector = ({
   const renderChildren = () => {
     if (children.length > 0) {
       return (
-        <MenuList disablePadding>
+        <MenuList
+          disablePadding
+          // TODO: #25542
+          onClick={() => {
+            console.log('onClick');
+            setOpen(false);
+          }}
+        >
           {children}
           <MenuItem className={classes.addButton} component={Link} to={addLinkHref}>
             + Добавить организацию
@@ -76,14 +81,19 @@ const DashboardLayoutOrganizationSelector = ({
   };
 
   return (
-    <FlexContainer {...props} justifyContent="flex-end" className={cn(classes.root, className)}>
+    <FlexContainer
+      {...props}
+      ref={rootRef}
+      justifyContent="flex-end"
+      className={cn(classes.root, className)}
+    >
       <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
         <CurrentOrganization
           name={currentOrganization && currentOrganization.name}
           onClick={handleTogglerButtonClick}
         />
       </ClickAwayListener>
-      <Popper transition open={open} anchorEl={anchorEl} style={{ zIndex: 1300 }}>
+      <Popper transition open={open} anchorEl={rootRef.current} style={{ zIndex: 1300 }}>
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
             <Paper className={classes.popperPaper}>{renderChildren()}</Paper>
