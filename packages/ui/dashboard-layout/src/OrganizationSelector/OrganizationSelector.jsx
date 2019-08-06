@@ -65,7 +65,6 @@ const DashboardLayoutOrganizationSelector = ({
           disablePadding
           // TODO: #25542
           onClick={() => {
-            console.log('onClick');
             setOpen(false);
           }}
         >

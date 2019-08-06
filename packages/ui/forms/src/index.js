@@ -21,6 +21,7 @@ export { default as KPPField } from './KPPField';
 export { default as NumberField } from './NumberField';
 export { default as OGRNField } from './OGRNField';
 export { default as OKPOField } from './OKPOField';
+export { default as OnChange } from './OnChange';
 export { default as PassportIssueDateField } from './PassportIssueDateField';
 export { default as PassportIssuerIdField } from './PassportIssuerIdField';
 export { default as PassportNumberField } from './PassportNumberField';

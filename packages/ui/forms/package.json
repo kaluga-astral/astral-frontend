@@ -10,7 +10,7 @@
   "dependencies": {
     "@astral-frontend/styles": "^0.1.0",
     "@astral-frontend/validations": "^0.1.0",
-    "downshift": "^3.2.7",
+    "downshift": "^3.2.10",
     "final-form": "^4.16.1",
     "lodash-es": "^4.17.11",
     "prop-types": "^15.7.2",

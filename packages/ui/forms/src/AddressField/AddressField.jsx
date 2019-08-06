@@ -1,82 +1,96 @@
 import { debounce } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useField } from 'react-final-form';
 import Downshift from 'downshift';
-import { TextField as MuiTextField } from '@astral-frontend/components';
-import { withStyles } from '@astral-frontend/styles';
 
-import Field from '../Field';
+import { TextField as MuiTextField } from '@astral-frontend/components';
+import { makeStyles } from '@astral-frontend/styles';
+
 import Menu from './AddressFieldMenu';
 import DaDataContext from './DaDataContext';
 
 const INPUT_VALUE_DEBOUNCE_TIMEOUT = 300;
 
-const FormAddressField = ({ classes, inputValueDebounceTimeout, ...props }) => {
+const useStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+    position: 'relative',
+  },
+});
+
+const itemToString = (item) => {
+  if (!item || !item.data) {
+    return '';
+  }
+
+  const { city, street, house } = item.data;
+
+  return `${city || ''} ${street || ''} ${house || ''}`;
+};
+
+const FormAddressField = ({
+  inputValueDebounceTimeout, name, placeholder, ...props
+}) => {
+  const classes = useStyles();
+  const { input } = useField(name);
   const { fetchAddressSuggestions } = React.useContext(DaDataContext);
   const [suggestions, setSuggestions] = React.useState([]);
+  const handleChange = (item) => {
+    input.onChange(item.data);
+  };
   const handleInputValueChange = React.useCallback(
     debounce((inputValue) => {
       if (inputValue) {
         fetchAddressSuggestions(inputValue).then(setSuggestions);
       }
     }, inputValueDebounceTimeout),
+    [],
   );
 
   return (
-    <Field
-      {...props}
-      render={({
-        value, placeholder, onChange, downshiftProps, ...fieldProps
+    <Downshift
+      stateReducer={(state, changes) => console.log(state, changes)}
+      initialSelectedItem={{ data: input.value }}
+      itemToString={itemToString}
+      onInputValueChange={handleInputValueChange}
+      onChange={handleChange}
+    >
+      {({
+        getInputProps, getItemProps, getMenuProps, highlightedIndex, isOpen,
       }) => (
-        <Downshift
-          id="address-field"
-          onInputValueChange={handleInputValueChange}
-          itemToString={item => (item ? item.value : '')}
-          onChange={item => onChange(item.data)}
-          {...downshiftProps}
-        >
-          {({
-            getInputProps, getItemProps, getMenuProps, highlightedIndex, isOpen,
-          }) => (
-            <div className={classes.root}>
-              <MuiTextField
-                type="text"
-                fullWidth
-                margin="normal"
-                InputProps={getInputProps({
-                  placeholder,
-                })}
-                {...fieldProps}
-              />
-              <Menu
-                getMenuProps={getMenuProps}
-                getItemProps={getItemProps}
-                highlightedIndex={highlightedIndex}
-                isOpen={isOpen}
-                suggestions={suggestions}
-              />
-            </div>
-          )}
-        </Downshift>
+        <div className={classes.root}>
+          <MuiTextField
+            type="text"
+            fullWidth
+            margin="normal"
+            InputProps={getInputProps({
+              placeholder,
+            })}
+            {...props}
+          />
+          <Menu
+            isOpen={isOpen}
+            getMenuProps={getMenuProps}
+            getItemProps={getItemProps}
+            highlightedIndex={highlightedIndex}
+            suggestions={suggestions}
+          />
+        </div>
       )}
-    />
+    </Downshift>
   );
 };
 
 FormAddressField.defaultProps = {
-  suggestions: [],
   inputValueDebounceTimeout: INPUT_VALUE_DEBOUNCE_TIMEOUT,
+  placeholder: null,
 };
 
 FormAddressField.propTypes = {
-  suggestions: PropTypes.arrayOf(PropTypes.shape({})),
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   inputValueDebounceTimeout: PropTypes.number,
-  classes: PropTypes.shape({}).isRequired,
 };
 
-export default withStyles({
-  root: {
-    flexGrow: 1,
-    position: 'relative',
-  },
-})(FormAddressField);
+export default FormAddressField;
