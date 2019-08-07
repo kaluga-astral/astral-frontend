@@ -26,7 +26,7 @@ const itemToString = (item) => {
 
   const { city, street, house } = item.data;
 
-  return `${city || ''} ${street || ''} ${house || ''}`;
+  return `г. ${city || ''} ул. ${street || ''} д. ${house || ''}`;
 };
 
 const FormAddressField = ({
@@ -50,7 +50,6 @@ const FormAddressField = ({
 
   return (
     <Downshift
-      stateReducer={(state, changes) => console.log(state, changes)}
       initialSelectedItem={{ data: input.value }}
       itemToString={itemToString}
       onInputValueChange={handleInputValueChange}
