@@ -17,8 +17,7 @@
     "classnames": "^2.2.6",
     "lodash-es": "^4.17.11",
     "prop-types": "^15.7.2",
-    "react-text-mask": "^5.4.3",
-    "react-jss": "^8.6.1"
+    "react-text-mask": "^5.4.3"
   },
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "^0.1.0"
