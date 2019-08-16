@@ -5,6 +5,7 @@ export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
 export { default as Card } from './Card';
 export { default as CardActions } from './CardActions';
+export { default as CardActionArea } from './CardActionArea';
 export { default as CardMedia } from './CardMedia';
 export { default as CardContent } from './CardContent';
 export { default as Checkbox } from './Checkbox';
