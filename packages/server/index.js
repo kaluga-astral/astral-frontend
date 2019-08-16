@@ -40,8 +40,15 @@ const makeServer = () => {
       '/api',
       httpProxyMiddleware({
         ws: true,
-        logLevel: 'debug',
         target: 'http://localhost:32777/',
+      }),
+    );
+    server.use(
+      '/graphql',
+      httpProxyMiddleware({
+        // ws: true,
+        logLevel: 'debug',
+        target: 'http://localhost:8080/',
       }),
     );
 
