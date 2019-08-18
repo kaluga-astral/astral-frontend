@@ -7,6 +7,7 @@ module.exports = () => ({
         modules: false,
         useBuiltIns: 'usage',
         loose: true,
+        corejs: 3,
       },
     ],
   ],
