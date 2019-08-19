@@ -21,9 +21,12 @@ InputTextMask.defaultProps = {
 };
 
 InputTextMask.propTypes = {
-  mask: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp)]),
-  ).isRequired,
+  mask: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp)]),
+    ),
+    PropTypes.func,
+  ]).isRequired,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   placeholderChar: PropTypes.string,
