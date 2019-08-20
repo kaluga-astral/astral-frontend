@@ -51,7 +51,7 @@ FormGridSection.propTypes = {
 export default withStyles(theme => ({
   root: {
     display: 'flex',
-    marginBottom: '20px',
+    margin: '45px 0px 45px',
   },
   icon: {
     marginRight: '20px',
