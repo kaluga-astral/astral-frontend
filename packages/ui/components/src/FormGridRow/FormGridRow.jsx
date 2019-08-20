@@ -26,8 +26,12 @@ FormGridRow.propTypes = {
 
 export default withStyles({
   root: {
+    marginTop: '35px',
     '&:not(:last-child)': {
       marginBottom: '15px',
+    },
+    '&:first-child': {
+      marginTop: '20px',
     },
   },
   main: {
