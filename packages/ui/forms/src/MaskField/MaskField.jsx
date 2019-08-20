@@ -16,6 +16,7 @@ const InputTextMask = props => (
 InputTextMask.defaultProps = {
   label: null,
   placeholder: null,
+  pipe: undefined,
   parse: removeSpaceSymbols,
   placeholderChar: '\u2000',
 };
@@ -31,6 +32,7 @@ InputTextMask.propTypes = {
   placeholder: PropTypes.string,
   placeholderChar: PropTypes.string,
   parse: PropTypes.func,
+  pipe: PropTypes.func,
 };
 
 export default InputTextMask;
