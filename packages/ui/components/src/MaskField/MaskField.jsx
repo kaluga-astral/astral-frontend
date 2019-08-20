@@ -5,7 +5,7 @@ import MaskInput from './MaskInput';
 import TextField from '../TextField';
 
 const MaskField = ({
-  placeholder, placeholderChar, mask, ...props
+  placeholder, placeholderChar, mask, pipe, ...props
 }) => (
   <TextField
     InputProps={{
@@ -14,6 +14,7 @@ const MaskField = ({
     // eslint-disable-next-line
     inputProps={{
       mask,
+      pipe,
       placeholderChar,
       placeholder,
     }}
@@ -22,6 +23,7 @@ const MaskField = ({
 );
 
 MaskField.defaultProps = {
+  pipe: undefined,
   placeholder: null,
   placeholderChar: '\u2000',
 };
@@ -35,6 +37,7 @@ MaskField.propTypes = {
   ]).isRequired,
   placeholder: PropTypes.string,
   placeholderChar: PropTypes.string,
+  pipe: PropTypes.func,
 };
 
 export default MaskField;
