@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/components",
-  "version": "0.1.32",
+  "version": "0.2.0",
   "main": "./src/index.js",
   "scripts": {
     "percy": "react-percy",
@@ -12,7 +12,7 @@
     "@astral-frontend/core": "^0.1.0",
     "@astral-frontend/icons": "^0.1.0",
     "@astral-frontend/styles": "^0.1.5",
-    "@astral-frontend/fonts": "^0.1.2",
+    "@astral-frontend/fonts": "^0.2.0",
     "@bugsnag/plugin-react": "^6.0.0",
     "classnames": "^2.2.6",
     "lodash-es": "^4.17.11",
