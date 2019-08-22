@@ -128,6 +128,7 @@ const useStyles = makeStyles((theme) => {
       padding: getPadding,
       borderRadius: getBorderRadius,
       fontSize: getFontSize,
+      fontWeight: theme.typography.fontWeightBold,
       backgroundColor: getBackgroundColor,
       color: getColor,
       '&:hover': {
