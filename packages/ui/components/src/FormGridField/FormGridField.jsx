@@ -23,7 +23,6 @@ FormGridField.propTypes = {
 export default withStyles({
   root: {
     flex: 1,
-
     '&:not(:last-child)': {
       marginRight: '20px',
     },
