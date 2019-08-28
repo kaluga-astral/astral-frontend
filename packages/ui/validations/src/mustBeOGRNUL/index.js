@@ -1,1 +1,1 @@
-export { default } from './mustBeOGRN';
+export { default } from './mustBeOGRNUL';
