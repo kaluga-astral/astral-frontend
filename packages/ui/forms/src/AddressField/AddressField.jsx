@@ -1,4 +1,4 @@
-import { debounce } from 'lodash-es';
+import { debounce, isEqual } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useField } from 'react-final-form';
@@ -20,13 +20,11 @@ const useStyles = makeStyles({
 });
 
 const itemToString = (item) => {
-  if (!item || !item.data) {
+  if (!item) {
     return '';
   }
 
-  const { city, street, house } = item.data;
-
-  return `г. ${city || ''} ул. ${street || ''} д. ${house || ''}`;
+  return item.unrestrictedValue;
 };
 
 const FormAddressField = ({
@@ -37,7 +35,7 @@ const FormAddressField = ({
   const { fetchAddressSuggestions } = React.useContext(DaDataContext);
   const [suggestions, setSuggestions] = React.useState([]);
   const handleChange = (item) => {
-    input.onChange(item.data);
+    input.onChange(item);
   };
   const handleInputValueChange = React.useCallback(
     debounce((inputValue) => {
@@ -50,7 +48,7 @@ const FormAddressField = ({
 
   return (
     <Downshift
-      initialSelectedItem={{ data: input.value }}
+      initialSelectedItem={input.value}
       itemToString={itemToString}
       onInputValueChange={handleInputValueChange}
       onChange={handleChange}

@@ -19,8 +19,13 @@ const FormAddressFieldMenu = ({
           const selected = highlightedIndex === index;
 
           return (
-            <MenuItem {...itemProps} key={suggestion.value} selected={selected} component="div">
-              {suggestion.value}
+            <MenuItem
+              {...itemProps}
+              key={suggestion.unrestrictedValue}
+              selected={selected}
+              component="div"
+            >
+              {suggestion.unrestrictedValue}
             </MenuItem>
           );
         })}
