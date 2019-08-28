@@ -1,14 +1,10 @@
 /**
- * Функция валидации ОГРН
+ * Функция валидации ОГРНИП
  *
  * @param {string} value - Валидируемое значение
  */
 const mustBeOGRN = (value) => {
-  if (!/^(\d{13})$/.test(value) && !/^(\d{15})$/.test(value)) {
-    return 'Неверный ОГРН. Введите корректный ОГРН.';
-  }
-
-  if (value && value.length === 13 && value.slice(-1) !== `${value.slice(0, -1) % 11}`.slice(-1)) {
+  if (!/^(\d{15})$/.test(value)) {
     return 'Неверный ОГРН. Введите корректный ОГРН.';
   }
 
