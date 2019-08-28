@@ -5,6 +5,8 @@ export { default as mustBeDatePeriod } from './mustBeDatePeriod';
 export { default as mustBeEmail } from './mustBeEmail';
 export { default as mustBeIGK } from './mustBeIGK';
 export { default as mustBeINN } from './mustBeINN';
+export { default as mustBeIPINN } from './mustBeIPINN';
+export { default as mustBeULINN } from './mustBeULINN';
 export { default as mustBeKPP } from './mustBeKPP';
 export { default as mustBePhone } from './mustBePhone';
 export { default as mustBeOGRN } from './mustBeOGRN';
