@@ -5,7 +5,7 @@ import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(
-  {
+  theme => ({
     root: {
       marginTop: '20px',
     },
@@ -15,9 +15,9 @@ const useStyles = makeStyles(
     title: {
       margin: '0 0 5px 0',
       fontSize: '14px',
-      color: '#1d3f66', // FIXME: use colors from theme
+      color: theme.palette.text.primary,
     },
-  },
+  }),
   { name: 'FormGridRow' },
 );
 
