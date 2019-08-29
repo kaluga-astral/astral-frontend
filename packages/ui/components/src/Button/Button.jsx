@@ -6,8 +6,6 @@ import { makeStyles } from '@astral-frontend/styles';
 import ButtonBase from '../ButtonBase';
 import CircularProgress from '../CircularProgress';
 
-import Content from './Content';
-
 const getIsTextVariant = variant => variant === 'text' || variant === 'textBlock';
 const getIsBlockVariant = variant => variant === 'textBlock' || variant === 'regularBlock';
 const getIsRegularVariant = variant => variant === 'regular' || variant === 'regularBlock';
@@ -128,6 +126,7 @@ const useStyles = makeStyles((theme) => {
       padding: getPadding,
       borderRadius: getBorderRadius,
       fontSize: getFontSize,
+      fontWeight: theme.typography.fontWeightBold,
       backgroundColor: getBackgroundColor,
       color: getColor,
       '&:hover': {
@@ -138,9 +137,17 @@ const useStyles = makeStyles((theme) => {
         color: theme.palette.grey[400],
       },
     },
+    loaderContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      backgroundColor: getBackgroundColor,
+    },
     loader: {
       position: 'absolute',
-      // именно этот способ центрирования работает в IE (и соответсвенно в остальных браузерах)
       top: 0,
       right: 0,
       left: 0,
@@ -171,8 +178,12 @@ const Button = (props) => {
       className={cn(classes.root, className)}
       {...rootProps}
     >
-      <Content loading={loading}>{children}</Content>
-      {loading && <CircularProgress className={classes.loader} size={loaderSize} />}
+      {children}
+      {loading && (
+        <div className={classes.loaderContainer}>
+          <CircularProgress className={classes.loader} size={loaderSize} />
+        </div>
+      )}
     </ButtonBase>
   );
 };

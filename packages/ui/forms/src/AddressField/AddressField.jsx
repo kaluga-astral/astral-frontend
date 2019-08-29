@@ -20,24 +20,22 @@ const useStyles = makeStyles({
 });
 
 const itemToString = (item) => {
-  if (!item || !item.data) {
+  if (!item) {
     return '';
   }
 
-  const { city, street, house } = item.data;
-
-  return `г. ${city || ''} ул. ${street || ''} д. ${house || ''}`;
+  return item.unrestrictedValue;
 };
 
 const FormAddressField = ({
-  inputValueDebounceTimeout, name, placeholder, ...props
+  inputValueDebounceTimeout, name, validate, placeholder, ...props
 }) => {
   const classes = useStyles();
-  const { input } = useField(name);
+  const { input, meta } = useField(name, { validate });
   const { fetchAddressSuggestions } = React.useContext(DaDataContext);
   const [suggestions, setSuggestions] = React.useState([]);
   const handleChange = (item) => {
-    input.onChange(item.data);
+    input.onChange(item);
   };
   const handleInputValueChange = React.useCallback(
     debounce((inputValue) => {
@@ -50,33 +48,40 @@ const FormAddressField = ({
 
   return (
     <Downshift
-      initialSelectedItem={{ data: input.value }}
+      selectedItem={input.value}
       itemToString={itemToString}
       onInputValueChange={handleInputValueChange}
       onChange={handleChange}
     >
       {({
         getInputProps, getItemProps, getMenuProps, highlightedIndex, isOpen,
-      }) => (
-        <div className={classes.root}>
-          <MuiTextField
-            type="text"
-            fullWidth
-            margin="normal"
-            InputProps={getInputProps({
-              placeholder,
-            })}
-            {...props}
-          />
-          <Menu
-            isOpen={isOpen}
-            getMenuProps={getMenuProps}
-            getItemProps={getItemProps}
-            highlightedIndex={highlightedIndex}
-            suggestions={suggestions}
-          />
-        </div>
-      )}
+      }) => {
+        const error = meta.touched && !meta.valid;
+        const helperText = meta.error && meta.touched ? meta.error : null;
+
+        return (
+          <div className={classes.root}>
+            <MuiTextField
+              type="text"
+              fullWidth
+              margin="normal"
+              InputProps={getInputProps({
+                placeholder,
+              })}
+              error={error}
+              helperText={helperText}
+              {...props}
+            />
+            <Menu
+              isOpen={isOpen}
+              getMenuProps={getMenuProps}
+              getItemProps={getItemProps}
+              highlightedIndex={highlightedIndex}
+              suggestions={suggestions}
+            />
+          </div>
+        );
+      }}
     </Downshift>
   );
 };
@@ -84,10 +89,18 @@ const FormAddressField = ({
 FormAddressField.defaultProps = {
   inputValueDebounceTimeout: INPUT_VALUE_DEBOUNCE_TIMEOUT,
   placeholder: null,
+  validate: (value) => {
+    if (value && !value.city) {
+      return 'Необходимо указать город или населенный пункт';
+    }
+
+    return null;
+  },
 };
 
 FormAddressField.propTypes = {
   name: PropTypes.string.isRequired,
+  validate: PropTypes.func,
   placeholder: PropTypes.string,
   inputValueDebounceTimeout: PropTypes.number,
 };

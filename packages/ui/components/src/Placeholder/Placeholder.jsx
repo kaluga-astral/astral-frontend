@@ -10,7 +10,7 @@ const useStyles = makeStyles(
   () => ({
     root: {
       height: '100%',
-      minHeight: 'fill-available',
+      maxHeight: 'fill-available',
       width: 'calc(100% - 30px)',
       margin: '0 15px',
     },
