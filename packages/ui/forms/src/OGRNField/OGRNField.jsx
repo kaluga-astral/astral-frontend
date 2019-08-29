@@ -6,10 +6,10 @@ import TextField from '../TextField';
 import ORGANIZATION_TYPES from '../../../constants/src/organizationTypes';
 
 const getValidator = (organizationType) => {
-  if (organizationType === 'ip') {
+  if (organizationType === Object.keys(ORGANIZATION_TYPES)[0]) {
     return mustBeOGRNIP;
   }
-  if (organizationType === 'ul') {
+  if (organizationType === Object.keys(ORGANIZATION_TYPES)[1]) {
     return mustBeOGRNUL;
   }
   return mustBeOGRN;
