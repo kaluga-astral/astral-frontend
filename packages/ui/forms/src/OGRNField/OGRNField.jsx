@@ -5,21 +5,21 @@ import { mustBeOGRN, mustBeOGRNIP, mustBeOGRNUL } from '@astral-frontend/validat
 import TextField from '../TextField';
 import ORGANIZATION_TYPES from '../../../constants/src/organizationTypes';
 
-const getValidator = (type) => {
-  if (type === 'ip') {
+const getValidator = (organizationType) => {
+  if (organizationType === 'ip') {
     return mustBeOGRNIP;
   }
-  if (type === 'ul') {
+  if (organizationType === 'ul') {
     return mustBeOGRNUL;
   }
   return mustBeOGRN;
 };
 
-const OGRNField = ({ maxLength, type, ...props }) => (
+const OGRNField = ({ maxLength, organizationType, ...props }) => (
   <TextField
     inputProps={{ maxLength }}
     parse={value => value.replace(/[^\d]/g, '')}
-    validate={getValidator(type)}
+    validate={getValidator(organizationType)}
     {...props}
   />
 );
@@ -29,7 +29,7 @@ OGRNField.defaultProps = {
   label: 'ОГРН',
   maxLength: 15,
   placeholder: null,
-  type: null,
+  organizationType: null,
 };
 
 OGRNField.propTypes = {
@@ -37,7 +37,7 @@ OGRNField.propTypes = {
   label: PropTypes.string,
   maxLength: PropTypes.number,
   placeholder: PropTypes.string,
-  type: PropTypes.oneOf(Object.keys(ORGANIZATION_TYPES)),
+  organizationType: PropTypes.oneOf(Object.keys(ORGANIZATION_TYPES)),
 };
 
 export default OGRNField;
