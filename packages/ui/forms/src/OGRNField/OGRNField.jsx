@@ -3,7 +3,7 @@ import React from 'react';
 import { mustBeOGRN, mustBeOGRNIP, mustBeOGRNUL } from '@astral-frontend/validations';
 
 import TextField from '../TextField';
-import ORGANIZATION_TYPES from '../../../constants/src/organizationStatuses';
+import ORGANIZATION_TYPES from '../../../constants/src/organizationTypes';
 
 const getValidator = (type) => {
   if (type === 'ip') {
@@ -12,38 +12,32 @@ const getValidator = (type) => {
   if (type === 'ul') {
     return mustBeOGRNUL;
   }
-  if (type === 'both') {
-    return mustBeOGRN;
-  }
-
-  throw new Error('Unknow property type', type);
+  return mustBeOGRN;
 };
 
-const OGRNField = (props) => {
-  const { type } = { ...props };
-
-  return (
-    <TextField
-      inputProps={{ maxLength: 15 }}
-      parse={value => value.replace(/[^\d]/g, '')}
-      validate={getValidator(type)}
-      {...props}
-    />
-  );
-};
+const OGRNField = ({ maxLength, type, ...props }) => (
+  <TextField
+    inputProps={{ maxLength }}
+    parse={value => value.replace(/[^\d]/g, '')}
+    validate={getValidator(type)}
+    {...props}
+  />
+);
 
 OGRNField.defaultProps = {
   name: 'ogrn',
   label: 'ОГРН',
+  maxLength: 15,
   placeholder: null,
-  type: 'both',
+  type: null,
 };
 
 OGRNField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
+  maxLength: PropTypes.number,
   placeholder: PropTypes.string,
-  type: PropTypes.oneOf(ORGANIZATION_TYPES),
+  type: PropTypes.oneOf(Object.keys(ORGANIZATION_TYPES)),
 };
 
 export default OGRNField;

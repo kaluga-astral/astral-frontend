@@ -3,7 +3,7 @@ import React from 'react';
 import { mustBeINN, mustBeIPINN, mustBeULINN } from '@astral-frontend/validations';
 
 import TextField from '../TextField';
-import ORGANIZATION_TYPES from '../../../constants/src/organizationStatuses';
+import ORGANIZATION_TYPES from '../../../constants/src/organizationTypes';
 
 const getValidator = (type) => {
   if (type === 'ip') {
@@ -37,7 +37,7 @@ INNField.defaultProps = {
   label: 'ИНН',
   maxLength: 12,
   placeholder: null,
-  type: 'both',
+  type: null,
 };
 
 INNField.propTypes = {
