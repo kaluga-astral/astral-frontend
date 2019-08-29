@@ -1,18 +1,12 @@
+import mustBeOGRNIP from '../mustBeOGRNIP';
+import mustBeOGRNUL from '../mustBeOGRNUL';
+
 /**
  * Функция валидации ОГРН
- *
- * @param {string} value - Валидируемое значение
+ * @param {ОГРН} value - Валидируемое значение
  */
 const mustBeOGRN = (value) => {
-  if (!/^(\d{13})$/.test(value) && !/^(\d{15})$/.test(value)) {
-    return 'Неверный ОГРН. Введите корректный ОГРН.';
-  }
-
-  if (value && value.length === 13 && value.slice(-1) !== `${value.slice(0, -1) % 11}`.slice(-1)) {
-    return 'Неверный ОГРН. Введите корректный ОГРН.';
-  }
-
-  if (value && value.length === 15 && value.slice(-1) !== `${value.slice(0, -1) % 13}`.slice(-1)) {
+  if (mustBeOGRNIP(value) && mustBeOGRNUL(value)) {
     return 'Неверный ОГРН. Введите корректный ОГРН.';
   }
 
