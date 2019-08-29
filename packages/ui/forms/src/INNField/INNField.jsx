@@ -3,31 +3,33 @@ import React from 'react';
 import { mustBeINN, mustBeIPINN, mustBeULINN } from '@astral-frontend/validations';
 
 import TextField from '../TextField';
+import ORGANIZATION_TYPES from '../../../constants/src/organizationStatuses';
 
-// const ORGANIZATION_TYPES = []; perenesti v constansts
-
-const getValidator = (variant) => {
-  if (variant === 'ip') {
+const getValidator = (type) => {
+  if (type === 'ip') {
     return mustBeIPINN;
   }
-  if (variant === 'ul') {
+  if (type === 'ul') {
     return mustBeULINN;
   }
-  if (variant === 'both') {
+  if (type === 'both') {
     return mustBeINN;
   }
 
-  throw new Error('Unknow property variant', variant);
+  throw new Error('Unknow property type', type);
 };
 
-const INNField = ({ maxLength, noValidate, ...props }) => (
-  <TextField
-    inputProps={{ maxLength }}
-    parse={value => value.replace(/[^\d]/g, '')}
-    validate={!noValidate && getValidator}
-    {...props}
-  />
-);
+const INNField = ({ maxLength, noValidate, ...props }) => {
+  const { type } = { ...props };
+  return (
+    <TextField
+      inputProps={{ maxLength }}
+      parse={value => value.replace(/[^\d]/g, '')}
+      validate={!noValidate && getValidator(type)}
+      {...props}
+    />
+  );
+};
 
 INNField.defaultProps = {
   noValidate: false,
@@ -35,7 +37,7 @@ INNField.defaultProps = {
   label: 'ИНН',
   maxLength: 12,
   placeholder: null,
-  variant: 'both',
+  type: 'both',
 };
 
 INNField.propTypes = {
@@ -44,7 +46,7 @@ INNField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  variant: PropTypes.oneOf(['ul', 'ip', 'both']),
+  type: PropTypes.oneOf(ORGANIZATION_TYPES),
 };
 
 export default INNField;

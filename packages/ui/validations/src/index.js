@@ -10,6 +10,8 @@ export { default as mustBeULINN } from './mustBeULINN';
 export { default as mustBeKPP } from './mustBeKPP';
 export { default as mustBePhone } from './mustBePhone';
 export { default as mustBeOGRN } from './mustBeOGRN';
+export { default as mustBeOGRNIP } from './mustBeOGRNIP';
+export { default as mustBeOGRNUL } from './mustBeOGRNUL';
 export { default as mustBePresent } from './mustBePresent';
 export { default as mustBeOKPO } from './mustBeOKPO';
 export { default as mustBePassportIssuerId } from './mustBePassportIssuerId';
