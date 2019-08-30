@@ -1,30 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { mustBeINN, mustBeIPINN, mustBeULINN } from '@astral-frontend/validations';
 
 import ORGANIZATION_TYPES from '@astral-frontend/constants/src/organizationTypes';
 import TextField from '../TextField';
 
-const getValidator = (organizationType) => {
-  if (organizationType === Object.keys(ORGANIZATION_TYPES).ip) {
-    return mustBeIPINN;
-  }
-  if (organizationType === Object.keys(ORGANIZATION_TYPES).ul) {
-    return mustBeULINN;
-  }
-  return mustBeINN;
-};
-
 const INNField = ({
   maxLength, noValidate, organizationType, ...props
-}) => (
-  <TextField
-    inputProps={{ maxLength }}
-    parse={value => value.replace(/[^\d]/g, '')}
-    validate={!noValidate && getValidator(organizationType)}
-    {...props}
-  />
-);
+}) => {
+  const { validateOGRN } = ORGANIZATION_TYPES[organizationType];
+  return (
+    <TextField
+      inputProps={{ maxLength }}
+      parse={value => value.replace(/[^\d]/g, '')}
+      validate={!noValidate && validateOGRN}
+      {...props}
+    />
+  );
+};
 
 INNField.defaultProps = {
   noValidate: false,

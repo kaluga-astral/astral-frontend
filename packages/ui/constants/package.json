@@ -6,7 +6,9 @@
     "build": "babel ./src --out-dir ./lib",
     "postbuild": "assembly-scripts postbuild"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@astral-frontend/validations": "^0.1.0"
+  },
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "^0.1.0"
   },
