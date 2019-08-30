@@ -1,3 +1,5 @@
+const ERROR_MESSAGE = 'Неверный ИНН. Введите корректный ИНН.';
+
 const calcCheckNum = (digitsOfvalue, weights) => {
   const checkSum = digitsOfvalue.reduce((sum, digit, i) => sum + digit * weights[i], 0);
   const checkNum = checkSum % 11;
@@ -7,11 +9,11 @@ const calcCheckNum = (digitsOfvalue, weights) => {
 
 /**
  * Проверка валидации ИНН ИП на корректность
- * @param {ИНН} value
+ * @param {string} value
  */
 const mustBeINNIP = (value) => {
   if (!/^(\d{12})$/.test(value)) {
-    return 'Неверный ИНН. Введите корректный ИНН.';
+    return ERROR_MESSAGE;
   }
 
   const digitsOfvalue = value
@@ -24,7 +26,7 @@ const mustBeINNIP = (value) => {
     && (calcCheckNum(digitsOfvalue, [7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0, 0]) !== digitsOfvalue[10]
       || calcCheckNum(digitsOfvalue, [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0]) !== digitsOfvalue[11])
   ) {
-    return 'Неверный ИНН. Введите корректный ИНН.';
+    return ERROR_MESSAGE;
   }
 
   return null;
