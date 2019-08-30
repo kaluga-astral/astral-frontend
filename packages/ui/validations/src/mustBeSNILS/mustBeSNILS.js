@@ -1,10 +1,4 @@
-/**
- * Функция валидации СНИЛС
- *
- * @param {string} value - Валидируемое значение
- */
 const ERROR_MESSAGE = 'Неверный СНИЛС. Введите корректный СНИЛС.';
-
 const RESTRICTED_VALUES = ['00000000000'];
 const DEFAULT_CHECKED_SUMM = [0, 100, 101];
 
@@ -14,6 +8,10 @@ const calcCheckSum = digitsOfValue => digitsOfValue
   .map(Number)
   .reduce((sum, currentValue, index) => sum + currentValue * (9 - index), 0);
 
+/**
+ * Функция валидации СНИЛС
+ * @param {string} value - Валидируемое значение
+ */
 const mustBeSNILS = (value) => {
   if (!/^(\d{3})-(\d{3})-(\d{3})\s(\d{2})$/.test(value)) {
     return ERROR_MESSAGE;
