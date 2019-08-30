@@ -1,4 +1,4 @@
-import { debounce } from 'lodash-es';
+import { debounce, omit } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useField } from 'react-final-form';
@@ -31,7 +31,9 @@ const FormAddressField = ({
   inputValueDebounceTimeout, name, validate, placeholder, ...props
 }) => {
   const classes = useStyles();
-  const { input, meta } = useField(name, { validate });
+  const { input, meta } = useField(name, {
+    validate,
+  });
   const { fetchAddressSuggestions } = React.useContext(DaDataContext);
   const [suggestions, setSuggestions] = React.useState([]);
   const handleChange = (item) => {
@@ -67,6 +69,7 @@ const FormAddressField = ({
               margin="normal"
               InputProps={getInputProps({
                 placeholder,
+                ...omit(input, ['onChange', 'value']),
               })}
               error={error}
               helperText={helperText}
@@ -90,7 +93,7 @@ FormAddressField.defaultProps = {
   inputValueDebounceTimeout: INPUT_VALUE_DEBOUNCE_TIMEOUT,
   placeholder: null,
   validate: (value) => {
-    if (value && !value.city) {
+    if (value && !value.locality) {
       return 'Необходимо указать город или населенный пункт';
     }
 
