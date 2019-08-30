@@ -2,17 +2,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import ORGANIZATION_TYPES from '@astral-frontend/constants/src/organizationTypes';
+import { mustBeINN } from '@astral-frontend/validations';
 import TextField from '../TextField';
 
 const INNField = ({
   maxLength, noValidate, organizationType, ...props
 }) => {
-  const { validateOGRN } = ORGANIZATION_TYPES[organizationType];
+  const { validateOGRN: validate = mustBeINN } = ORGANIZATION_TYPES[organizationType];
   return (
     <TextField
       inputProps={{ maxLength }}
       parse={value => value.replace(/[^\d]/g, '')}
-      validate={!noValidate && validateOGRN}
+      validate={!noValidate && validate}
       {...props}
     />
   );
