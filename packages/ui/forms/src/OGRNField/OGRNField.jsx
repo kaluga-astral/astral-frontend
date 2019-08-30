@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { mustBeOGRN, mustBeOGRNIP, mustBeOGRNUL } from '@astral-frontend/validations';
 
+import ORGANIZATION_TYPES from '@astral-frontend/constants/src/organizationTypes';
 import TextField from '../TextField';
-import ORGANIZATION_TYPES from '../../../constants/src/organizationTypes';
 
 const getValidator = (organizationType) => {
-  if (organizationType === Object.keys(ORGANIZATION_TYPES)[0]) {
+  if (organizationType === Object.keys(ORGANIZATION_TYPES).ip) {
     return mustBeOGRNIP;
   }
-  if (organizationType === Object.keys(ORGANIZATION_TYPES)[1]) {
+  if (organizationType === Object.keys(ORGANIZATION_TYPES).ul) {
     return mustBeOGRNUL;
   }
   return mustBeOGRN;
