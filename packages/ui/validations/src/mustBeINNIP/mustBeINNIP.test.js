@@ -1,26 +1,26 @@
-import mustBeIPINN from './mustBeIPINN';
+import mustBeINNIP from './mustBeINNIP';
 
 describe('mustBeIPINN', () => {
   it('должна возвращать сообщение об ошибке если value < 12 символов', () => {
     const value = new Array(11).fill('1').join('');
 
-    expect(mustBeIPINN(value)).toEqual('Неверный ИНН. Введите корректный ИНН.');
+    expect(mustBeINNIP(value)).toEqual('Неверный ИНН. Введите корректный ИНН.');
   });
   it('должна возвращать сообщение об ошибке если value > 12 ', () => {
     const value = new Array(13).fill('1').join('');
 
-    expect(mustBeIPINN(value)).toEqual('Неверный ИНН. Введите корректный ИНН.');
+    expect(mustBeINNIP(value)).toEqual('Неверный ИНН. Введите корректный ИНН.');
   });
   it('должна возвращать null если value === 12 символов (контрольная сумма верна)', () => {
-    expect(mustBeIPINN('683000788049')).toEqual(null);
+    expect(mustBeINNIP('683000788049')).toEqual(null);
   });
   it('должна возвращать null если value === 12 символов (контрольная сумма неверна)', () => {
-    expect(mustBeIPINN('683000700049')).toEqual('Неверный ИНН. Введите корректный ИНН.');
+    expect(mustBeINNIP('683000700049')).toEqual('Неверный ИНН. Введите корректный ИНН.');
   });
   it('должна возвращать null если value является валидным ИНН ИП', () => {
-    expect(mustBeIPINN('683000788049')).toEqual(null);
+    expect(mustBeINNIP('683000788049')).toEqual(null);
   });
   it('должна возвращать сообщение об ошибке если value является невалидным ИНН ИП', () => {
-    expect(mustBeIPINN('683000700049')).toEqual('Неверный ИНН. Введите корректный ИНН.');
+    expect(mustBeINNIP('683000700049')).toEqual('Неверный ИНН. Введите корректный ИНН.');
   });
 });

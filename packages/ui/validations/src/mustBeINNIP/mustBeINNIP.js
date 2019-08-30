@@ -9,7 +9,7 @@ const calcCheckNum = (digitsOfvalue, weights) => {
  * Проверка валидации ИНН ИП на корректность
  * @param {ИНН} value
  */
-const mustBeIPINN = (value) => {
+const mustBeINNIP = (value) => {
   if (!/^(\d{12})$/.test(value)) {
     return 'Неверный ИНН. Введите корректный ИНН.';
   }
@@ -30,4 +30,4 @@ const mustBeIPINN = (value) => {
   return null;
 };
 
-export default mustBeIPINN;
+export default mustBeINNIP;

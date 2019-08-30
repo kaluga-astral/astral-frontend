@@ -1,12 +1,12 @@
-import mustBeIPINN from '../mustBeIPINN';
-import mustBeULINN from '../mustBeULINN';
+import mustBeINNIP from '../mustBeINNIP';
+import mustBeINNUL from '../mustBeINNUL';
 
 /**
  * Проверка валидации ИНН на корректность
- * @param {ИНН} value
+ * @param {string} value
  */
 const mustBeINN = (value) => {
-  if (mustBeULINN(value) && mustBeIPINN(value)) {
+  if (mustBeINNUL(value) && mustBeINNIP(value)) {
     return 'Неверный ИНН. Введите корректный ИНН.';
   }
 
