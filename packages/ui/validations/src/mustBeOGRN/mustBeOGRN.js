@@ -3,7 +3,7 @@ import mustBeOGRNUL from '../mustBeOGRNUL';
 
 /**
  * Функция валидации ОГРН
- * @param {ОГРН} value - Валидируемое значение
+ * @param {string} value - Валидируемое значение
  */
 const mustBeOGRN = (value) => {
   if (mustBeOGRNIP(value) && mustBeOGRNUL(value)) {
