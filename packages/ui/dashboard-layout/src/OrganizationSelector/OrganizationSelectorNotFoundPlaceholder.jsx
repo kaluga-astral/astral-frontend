@@ -25,6 +25,7 @@ const OrganizationSelectorNotFoundPlaceholder = ({
     </Link>
   </div>
 );
+
 OrganizationSelectorNotFoundPlaceholder.defaultProps = {
   className: null,
 };
