@@ -60,7 +60,6 @@ export default withStyles({
   },
   text: {
     width: '222px',
-    height: '66px',
     fontSize: '12px',
     lineHeight: '16px',
     textAlign: 'center',
