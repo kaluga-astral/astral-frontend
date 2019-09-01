@@ -6,7 +6,7 @@ import { mustBeOGRN } from '@astral-frontend/validations';
 import TextField from '../TextField';
 
 const OGRNField = ({ maxLength, organizationType, ...props }) => {
-  const { validateOGRN: validate = mustBeOGRN } = ORGANIZATION_TYPES[organizationType];
+  const { validateOGRN: validate = mustBeOGRN } = ORGANIZATION_TYPES[organizationType] || {};
 
   return (
     <TextField

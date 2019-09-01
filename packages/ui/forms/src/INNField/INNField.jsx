@@ -8,7 +8,7 @@ import TextField from '../TextField';
 const INNField = ({
   maxLength, noValidate, organizationType, ...props
 }) => {
-  const { validateOGRN: validate = mustBeINN } = ORGANIZATION_TYPES[organizationType];
+  const { validateOGRN: validate = mustBeINN } = ORGANIZATION_TYPES[organizationType] || {};
 
   return (
     <TextField
