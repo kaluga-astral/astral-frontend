@@ -34,7 +34,6 @@ const FormAddressField = ({
   const { input, meta } = useField(name, {
     validate,
   });
-  console.log(meta);
   const { fetchAddressSuggestions } = React.useContext(DaDataContext);
   const [suggestions, setSuggestions] = React.useState([]);
   const handleChange = (item) => {
