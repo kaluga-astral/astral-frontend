@@ -58,8 +58,8 @@ const FormAddressField = ({
       {({
         getInputProps, getItemProps, getMenuProps, highlightedIndex, isOpen,
       }) => {
-        const error = meta.touched && !meta.valid;
-        const helperText = meta.error && meta.touched ? meta.error : null;
+        const error = meta.visited && !meta.valid;
+        const helperText = meta.error && meta.visited ? meta.error : null;
 
         return (
           <div className={classes.root}>
