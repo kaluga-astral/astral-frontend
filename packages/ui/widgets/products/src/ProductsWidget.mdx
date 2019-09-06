@@ -1,0 +1,41 @@
+---
+menu: widgets
+name: products
+---
+
+import { Props, Playground } from 'docz';
+import ProductsWidget, { DEVELOPMENT_ENV_NAME } from './index';
+
+# Products widget
+Виджет для отображения списка продуктов, доступных пользователю сервисов Астрала.
+
+```
+propTypes: {
+  buttonProps: PropTypes.shape({
+    className: PropTypes.string,
+    color: PropTypes.oneOf(['primary', 'secondary']),
+  }),
+  environmentName: PropTypes.oneOf(['development', 'production']).isRequired,
+};
+```
+
+<Props of={ProductsWidget} />
+
+## Basic usage
+
+<Playground>
+  <div style={{ backgroundColor: '#0067DD' }}>
+    <ProductsWidget environmentName={DEVELOPMENT_ENV_NAME} />
+  </div>
+</Playground>
+
+## Basic code
+
+```
+import ProductsWidget, { DEVELOPMENT_ENV_NAME, PRODUCTION_ENV_NAME } from '@astral-frontend/widgets/products';
+
+...
+    <ProductsWidget environmentName={DEVELOPMENT_ENV_NAME} />
+...
+
+```

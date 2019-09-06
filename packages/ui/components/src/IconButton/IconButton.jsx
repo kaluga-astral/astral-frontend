@@ -49,7 +49,7 @@ const Button = ({
   );
 
   return (
-    <IconButton disabled={disabled || loading} className={className} {...props}>
+    <IconButton disabled={disabled || loading} color={color} className={className} {...props}>
       {loading ? (
         <CircularProgress className={classes.loader} size={getSizeOfCircularProgress(size)} />
       ) : (
