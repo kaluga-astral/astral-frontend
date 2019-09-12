@@ -1,7 +1,4 @@
-export const getArrayDigitsOfValue = value => value
-  .toString()
-  .split('')
-  .map(x => Number(x));
+export const getArrayDigitsOfValue = value => Array.from(value, x => Number(x));
 
 export const removeSpecialCharacters = value => value.replace(/\D/g, '');
 
