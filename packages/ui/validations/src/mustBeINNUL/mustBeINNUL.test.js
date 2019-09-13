@@ -20,9 +20,15 @@ describe('mustBeULINN', () => {
     expect(mustBeINNUL('3703020000')).toEqual(ERROR_MESSAGE);
   });
   it('должна возвращать null если value является валидным ИНН ЮЛ', () => {
-    expect(mustBeINNUL('3703020990')).toEqual(null);
+    expect(mustBeINNUL('7728168971')).toEqual(null);
   });
   it('должна возвращать сообщение об ошибке если value является невалидным ИНН ЮЛ', () => {
-    expect(mustBeINNUL('3703020000')).toEqual(ERROR_MESSAGE);
+    expect(mustBeINNUL('3703700000')).toEqual(ERROR_MESSAGE);
+  });
+  it('должна возвращать сообщение об ошибке если value является валидным ИНН ИП', () => {
+    expect(mustBeINNUL('226401013493')).toEqual(ERROR_MESSAGE);
+  });
+  it('должна возвращать сообщение об ошибке если value является невалидным ИНН ИП', () => {
+    expect(mustBeINNUL('212301000093')).toEqual(ERROR_MESSAGE);
   });
 });

@@ -1,4 +1,4 @@
-import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils';
+import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
 
 const ERROR_MESSAGE = 'Неверный ИНН. Введите корректный ИНН.';
 

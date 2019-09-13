@@ -25,4 +25,10 @@ describe('mustBeIPINN', () => {
   it('должна возвращать сообщение об ошибке если value является невалидным ИНН ИП', () => {
     expect(mustBeINNIP('683000700049')).toEqual(ERROR_MESSAGE);
   });
+  it('должна возвращать сообщение об ошибке если value является валидным ИНН ЮЛ', () => {
+    expect(mustBeINNIP('3232005484')).toEqual(ERROR_MESSAGE);
+  });
+  it('должна возвращать сообщение об ошибке если value является невалидным ИНН ЮЛ', () => {
+    expect(mustBeINNIP('3201035181')).toEqual(ERROR_MESSAGE);
+  });
 });
