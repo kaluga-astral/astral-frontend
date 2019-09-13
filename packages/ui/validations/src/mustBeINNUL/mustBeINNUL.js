@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+import ORGANIZATION_TYPES from '@astral-frontend/constants/src/organizationTypes';
 import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
 
 const ERROR_MESSAGE = 'Неверный ИНН. Введите корректный ИНН.';
@@ -6,20 +8,24 @@ const ERROR_MESSAGE = 'Неверный ИНН. Введите корректн�
  * Проверка валидации ИНН ЮЛ на корректность
  * @param {string} value
  */
-const mustBeULINN = (value) => {
+const mustBeINNUL = (value) => {
+  const isINNLengthValid = getArrayDigitsOfValue(value).length === ORGANIZATION_TYPES.legalPerson.maxLengthINN;
+  const checkNumFromINNString = getArrayDigitsOfValue(value)[9];
+  const calcCheckNumFromINNString = calcCheckNumForINN(
+    getArrayDigitsOfValue(value),
+    ORGANIZATION_TYPES.legalPerson.weightForCheckNumINN,
+  );
+  const isINNCheckNumValid = calcCheckNumFromINNString !== checkNumFromINNString;
+
   if (!/^(\d{10})$/.test(value)) {
     return ERROR_MESSAGE;
   }
 
-  if (
-    getArrayDigitsOfValue(value).length === 10
-    && calcCheckNumForINN(getArrayDigitsOfValue(value), [2, 4, 10, 3, 5, 9, 4, 6, 8, 0])
-      !== getArrayDigitsOfValue(value)[9]
-  ) {
+  if (isINNLengthValid && isINNCheckNumValid) {
     return ERROR_MESSAGE;
   }
 
   return null;
 };
 
-export default mustBeULINN;
+export default mustBeINNUL;
