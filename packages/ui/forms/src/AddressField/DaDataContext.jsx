@@ -7,7 +7,19 @@ const fetchAddressSuggestions = (query) => {
   const mapSuggestionsToResult = ({ unrestricted_value, data }) => ({
     unrestrictedValue: unrestricted_value,
     postIndex: data.postal_code,
-    regionCode: (data.city_kladr_id || '').slice(0, 2) || null,
+    regionCode:
+      (
+        data.kladr_id
+        || data.region_kladr_id
+        || data.area_kladr_id
+        || data.city_kladr_id
+        || data.city_district_kladr_id
+        || data.street_kladr_id
+        || data.settlement_kladr_id
+        || data.house_kladr_id
+        || data.fias_code
+        || ''
+      ).slice(0, 2) || null,
     regionName: data.region,
     area: data.area,
     city: data.city,
