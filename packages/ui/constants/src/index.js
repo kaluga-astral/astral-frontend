@@ -1,8 +1,8 @@
 import * as httpStatuses from './httpStatuses';
 import * as time from './time';
-import * as organizationTypes from './organizationTypes';
-import * as organizationValidationParams from './organizationValidationParams';
+import * as organizationValidations from './organization/organizationValidations';
+import * as organizationValidationsParams from './organization/organizationValidationsParams';
 
 export {
-  httpStatuses, time, organizationTypes, organizationValidationParams,
+  httpStatuses, time, organizationValidations, organizationValidationsParams,
 };

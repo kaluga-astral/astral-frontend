@@ -1,4 +1,4 @@
-const ORGANIZATION_TYPES = {
+const ORGANIZATION_VALIDATIONS_PARAMS = {
   individualEntrepreneur: {
     maxLengthINN: 12,
     maxLengthOGRN: 15,
@@ -14,4 +14,4 @@ const ORGANIZATION_TYPES = {
   },
 };
 
-export default ORGANIZATION_TYPES;
+export default ORGANIZATION_VALIDATIONS_PARAMS;

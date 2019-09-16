@@ -2,7 +2,7 @@ import {
   mustBeINNIP, mustBeINNUL, mustBeOGRNUL, mustBeOGRNIP,
 } from '@astral-frontend/validations';
 
-const ORGANIZATION_VALIDATION_PARAMS = {
+const ORGANIZATION_VALIDATIONS = {
   individualEntrepreneur: {
     validateINN: mustBeINNIP,
     validateOGRN: mustBeOGRNIP,
@@ -13,4 +13,4 @@ const ORGANIZATION_VALIDATION_PARAMS = {
   },
 };
 
-export default ORGANIZATION_VALIDATION_PARAMS;
+export default ORGANIZATION_VALIDATIONS;

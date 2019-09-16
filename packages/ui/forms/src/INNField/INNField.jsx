@@ -1,15 +1,15 @@
 /* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React from 'react';
-import ORGANIZATION_VALIDATION_PARAMS from '@astral-frontend/constants/src/organizationValidationParams';
-import ORGANIZATION_TYPES from '@astral-frontend/constants/src/organizationTypes';
+import ORGANIZATION_VALIDATIONS_PARAMS from '@astral-frontend/constants/src/organization/organizationValidationsParams';
+import ORGANIZATION_VALIDATIONS from '@astral-frontend/constants/src/organization/organizationValidations';
 import { mustBeINN } from '@astral-frontend/validations';
 import TextField from '../TextField';
 
 const INNField = ({
   maxLength, noValidate, organizationType, ...props
 }) => {
-  const { validateINN: validate = mustBeINN } = ORGANIZATION_VALIDATION_PARAMS[organizationType] || {};
+  const { validateINN: validate = mustBeINN } = ORGANIZATION_VALIDATIONS[organizationType] || {};
 
   return (
     <TextField
@@ -25,7 +25,7 @@ INNField.defaultProps = {
   noValidate: false,
   name: 'inn',
   label: 'ИНН',
-  maxLength: ORGANIZATION_TYPES.individualEntrepreneur.maxLengthINN,
+  maxLength: ORGANIZATION_VALIDATIONS_PARAMS.individualEntrepreneur.maxLengthINN,
   placeholder: null,
   organizationType: null,
 };
@@ -36,7 +36,7 @@ INNField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  organizationType: PropTypes.oneOf(ORGANIZATION_VALIDATION_PARAMS),
+  organizationType: PropTypes.oneOf(ORGANIZATION_VALIDATIONS),
 };
 
 export default INNField;
