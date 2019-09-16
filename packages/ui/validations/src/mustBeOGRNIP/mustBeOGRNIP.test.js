@@ -1,6 +1,5 @@
+import { ERROR_MESSAGE } from '../mustBeOGRN';
 import mustBeOGRNIP from './mustBeOGRNIP';
-
-const ERROR_MESSAGE = 'Неверный ОГРН. Введите корректный ОГРН.';
 
 describe('mustBeOGRNIP', () => {
   it('должна возвращать сообщение об ошибке если value < 15 символов.', () => {

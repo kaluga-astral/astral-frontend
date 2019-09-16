@@ -1,6 +1,5 @@
 import ORGANIZATION_TYPES from '@astral-frontend/constants/src/organizationTypes';
-
-const ERROR_MESSAGE = 'Неверный ОГРН. Введите корректный ОГРН.';
+import { ERROR_MESSAGE } from '../mustBeOGRN';
 
 /**
  * Функция валидации ОГРН ЮЛ

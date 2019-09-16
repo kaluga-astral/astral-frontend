@@ -1,6 +1,5 @@
+import { ERROR_MESSAGE } from '../mustBeINN';
 import mustBeINNIP from './mustBeINNIP';
-
-const ERROR_MESSAGE = 'Неверный ИНН. Введите корректный ИНН.';
 
 describe('mustBeIPINN', () => {
   it('должна возвращать сообщение об ошибке если value < 12 символов', () => {

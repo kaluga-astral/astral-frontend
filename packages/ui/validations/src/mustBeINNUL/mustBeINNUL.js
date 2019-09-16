@@ -1,8 +1,7 @@
 /* eslint-disable max-len */
 import ORGANIZATION_TYPES from '@astral-frontend/constants/src/organizationTypes';
+import { ERROR_MESSAGE } from '../mustBeINN';
 import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
-
-const ERROR_MESSAGE = 'Неверный ИНН. Введите корректный ИНН.';
 
 /**
  * Проверка валидации ИНН ЮЛ на корректность

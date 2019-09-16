@@ -1,4 +1,4 @@
-export const getArrayDigitsOfValue = value => Array.from(value, x => Number(x));
+export const getArrayDigitsOfValue = value => Array.from(value, Number);
 
 export const removeSpecialCharacters = value => value.replace(/\D/g, '');
 
