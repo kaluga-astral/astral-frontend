@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import ORGANIZATION_TYPES_VALIDATIONS from '@astral-frontend/constants/src/organizationTypesValidations';
 import { mustBeOGRN } from '@astral-frontend/validations';
+import ORGANIZATION_VALIDATION_PARAMS from '@astral-frontend/constants/src/organizationValidationParams';
+import ORGANIZATION_TYPES from '@astral-frontend/constants/src/organizationTypes';
 import TextField from '../TextField';
 
 const OGRNField = ({ maxLength, organizationType, ...props }) => {
-  const { validateOGRN: validate = mustBeOGRN } = ORGANIZATION_TYPES_VALIDATIONS[organizationType] || {};
+  const { validateOGRN: validate = mustBeOGRN } = ORGANIZATION_VALIDATION_PARAMS[organizationType] || {};
 
   return (
     <TextField
@@ -22,7 +22,7 @@ const OGRNField = ({ maxLength, organizationType, ...props }) => {
 OGRNField.defaultProps = {
   name: 'ogrn',
   label: 'ОГРН',
-  maxLength: 15,
+  maxLength: ORGANIZATION_TYPES.individualEntrepreneur.maxLengthOGRN,
   placeholder: null,
   organizationType: null,
 };
@@ -32,7 +32,7 @@ OGRNField.propTypes = {
   label: PropTypes.string,
   maxLength: PropTypes.number,
   placeholder: PropTypes.string,
-  organizationType: PropTypes.oneOf(Object.keys(ORGANIZATION_TYPES_VALIDATIONS)),
+  organizationType: PropTypes.oneOf(Object.keys(ORGANIZATION_VALIDATION_PARAMS)),
 };
 
 export default OGRNField;
