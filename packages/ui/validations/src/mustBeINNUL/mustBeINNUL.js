@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import ORGANIZATION_TYPES from '@astral-frontend/constants/src/organizationTypes';
+import ORGANIZATION_VALIDATIONS_PARAMS from '@astral-frontend/constants/src/organizationValidationsParams';
 import { ERROR_MESSAGE } from '../mustBeINN';
 import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
 
@@ -8,11 +8,12 @@ import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
  * @param {string} value
  */
 const mustBeINNUL = (value) => {
-  const isINNLengthValid = getArrayDigitsOfValue(value).length === ORGANIZATION_TYPES.legalPerson.maxLengthINN;
+  const isINNLengthValid = getArrayDigitsOfValue(value).length
+    === ORGANIZATION_VALIDATIONS_PARAMS.legalPerson.maxLengthINN;
   const checkNumFromINNString = getArrayDigitsOfValue(value)[9];
   const calcCheckNumFromINNString = calcCheckNumForINN(
     getArrayDigitsOfValue(value),
-    ORGANIZATION_TYPES.legalPerson.weightForCheckNumINN,
+    ORGANIZATION_VALIDATIONS_PARAMS.legalPerson.weightForCheckNumINN,
   );
   const isINNCheckNumValid = calcCheckNumFromINNString !== checkNumFromINNString;
 

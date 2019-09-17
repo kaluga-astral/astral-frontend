@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import ORGANIZATION_TYPES from '@astral-frontend/constants/src/organizationTypes';
+import ORGANIZATION_VALIDATIONS_PARAMS from '@astral-frontend/constants/src/organizationValidationsParams';
 import { ERROR_MESSAGE } from '../mustBeINN';
 import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
 
@@ -8,16 +8,17 @@ import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
  * @param {string} value
  */
 const mustBeINNIP = (value) => {
-  const isINNLengthValid = getArrayDigitsOfValue(value).length === ORGANIZATION_TYPES.individualEntrepreneur.maxLengthINN;
+  const isINNLengthValid = getArrayDigitsOfValue(value).length
+    === ORGANIZATION_VALIDATIONS_PARAMS.individualEntrepreneur.maxLengthINN;
 
   const isINNCheckNumForElevenCharValid = calcCheckNumForINN(
     getArrayDigitsOfValue(value),
-    ORGANIZATION_TYPES.individualEntrepreneur.weightsForCheckNumINN.elevenChar,
+    ORGANIZATION_VALIDATIONS_PARAMS.individualEntrepreneur.weightsForCheckNumINN.elevenChars,
   ) !== getArrayDigitsOfValue(value)[10];
 
   const isINNCheckNumValidForTwelveChar = calcCheckNumForINN(
     getArrayDigitsOfValue(value),
-    ORGANIZATION_TYPES.individualEntrepreneur.weightsForCheckNumINN.twelveChar,
+    ORGANIZATION_VALIDATIONS_PARAMS.individualEntrepreneur.weightsForCheckNumINN.twelveChars,
   ) !== getArrayDigitsOfValue(value)[11];
 
   if (!/^(\d{12})$/.test(value)) {

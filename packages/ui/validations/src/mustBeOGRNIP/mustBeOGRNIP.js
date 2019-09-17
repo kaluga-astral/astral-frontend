@@ -1,13 +1,14 @@
 /* eslint-disable max-len */
-import ORGANIZATION_TYPES from '@astral-frontend/constants/src/organizationTypes';
+import ORGANIZATION_VALIDATIONS_PARAMS from '@astral-frontend/constants/src/organizationValidationsParams';
 import { ERROR_MESSAGE } from '../mustBeOGRN';
+
 /**
  * Функция валидации ОГРНИП
  *
  * @param {string} value - Валидируемое значение
  */
 const mustBeOGRNIP = (value) => {
-  const isOGRNLengthValid = value.length === ORGANIZATION_TYPES.individualEntrepreneur.maxLengthOGRN;
+  const isOGRNLengthValid = value.length === ORGANIZATION_VALIDATIONS_PARAMS.individualEntrepreneur.maxLengthOGRN;
   const isOGRNCheckNumValid = value.slice(-1) !== `${value.slice(0, -1) % 13}`.slice(-1);
 
   if (!/^(\d{15})$/.test(value)) {
