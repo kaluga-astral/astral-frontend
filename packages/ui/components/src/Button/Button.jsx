@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme) => {
         return 'transparent';
       }
 
-      return theme.palette.text.primary;
+      return theme.palette.primary.main;
     }
 
     if (isRegularVariant) {
