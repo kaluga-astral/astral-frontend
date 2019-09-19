@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { mustBeINN } from '@astral-frontend/validations';
-import ORGANIZATION_VALIDATIONS_PARAMS from '@astral-frontend/validations/src/constants';
+import { ORGANIZATION_VALIDATIONS_PARAMS } from '@astral-frontend/validations/src/constants';
 import TextField from '../TextField';
 
 const INNField = ({

@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { mustBeOGRN } from '@astral-frontend/validations';
-import ORGANIZATION_VALIDATIONS_PARAMS from '@astral-frontend/validations/src/constants';
+import { ORGANIZATION_VALIDATIONS_PARAMS } from '@astral-frontend/validations/src/constants';
 import TextField from '../TextField';
 
 const OGRNField = ({ maxLength, organizationType, ...props }) => (
