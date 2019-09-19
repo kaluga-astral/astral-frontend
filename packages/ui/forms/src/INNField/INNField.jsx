@@ -1,24 +1,20 @@
 /* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React from 'react';
-import ORGANIZATION_VALIDATIONS_PARAMS from '@astral-frontend/constants/src/organizationValidationsParams';
 import { mustBeINN } from '@astral-frontend/validations';
+import ORGANIZATION_VALIDATIONS_PARAMS from '@astral-frontend/validations/src/constants';
 import TextField from '../TextField';
 
 const INNField = ({
   maxLength, noValidate, organizationType, ...props
-}) => {
-  const { validateINN: validate = mustBeINN } = ORGANIZATION_VALIDATIONS_PARAMS[organizationType] || {};
-
-  return (
-    <TextField
-      inputProps={{ maxLength }}
-      parse={value => value.replace(/[^\d]/g, '')}
-      validate={!noValidate && validate}
-      {...props}
-    />
-  );
-};
+}) => (
+  <TextField
+    inputProps={{ maxLength }}
+    parse={value => value.replace(/[^\d]/g, '')}
+    validate={!noValidate && mustBeINN}
+    {...props}
+  />
+);
 
 INNField.defaultProps = {
   noValidate: false,

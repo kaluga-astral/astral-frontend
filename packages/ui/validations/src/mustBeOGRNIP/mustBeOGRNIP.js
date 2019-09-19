@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import ORGANIZATION_VALIDATIONS_PARAMS from '@astral-frontend/constants/src/organizationValidationsParams';
+import { ORGANIZATION_VALIDATIONS_PARAMS } from '../constants';
 import { ERROR_MESSAGE } from '../mustBeOGRN';
 
 /**
