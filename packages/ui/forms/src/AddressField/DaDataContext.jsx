@@ -23,7 +23,6 @@ const fetchAddressSuggestions = (query) => {
     regionName: data.region,
     area: data.area,
     city: data.city || data.settlement,
-    settlement: data.settlement,
     locality: data.city || data.settlement,
     street: data.street,
     house: data.house,
