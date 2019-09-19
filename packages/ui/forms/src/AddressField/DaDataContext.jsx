@@ -22,7 +22,7 @@ const fetchAddressSuggestions = (query) => {
       ).slice(0, 2) || null,
     regionName: data.region,
     area: data.area,
-    city: data.city,
+    city: data.city || data.settlement,
     locality: data.city || data.settlement,
     street: data.street,
     house: data.house,
