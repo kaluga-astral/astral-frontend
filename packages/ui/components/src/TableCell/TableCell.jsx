@@ -10,7 +10,7 @@ const useStyles = makeStyles(
       color: 'rgba(29, 63, 102, 0.62)',
     },
     head: {
-      padding: '20px',
+      padding: '20px 20px 20px 16px',
       fontSize: '12px',
       fontWeight: theme.typography.fontWeightBold,
     },

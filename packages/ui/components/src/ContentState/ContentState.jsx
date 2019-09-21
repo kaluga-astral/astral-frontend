@@ -33,7 +33,9 @@ ContentState.defaultProps = {
   component: Fragment,
   LoadingStateComponent: props => <Placeholder {...props} state="loading" />,
   // eslint-disable-next-line react/prop-types
-  FailureStateComponent: ({ error, ...props }) => <Placeholder {...props} state="failure" error={error} />,
+  FailureStateComponent: ({ error, ...props }) => (
+    <Placeholder {...props} state="failure" error={error} />
+  ),
 };
 
 ContentState.propTypes = {
