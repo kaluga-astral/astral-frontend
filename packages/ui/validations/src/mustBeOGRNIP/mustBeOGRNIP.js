@@ -8,7 +8,7 @@ import { ERROR_MESSAGE } from '../mustBeOGRN';
  * @param {string} value - Валидируемое значение
  */
 function mustBeOGRNIP(value) {
-  const isOGRNLengthValid = value.length === ORGANIZATION_VALIDATIONS_PARAMS.individualEntrepreneur.maxLengthOGRN;
+  const isOGRNLengthValid = value.length === ORGANIZATION_VALIDATIONS_PARAMS.ip.maxLengthOGRN;
   const isOGRNCheckNumValid = value.slice(-1) !== `${value.slice(0, -1) % 13}`.slice(-1);
 
   if (!/^(\d{15})$/.test(value)) {

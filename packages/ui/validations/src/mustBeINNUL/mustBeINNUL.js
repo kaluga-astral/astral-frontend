@@ -9,13 +9,13 @@ import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
  */
 function mustBeINNUL(value) {
   const isINNLengthValid = getArrayDigitsOfValue(value).length
-    === ORGANIZATION_VALIDATIONS_PARAMS.legalPerson.maxLengthINN;
+    === ORGANIZATION_VALIDATIONS_PARAMS.ul.maxLengthINN;
 
   const checkNumFromINNString = getArrayDigitsOfValue(value)[9];
 
   const calcCheckNumFromINNString = calcCheckNumForINN(
     getArrayDigitsOfValue(value),
-    ORGANIZATION_VALIDATIONS_PARAMS.legalPerson.weightForCheckNumINN,
+    ORGANIZATION_VALIDATIONS_PARAMS.ul.weightForCheckNumINN,
   );
 
   const isINNCheckNumValid = calcCheckNumFromINNString !== checkNumFromINNString;
