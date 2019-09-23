@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { mustBeINN } from '@astral-frontend/validations';
@@ -7,13 +6,16 @@ import { ORGANIZATION_VALIDATIONS_PARAMS } from '@astral-frontend/validations/sr
 import TextField from '../TextField';
 
 const INNField = ({ noValidate, organizationType, ...props }) => {
-  const validationParams = ORGANIZATION_VALIDATIONS_PARAMS[organizationType];
+  const { validate, validationParams } = React.useMemo(() => ({
+    validate: mustBeINN.bind(validationParams),
+    validationParams: ORGANIZATION_VALIDATIONS_PARAMS[organizationType],
+  }));
 
   return (
     <TextField
       inputProps={{ maxLength: validationParams.maxLength }}
       parse={value => value.replace(/[^\d]/g, '')}
-      validate={!noValidate && mustBeINN.bind(validationParams)}
+      validate={!noValidate && validate}
       {...props}
     />
   );
