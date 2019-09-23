@@ -1,6 +1,7 @@
 import AstralTheme from './AstralTheme';
 
 const astralEDOThemeOptions = {
+  spacing: 4,
   palette: {
     action: {
       hover: '#f3f0fd',
