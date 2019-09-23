@@ -7,10 +7,12 @@ export const ERROR_MESSAGE = 'Неверный ИНН. Введите корре
  * Проверка валидации ИНН на корректность
  * @param {string} value
  */
-export const mustBeINN = (value) => {
-  if (mustBeINNUL(value) && mustBeINNIP(value)) {
+function mustBeINN(value) {
+  if (mustBeINNUL.call(this, value) && mustBeINNIP.call(this, value)) {
     return ERROR_MESSAGE;
   }
 
   return null;
-};
+}
+
+export default mustBeINN;

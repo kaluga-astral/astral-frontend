@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { ORGANIZATION_VALIDATIONS_PARAMS } from '../constants';
 import { ERROR_MESSAGE } from '../mustBeINN';
 import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
@@ -7,7 +6,7 @@ import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
  * Проверка валидации ИНН ИП на корректность
  * @param {string} value
  */
-const mustBeINNIP = (value) => {
+function mustBeINNIP(value) {
   const isINNLengthValid = getArrayDigitsOfValue(value).length
     === ORGANIZATION_VALIDATIONS_PARAMS.individualEntrepreneur.maxLengthINN;
 
@@ -30,6 +29,6 @@ const mustBeINNIP = (value) => {
   }
 
   return null;
-};
+}
 
 export default mustBeINNIP;

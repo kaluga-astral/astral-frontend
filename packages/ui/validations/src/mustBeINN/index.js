@@ -1,1 +1,1 @@
-export { ERROR_MESSAGE, mustBeINN as default } from './mustBeINN';
+export { ERROR_MESSAGE, default } from './mustBeINN';
