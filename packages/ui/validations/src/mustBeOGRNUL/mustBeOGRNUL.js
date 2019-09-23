@@ -7,7 +7,7 @@ import { ERROR_MESSAGE } from '../mustBeOGRN';
  *
  * @param {string} value - Валидируемое значение
  */
-const mustBeOGRNUL = (value) => {
+function mustBeOGRNUL(value) {
   const isOGRNLengthValid = value.length === ORGANIZATION_VALIDATIONS_PARAMS.legalPerson.maxLengthOGRN;
   const isOGRNCheckNumValid = value.slice(-1) !== `${value.slice(0, -1) % 11}`.slice(-1);
 
@@ -20,6 +20,6 @@ const mustBeOGRNUL = (value) => {
   }
 
   return null;
-};
+}
 
 export default mustBeOGRNUL;

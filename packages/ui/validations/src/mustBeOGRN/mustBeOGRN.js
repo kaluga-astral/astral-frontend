@@ -7,10 +7,12 @@ export const ERROR_MESSAGE = 'Неверный ОГРН. Введите корр
  * Функция валидации ОГРН
  * @param {string} value - Валидируемое значение
  */
-export const mustBeOGRN = (value) => {
-  if (mustBeOGRNIP(value) && mustBeOGRNUL(value)) {
+function mustBeOGRN(value) {
+  if (mustBeOGRNIP.call(this, value) && mustBeOGRNUL.call(this, value)) {
     return ERROR_MESSAGE;
   }
 
   return null;
-};
+}
+
+export default mustBeOGRN;

@@ -1,1 +1,1 @@
-export { ERROR_MESSAGE, mustBeOGRN as default } from './mustBeOGRN';
+export { ERROR_MESSAGE, default } from './mustBeOGRN';

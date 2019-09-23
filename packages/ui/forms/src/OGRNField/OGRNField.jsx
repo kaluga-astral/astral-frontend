@@ -6,11 +6,14 @@ import { ORGANIZATION_VALIDATIONS_PARAMS } from '@astral-frontend/validations/sr
 import TextField from '../TextField';
 
 const OGRNField = ({ organizationType, ...props }) => {
-  const { validateOGRN: validate = mustBeOGRN, maxLengthOGRN: maxLengthOGRN = 15 } = ORGANIZATION_VALIDATIONS_PARAMS[organizationType] || {};
+  const { validate, validationParams } = React.useMemo(() => ({
+    validate: mustBeOGRN.bind(validationParams),
+    validationParams: ORGANIZATION_VALIDATIONS_PARAMS[organizationType],
+  }));
 
   return (
     <TextField
-      inputProps={{ maxLengthOGRN }}
+      inputProps={{ maxLength: validationParams.maxLength }}
       parse={value => value.replace(/[^\d]/g, '')}
       validate={validate}
       {...props}
@@ -22,7 +25,7 @@ OGRNField.defaultProps = {
   name: 'ogrn',
   label: 'ОГРН',
   placeholder: null,
-  organizationType: null,
+  organizationType: 'both',
 };
 
 OGRNField.propTypes = {
