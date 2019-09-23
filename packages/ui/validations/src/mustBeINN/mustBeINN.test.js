@@ -1,4 +1,4 @@
-import { mustBeINN, ERROR_MESSAGE } from './mustBeINN';
+import mustBeINN, { ERROR_MESSAGE } from './mustBeINN';
 
 describe('mustBeINN', () => {
   it('должна возвращать сообщение об ошибке если value < 10 символов', () => {

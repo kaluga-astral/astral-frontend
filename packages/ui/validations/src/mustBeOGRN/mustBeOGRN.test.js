@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, mustBeOGRN } from './mustBeOGRN';
+import mustBeOGRN, { ERROR_MESSAGE } from './mustBeOGRN';
 
 describe('mustBeOGRN', () => {
   it('должна возвращать сообщение об ошибке если value < 13 символов', () => {
