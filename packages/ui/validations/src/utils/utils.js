@@ -2,12 +2,13 @@ export const getArrayDigitsOfValue = value => Array.from(value, Number);
 
 export const removeSpecialCharacters = value => value.replace(/\D/g, '');
 
-export const calcCheckNumForINN = (digitsOfvalue, weights) => {
+export function calcCheckNumForINN(digitsOfvalue, weights) {
+  console.log(this, 'Подсчет сумм ИНН');
   const checkSum = digitsOfvalue.reduce((sum, digit, i) => sum + digit * weights[i], 0);
   const checkNum = checkSum % 11;
 
   return checkNum > 9 ? checkNum % 10 : checkNum;
-};
+}
 
 export const calcCheckSumForSNILS = digitsOfValue => digitsOfValue
   .slice(0, 9)

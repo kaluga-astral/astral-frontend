@@ -6,16 +6,13 @@ import { ORGANIZATION_VALIDATIONS_PARAMS } from '@astral-frontend/validations/sr
 import TextField from '../TextField';
 
 const INNField = ({ noValidate, organizationType, ...props }) => {
-  const { validate, validationParams } = React.useMemo(() => ({
-    validate: mustBeINN.bind(validationParams),
-    validationParams: ORGANIZATION_VALIDATIONS_PARAMS[organizationType],
-  }));
+  const validationParams = ORGANIZATION_VALIDATIONS_PARAMS[organizationType];
 
   return (
     <TextField
       inputProps={{ maxLength: validationParams.maxLength }}
       parse={value => value.replace(/[^\d]/g, '')}
-      validate={!noValidate && validate}
+      validate={!noValidate && mustBeINN}
       {...props}
     />
   );
@@ -26,7 +23,7 @@ INNField.defaultProps = {
   name: 'inn',
   label: 'ИНН',
   placeholder: null,
-  organizationType: 'both',
+  organizationType: 'ip',
 };
 
 INNField.propTypes = {

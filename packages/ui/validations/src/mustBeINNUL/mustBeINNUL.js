@@ -8,17 +8,19 @@ import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
  * @param {string} value
  */
 function mustBeINNUL(value) {
-  const isINNLengthValid = getArrayDigitsOfValue(value).length
-    === ORGANIZATION_VALIDATIONS_PARAMS.ul.maxLengthINN;
+  console.log(this, 'UL');
+  const isINNLengthValid = getArrayDigitsOfValue(value).length === this.maxLengthINN;
 
   const checkNumFromINNString = getArrayDigitsOfValue(value)[9];
 
-  const calcCheckNumFromINNString = calcCheckNumForINN(
-    getArrayDigitsOfValue(value),
-    ORGANIZATION_VALIDATIONS_PARAMS.ul.weightForCheckNumINN,
-  );
+  // const calcCheckNumFromINNString = calcCheckNumForINN(
+  //   getArrayDigitsOfValue(value),
+  //   ORGANIZATION_VALIDATIONS_PARAMS.ul.weightForCheckNumINN,
+  // );
+  calcCheckNumForINN.call(this, getArrayDigitsOfValue(value), this.weightForCheckNumINN);
 
-  const isINNCheckNumValid = calcCheckNumFromINNString !== checkNumFromINNString;
+  const isINNCheckNumValid = calcCheckNumForINN(this.weightForCheckNumINN, getArrayDigitsOfValue(value))
+    !== checkNumFromINNString;
 
   if (!/^(\d{10})$/.test(value)) {
     return ERROR_MESSAGE;

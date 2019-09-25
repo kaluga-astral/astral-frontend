@@ -7,6 +7,8 @@ import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
  * @param {string} value
  */
 function mustBeINNIP(value) {
+  console.log(this, 'Ip');
+
   const isINNLengthValid = getArrayDigitsOfValue(value).length === ORGANIZATION_VALIDATIONS_PARAMS.ip.maxLengthINN;
 
   const isINNCheckNumForElevenCharValid = calcCheckNumForINN(
