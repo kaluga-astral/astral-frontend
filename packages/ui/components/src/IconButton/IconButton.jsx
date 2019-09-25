@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
-import { IconButton } from '@astral-frontend/core';
+import { IconButton as MuiIconButton } from '@astral-frontend/core';
 import CircularProgress from '../CircularProgress';
 
 const SMALL_CIRCULAR_SIZE = 14;
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Button = ({
+const IconButton = ({
   loading,
   disabled,
   className: classNameProp,
@@ -49,17 +49,17 @@ const Button = ({
   );
 
   return (
-    <IconButton disabled={disabled || loading} className={className} {...props}>
+    <MuiIconButton disabled={disabled || loading} className={className} {...props}>
       {loading ? (
         <CircularProgress className={classes.loader} size={getSizeOfCircularProgress(size)} />
       ) : (
         children
       )}
-    </IconButton>
+    </MuiIconButton>
   );
 };
 
-Button.defaultProps = {
+IconButton.defaultProps = {
   className: null,
   disabled: false,
   loading: false,
@@ -67,7 +67,7 @@ Button.defaultProps = {
   size: 'medium',
 };
 
-Button.propTypes = {
+IconButton.propTypes = {
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
   className: PropTypes.string,
@@ -82,4 +82,4 @@ Button.propTypes = {
   size: PropTypes.oneOf(['small', 'medium']),
 };
 
-export default Button;
+export default IconButton;
