@@ -1,4 +1,3 @@
-import { ORGANIZATION_VALIDATIONS_PARAMS } from '../constants';
 import { ERROR_MESSAGE } from '../mustBeINN';
 import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
 
@@ -9,17 +8,13 @@ import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
 function mustBeINNIP(value) {
   console.log(this, 'Ip');
 
-  const isINNLengthValid = getArrayDigitsOfValue(value).length === ORGANIZATION_VALIDATIONS_PARAMS.ip.maxLengthINN;
+  const isINNLengthValid = getArrayDigitsOfValue(value).length === this.maxLengthINN;
 
-  const isINNCheckNumForElevenCharValid = calcCheckNumForINN(
-    getArrayDigitsOfValue(value),
-    ORGANIZATION_VALIDATIONS_PARAMS.ip.weightsForCheckNumINN.elevenChars,
-  ) !== getArrayDigitsOfValue(value)[10];
+  const isINNCheckNumForElevenCharValid = calcCheckNumForINN(getArrayDigitsOfValue(value), this.weightsForCheckNumINN.elevenChars)
+    !== getArrayDigitsOfValue(value)[10];
 
-  const isINNCheckNumValidForTwelveChar = calcCheckNumForINN(
-    getArrayDigitsOfValue(value),
-    ORGANIZATION_VALIDATIONS_PARAMS.ip.weightsForCheckNumINN.twelveChars,
-  ) !== getArrayDigitsOfValue(value)[11];
+  const isINNCheckNumValidForTwelveChar = calcCheckNumForINN(getArrayDigitsOfValue(value), this.weightsForCheckNumINN.twelveChars)
+    !== getArrayDigitsOfValue(value)[11];
 
   if (!/^(\d{12})$/.test(value)) {
     return ERROR_MESSAGE;

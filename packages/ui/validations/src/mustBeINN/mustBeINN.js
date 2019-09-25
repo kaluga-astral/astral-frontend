@@ -8,10 +8,9 @@ export const ERROR_MESSAGE = 'Неверный ИНН. Введите корре
  * @param {string} value
  */
 function mustBeINN(value) {
-  if (mustBeINNUL.call(this, value) && mustBeINNIP.call(this, value)) {
+  if (mustBeINNIP.call(this.ip, value) && mustBeINNUL.call(this.ul, value)) {
     return ERROR_MESSAGE;
   }
-
   return null;
 }
 

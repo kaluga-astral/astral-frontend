@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-import { ORGANIZATION_VALIDATIONS_PARAMS } from '../constants';
 import { ERROR_MESSAGE } from '../mustBeINN';
 import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
 
@@ -13,14 +12,12 @@ function mustBeINNUL(value) {
 
   const checkNumFromINNString = getArrayDigitsOfValue(value)[9];
 
-  // const calcCheckNumFromINNString = calcCheckNumForINN(
-  //   getArrayDigitsOfValue(value),
-  //   ORGANIZATION_VALIDATIONS_PARAMS.ul.weightForCheckNumINN,
-  // );
-  calcCheckNumForINN.call(this, getArrayDigitsOfValue(value), this.weightForCheckNumINN);
+  const calcCheckNumFromINNString = calcCheckNumForINN(
+    getArrayDigitsOfValue(value),
+    this.weightsForCheckNumINN,
+  );
 
-  const isINNCheckNumValid = calcCheckNumForINN(this.weightForCheckNumINN, getArrayDigitsOfValue(value))
-    !== checkNumFromINNString;
+  const isINNCheckNumValid = calcCheckNumFromINNString !== checkNumFromINNString;
 
   if (!/^(\d{10})$/.test(value)) {
     return ERROR_MESSAGE;
