@@ -12,15 +12,19 @@ export const ORGANIZATION_VALIDATIONS_PARAMS = {
       elevenChars: [7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0, 0],
       twelveChars: [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0],
     },
-    validateInn: mustBeINNIP.bind(this),
+    validateInn(...args) {
+      return mustBeINNIP.call(ORGANIZATION_VALIDATIONS_PARAMS.ip, args);
+    },
   },
   ul: {
     maxLengthINN: 10,
     maxLengthOGRN: 13,
     weightsForCheckNumINN: [2, 4, 10, 3, 5, 9, 4, 6, 8, 0],
-    validateInn: mustBeINNUL.bind(this),
+    validateInn(...args) {
+      return mustBeINNUL.call(ORGANIZATION_VALIDATIONS_PARAMS.ul, args);
+    },
   },
-  [null]: {
+  null: {
     maxLengthINN: 12,
     maxLengthOGRN: 15,
     validateInn(...args) {
