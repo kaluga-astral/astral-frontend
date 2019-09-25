@@ -1,7 +1,12 @@
 import { ERROR_MESSAGE } from '../mustBeINN';
-import mustBeINNIP from './mustBeINNIP';
+import mustBeINNIPValidation from './mustBeINNIP';
+import { ORGANIZATION_VALIDATIONS_PARAMS } from '../constants';
 
 describe('mustBeIPINN', () => {
+  let mustBeINNIP;
+  beforeEach(() => {
+    mustBeINNIP = mustBeINNIPValidation.bind(ORGANIZATION_VALIDATIONS_PARAMS.ip);
+  });
   it('должна возвращать сообщение об ошибке если value < 12 символов', () => {
     const value = new Array(11).fill('1').join('');
 

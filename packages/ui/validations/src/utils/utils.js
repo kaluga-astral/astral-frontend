@@ -3,7 +3,6 @@ export const getArrayDigitsOfValue = value => Array.from(value, Number);
 export const removeSpecialCharacters = value => value.replace(/\D/g, '');
 
 export function calcCheckNumForINN(digitsOfvalue, weights) {
-  console.log(this, 'Подсчет сумм ИНН');
   const checkSum = digitsOfvalue.reduce((sum, digit, i) => sum + digit * weights[i], 0);
   const checkNum = checkSum % 11;
 

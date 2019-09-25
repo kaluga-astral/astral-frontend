@@ -6,23 +6,9 @@ import { ORGANIZATION_VALIDATIONS_PARAMS } from '@astral-frontend/validations/sr
 import TextField from '../TextField';
 
 const INNField = ({ noValidate, organizationType, ...props }) => {
-  // const {
-  //   validate,
-  //   validationParams: { maxLength },
-  // } = React.useMemo(() => {
-  //   console.log(organizationType, ORGANIZATION_VALIDATIONS_PARAMS[organizationType]);
-  //   const { validateInn, ...validationParams } = ORGANIZATION_VALIDATIONS_PARAMS[organizationType];
-
-  //   return {
-  //     validate: validateInn.bind(validationParams),
-  //     validationParams,
-  //   };
-  // }, [organizationType]);
   const { validateInn: validate, ...validationParams } = ORGANIZATION_VALIDATIONS_PARAMS[
     organizationType
   ];
-
-  // console.log(validate, maxLength);
 
   return (
     <TextField

@@ -1,3 +1,5 @@
+/* eslint-disable react/no-this-in-sfc */
+/* eslint-disable max-len */
 import { ERROR_MESSAGE } from '../mustBeINN';
 import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
 
@@ -6,8 +8,6 @@ import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
  * @param {string} value
  */
 function mustBeINNIP(value) {
-  console.log(this, 'Ip');
-
   const isINNLengthValid = getArrayDigitsOfValue(value).length === this.maxLengthINN;
 
   const isINNCheckNumForElevenCharValid = calcCheckNumForINN(getArrayDigitsOfValue(value), this.weightsForCheckNumINN.elevenChars)

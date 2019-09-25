@@ -1,6 +1,11 @@
-import mustBeINN, { ERROR_MESSAGE } from './mustBeINN';
+import mustBeINNValidation, { ERROR_MESSAGE } from './mustBeINN';
+import { ORGANIZATION_VALIDATIONS_PARAMS } from '../constants';
 
 describe('mustBeINN', () => {
+  let mustBeINN;
+  beforeEach(() => {
+    mustBeINN = mustBeINNValidation.bind(ORGANIZATION_VALIDATIONS_PARAMS);
+  });
   it('должна возвращать сообщение об ошибке если value < 10 символов', () => {
     const value = new Array(9).fill('1').join();
 
