@@ -1,6 +1,9 @@
 import mustBeINNIP from './mustBeINNIP';
 import mustBeINNUL from './mustBeINNUL';
 import mustBeINN from './mustBeINN';
+import mustBeOGRNIP from './mustBeOGRNIP';
+import mustBeOGRNUL from './mustBeOGRNUL';
+import mustBeOGRN from './mustBeOGRN';
 
 // TODO: оставить в @astral-frontend/validations только константы и их экспортировать
 // eslint-disable-next-line import/prefer-default-export
@@ -15,6 +18,9 @@ export const ORGANIZATION_VALIDATIONS_PARAMS = {
     validateInn(...args) {
       return mustBeINNIP.call(ORGANIZATION_VALIDATIONS_PARAMS.ip, args);
     },
+    validateOgrn(...args) {
+      return mustBeOGRNIP.call(ORGANIZATION_VALIDATIONS_PARAMS.ip, args);
+    },
   },
   ul: {
     maxLengthINN: 10,
@@ -23,12 +29,18 @@ export const ORGANIZATION_VALIDATIONS_PARAMS = {
     validateInn(...args) {
       return mustBeINNUL.call(ORGANIZATION_VALIDATIONS_PARAMS.ul, args);
     },
+    validateOrgn(...args) {
+      return mustBeOGRNUL.call(ORGANIZATION_VALIDATIONS_PARAMS.ul, args);
+    },
   },
   null: {
     maxLengthINN: 12,
     maxLengthOGRN: 15,
     validateInn(...args) {
       return mustBeINN.call(ORGANIZATION_VALIDATIONS_PARAMS, args);
+    },
+    validateOgrn(...args) {
+      return mustBeOGRN.call(ORGANIZATION_VALIDATIONS_PARAMS, args);
     },
   },
 };
