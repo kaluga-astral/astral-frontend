@@ -11,11 +11,12 @@ const FormGrid = ({
 
 FormGrid.defaultProps = {
   className: null,
+  component: 'form',
 };
 
 FormGrid.propTypes = {
   className: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string, PropTypes.func]).isRequired,
+  component: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string, PropTypes.func]),
   classes: PropTypes.shape().isRequired,
 };
 

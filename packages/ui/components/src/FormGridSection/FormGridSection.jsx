@@ -2,15 +2,36 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { withStyles } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
 
 import FormGridSectionContext from './FormGridSectionContext';
 import FormGridSectionTitle from './FormGridSectionTitle';
 import Collapse from '../Collapse';
 
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      display: 'flex',
+      '&:not(:last-child)': {
+        marginBottom: '45px',
+      },
+    },
+    icon: {
+      marginRight: '20px',
+      fill: theme.palette.grey[600],
+    },
+    main: {
+      flexGrow: 1,
+    },
+    content: {},
+  }),
+  { name: 'FormGridSection' },
+);
+
 const FormGridSection = ({
-  collapsable, Icon, title, children, classes, className, ...props
+  collapsable, Icon, title, children, className, ...props
 }) => {
+  const classes = useStyles();
   const [collapsed, setCollapsed] = React.useState(false);
   const renderChildren = () => {
     if (collapsable) {
@@ -45,20 +66,6 @@ FormGridSection.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  classes: PropTypes.shape().isRequired,
 };
 
-export default withStyles(theme => ({
-  root: {
-    display: 'flex',
-    margin: '45px 0px 45px',
-  },
-  icon: {
-    marginRight: '20px',
-    fill: theme.palette.grey[600],
-  },
-  main: {
-    flexGrow: 1,
-  },
-  content: {},
-}))(FormGridSection);
+export default FormGridSection;

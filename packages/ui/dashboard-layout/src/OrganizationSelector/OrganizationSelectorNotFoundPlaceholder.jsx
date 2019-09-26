@@ -25,6 +25,7 @@ const OrganizationSelectorNotFoundPlaceholder = ({
     </Link>
   </div>
 );
+
 OrganizationSelectorNotFoundPlaceholder.defaultProps = {
   className: null,
 };
@@ -60,7 +61,6 @@ export default withStyles({
   },
   text: {
     width: '222px',
-    height: '66px',
     fontSize: '12px',
     lineHeight: '16px',
     textAlign: 'center',

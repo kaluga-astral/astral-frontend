@@ -10,6 +10,7 @@ const useStyles = makeStyles(
       alignSelf: props => props.alignSelf,
       flexGrow: props => props.grow,
       flexShrink: props => props.shrink,
+      flexBasis: props => props.basis,
     },
   },
   {
@@ -19,7 +20,7 @@ const useStyles = makeStyles(
 
 const FlexItem = (props) => {
   const {
-    className, component: Component, grow, shrink, alignSelf, ...other
+    className, component: Component, grow, shrink, basis, alignSelf, ...other
   } = props;
   const classes = useStyles(props);
 
@@ -31,6 +32,7 @@ FlexItem.defaultProps = {
   component: 'div',
   grow: 0,
   shrink: 1,
+  basis: 'auto',
   alignSelf: 'auto',
 };
 
@@ -59,6 +61,7 @@ FlexItem.propTypes = {
   ]),
   grow: PropTypes.number,
   shrink: PropTypes.number,
+  basis: PropTypes.string,
 };
 
 export default FlexItem;

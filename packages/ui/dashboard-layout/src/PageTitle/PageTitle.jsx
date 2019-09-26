@@ -10,6 +10,7 @@ const useStyles = makeStyles(
     root: {
       margin: '0 0 0 15px',
       fontSize: '18px',
+      whiteSpace: 'nowrap',
     },
   }),
   { name: 'DashboardLayoutPageTitle' },
