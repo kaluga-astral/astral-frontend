@@ -3,7 +3,7 @@ import React from 'react';
 import { ORGANIZATION_VALIDATIONS_PARAMS } from '@astral-frontend/validations/src/constants';
 import TextField from '../TextField';
 
-const INNField = ({ noValidate, organizationType, ...props }) => {
+const INNField = ({ organizationType, ...props }) => {
   const { validateInn: validate, ...validationParams } = ORGANIZATION_VALIDATIONS_PARAMS[
     organizationType
   ];
@@ -12,14 +12,13 @@ const INNField = ({ noValidate, organizationType, ...props }) => {
     <TextField
       inputProps={{ maxLength: validationParams.maxLengthINN }}
       parse={value => value.replace(/[^\d]/g, '')}
-      validate={!noValidate && validate}
+      validate={validate}
       {...props}
     />
   );
 };
 
 INNField.defaultProps = {
-  noValidate: false,
   name: 'inn',
   label: 'ИНН',
   placeholder: null,
@@ -27,7 +26,6 @@ INNField.defaultProps = {
 };
 
 INNField.propTypes = {
-  noValidate: PropTypes.bool,
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
