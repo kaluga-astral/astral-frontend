@@ -29,11 +29,11 @@ const useStyles = makeStyles(theme => ({
     transform: 'scale(0.8)',
     transition: 'all 0.3s ease-in-out',
   },
-  iconDownloaded: {
+  downloadedIcon: {
     color: theme.palette.primary.main,
     transform: 'scale(1)',
   },
-  iconError: {
+  errorIcon: {
     color: theme.palette.error.main,
   },
   fab: {
@@ -71,9 +71,9 @@ const IconTableCell = ({
       ) : (
         <div className={classes.content}>
           {error ? (
-            <ErrorIcon className={classes.iconError} />
+            <ErrorIcon className={classes.errorIcon} />
           ) : (
-            <Icon className={cn(classes.icon, { [classes.iconDownloaded]: !loading })} />
+            <Icon className={cn(classes.icon, { [classes.downloadedIcon]: !loading })} />
           )}
           {loading && !error ? (
             <div className={classes.progressWrapper}>
