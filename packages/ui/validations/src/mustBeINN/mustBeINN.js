@@ -1,3 +1,4 @@
+/* eslint-disable react/no-this-in-sfc */
 import mustBeINNIP from '../mustBeINNIP';
 import mustBeINNUL from '../mustBeINNUL';
 
