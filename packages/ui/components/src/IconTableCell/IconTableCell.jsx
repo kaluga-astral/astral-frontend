@@ -54,28 +54,31 @@ const IconTableCell = ({
 }) => {
   const classes = useStyles();
   const { hovered: tableRowHovered } = React.useContext(TableRowContext);
+  const shouldRenderSlectorBeRendered = (tableRowHovered || selected) && !loading;
+  const renderIcon = () => (error ? (
+    <ErrorIcon className={classes.errorIcon} />
+  ) : (
+    <Icon className={cn(classes.icon, { [classes.downloadedIcon]: !loading })} />
+  ));
+  const renderProgress = () => loading && (
+  <div className={classes.progressWrapper}>
+    <CircularProgress
+      size={36}
+      className={classes.progress}
+      variant={percentCompleted ? 'static' : 'indeterminate'}
+      value={percentCompleted}
+    />
+  </div>
+  );
 
   return (
     <TableCell align="center">
-      {(tableRowHovered || selected) && !loading ? (
+      {shouldRenderSlectorBeRendered ? (
         <div className={classes.content}>{renderSelector({ selected, onChange })}</div>
       ) : (
         <div className={classes.content}>
-          {error ? (
-            <ErrorIcon className={classes.errorIcon} />
-          ) : (
-            <Icon className={cn(classes.icon, { [classes.downloadedIcon]: !loading })} />
-          )}
-          {loading && !error ? (
-            <div className={classes.progressWrapper}>
-              <CircularProgress
-                size={36}
-                className={classes.progress}
-                variant={percentCompleted ? 'static' : 'indeterminate'}
-                value={percentCompleted}
-              />
-            </div>
-          ) : null}
+          {renderIcon()}
+          {renderProgress()}
         </div>
       )}
     </TableCell>
