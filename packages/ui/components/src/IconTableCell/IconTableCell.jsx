@@ -36,15 +36,6 @@ const useStyles = makeStyles(theme => ({
   errorIcon: {
     color: theme.palette.error.main,
   },
-  fab: {
-    minHeight: '20px',
-    width: '20px',
-    height: '20px',
-    backgroundColor: 'transparent',
-    border: `1px solid ${theme.palette.primary.main}`,
-    boxShadow: 'none',
-    color: theme.palette.primary.main,
-  },
   checkIcon: {
     width: '20px',
     height: '20px',
