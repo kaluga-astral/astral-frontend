@@ -9,8 +9,6 @@ const OGRNField = ({ organizationType, ...props }) => {
     organizationType
   ];
 
-  console.log(organizationType, validate);
-
   return (
     <TextField
       inputProps={{ maxLength: validationParams.maxLengthORGN }}
