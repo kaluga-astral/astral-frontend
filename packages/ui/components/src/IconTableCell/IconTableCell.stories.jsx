@@ -1,35 +1,38 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import SvgIcon from '../SvgIcon';
+import { DocumentIcon } from '@astral-frontend/icons';
 import IconTableCell from './IconTableCell';
 
 storiesOf('IconTableCell', module)
   .add('indeterminateLoading', () => (
     <IconTableCell
-      loading={true}
+      loading
       selected={false}
       error={false}
       percentCompleted={null}
-      Icon={SvgIcon}
-      ErrorIcon={SvgIcon}
-      {/* onChange={handleIconTableCellChange} */}
+      Icon={DocumentIcon}
+      ErrorIcon={DocumentIcon}
     />
   ))
   .add('determinateLoading', () => {
-    let loadingPercent = 1;
-    setInterval(() => loadingPercent = loadingPercent > 90 ? 1 : loadingPercent + 10, 300);
+    const [loadingPercent, setLoadingPercent] = React.useState(10);
+    React.useEffect(() => {
+      setInterval(() => {
+        setLoadingPercent(prevPercent => (prevPercent > 99 ? 0 : prevPercent + 10));
+      }, 300);
+    }, []);
 
     return (
       <IconTableCell
-        loading={true}
+        loading
         selected={false}
         error={false}
-        percentCompleted={null}
-        Icon={SvgIcon}
-        ErrorIcon={SvgIcon}
+        percentCompleted={loadingPercent}
+        Icon={DocumentIcon}
+        ErrorIcon={DocumentIcon}
       />
-    )
+    );
   })
   .add('success', () => (
     <IconTableCell
@@ -37,27 +40,27 @@ storiesOf('IconTableCell', module)
       selected={false}
       error={false}
       percentCompleted={100}
-      Icon={SvgIcon}
-      ErrorIcon={SvgIcon}
+      Icon={DocumentIcon}
+      ErrorIcon={DocumentIcon}
     />
   ))
   .add('error', () => (
     <IconTableCell
       loading={false}
       selected={false}
-      error={true}
+      error
       percentCompleted={null}
-      Icon={SvgIcon}
-      ErrorIcon={SvgIcon}
+      Icon={DocumentIcon}
+      ErrorIcon={DocumentIcon}
     />
   ))
   .add('selected', () => (
     <IconTableCell
       loading={false}
-      selected={true}
+      selected
       error={false}
       percentCompleted={100}
-      Icon={SvgIcon}
-      ErrorIcon={SvgIcon}
+      Icon={DocumentIcon}
+      ErrorIcon={DocumentIcon}
     />
-  ))
+  ));

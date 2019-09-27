@@ -3,6 +3,7 @@ export { default as BackIcon } from './BackIcon';
 export { default as CheckedCircleIcon } from './CheckedCircleIcon';
 export { default as DeleteIcon } from './DeleteIcon';
 export { default as DocumentIcon } from './DocumentIcon';
+export { default as DocumentIconError } from './DocumentIconError';
 export { default as EditIcon } from './EditIcon';
 export { default as SaveIcon } from './SaveIcon';
 export { default as SearchIcon } from './SearchIcon';
