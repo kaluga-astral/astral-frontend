@@ -3,6 +3,7 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@astral-frontend/styles';
 import { CircularProgress } from '@astral-frontend/core';
+import { CrossIcon } from '@astral-frontend/icons';
 import TableCell from '../TableCell';
 import { __Context as TableRowContext } from '../TableRow';
 import IconTableCellDefaultSelector from './IconTableCellDefaultSelector';
@@ -60,12 +61,12 @@ const IconTableCell = ({
   ) : (
     <Icon className={cn(classes.icon, { [classes.downloadedIcon]: !loading })} />
   ));
-  const renderProgress = () => loading && (
+  const renderProgress = () => loading && ErrorIcon && (
   <div className={classes.progressWrapper}>
     <CircularProgress
       size={36}
       className={classes.progress}
-      variant={percentCompleted ? 'static' : 'indeterminate'}
+      variant={percentCompleted === null ? 'indeterminate' : 'static'}
       value={percentCompleted}
     />
   </div>
@@ -88,7 +89,7 @@ const IconTableCell = ({
 IconTableCell.defaultProps = {
   error: null,
   percentCompleted: null,
-  ErrorIcon: null,
+  ErrorIcon: CrossIcon,
   renderSelector: IconTableCellDefaultSelector,
   onChange: null,
 };
@@ -100,6 +101,10 @@ IconTableCell.propTypes = {
   percentCompleted: PropTypes.number,
   Icon: PropTypes.func.isRequired,
   ErrorIcon: PropTypes.func,
+  /*
+   * renderSelector - функция, отвечающая за рендер
+   * селектора, который отобразится, если selected = true
+   */
   renderSelector: PropTypes.func,
   onChange: PropTypes.func,
 };
