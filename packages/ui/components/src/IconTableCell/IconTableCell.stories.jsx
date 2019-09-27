@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { DocumentIcon } from '@astral-frontend/icons';
+import { DocumentIcon, DocumentIconError } from '@astral-frontend/icons';
 import IconTableCell from './IconTableCell';
 
 storiesOf('IconTableCell', module)
@@ -30,7 +30,7 @@ storiesOf('IconTableCell', module)
         error={false}
         percentCompleted={loadingPercent}
         Icon={DocumentIcon}
-        ErrorIcon={DocumentIcon}
+        ErrorIcon={DocumentIconError}
       />
     );
   })
@@ -41,7 +41,7 @@ storiesOf('IconTableCell', module)
       error={false}
       percentCompleted={100}
       Icon={DocumentIcon}
-      ErrorIcon={DocumentIcon}
+      ErrorIcon={DocumentIconError}
     />
   ))
   .add('error', () => (
@@ -51,7 +51,7 @@ storiesOf('IconTableCell', module)
       error
       percentCompleted={null}
       Icon={DocumentIcon}
-      ErrorIcon={DocumentIcon}
+      ErrorIcon={DocumentIconError}
     />
   ))
   .add('selected', () => (
@@ -61,6 +61,6 @@ storiesOf('IconTableCell', module)
       error={false}
       percentCompleted={100}
       Icon={DocumentIcon}
-      ErrorIcon={DocumentIcon}
+      ErrorIcon={DocumentIconError}
     />
   ));

@@ -50,35 +50,38 @@ const IconTableCell = ({
   percentCompleted,
   Icon,
   ErrorIcon,
-  renderSelector,
+  SelectorComponent,
   onChange,
 }) => {
   const classes = useStyles();
   const { hovered: tableRowHovered } = React.useContext(TableRowContext);
   const shouldRenderSlectorBeRendered = (tableRowHovered || selected) && !loading;
-  const renderIcon = () => (error ? (
+  const Selector = () => (error ? (
     <ErrorIcon className={classes.errorIcon} />
   ) : (
     <Icon className={cn(classes.icon, { [classes.downloadedIcon]: !loading })} />
   ));
-  const renderProgress = () => loading && ErrorIcon && (
-  <div className={classes.progressWrapper}>
-    <CircularProgress
-      size={36}
-      className={classes.progress}
-      variant={percentCompleted === null ? 'indeterminate' : 'static'}
-      value={percentCompleted}
-    />
-  </div>
+  const renderProgress = () => loading
+    && ErrorIcon && (
+      <div className={classes.progressWrapper}>
+        <CircularProgress
+          size={36}
+          className={classes.progress}
+          variant={percentCompleted === null ? 'indeterminate' : 'static'}
+          value={percentCompleted}
+        />
+      </div>
   );
 
   return (
     <TableCell align="center">
       {shouldRenderSlectorBeRendered ? (
-        <div className={classes.content}>{renderSelector({ selected, onChange })}</div>
+        <div className={classes.content}>
+          <SelectorComponent selected={selected} onChange={onChange} />
+        </div>
       ) : (
         <div className={classes.content}>
-          {renderIcon()}
+          <Selector />
           {renderProgress()}
         </div>
       )}
@@ -90,7 +93,7 @@ IconTableCell.defaultProps = {
   error: null,
   percentCompleted: null,
   ErrorIcon: CrossIcon,
-  renderSelector: IconTableCellDefaultSelector,
+  SelectorComponent: IconTableCellDefaultSelector,
   onChange: null,
 };
 
@@ -102,10 +105,10 @@ IconTableCell.propTypes = {
   Icon: PropTypes.func.isRequired,
   ErrorIcon: PropTypes.func,
   /*
-   * renderSelector - функция, отвечающая за рендер
-   * селектора, который отобразится, если selected = true
+   * SelectorComponent - компонент, который
+   * отобразится, если selected = true
    */
-  renderSelector: PropTypes.func,
+  SelectorComponent: PropTypes.func,
   onChange: PropTypes.func,
 };
 
