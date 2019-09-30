@@ -55,8 +55,10 @@ const IconTableCell = ({
   const classes = useStyles();
   const { hovered: tableRowHovered } = React.useContext(TableRowContext);
   const shouldSelectorComponentBeRendered = (tableRowHovered || selected) && !loading;
-  const loadingStatus = () => {
+
+  const renderStatus = () => {
     if (error) return <ErrorIcon className={classes.errorIcon} />;
+
     if (loading) {
       return (
         <>
@@ -72,6 +74,7 @@ const IconTableCell = ({
         </>
       );
     }
+
     return <Icon className={cn(classes.icon, { [classes.downloadedIcon]: !loading })} />;
   };
 
@@ -81,7 +84,7 @@ const IconTableCell = ({
         {shouldSelectorComponentBeRendered ? (
           <SelectorComponent selected={selected} onChange={onChange} />
         ) : (
-          loadingStatus()
+          renderStatus()
         )}
       </div>
     </TableCell>
