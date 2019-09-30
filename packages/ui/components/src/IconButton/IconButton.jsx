@@ -66,6 +66,7 @@ const IconButton = ({
     <MuiIconButton
       disabled={disabled || loading || success}
       className={cn(classes.root, className)}
+      {...props}
     >
       {renderChildren()}
     </MuiIconButton>

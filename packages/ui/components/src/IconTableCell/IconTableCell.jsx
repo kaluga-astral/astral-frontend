@@ -92,15 +92,17 @@ const IconTableCell = ({
 };
 
 IconTableCell.defaultProps = {
+  selected: null,
   error: null,
+  loading: null,
   percentCompleted: null,
   SelectorComponent: IconTableCellDefaultSelector,
   onChange: null,
 };
 
 IconTableCell.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  selected: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
+  selected: PropTypes.bool,
   error: PropTypes.instanceOf(Error),
   percentCompleted: PropTypes.number,
   Icon: PropTypes.func.isRequired,
