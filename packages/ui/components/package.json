@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@astral-frontend/core": "^0.1.0",
-    "@astral-frontend/icons": "^0.1.1",
+    "@astral-frontend/icons": "^0.1.0",
     "@astral-frontend/styles": "^0.1.5",
     "@astral-frontend/fonts": "^0.2.0",
     "@bugsnag/plugin-react": "^6.0.0",
