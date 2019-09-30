@@ -3,7 +3,6 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@astral-frontend/styles';
 import { CircularProgress } from '@astral-frontend/core';
-import { CrossIcon } from '@astral-frontend/icons';
 import TableCell from '../TableCell';
 import { __Context as TableRowContext } from '../TableRow';
 import IconTableCellDefaultSelector from './IconTableCellDefaultSelector';
@@ -55,36 +54,39 @@ const IconTableCell = ({
 }) => {
   const classes = useStyles();
   const { hovered: tableRowHovered } = React.useContext(TableRowContext);
-  const shouldRenderSlectorBeRendered = (tableRowHovered || selected) && !loading;
-  const Selector = () => (error ? (
-    <ErrorIcon className={classes.errorIcon} />
-  ) : (
-    <Icon className={cn(classes.icon, { [classes.downloadedIcon]: !loading })} />
-  ));
-  const renderProgress = () => loading
-    && ErrorIcon && (
-      <div className={classes.progressWrapper}>
-        <CircularProgress
-          size={36}
-          className={classes.progress}
-          variant={percentCompleted === null ? 'indeterminate' : 'static'}
-          value={percentCompleted}
-        />
-      </div>
-  );
+  const shouldSelectorComponentBeRendered = (tableRowHovered || selected) && !loading;
+
+  const renderStatus = () => {
+    if (error) return <ErrorIcon className={classes.errorIcon} />;
+
+    if (loading) {
+      return (
+        <>
+          <Icon className={cn(classes.icon, { [classes.downloadedIcon]: !loading })} />
+          <div className={classes.progressWrapper}>
+            <CircularProgress
+              size={36}
+              className={classes.progress}
+              variant={percentCompleted === null ? 'indeterminate' : 'static'}
+              value={percentCompleted}
+            />
+          </div>
+        </>
+      );
+    }
+
+    return <Icon className={cn(classes.icon, { [classes.downloadedIcon]: !loading })} />;
+  };
 
   return (
     <TableCell align="center">
-      {shouldRenderSlectorBeRendered ? (
-        <div className={classes.content}>
+      <div className={classes.content}>
+        {shouldSelectorComponentBeRendered ? (
           <SelectorComponent selected={selected} onChange={onChange} />
-        </div>
-      ) : (
-        <div className={classes.content}>
-          <Selector />
-          {renderProgress()}
-        </div>
-      )}
+        ) : (
+          renderStatus()
+        )}
+      </div>
     </TableCell>
   );
 };
@@ -94,7 +96,6 @@ IconTableCell.defaultProps = {
   error: null,
   loading: null,
   percentCompleted: null,
-  ErrorIcon: CrossIcon,
   SelectorComponent: IconTableCellDefaultSelector,
   onChange: null,
 };
@@ -105,7 +106,7 @@ IconTableCell.propTypes = {
   error: PropTypes.instanceOf(Error),
   percentCompleted: PropTypes.number,
   Icon: PropTypes.func.isRequired,
-  ErrorIcon: PropTypes.func,
+  ErrorIcon: PropTypes.func.isRequired,
   /*
    * SelectorComponent - компонент, который
    * отобразится, если selected = true
