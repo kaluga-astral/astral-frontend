@@ -21,13 +21,15 @@ const ProductsList = ({ products }) => {
 };
 
 ProductsList.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.shape({
-    productIconUrl: PropTypes.string.isRequired,
-    productColor: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    productUrl: PropTypes.string.isRequired,
-    shortDescription: PropTypes.string.isRequired,
-  })).isRequired,
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      iconFileId: PropTypes.string.isRequired,
+      productColor: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      productUrl: PropTypes.string.isRequired,
+      shortDescription: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default ProductsList;

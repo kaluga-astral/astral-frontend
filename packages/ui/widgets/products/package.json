@@ -1,5 +1,6 @@
 {
   "name": "@astral-frontend/widgets/products",
+  "description": "Виджет для отображения списка продуктов, доступных пользователю сервисов Астрала.",
   "version": "0.1.0",
   "main": "./src/index.js",
   "scripts": {
@@ -11,6 +12,7 @@
     "@astral-frontend/styles": "^0.1.0",
     "@astral-frontend/components": "^0.2.0",
     "@astral-frontend/core": "^0.1.3",
+    "@astral-frontend/icons": "^0.1.7",
     "classnames": "^2.2.6",
     "unfetch": "^4.1.0",
     "prop-types": "^15.7.2"

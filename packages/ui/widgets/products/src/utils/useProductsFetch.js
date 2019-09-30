@@ -5,7 +5,7 @@ import { INITIAL_FETCH_STATUS_INFO } from '../constants/status';
 const useProductsFetch = (sourcePath) => {
   const [fetchInfo, setFetchInfo] = useState({
     status: INITIAL_FETCH_STATUS_INFO,
-    response: null,
+    products: [],
     error: null,
   });
 
@@ -43,7 +43,7 @@ const useProductsFetch = (sourcePath) => {
             loading: false,
             success: true,
           },
-          response: jsonResponse,
+          products: jsonResponse.data,
         }));
       }
 

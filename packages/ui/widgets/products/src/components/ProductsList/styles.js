@@ -20,6 +20,7 @@ const useProductsListStyles = makeStyles(() => ({
       // стили для decorArrow
       '&:hover > span': {
         opacity: 1,
+        zIndex: 1,
       },
     },
     '&:last-child': {
@@ -32,6 +33,7 @@ const useProductsListStyles = makeStyles(() => ({
   decorArrow: {
     ...getPopoverArrowStyles(LIST_ITEM_HOVER_BG_COLOR),
     opacity: 0,
+    zIndex: -1,
     transition: 'opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
   },
 }));
@@ -53,7 +55,7 @@ const useProductListItemStyles = makeStyles(theme => ({
     marginRight: 20,
     width: 18,
     height: 18,
-    backgroundColor: ({ productColor }) => productColor,
+    backgroundColor: ({ backgroundHexColor }) => backgroundHexColor,
     borderRadius: '50%',
   },
   name: {
@@ -69,4 +71,8 @@ const useProductListItemStyles = makeStyles(theme => ({
   },
 }));
 
-export { useProductsListStyles, useProductListItemStyles };
+const useEmptyPlaceholderStyles = makeStyles(() => ({
+  container: {},
+}));
+
+export { useProductsListStyles, useProductListItemStyles, useEmptyPlaceholderStyles };

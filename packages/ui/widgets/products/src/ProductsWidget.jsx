@@ -7,20 +7,19 @@ import 'unfetch/polyfill';
 import OpenWidgetButton from './components/OpenWidgetButton';
 import Popover from './components/ProductsPopover';
 
+import { ApiUrlContext } from './contexts';
+
 import useProductsFetch from './utils/useProductsFetch';
 
-import { PRODUCTION_ENV_NAME, DEVELOPMENT_ENV_NAME } from './constants/env';
-import { API_PATHS } from './constants/apiPaths';
-
-const ProductsWidget = ({ environmentName, buttonProps }) => {
-  const [getProducts, fetchProductsInfo] = useProductsFetch(API_PATHS[environmentName]);
+const ProductsWidget = ({ identityApiUrl, buttonProps }) => {
+  const [getProducts, fetchProductsInfo] = useProductsFetch(identityApiUrl);
   const [anchorEl, setAnchorEl] = useState(null);
   const [firstBoot, setFirstBoot] = useState(true);
 
   const open = Boolean(anchorEl);
   const popoverId = open ? 'products-popover' : undefined;
 
-  const onGetProducts = () => {
+  const handleGetProducts = () => {
     const { status } = fetchProductsInfo;
 
     // если поповер открывается в первый раз, то загрузить данные
@@ -35,13 +34,13 @@ const ProductsWidget = ({ environmentName, buttonProps }) => {
   };
 
   const openPopover = (event) => {
-    onGetProducts();
+    handleGetProducts();
 
     setAnchorEl(event.currentTarget);
   };
 
   return (
-    <>
+    <ApiUrlContext.Provider value={{ apiUrl: identityApiUrl }}>
       <OpenWidgetButton
         {...buttonProps}
         id={popoverId}
@@ -54,7 +53,7 @@ const ProductsWidget = ({ environmentName, buttonProps }) => {
         fetchProductsInfo={fetchProductsInfo}
         onClose={closePopover}
       />
-    </>
+    </ApiUrlContext.Provider>
   );
 };
 
@@ -62,13 +61,12 @@ ProductsWidget.defaultProps = {
   buttonProps: {},
 };
 
-// Виджет для отображения списка продуктов, доступных пользователю сервисов Астрала.
 ProductsWidget.propTypes = {
+  identityApiUrl: PropTypes.string.isRequired,
   buttonProps: PropTypes.shape({
     className: PropTypes.string,
     color: PropTypes.oneOf(['primary', 'secondary']),
   }),
-  environmentName: PropTypes.oneOf([DEVELOPMENT_ENV_NAME, PRODUCTION_ENV_NAME]).isRequired,
 };
 
 export default ProductsWidget;

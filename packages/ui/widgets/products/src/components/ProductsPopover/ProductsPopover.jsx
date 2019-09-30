@@ -4,10 +4,9 @@ import { Popper, Fade, ClickAwayListener } from '@astral-frontend/core';
 import { Paper, ContentState } from '@astral-frontend/components';
 
 import ProductsList from '../ProductsList';
+import ErrorPlaceholder from '../ErrorPlaceholder';
 
 import useStyles from './styles';
-
-import { PRODUCTS_STUB } from './stub';
 
 const getPopperMod = arrowRef => ({
   flip: {
@@ -24,10 +23,10 @@ const getPopperMod = arrowRef => ({
 });
 
 const ProductsPopover = ({
-  open, id, anchorEl, onClose,
+  open, id, anchorEl, fetchProductsInfo, onClose,
 }) => {
   const arrowRef = useRef(null);
-  // const { status, error, data: products } = fetchProductsInfo;
+  const { status, error, products } = fetchProductsInfo;
 
   const classes = useStyles();
 
@@ -47,11 +46,12 @@ const ProductsPopover = ({
               <span ref={arrowRef} className={classes.arrow} />
               <Paper className={classes.popoverContainer}>
                 <ContentState
-                  loading={false}
-                  // error={error}
+                  loading={status.loading}
+                  error={error}
                   className={classes.contentState}
+                  FailureStateComponent={ErrorPlaceholder}
                 >
-                  <ProductsList products={PRODUCTS_STUB} />
+                  <ProductsList products={products} />
                 </ContentState>
               </Paper>
             </div>
@@ -71,7 +71,7 @@ ProductsPopover.propTypes = {
   id: PropTypes.string,
   open: PropTypes.bool.isRequired,
   fetchProductsInfo: PropTypes.shape({
-    response: PropTypes.array,
+    products: PropTypes.array,
     error: PropTypes.instanceOf(Error),
     status: PropTypes.object.isRequired,
   }).isRequired,
