@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/forms",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
@@ -10,6 +10,7 @@
   "dependencies": {
     "@astral-frontend/styles": "^0.1.0",
     "@astral-frontend/validations": "^0.1.0",
+    "@astral-frontend/constants": "^0.2.0",
     "downshift": "^3.2.10",
     "final-form": "^4.16.1",
     "lodash-es": "^4.17.11",
