@@ -28,7 +28,12 @@ const itemToString = (item) => {
 };
 
 const FormAddressField = ({
-  inputValueDebounceTimeout, name, validate, placeholder, ...props
+  inputValueDebounceTimeout,
+  name,
+  validate,
+  placeholder,
+  required,
+  ...props
 }) => {
   const classes = useStyles();
   const { input, meta } = useField(name, {
@@ -58,14 +63,15 @@ const FormAddressField = ({
       {({
         getInputProps, getItemProps, getMenuProps, highlightedIndex, isOpen,
       }) => {
-        const error = meta.visited && !meta.valid;
-        const helperText = meta.error && meta.visited ? meta.error : null;
+        const error = meta.invalid && ((required && meta.touched) || (!required && meta.visited));
+        const helperText = error ? meta.error : null;
 
         return (
           <div className={classes.root}>
             <MuiTextField
               type="text"
               fullWidth
+              required={required}
               margin="normal"
               InputProps={getInputProps({
                 placeholder,
@@ -99,6 +105,7 @@ FormAddressField.defaultProps = {
 
     return null;
   },
+  required: false,
 };
 
 FormAddressField.propTypes = {
@@ -106,6 +113,7 @@ FormAddressField.propTypes = {
   validate: PropTypes.func,
   placeholder: PropTypes.string,
   inputValueDebounceTimeout: PropTypes.number,
+  required: PropTypes.bool,
 };
 
 export default FormAddressField;
