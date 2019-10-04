@@ -10,9 +10,7 @@ import SidebarNavItem from '../SidebarNavItem';
 const useStyles = makeStyles(
   theme => ({
     root: {},
-    icon: {
-      fontSize: '20px',
-    },
+    icon: {},
     text: {
       fontSize: '16px',
       fontWeight: theme.typography.fontWeightMedium,
