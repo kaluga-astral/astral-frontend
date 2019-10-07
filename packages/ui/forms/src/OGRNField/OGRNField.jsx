@@ -6,7 +6,7 @@ import { ORGANIZATION_VALIDATIONS_PARAMS } from '@astral-frontend/validations/sr
 import TextField from '../TextField';
 
 const OGRNField = ({ organizationType, ...props }) => {
-  const { validateOgrn: validate, ...validationParams } = ORGANIZATION_VALIDATIONS_PARAMS[
+  const { validateOGRN: validate, ...validationParams } = ORGANIZATION_VALIDATIONS_PARAMS[
     organizationType
   ];
 

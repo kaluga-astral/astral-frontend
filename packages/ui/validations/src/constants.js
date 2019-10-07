@@ -9,37 +9,40 @@ import mustBeOGRN from './mustBeOGRN';
 // TODO: оставить в @astral-frontend/validations только константы и их экспортировать
 export const ORGANIZATION_VALIDATIONS_PARAMS = {
   ip: {
+    labelINN: 'ИНН ИП',
     maxLengthINN: 12,
     maxLengthOGRN: 15,
     weightsForCheckNumINN: {
       elevenChars: [7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0, 0],
       twelveChars: [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0],
     },
-    validateInn(args) {
+    validateINN(args) {
       return mustBeINNIP.call(ORGANIZATION_VALIDATIONS_PARAMS.ip, ...args);
     },
-    validateOgrn(args) {
+    validateOGRN(args) {
       return mustBeOGRNIP.call(ORGANIZATION_VALIDATIONS_PARAMS.ip, ...args);
     },
   },
   ul: {
+    labelINN: 'ИНН ЮЛ',
     maxLengthINN: 10,
     maxLengthOGRN: 13,
     weightsForCheckNumINN: [2, 4, 10, 3, 5, 9, 4, 6, 8, 0],
-    validateInn(args) {
+    validateINN(args) {
       return mustBeINNUL.call(ORGANIZATION_VALIDATIONS_PARAMS.ul, ...args);
     },
-    validateOgrn(args) {
+    validateOGRN(args) {
       return mustBeOGRNUL.call(ORGANIZATION_VALIDATIONS_PARAMS.ul, ...args);
     },
   },
   null: {
+    labelINN: 'ИНН',
     maxLengthINN: 12,
     maxLengthOGRN: 15,
-    validateInn(args) {
+    validateINN(args) {
       return mustBeINN.call(ORGANIZATION_VALIDATIONS_PARAMS, ...args);
     },
-    validateOgrn(args) {
+    validateOGRN(args) {
       return mustBeOGRN.call(ORGANIZATION_VALIDATIONS_PARAMS, ...args);
     },
   },
