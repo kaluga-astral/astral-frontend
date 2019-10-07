@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import mustBeINNIP from './mustBeINNIP';
 import mustBeINNUL from './mustBeINNUL';
 import mustBeINN from './mustBeINN';
@@ -6,7 +7,6 @@ import mustBeOGRNUL from './mustBeOGRNUL';
 import mustBeOGRN from './mustBeOGRN';
 
 // TODO: оставить в @astral-frontend/validations только константы и их экспортировать
-// eslint-disable-next-line import/prefer-default-export
 export const ORGANIZATION_VALIDATIONS_PARAMS = {
   ip: {
     maxLengthINN: 12,
