@@ -6,12 +6,7 @@ import TextField from '../TextField';
 
 const removeSpaceSymbols = value => value.replace(/\s/g, '');
 
-const InputTextMask = props => (
-  <TextField
-    render={MaskField}
-    {...props}
-  />
-);
+const InputTextMask = props => <TextField render={MaskField} {...props} />;
 
 InputTextMask.defaultProps = {
   label: null,
@@ -23,9 +18,7 @@ InputTextMask.defaultProps = {
 
 InputTextMask.propTypes = {
   mask: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp)]),
-    ),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp)])),
     PropTypes.func,
   ]).isRequired,
   label: PropTypes.string,
