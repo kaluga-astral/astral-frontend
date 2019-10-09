@@ -5,6 +5,7 @@ import { Paper, ContentState } from '@astral-frontend/components';
 
 import ProductsList from '../ProductsList';
 import ErrorPlaceholder from '../ErrorPlaceholder';
+import EmptyPlaceholder from '../EmptyPlaceholder';
 
 import useStyles from './styles';
 
@@ -27,6 +28,7 @@ const ProductsPopover = ({
 }) => {
   const arrowRef = useRef(null);
   const { status, error, products } = fetchProductsInfo;
+  const noResult = products.length === 0;
 
   const classes = useStyles();
 
@@ -48,10 +50,9 @@ const ProductsPopover = ({
                 <ContentState
                   loading={status.loading}
                   error={error}
-                  className={classes.contentState}
                   FailureStateComponent={ErrorPlaceholder}
                 >
-                  <ProductsList products={products} />
+                  {noResult ? <EmptyPlaceholder /> : <ProductsList products={products} />}
                 </ContentState>
               </Paper>
             </div>

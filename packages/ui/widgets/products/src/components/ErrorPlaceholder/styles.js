@@ -12,6 +12,7 @@ export default makeStyles(theme => ({
   messageContainer: {
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   errorIcon: {
     marginRight: 9,

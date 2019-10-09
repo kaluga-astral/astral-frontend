@@ -14,7 +14,4 @@ export default makeStyles(() => ({
     borderRadius: 2,
     boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
   },
-  contentState: {
-    margin: 'auto',
-  },
 }));

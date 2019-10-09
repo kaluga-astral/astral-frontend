@@ -11,11 +11,11 @@ import ProductsWidget, { DEVELOPMENT_ENV_NAME } from './index';
 
 ```
 propTypes: {
+  identityApiUrl: PropTypes.string.isRequired,
   buttonProps: PropTypes.shape({
     className: PropTypes.string,
     color: PropTypes.oneOf(['primary', 'secondary']),
   }),
-  environmentName: PropTypes.oneOf(['development', 'production']).isRequired,
 };
 ```
 
@@ -32,10 +32,10 @@ propTypes: {
 ## Basic code
 
 ```
-import ProductsWidget, { DEVELOPMENT_ENV_NAME, PRODUCTION_ENV_NAME } from '@astral-frontend/widgets/products';
+import ProductsWidget from '@astral-frontend/widgets/products';
 
 ...
-    <ProductsWidget environmentName={DEVELOPMENT_ENV_NAME} />
+    <ProductsWidget identityApiUrl="http://identity.astral-dev.net/api/Products/Widget" />
 ...
 
 ```

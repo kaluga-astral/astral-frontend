@@ -1,14 +1,19 @@
 import React from 'react';
 
-import { useEmptyPlaceholderStyles } from '../ProductsList/styles';
+import useStyles from './styles';
+
+import emptyPlaceholderImg from '../../../public/empty-placeholder-img.svg';
 
 const ProductsListEmptyPlaceholder = () => {
-  const classes = useEmptyPlaceholderStyles();
+  const classes = useStyles();
 
   return (
-    <p className={classes.container}>
-      Нет доступных продуктов
-    </p>
+    <div className={classes.container}>
+      <img src={emptyPlaceholderImg} className={classes.image} alt="Нет результатов" />
+      <p className={classes.message}>
+        Нет подключенных продуктов
+      </p>
+    </div>
   );
 };
 
