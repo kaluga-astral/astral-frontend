@@ -49,6 +49,7 @@ const makeServer = () => {
         // ws: true,
         logLevel: 'debug',
         target: 'http://localhost:8080/',
+        changeOrigin: true,
       }),
     );
 
