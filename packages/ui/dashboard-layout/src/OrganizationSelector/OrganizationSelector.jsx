@@ -28,6 +28,7 @@ const useStyles = makeStyles(
     },
     popperPaper: {
       maxHeight: '325px',
+      maxWidth: '300px',
       overflowY: 'auto',
       boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.09)',
     },

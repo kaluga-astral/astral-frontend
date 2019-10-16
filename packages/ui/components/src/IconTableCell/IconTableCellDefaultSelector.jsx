@@ -3,7 +3,7 @@ import React from 'react';
 
 import Checkbox from '../Checkbox';
 
-const SelectableTableCellDefaultSelector = ({ selected, onChange }) => (
+const IconTableCellDefaultSelector = ({ selected, onChange }) => (
   <Checkbox
     checked={selected}
     onClick={(e) => {
@@ -13,9 +13,9 @@ const SelectableTableCellDefaultSelector = ({ selected, onChange }) => (
   />
 );
 
-SelectableTableCellDefaultSelector.propTypes = {
+IconTableCellDefaultSelector.propTypes = {
   selected: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
-export default SelectableTableCellDefaultSelector;
+export default IconTableCellDefaultSelector;

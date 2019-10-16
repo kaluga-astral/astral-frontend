@@ -49,6 +49,7 @@ export default withStyles(theme => ({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
+    textAlign: 'right',
   },
   avatar: {
     width: '40px',

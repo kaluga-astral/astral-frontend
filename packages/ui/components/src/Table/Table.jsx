@@ -1,9 +1,30 @@
-export { Table as default } from '@astral-frontend/core';
+import cn from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Table as MuiTable } from '@astral-frontend/core';
+import { makeStyles } from '@astral-frontend/styles';
 
-// TODO: указание table-layout
+const useStyles = makeStyles(() => ({
+  root: {
+    tableLayout: props => props.tableLayout,
+  },
+}));
 
-// import {Table as MuiTable} from '@astral-frontend/core';
+const Table = (props) => {
+  const { tableLayout, className, ...rootProps } = props;
+  const classes = useStyles(props);
 
-// const Table = () => {
-//   <MuiTable />
-// }
+  return <MuiTable className={cn(className, classes.root)} {...rootProps} />;
+};
+
+Table.defaultProps = {
+  tableLayout: null,
+  className: null,
+};
+
+Table.propTypes = {
+  tableLayout: PropTypes.oneOf(['auto', 'fixed', 'inherit']),
+  className: PropTypes.string,
+};
+
+export default Table;
