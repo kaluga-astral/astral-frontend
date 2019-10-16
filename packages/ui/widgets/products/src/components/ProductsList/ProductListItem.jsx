@@ -5,6 +5,8 @@ import { ApiUrlContext } from '../../contexts';
 
 import { useProductListItemStyles } from './styles';
 
+import { getFileServiceUrl } from '../../utils/url';
+
 const ProductListItem = ({
   iconFileId, backgroundHexColor, name, productUrl, shortDescription,
 }) => {
@@ -15,7 +17,7 @@ const ProductListItem = ({
     <a className={classes.container} href={productUrl}>
       <img
         className={classes.icon}
-        src={`${apiUrl}/files/${iconFileId}`}
+        src={`${getFileServiceUrl(apiUrl)}/${iconFileId}`}
         alt={`Иконка продукта ${name}`}
       />
       <div>

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
+import { getProductsUrl } from './url';
+
 import { INITIAL_FETCH_STATUS_INFO } from '../constants/status';
 
-const useProductsFetch = (sourcePath) => {
+const useProductsFetch = (identityApiUrl) => {
   const [fetchInfo, setFetchInfo] = useState({
     status: INITIAL_FETCH_STATUS_INFO,
     products: [],
@@ -31,7 +33,7 @@ const useProductsFetch = (sourcePath) => {
     }));
 
     try {
-      const sourceResponse = await fetch(sourcePath);
+      const sourceResponse = await fetch(getProductsUrl(identityApiUrl));
 
       if (sourceResponse.ok) {
         const jsonResponse = await sourceResponse.json();

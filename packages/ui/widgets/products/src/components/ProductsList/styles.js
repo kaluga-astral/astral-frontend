@@ -71,8 +71,4 @@ const useProductListItemStyles = makeStyles(theme => ({
   },
 }));
 
-const useEmptyPlaceholderStyles = makeStyles(() => ({
-  container: {},
-}));
-
-export { useProductsListStyles, useProductListItemStyles, useEmptyPlaceholderStyles };
+export { useProductsListStyles, useProductListItemStyles };
