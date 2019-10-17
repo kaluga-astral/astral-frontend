@@ -46,8 +46,8 @@ export default withStyles(
     },
     title: {
       flexGrow: 1,
-      fontSize: '18px',
-      lineHeight: '32px',
+      fontSize: theme.typography.pxToRem(18),
+      lineHeight: theme.typography.pxToRem(32),
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',

@@ -30,7 +30,7 @@ DashboardSidebarProfileItem.propTypes = {
   text: PropTypes.string.isRequired,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   root: {
     marginBottom: '10px',
     height: 'auto',
@@ -43,6 +43,6 @@ export default withStyles({
   },
   text: {
     fontWeight: '300',
-    fontSize: '15px',
+    fontSize: theme.typography.pxToRem(15),
   },
-})(DashboardSidebarProfileItem);
+}))(DashboardSidebarProfileItem);

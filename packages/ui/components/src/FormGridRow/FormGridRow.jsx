@@ -14,7 +14,7 @@ const useStyles = makeStyles(
     },
     title: {
       margin: '0 0 5px 0',
-      fontSize: '14px',
+      fontSize: theme.typography.pxToRem(14),
       color: theme.palette.text.primary,
     },
   }),

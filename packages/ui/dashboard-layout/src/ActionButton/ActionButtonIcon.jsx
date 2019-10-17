@@ -19,9 +19,9 @@ DashboardLayoutActionButtonIcon.propTypes = {
 };
 
 export default withStyles(
-  () => ({
+  theme => ({
     root: {
-      fontSize: '32px',
+      fontSize: theme.typography.pxToRem(32),
       margin: '0 15px',
     },
   }),

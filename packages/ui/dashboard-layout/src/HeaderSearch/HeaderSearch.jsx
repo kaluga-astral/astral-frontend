@@ -19,7 +19,7 @@ const useStyles = makeStyles(
     },
     icon: {
       position: 'absolute',
-      fontSize: '20px',
+      fontSize: theme.typography.pxToRem(20),
       margin: '0 20px',
     },
   }),

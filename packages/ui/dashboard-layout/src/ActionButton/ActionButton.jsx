@@ -38,7 +38,7 @@ export default withStyles(
       padding: '0 20px',
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
-      fontSize: '14px',
+      fontSize: theme.typography.pxToRem(14),
       justifyContent: 'flex-start',
       '&>:first-child': {
         marginLeft: 0,

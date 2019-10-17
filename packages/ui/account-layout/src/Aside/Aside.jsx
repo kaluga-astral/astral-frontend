@@ -69,13 +69,13 @@ export default withStyles(theme => ({
   },
   productName: {
     margin: 0,
-    lineHeight: '40px',
+    lineHeight: theme.typography.pxToRem(40),
     fontWeight: 300,
-    fontSize: '30px',
+    fontSize: theme.typography.pxToRem(30),
   },
   productDescription: {
     margin: '10px 0 0 0',
-    lineHeight: '16px',
-    fontSize: '14px',
+    lineHeight: theme.typography.pxToRem(16),
+    fontSize: theme.typography.pxToRem(14),
   },
 }))(AccountAside);

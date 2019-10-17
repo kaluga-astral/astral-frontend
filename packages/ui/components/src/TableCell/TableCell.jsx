@@ -11,7 +11,7 @@ const useStyles = makeStyles(
     },
     head: {
       padding: '20px 20px 20px 16px',
-      fontSize: '12px',
+      fontSize: theme.typography.pxToRem(12),
       fontWeight: theme.typography.fontWeightBold,
     },
   }),
