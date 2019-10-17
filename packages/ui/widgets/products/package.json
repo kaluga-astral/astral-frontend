@@ -1,5 +1,5 @@
 {
-  "name": "@astral-frontend/widgets/products",
+  "name": "@astral-frontend/products-widget",
   "description": "Виджет для отображения списка продуктов, доступных пользователю сервисов Астрала.",
   "version": "0.1.0",
   "main": "./src/index.js",
