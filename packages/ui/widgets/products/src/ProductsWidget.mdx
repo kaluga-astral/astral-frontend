@@ -1,0 +1,41 @@
+---
+menu: widgets
+name: products
+---
+
+import { Props, Playground } from 'docz';
+import ProductsWidget from './index';
+
+# Products widget
+Виджет для отображения списка продуктов, доступных пользователю сервисов Астрала.
+
+```
+propTypes: {
+  identityApiUrl: PropTypes.string.isRequired,
+  buttonProps: PropTypes.shape({
+    className: PropTypes.string,
+    color: PropTypes.oneOf(['primary', 'secondary']),
+  }),
+};
+```
+
+<Props of={ProductsWidget} />
+
+## Basic usage
+
+<Playground>
+  <div style={{ backgroundColor: '#0067DD' }}>
+    <ProductsWidget identityApiUrl="http://identity.astral-dev.net/api" />
+  </div>
+</Playground>
+
+## Basic code
+
+```
+import ProductsWidget from '@astral-frontend/widgets/products';
+
+...
+    <ProductsWidget identityApiUrl="http://identity.astral-dev.net/api" />
+...
+
+```

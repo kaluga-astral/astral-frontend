@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgIcon } from '@astral-frontend/components';
+import { SvgIcon } from '@astral-frontend/core';
 
 const DocumentIconError = props => (
   <SvgIcon viewBox="0 0 24 24" {...props}>
