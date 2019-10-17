@@ -1,4 +1,8 @@
+const { resolve } = require('path');
+
 const fs = require('fs');
+
+const npmrcPath = resolve(__dirname, '..', '..', '.npmrc');
 
 module.exports = () => {
   const {
@@ -12,5 +16,5 @@ module.exports = () => {
     JSON.stringify({ ...packageData, main: './index.js' }, null, 2),
   );
 
-  fs.createReadStream('../../../.npmrc').pipe(fs.createWriteStream('./lib/.npmrc'));
+  fs.createReadStream(npmrcPath).pipe(fs.createWriteStream('./lib/.npmrc'));
 };
