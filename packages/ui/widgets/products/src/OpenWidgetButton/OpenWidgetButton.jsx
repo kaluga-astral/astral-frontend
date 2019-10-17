@@ -29,8 +29,8 @@ const OpenWidgetButton = ({
 OpenWidgetButton.defaultProps = {
   color: 'primary',
   size: 'medium',
-  id: undefined,
-  className: undefined,
+  id: null,
+  className: null,
 };
 
 OpenWidgetButton.propTypes = {

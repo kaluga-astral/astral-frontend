@@ -64,8 +64,8 @@ const ProductsPopover = ({
 };
 
 ProductsPopover.defaultProps = {
-  id: undefined,
-  anchorEl: undefined,
+  id: null,
+  anchorEl: null,
 };
 
 ProductsPopover.propTypes = {

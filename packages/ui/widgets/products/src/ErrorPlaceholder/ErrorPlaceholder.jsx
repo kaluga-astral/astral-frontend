@@ -5,7 +5,7 @@ import { ErrorIcon } from '@astral-frontend/icons';
 
 import useStyles from './styles';
 
-import errorPlaceholderImg from '../../../public/error-placeholder-img.svg';
+import errorPlaceholderImg from './error-placeholder-img.svg';
 
 const ProductsErrorPlaceholder = ({ error }) => {
   const classes = useStyles();

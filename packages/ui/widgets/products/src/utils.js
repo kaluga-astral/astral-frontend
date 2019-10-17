@@ -18,5 +18,7 @@ const getPopoverArrowStyles = color => ({
   },
 });
 
-// eslint-disable-next-line
-export { getPopoverArrowStyles };
+const getProductsUrl = identityApiUrl => `${identityApiUrl}/Products/Widget`;
+const getFileServiceUrl = identityApiUrl => `${identityApiUrl}/Files`;
+
+export { getPopoverArrowStyles, getProductsUrl, getFileServiceUrl };

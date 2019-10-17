@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { ApiUrlContext } from '../../contexts';
+import ApiUrlContext from '../ApiUrlContext';
 
-import { useProductListItemStyles } from './styles';
+import useStyles from './styles';
 
-import { getFileServiceUrl } from '../../utils/url';
+import { getFileServiceUrl } from '../utils';
 
 const ProductListItem = ({
   iconFileId, backgroundHexColor, name, productUrl, shortDescription,
 }) => {
   const { apiUrl } = useContext(ApiUrlContext);
-  const classes = useProductListItemStyles({ backgroundHexColor });
+  const classes = useStyles({ backgroundHexColor });
 
   return (
     <a className={classes.container} href={productUrl}>

@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 // polyfill for fetch
 import 'unfetch/polyfill';
 
-import OpenWidgetButton from './components/OpenWidgetButton';
-import Popover from './components/ProductsPopover';
+import OpenWidgetButton from './OpenWidgetButton';
+import Popover from './ProductsPopover';
 
-import { ApiUrlContext } from './contexts';
+import ApiUrlContext from './ApiUrlContext';
 
-import useProductsFetch from './utils/useProductsFetch';
+import { useProductsFetch } from './hooks';
 
 const ProductsWidget = ({ identityApiUrl, buttonProps }) => {
   const [getProducts, fetchProductsInfo] = useProductsFetch(identityApiUrl);

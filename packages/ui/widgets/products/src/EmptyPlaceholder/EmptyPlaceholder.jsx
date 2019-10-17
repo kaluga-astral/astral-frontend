@@ -2,7 +2,7 @@ import React from 'react';
 
 import useStyles from './styles';
 
-import emptyPlaceholderImg from '../../../public/empty-placeholder-img.svg';
+import emptyPlaceholderImg from './empty-placeholder-img.svg';
 
 const ProductsListEmptyPlaceholder = () => {
   const classes = useStyles();

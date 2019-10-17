@@ -1,8 +1,12 @@
 import { useState } from 'react';
 
-import { getProductsUrl } from './url';
+import { getProductsUrl } from './utils';
 
-import { INITIAL_FETCH_STATUS_INFO } from '../constants/status';
+const INITIAL_FETCH_STATUS_INFO = {
+  loading: true,
+  success: false,
+  fail: false,
+};
 
 const useProductsFetch = (identityApiUrl) => {
   const [fetchInfo, setFetchInfo] = useState({
@@ -58,4 +62,5 @@ const useProductsFetch = (identityApiUrl) => {
   return [fetchSource, fetchInfo];
 };
 
-export default useProductsFetch;
+// eslint-disable-next-line
+export { useProductsFetch };

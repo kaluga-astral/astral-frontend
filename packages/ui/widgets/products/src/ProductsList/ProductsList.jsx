@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useProductsListStyles } from './styles';
+import useStyles from './styles';
 
-import ProductListItem from './ProductListItem';
+import ProductListItem from '../ProductListItem';
 
 const ProductsList = ({ products }) => {
-  const classes = useProductsListStyles();
+  const classes = useStyles();
 
   return (
     <ul className={classes.container}>

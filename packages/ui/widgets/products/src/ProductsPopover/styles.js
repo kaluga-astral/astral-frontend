@@ -1,6 +1,6 @@
 import { makeStyles } from '@astral-frontend/styles';
 
-import { getPopoverArrowStyles } from '../../utils/styles';
+import { getPopoverArrowStyles } from '../utils';
 
 export default makeStyles(() => ({
   arrow: getPopoverArrowStyles('#ffffff'),
