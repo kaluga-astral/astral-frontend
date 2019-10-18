@@ -43,13 +43,13 @@ const useStyles = makeStyles((theme) => {
   };
   const getFontSize = ({ size }) => {
     if (size === 'extraSmall') {
-      return '10px';
+      return theme.typography.pxToRem(10);
     }
     if (size === 'small') {
-      return '12px';
+      return theme.typography.pxToRem(12);
     }
 
-    return '14px';
+    return theme.typography.pxToRem(14);
   };
   const getBackgroundColor = ({ loading, variant }) => {
     const isTextVariant = getIsTextVariant(variant);

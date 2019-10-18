@@ -9,6 +9,7 @@ export default withStyles(
         WebkitFontSmoothing: 'antialiased',
         MozOsxFontSmoothing: 'grayscale',
         boxSizing: 'border-box',
+        fontSize: theme.typography.htmlFontSize,
       },
       'html, body, #root': {
         width: '100vw',

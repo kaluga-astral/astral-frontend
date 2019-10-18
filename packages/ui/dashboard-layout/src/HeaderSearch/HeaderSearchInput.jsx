@@ -12,8 +12,8 @@ const useStyles = makeStyles(
       padding: '15px 15px 15px 60px',
       borderRadius: theme.shape.borderRadius,
       backgroundColor: theme.palette.grey[100],
-      lineHeight: '20px',
-      fontSize: '14px',
+      lineHeight: theme.typography.pxToRem(20),
+      fontSize: theme.typography.pxToRem(14),
     },
   }),
   {

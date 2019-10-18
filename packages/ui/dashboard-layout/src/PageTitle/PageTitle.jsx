@@ -6,10 +6,10 @@ import { FlexItem } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(
-  () => ({
+  theme => ({
     root: {
       margin: '0 0 0 15px',
-      fontSize: '18px',
+      fontSize: theme.typography.pxToRem(18),
       whiteSpace: 'nowrap',
     },
   }),

@@ -133,7 +133,7 @@ export default withStyles(theme => ({
     borderRadius: '50%',
     background: 'inherit',
     textAlign: 'center',
-    fontSize: '14px',
+    fontSize: theme.typography.pxToRem(14),
     fontWeight: 300,
     cursor: 'pointer',
     '&:focus': {
@@ -154,8 +154,8 @@ export default withStyles(theme => ({
   paginationItem: {
     width: '32px',
     height: '32px',
-    lineHeight: '32px',
-    fontSize: '16px',
+    lineHeight: theme.typography.pxToRem(32),
+    fontSize: theme.typography.pxToRem(16),
     fontWeight: 300,
     textAlign: 'center',
   },
@@ -170,7 +170,7 @@ export default withStyles(theme => ({
   paginationActiveLink: {
     borderRadius: '50%',
     fontWeight: 500,
-    fontSize: '16px',
+    fontSize: theme.typography.pxToRem(16),
     color: theme.palette.common.white,
     background: theme.palette.primary.main,
     '&:hover': {

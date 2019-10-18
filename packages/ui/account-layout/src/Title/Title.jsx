@@ -22,7 +22,7 @@ export default withStyles(theme => ({
   root: {
     marginTop: 0,
     fontWeight: 300,
-    fontSize: '30px',
+    fontSize: theme.typography.pxToRem(30),
     color: theme.palette.common.black,
   },
 }))(AccountMainTitle);

@@ -37,7 +37,7 @@ OrganizationSelectorNotFoundPlaceholder.propTypes = {
   addLinkHref: PropTypes.string.isRequired,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   root: {
     width: '270px',
     height: '250px',
@@ -51,8 +51,8 @@ export default withStyles({
     alignItems: 'center',
   },
   link: {
-    fontSize: '10px',
-    lineHeight: '14px',
+    fontSize: theme.typography.pxToRem(10),
+    lineHeight: theme.typography.pxToRem(14),
     color: '#6746EB',
   },
   icon: {
@@ -61,9 +61,9 @@ export default withStyles({
   },
   text: {
     width: '222px',
-    fontSize: '12px',
-    lineHeight: '16px',
+    fontSize: theme.typography.pxToRem(12),
+    lineHeight: theme.typography.pxToRem(16),
     textAlign: 'center',
     color: 'rgba(29, 63, 102, 0.62)',
   },
-})(OrganizationSelectorNotFoundPlaceholder);
+}))(OrganizationSelectorNotFoundPlaceholder);

@@ -45,7 +45,7 @@ export default withStyles(theme => ({
   },
   name: {
     marginRight: '15px',
-    fontSize: '14px',
+    fontSize: theme.typography.pxToRem(14),
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
@@ -58,7 +58,7 @@ export default withStyles(theme => ({
     background: theme.palette.primary.dark,
   },
   avatarIcon: {
-    fontSize: '16px',
+    fontSize: theme.typography.pxToRem(16),
   },
   arrow: {
     width: '12px',

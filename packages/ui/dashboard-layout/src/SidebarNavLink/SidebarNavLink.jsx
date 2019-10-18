@@ -12,7 +12,7 @@ const useStyles = makeStyles(
     root: {},
     icon: {},
     text: {
-      fontSize: '16px',
+      fontSize: theme.typography.pxToRem(16),
       fontWeight: theme.typography.fontWeightMedium,
     },
   }),

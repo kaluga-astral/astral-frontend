@@ -11,11 +11,11 @@ const useStyles = makeStyles(
   theme => ({
     root: {},
     icon: {
-      fontSize: '4px',
+      fontSize: theme.typography.pxToRem(4),
     },
     text: {
       fontWeight: theme.typography.fontWeightRegular,
-      fontSize: '16px',
+      fontSize: theme.typography.pxToRem(16),
     },
   }),
   {

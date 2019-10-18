@@ -19,10 +19,10 @@ const useStyles = makeStyles(
       listStyle: 'none',
     },
     icon: {
-      fontSize: '20px',
+      fontSize: theme.typography.pxToRem(20),
     },
     text: {
-      fontSize: '16px',
+      fontSize: theme.typography.pxToRem(16),
       fontWeight: theme.typography.fontWeightMedium,
     },
   }),

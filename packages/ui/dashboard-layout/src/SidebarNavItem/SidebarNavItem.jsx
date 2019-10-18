@@ -10,7 +10,7 @@ const useStyles = makeStyles(
       alignItems: 'center',
       width: '100%',
       padding: '20px',
-      lineHeight: '20px',
+      lineHeight: theme.typography.pxToRem(20),
       textAlign: 'left',
       textDecoration: 'none',
       color: theme.palette.grey[600],
