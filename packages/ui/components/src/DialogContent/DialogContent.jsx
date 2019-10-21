@@ -4,10 +4,6 @@ import { DialogContent as MuiDialogContent } from '@astral-frontend/core';
 
 const useStyles = makeStyles({
   root: {
-    padding: '32px',
-    '&:not(:last-child) ': {
-      paddingBottom: 0,
-    },
   },
 });
 

@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '20px 32px 0',
   },
   title: {
     margin: 0,
