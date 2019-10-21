@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@astral-frontend/styles": "^0.1.0",
-    "@astral-frontend/components": "^0.2.0",
+    "@astral-frontend/components": "^0.3.0",
     "@astral-frontend/core": "^0.1.3",
     "@astral-frontend/icons": "^0.1.7",
     "classnames": "^2.2.6",
