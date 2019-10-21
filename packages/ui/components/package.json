@@ -14,7 +14,7 @@
     "@astral-frontend/styles": "^0.1.5",
     "@astral-frontend/fonts": "^0.2.0",
     "@bugsnag/plugin-react": "^6.0.0",
-    "@storybook/react": "^5.2",
+    "@storybook/react": "^5.2.4",
     "classnames": "^2.2.6",
     "lodash-es": "^4.17.11",
     "prop-types": "^15.7.2",
