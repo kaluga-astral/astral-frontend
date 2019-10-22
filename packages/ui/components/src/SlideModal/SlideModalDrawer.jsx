@@ -26,7 +26,6 @@ const useStyles = makeStyles(
       paper: {
         position: getContainerPosition,
         width: getWidth,
-        padding: '24px 24px 0',
         boxShadow: '0 5px 20px rgba(0, 0, 0, 0.1)',
         borderLeft: 'none',
       },
