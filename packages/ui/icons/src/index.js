@@ -1,6 +1,5 @@
 export { default as ArrowIcon } from './ArrowIcon';
 export { default as ArrowRightIcon } from './ArrowRightIcon';
-export { default as BackIcon } from './BackIcon';
 export { default as CheckedCircleIcon } from './CheckedCircleIcon';
 export { default as DeleteIcon } from './DeleteIcon';
 export { default as DocumentIcon } from './DocumentIcon';
