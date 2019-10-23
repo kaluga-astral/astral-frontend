@@ -2,7 +2,6 @@ import { debounce, omit } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useField } from 'react-final-form';
-import Downshift from 'downshift';
 
 import { Autocomplete } from '@astral-frontend/components';
 
