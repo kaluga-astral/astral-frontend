@@ -4,20 +4,11 @@ import React from 'react';
 import { useField } from 'react-final-form';
 import Downshift from 'downshift';
 
-import { TextField as MuiTextField } from '@astral-frontend/components';
-import { makeStyles } from '@astral-frontend/styles';
+import { Autocomplete } from '@astral-frontend/components';
 
-import Menu from './AddressFieldMenu';
 import DaDataContext from './DaDataContext';
 
 const INPUT_VALUE_DEBOUNCE_TIMEOUT = 300;
-
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-    position: 'relative',
-  },
-});
 
 const itemToString = (item) => {
   if (!item) {
@@ -35,12 +26,13 @@ const FormAddressField = ({
   required,
   ...props
 }) => {
-  const classes = useStyles();
   const { input, meta } = useField(name, {
     validate,
   });
   const { fetchAddressSuggestions } = React.useContext(DaDataContext);
   const [suggestions, setSuggestions] = React.useState([]);
+  const error = meta.invalid && ((required && meta.touched) || (!required && meta.visited));
+  const helperText = error ? meta.error : null;
   const handleChange = (item) => {
     input.onChange(item);
   };
@@ -54,44 +46,21 @@ const FormAddressField = ({
   );
 
   return (
-    <Downshift
+    <Autocomplete
       selectedItem={input.value}
       itemToString={itemToString}
       onInputValueChange={handleInputValueChange}
       onChange={handleChange}
-    >
-      {({
-        getInputProps, getItemProps, getMenuProps, highlightedIndex, isOpen,
-      }) => {
-        const error = meta.invalid && ((required && meta.touched) || (!required && meta.visited));
-        const helperText = error ? meta.error : null;
-
-        return (
-          <div className={classes.root}>
-            <MuiTextField
-              type="text"
-              fullWidth
-              required={required}
-              margin="normal"
-              InputProps={getInputProps({
-                placeholder,
-                ...omit(input, ['onChange', 'value']),
-              })}
-              error={error}
-              helperText={helperText}
-              {...props}
-            />
-            <Menu
-              isOpen={isOpen}
-              getMenuProps={getMenuProps}
-              getItemProps={getItemProps}
-              highlightedIndex={highlightedIndex}
-              suggestions={suggestions}
-            />
-          </div>
-        );
+      suggestions={suggestions}
+      required={required}
+      error={error}
+      helperText={helperText}
+      InputProps={{
+        placeholder,
+        ...omit(input, ['onChange', 'value']),
       }}
-    </Downshift>
+      {...props}
+    />
   );
 };
 

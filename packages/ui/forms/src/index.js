@@ -7,7 +7,6 @@ export {
    */
   Field as FinalFormField,
 } from 'react-final-form';
-
 export { default as AddressField } from './AddressField';
 export { default as DateField } from './DateField';
 export { default as EmailField } from './EmailField';
