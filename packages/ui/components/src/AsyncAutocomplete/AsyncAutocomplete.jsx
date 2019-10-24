@@ -6,7 +6,7 @@ import Autocomplete from '../Autocomplete';
 
 const INPUT_VALUE_DEBOUNCE_TIMEOUT = 300;
 
-const AsyncAutocomplete = ({ fetchSuggestions, inputValueDebounceTimeout }) => {
+const AsyncAutocomplete = ({ fetchSuggestions, inputValueDebounceTimeout, ...props }) => {
   const [suggestions, setSuggestions] = React.useState([]);
   const handleInputValueChange = React.useCallback(
     debounce((inputValue) => {
@@ -17,7 +17,13 @@ const AsyncAutocomplete = ({ fetchSuggestions, inputValueDebounceTimeout }) => {
     [],
   );
 
-  return <Autocomplete onInputValueChange={handleInputValueChange} suggestions={suggestions} />;
+  return (
+    <Autocomplete
+      {...props}
+      onInputValueChange={handleInputValueChange}
+      suggestions={suggestions}
+    />
+  );
 };
 
 AsyncAutocomplete.defaultProps = {

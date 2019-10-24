@@ -88,7 +88,8 @@ Autocomplete.defaultProps = {
 
 Autocomplete.propTypes = {
   suggestions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  selectedItem: PropTypes.shape({}),
+  // eslint-disable-next-line react/forbid-prop-types
+  selectedItem: PropTypes.any,
   itemToString: PropTypes.func.isRequired,
   onInputValueChange: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
