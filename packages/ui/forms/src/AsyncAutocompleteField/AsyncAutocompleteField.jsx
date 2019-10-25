@@ -34,14 +34,8 @@ const AsyncAutocompleteField = ({
 
 AsyncAutocompleteField.defaultProps = {
   InputProps: null,
-  validate: (value) => {
-    if (value && !value.locality) {
-      return 'Необходимо указать город или населенный пункт';
-    }
-
-    return null;
-  },
   required: false,
+  validate: null,
 };
 
 AsyncAutocompleteField.propTypes = {
