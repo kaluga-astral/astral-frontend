@@ -64,11 +64,11 @@ const Autocomplete = ({
                 return (
                   <MenuItem
                     {...itemProps}
-                    key={suggestion.unrestrictedValue}
+                    key={suggestion.key}
                     selected={selected}
                     component="div"
                   >
-                    {suggestion.unrestrictedValue}
+                    {suggestion.label}
                   </MenuItem>
                 );
               })}

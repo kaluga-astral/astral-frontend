@@ -11,21 +11,23 @@ const AsyncAutocompleteField = ({
   const { input, meta } = useField(name, {
     validate,
   });
+  const [selectedItem, setSelectedItem] = React.useState(input.value);
   const error = meta.invalid && ((required && meta.touched) || (!required && meta.visited));
   const helperText = error ? meta.error : null;
   const handleChange = (item) => {
-    input.onChange(item);
+    setSelectedItem(item);
+    input.onChange(item.value);
   };
 
   return (
     <AsyncAutocomplete
       {...props}
-      selectedItem={input.value}
+      selectedItem={selectedItem}
       error={error}
       helperText={helperText}
       InputProps={{
         ...InputProps,
-        ...omit(input, ['onChange', 'value']),
+        ...omit(input, ['value', 'onChange']),
       }}
       onChange={handleChange}
     />
