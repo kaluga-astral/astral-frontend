@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     margin: 0,
-    paddingBottom: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
     flexGrow: 1,
     fontStyle: 'bold',
     color: theme.palette.gray[900],
