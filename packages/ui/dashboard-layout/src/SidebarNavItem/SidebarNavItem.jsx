@@ -8,19 +8,13 @@ const useStyles = makeStyles(
     root: {
       display: 'flex',
       alignItems: 'center',
-      width: '100%',
       padding: '20px',
       lineHeight: theme.typography.pxToRem(20),
       textAlign: 'left',
       textDecoration: 'none',
       color: theme.palette.grey[600],
-      '&$active': {
-        color: theme.palette.primary.main,
-        borderRight: '3px solid',
-        borderRightColor: theme.palette.primary.main,
-      },
+      margin: '0 10px',
     },
-    active: {},
     icon: {
       display: 'flex',
       alignItems: 'center',
@@ -40,8 +34,8 @@ const useStyles = makeStyles(
 
 const DashboardLayoutSidebarNavItem = React.forwardRef(
   ({
-    className, component: Component, Icon, Text, ...props
-  }, ref) => {
+ className, component: Component, Icon, Text, ...props 
+}, ref) => {
     const classes = useStyles();
 
     return (
@@ -68,7 +62,11 @@ DashboardLayoutSidebarNavItem.defaultProps = {
 
 DashboardLayoutSidebarNavItem.propTypes = {
   className: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string, PropTypes.func]).isRequired,
+  component: PropTypes.oneOfType([
+    PropTypes.shape(),
+    PropTypes.string,
+    PropTypes.func,
+  ]).isRequired,
   Icon: PropTypes.func.isRequired,
   Text: PropTypes.func.isRequired,
 };

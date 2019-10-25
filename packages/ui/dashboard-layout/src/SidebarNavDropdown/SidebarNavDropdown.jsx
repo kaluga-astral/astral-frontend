@@ -14,9 +14,11 @@ const useStyles = makeStyles(
   theme => ({
     root: {},
     list: {
-      padding: 0,
-      margin: 0,
+      padding: '0 0 15px 0',
+      margin: '0 10px',
       listStyle: 'none',
+      backgroundColor: theme.palette.primary.light,
+      borderRadius: '0 0 4px 4px',
     },
     icon: {
       fontSize: theme.typography.pxToRem(20),
@@ -32,7 +34,11 @@ const useStyles = makeStyles(
 );
 
 const DashboardLayoutSidebarNavDropdown = ({
-  className, Icon, text, children, location,
+  className,
+  Icon,
+  text,
+  children,
+  location,
 }) => {
   const classes = useStyles();
   const id = React.useMemo(() => nanoid(), []);
@@ -70,12 +76,21 @@ const DashboardLayoutSidebarNavDropdown = ({
     <li className={cn(classes.root, className)}>
       <SidebarNavItem
         expanded={expanded}
-        Icon={iconProps => <Icon className={cn(classes.icon, iconProps.className)} />}
-        Text={textProps => <div className={cn(classes.text, textProps.className)}>{text}</div>}
+        Icon={iconProps => (
+          <Icon className={cn(classes.icon, iconProps.className)} />
+        )}
+        Text={textProps => (
+          <div className={cn(classes.text, textProps.className)}>{text}</div>
+        )}
         component={SidebarNavDropdownToggler}
         onToggle={handleSidebarNavItemToggle}
       />
-      <Collapse unmountOnExit in={expanded} component={List} className={classes.list}>
+      <Collapse
+        unmountOnExit
+        in={expanded}
+        component={List}
+        className={classes.list}
+      >
         {children}
       </Collapse>
     </li>

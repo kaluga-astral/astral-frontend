@@ -1,23 +1,9 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutSidebar = ({ classes, className, children }) => (
-  <aside className={cn(classes.root, className)}>{children}</aside>
-);
-
-DashboardLayoutSidebar.defaultProps = {
-  className: null,
-};
-
-DashboardLayoutSidebar.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
-
-export default withStyles(
+const useStyles = makeStyles(
   theme => ({
     root: {
       display: 'flex',
@@ -29,4 +15,22 @@ export default withStyles(
     },
   }),
   { name: 'DashboardLayoutSidebar' },
-)(DashboardLayoutSidebar);
+);
+
+const DashboardLayoutSidebar = ({ className, children }) => {
+  const classes = useStyles();
+
+  return <aside className={cn(classes.root, className)}>{children}</aside>;
+};
+
+DashboardLayoutSidebar.defaultProps = {
+  className: null,
+};
+
+DashboardLayoutSidebar.propTypes = {
+  classes: PropTypes.shape({}).isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
+
+export default DashboardLayoutSidebar;

@@ -9,7 +9,14 @@ import SidebarNavItem from '../SidebarNavItem';
 
 const useStyles = makeStyles(
   theme => ({
-    root: {},
+    root: {
+      borderLeft: `2px solid ${theme.palette.primary.light}`,
+      marginLeft: '26px',
+    },
+    active: {
+      color: theme.palette.primary.main,
+      borderLeft: `2px solid ${theme.palette.primary.main}`,
+    },
     icon: {
       fontSize: theme.typography.pxToRem(4),
     },
@@ -23,22 +30,37 @@ const useStyles = makeStyles(
   },
 );
 
-const DashboardLayoutSidebarNavDropdownItemComponent = React.forwardRef((componentProps, ref) => (
-  <NavLink {...componentProps} ref={ref} />
-));
+const DashboardLayoutSidebarNavDropdownItemComponent = React.forwardRef(
+  (componentProps, ref) => <NavLink {...componentProps} ref={ref} />,
+);
 
-const DashboardLayoutSidebarNavDropdownItem = ({ className, text, ...props }) => {
+const DashboardLayoutSidebarNavDropdownItem = ({
+  className,
+  text,
+  ...props
+}) => {
+  const [iconState, setIconState] = React.useState(false);
+  if (!iconState) {
+    props.Icon = null;
+  }
   const classes = useStyles();
 
   return (
-    <li className={cn(classes.root, className)}>
+    <li>
       <SidebarNavItem
+        activeClassName={classes.active}
+        className={cn(classes.root, className)}
         Icon={iconProps => (
-          <SvgIcon viewBox="0 0 4 4" className={cn(classes.icon, iconProps.className)}>
+          <SvgIcon
+            viewBox="0 0 4 4"
+            className={cn(classes.icon, iconProps.className)}
+          >
             <circle cx="2" cy="2" r="2" fill="currentColor" />
           </SvgIcon>
         )}
-        Text={textProps => <div className={cn(classes.text, textProps.className)}>{text}</div>}
+        Text={textProps => (
+          <div className={cn(classes.text, textProps.className)}>{text}</div>
+        )}
         component={DashboardLayoutSidebarNavDropdownItemComponent}
         {...props}
       />
