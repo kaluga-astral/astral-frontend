@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -8,26 +9,36 @@ import DialogContext from './DialogContext';
 
 const useStyles = makeStyles({
   paper: {
-    borderRadius: '2px',
+    borderRadius: '4px',
   },
 });
 
-const Dialog = ({ onClose, open, ...props }) => {
-  const classes = useStyles();
+const Dialog = (props) => {
+  const {
+    open, className, onClose, ...rootProps
+  } = props;
+  const classes = useStyles(props);
 
   return (
     <DialogContext.Provider value={{ onClose }}>
-      <MuiDialog {...props} open={open} classes={classes} onClose={onClose} />
+      <MuiDialog
+        open={open}
+        className={cn(className, classes.paper)}
+        onClose={onClose}
+        {...rootProps}
+      />
     </DialogContext.Provider>
   );
 };
 
 Dialog.defaultProps = {
   open: false,
+  className: null,
 };
 
 Dialog.propTypes = {
   open: PropTypes.bool,
+  className: PropTypes.string,
   onClose: PropTypes.func.isRequired,
 };
 
