@@ -24,6 +24,7 @@ const AsyncAutocompleteField = ({
       {...props}
       selectedItem={selectedItem}
       error={error}
+      required={required}
       helperText={helperText}
       InputProps={{
         ...InputProps,

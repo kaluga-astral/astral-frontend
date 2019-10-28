@@ -9,7 +9,7 @@ const itemToString = (item) => {
     return '';
   }
 
-  return item.unrestrictedValue;
+  return item.label;
 };
 
 const FormAddressField = ({ ...props }) => {
