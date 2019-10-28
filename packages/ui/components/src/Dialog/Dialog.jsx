@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -6,28 +7,38 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import DialogContext from './DialogContext';
 
-const useStyles = makeStyles({
-  paper: {
-    borderRadius: '2px',
+const useStyles = makeStyles(theme => ({
+  root: {
+    borderRadius: theme.spacing(1),
   },
-});
+}));
 
-const Dialog = ({ onClose, open, ...props }) => {
-  const classes = useStyles();
+const Dialog = (props) => {
+  const {
+    open, className, onClose, ...rootProps
+  } = props;
+  const classes = useStyles(props);
 
   return (
     <DialogContext.Provider value={{ onClose }}>
-      <MuiDialog {...props} open={open} classes={classes} onClose={onClose} />
+      <MuiDialog
+        open={open}
+        className={cn(className, classes.root)}
+        onClose={onClose}
+        {...rootProps}
+      />
     </DialogContext.Provider>
   );
 };
 
 Dialog.defaultProps = {
   open: false,
+  className: null,
 };
 
 Dialog.propTypes = {
   open: PropTypes.bool,
+  className: PropTypes.string,
   onClose: PropTypes.func.isRequired,
 };
 

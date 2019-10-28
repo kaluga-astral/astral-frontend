@@ -25,14 +25,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const DialogTitle = ({
-  children, className, ...props
-}) => {
-  const classes = useStyles();
+const DialogTitle = (props) => {
+  const {
+    className, children, ...rootProps
+  } = props;
+  const classes = useStyles(props);
   const { onClose } = useContext(__Context);
 
   return (
-    <MuiDialogTitle {...props} className={cn(classes.root, className)} disableTypography>
+    <MuiDialogTitle className={cn(classes.root, className)} {...rootProps} disableTypography>
       <h1 className={classes.title}>{children}</h1>
       <IconButton onClick={onClose}>
         <CrossIcon className={classes.icon} />
@@ -46,8 +47,8 @@ DialogTitle.defaultProps = {
 };
 
 DialogTitle.propTypes = {
-  children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default DialogTitle;
