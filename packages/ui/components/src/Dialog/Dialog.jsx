@@ -7,11 +7,11 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import DialogContext from './DialogContext';
 
-const useStyles = makeStyles({
-  paper: {
-    borderRadius: '4px',
+const useStyles = makeStyles(theme => ({
+  root: {
+    borderRadius: theme.spacing(1),
   },
-});
+}));
 
 const Dialog = (props) => {
   const {
@@ -23,7 +23,7 @@ const Dialog = (props) => {
     <DialogContext.Provider value={{ onClose }}>
       <MuiDialog
         open={open}
-        className={cn(className, classes.paper)}
+        className={cn(className, classes.root)}
         onClose={onClose}
         {...rootProps}
       />
