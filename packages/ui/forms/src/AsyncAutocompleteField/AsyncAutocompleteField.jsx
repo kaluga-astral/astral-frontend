@@ -5,6 +5,14 @@ import { useField } from 'react-final-form';
 
 import { AsyncAutocomplete } from '@astral-frontend/components';
 
+const itemToString = (item) => {
+  if (!item) {
+    return '';
+  }
+
+  return item.label;
+};
+
 const AsyncAutocompleteField = ({
   name, validate, required, InputProps, ...props
 }) => {
@@ -36,12 +44,14 @@ const AsyncAutocompleteField = ({
 };
 
 AsyncAutocompleteField.defaultProps = {
+  itemToString,
   InputProps: null,
   required: false,
   validate: null,
 };
 
 AsyncAutocompleteField.propTypes = {
+  itemToString: PropTypes.func,
   name: PropTypes.string.isRequired,
   validate: PropTypes.func,
   InputProps: PropTypes.shape({}),

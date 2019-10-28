@@ -4,12 +4,20 @@ import React from 'react';
 import AsyncAutocompleteField from '../AsyncAutocompleteField';
 import DaDataContext from './DaDataContext';
 
+const validate = (value) => {
+  if (value && !value.locality) {
+    return 'Необходимо указать город или населенный пункт';
+  }
+
+  return null;
+};
+
 const itemToString = (item) => {
   if (!item) {
     return '';
   }
 
-  return item.label;
+  return item.label || item.unrestrictedValue;
 };
 
 const FormAddressField = ({ ...props }) => {
@@ -18,20 +26,14 @@ const FormAddressField = ({ ...props }) => {
   return (
     <AsyncAutocompleteField
       {...props}
-      fetchSuggestions={fetchAddressSuggestions}
       itemToString={itemToString}
+      fetchSuggestions={fetchAddressSuggestions}
     />
   );
 };
 
 FormAddressField.defaultProps = {
-  validate: (value) => {
-    if (value && !value.locality) {
-      return 'Необходимо указать город или населенный пункт';
-    }
-
-    return null;
-  },
+  validate,
 };
 
 FormAddressField.propTypes = {
