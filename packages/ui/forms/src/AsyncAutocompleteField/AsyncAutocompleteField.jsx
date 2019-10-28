@@ -27,6 +27,10 @@ const AsyncAutocompleteField = ({
     input.onChange(item.value);
   };
 
+  React.useEffect(() => {
+    setSelectedItem(input.value);
+  }, [JSON.stringify(input.value)]);
+
   return (
     <AsyncAutocomplete
       {...props}
