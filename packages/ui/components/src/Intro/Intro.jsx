@@ -1,3 +1,4 @@
+import { isNumber } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -25,35 +26,44 @@ const Intro = ({
   };
 
   React.useEffect(() => {
-    const tooltip = document.getElementsByClassName('introjs-tooltip')[0];
-    if (tooltip) {
-      const content = document.createElement('div');
-      content.classList.add('introjs-tooltipcontent');
-      tooltip.appendChild(content);
+    if (open) {
+      const tooltip = document.getElementsByClassName('introjs-tooltip')[0];
+      if (tooltip) {
+        const content = document.createElement('div');
+        content.classList.add('introjs-tooltipcontent');
+        tooltip.appendChild(content);
+      }
     }
-  }, []);
+  }, [open]);
+
+  React.useEffect(() => {
+    setCurrentStep(initialStep);
+  }, [initialStep]);
 
   React.useEffect(() => {
     const { introJs } = stepsRef.current;
-    introJs.goToStep(currentStep + 1);
-    ReactDOM.render(
-      <ThemeProvider theme={theme}>
-        <TooltipContent
-          title={steps[currentStep].title}
-          text={steps[currentStep].intro}
-          currentStep={currentStep}
-          stepsLength={steps.length}
-          onPrevStepIconClick={handlePrevStepIconClick}
-          onNextStepIconClick={handleNextStepIconClick}
-          onExitButtonClick={onComplete}
-        />
-      </ThemeProvider>,
-      contentRef.current[0],
-    );
-  }, [currentStep]);
+    if (introJs && open && isNumber(currentStep)) {
+      introJs.goToStep(currentStep + 1);
+      ReactDOM.render(
+        <ThemeProvider theme={theme}>
+          <TooltipContent
+            title={steps[currentStep].title}
+            text={steps[currentStep].intro}
+            currentStep={currentStep}
+            stepsLength={steps.length}
+            onPrevStepIconClick={handlePrevStepIconClick}
+            onNextStepIconClick={handleNextStepIconClick}
+            onExitButtonClick={onComplete}
+          />
+        </ThemeProvider>,
+        contentRef.current[0],
+      );
+    }
+  }, [currentStep, stepsRef.current, open]);
 
   return (
     <Steps
+      open={open}
       initialStep={initialStep}
       steps={steps}
       ref={stepsRef}
