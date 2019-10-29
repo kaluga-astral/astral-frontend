@@ -5,6 +5,8 @@ import { useField } from 'react-final-form';
 
 import { AsyncAutocomplete } from '@astral-frontend/components';
 
+import { createValidationFunction } from '../utils';
+
 const itemToString = (item) => {
   if (!item) {
     return '';
@@ -16,8 +18,12 @@ const itemToString = (item) => {
 const AsyncAutocompleteField = ({
   name, validate, required, InputProps, ...props
 }) => {
-  const { input, meta } = useField(name, {
+  const validationFunction = React.useMemo(() => createValidationFunction(required, validate), [
+    required,
     validate,
+  ]);
+  const { input, meta } = useField(name, {
+    validate: validationFunction,
   });
   const [selectedItem, setSelectedItem] = React.useState(input.value);
   const error = meta.invalid && ((required && meta.touched) || (!required && meta.visited));
