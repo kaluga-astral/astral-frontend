@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'flex-start',
     marginTop: theme.spacing(6),
     marginBottom: theme.spacing(6),
-    paddingRight: theme.spacing(4),
+    paddingRight: theme.spacing(12),
     paddingLeft: theme.spacing(3),
     wordBreak: 'break-all',
     borderBottom: `1px solid ${theme.palette.primary.light}`,
@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     margin: 0,
-    paddingBottom: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
     flexGrow: 1,
     fontStyle: 'bold',
     color: theme.palette.gray[900],
