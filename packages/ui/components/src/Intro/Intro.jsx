@@ -11,12 +11,15 @@ import ThemeProvider from '../ThemeProvider';
 import TooltipContent from './TooltipContent';
 import './theme.css';
 
+const CONTENT_CLASS_NAME = 'introjs-tooltipcontent';
+const TOOLTIP_CLASS_NAME = 'introjs-tooltip';
+
 const Intro = ({
   initialStep, steps, open, onChange, onComplete, options,
 }) => {
   const theme = useTheme();
   const stepsRef = React.useRef({});
-  const contentRef = React.useRef(document.getElementsByClassName('introjs-tooltipcontent'));
+  const contentRef = React.useRef(document.getElementsByClassName(CONTENT_CLASS_NAME));
   const [currentStep, setCurrentStep] = React.useState(initialStep);
   const handlePrevStepIconClick = () => {
     setCurrentStep(prevCurrentStep => prevCurrentStep - 1);
@@ -27,10 +30,10 @@ const Intro = ({
 
   React.useEffect(() => {
     if (open) {
-      const tooltip = document.getElementsByClassName('introjs-tooltip')[0];
+      const tooltip = document.getElementsByClassName(TOOLTIP_CLASS_NAME)[0];
       if (tooltip) {
         const content = document.createElement('div');
-        content.classList.add('introjs-tooltipcontent');
+        content.classList.add(CONTENT_CLASS_NAME);
         tooltip.appendChild(content);
       }
     }
