@@ -1,0 +1,49 @@
+---
+menu: components
+name: Intro
+---
+
+import { Playground, Props } from 'docz';
+
+import Intro from './Intro';
+import IntroExample from './Intro.docz';
+
+# Itro
+
+<Props of={Intro} />
+
+## Basic code
+
+```
+const IntroExample = () => {
+  const [open, setOpen] = useState(true);
+
+  const handleComplete = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <div id="1">1</div>
+      <div id="2">2</div>
+      <div id="3">3</div>
+      <Intro
+        open={open}
+        steps={[
+          {element: '#1', intro: 'Описание первого шага', title: 'Заголовок первого шага'},
+          {element: '#2', intro: 'Описание второго шага', title: 'Заголовок второго шага'},
+          {element: '#3', intro: 'Описание третьего шага', title: 'Заголовок третьего шага'},
+        ]}
+        onComplete={handleComplete}
+      />
+    </>
+  );
+};
+```
+
+## Example
+
+<Playground>
+  <IntroExample />
+</Playground>
+

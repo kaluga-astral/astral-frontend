@@ -50,6 +50,7 @@ export { default as IconTableCell } from './IconTableCell';
 export { default as InputAdornment } from './InputAdornment';
 export { default as InputBase } from './InputBase';
 export { default as InputLabel } from './InputLabel';
+export { default as Intro } from './Intro';
 export { default as LinearProgress } from './LinearProgress';
 export { default as List } from './List';
 export { default as ListItem } from './ListItem';
