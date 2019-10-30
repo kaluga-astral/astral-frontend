@@ -84,16 +84,25 @@ const Autocomplete = ({
 Autocomplete.defaultProps = {
   selectedItem: null,
   InputProps: null,
+  itemToString: (item) => {
+    if (!item) {
+      return '';
+    }
+
+    return item.label;
+  },
 };
 
 Autocomplete.propTypes = {
-  suggestions: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.node.isRequired,
-    key: PropTypes.string.isRequired,
-  })).isRequired,
+  suggestions: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.node.isRequired,
+      key: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   selectedItem: PropTypes.any,
-  itemToString: PropTypes.func.isRequired,
+  itemToString: PropTypes.func,
   onInputValueChange: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   InputProps: PropTypes.shape({}),

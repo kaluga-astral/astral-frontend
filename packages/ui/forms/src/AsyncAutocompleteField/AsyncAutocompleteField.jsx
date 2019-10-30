@@ -7,14 +7,6 @@ import { AsyncAutocomplete } from '@astral-frontend/components';
 
 import { createValidationFunction } from '../utils';
 
-const itemToString = (item) => {
-  if (!item) {
-    return '';
-  }
-
-  return item.label;
-};
-
 // TODO: #28099
 const AsyncAutocompleteField = ({
   name, validate, required, InputProps, ...props
@@ -51,7 +43,7 @@ const AsyncAutocompleteField = ({
 };
 
 AsyncAutocompleteField.defaultProps = {
-  itemToString,
+  itemToString: null,
   InputProps: null,
   required: false,
   validate: null,
