@@ -3,7 +3,6 @@ const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const WebpackDeepScopeAnalysisPlugin = require('webpack-deep-scope-plugin').default;
@@ -17,21 +16,6 @@ module.exports = merge(commonConfig, {
   mode: 'production',
 
   devtool: 'hidden-source-map',
-
-  module: {
-    strictExportPresence: true,
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          'css-loader',
-        ],
-      },
-    ],
-  },
 
   plugins: [
     new HtmlWebpackPlugin({
@@ -73,11 +57,6 @@ module.exports = merge(commonConfig, {
     }),
     new BrotliPlugin(),
     new WebpackDeepScopeAnalysisPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name].[chunkhash].css',
-      chunkFilename: '[id].[chunkhash].css',
-      ignoreOrder: false,
-    }),
     new OptimizeCSSAssetsPlugin({}),
   ],
 });

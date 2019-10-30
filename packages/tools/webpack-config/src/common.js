@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const getPaths = require('./utils/getPaths');
 
@@ -27,7 +28,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+        ],
       },
       {
         test: /\.jsx?$/,
@@ -85,6 +91,11 @@ module.exports = {
   plugins: [
     new webpack.EnvironmentPlugin({
       RELEASE_STAGE,
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[chunkhash].css',
+      chunkFilename: '[id].[chunkhash].css',
+      ignoreOrder: false,
     }),
   ],
 
