@@ -43,7 +43,7 @@ const AsyncAutocompleteField = ({
 };
 
 AsyncAutocompleteField.defaultProps = {
-  itemToString: null,
+  itemToString: undefined,
   InputProps: null,
   required: false,
   validate: null,
