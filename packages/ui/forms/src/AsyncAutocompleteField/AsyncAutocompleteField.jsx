@@ -19,7 +19,7 @@ const itemToString = (item) => {
 const AsyncAutocompleteField = ({
   name, validate, required, InputProps, ...props
 }) => {
-  const validationFunction = React.useMemo(() => createValidationFunction(required, validate), [
+  const validationFunction = React.useCallback(createValidationFunction(required, validate), [
     required,
     validate,
   ]);
@@ -55,6 +55,7 @@ AsyncAutocompleteField.defaultProps = {
   InputProps: null,
   required: false,
   validate: null,
+  inputValueDebounceTimeout: null,
 };
 
 AsyncAutocompleteField.propTypes = {
@@ -63,6 +64,8 @@ AsyncAutocompleteField.propTypes = {
   validate: PropTypes.func,
   InputProps: PropTypes.shape({}),
   required: PropTypes.bool,
+  inputValueDebounceTimeout: PropTypes.number,
+  fetchSuggestions: PropTypes.func.isRequired,
 };
 
 export default AsyncAutocompleteField;
