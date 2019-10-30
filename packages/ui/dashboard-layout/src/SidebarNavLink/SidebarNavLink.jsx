@@ -19,7 +19,7 @@ const useStyles = makeStyles(
       color: theme.palette.primary.main,
       backgroundColor: theme.palette.primary.light,
       borderRadius: '4px',
-      margin: '0 10px',
+      margin: '0 5px',
     },
   }),
   {

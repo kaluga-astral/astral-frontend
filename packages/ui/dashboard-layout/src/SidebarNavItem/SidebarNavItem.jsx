@@ -3,28 +3,42 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
+import LayoutContext from '../LayoutContext';
+import SidebarContext from '../SidebarContext';
+
 const useStyles = makeStyles(
   theme => ({
     root: {
       display: 'flex',
       alignItems: 'center',
-      padding: '20px',
+      justifyContent: 'flex-start',
+      padding: '20px 10px 20px 20px',
       lineHeight: theme.typography.pxToRem(20),
       textAlign: 'left',
       textDecoration: 'none',
       color: theme.palette.grey[600],
-      margin: '0 10px',
+      margin: '0 5px',
     },
     icon: {
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       flexShrink: 0,
       marginRight: '15px',
       width: '32px',
     },
+    collapsedIcon: {
+      margin: 0,
+      '&:hover': {
+        borderRadius: '4px',
+        backgroundColor: theme.palette.primary.light,
+      },
+    },
     text: {
       flexGrow: 1,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      maxHeight: '20px',
     },
   }),
   {
@@ -37,20 +51,23 @@ const DashboardLayoutSidebarNavItem = React.forwardRef(
  className, component: Component, Icon, Text, ...props 
 }, ref) => {
     const classes = useStyles();
+    const { isSidebarOpen } = React.useContext(LayoutContext);
+    const { isTransitioning } = React.useContext(SidebarContext);
 
     return (
-      <Component
-        ref={ref}
-        className={cn(classes.root, className)}
-        activeClassName={classes.active}
-        {...props}
-      >
+      <Component ref={ref} className={cn(classes.root, className)} {...props}>
         {Icon && (
-          <div className={classes.icon}>
+          <div
+            className={cn(classes.icon, {
+              [classes.collapsedIcon]: isSidebarOpen,
+            })}
+          >
             <Icon />
           </div>
         )}
-        <Text className={classes.text} />
+        {!isTransitioning && isSidebarOpen ? (
+          <Text className={classes.text} />
+        ) : null}
       </Component>
     );
   },

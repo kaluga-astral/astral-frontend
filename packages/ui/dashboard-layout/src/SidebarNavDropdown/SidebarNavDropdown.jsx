@@ -15,12 +15,14 @@ const useStyles = makeStyles(
     root: {},
     list: {
       padding: '0 0 15px 0',
-      margin: '0 10px',
+      margin: '0 5px',
       listStyle: 'none',
       backgroundColor: theme.palette.primary.light,
       borderRadius: '0 0 4px 4px',
     },
     icon: {
+      width: '24px',
+      height: '24px',
       fontSize: theme.typography.pxToRem(20),
     },
     text: {

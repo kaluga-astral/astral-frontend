@@ -13,11 +13,18 @@ import {
 import { makeStyles } from '@astral-frontend/styles';
 
 import Item from './Item';
+import LayoutContext from '../LayoutContext';
+import SidebarContext from '../SidebarContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    display: 'flex',
+    justifyContent: 'flex-start',
     borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
     width: '260px',
+  },
+  collapsedButton: {
+    width: '70px',
   },
   toggler: {
     display: 'flex',
@@ -28,7 +35,6 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     width: '40px',
     height: '40px',
-    marginRight: '15px',
     fontSize: theme.typography.pxToRem(18),
     color: theme.palette.common.white,
     background: theme.palette.primary.dark,
@@ -38,6 +44,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: theme.typography.pxToRem(14),
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    marginLeft: '15px',
   },
   popperPaper: {
     minWidth: '175px',
@@ -54,6 +61,7 @@ const DashboardLayoutCurrentUserInfo = ({
 }) => {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { isSidebarOpen } = React.useContext(LayoutContext);
   const classes = useStyles();
   const buttonRef = React.createRef();
   const handleTogglerButtonClick = (event) => {
@@ -66,9 +74,17 @@ const DashboardLayoutCurrentUserInfo = ({
       setOpen(false);
     }
   };
+  const { isTransitioning } = React.useContext(SidebarContext);
 
   return (
-    <div {...props} className={cn(classes.root, className)}>
+    <div
+      {...props}
+      className={cn(
+        classes.root,
+        { [classes.collapsedButton]: !isSidebarOpen },
+        className,
+      )}
+    >
       <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
         <div>
           <ButtonBase
@@ -79,7 +95,9 @@ const DashboardLayoutCurrentUserInfo = ({
             <Avatar className={classes.avatar} src={avatarSrc}>
               {avatarAlt}
             </Avatar>
-            <div className={classes.userName}>{userName}</div>
+            {!isTransitioning && isSidebarOpen ? (
+              <div className={classes.userName}>{userName}</div>
+            ) : null}
           </ButtonBase>
           <Popper placement="top" transition open={open} anchorEl={anchorEl}>
             {({ TransitionProps }) => (
