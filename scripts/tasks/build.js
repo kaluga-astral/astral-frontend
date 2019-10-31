@@ -1,9 +1,9 @@
 const shell = require('shelljs');
 const copy = require('recursive-copy');
 
-const copyFonts = () => {
+const copyAssets = () => {
   copy('./src', './lib', {
-    filter: ['**/*.woff2', '**/*.otf', '**/*.ttf', '**/*.woff'],
+    filter: ['**/*.woff2', '**/*.otf', '**/*.ttf', '**/*.woff', '**/*.css'],
     overwrite: true,
     expand: true,
     dot: true,
@@ -17,10 +17,9 @@ const copyFonts = () => {
 
 module.exports = () => {
   const { code } = shell.exec('babel ./src --out-dir ./lib --ignore "**/*.percy.jsx"');
-
   if (code !== 0) {
     shell.exit(code);
   }
 
-  copyFonts();
+  copyAssets();
 };
