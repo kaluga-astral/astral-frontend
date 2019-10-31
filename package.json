@@ -24,6 +24,7 @@
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.6",
     "core-js": "^3.2.1",
+    "css-loader": "3.2.0",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "eslint": "^5.16.0",
@@ -34,6 +35,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
+    "style-loader": "1.0.0",
     "webpack": "^4.35.0"
   }
 }
