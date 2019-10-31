@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const WebpackDeepScopeAnalysisPlugin = require('webpack-deep-scope-plugin').default;
 
@@ -56,5 +57,6 @@ module.exports = merge(commonConfig, {
     }),
     new BrotliPlugin(),
     new WebpackDeepScopeAnalysisPlugin(),
+    new OptimizeCSSAssetsPlugin({}),
   ],
 });
