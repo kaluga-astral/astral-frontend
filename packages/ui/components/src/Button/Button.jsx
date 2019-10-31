@@ -129,6 +129,7 @@ const useStyles = makeStyles((theme) => {
       fontWeight: theme.typography.fontWeightBold,
       backgroundColor: getBackgroundColor,
       color: getColor,
+      transition: 'background .25s ease-out',
       '&:hover': {
         backgroundColor: getHoverBackgroundColor,
       },
