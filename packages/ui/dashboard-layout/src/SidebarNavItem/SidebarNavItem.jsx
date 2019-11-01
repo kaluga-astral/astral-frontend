@@ -26,7 +26,7 @@ const useStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'flex-start',
       flexShrink: 0,
-      marginRight: `${theme.spacing(1)}px`,
+      marginRight: `${theme.spacing(4)}px`,
     },
     collapsedIcon: {
       margin: 0,
