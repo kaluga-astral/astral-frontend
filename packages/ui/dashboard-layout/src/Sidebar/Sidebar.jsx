@@ -2,6 +2,7 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
+import { FlexContainer } from '@astral-frontend/components';
 
 import LayoutContext from '../LayoutContext';
 import SidebarContext from '../SidebarContext';
@@ -9,9 +10,6 @@ import SidebarContext from '../SidebarContext';
 const useStyles = makeStyles(
   theme => ({
     root: {
-      display: 'flex',
-      flexDirection: 'column',
-      flexShrink: 0,
       width: '260px',
       height: '100%',
       backgroundColor: theme.palette.background.paper,
@@ -19,14 +17,15 @@ const useStyles = makeStyles(
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
+      '&$collapsed': {
+        width: '70px',
+        transition: theme.transitions.create(['width'], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+      },
     },
-    sidebar: {
-      width: '70px',
-      transition: theme.transitions.create(['width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
+    collapsed: {},
   }),
   { name: 'DashboardLayoutSidebar' },
 );
@@ -47,14 +46,15 @@ const DashboardLayoutSidebar = ({ className, children }) => {
 
   return (
     <SidebarContext.Provider value={{ isTransitioning }}>
-      <aside
+      <FlexContainer
         ref={asideRef}
+        direction="column"
         className={cn(classes.root, className, {
-          [classes.sidebar]: !isSidebarOpen,
+          [classes.collapsed]: !isSidebarOpen,
         })}
       >
         {children}
-      </aside>
+      </FlexContainer>
     </SidebarContext.Provider>
   );
 };
