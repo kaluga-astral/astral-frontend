@@ -13,10 +13,12 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       borderLeft: `2px solid ${theme.palette.primary.light}`,
-      marginLeft: '25px',
+      marginLeft: `${theme.spacing(6)}px`,
     },
     collapsedItem: {
-      padding: '20px 0 20px 8px',
+      padding: `${theme.spacing(5)}px 0 ${theme.spacing(5)}px ${theme.spacing(
+        2,
+      )}px`,
     },
     active: {
       color: theme.palette.primary.main,

@@ -16,11 +16,11 @@ const useStyles = makeStyles(
   theme => ({
     root: {},
     list: {
-      padding: '0 0 15px 0',
-      margin: '0 5px',
+      padding: `0 0 ${theme.spacing(4)}px 0`,
+      margin: `0 ${theme.spacing(1)}px`,
       listStyle: 'none',
       backgroundColor: theme.palette.primary.light,
-      borderRadius: '0 0 4px 4px',
+      borderRadius: `0 0 ${theme.spacing(1)}px 0`,
     },
     icon: {
       width: '24px',
