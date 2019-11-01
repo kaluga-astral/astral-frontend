@@ -62,6 +62,7 @@ const DashboardLayoutSidebarNavDropdownToggler = ({
   const classes = useStyles();
   const { isSidebarOpen } = React.useContext(LayoutContext);
   const { isTransitioning } = React.useContext(SidebarContext);
+  const isTooglerContentVisible = !isTransitioning && isSidebarOpen;
 
   return (
     <ButtonBase
@@ -71,7 +72,7 @@ const DashboardLayoutSidebarNavDropdownToggler = ({
       onClick={onToggle}
     >
       {children}
-      {!isTransitioning && isSidebarOpen && (
+      {isTooglerContentVisible && (
         <>
           <div className={classes.documentCounter}>5</div>
           <svg

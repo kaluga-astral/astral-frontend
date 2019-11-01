@@ -58,6 +58,8 @@ const SidebarNavItemToggleButton = ({ className }) => {
   const classes = useStyles();
   const { isSidebarOpen, setIsSidebarOpen } = React.useContext(LayoutContext);
   const { isTransitioning } = React.useContext(SidebarContext);
+  const isToggleButtonTextVisible = isSidebarOpen && !isTransitioning;
+
   const toogleSidebarHandleClick = () => {
     setIsSidebarOpen(prevValue => !prevValue);
   };
@@ -74,7 +76,7 @@ const SidebarNavItemToggleButton = ({ className }) => {
       >
         <CollapseIcon />
       </div>
-      {!isTransitioning && isSidebarOpen && (
+      {isToggleButtonTextVisible && (
         <div className={classes.text}>Свернуть меню</div>
       )}
     </ButtonBase>

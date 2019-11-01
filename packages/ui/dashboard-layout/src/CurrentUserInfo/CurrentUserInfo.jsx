@@ -59,11 +59,14 @@ const DashboardLayoutCurrentUserInfo = ({
   userName,
   ...props
 }) => {
-  const [open, setOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const { isSidebarOpen } = React.useContext(LayoutContext);
   const classes = useStyles();
   const buttonRef = React.createRef();
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { isTransitioning } = React.useContext(SidebarContext);
+  const { isSidebarOpen } = React.useContext(LayoutContext);
+  const isUserNameVisible = !isTransitioning && isSidebarOpen;
+
   const handleTogglerButtonClick = (event) => {
     const { currentTarget } = event;
     setOpen(prevValue => !prevValue);
@@ -74,7 +77,6 @@ const DashboardLayoutCurrentUserInfo = ({
       setOpen(false);
     }
   };
-  const { isTransitioning } = React.useContext(SidebarContext);
 
   return (
     <div
@@ -95,7 +97,7 @@ const DashboardLayoutCurrentUserInfo = ({
             <Avatar className={classes.avatar} src={avatarSrc}>
               {avatarAlt}
             </Avatar>
-            {!isTransitioning && isSidebarOpen && (
+            {isUserNameVisible && (
               <div className={classes.userName}>{userName}</div>
             )}
           </ButtonBase>

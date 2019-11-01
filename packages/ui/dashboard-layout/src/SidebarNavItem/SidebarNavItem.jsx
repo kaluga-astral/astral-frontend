@@ -52,6 +52,7 @@ const DashboardLayoutSidebarNavItem = React.forwardRef(
     const classes = useStyles();
     const { isSidebarOpen } = React.useContext(LayoutContext);
     const { isTransitioning } = React.useContext(SidebarContext);
+    const isNavItemTextVisible = !isTransitioning && isSidebarOpen;
 
     return (
       <Component ref={ref} className={cn(classes.root, className)} {...props}>
@@ -64,7 +65,7 @@ const DashboardLayoutSidebarNavItem = React.forwardRef(
             <Icon />
           </div>
         )}
-        {!isTransitioning && isSidebarOpen && <Text className={classes.text} />}
+        {isNavItemTextVisible && <Text className={classes.text} />}
       </Component>
     );
   },
