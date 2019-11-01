@@ -1,4 +1,6 @@
 export { default as AstralSquareLogo } from './AstralSquareLogo';
+export { default as AsyncAutocomplete } from './AsyncAutocomplete';
+export { default as Autocomplete } from './Autocomplete';
 export { default as Avatar } from './Avatar';
 export { default as BugsnagProvider } from './BugsnagProvider';
 export { default as Button } from './Button';

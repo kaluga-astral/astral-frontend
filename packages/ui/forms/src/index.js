@@ -7,8 +7,8 @@ export {
    */
   Field as FinalFormField,
 } from 'react-final-form';
-
 export { default as AddressField } from './AddressField';
+export { default as AsyncAutocompleteField } from './AsyncAutocompleteField';
 export { default as DateField } from './DateField';
 export { default as EmailField } from './EmailField';
 export { default as ErrorAlert } from './ErrorAlert';

@@ -3,30 +3,12 @@ import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { Field as FinalFormField } from 'react-final-form';
 import { OnChange } from 'react-final-form-listeners';
+
 import { TextField as MuiTextField } from '@astral-frontend/components';
 
-import { mustBePresent, composeValidations } from '@astral-frontend/validations';
+import { createValidationFunction } from '../utils';
 
-const createValidationFunction = (required, validate) => {
-  if (required && validate) {
-    return composeValidations(mustBePresent, validate);
-  }
-
-  if (required && !validate) {
-    return mustBePresent;
-  }
-
-  if (!required && validate) {
-    return composeValidations(value => {
-      if (value) {
-        return validate(value);
-      }
-    });
-  }
-
-  return null;
-};
-
+// TODO: #28099
 const FormField = ({
   // ======FinalFormFieldProps======
   allowNull,

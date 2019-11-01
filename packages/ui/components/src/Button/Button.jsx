@@ -129,6 +129,7 @@ const useStyles = makeStyles((theme) => {
       fontWeight: theme.typography.fontWeightBold,
       backgroundColor: getBackgroundColor,
       color: getColor,
+      transition: 'background .25s ease-out',
       '&:hover': {
         backgroundColor: getHoverBackgroundColor,
       },
@@ -138,12 +139,14 @@ const useStyles = makeStyles((theme) => {
       },
     },
     loaderContainer: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       width: '100%',
       height: '100%',
-      position: 'absolute',
       backgroundColor: getBackgroundColor,
     },
     loader: {
