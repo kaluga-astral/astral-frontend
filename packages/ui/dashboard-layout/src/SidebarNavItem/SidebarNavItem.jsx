@@ -25,7 +25,6 @@ const useStyles = makeStyles(
       justifyContent: 'flex-start',
       flexShrink: 0,
       marginRight: '15px',
-      width: '32px',
     },
     collapsedIcon: {
       margin: 0,
@@ -59,15 +58,13 @@ const DashboardLayoutSidebarNavItem = React.forwardRef(
         {Icon && (
           <div
             className={cn(classes.icon, {
-              [classes.collapsedIcon]: isSidebarOpen,
+              [classes.collapsedIcon]: !isSidebarOpen,
             })}
           >
             <Icon />
           </div>
         )}
-        {!isTransitioning && isSidebarOpen ? (
-          <Text className={classes.text} />
-        ) : null}
+        {!isTransitioning && isSidebarOpen && <Text className={classes.text} />}
       </Component>
     );
   },

@@ -15,6 +15,7 @@ export { default as PageTitle } from './PageTitle';
 export { default as Product } from './Product';
 export { default as Sidebar } from './Sidebar';
 export { default as SidebarContext } from './SidebarContext';
+export { default as SidebarTooltip } from './SidebarTooltip';
 export { default as SidebarNav } from './SidebarNav';
 export { default as SidebarNavLink } from './SidebarNavLink';
 export { default as SidebarNavDropdown } from './SidebarNavDropdown';

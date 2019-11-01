@@ -6,6 +6,8 @@ import { ButtonBase } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarNavItem from '../SidebarNavItem';
+import SidebarTooltip from '../SidebarTooltip';
+import LayoutContext from '../LayoutContext';
 
 const useStyles = makeStyles(
   theme => ({
@@ -41,8 +43,9 @@ const DashboardLayoutSidebarNavLink = ({
  className, Icon, text, ...props 
 }) => {
   const classes = useStyles();
+  const { isSidebarOpen } = React.useContext(LayoutContext);
 
-  return (
+  return isSidebarOpen ? (
     <li className={cn(classes.root, className)}>
       <SidebarNavItem
         activeClassName={classes.active}
@@ -56,6 +59,22 @@ const DashboardLayoutSidebarNavLink = ({
         {...props}
       />
     </li>
+  ) : (
+    <SidebarTooltip text={text}>
+      <li className={cn(classes.root, className)}>
+        <SidebarNavItem
+          activeClassName={classes.active}
+          Icon={iconProps => (
+            <Icon className={cn(classes.icon, iconProps.className)} />
+          )}
+          Text={textProps => (
+            <div className={cn(classes.text, textProps.className)}>{text}</div>
+          )}
+          component={SidebarNavItemComponent}
+          {...props}
+        />
+      </li>
+    </SidebarTooltip>
   );
 };
 

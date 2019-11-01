@@ -6,6 +6,7 @@ import { SvgIcon } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarNavItem from '../SidebarNavItem';
+import SidebarTooltip from '../SidebarTooltip';
 import LayoutContext from '../LayoutContext';
 
 const useStyles = makeStyles(
@@ -49,7 +50,7 @@ const DashboardLayoutSidebarNavDropdownItem = ({
     props.Icon = null;
   }
 
-  return (
+  return isSidebarOpen ? (
     <li>
       <SidebarNavItem
         activeClassName={classes.active}
@@ -73,6 +74,32 @@ const DashboardLayoutSidebarNavDropdownItem = ({
         {...props}
       />
     </li>
+  ) : (
+    <SidebarTooltip text={text}>
+      <li>
+        <SidebarNavItem
+          activeClassName={classes.active}
+          className={cn(
+            classes.root,
+            { [classes.collapsedItem]: !isSidebarOpen },
+            className,
+          )}
+          Icon={iconProps => (
+            <SvgIcon
+              viewBox="0 0 4 4"
+              className={cn(classes.icon, iconProps.className)}
+            >
+              <circle cx="2" cy="2" r="2" fill="currentColor" />
+            </SvgIcon>
+          )}
+          Text={textProps => (
+            <div className={cn(classes.text, textProps.className)}>{text}</div>
+          )}
+          component={DashboardLayoutSidebarNavDropdownItemComponent}
+          {...props}
+        />
+      </li>
+    </SidebarTooltip>
   );
 };
 

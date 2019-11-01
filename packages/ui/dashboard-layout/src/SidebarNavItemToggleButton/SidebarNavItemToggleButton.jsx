@@ -2,7 +2,7 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
-import { Button } from '@astral-frontend/components';
+import { ButtonBase } from '@astral-frontend/components';
 import { CollapseIcon } from '@astral-frontend/icons';
 
 import LayoutContext from '../LayoutContext';
@@ -45,6 +45,8 @@ const useStyles = makeStyles(
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       maxHeight: '20px',
+      fontSize: theme.typography.pxToRem(14),
+      fontWeight: theme.typography.fontWeightBold,
     },
   }),
   {
@@ -61,7 +63,7 @@ const SidebarNavItemToggleButton = ({ className }) => {
   };
 
   return (
-    <Button
+    <ButtonBase
       onClick={toogleSidebarHandleClick}
       className={cn(classes.root, className)}
     >
@@ -72,10 +74,10 @@ const SidebarNavItemToggleButton = ({ className }) => {
       >
         <CollapseIcon />
       </div>
-      {!isTransitioning && isSidebarOpen ? (
+      {!isTransitioning && isSidebarOpen && (
         <div className={classes.text}>Свернуть меню</div>
-      ) : null}
-    </Button>
+      )}
+    </ButtonBase>
   );
 };
 

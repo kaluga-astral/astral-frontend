@@ -7,6 +7,8 @@ import { Collapse, List } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarNavItem from '../SidebarNavItem';
+import SidebarTooltip from '../SidebarTooltip';
+import LayoutContext from '../LayoutContext';
 import SidebarNavDropdownToggler from './SidebarNavDropdownToggler';
 import SidebarNavDropdownContext from './SidebarNavDropdownContext';
 
@@ -45,6 +47,7 @@ const DashboardLayoutSidebarNavDropdown = ({
   const classes = useStyles();
   const id = React.useMemo(() => nanoid(), []);
   const [expanded, setExpanded] = React.useState(false);
+  const { isSidebarOpen } = React.useContext(LayoutContext);
   const { expandedNavDropdownId, setExpandedNavDropdownId } = React.useContext(
     SidebarNavDropdownContext,
   );
@@ -74,7 +77,7 @@ const DashboardLayoutSidebarNavDropdown = ({
     setExpanded(id === expandedNavDropdownId);
   }, [expandedNavDropdownId]);
 
-  return (
+  return isSidebarOpen || expanded ? (
     <li className={cn(classes.root, className)}>
       <SidebarNavItem
         expanded={expanded}
@@ -96,6 +99,30 @@ const DashboardLayoutSidebarNavDropdown = ({
         {children}
       </Collapse>
     </li>
+  ) : (
+    <SidebarTooltip text={text}>
+      <li className={cn(classes.root, className)}>
+        <SidebarNavItem
+          expanded={expanded}
+          Icon={iconProps => (
+            <Icon className={cn(classes.icon, iconProps.className)} />
+          )}
+          Text={textProps => (
+            <div className={cn(classes.text, textProps.className)}>{text}</div>
+          )}
+          component={SidebarNavDropdownToggler}
+          onToggle={handleSidebarNavItemToggle}
+        />
+        <Collapse
+          unmountOnExit
+          in={expanded}
+          component={List}
+          className={classes.list}
+        >
+          {children}
+        </Collapse>
+      </li>
+    </SidebarTooltip>
   );
 };
 

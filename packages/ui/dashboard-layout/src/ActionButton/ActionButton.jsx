@@ -30,14 +30,18 @@ const useStyles = makeStyles(
   { name: 'DashboardLayoutActionButton' },
 );
 
-const DashboardLayoutActionButton = ({ className, children, ...props }) => {
-  const classes = useStyles();
-  return (
-    <ButtonBase className={cn(classes.root, className)} {...props}>
-      {children}
-    </ButtonBase>
-  );
-};
+const DashboardLayoutActionButton = React.forwardRef(
+  ({ className, children, ...props }, ref) => {
+    const classes = useStyles();
+
+    return (
+      <ButtonBase ref={ref} className={cn(classes.root, className)} {...props}>
+        {children}
+      </ButtonBase>
+    );
+  },
+);
+
 DashboardLayoutActionButton.defaultProps = {
   className: null,
 };

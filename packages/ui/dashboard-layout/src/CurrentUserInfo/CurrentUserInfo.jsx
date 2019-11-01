@@ -95,9 +95,9 @@ const DashboardLayoutCurrentUserInfo = ({
             <Avatar className={classes.avatar} src={avatarSrc}>
               {avatarAlt}
             </Avatar>
-            {!isTransitioning && isSidebarOpen ? (
+            {!isTransitioning && isSidebarOpen && (
               <div className={classes.userName}>{userName}</div>
-            ) : null}
+            )}
           </ButtonBase>
           <Popper placement="top" transition open={open} anchorEl={anchorEl}>
             {({ TransitionProps }) => (
