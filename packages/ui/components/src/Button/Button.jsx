@@ -122,7 +122,6 @@ const useStyles = makeStyles((theme) => {
   return {
     root: {
       position: 'relative',
-      display: 'flex',
       minHeight: getMinHeight,
       padding: getPadding,
       borderRadius: getBorderRadius,

@@ -21,4 +21,9 @@ export default {
       paddingBottom: '10px',
     },
   },
+  MuiButtonBase: {
+    root: {
+      display: 'flex',
+    },
+  },
 };
