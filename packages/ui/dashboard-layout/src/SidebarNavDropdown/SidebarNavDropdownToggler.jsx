@@ -12,10 +12,10 @@ const useStyles = makeStyles(
     root: {
       display: 'flex',
       width: 'fill-available',
-      margin: '0 5px',
+      margin: `0 ${theme.spacing(1)}px`,
     },
     activeToggler: {
-      borderRadius: '4px 4px 0 0',
+      borderRadius: `${theme.spacing(1)}px ${theme.spacing(1)}px 0 0`,
       color: theme.palette.primary.main,
       backgroundColor: theme.palette.primary.light,
     },
@@ -39,7 +39,7 @@ const useStyles = makeStyles(
       alignItems: 'center',
       color: theme.palette.common.white,
       flexShrink: 0,
-      marginRight: '5px',
+      marginRight: `${theme.spacing(1)}px`,
       width: '20px',
       height: '20px',
       fontSize: '75%',

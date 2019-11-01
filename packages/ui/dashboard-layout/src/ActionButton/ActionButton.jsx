@@ -14,7 +14,7 @@ const useStyles = makeStyles(
       alignItems: 'center',
       flexShrink: 0,
       height: '65px',
-      padding: '0 20px',
+      padding: `0 ${theme.spacing(5)}px`,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
       fontSize: theme.typography.pxToRem(14),

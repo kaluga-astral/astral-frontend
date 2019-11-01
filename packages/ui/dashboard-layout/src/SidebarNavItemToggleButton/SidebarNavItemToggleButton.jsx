@@ -14,11 +14,13 @@ const useStyles = makeStyles(
       display: 'flex',
       justifyContent: 'flex-start',
       alignItems: 'center',
-      padding: '20px 10px 20px 20px',
+      padding: `${theme.spacing(5)}px ${theme.spacing(3)}px ${theme.spacing(
+        5,
+      )}px ${theme.spacing(5)}px`,
       lineHeight: theme.typography.pxToRem(20),
       textAlign: 'left',
       color: theme.palette.grey[600],
-      margin: '0 5px',
+      margin: `0 ${theme.spacing(1)}px`,
       '&:hover': {
         backgroundColor: 'transparent',
       },
@@ -28,7 +30,7 @@ const useStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'center',
       flexShrink: 0,
-      marginRight: '5px',
+      marginRight: `${theme.spacing(1)}px`,
       transition: 'transform 0.3s',
     },
     collapsedIcon: {
@@ -36,7 +38,7 @@ const useStyles = makeStyles(
       transform: 'rotate(180deg)',
       transition: 'transform 0.3s',
       '&:hover': {
-        borderRadius: '4px',
+        borderRadius: `${theme.spacing(1)}px`,
         backgroundColor: theme.palette.primary.light,
       },
     },

@@ -20,8 +20,8 @@ const useStyles = makeStyles(
     active: {
       color: theme.palette.primary.main,
       backgroundColor: theme.palette.primary.light,
-      borderRadius: '4px',
-      margin: '0 5px',
+      borderRadius: `${theme.spacing(1)}px`,
+      margin: `0 ${theme.spacing(1)}px`,
     },
   }),
   {

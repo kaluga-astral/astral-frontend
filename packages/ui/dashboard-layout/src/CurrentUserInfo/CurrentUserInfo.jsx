@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     width: '100%',
     height: '100%',
-    padding: '20px',
+    padding: `${theme.spacing(5)}px`,
   },
   avatar: {
     width: '40px',
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: theme.typography.pxToRem(14),
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    marginLeft: '15px',
+    marginLeft: `${theme.spacing(4)}px`,
   },
   popperPaper: {
     minWidth: '175px',
