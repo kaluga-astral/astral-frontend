@@ -39,12 +39,11 @@ DashboardLayoutOrganizationSelectorCurrentOrganization.propTypes = {
 
 export default withStyles(theme => ({
   root: {
-    width: '300px',
+    maxWidth: '300px',
     height: '100%',
-    padding: '0 15px',
   },
   name: {
-    marginRight: '15px',
+    margin: theme.spacing(0, 2),
     fontSize: theme.typography.pxToRem(14),
     textOverflow: 'ellipsis',
     overflow: 'hidden',

@@ -1,6 +1,6 @@
 export default {
   background: {
-    default: '#eaeaea',
+    default: '#f2f5fa',
   },
   gray: {
     100: 'rgba(29, 63, 102, 0.09)',

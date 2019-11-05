@@ -8,6 +8,8 @@ import { makeStyles } from '@astral-frontend/styles';
 const useStyles = makeStyles(
   theme => ({
     root: {
+      margin: 0,
+      color: '#072d57', // TODO: в тему
       fontSize: theme.typography.pxToRem(18),
       whiteSpace: 'nowrap',
     },

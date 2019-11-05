@@ -10,8 +10,8 @@ const useStyles = makeStyles(
     root: {
       minHeight: '65px',
       alignItems: 'center',
-      backgroundColor: theme.palette.common.white,
-      borderTop: '1px solid rgba(29, 63, 102, 0.09)',
+      margin: `0 ${theme.spacing(4)}px`,
+      borderBottom: `1px solid ${theme.palette.primary.light}`,
     },
   }),
   { name: 'DashboardLayoutContentNav' },

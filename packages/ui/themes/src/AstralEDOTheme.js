@@ -9,6 +9,7 @@ const astralEDOThemeOptions = {
     primary: {
       dark: '#4e30c7',
       main: '#6746eb',
+      light: 'rgba(103, 70, 235, 0.1)',
     },
   },
 };

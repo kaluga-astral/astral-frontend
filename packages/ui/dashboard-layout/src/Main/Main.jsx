@@ -6,15 +6,16 @@ import { makeStyles } from '@astral-frontend/styles';
 import MainContext from './MainContext';
 
 const useStyles = makeStyles(
-  {
+  theme => ({
     root: {
       position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
+      // display: 'flex',
+      // flexDirection: 'column',
       flexGrow: 1,
       overflow: 'hidden',
+      margin: `${theme.spacing(4)}px`,
     },
-  },
+  }),
   { name: 'DashboardLayoutMain' },
 );
 

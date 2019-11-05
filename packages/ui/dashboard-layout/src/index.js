@@ -14,5 +14,6 @@ export { default as PageTitle } from './PageTitle';
 export { default as Product } from './Product';
 export { default as Sidebar } from './Sidebar';
 export { default as SidebarNav } from './SidebarNav';
-export { default as SidebarNavLink } from './SidebarNavLink';
 export { default as SidebarNavDropdown } from './SidebarNavDropdown';
+export { default as SidebarNavLink } from './SidebarNavLink';
+export { default as VerticalDivider } from './VerticalDivider';

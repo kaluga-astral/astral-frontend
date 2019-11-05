@@ -23,7 +23,6 @@ const rootRef = React.createRef();
 const useStyles = makeStyles(
   () => ({
     root: {
-      margin: '0 0 0 15px',
       height: '100%',
     },
     popperPaper: {

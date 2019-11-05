@@ -11,7 +11,7 @@ const useStyles = makeStyles(
       color: 'rgba(29, 63, 102, 0.62)',
       textDecoration: 'none',
       '&:not(:last-child)': {
-        marginRight: '30px',
+        marginRight: theme.spacing(5),
       },
     },
     active: {

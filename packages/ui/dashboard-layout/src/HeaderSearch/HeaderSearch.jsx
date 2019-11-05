@@ -2,25 +2,38 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { FlexContainer, InputBase } from '@astral-frontend/components';
 import { SearchIcon } from '@astral-frontend/icons';
 import { makeStyles } from '@astral-frontend/styles';
-
-import Input from './HeaderSearchInput';
 
 const useStyles = makeStyles(
   theme => ({
     root: {
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      flexGrow: 1,
-      margin: '0 0 0 15px',
-      color: theme.palette.grey[500],
+      width: '300px',
+      margin: theme.spacing(2, 0),
+      borderRadius: theme.shape.borderRadius,
+      color: '#b7c2ce', // TODO: в тему
+      backgroundColor: '#ebeef1', // TODO: в тему
+      transition: theme.transitions.create('width'),
+      '&:focus-within': {
+        // &:has($inputInput:placeholder-shown)
+        width: '100%',
+      },
     },
     icon: {
-      position: 'absolute',
-      fontSize: theme.typography.pxToRem(20),
-      margin: '0 20px',
+      margin: '0 16px',
+      zIndex: 1,
+    },
+    inputRoot: {
+      width: '100%',
+      height: '100%',
+    },
+    inputInput: {
+      paddingRight: theme.spacing(4),
+      '&::placeholder': {
+        opacity: 1,
+        color: '#b7c2ce', // TODO: в тему
+      },
     },
   }),
   { name: 'DashboardLayoutHeaderSearch' },
@@ -32,10 +45,21 @@ const DashboardLayoutHeaderSearch = ({
   const classes = useStyles();
 
   return (
-    <div className={cn(classes.root, className)}>
+    <FlexContainer className={cn(classes.root, className)} alignItems="center">
       <SearchIcon className={classes.icon} />
-      <Input value={inputValue} onChange={onInputChange} {...props} />
-    </div>
+      <InputBase
+        placeholder="Search…"
+        inputProps={{
+          'aria-label': 'Search',
+        }}
+        type="search"
+        classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput,
+        }}
+        {...props}
+      />
+    </FlexContainer>
   );
 };
 
