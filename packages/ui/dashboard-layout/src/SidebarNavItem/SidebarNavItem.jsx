@@ -12,9 +12,7 @@ const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-start',
-      padding: `${theme.spacing(4)}px ${theme.spacing(3)}px ${theme.spacing(
-        4,
-      )}px ${theme.spacing(5)}px`,
+      padding: `${theme.spacing(4)}px`,
       lineHeight: theme.typography.pxToRem(20),
       textAlign: 'left',
       textDecoration: 'none',
@@ -27,10 +25,10 @@ const useStyles = makeStyles(
       justifyContent: 'flex-start',
       flexShrink: 0,
       marginRight: `${theme.spacing(4)}px`,
+      padding: `${theme.spacing(1)}px`,
     },
     collapsedIcon: {
       margin: 0,
-      padding: `${theme.spacing(1)}px`,
       '&:hover': {
         borderRadius: `${theme.spacing(1)}px`,
         backgroundColor: theme.palette.primary.light,
