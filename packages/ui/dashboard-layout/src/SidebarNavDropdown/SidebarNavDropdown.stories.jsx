@@ -32,3 +32,27 @@ storiesOf('packages/dashboard-layout/SidebarNavDropdown', module).add(
     </Layout>
   ),
 );
+
+storiesOf('packages/dashboard-layout/SidebarNavDropdown', module).add(
+  'without counter',
+  () => (
+    <Layout>
+      <Sidebar>
+        <StaticRouter location="/">
+          <SidebarNav>
+            <SidebarNavDropdown
+              key="documents"
+              text="Документы"
+              Icon={DocumentIcon}
+              isCounterVisible={false}
+            >
+              <SidebarNavDropdown.Item text="Входящие" to="/incoming" />
+              <SidebarNavDropdown.Item text="Исходящие" to="outgoing" />
+              <SidebarNavDropdown.Item text="Черновики" to="/drafts" />
+            </SidebarNavDropdown>
+          </SidebarNav>
+        </StaticRouter>
+      </Sidebar>
+    </Layout>
+  ),
+);

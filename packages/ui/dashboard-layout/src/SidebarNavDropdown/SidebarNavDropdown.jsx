@@ -43,11 +43,11 @@ const DashboardLayoutSidebarNavDropdown = ({
   text,
   children,
   location,
+  isCounterVisible,
 }) => {
   const classes = useStyles();
   const id = React.useMemo(() => nanoid(), []);
   const [expanded, setExpanded] = React.useState(false);
-  const [isCounterVisible] = React.useState(true);
   const { isSidebarOpen } = React.useContext(LayoutContext);
   const { expandedNavDropdownId, setExpandedNavDropdownId } = React.useContext(
     SidebarNavDropdownContext,
@@ -130,6 +130,7 @@ const DashboardLayoutSidebarNavDropdown = ({
 
 DashboardLayoutSidebarNavDropdown.defaultProps = {
   className: null,
+  isCounterVisible: true,
 };
 
 DashboardLayoutSidebarNavDropdown.propTypes = {
@@ -137,6 +138,7 @@ DashboardLayoutSidebarNavDropdown.propTypes = {
   Icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  isCounterVisible: PropTypes.bool,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
