@@ -22,26 +22,16 @@ const ref = React.createRef();
 
 const DashboardLayoutMain = ({ className, children }) => {
   const classes = useStyles();
-  const [{ MainModal }, setMainModal] = React.useState({ MainModal: null });
-  const [mainModalOpen, setMainModalOpen] = React.useState(false);
-  const [mainModalCloseHandler, setMainModalCloseHandler] = React.useState(false);
-  const handleMainModalClose = React.useCallback(() => {
-    mainModalCloseHandler.action();
-  }, [mainModalCloseHandler]);
 
   return (
     <MainContext.Provider
       value={{
         ref,
-        setMainModal,
-        setMainModalOpen,
-        setMainModalCloseHandler,
       }}
     >
       <main ref={ref} className={cn(classes.root, className)}>
         {children}
       </main>
-      {MainModal && <MainModal open={mainModalOpen} onClose={handleMainModalClose} />}
     </MainContext.Provider>
   );
 };
