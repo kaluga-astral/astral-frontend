@@ -7,26 +7,22 @@ import Sidebar from '../Sidebar';
 import Layout from '../Layout';
 import SidebarNavItem from './SidebarNavItem';
 
-const SidebarNavItemComponent = React.forwardRef((props, ref) => (
-  <ButtonBase
-    {...props}
-    ref={ref}
-    component={React.forwardRef((componentProps, componentRef) => (
-      <StaticRouter>
-        <NavLink {...componentProps} innerRef={componentRef}>
-          Ссылка
-        </NavLink>
-      </StaticRouter>
-    ))}
-  />
-));
-
 storiesOf('packages/dashboard-layout/SidebarNavItem', module).add(
   'default',
   () => (
     <Layout>
       <Sidebar>
-        <SidebarNavItem component={SidebarNavItemComponent} />
+        <SidebarNavItem
+          component={() => (
+            <ButtonBase
+              component={() => (
+                <StaticRouter location="/">
+                  <NavLink to="/">Ссылка</NavLink>
+                </StaticRouter>
+              )}
+            />
+          )}
+        />
       </Sidebar>
     </Layout>
   ),

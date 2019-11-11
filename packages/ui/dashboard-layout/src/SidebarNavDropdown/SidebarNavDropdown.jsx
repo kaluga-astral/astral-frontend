@@ -47,6 +47,7 @@ const DashboardLayoutSidebarNavDropdown = ({
   const classes = useStyles();
   const id = React.useMemo(() => nanoid(), []);
   const [expanded, setExpanded] = React.useState(false);
+  const [isCounterVisible] = React.useState(true);
   const { isSidebarOpen } = React.useContext(LayoutContext);
   const { expandedNavDropdownId, setExpandedNavDropdownId } = React.useContext(
     SidebarNavDropdownContext,
@@ -81,6 +82,7 @@ const DashboardLayoutSidebarNavDropdown = ({
     <li className={cn(classes.root, className)}>
       <SidebarNavItem
         expanded={expanded}
+        isCounterVisible={isCounterVisible}
         Icon={iconProps => (
           <Icon className={cn(classes.icon, iconProps.className)} />
         )}

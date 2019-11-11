@@ -56,6 +56,7 @@ const useStyles = makeStyles(
 const DashboardLayoutSidebarNavDropdownToggler = ({
   className,
   expanded,
+  isCounterVisible,
   children,
   onToggle,
 }) => {
@@ -74,7 +75,7 @@ const DashboardLayoutSidebarNavDropdownToggler = ({
       {children}
       {isTooglerContentVisible && (
         <>
-          <div className={classes.documentCounter}>5</div>
+          {isCounterVisible && <div className={classes.documentCounter}>5</div>}
           <svg
             className={cn(classes.expandIcon, {
               [classes.expandedIcon]: expanded,
@@ -91,10 +92,12 @@ const DashboardLayoutSidebarNavDropdownToggler = ({
 
 DashboardLayoutSidebarNavDropdownToggler.defaultProps = {
   className: null,
+  isCounterVisible: true,
 };
 
 DashboardLayoutSidebarNavDropdownToggler.propTypes = {
   className: PropTypes.string,
+  isCounterVisible: PropTypes.bool,
   expanded: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onToggle: PropTypes.func.isRequired,
