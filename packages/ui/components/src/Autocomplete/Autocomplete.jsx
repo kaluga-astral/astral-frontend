@@ -55,18 +55,25 @@ const Autocomplete = ({
             {...MUITextFieldProps}
           />
           <div {...getMenuProps()}>
+            {isOpen && (
             <Paper className={classes.paper}>
               {suggestions.map((suggestion, index) => {
                 const itemProps = getItemProps({ item: suggestion });
                 const selected = highlightedIndex === index;
 
                 return (
-                  <ListItem {...itemProps} key={suggestion.key} selected={selected} component="div">
+                  <ListItem
+                    {...itemProps}
+                    key={suggestion.key}
+                    selected={selected}
+                    component="div"
+                  >
                     {suggestion.label}
                   </ListItem>
                 );
               })}
             </Paper>
+            )}
           </div>
         </div>
       )}
