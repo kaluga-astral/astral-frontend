@@ -38,7 +38,7 @@ const useStyles = makeStyles(
       transform: 'rotate(180deg)',
       transition: 'transform 0.3s',
       '&:hover': {
-        borderRadius: `${theme.spacing(1)}px`,
+        borderRadius: '4px',
         backgroundColor: theme.palette.primary.light,
       },
     },

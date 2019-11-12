@@ -30,7 +30,7 @@ const useStyles = makeStyles(
     collapsedIcon: {
       margin: 0,
       '&:hover': {
-        borderRadius: `${theme.spacing(1)}px`,
+        borderRadius: '4px',
         backgroundColor: theme.palette.primary.light,
       },
     },
@@ -48,8 +48,8 @@ const useStyles = makeStyles(
 
 const DashboardLayoutSidebarNavItem = React.forwardRef(
   ({
- className, component: Component, Icon, Text, ...props 
-}, ref) => {
+    className, component: Component, Icon, Text, ...props
+  }, ref) => {
     const classes = useStyles();
     const { isSidebarOpen } = React.useContext(LayoutContext);
     const { isTransitioning } = React.useContext(SidebarContext);

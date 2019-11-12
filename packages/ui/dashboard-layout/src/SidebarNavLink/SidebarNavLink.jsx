@@ -20,7 +20,7 @@ const useStyles = makeStyles(
     active: {
       color: theme.palette.primary.main,
       backgroundColor: theme.palette.primary.light,
-      borderRadius: `${theme.spacing(1)}px`,
+      borderRadius: '4px',
       margin: `0 ${theme.spacing(1)}px`,
     },
   }),
@@ -40,12 +40,11 @@ const SidebarNavItemComponent = React.forwardRef((props, ref) => (
 ));
 
 const DashboardLayoutSidebarNavLink = ({
- className, Icon, text, ...props 
+  className, Icon, text, ...props
 }) => {
   const classes = useStyles();
   const { isSidebarOpen } = React.useContext(LayoutContext);
-
-  return isSidebarOpen ? (
+  const items = React.useMemo(() => (
     <li className={cn(classes.root, className)}>
       <SidebarNavItem
         activeClassName={classes.active}
@@ -59,22 +58,12 @@ const DashboardLayoutSidebarNavLink = ({
         {...props}
       />
     </li>
+  ));
+
+  return isSidebarOpen ? (
+    items
   ) : (
-    <SidebarTooltip text={text}>
-      <li className={cn(classes.root, className)}>
-        <SidebarNavItem
-          activeClassName={classes.active}
-          Icon={iconProps => (
-            <Icon className={cn(classes.icon, iconProps.className)} />
-          )}
-          Text={textProps => (
-            <div className={cn(classes.text, textProps.className)}>{text}</div>
-          )}
-          component={SidebarNavItemComponent}
-          {...props}
-        />
-      </li>
-    </SidebarTooltip>
+    <SidebarTooltip text={text}>items</SidebarTooltip>
   );
 };
 

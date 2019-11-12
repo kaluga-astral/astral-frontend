@@ -7,7 +7,7 @@ const useStyles = makeStyles(
   theme => ({
     tooltip: {
       position: 'relative',
-      backgroundColor: theme.palette.black[900],
+      backgroundColor: theme.palette.gray[900],
       zIndex: 9999,
     },
     arrow: {
@@ -30,9 +30,7 @@ const useStyles = makeStyles(
         width: '1em',
         '&::before': {
           borderWidth: '1em 1em 1em 0',
-          borderColor: `transparent ${
-            theme.palette.black[900]
-          } transparent transparent`,
+          borderColor: `transparent ${theme.palette.gray[900]} transparent transparent`,
         },
       },
     },
@@ -64,7 +62,7 @@ const DashboardLayoutSidebarTooltip = ({ children, text }) => {
         },
       }}
       title={(
-<>
+        <>
           {text}
           <span className={classes.arrow} ref={setArrowRef} />
         </>

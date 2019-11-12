@@ -78,7 +78,7 @@ const DashboardLayoutSidebarNavDropdown = ({
     setExpanded(id === expandedNavDropdownId);
   }, [expandedNavDropdownId]);
 
-  return isSidebarOpen || expanded ? (
+  const items = React.useMemo(() => (
     <li className={cn(classes.root, className)}>
       <SidebarNavItem
         expanded={expanded}
@@ -101,30 +101,12 @@ const DashboardLayoutSidebarNavDropdown = ({
         {children}
       </Collapse>
     </li>
+  ));
+
+  return isSidebarOpen || expanded ? (
+    items
   ) : (
-    <SidebarTooltip text={text}>
-      <li className={cn(classes.root, className)}>
-        <SidebarNavItem
-          expanded={expanded}
-          Icon={iconProps => (
-            <Icon className={cn(classes.icon, iconProps.className)} />
-          )}
-          Text={textProps => (
-            <div className={cn(classes.text, textProps.className)}>{text}</div>
-          )}
-          component={SidebarNavDropdownToggler}
-          onToggle={handleSidebarNavItemToggle}
-        />
-        <Collapse
-          unmountOnExit
-          in={expanded}
-          component={List}
-          className={classes.list}
-        >
-          {children}
-        </Collapse>
-      </li>
-    </SidebarTooltip>
+    <SidebarTooltip text={text}>items</SidebarTooltip>
   );
 };
 

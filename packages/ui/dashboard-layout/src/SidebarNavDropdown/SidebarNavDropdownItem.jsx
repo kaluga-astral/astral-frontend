@@ -48,60 +48,33 @@ const DashboardLayoutSidebarNavDropdownItem = ({
 }) => {
   const classes = useStyles();
   const { isSidebarOpen } = React.useContext(LayoutContext);
-  if (isSidebarOpen) {
-    props.Icon = null;
-  }
-
-  return isSidebarOpen ? (
+  const items = React.useMemo(() => (
     <li>
       <SidebarNavItem
         activeClassName={classes.active}
-        className={cn(
-          classes.root,
-          { [classes.collapsedItem]: !isSidebarOpen },
-          className,
-        )}
-        Icon={iconProps => (
-          <SvgIcon
-            viewBox="0 0 4 4"
-            className={cn(classes.icon, iconProps.className)}
-          >
-            <circle cx="2" cy="2" r="2" fill="currentColor" />
-          </SvgIcon>
-        )}
+        className={cn(classes.root, {
+          [classes.collapsedItem]: !isSidebarOpen,
+        })}
         Text={textProps => (
           <div className={cn(classes.text, textProps.className)}>{text}</div>
         )}
+        Icon={
+          isSidebarOpen ? null : (
+            <SvgIcon viewBox="0 0 4 4" className={classes.icon}>
+              <circle cx="2" cy="2" r="2" fill="currentColor" />
+            </SvgIcon>
+          )
+        }
         component={DashboardLayoutSidebarNavDropdownItemComponent}
         {...props}
       />
     </li>
+  ));
+
+  return isSidebarOpen ? (
+    items
   ) : (
-    <SidebarTooltip text={text}>
-      <li>
-        <SidebarNavItem
-          activeClassName={classes.active}
-          className={cn(
-            classes.root,
-            { [classes.collapsedItem]: !isSidebarOpen },
-            className,
-          )}
-          Icon={iconProps => (
-            <SvgIcon
-              viewBox="0 0 4 4"
-              className={cn(classes.icon, iconProps.className)}
-            >
-              <circle cx="2" cy="2" r="2" fill="currentColor" />
-            </SvgIcon>
-          )}
-          Text={textProps => (
-            <div className={cn(classes.text, textProps.className)}>{text}</div>
-          )}
-          component={DashboardLayoutSidebarNavDropdownItemComponent}
-          {...props}
-        />
-      </li>
-    </SidebarTooltip>
+    <SidebarTooltip text={text}>items</SidebarTooltip>
   );
 };
 
