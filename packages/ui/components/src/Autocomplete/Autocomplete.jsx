@@ -5,7 +5,7 @@ import Downshift from 'downshift';
 import { makeStyles } from '@astral-frontend/styles';
 
 import TextField from '../TextField';
-import MenuItem from '../MenuItem';
+import ListItem from '../ListItem';
 import Paper from '../Paper';
 
 const useStyles = makeStyles(theme => ({
@@ -55,25 +55,18 @@ const Autocomplete = ({
             {...MUITextFieldProps}
           />
           <div {...getMenuProps()}>
-            {isOpen && (
             <Paper className={classes.paper}>
               {suggestions.map((suggestion, index) => {
                 const itemProps = getItemProps({ item: suggestion });
                 const selected = highlightedIndex === index;
 
                 return (
-                  <MenuItem
-                    {...itemProps}
-                    key={suggestion.key}
-                    selected={selected}
-                    component="div"
-                  >
+                  <ListItem {...itemProps} key={suggestion.key} selected={selected} component="div">
                     {suggestion.label}
-                  </MenuItem>
+                  </ListItem>
                 );
               })}
             </Paper>
-            )}
           </div>
         </div>
       )}
