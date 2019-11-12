@@ -3,9 +3,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayout = ({ classes, className, children }) => (
-  <div className={cn(classes.root, className)}>{children}</div>
-);
+import DashboardLayoutContext from './Context';
+
+const DashboardLayout = ({ classes, className, children }) => {
+  const [currentMainModalKey, setCurrentMainModalKey] = React.useState(null);
+
+  return (
+    <DashboardLayoutContext.Provider value={{ currentMainModalKey, setCurrentMainModalKey }}>
+      <div className={cn(classes.root, className)}>{children}</div>
+    </DashboardLayoutContext.Provider>
+  );
+};
 
 DashboardLayout.defaultProps = {
   className: null,
@@ -21,7 +29,6 @@ export default withStyles(
   {
     root: {
       display: 'flex',
-      // flexDirection: 'column',
       height: '100vh',
     },
   },
