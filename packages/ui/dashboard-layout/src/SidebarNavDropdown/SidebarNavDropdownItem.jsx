@@ -61,12 +61,11 @@ const DashboardLayoutSidebarNavDropdownItem = ({
           Text={textProps => (
             <div className={cn(classes.text, textProps.className)}>{text}</div>
           )}
-          Icon={
-            isSidebarOpen ? null : (
-              <SvgIcon viewBox="0 0 4 4" className={classes.icon}>
-                <circle cx="2" cy="2" r="2" fill="currentColor" />
-              </SvgIcon>
-            )
+          Icon={() => (isSidebarOpen ? null : (
+            <SvgIcon viewBox="0 0 4 4" className={classes.icon}>
+              <circle cx="2" cy="2" r="2" fill="currentColor" />
+            </SvgIcon>
+          ))
           }
           component={DashboardLayoutSidebarNavDropdownItemComponent}
           {...props}
