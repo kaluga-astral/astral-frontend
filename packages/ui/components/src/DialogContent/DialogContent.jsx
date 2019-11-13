@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@astral-frontend/styles';
 import { DialogContent as MuiDialogContent } from '@astral-frontend/core';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
+    paddingTop: 0,
+    paddingBottom: theme.spacing(2),
   },
-});
+}));
 
 const DialogContent = (props) => {
   const { className, ...rootProps } = props;
   const classes = useStyles(props);
 
-  return (
-    <MuiDialogContent className={cn(className, classes.root)} {...rootProps} />
-  );
+  return <MuiDialogContent className={cn(className, classes.root)} {...rootProps} />;
 };
 
 DialogContent.defaultProps = {

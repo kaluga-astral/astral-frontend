@@ -4,10 +4,7 @@ import { SlideModal } from '@astral-frontend/components';
 
 import { __Context as MainContext } from '../Main';
 
-const DashboardLayoutMainModal = ({
-  children,
-  ...props
-}) => {
+const DashboardLayoutMainModal = ({ children, ...props }) => {
   const { ref: mainRef } = React.useContext(MainContext);
   const containerRef = mainRef && mainRef.current ? mainRef : null;
 

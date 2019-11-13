@@ -18,7 +18,10 @@ const useStyles = makeStyles(
 );
 
 const SlideModalContent = ({
-  className, children, component: Component, ...props
+  className,
+  children,
+  component: Component,
+  ...props
 }) => {
   const classes = useStyles();
 

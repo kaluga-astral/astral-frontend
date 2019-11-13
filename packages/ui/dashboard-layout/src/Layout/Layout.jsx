@@ -1,15 +1,25 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
 
 import DashboardLayoutContext from './Context';
 
-const DashboardLayout = ({ classes, className, children }) => {
+const useStyles = makeStyles(() => ({
+  root: {
+    display: 'flex',
+    height: '100vh',
+  },
+}));
+
+const DashboardLayout = ({ className, children }) => {
+  const classes = useStyles();
   const [currentMainModalKey, setCurrentMainModalKey] = React.useState(null);
 
   return (
-    <DashboardLayoutContext.Provider value={{ currentMainModalKey, setCurrentMainModalKey }}>
+    <DashboardLayoutContext.Provider
+      value={{ currentMainModalKey, setCurrentMainModalKey }}
+    >
       <div className={cn(classes.root, className)}>{children}</div>
     </DashboardLayoutContext.Provider>
   );
@@ -25,12 +35,4 @@ DashboardLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default withStyles(
-  {
-    root: {
-      display: 'flex',
-      height: '100vh',
-    },
-  },
-  { name: 'DashboardLayout' },
-)(DashboardLayout);
+export default DashboardLayout;

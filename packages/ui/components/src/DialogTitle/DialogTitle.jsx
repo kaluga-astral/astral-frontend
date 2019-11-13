@@ -13,22 +13,22 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingTop: theme.spacing(6),
+    paddingBottom: theme.spacing(3),
   },
   title: {
     margin: 0,
-    fontWeight: 300,
-    fontSize: theme.typography.pxToRem(18),
-    marginRight: '20px',
+    fontWeight: 600,
+    fontSize: theme.typography.pxToRem(14),
+    marginRight: theme.spacing(5),
   },
   icon: {
     fontSize: theme.typography.pxToRem(16),
   },
 }));
 
-const DialogTitle = (props) => {
-  const {
-    showCloseButton, className, children, ...rootProps
-  } = props;
+const DialogTitle = props => {
+  const { showCloseButton, className, children, ...rootProps } = props;
   const classes = useStyles(props);
   const { onClose } = useContext(__Context);
 
