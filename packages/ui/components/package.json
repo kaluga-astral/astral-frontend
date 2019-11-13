@@ -20,7 +20,8 @@
     "intro.js-react": "0.2.0",
     "lodash-es": "^4.17.11",
     "prop-types": "^15.7.2",
-    "react-text-mask": "^5.4.3"
+    "react-text-mask": "^5.4.3",
+    "react-js-pagination": "^3.0.2"
   },
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "^0.1.0"

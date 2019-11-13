@@ -5,7 +5,7 @@ import Downshift from 'downshift';
 import { makeStyles } from '@astral-frontend/styles';
 
 import TextField from '../TextField';
-import MenuItem from '../MenuItem';
+import ListItem from '../ListItem';
 import Paper from '../Paper';
 
 const useStyles = makeStyles(theme => ({
@@ -66,14 +66,14 @@ const Autocomplete = ({
                   const selected = highlightedIndex === index;
 
                   return (
-                    <MenuItem
+                    <ListItem
                       {...itemProps}
                       key={suggestion.key}
                       selected={selected}
                       component="div"
                     >
                       {suggestion.label}
-                    </MenuItem>
+                    </ListItem>
                   );
                 })}
               </Paper>
