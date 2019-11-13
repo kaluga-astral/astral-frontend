@@ -42,28 +42,35 @@ const SidebarNavItemComponent = React.forwardRef((props, ref) => (
 const DashboardLayoutSidebarNavLink = ({
   className, Icon, text, ...props
 }) => {
-  const classes = useStyles();
   const { isSidebarOpen } = React.useContext(LayoutContext);
-  const items = React.useMemo(() => (
-    <li className={cn(classes.root, className)}>
-      <SidebarNavItem
-        activeClassName={classes.active}
-        Icon={iconProps => (
-          <Icon className={cn(classes.icon, iconProps.className)} />
-        )}
-        Text={textProps => (
-          <div className={cn(classes.text, textProps.className)}>{text}</div>
-        )}
-        component={SidebarNavItemComponent}
-        {...props}
-      />
-    </li>
-  ));
 
-  return isSidebarOpen ? (
-    items
-  ) : (
-    <SidebarTooltip text={text}>items</SidebarTooltip>
+  const Item = () => {
+    const classes = useStyles();
+
+    return (
+      <li className={cn(classes.root, className)}>
+        <SidebarNavItem
+          activeClassName={classes.active}
+          Icon={iconProps => (
+            <Icon className={cn(classes.icon, iconProps.className)} />
+          )}
+          Text={textProps => (
+            <div className={cn(classes.text, textProps.className)}>{text}</div>
+          )}
+          component={SidebarNavItemComponent}
+          {...props}
+        />
+      </li>
+    );
+  };
+
+  if (isSidebarOpen) {
+    return <Item />;
+  }
+  return (
+    <SidebarTooltip text={text}>
+      <Item />
+    </SidebarTooltip>
   );
 };
 

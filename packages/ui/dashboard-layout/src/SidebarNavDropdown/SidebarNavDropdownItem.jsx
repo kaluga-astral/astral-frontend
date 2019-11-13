@@ -46,35 +46,42 @@ const DashboardLayoutSidebarNavDropdownItem = ({
   text,
   ...props
 }) => {
-  const classes = useStyles();
   const { isSidebarOpen } = React.useContext(LayoutContext);
-  const items = React.useMemo(() => (
-    <li>
-      <SidebarNavItem
-        activeClassName={classes.active}
-        className={cn(classes.root, {
-          [classes.collapsedItem]: !isSidebarOpen,
-        })}
-        Text={textProps => (
-          <div className={cn(classes.text, textProps.className)}>{text}</div>
-        )}
-        Icon={
-          isSidebarOpen ? null : (
-            <SvgIcon viewBox="0 0 4 4" className={classes.icon}>
-              <circle cx="2" cy="2" r="2" fill="currentColor" />
-            </SvgIcon>
-          )
-        }
-        component={DashboardLayoutSidebarNavDropdownItemComponent}
-        {...props}
-      />
-    </li>
-  ));
 
-  return isSidebarOpen ? (
-    items
-  ) : (
-    <SidebarTooltip text={text}>items</SidebarTooltip>
+  const Item = () => {
+    const classes = useStyles();
+
+    return (
+      <li>
+        <SidebarNavItem
+          activeClassName={classes.active}
+          className={cn(classes.root, {
+            [classes.collapsedItem]: !isSidebarOpen,
+          })}
+          Text={textProps => (
+            <div className={cn(classes.text, textProps.className)}>{text}</div>
+          )}
+          Icon={
+            isSidebarOpen ? null : (
+              <SvgIcon viewBox="0 0 4 4" className={classes.icon}>
+                <circle cx="2" cy="2" r="2" fill="currentColor" />
+              </SvgIcon>
+            )
+          }
+          component={DashboardLayoutSidebarNavDropdownItemComponent}
+          {...props}
+        />
+      </li>
+    );
+  };
+
+  if (isSidebarOpen) {
+    return <Item />;
+  }
+  return (
+    <SidebarTooltip text={text}>
+      <Item />
+    </SidebarTooltip>
   );
 };
 

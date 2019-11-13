@@ -45,7 +45,6 @@ const DashboardLayoutSidebarNavDropdown = ({
   location,
   isCounterVisible,
 }) => {
-  const classes = useStyles();
   const id = React.useMemo(() => nanoid(), []);
   const [expanded, setExpanded] = React.useState(false);
   const { isSidebarOpen } = React.useContext(LayoutContext);
@@ -78,35 +77,42 @@ const DashboardLayoutSidebarNavDropdown = ({
     setExpanded(id === expandedNavDropdownId);
   }, [expandedNavDropdownId]);
 
-  const items = React.useMemo(() => (
-    <li className={cn(classes.root, className)}>
-      <SidebarNavItem
-        expanded={expanded}
-        isCounterVisible={isCounterVisible}
-        Icon={iconProps => (
-          <Icon className={cn(classes.icon, iconProps.className)} />
-        )}
-        Text={textProps => (
-          <div className={cn(classes.text, textProps.className)}>{text}</div>
-        )}
-        component={SidebarNavDropdownToggler}
-        onToggle={handleSidebarNavItemToggle}
-      />
-      <Collapse
-        unmountOnExit
-        in={expanded}
-        component={List}
-        className={classes.list}
-      >
-        {children}
-      </Collapse>
-    </li>
-  ));
+  const Item = () => {
+    const classes = useStyles();
 
-  return isSidebarOpen || expanded ? (
-    items
-  ) : (
-    <SidebarTooltip text={text}>items</SidebarTooltip>
+    return (
+      <li className={cn(classes.root, className)}>
+        <SidebarNavItem
+          expanded={expanded}
+          isCounterVisible={isCounterVisible}
+          Icon={iconProps => (
+            <Icon className={cn(classes.icon, iconProps.className)} />
+          )}
+          Text={textProps => (
+            <div className={cn(classes.text, textProps.className)}>{text}</div>
+          )}
+          component={SidebarNavDropdownToggler}
+          onToggle={handleSidebarNavItemToggle}
+        />
+        <Collapse
+          unmountOnExit
+          in={expanded}
+          component={List}
+          className={classes.list}
+        >
+          {children}
+        </Collapse>
+      </li>
+    );
+  };
+
+  if (isSidebarOpen) {
+    return <Item />;
+  }
+  return (
+    <SidebarTooltip text={text}>
+      <Item />
+    </SidebarTooltip>
   );
 };
 
