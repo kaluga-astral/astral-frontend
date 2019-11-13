@@ -42,7 +42,11 @@ const Autocomplete = ({
       onChange={onChange}
     >
       {({
-        getInputProps, getItemProps, getMenuProps, highlightedIndex, isOpen,
+        getInputProps,
+        getItemProps,
+        getMenuProps,
+        highlightedIndex,
+        isOpen,
       }) => (
         <div className={classes.root}>
           <TextField
@@ -56,23 +60,23 @@ const Autocomplete = ({
           />
           <div {...getMenuProps()}>
             {isOpen && (
-            <Paper className={classes.paper}>
-              {suggestions.map((suggestion, index) => {
-                const itemProps = getItemProps({ item: suggestion });
-                const selected = highlightedIndex === index;
+              <Paper className={classes.paper}>
+                {suggestions.map((suggestion, index) => {
+                  const itemProps = getItemProps({ item: suggestion });
+                  const selected = highlightedIndex === index;
 
-                return (
-                  <MenuItem
-                    {...itemProps}
-                    key={suggestion.key}
-                    selected={selected}
-                    component="div"
-                  >
-                    {suggestion.label}
-                  </MenuItem>
-                );
-              })}
-            </Paper>
+                  return (
+                    <MenuItem
+                      {...itemProps}
+                      key={suggestion.key}
+                      selected={selected}
+                      component="div"
+                    >
+                      {suggestion.label}
+                    </MenuItem>
+                  );
+                })}
+              </Paper>
             )}
           </div>
         </div>
@@ -84,7 +88,7 @@ const Autocomplete = ({
 Autocomplete.defaultProps = {
   selectedItem: null,
   InputProps: null,
-  itemToString: (item) => {
+  itemToString: item => {
     if (!item) {
       return '';
     }
