@@ -24,7 +24,11 @@ const DashboardLayoutMain = ({ className, children }) => {
   const classes = useStyles();
 
   return (
-    <MainContext.Provider value={{ ref }}>
+    <MainContext.Provider
+      value={{
+        ref,
+      }}
+    >
       <main ref={ref} className={cn(classes.root, className)}>
         {children}
       </main>

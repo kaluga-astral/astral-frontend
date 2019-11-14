@@ -19,6 +19,5 @@ export { default as SidebarTooltip } from './SidebarTooltip';
 export { default as SidebarNav } from './SidebarNav';
 export { default as SidebarNavLink } from './SidebarNavLink';
 export { default as SidebarNavDropdown } from './SidebarNavDropdown';
-export {
-  default as SidebarNavItemToggleButton,
-} from './SidebarNavItemToggleButton';
+export { default as SidebarNavItemToggleButton } from './SidebarNavItemToggleButton';
+export { default as useMainModal } from './useMainModal';

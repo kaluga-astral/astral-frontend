@@ -3,26 +3,31 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
-import LayoutContext from '../LayoutContext';
+import DashboardLayoutContext from './Context';
 
-const useStyles = makeStyles(
-  () => ({
-    root: {
-      display: 'flex',
-      height: '100vh',
-    },
-  }),
-  { name: 'DashboardLayout' },
-);
+const useStyles = makeStyles(() => ({
+  root: {
+    display: 'flex',
+    height: '100vh',
+  },
+}));
 
 const DashboardLayout = ({ className, children }) => {
   const classes = useStyles();
+  const [currentMainModalKey, setCurrentMainModalKey] = React.useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
 
   return (
-    <LayoutContext.Provider value={{ isSidebarOpen, setIsSidebarOpen }}>
+    <DashboardLayoutContext.Provider
+      value={{
+        currentMainModalKey,
+        setCurrentMainModalKey,
+        isSidebarOpen,
+        setIsSidebarOpen,
+      }}
+    >
       <div className={cn(classes.root, className)}>{children}</div>
-    </LayoutContext.Provider>
+    </DashboardLayoutContext.Provider>
   );
 };
 
@@ -31,7 +36,6 @@ DashboardLayout.defaultProps = {
 };
 
 DashboardLayout.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
