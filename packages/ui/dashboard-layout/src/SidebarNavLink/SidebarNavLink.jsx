@@ -69,7 +69,9 @@ const DashboardLayoutSidebarNavLink = ({
   }
   return (
     <SidebarTooltip text={text}>
-      <Item />
+      <div>
+        <Item />
+      </div>
     </SidebarTooltip>
   );
 };

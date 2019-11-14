@@ -68,7 +68,7 @@ const DashboardLayoutSidebarTooltip = ({ children, text }) => {
         </>
 )}
     >
-      <div>{children}</div>
+      {children}
     </Tooltip>
   );
 };

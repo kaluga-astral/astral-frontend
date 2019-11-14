@@ -111,7 +111,9 @@ const DashboardLayoutSidebarNavDropdown = ({
   }
   return (
     <SidebarTooltip text={text}>
-      <Item />
+      <div>
+        <Item />
+      </div>
     </SidebarTooltip>
   );
 };
