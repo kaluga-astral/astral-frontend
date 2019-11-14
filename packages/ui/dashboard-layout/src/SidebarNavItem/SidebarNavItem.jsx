@@ -5,6 +5,7 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import LayoutContext from '../LayoutContext';
 import SidebarContext from '../SidebarContext';
+import SidebarTooltip from '../SidebarTooltip';
 
 const useStyles = makeStyles(
   theme => ({
@@ -48,14 +49,14 @@ const useStyles = makeStyles(
 
 const DashboardLayoutSidebarNavItem = React.forwardRef(
   ({
-    className, component: Component, Icon, Text, ...props
+    className, component: Component, Icon, label, Text, ...props
   }, ref) => {
     const classes = useStyles();
     const { isSidebarOpen } = React.useContext(LayoutContext);
     const { isTransitioning } = React.useContext(SidebarContext);
     const isNavItemTextVisible = !isTransitioning && isSidebarOpen;
 
-    return (
+    const Item = () => (
       <Component ref={ref} className={cn(classes.root, className)} {...props}>
         {Icon && (
           <div
@@ -68,6 +69,17 @@ const DashboardLayoutSidebarNavItem = React.forwardRef(
         )}
         {isNavItemTextVisible && <Text className={classes.text} />}
       </Component>
+    );
+
+    if (isSidebarOpen) {
+      return <Item />;
+    }
+    return (
+      <SidebarTooltip text={label}>
+        <div>
+          <Item />
+        </div>
+      </SidebarTooltip>
     );
   },
 );
@@ -85,6 +97,7 @@ DashboardLayoutSidebarNavItem.propTypes = {
   ]).isRequired,
   Icon: PropTypes.func.isRequired,
   Text: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 export default DashboardLayoutSidebarNavItem;

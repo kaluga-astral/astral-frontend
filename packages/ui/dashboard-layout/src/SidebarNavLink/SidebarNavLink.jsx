@@ -6,8 +6,6 @@ import { ButtonBase } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarNavItem from '../SidebarNavItem';
-import SidebarTooltip from '../SidebarTooltip';
-import LayoutContext from '../LayoutContext';
 
 const useStyles = makeStyles(
   theme => ({
@@ -42,37 +40,23 @@ const SidebarNavItemComponent = React.forwardRef((props, ref) => (
 const DashboardLayoutSidebarNavLink = ({
   className, Icon, text, ...props
 }) => {
-  const { isSidebarOpen } = React.useContext(LayoutContext);
+  const classes = useStyles();
 
-  const Item = () => {
-    const classes = useStyles();
-
-    return (
-      <li className={cn(classes.root, className)}>
-        <SidebarNavItem
-          activeClassName={classes.active}
-          Icon={iconProps => (
-            <Icon className={cn(classes.icon, iconProps.className)} />
-          )}
-          Text={textProps => (
-            <div className={cn(classes.text, textProps.className)}>{text}</div>
-          )}
-          component={SidebarNavItemComponent}
-          {...props}
-        />
-      </li>
-    );
-  };
-
-  if (isSidebarOpen) {
-    return <Item />;
-  }
   return (
-    <SidebarTooltip text={text}>
-      <div>
-        <Item />
-      </div>
-    </SidebarTooltip>
+    <li {...props} className={cn(classes.root, className)}>
+      <SidebarNavItem
+        label={text}
+        activeClassName={classes.active}
+        Icon={iconProps => (
+          <Icon className={cn(classes.icon, iconProps.className)} />
+        )}
+        Text={textProps => (
+          <div className={cn(classes.text, textProps.className)}>{text}</div>
+        )}
+        component={SidebarNavItemComponent}
+        {...props}
+      />
+    </li>
   );
 };
 

@@ -7,8 +7,6 @@ import { Collapse, List } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarNavItem from '../SidebarNavItem';
-import SidebarTooltip from '../SidebarTooltip';
-import LayoutContext from '../LayoutContext';
 import SidebarNavDropdownToggler from './SidebarNavDropdownToggler';
 import SidebarNavDropdownContext from './SidebarNavDropdownContext';
 
@@ -44,10 +42,11 @@ const DashboardLayoutSidebarNavDropdown = ({
   children,
   location,
   isCounterVisible,
+  ...props
 }) => {
+  const classes = useStyles();
   const id = React.useMemo(() => nanoid(), []);
   const [expanded, setExpanded] = React.useState(false);
-  const { isSidebarOpen } = React.useContext(LayoutContext);
   const { expandedNavDropdownId, setExpandedNavDropdownId } = React.useContext(
     SidebarNavDropdownContext,
   );
@@ -77,44 +76,30 @@ const DashboardLayoutSidebarNavDropdown = ({
     setExpanded(id === expandedNavDropdownId);
   }, [expandedNavDropdownId]);
 
-  const Item = () => {
-    const classes = useStyles();
-
-    return (
-      <li className={cn(classes.root, className)}>
-        <SidebarNavItem
-          expanded={expanded}
-          isCounterVisible={isCounterVisible}
-          Icon={iconProps => (
-            <Icon className={cn(classes.icon, iconProps.className)} />
-          )}
-          Text={textProps => (
-            <div className={cn(classes.text, textProps.className)}>{text}</div>
-          )}
-          component={SidebarNavDropdownToggler}
-          onToggle={handleSidebarNavItemToggle}
-        />
-        <Collapse
-          unmountOnExit
-          in={expanded}
-          component={List}
-          className={classes.list}
-        >
-          {children}
-        </Collapse>
-      </li>
-    );
-  };
-
-  if (isSidebarOpen) {
-    return <Item />;
-  }
   return (
-    <SidebarTooltip text={text}>
-      <div>
-        <Item />
-      </div>
-    </SidebarTooltip>
+    <li {...props} className={cn(classes.root, className)}>
+      <SidebarNavItem
+        label={text}
+        expanded={expanded}
+        isCounterVisible={isCounterVisible}
+        Icon={iconProps => (
+          <Icon className={cn(classes.icon, iconProps.className)} />
+        )}
+        Text={textProps => (
+          <div className={cn(classes.text, textProps.className)}>{text}</div>
+        )}
+        component={SidebarNavDropdownToggler}
+        onToggle={handleSidebarNavItemToggle}
+      />
+      <Collapse
+        unmountOnExit
+        in={expanded}
+        component={List}
+        className={classes.list}
+      >
+        {children}
+      </Collapse>
+    </li>
   );
 };
 

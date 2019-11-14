@@ -6,7 +6,6 @@ import { SvgIcon } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarNavItem from '../SidebarNavItem';
-import SidebarTooltip from '../SidebarTooltip';
 import LayoutContext from '../LayoutContext';
 
 const useStyles = makeStyles(
@@ -47,42 +46,29 @@ const DashboardLayoutSidebarNavDropdownItem = ({
   ...props
 }) => {
   const { isSidebarOpen } = React.useContext(LayoutContext);
+  const classes = useStyles();
 
-  const Item = () => {
-    const classes = useStyles();
-
-    return (
-      <li>
-        <SidebarNavItem
-          activeClassName={classes.active}
-          className={cn(classes.root, {
-            [classes.collapsedItem]: !isSidebarOpen,
-          })}
-          Text={textProps => (
-            <div className={cn(classes.text, textProps.className)}>{text}</div>
-          )}
-          Icon={() => (isSidebarOpen ? null : (
-            <SvgIcon viewBox="0 0 4 4" className={classes.icon}>
-              <circle cx="2" cy="2" r="2" fill="currentColor" />
-            </SvgIcon>
-          ))
-          }
-          component={DashboardLayoutSidebarNavDropdownItemComponent}
-          {...props}
-        />
-      </li>
-    );
-  };
-
-  if (isSidebarOpen) {
-    return <Item />;
-  }
   return (
-    <SidebarTooltip text={text}>
-      <div>
-        <Item />
-      </div>
-    </SidebarTooltip>
+    <li {...props}>
+      <SidebarNavItem
+        label={text}
+        activeClassName={classes.active}
+        className={cn(classes.root, {
+          [classes.collapsedItem]: !isSidebarOpen,
+        })}
+        Text={textProps => (
+          <div className={cn(classes.text, textProps.className)}>{text}</div>
+        )}
+        Icon={() => (isSidebarOpen ? null : (
+          <SvgIcon viewBox="0 0 4 4" className={classes.icon}>
+            <circle cx="2" cy="2" r="2" fill="currentColor" />
+          </SvgIcon>
+        ))
+        }
+        component={DashboardLayoutSidebarNavDropdownItemComponent}
+        {...props}
+      />
+    </li>
   );
 };
 
