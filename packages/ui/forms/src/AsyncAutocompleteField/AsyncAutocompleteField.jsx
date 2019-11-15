@@ -1,4 +1,4 @@
-import { omit, get } from 'lodash-es';
+import { omit } from 'lodash-es';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useField, useFormState, useForm } from 'react-final-form';
@@ -17,14 +17,6 @@ const AsyncAutocompleteField = ({
 }) => {
   const { initialValues } = useFormState();
   const { mutators } = useForm();
-
-  React.useEffect(() => {
-    const field = get(initialValues, name);
-    if (field) {
-      mutators.setValue(name, field.value);
-    }
-  }, [JSON.stringify(initialValues)]);
-
   const validationFunction = React.useCallback(
     createValidationFunction(required, validate),
     [required, validate],
@@ -40,6 +32,14 @@ const AsyncAutocompleteField = ({
     setSelectedItem(item);
     input.onChange(item.value);
   };
+
+  React.useEffect(() => {
+    const field = initialValues[name];
+
+    if (field) {
+      mutators.setValue(name, field.value || field);
+    }
+  }, []);
 
   return (
     <AsyncAutocomplete

@@ -4,7 +4,7 @@ import React from 'react';
 import AsyncAutocompleteField from '../AsyncAutocompleteField';
 import DaDataContext from './DaDataContext';
 
-const validate = (value) => {
+const validate = value => {
   if (value && !value.locality) {
     return 'Необходимо указать город или населенный пункт';
   }
@@ -12,7 +12,7 @@ const validate = (value) => {
   return null;
 };
 
-const itemToString = (item) => {
+const itemToString = item => {
   if (!item) {
     return '';
   }
@@ -20,7 +20,7 @@ const itemToString = (item) => {
   return item.label || item.unrestrictedValue;
 };
 
-const FormAddressField = ({ ...props }) => {
+const FormAddressField = props => {
   const { fetchAddressSuggestions } = React.useContext(DaDataContext);
 
   return (
