@@ -29,8 +29,12 @@ const AsyncAutocompleteField = ({
     meta.invalid && ((required && meta.touched) || (!required && meta.visited));
   const helperText = error ? meta.error : null;
   const handleChange = item => {
-    setSelectedItem(item);
-    input.onChange(item.value);
+    if (item) {
+      setSelectedItem(item);
+      input.onChange(item.value);
+    } else {
+      input.onChange(null);
+    }
   };
 
   React.useEffect(() => {
