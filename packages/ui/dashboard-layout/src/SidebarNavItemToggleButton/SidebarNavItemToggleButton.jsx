@@ -5,8 +5,8 @@ import { makeStyles } from '@astral-frontend/styles';
 import { ButtonBase } from '@astral-frontend/components';
 import { CollapseIcon } from '@astral-frontend/icons';
 
-import LayoutContext from '../LayoutContext';
-import SidebarContext from '../SidebarContext';
+import { __Context as LayoutContext } from '../Layout';
+import { __Context as SidebarContext } from '../Sidebar';
 
 const useStyles = makeStyles(
   theme => ({

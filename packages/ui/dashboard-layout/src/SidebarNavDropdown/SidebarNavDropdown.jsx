@@ -42,7 +42,6 @@ const DashboardLayoutSidebarNavDropdown = ({
   children,
   location,
   isCounterVisible,
-  ...props
 }) => {
   const classes = useStyles();
   const id = React.useMemo(() => nanoid(), []);
@@ -77,7 +76,7 @@ const DashboardLayoutSidebarNavDropdown = ({
   }, [expandedNavDropdownId]);
 
   return (
-    <li {...props} className={cn(classes.root, className)}>
+    <li className={cn(classes.root, className)}>
       <SidebarNavItem
         label={text}
         expanded={expanded}

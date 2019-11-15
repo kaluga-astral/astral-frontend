@@ -6,11 +6,12 @@ import { SvgIcon } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarNavItem from '../SidebarNavItem';
-import LayoutContext from '../LayoutContext';
+import { __Context as LayoutContext } from '../Layout';
 
 const useStyles = makeStyles(
   theme => ({
-    root: {
+    root: {},
+    sidebarNavItem: {
       borderLeft: `2px solid ${theme.palette.primary.light}`,
       marginLeft: `${theme.spacing(6)}px`,
     },
@@ -49,21 +50,22 @@ const DashboardLayoutSidebarNavDropdownItem = ({
   const classes = useStyles();
 
   return (
-    <li {...props}>
+    <li className={cn(classes.root, className)}>
       <SidebarNavItem
         label={text}
         activeClassName={classes.active}
-        className={cn(classes.root, {
+        className={cn(classes.sidebarNavItem, {
           [classes.collapsedItem]: !isSidebarOpen,
         })}
         Text={textProps => (
           <div className={cn(classes.text, textProps.className)}>{text}</div>
         )}
-        Icon={() => (isSidebarOpen ? null : (
-          <SvgIcon viewBox="0 0 4 4" className={classes.icon}>
-            <circle cx="2" cy="2" r="2" fill="currentColor" />
-          </SvgIcon>
-        ))
+        Icon={() =>
+          !isSidebarOpen && (
+            <SvgIcon viewBox="0 0 4 4" className={classes.icon}>
+              <circle cx="2" cy="2" r="2" fill="currentColor" />
+            </SvgIcon>
+          )
         }
         component={DashboardLayoutSidebarNavDropdownItemComponent}
         {...props}

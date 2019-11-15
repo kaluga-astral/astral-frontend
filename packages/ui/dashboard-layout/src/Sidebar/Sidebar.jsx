@@ -4,8 +4,8 @@ import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 import { FlexContainer } from '@astral-frontend/components';
 
-import LayoutContext from '../LayoutContext';
-import SidebarContext from '../SidebarContext';
+import { __Context as LayoutContext } from '../Layout';
+import SidebarContext from './Context';
 
 const useStyles = makeStyles(
   theme => ({
@@ -38,7 +38,7 @@ const DashboardLayoutSidebar = ({ className, children }) => {
   const [isTransitioning, setIsTransitioning] = React.useState(false);
 
   React.useEffect(() => {
-    asideRef.current.addEventListener('transitionend', (event) => {
+    asideRef.current.addEventListener('transitionend', event => {
       event.stopPropagation();
       setIsTransitioning(false);
     });

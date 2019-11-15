@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { ButtonBase } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import LayoutContext from '../LayoutContext';
-import SidebarContext from '../SidebarContext';
+import { __Context as LayoutContext } from '../Layout';
+import { __Context as SidebarContext } from '../Sidebar';
 
 const useStyles = makeStyles(
   theme => ({
@@ -25,7 +25,8 @@ const useStyles = makeStyles(
       height: '20px',
       fill: 'currentColor',
       transition: 'transform 0.3s ease 0s',
-      color: expanded => (expanded ? theme.palette.primary.main : theme.palette.grey[600]),
+      color: expanded =>
+        expanded ? theme.palette.primary.main : theme.palette.grey[600],
       transform: expanded => (expanded ? 'rotateZ(0deg)' : 'rotateZ(180deg)'),
     },
     documentCounter: {

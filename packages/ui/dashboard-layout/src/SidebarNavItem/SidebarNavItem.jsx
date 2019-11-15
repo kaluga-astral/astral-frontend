@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
-import LayoutContext from '../LayoutContext';
-import SidebarContext from '../SidebarContext';
+import { __Context as LayoutContext } from '../Layout';
+import { __Context as SidebarContext } from '../Sidebar';
 import SidebarTooltip from '../SidebarTooltip';
 
 const useStyles = makeStyles(
@@ -48,9 +48,7 @@ const useStyles = makeStyles(
 );
 
 const DashboardLayoutSidebarNavItem = React.forwardRef(
-  ({
-    className, component: Component, Icon, label, Text, ...props
-  }, ref) => {
+  ({ className, component: Component, Icon, label, Text, ...props }, ref) => {
     const classes = useStyles();
     const { isSidebarOpen } = React.useContext(LayoutContext);
     const { isTransitioning } = React.useContext(SidebarContext);

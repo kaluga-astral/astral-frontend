@@ -37,13 +37,11 @@ const SidebarNavItemComponent = React.forwardRef((props, ref) => (
   />
 ));
 
-const DashboardLayoutSidebarNavLink = ({
-  className, Icon, text, ...props
-}) => {
+const DashboardLayoutSidebarNavLink = ({ className, Icon, text, ...props }) => {
   const classes = useStyles();
 
   return (
-    <li {...props} className={cn(classes.root, className)}>
+    <li className={cn(classes.root, className)}>
       <SidebarNavItem
         label={text}
         activeClassName={classes.active}
