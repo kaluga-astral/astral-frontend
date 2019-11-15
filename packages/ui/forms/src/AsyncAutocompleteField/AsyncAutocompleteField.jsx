@@ -1,7 +1,7 @@
 import { omit } from 'lodash-es';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useField } from 'react-final-form';
+import { useField, useFormState, useForm } from 'react-final-form';
 
 import { AsyncAutocomplete } from '@astral-frontend/components';
 
@@ -9,22 +9,37 @@ import { createValidationFunction } from '../utils';
 
 // TODO: #28099
 const AsyncAutocompleteField = ({
-  name, validate, required, InputProps, ...props
+  name,
+  validate,
+  required,
+  InputProps,
+  ...props
 }) => {
-  const validationFunction = React.useCallback(createValidationFunction(required, validate), [
-    required,
-    validate,
-  ]);
+  const { initialValues } = useFormState();
+  const { mutators } = useForm();
+  const validationFunction = React.useCallback(
+    createValidationFunction(required, validate),
+    [required, validate],
+  );
   const { input, meta } = useField(name, {
     validate: validationFunction,
   });
   const [selectedItem, setSelectedItem] = React.useState(input.value);
-  const error = meta.invalid && ((required && meta.touched) || (!required && meta.visited));
+  const error =
+    meta.invalid && ((required && meta.touched) || (!required && meta.visited));
   const helperText = error ? meta.error : null;
-  const handleChange = (item) => {
+  const handleChange = item => {
     setSelectedItem(item);
     input.onChange(item.value);
   };
+
+  React.useEffect(() => {
+    const field = initialValues[name];
+
+    if (field) {
+      mutators.setValue(name, field.value || field);
+    }
+  }, []);
 
   return (
     <AsyncAutocomplete
