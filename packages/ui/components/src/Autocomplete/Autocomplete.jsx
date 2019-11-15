@@ -53,6 +53,7 @@ const Autocomplete = ({
       }) => (
         <div className={classes.root}>
           <TextField
+            multiline
             fullWidth
             type="text"
             margin="normal"
