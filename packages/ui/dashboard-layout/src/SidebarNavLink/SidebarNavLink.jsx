@@ -43,7 +43,7 @@ const DashboardLayoutSidebarNavLink = ({ className, Icon, text, ...props }) => {
   return (
     <li className={cn(classes.root, className)}>
       <SidebarNavItem
-        label={text}
+        tooltipText={text}
         activeClassName={classes.active}
         Icon={iconProps => (
           <Icon className={cn(classes.icon, iconProps.className)} />

@@ -48,7 +48,10 @@ const useStyles = makeStyles(
 );
 
 const DashboardLayoutSidebarNavItem = React.forwardRef(
-  ({ className, component: Component, Icon, label, Text, ...props }, ref) => {
+  (
+    { className, component: Component, Icon, tooltipText, Text, ...props },
+    ref,
+  ) => {
     const classes = useStyles();
     const { isSidebarOpen } = React.useContext(LayoutContext);
     const { isTransitioning } = React.useContext(SidebarContext);
@@ -73,7 +76,7 @@ const DashboardLayoutSidebarNavItem = React.forwardRef(
     }
 
     return (
-      <SidebarTooltip text={label}>
+      <SidebarTooltip text={tooltipText}>
         <div>
           <Item />
         </div>
@@ -95,7 +98,7 @@ DashboardLayoutSidebarNavItem.propTypes = {
   ]).isRequired,
   Icon: PropTypes.func.isRequired,
   Text: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired,
+  tooltipText: PropTypes.string.isRequired,
 };
 
 export default DashboardLayoutSidebarNavItem;

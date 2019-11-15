@@ -52,7 +52,7 @@ const DashboardLayoutSidebarNavDropdownItem = ({
   return (
     <li className={cn(classes.root, className)}>
       <SidebarNavItem
-        label={text}
+        tooltipText={text}
         activeClassName={classes.active}
         className={cn(classes.navItem, {
           [classes.collapsedItem]: !isSidebarOpen,

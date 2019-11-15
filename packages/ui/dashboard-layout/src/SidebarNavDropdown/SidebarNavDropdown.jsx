@@ -78,7 +78,7 @@ const DashboardLayoutSidebarNavDropdown = ({
   return (
     <li className={cn(classes.root, className)}>
       <SidebarNavItem
-        label={text}
+        tooltipText={text}
         expanded={expanded}
         isCounterVisible={isCounterVisible}
         Icon={iconProps => (
