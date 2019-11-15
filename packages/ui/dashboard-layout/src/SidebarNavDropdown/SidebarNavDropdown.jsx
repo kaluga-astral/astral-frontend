@@ -41,7 +41,7 @@ const DashboardLayoutSidebarNavDropdown = ({
   text,
   children,
   location,
-  isCounterVisible,
+  counterValue,
 }) => {
   const classes = useStyles();
   const id = React.useMemo(() => nanoid(), []);
@@ -80,7 +80,7 @@ const DashboardLayoutSidebarNavDropdown = ({
       <SidebarNavItem
         tooltipText={text}
         expanded={expanded}
-        isCounterVisible={isCounterVisible}
+        counterValue={counterValue}
         Icon={iconProps => (
           <Icon className={cn(classes.icon, iconProps.className)} />
         )}
@@ -104,7 +104,6 @@ const DashboardLayoutSidebarNavDropdown = ({
 
 DashboardLayoutSidebarNavDropdown.defaultProps = {
   className: null,
-  isCounterVisible: true,
 };
 
 DashboardLayoutSidebarNavDropdown.propTypes = {
@@ -112,7 +111,7 @@ DashboardLayoutSidebarNavDropdown.propTypes = {
   Icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  isCounterVisible: PropTypes.bool,
+  counterValue: PropTypes.string.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,

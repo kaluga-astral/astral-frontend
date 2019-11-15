@@ -52,7 +52,7 @@ const useStyles = makeStyles(
 const DashboardLayoutSidebarNavDropdownToggler = ({
   className,
   expanded,
-  isCounterVisible,
+  counterValue,
   children,
   onToggle,
 }) => {
@@ -71,7 +71,9 @@ const DashboardLayoutSidebarNavDropdownToggler = ({
       {children}
       {isTooglerContentVisible && (
         <>
-          {isCounterVisible && <div className={classes.counter}>5</div>}
+          {counterValue && (
+            <div className={classes.counter}>{counterValue}</div>
+          )}
           <svg className={classes.expandIcon} viewBox="-4 -5 18 18">
             <path d="M11.9055 5.73684L11.7145 5.9127C11.5881 6.0291 11.3837 6.0291 11.2573 5.9127L6.00151 1.07059L0.743044 5.91269C0.616626 6.0291 0.412205 6.0291 0.285786 5.91269L0.0948139 5.73684C-0.0316045 5.62043 -0.0316045 5.4322 0.0948139 5.31579L5.77019 0.0873066C5.89661 -0.0291022 6.10103 -0.0291022 6.22745 0.0873066L11.9028 5.31579C12.0319 5.4322 12.0319 5.62044 11.9055 5.73684Z" />
           </svg>
@@ -83,12 +85,11 @@ const DashboardLayoutSidebarNavDropdownToggler = ({
 
 DashboardLayoutSidebarNavDropdownToggler.defaultProps = {
   className: null,
-  isCounterVisible: true,
 };
 
 DashboardLayoutSidebarNavDropdownToggler.propTypes = {
   className: PropTypes.string,
-  isCounterVisible: PropTypes.bool,
+  counterValue: PropTypes.string.isRequired,
   expanded: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onToggle: PropTypes.func.isRequired,

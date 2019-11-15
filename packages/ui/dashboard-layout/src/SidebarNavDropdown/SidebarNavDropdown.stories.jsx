@@ -21,6 +21,7 @@ storiesOf('packages/dashboard-layout/SidebarNavDropdown', module).add(
               key="documents"
               text="Документы"
               Icon={DocumentIcon}
+              counterValue="5"
             >
               <SidebarNavDropdown.Item text="Входящие" to="/incoming" />
               <SidebarNavDropdown.Item text="Исходящие" to="outgoing" />
@@ -44,7 +45,6 @@ storiesOf('packages/dashboard-layout/SidebarNavDropdown', module).add(
               key="documents"
               text="Документы"
               Icon={DocumentIcon}
-              isCounterVisible={false}
             >
               <SidebarNavDropdown.Item text="Входящие" to="/incoming" />
               <SidebarNavDropdown.Item text="Исходящие" to="outgoing" />
