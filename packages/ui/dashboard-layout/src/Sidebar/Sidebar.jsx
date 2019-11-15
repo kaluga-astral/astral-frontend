@@ -48,6 +48,7 @@ const DashboardLayoutSidebar = ({ className, children }) => {
     <SidebarContext.Provider value={{ isTransitioning }}>
       <FlexContainer
         ref={asideRef}
+        component="aside"
         direction="column"
         className={cn(classes.root, className, {
           [classes.collapsed]: !isSidebarOpen,

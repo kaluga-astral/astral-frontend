@@ -11,7 +11,7 @@ import { __Context as LayoutContext } from '../Layout';
 const useStyles = makeStyles(
   theme => ({
     root: {},
-    sidebarNavItem: {
+    navItem: {
       borderLeft: `2px solid ${theme.palette.primary.light}`,
       marginLeft: `${theme.spacing(6)}px`,
     },
@@ -54,7 +54,7 @@ const DashboardLayoutSidebarNavDropdownItem = ({
       <SidebarNavItem
         label={text}
         activeClassName={classes.active}
-        className={cn(classes.sidebarNavItem, {
+        className={cn(classes.navItem, {
           [classes.collapsedItem]: !isSidebarOpen,
         })}
         Text={textProps => (

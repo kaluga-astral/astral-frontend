@@ -43,6 +43,12 @@ const useStyles = makeStyles(
 const DashboardLayoutSidebarTooltip = ({ children, text }) => {
   const classes = useStyles();
   const [arrowRef, setArrowRef] = React.useState(null);
+  const TooltipArrow = (
+    <>
+      {text}
+      <span className={classes.arrow} ref={setArrowRef} />
+    </>
+  );
 
   return (
     <Tooltip
@@ -61,12 +67,7 @@ const DashboardLayoutSidebarTooltip = ({ children, text }) => {
           },
         },
       }}
-      title={(
-        <>
-          {text}
-          <span className={classes.arrow} ref={setArrowRef} />
-        </>
-)}
+      title={TooltipArrow}
     >
       {children}
     </Tooltip>

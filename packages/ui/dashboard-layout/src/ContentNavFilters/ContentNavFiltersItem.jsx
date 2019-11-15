@@ -31,7 +31,7 @@ const useStyles = makeStyles(
       padding: '0 5px',
       backgroundColor: 'rgba(29, 63, 102, 0.09)',
       color: 'rgba(29, 63, 102, 0.45)',
-      borderRadius: '4px',
+      borderRadius: theme.shape.borderRadius,
     },
   }),
   { name: 'DashboardLayoutContentNavItem' },
@@ -48,7 +48,10 @@ const DashboardLayoutContentNavItem = ({
   const classes = useStyles();
 
   return (
-    <Component className={cn(classes.root, { [classes.active]: active }, className)} {...props}>
+    <Component
+      className={cn(classes.root, { [classes.active]: active }, className)}
+      {...props}
+    >
       <span className={classes.text}>{text}</span>
       <div className={classes.count}>{count}</div>
     </Component>
@@ -65,7 +68,11 @@ DashboardLayoutContentNavItem.propTypes = {
   active: PropTypes.bool,
   text: PropTypes.string.isRequired,
   count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  component: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string]),
+  component: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   className: PropTypes.string,
 };
 
