@@ -15,6 +15,12 @@ const useStyles = makeStyles(
       fontSize: theme.typography.pxToRem(16),
       fontWeight: theme.typography.fontWeightMedium,
     },
+    active: {
+      color: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.light,
+      borderRadius: `${theme.shape.borderRadius}px`,
+      margin: `0 ${theme.spacing(1)}px`,
+    },
   }),
   {
     name: 'DashboardLayoutSidebarNavLink',
@@ -31,16 +37,20 @@ const SidebarNavItemComponent = React.forwardRef((props, ref) => (
   />
 ));
 
-const DashboardLayoutSidebarNavLink = ({
-  className, Icon, text, ...props
-}) => {
+const DashboardLayoutSidebarNavLink = ({ className, Icon, text, ...props }) => {
   const classes = useStyles();
 
   return (
     <li className={cn(classes.root, className)}>
       <SidebarNavItem
-        Icon={iconProps => <Icon className={cn(classes.icon, iconProps.className)} />}
-        Text={textProps => <div className={cn(classes.text, textProps.className)}>{text}</div>}
+        tooltipText={text}
+        activeClassName={classes.active}
+        Icon={iconProps => (
+          <Icon className={cn(classes.icon, iconProps.className)} />
+        )}
+        Text={textProps => (
+          <div className={cn(classes.text, textProps.className)}>{text}</div>
+        )}
         component={SidebarNavItemComponent}
         {...props}
       />

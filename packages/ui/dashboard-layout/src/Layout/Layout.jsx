@@ -15,10 +15,16 @@ const useStyles = makeStyles(() => ({
 const DashboardLayout = ({ className, children }) => {
   const classes = useStyles();
   const [currentMainModalKey, setCurrentMainModalKey] = React.useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
 
   return (
     <DashboardLayoutContext.Provider
-      value={{ currentMainModalKey, setCurrentMainModalKey }}
+      value={{
+        currentMainModalKey,
+        setCurrentMainModalKey,
+        isSidebarOpen,
+        setIsSidebarOpen,
+      }}
     >
       <div className={cn(classes.root, className)}>{children}</div>
     </DashboardLayoutContext.Provider>
