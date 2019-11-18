@@ -5,6 +5,8 @@ import Downshift from 'downshift';
 import { makeStyles } from '@astral-frontend/styles';
 
 import TextField from '../TextField';
+import InputAdornment from '../InputAdornment';
+import IconButton from '../IconButton';
 import ListItem from '../ListItem';
 import Paper from '../Paper';
 
@@ -47,14 +49,36 @@ const Autocomplete = ({
         getMenuProps,
         highlightedIndex,
         isOpen,
+        clearSelection,
       }) => (
         <div className={classes.root}>
           <TextField
+            multiline
             fullWidth
             type="text"
             margin="normal"
             InputProps={getInputProps({
               ...InputProps,
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={clearSelection}
+                  >
+                    <svg
+                      viewBox="0 0 20 20"
+                      preserveAspectRatio="none"
+                      width={12}
+                      fill="transparent"
+                      stroke="#979797"
+                      strokeWidth="1.1px"
+                    >
+                      <path d="M1,1 L19,19" />
+                      <path d="M19,1 L1,19" />
+                    </svg>
+                  </IconButton>
+                </InputAdornment>
+              ),
             })}
             {...MUITextFieldProps}
           />
