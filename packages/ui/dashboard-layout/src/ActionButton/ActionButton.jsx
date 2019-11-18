@@ -4,9 +4,6 @@ import React from 'react';
 import { ButtonBase } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import Icon from './ActionButtonIcon';
-import Text from './ActionButtonText';
-
 const useStyles = makeStyles(
   theme => ({
     root: {
@@ -51,9 +48,5 @@ DashboardLayoutActionButton.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
-
-DashboardLayoutActionButton.Icon = Icon;
-
-DashboardLayoutActionButton.Text = Text;
 
 export default DashboardLayoutActionButton;

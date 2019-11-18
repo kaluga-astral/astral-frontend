@@ -31,7 +31,7 @@ const useStyles = makeStyles(
       padding: '0 5px',
       backgroundColor: 'rgba(29, 63, 102, 0.09)',
       color: 'rgba(29, 63, 102, 0.45)',
-      borderRadius: theme.shape.borderRadius,
+      borderRadius: `${theme.shape.borderRadius}px`,
     },
   }),
   { name: 'DashboardLayoutContentNavItem' },

@@ -18,7 +18,7 @@ const useStyles = makeStyles(
       margin: `0 ${theme.spacing(1)}px`,
       listStyle: 'none',
       backgroundColor: theme.palette.primary.light,
-      borderRadius: `0 0 ${theme.spacing(1)}px 0`,
+      borderRadius: `0 0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px`,
     },
     icon: {
       width: '24px',

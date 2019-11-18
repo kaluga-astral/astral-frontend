@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     padding: '24px',
     color: theme.palette.text.primary,
     boxShadow: '0px 16px 56px rgba(0, 0, 0, 0.1)',
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: `${theme.shape.borderRadius}px`,
   },
   title: {
     margin: 0,

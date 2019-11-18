@@ -31,7 +31,7 @@ const useStyles = makeStyles(
     collapsedIcon: {
       margin: 0,
       '&:hover': {
-        borderRadius: theme.shape.borderRadius,
+        borderRadius: `${theme.shape.borderRadius}px`,
         backgroundColor: theme.palette.primary.light,
       },
     },
