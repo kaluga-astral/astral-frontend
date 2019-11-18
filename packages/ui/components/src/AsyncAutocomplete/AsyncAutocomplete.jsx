@@ -6,41 +6,40 @@ import Autocomplete from '../Autocomplete';
 
 const INPUT_VALUE_THROTTLE_TIMEOUT = 300;
 
-function sleep(delay = 0) {
-  return new Promise(resolve => {
-    setTimeout(resolve, delay);
-  });
-}
-
 const AsyncAutocomplete = ({
   fetchOptions,
   inputValueThrottleTimeout,
   ...props
 }) => {
   const [open, setOpen] = React.useState(false);
-  const [loading, setLoading] = React.useState(open);
-  const [options, setOptions] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [options, setOptions] = React.useState({});
   const handleInputChange = React.useCallback(
-    throttle(async (event, value) => {
+    throttle(async (event, inputValue) => {
       setLoading(true);
 
-      const newOptions = await fetchOptions(value);
-      await sleep(1e3);
+      const newOptions = await fetchOptions(inputValue);
 
       setLoading(false);
-      setOptions(newOptions);
+      // TODO: #28808
+      setOptions(prevOptions => {
+        return newOptions.reduce(
+          (acc, newOption) => ({
+            ...acc,
+            [newOption.key]: newOption,
+          }),
+          prevOptions,
+        );
+      });
     }, inputValueThrottleTimeout),
-    [],
+    [open],
   );
-
-  React.useEffect(() => {
-    fetchOptions(null).then(setOptions);
-  }, []);
 
   return (
     <Autocomplete
       {...props}
-      loading={loading}
+      options={Object.values(options)}
+      loading={open && loading}
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -49,7 +48,6 @@ const AsyncAutocomplete = ({
         setOpen(false);
       }}
       onInputChange={handleInputChange}
-      options={options}
     />
   );
 };
@@ -60,6 +58,11 @@ AsyncAutocomplete.defaultProps = {
 
 AsyncAutocomplete.propTypes = {
   inputValueThrottleTimeout: PropTypes.number,
+  /**
+   * Функция получения новых данных
+   *
+   * (inputValue: string) => Promise<{key: string, label: string, value: any}>
+   */
   fetchOptions: PropTypes.func.isRequired,
 };
 
