@@ -12,7 +12,7 @@ const validate = value => {
   return null;
 };
 
-const itemToString = item => {
+const getOptionLabel = item => {
   if (!item) {
     return '';
   }
@@ -26,8 +26,8 @@ const FormAddressField = props => {
   return (
     <AsyncAutocompleteField
       {...props}
-      itemToString={itemToString}
-      fetchSuggestions={fetchAddressSuggestions}
+      getOptionLabel={getOptionLabel}
+      fetchOptions={fetchAddressSuggestions}
     />
   );
 };

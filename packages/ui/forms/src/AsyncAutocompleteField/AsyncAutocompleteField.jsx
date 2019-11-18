@@ -76,7 +76,7 @@ AsyncAutocompleteField.propTypes = {
   InputProps: PropTypes.shape({}),
   required: PropTypes.bool,
   inputValueDebounceTimeout: PropTypes.number,
-  fetchSuggestions: PropTypes.func.isRequired,
+  fetchOptions: PropTypes.func.isRequired,
 };
 
 export default AsyncAutocompleteField;
