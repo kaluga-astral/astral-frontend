@@ -38,7 +38,7 @@ const AsyncAutocompleteField = ({
   };
 
   React.useEffect(() => {
-    const field = initialValues[name];
+    const field = (initialValues || {})[name];
 
     if (field) {
       mutators.setValue(name, field.value || field);
