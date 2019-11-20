@@ -5,4 +5,4 @@ import Text from './ActionButtonText';
 ActionButton.Text = Text;
 ActionButton.Icon = Icon;
 
-export { default } from './ActionButton';
+export default ActionButton;
