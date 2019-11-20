@@ -16,12 +16,12 @@ const OrganizationSelectorNotFoundPlaceholder = ({
     <OrganizationNotFoundIcon className={classes.icon} />
     <div className={classes.text}>
       <p>
-        Мы не нашли других ваших компаний. Добавьте их в систему чтобы удобно отслеживать
-        документоооборт
+        Мы не нашли других Ваших компаний. Добавьте их в систему, чтобы удобно
+        отслеживать документооборот
       </p>
     </div>
     <Link className={classes.link} to={addLinkHref}>
-      добавить огранизацию
+      добавить организацию
     </Link>
   </div>
 );
