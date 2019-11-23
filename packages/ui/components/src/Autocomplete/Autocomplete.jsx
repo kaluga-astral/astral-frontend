@@ -9,6 +9,7 @@ import MuiAutocomplete from '@material-ui/lab/Autocomplete';
 const Autocomplete = ({
   className,
   value,
+  disabled,
   loading,
   loadingText,
   noOptionsText,
@@ -26,6 +27,7 @@ const Autocomplete = ({
   return (
     <MuiAutocomplete
       className={className}
+      disabled={disabled}
       value={value}
       loading={loading}
       loadingText={loadingText}
@@ -38,31 +40,35 @@ const Autocomplete = ({
       onClose={onClose}
       onChange={onChange}
       onInputChange={onInputChange}
-      renderInput={params => (
-        <TextField
-          {...params}
-          fullWidth
-          margin="normal"
-          {...MuiTextFieldProps}
-          InputProps={{
-            ...params.InputProps,
-            endAdornment: (
-              <React.Fragment>
-                {loading ? (
-                  <CircularProgress color="inherit" size={20} />
-                ) : null}
-                {params.InputProps.endAdornment}
-              </React.Fragment>
-            ),
-          }}
-        />
-      )}
+      renderInput={params => {
+        const InputProps = {
+          ...params.InputProps,
+          ...MuiTextFieldProps.InputProps,
+          endAdornment: (
+            <React.Fragment>
+              {loading ? <CircularProgress color="inherit" size={20} /> : null}
+              {params.InputProps.endAdornment}
+            </React.Fragment>
+          ),
+        };
+
+        return (
+          <TextField
+            {...params}
+            fullWidth
+            margin="normal"
+            {...MuiTextFieldProps}
+            InputProps={InputProps}
+          />
+        );
+      }}
     />
   );
 };
 
 Autocomplete.defaultProps = {
   className: null,
+  disabled: false,
   open: false,
   loading: null,
   loadingText: 'Загрузка...',
@@ -81,6 +87,7 @@ Autocomplete.defaultProps = {
 
 Autocomplete.propTypes = {
   className: PropTypes.string,
+  disabled: PropTypes.bool,
   filterOptions: PropTypes.func,
   /**
    * Used to determine the string value for a given option.

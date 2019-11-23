@@ -26,7 +26,7 @@ const AsyncAutocompleteField = ({
     validate: validationFunction,
   });
   const [value, setValue] = React.useState(initialFieldValue);
-  const error = meta.touched && !meta.valid;
+  const error = required && meta.touched && !meta.valid;
   const helperText = meta.error && meta.touched ? meta.error : null;
   const handleChange = (event, newValue) => {
     if (newValue) {
@@ -40,7 +40,7 @@ const AsyncAutocompleteField = ({
 
   React.useEffect(() => {
     mutators.setValue(name, initialFieldValue.value);
-  }, [name, JSON.stringify(initialFieldValue.value)]);
+  }, []);
 
   return (
     <AsyncAutocomplete
