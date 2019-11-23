@@ -31,7 +31,6 @@ const Autocomplete = ({
       loadingText={loadingText}
       noOptionsText={noOptionsText}
       open={open}
-      openText="Открыть"
       options={options}
       filterOptions={filterOptions}
       getOptionLabel={getOptionLabel}
@@ -68,7 +67,7 @@ Autocomplete.defaultProps = {
   loading: null,
   loadingText: 'Загрузка...',
   noOptionsText: 'Ничего не найдено',
-  getOptionLabel: option => option.label,
+  getOptionLabel: option => option.label || '',
   filterOptions: (options, { inputValue }) => {
     return matchSorter(options, inputValue, { keys: [item => item.label] });
   },

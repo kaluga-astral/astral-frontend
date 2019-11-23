@@ -33,13 +33,14 @@ const AsyncAutocompleteField = ({
       setValue(newValue);
       input.onChange(newValue.value);
     } else {
+      setValue(null);
       input.onChange(null);
     }
   };
 
   React.useEffect(() => {
     mutators.setValue(name, initialFieldValue.value);
-  }, []);
+  }, [name, JSON.stringify(initialFieldValue.value)]);
 
   return (
     <AsyncAutocomplete

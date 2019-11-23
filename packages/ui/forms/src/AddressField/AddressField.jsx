@@ -12,23 +12,11 @@ const validate = value => {
   return null;
 };
 
-const getOptionLabel = item => {
-  if (!item) {
-    return '';
-  }
-
-  return item.label || item.unrestrictedValue;
-};
-
 const FormAddressField = props => {
   const { fetchAddressSuggestions } = React.useContext(DaDataContext);
 
   return (
-    <AsyncAutocompleteField
-      {...props}
-      getOptionLabel={getOptionLabel}
-      fetchOptions={fetchAddressSuggestions}
-    />
+    <AsyncAutocompleteField {...props} fetchOptions={fetchAddressSuggestions} />
   );
 };
 
