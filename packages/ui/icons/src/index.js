@@ -9,9 +9,12 @@ export { default as SaveIcon } from './SaveIcon';
 export { default as SearchIcon } from './SearchIcon';
 export { default as SendIcon } from './SendIcon';
 export { default as OrganizationIcon } from './OrganizationIcon';
-export { default as OrganizationNotFoundIcon } from './OrganizationNotFoundIcon';
+export {
+  default as OrganizationNotFoundIcon,
+} from './OrganizationNotFoundIcon';
 export { default as UncheckedCircleIcon } from './UnchekedCircleIcon';
 export { default as VisibilityIcon } from './VisibilityIcon';
 export { default as VisibilityOffIcon } from './VisibilityOffIcon';
 export { default as CrossIcon } from './CrossIcon';
+export { default as CollapseIcon } from './CollapseIcon';
 export { default as ErrorIcon } from './ErrorIcon';

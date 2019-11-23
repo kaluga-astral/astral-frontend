@@ -13,22 +13,28 @@ import {
 import { makeStyles } from '@astral-frontend/styles';
 
 import Item from './Item';
+import { __Context as LayoutContext } from '../Layout';
+import { __Context as SidebarContext } from '../Sidebar';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    display: 'flex',
+    justifyContent: 'flex-start',
     borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
     width: '260px',
+  },
+  collapsedButton: {
+    width: '70px',
   },
   toggler: {
     display: 'flex',
     width: '100%',
     height: '100%',
-    padding: '20px',
+    padding: `${theme.spacing(5)}px`,
   },
   avatar: {
     width: '40px',
     height: '40px',
-    marginRight: '15px',
     fontSize: theme.typography.pxToRem(18),
     color: theme.palette.common.white,
     background: theme.palette.primary.dark,
@@ -38,6 +44,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: theme.typography.pxToRem(14),
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    marginLeft: `${theme.spacing(4)}px`,
   },
   popperPaper: {
     minWidth: '175px',
@@ -52,23 +59,34 @@ const DashboardLayoutCurrentUserInfo = ({
   userName,
   ...props
 }) => {
-  const [open, setOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const classes = useStyles();
   const buttonRef = React.createRef();
-  const handleTogglerButtonClick = (event) => {
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { isTransitioning } = React.useContext(SidebarContext);
+  const { isSidebarOpen } = React.useContext(LayoutContext);
+  const isUserNameVisible = !isTransitioning && isSidebarOpen;
+
+  const handleTogglerButtonClick = event => {
     const { currentTarget } = event;
     setOpen(prevValue => !prevValue);
     setAnchorEl(currentTarget);
   };
-  const handleClickAwayListenerClickAway = (event) => {
+  const handleClickAwayListenerClickAway = event => {
     if (!buttonRef.current.contains(event.target)) {
       setOpen(false);
     }
   };
 
   return (
-    <div {...props} className={cn(classes.root, className)}>
+    <div
+      {...props}
+      className={cn(
+        classes.root,
+        { [classes.collapsedButton]: !isSidebarOpen },
+        className,
+      )}
+    >
       <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
         <div>
           <ButtonBase
@@ -79,7 +97,9 @@ const DashboardLayoutCurrentUserInfo = ({
             <Avatar className={classes.avatar} src={avatarSrc}>
               {avatarAlt}
             </Avatar>
-            <div className={classes.userName}>{userName}</div>
+            {isUserNameVisible && (
+              <div className={classes.userName}>{userName}</div>
+            )}
           </ButtonBase>
           <Popper placement="top" transition open={open} anchorEl={anchorEl}>
             {({ TransitionProps }) => (

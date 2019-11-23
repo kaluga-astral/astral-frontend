@@ -14,11 +14,15 @@ const useStyles = makeStyles(
   theme => ({
     root: {},
     list: {
-      padding: 0,
-      margin: 0,
+      padding: `0 0 ${theme.spacing(4)}px 0`,
+      margin: `0 ${theme.spacing(1)}px`,
       listStyle: 'none',
+      backgroundColor: theme.palette.primary.light,
+      borderRadius: `0 0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px`,
     },
     icon: {
+      width: '24px',
+      height: '24px',
       fontSize: theme.typography.pxToRem(20),
     },
     text: {
@@ -32,7 +36,12 @@ const useStyles = makeStyles(
 );
 
 const DashboardLayoutSidebarNavDropdown = ({
-  className, Icon, text, children, location,
+  className,
+  Icon,
+  text,
+  children,
+  location,
+  counterValue,
 }) => {
   const classes = useStyles();
   const id = React.useMemo(() => nanoid(), []);
@@ -69,13 +78,24 @@ const DashboardLayoutSidebarNavDropdown = ({
   return (
     <li className={cn(classes.root, className)}>
       <SidebarNavItem
+        tooltipText={text}
         expanded={expanded}
-        Icon={iconProps => <Icon className={cn(classes.icon, iconProps.className)} />}
-        Text={textProps => <div className={cn(classes.text, textProps.className)}>{text}</div>}
+        counterValue={counterValue}
+        Icon={iconProps => (
+          <Icon className={cn(classes.icon, iconProps.className)} />
+        )}
+        Text={textProps => (
+          <div className={cn(classes.text, textProps.className)}>{text}</div>
+        )}
         component={SidebarNavDropdownToggler}
         onToggle={handleSidebarNavItemToggle}
       />
-      <Collapse unmountOnExit in={expanded} component={List} className={classes.list}>
+      <Collapse
+        unmountOnExit
+        in={expanded}
+        component={List}
+        className={classes.list}
+      >
         {children}
       </Collapse>
     </li>
@@ -91,6 +111,7 @@ DashboardLayoutSidebarNavDropdown.propTypes = {
   Icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  counterValue: PropTypes.string.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,

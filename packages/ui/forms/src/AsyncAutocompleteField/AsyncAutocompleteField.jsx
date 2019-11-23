@@ -17,7 +17,7 @@ const AsyncAutocompleteField = ({
 }) => {
   const { initialValues } = useFormState();
   const { mutators } = useForm();
-  const initialFieldValue = initialValues[name] || {};
+  const initialFieldValue = (initialValues || {})[name] || {};
   const validationFunction = React.useCallback(
     createValidationFunction(required, validate),
     [required, validate],
@@ -39,7 +39,9 @@ const AsyncAutocompleteField = ({
   };
 
   React.useEffect(() => {
-    mutators.setValue(name, initialFieldValue.value);
+    if (initialFieldValue) {
+      mutators.setValue(name, initialFieldValue.value);
+    }
   }, []);
 
   return (

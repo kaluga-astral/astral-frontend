@@ -11,11 +11,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const DialogContent = (props) => {
+const DialogContent = props => {
   const { className, ...rootProps } = props;
   const classes = useStyles(props);
 
-  return <MuiDialogContent className={cn(className, classes.root)} {...rootProps} />;
+  return (
+    <MuiDialogContent className={cn(className, classes.root)} {...rootProps} />
+  );
 };
 
 DialogContent.defaultProps = {
