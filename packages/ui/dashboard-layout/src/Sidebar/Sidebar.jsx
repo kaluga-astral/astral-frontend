@@ -1,11 +1,64 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
+import { FlexContainer } from '@astral-frontend/components';
 
-const DashboardLayoutSidebar = ({ classes, className, children }) => (
-  <aside className={cn(classes.root, className)}>{children}</aside>
+import { __Context as LayoutContext } from '../Layout';
+import SidebarContext from './Context';
+
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      width: '260px',
+      height: '100%',
+      backgroundColor: theme.palette.background.paper,
+      transition: theme.transitions.create(['width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      '&$collapsed': {
+        width: '70px',
+        transition: theme.transitions.create(['width'], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+      },
+    },
+    collapsed: {},
+  }),
+  { name: 'DashboardLayoutSidebar' },
 );
+
+const asideRef = React.createRef();
+
+const DashboardLayoutSidebar = ({ className, children }) => {
+  const classes = useStyles();
+  const { isSidebarOpen } = React.useContext(LayoutContext);
+  const [isTransitioning, setIsTransitioning] = React.useState(false);
+
+  React.useEffect(() => {
+    asideRef.current.addEventListener('transitionend', event => {
+      event.stopPropagation();
+      setIsTransitioning(false);
+    });
+  }, []);
+
+  return (
+    <SidebarContext.Provider value={{ isTransitioning }}>
+      <FlexContainer
+        ref={asideRef}
+        component="aside"
+        direction="column"
+        className={cn(classes.root, className, {
+          [classes.collapsed]: !isSidebarOpen,
+        })}
+      >
+        {children}
+      </FlexContainer>
+    </SidebarContext.Provider>
+  );
+};
 
 DashboardLayoutSidebar.defaultProps = {
   className: null,
@@ -17,16 +70,4 @@ DashboardLayoutSidebar.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default withStyles(
-  theme => ({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      flexShrink: 0,
-      width: '260px',
-      height: '100%',
-      backgroundColor: theme.palette.background.paper,
-    },
-  }),
-  { name: 'DashboardLayoutSidebar' },
-)(DashboardLayoutSidebar);
+export default DashboardLayoutSidebar;

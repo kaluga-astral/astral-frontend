@@ -1,0 +1,111 @@
+/*
+Astral theme for Intro.js
+*/
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.introjs-overlay {
+  position: absolute;
+  z-index: 999999;
+  background: #072d57;
+  opacity: 0.48 !important;
+  transition: all 0.3s ease-out;
+}
+
+.introjs-fixParent {
+  z-index: auto !important;
+  opacity: 1 !important;
+}
+
+.introjs-showElement,
+tr.introjs-showElement > td,
+tr.introjs-showElement > th {
+  z-index: 9999999 !important;
+}
+
+.introjs-relativePosition,
+tr.introjs-showElement > td,
+tr.introjs-showElement > th {
+  position: relative;
+}
+
+.introjs-helperLayer {
+  position: absolute;
+  z-index: 9999998;
+  background: #fff;
+  box-shadow: 0px 16px 56px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition: all 0.3s ease-out;
+}
+
+.introjs-helperNumberLayer {
+  display: none !important;
+}
+
+.introjs-arrow {
+  display: none !important;
+}
+.introjs-arrow.top {
+  display: none !important;
+}
+.introjs-arrow.top-right {
+  display: none !important;
+}
+.introjs-arrow.top-middle {
+  display: none !important;
+}
+.introjs-arrow.right {
+  display: none !important;
+}
+.introjs-arrow.bottom {
+  display: none !important;
+}
+.introjs-arrow.left {
+  display: none !important;
+}
+
+.introjs-tooltip {
+  position: absolute;
+  padding: 0;
+  min-width: 600px;
+  opacity: 1 !important;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.introjs-tooltiptext {
+  display: none !important;
+}
+
+.introjs-tooltipbuttons {
+  display: none !important;
+}
+
+.introjs-button {
+  display: none !important;
+}
+
+.introjs-skipbutton {
+  display: none !important;
+}
+
+.introjs-prevbutton {
+  display: none !important;
+}
+
+.introjs-disabled {
+  display: none !important;
+}
+
+.introjs-bullets {
+  display: none !important;
+}
+
+.introjsFloatingElement {
+  display: none !important;
+}

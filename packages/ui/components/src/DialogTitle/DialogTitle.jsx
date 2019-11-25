@@ -13,41 +13,50 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingTop: theme.spacing(6),
+    paddingBottom: theme.spacing(3),
   },
   title: {
     margin: 0,
-    fontWeight: 300,
-    fontSize: theme.typography.pxToRem(18),
-    marginRight: '20px',
+    fontWeight: 600,
+    fontSize: theme.typography.pxToRem(14),
+    marginRight: theme.spacing(5),
   },
   icon: {
     fontSize: theme.typography.pxToRem(16),
   },
 }));
 
-const DialogTitle = ({
-  children, className, ...props
-}) => {
-  const classes = useStyles();
+const DialogTitle = props => {
+  const { showCloseButton, className, children, ...rootProps } = props;
+  const classes = useStyles(props);
   const { onClose } = useContext(__Context);
 
   return (
-    <MuiDialogTitle {...props} className={cn(classes.root, className)} disableTypography>
+    <MuiDialogTitle
+      className={cn(classes.root, className)}
+      {...rootProps}
+      disableTypography
+    >
       <h1 className={classes.title}>{children}</h1>
-      <IconButton onClick={onClose}>
-        <CrossIcon className={classes.icon} />
-      </IconButton>
+      {showCloseButton && (
+        <IconButton onClick={onClose}>
+          <CrossIcon className={classes.icon} />
+        </IconButton>
+      )}
     </MuiDialogTitle>
   );
 };
 
 DialogTitle.defaultProps = {
+  showCloseButton: true,
   className: null,
 };
 
 DialogTitle.propTypes = {
-  children: PropTypes.node.isRequired,
+  showCloseButton: PropTypes.bool,
   className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default DialogTitle;

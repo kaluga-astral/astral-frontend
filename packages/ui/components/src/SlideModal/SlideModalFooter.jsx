@@ -7,10 +7,10 @@ import FlexContainer from '../FlexContainer';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    borderTop: `1px solid ${theme.palette.grey[100]}`,
+    borderTop: `1px solid ${theme.palette.primary.light}`,
   },
   padding: {
-    padding: '20px',
+    padding: `${theme.spacing(4)}px ${theme.spacing(12)}px`,
   },
 }));
 

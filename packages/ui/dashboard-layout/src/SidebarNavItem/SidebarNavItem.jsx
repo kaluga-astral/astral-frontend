@@ -3,34 +3,43 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
+import { __Context as LayoutContext } from '../Layout';
+import { __Context as SidebarContext } from '../Sidebar';
+import SidebarTooltip from '../SidebarTooltip';
+
 const useStyles = makeStyles(
   theme => ({
     root: {
       display: 'flex',
       alignItems: 'center',
-      width: '100%',
-      padding: '20px',
+      justifyContent: 'flex-start',
+      padding: `${theme.spacing(4)}px`,
       lineHeight: theme.typography.pxToRem(20),
       textAlign: 'left',
       textDecoration: 'none',
       color: theme.palette.grey[600],
-      '&$active': {
-        color: theme.palette.primary.main,
-        borderRight: '3px solid',
-        borderRightColor: theme.palette.primary.main,
-      },
+      margin: `0 ${theme.spacing(1)}px`,
     },
-    active: {},
     icon: {
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       flexShrink: 0,
-      marginRight: '15px',
-      width: '32px',
+      marginRight: `${theme.spacing(4)}px`,
+      padding: `${theme.spacing(1)}px`,
+    },
+    collapsedIcon: {
+      margin: 0,
+      '&:hover': {
+        borderRadius: `${theme.shape.borderRadius}px`,
+        backgroundColor: theme.palette.primary.light,
+      },
     },
     text: {
       flexGrow: 1,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      maxHeight: '20px',
     },
   }),
   {
@@ -39,25 +48,39 @@ const useStyles = makeStyles(
 );
 
 const DashboardLayoutSidebarNavItem = React.forwardRef(
-  ({
-    className, component: Component, Icon, Text, ...props
-  }, ref) => {
+  (
+    { className, component: Component, Icon, tooltipText, Text, ...props },
+    ref,
+  ) => {
     const classes = useStyles();
-
-    return (
-      <Component
-        ref={ref}
-        className={cn(classes.root, className)}
-        activeClassName={classes.active}
-        {...props}
-      >
+    const { isSidebarOpen } = React.useContext(LayoutContext);
+    const { isTransitioning } = React.useContext(SidebarContext);
+    const isNavItemTextVisible = !isTransitioning && isSidebarOpen;
+    const Item = () => (
+      <Component ref={ref} className={cn(classes.root, className)} {...props}>
         {Icon && (
-          <div className={classes.icon}>
+          <div
+            className={cn(classes.icon, {
+              [classes.collapsedIcon]: !isSidebarOpen,
+            })}
+          >
             <Icon />
           </div>
         )}
-        <Text className={classes.text} />
+        {isNavItemTextVisible && <Text className={classes.text} />}
       </Component>
+    );
+
+    if (isSidebarOpen) {
+      return <Item />;
+    }
+
+    return (
+      <SidebarTooltip text={tooltipText}>
+        <div>
+          <Item />
+        </div>
+      </SidebarTooltip>
     );
   },
 );
@@ -68,9 +91,14 @@ DashboardLayoutSidebarNavItem.defaultProps = {
 
 DashboardLayoutSidebarNavItem.propTypes = {
   className: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string, PropTypes.func]).isRequired,
+  component: PropTypes.oneOfType([
+    PropTypes.shape(),
+    PropTypes.string,
+    PropTypes.func,
+  ]).isRequired,
   Icon: PropTypes.func.isRequired,
   Text: PropTypes.func.isRequired,
+  tooltipText: PropTypes.string.isRequired,
 };
 
 export default DashboardLayoutSidebarNavItem;
