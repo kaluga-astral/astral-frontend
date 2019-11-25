@@ -1,139 +1,160 @@
 import PropTypes from 'prop-types';
+import matchSorter from 'match-sorter';
 import React from 'react';
-import Downshift from 'downshift';
+import { TextField, CircularProgress } from '@astral-frontend/core';
+import MuiAutocomplete from '@material-ui/lab/Autocomplete';
 
-import { makeStyles } from '@astral-frontend/styles';
-
-import TextField from '../TextField';
-import InputAdornment from '../InputAdornment';
-import IconButton from '../IconButton';
-import ListItem from '../ListItem';
-import Paper from '../Paper';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    position: 'relative',
-  },
-  paper: {
-    position: 'absolute',
-    zIndex: 1,
-    marginTop: theme.spacing(1),
-    left: 0,
-    right: 0,
-  },
-}));
+// import TextField from '../TextField';
 
 const Autocomplete = ({
-  suggestions,
-  selectedItem,
-  itemToString,
-  onInputValueChange,
+  className,
+  value,
+  disabled,
+  loading,
+  loadingText,
+  noOptionsText,
+  options,
+  getOptionLabel,
+  open,
+  filterOptions,
+  onOpen,
+  onInputChange,
+  onClose,
   onChange,
   // ======MUITextFieldProps=====
-  InputProps,
-  ...MUITextFieldProps
+  ...MuiTextFieldProps
 }) => {
-  const classes = useStyles();
-
   return (
-    <Downshift
-      selectedItem={selectedItem}
-      itemToString={itemToString}
-      onInputValueChange={onInputValueChange}
+    <MuiAutocomplete
+      className={className}
+      disabled={disabled}
+      value={value}
+      loading={loading}
+      loadingText={loadingText}
+      noOptionsText={noOptionsText}
+      open={open}
+      options={options}
+      filterOptions={filterOptions}
+      getOptionLabel={getOptionLabel}
+      onOpen={onOpen}
+      onClose={onClose}
       onChange={onChange}
-    >
-      {({
-        getInputProps,
-        getItemProps,
-        getMenuProps,
-        highlightedIndex,
-        isOpen,
-        clearSelection,
-      }) => (
-        <div className={classes.root}>
-          <TextField
-            multiline
-            fullWidth
-            type="text"
-            margin="normal"
-            InputProps={getInputProps({
-              ...InputProps,
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={clearSelection}
-                  >
-                    <svg
-                      viewBox="0 0 20 20"
-                      preserveAspectRatio="none"
-                      width={12}
-                      fill="transparent"
-                      stroke="#979797"
-                      strokeWidth="1.1px"
-                    >
-                      <path d="M1,1 L19,19" />
-                      <path d="M19,1 L1,19" />
-                    </svg>
-                  </IconButton>
-                </InputAdornment>
-              ),
-            })}
-            {...MUITextFieldProps}
-          />
-          <div {...getMenuProps()}>
-            {isOpen && (
-              <Paper className={classes.paper}>
-                {suggestions.map((suggestion, index) => {
-                  const itemProps = getItemProps({ item: suggestion });
-                  const selected = highlightedIndex === index;
+      onInputChange={onInputChange}
+      renderInput={params => {
+        const InputProps = {
+          ...params.InputProps,
+          ...MuiTextFieldProps.InputProps,
+          endAdornment: (
+            <React.Fragment>
+              {loading ? <CircularProgress color="inherit" size={20} /> : null}
+              {params.InputProps.endAdornment}
+            </React.Fragment>
+          ),
+        };
 
-                  return (
-                    <ListItem
-                      {...itemProps}
-                      key={suggestion.key}
-                      selected={selected}
-                      component="div"
-                    >
-                      {suggestion.label}
-                    </ListItem>
-                  );
-                })}
-              </Paper>
-            )}
-          </div>
-        </div>
-      )}
-    </Downshift>
+        return (
+          <TextField
+            {...params}
+            fullWidth
+            margin="normal"
+            {...MuiTextFieldProps}
+            InputProps={InputProps}
+          />
+        );
+      }}
+    />
   );
 };
 
 Autocomplete.defaultProps = {
-  selectedItem: null,
-  InputProps: null,
-  itemToString: item => {
-    if (!item) {
-      return '';
-    }
-
-    return item.label;
+  className: null,
+  disabled: false,
+  open: false,
+  loading: null,
+  loadingText: 'Загрузка...',
+  noOptionsText: 'Ничего не найдено',
+  getOptionLabel: option => option.label || '',
+  filterOptions: (options, { inputValue }) => {
+    return matchSorter(options, inputValue, { keys: [item => item.label] });
   },
+  onChange: PropTypes.func,
+  onClose: PropTypes.func,
+  onInputChange: PropTypes.func,
+  onOpen: PropTypes.func,
+  value: null,
+  options: [],
 };
 
 Autocomplete.propTypes = {
-  suggestions: PropTypes.arrayOf(
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  filterOptions: PropTypes.func,
+  /**
+   * Used to determine the string value for a given option.
+   * It's used to fill the input (and the list box options if `renderOption` is not provided).
+   */
+  getOptionLabel: PropTypes.func,
+  /**
+   * If `true`, the component is in a loading state.
+   */
+  loading: PropTypes.bool,
+  /**
+   * Text to display when in a loading state.
+   */
+  loadingText: PropTypes.node,
+  /**
+   * Text to display when there are no options.
+   */
+  noOptionsText: PropTypes.node,
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback
+   * @param {any} value
+   */
+  onChange: PropTypes.func,
+  /**
+   * Callback fired when the popup requests to be closed.
+   * Use in controlled mode (see open).
+   *
+   * @param {object} event The event source of the callback.
+   */
+  onClose: PropTypes.func,
+  /**
+   * Callback fired when the input value changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {string} value
+   */
+  onInputChange: PropTypes.func,
+  /**
+   * Callback fired when the popup requests to be opened.
+   * Use in controlled mode (see open).
+   *
+   * @param {object} event The event source of the callback.
+   */
+  onOpen: PropTypes.func,
+  /**
+   * Control the popup` open state.
+   */
+  open: PropTypes.bool,
+  /**
+   * Array of options.
+   */
+  options: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.node.isRequired,
-      key: PropTypes.string.isRequired,
+      key: PropTypes.string,
+      label: PropTypes.string,
+      value: PropTypes.any,
     }),
-  ).isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  selectedItem: PropTypes.any,
-  itemToString: PropTypes.func,
-  onInputValueChange: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  InputProps: PropTypes.shape({}),
+  ),
+  /**
+   * The value of the autocomplete.
+   */
+  value: PropTypes.shape({
+    key: PropTypes.string,
+    label: PropTypes.string,
+    value: PropTypes.any,
+  }),
 };
-
 export default Autocomplete;

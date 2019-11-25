@@ -1,38 +1,69 @@
-import { debounce } from 'lodash-es';
+import { throttle } from 'lodash-es';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import Autocomplete from '../Autocomplete';
 
-const INPUT_VALUE_DEBOUNCE_TIMEOUT = 300;
+const INPUT_VALUE_THROTTLE_TIMEOUT = 300;
 
-const AsyncAutocomplete = ({ fetchSuggestions, inputValueDebounceTimeout, ...props }) => {
-  const [suggestions, setSuggestions] = React.useState([]);
-  const handleInputValueChange = React.useCallback(
-    debounce((inputValue) => {
-      if (inputValue) {
-        fetchSuggestions(inputValue).then(setSuggestions);
-      }
-    }, inputValueDebounceTimeout),
-    [],
+const AsyncAutocomplete = ({
+  fetchOptions,
+  inputValueThrottleTimeout,
+  ...props
+}) => {
+  const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const [options, setOptions] = React.useState({});
+  const handleInputChange = React.useCallback(
+    throttle(async (event, inputValue) => {
+      setLoading(true);
+
+      const newOptions = await fetchOptions(inputValue);
+
+      setLoading(false);
+      // TODO: #28808
+      setOptions(prevOptions => {
+        return newOptions.reduce(
+          (acc, newOption) => ({
+            ...acc,
+            [newOption.key]: newOption,
+          }),
+          prevOptions,
+        );
+      });
+    }, inputValueThrottleTimeout),
+    [open],
   );
 
   return (
     <Autocomplete
       {...props}
-      onInputValueChange={handleInputValueChange}
-      suggestions={suggestions}
+      options={Object.values(options)}
+      loading={open && loading}
+      open={open}
+      onOpen={() => {
+        setOpen(true);
+      }}
+      onClose={() => {
+        setOpen(false);
+      }}
+      onInputChange={handleInputChange}
     />
   );
 };
 
 AsyncAutocomplete.defaultProps = {
-  inputValueDebounceTimeout: INPUT_VALUE_DEBOUNCE_TIMEOUT,
+  inputValueThrottleTimeout: INPUT_VALUE_THROTTLE_TIMEOUT,
 };
 
 AsyncAutocomplete.propTypes = {
-  inputValueDebounceTimeout: PropTypes.number,
-  fetchSuggestions: PropTypes.func.isRequired,
+  inputValueThrottleTimeout: PropTypes.number,
+  /**
+   * Функция получения новых данных
+   *
+   * (inputValue: string) => Promise<{key: string, label: string, value: any}>
+   */
+  fetchOptions: PropTypes.func.isRequired,
 };
 
 export default AsyncAutocomplete;
