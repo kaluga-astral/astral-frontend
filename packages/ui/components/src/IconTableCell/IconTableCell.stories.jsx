@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { DocumentIcon, DocumentIconError } from '@astral-frontend/icons';
 import IconTableCell from './IconTableCell';
 
-storiesOf('IconTableCell', module)
+storiesOf('packages/components/IconTableCell', module)
   .add('indeterminateLoading', () => (
     <IconTableCell
       loading
@@ -19,7 +20,9 @@ storiesOf('IconTableCell', module)
     const [loadingPercent, setLoadingPercent] = React.useState(10);
     React.useEffect(() => {
       setInterval(() => {
-        setLoadingPercent(prevPercent => (prevPercent > 99 ? 0 : prevPercent + 10));
+        setLoadingPercent(prevPercent =>
+          prevPercent > 99 ? 0 : prevPercent + 10,
+        );
       }, 300);
     }, []);
 
