@@ -22,8 +22,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-start',
     borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
     width: '260px',
+    overflow: 'hidden',
   },
-  collapsedButton: {
+  collapsed: {
     width: '70px',
   },
   toggler: {
@@ -42,9 +43,11 @@ const useStyles = makeStyles(theme => ({
   userName: {
     fontWeight: 400,
     fontSize: theme.typography.pxToRem(14),
+    marginLeft: `${theme.spacing(4)}px`,
+    textAlign: 'left',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    marginLeft: `${theme.spacing(4)}px`,
+    whiteSpace: 'nowrap',
   },
   popperPaper: {
     minWidth: '175px',
@@ -66,53 +69,50 @@ const DashboardLayoutCurrentUserInfo = ({
   const { isTransitioning } = React.useContext(SidebarContext);
   const { isSidebarOpen } = React.useContext(LayoutContext);
   const isUserNameVisible = !isTransitioning && isSidebarOpen;
-
   const handleTogglerButtonClick = event => {
     const { currentTarget } = event;
     setOpen(prevValue => !prevValue);
     setAnchorEl(currentTarget);
   };
-  const handleClickAwayListenerClickAway = event => {
+  const handleClickAway = event => {
     if (!buttonRef.current.contains(event.target)) {
       setOpen(false);
     }
   };
 
   return (
-    <div
-      {...props}
-      className={cn(
-        classes.root,
-        { [classes.collapsedButton]: !isSidebarOpen },
-        className,
-      )}
-    >
-      <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-        <div>
-          <ButtonBase
-            className={cn(classes.toggler)}
-            buttonRef={buttonRef}
-            onClick={handleTogglerButtonClick}
-          >
-            <Avatar className={classes.avatar} src={avatarSrc}>
-              {avatarAlt}
-            </Avatar>
-            {isUserNameVisible && (
-              <div className={classes.userName}>{userName}</div>
-            )}
-          </ButtonBase>
-          <Popper placement="top" transition open={open} anchorEl={anchorEl}>
-            {({ TransitionProps }) => (
-              <Grow {...TransitionProps}>
-                <Paper className={classes.popperPaper}>
-                  <MenuList disablePadding>{children}</MenuList>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-        </div>
-      </ClickAwayListener>
-    </div>
+    <ClickAwayListener onClickAway={handleClickAway}>
+      <div
+        {...props}
+        className={cn(
+          classes.root,
+          { [classes.collapsed]: !isSidebarOpen },
+          className,
+        )}
+      >
+        <ButtonBase
+          className={cn(classes.toggler)}
+          buttonRef={buttonRef}
+          onClick={handleTogglerButtonClick}
+        >
+          <Avatar className={classes.avatar} src={avatarSrc}>
+            {avatarAlt}
+          </Avatar>
+          {isUserNameVisible && (
+            <div className={classes.userName}>{userName}</div>
+          )}
+        </ButtonBase>
+        <Popper placement="top" transition open={open} anchorEl={anchorEl}>
+          {({ TransitionProps }) => (
+            <Grow {...TransitionProps}>
+              <Paper className={classes.popperPaper}>
+                <MenuList disablePadding>{children}</MenuList>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </div>
+    </ClickAwayListener>
   );
 };
 

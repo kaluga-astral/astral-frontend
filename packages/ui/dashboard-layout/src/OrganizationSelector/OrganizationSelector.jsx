@@ -10,6 +10,7 @@ import {
   MenuList,
   MenuItem,
   FlexContainer,
+  ContentState,
 } from '@astral-frontend/components';
 
 import { makeStyles } from '@astral-frontend/styles';
@@ -24,6 +25,7 @@ const useStyles = makeStyles(
   () => ({
     root: {
       height: '100%',
+      flexShrink: 0,
     },
     popperPaper: {
       maxHeight: '325px',
@@ -44,6 +46,8 @@ const useStyles = makeStyles(
 
 const DashboardLayoutOrganizationSelector = ({
   className,
+  loading,
+  error,
   children,
   addLinkHref,
   currentOrganization,
@@ -90,39 +94,45 @@ const DashboardLayoutOrganizationSelector = ({
       justifyContent="flex-end"
       className={cn(classes.root, className)}
     >
-      <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-        <CurrentOrganization
-          name={currentOrganization && currentOrganization.name}
-          onClick={handleTogglerButtonClick}
-        />
-      </ClickAwayListener>
-      <Popper
-        transition
-        open={open}
-        anchorEl={rootRef.current}
-        style={{ zIndex: 1300 }}
-      >
-        {({ TransitionProps }) => (
-          <Grow {...TransitionProps}>
-            <Paper className={classes.popperPaper}>{renderChildren()}</Paper>
-          </Grow>
-        )}
-      </Popper>
+      <ContentState loading={loading} error={error}>
+        <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
+          <CurrentOrganization
+            name={currentOrganization && currentOrganization.name}
+            onClick={handleTogglerButtonClick}
+          />
+        </ClickAwayListener>
+        <Popper
+          transition
+          open={open}
+          anchorEl={rootRef.current}
+          style={{ zIndex: 1300 }}
+        >
+          {({ TransitionProps }) => (
+            <Grow {...TransitionProps}>
+              <Paper className={classes.popperPaper}>{renderChildren()}</Paper>
+            </Grow>
+          )}
+        </Popper>
+      </ContentState>
     </FlexContainer>
   );
 };
 
 DashboardLayoutOrganizationSelector.defaultProps = {
   className: null,
+  error: null,
+  currentOrganization: null,
 };
 
 DashboardLayoutOrganizationSelector.propTypes = {
   className: PropTypes.string,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.instanceOf(Error),
   children: PropTypes.node.isRequired,
   addLinkHref: PropTypes.string.isRequired,
   currentOrganization: PropTypes.shape({
     name: PropTypes.string,
-  }).isRequired,
+  }),
   NotFoundPlaceholder: PropTypes.oneOfType([
     PropTypes.string.isRequired,
     PropTypes.object.isRequired,

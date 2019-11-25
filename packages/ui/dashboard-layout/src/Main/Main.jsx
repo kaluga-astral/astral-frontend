@@ -9,8 +9,6 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       position: 'relative',
-      // display: 'flex',
-      // flexDirection: 'column',
       flexGrow: 1,
       overflow: 'hidden',
       margin: `${theme.spacing(4)}px`,
