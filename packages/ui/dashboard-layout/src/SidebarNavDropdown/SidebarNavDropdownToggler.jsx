@@ -85,11 +85,12 @@ const DashboardLayoutSidebarNavDropdownToggler = ({
 
 DashboardLayoutSidebarNavDropdownToggler.defaultProps = {
   className: null,
+  counterValue: null,
 };
 
 DashboardLayoutSidebarNavDropdownToggler.propTypes = {
   className: PropTypes.string,
-  counterValue: PropTypes.string.isRequired,
+  counterValue: PropTypes.string,
   expanded: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onToggle: PropTypes.func.isRequired,

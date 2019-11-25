@@ -10,7 +10,7 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       width: '300px',
-      margin: theme.spacing(2, 0),
+      margin: theme.spacing(4, 0),
       borderRadius: theme.shape.borderRadius,
       color: '#b7c2ce', // TODO: в тему
       backgroundColor: '#ebeef1', // TODO: в тему

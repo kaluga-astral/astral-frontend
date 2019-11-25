@@ -21,7 +21,12 @@ const DashboardLayoutPageTitle = ({ className, children, ...props }) => {
   const classes = useStyles();
 
   return (
-    <FlexItem component="h1" alignSelf="center" className={cn(classes.root, className)} {...props}>
+    <FlexItem
+      component="h1"
+      alignSelf="center"
+      className={cn(classes.root, className)}
+      {...props}
+    >
       {children}
     </FlexItem>
   );

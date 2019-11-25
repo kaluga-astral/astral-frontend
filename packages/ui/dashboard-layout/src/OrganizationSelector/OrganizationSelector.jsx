@@ -69,7 +69,11 @@ const DashboardLayoutOrganizationSelector = ({
           }}
         >
           {children}
-          <MenuItem className={classes.addButton} component={Link} to={addLinkHref}>
+          <MenuItem
+            className={classes.addButton}
+            component={Link}
+            to={addLinkHref}
+          >
             + Добавить организацию
           </MenuItem>
         </MenuList>
@@ -92,7 +96,12 @@ const DashboardLayoutOrganizationSelector = ({
           onClick={handleTogglerButtonClick}
         />
       </ClickAwayListener>
-      <Popper transition open={open} anchorEl={rootRef.current} style={{ zIndex: 1300 }}>
+      <Popper
+        transition
+        open={open}
+        anchorEl={rootRef.current}
+        style={{ zIndex: 1300 }}
+      >
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
             <Paper className={classes.popperPaper}>{renderChildren()}</Paper>

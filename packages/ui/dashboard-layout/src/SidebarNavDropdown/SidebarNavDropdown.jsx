@@ -104,6 +104,7 @@ const DashboardLayoutSidebarNavDropdown = ({
 
 DashboardLayoutSidebarNavDropdown.defaultProps = {
   className: null,
+  counterValue: null,
 };
 
 DashboardLayoutSidebarNavDropdown.propTypes = {
@@ -111,7 +112,7 @@ DashboardLayoutSidebarNavDropdown.propTypes = {
   Icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  counterValue: PropTypes.string.isRequired,
+  counterValue: PropTypes.string,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,

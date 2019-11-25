@@ -44,7 +44,6 @@ DashboardLayoutActionButton.defaultProps = {
 };
 
 DashboardLayoutActionButton.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
