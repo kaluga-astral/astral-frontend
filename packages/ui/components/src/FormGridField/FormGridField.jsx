@@ -5,10 +5,11 @@ import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
 const FormGridField = ({
-  classes, className, component: Component, ...props
-}) => (
-  <Component className={cn(classes.root, className)} {...props} />
-);
+  classes,
+  className,
+  component: Component,
+  ...props
+}) => <Component className={cn(classes.root, className)} {...props} />;
 
 FormGridField.defaultProps = {
   className: null,
@@ -16,7 +17,11 @@ FormGridField.defaultProps = {
 
 FormGridField.propTypes = {
   className: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string, PropTypes.func]).isRequired,
+  component: PropTypes.oneOfType([
+    PropTypes.shape(),
+    PropTypes.string,
+    PropTypes.func,
+  ]).isRequired,
   classes: PropTypes.shape().isRequired,
 };
 
