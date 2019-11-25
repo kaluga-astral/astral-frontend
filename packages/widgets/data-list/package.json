@@ -9,6 +9,7 @@
     "release": "assembly-scripts release"
   },
   "dependencies": {
+    "@astral-frontend/components": "^0.3.0",
     "@astral-frontend/icons": "^0.1.0",
     "@astral-frontend/styles": "^0.1.0",
     "classnames": "^2.2.6",

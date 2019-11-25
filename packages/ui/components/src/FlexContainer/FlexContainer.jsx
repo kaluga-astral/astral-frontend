@@ -29,7 +29,9 @@ const FlexContainer = React.forwardRef((props, ref) => {
   } = props;
   const classes = useStyles(props);
 
-  return <Component ref={ref} className={cn(classes.root, className)} {...other} />;
+  return (
+    <Component ref={ref} className={cn(classes.root, className)} {...other} />
+  );
 });
 
 FlexContainer.defaultProps = {
@@ -42,7 +44,11 @@ FlexContainer.defaultProps = {
 
 FlexContainer.propTypes = {
   className: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string]),
+  component: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   direction: PropTypes.oneOf([
     'row',
     'row-reverse',

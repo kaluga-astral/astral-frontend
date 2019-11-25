@@ -11,6 +11,7 @@ const ContentState = ({
   component: Component,
   LoadingStateComponent,
   FailureStateComponent,
+  ...props
 }) => {
   const renderChildren = () => {
     if (loading) {
@@ -24,7 +25,7 @@ const ContentState = ({
     return children;
   };
 
-  return <Component>{renderChildren()}</Component>;
+  return <Component {...props}>{renderChildren()}</Component>;
 };
 
 ContentState.defaultProps = {
