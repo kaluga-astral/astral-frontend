@@ -2,18 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { SlideModal } from '@astral-frontend/components';
 
-import { __Context as MainContext } from '../Main';
-
-const DashboardLayoutMainModal = ({ children, ...props }) => {
-  const { ref: mainRef } = React.useContext(MainContext);
-  const containerRef = mainRef && mainRef.current ? mainRef : null;
-
-  return (
-    <SlideModal {...props} containerRef={containerRef}>
-      {children}
-    </SlideModal>
-  );
-};
+const DashboardLayoutMainModal = ({ children, ...props }) => (
+  <SlideModal {...props}>{children}</SlideModal>
+);
 
 DashboardLayoutMainModal.defaultProps = {
   children: null,

@@ -7,8 +7,6 @@ import Drawer from '../Drawer';
 
 const useStyles = makeStyles(
   () => {
-    const getContainerPosition = ({ contain }) => (contain ? 'absolute' : null);
-
     const getWidth = ({ size }) => {
       switch (size) {
         case 'small':
@@ -24,7 +22,6 @@ const useStyles = makeStyles(
 
     return {
       paper: {
-        position: getContainerPosition,
         width: getWidth,
         boxShadow: '0 5px 20px rgba(0, 0, 0, 0.1)',
         borderLeft: 'none',
@@ -34,14 +31,12 @@ const useStyles = makeStyles(
   { name: 'SlideModalDrawer' },
 );
 
-const SlideModalDrawer = (props) => {
-  const {
-    size, contain, children, ...restProps
-  } = props;
-  const classes = useStyles({ size, contain });
+const SlideModalDrawer = props => {
+  const { size, children, ...restProps } = props;
+  const classes = useStyles({ size });
 
   return (
-    <Drawer {...restProps} classes={classes} variant="persistent">
+    <Drawer {...restProps} classes={classes}>
       {children}
     </Drawer>
   );
@@ -56,7 +51,6 @@ SlideModalDrawer.defaultProps = {
 SlideModalDrawer.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
-  contain: PropTypes.bool.isRequired,
   transitionDuration: PropTypes.shape({}),
   children: PropTypes.node.isRequired,
 };
