@@ -1,10 +1,11 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ContentState, List, ListItem } from '@astral-frontend/components';
+import { ContentState, List } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import DataListHeader from './DataListHeader';
+import { __Context as DataListItemContext } from '../DataListItem';
 
 const useStyles = makeStyles(
   theme => ({
@@ -18,11 +19,17 @@ const useStyles = makeStyles(
       position: 'relative',
     },
     dataItem: {
+      borderLeftWidth: theme.spacing(1),
+      borderStyle: 'solid',
+      borderColor: 'transparent',
       padding: theme.spacing(4, 0),
       marginBottom: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
       color: theme.palette.gray[800],
       background: theme.palette.common.white,
+      '&:hover': {
+        borderColor: theme.palette.primary.main,
+      },
     },
   }),
   { name: 'DataList' },
@@ -49,22 +56,16 @@ const DataList = ({
     >
       <DataListHeader className={classes.row} columns={columns} />
       {data.map(dataItem => (
-        <li className={classes.bodyRow}>
-          <ListItem
-            key={dataItem.key}
-            className={cn(classes.row, classes.dataItem)}
-            disableGutters
-            button
-            component={componentProps => (
-              <ListItemComponent data={dataItem} {...componentProps} />
-            )}
-          >
-            {columns.map(column => {
-              const Component = column.component;
+        <li key={dataItem.key} className={classes.bodyRow}>
+          <DataListItemContext.Provider value={dataItem}>
+            <ListItemComponent className={cn(classes.row)}>
+              {columns.map(column => {
+                const Component = column.component;
 
-              return <Component key={column.title} data={dataItem} />;
-            })}
-          </ListItem>
+                return <Component key={column.title} data={dataItem} />;
+              })}
+            </ListItemComponent>
+          </DataListItemContext.Provider>
           <RowActions data={dataItem} />
         </li>
       ))}
@@ -85,11 +86,11 @@ DataList.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      component: PropTypes.element,
+      component: PropTypes.func.isRequired,
     }),
   ).isRequired,
-  ListItemComponent: PropTypes.element,
-  RowActions: PropTypes.element,
+  ListItemComponent: PropTypes.func,
+  RowActions: PropTypes.func,
 };
 
 export default DataList;

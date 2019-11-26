@@ -11,10 +11,10 @@ const useStyles = makeStyles(
       fontWeight: theme.typography.fontWeightBold,
     },
   }),
-  { name: 'DataLisstHeader' },
+  { name: 'DataListHeader' },
 );
 
-const DataLisstHeader = ({ className, columns }) => {
+const DataListHeader = ({ className, columns }) => {
   const classes = useStyles();
 
   return (
@@ -26,18 +26,18 @@ const DataLisstHeader = ({ className, columns }) => {
   );
 };
 
-DataLisstHeader.defaultProps = {
+DataListHeader.defaultProps = {
   className: null,
 };
 
-DataLisstHeader.propTypes = {
+DataListHeader.propTypes = {
   className: PropTypes.string,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      component: PropTypes.element,
+      component: PropTypes.func.isRequired,
     }),
   ).isRequired,
 };
 
-export default DataLisstHeader;
+export default DataListHeader;
