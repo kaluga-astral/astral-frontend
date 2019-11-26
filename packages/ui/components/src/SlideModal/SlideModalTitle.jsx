@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'flex-start',
     marginTop: theme.spacing(6),
-    marginBottom: theme.spacing(6),
     paddingRight: theme.spacing(12),
     paddingLeft: theme.spacing(3),
     wordBreak: 'break-all',

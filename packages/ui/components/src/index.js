@@ -65,6 +65,7 @@ export { default as Menu } from './Menu';
 export { default as MenuItem } from './MenuItem';
 export { default as MenuList } from './MenuList';
 export { default as Pagination } from './Pagination';
+export { default as SearchInput } from './SearchInput';
 export { default as SvgIcon } from './SvgIcon';
 export { default as Switch } from './Switch';
 export { default as Tab } from './Tab';

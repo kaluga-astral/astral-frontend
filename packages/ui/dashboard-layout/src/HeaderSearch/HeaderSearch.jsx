@@ -2,8 +2,7 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { FlexContainer, InputBase } from '@astral-frontend/components';
-import { SearchIcon } from '@astral-frontend/icons';
+import { SearchInput } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(
@@ -11,28 +10,10 @@ const useStyles = makeStyles(
     root: {
       width: '300px',
       margin: theme.spacing(4, 0),
-      borderRadius: theme.shape.borderRadius,
-      color: '#b7c2ce', // TODO: в тему
       backgroundColor: '#ebeef1', // TODO: в тему
       transition: theme.transitions.create('width'),
       '&:focus-within': {
-        // &:has($inputInput:placeholder-shown)
         width: '100%',
-      },
-    },
-    icon: {
-      margin: '0 16px',
-      zIndex: 1,
-    },
-    inputRoot: {
-      width: '100%',
-      height: '100%',
-    },
-    inputInput: {
-      paddingRight: theme.spacing(4),
-      '&::placeholder': {
-        opacity: 1,
-        color: '#b7c2ce', // TODO: в тему
       },
     },
   }),
@@ -40,26 +21,19 @@ const useStyles = makeStyles(
 );
 
 const DashboardLayoutHeaderSearch = ({
-  className, inputValue, onInputChange, ...props
+  className,
+  placeholder,
+  inputValue,
+  onInputChange,
 }) => {
   const classes = useStyles();
-
   return (
-    <FlexContainer className={cn(classes.root, className)} alignItems="center">
-      <SearchIcon className={classes.icon} />
-      <InputBase
-        placeholder="Search…"
-        inputProps={{
-          'aria-label': 'Search',
-        }}
-        type="search"
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput,
-        }}
-        {...props}
-      />
-    </FlexContainer>
+    <SearchInput
+      className={cn(classes.root, className)}
+      placeholder={placeholder}
+      value={inputValue}
+      onChange={onInputChange}
+    />
   );
 };
 
