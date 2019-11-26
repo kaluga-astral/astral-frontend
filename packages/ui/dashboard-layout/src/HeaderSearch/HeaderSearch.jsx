@@ -40,7 +40,10 @@ const useStyles = makeStyles(
 );
 
 const DashboardLayoutHeaderSearch = ({
-  className, inputValue, onInputChange, ...props
+  className,
+  inputValue,
+  onInputChange,
+  ...props
 }) => {
   const classes = useStyles();
 
@@ -48,15 +51,17 @@ const DashboardLayoutHeaderSearch = ({
     <FlexContainer className={cn(classes.root, className)} alignItems="center">
       <SearchIcon className={classes.icon} />
       <InputBase
-        placeholder="Search…"
+        placeholder="Поиск..."
         inputProps={{
-          'aria-label': 'Search',
+          'aria-label': 'Поиск...',
         }}
         type="search"
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
+        value={inputValue}
+        onChange={onInputChange}
         {...props}
       />
     </FlexContainer>

@@ -13,7 +13,11 @@ const useStyles = makeStyles(
     row: {
       display: 'grid',
       gridGap: theme.spacing(2),
-      gridTemplateColumns: props => `repeat(${props.columns.length}, 1fr)`,
+      gridTemplateColumns: props => {
+        return `${props.columns
+          .map(column => `${column.fr || '1'}fr`)
+          .join(' ')} 100px`;
+      },
     },
     bodyRow: {
       position: 'relative',
