@@ -4,6 +4,7 @@ import React from 'react';
 import { ContentState, List } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
+import DataListEmptyState from '../DataListEmptyState';
 import DataListHeader from './DataListHeader';
 import { __Context as DataListItemContext } from '../DataListItem';
 
@@ -45,10 +46,15 @@ const DataList = ({
   RowActions,
   ListItemComponent,
   data,
+  emptyStateText,
   ...props
 }) => {
   const { columns } = props;
   const classes = useStyles(props);
+
+  if (!loading && data.length === 0) {
+    return <DataListEmptyState text={emptyStateText} />;
+  }
 
   return (
     <ContentState
@@ -81,6 +87,7 @@ DataList.defaultProps = {
   error: null,
   ListItemComponent: null,
   RowActions: () => null,
+  emptyStateText: 'Список пуст',
 };
 
 DataList.propTypes = {
@@ -95,6 +102,7 @@ DataList.propTypes = {
   ).isRequired,
   ListItemComponent: PropTypes.func,
   RowActions: PropTypes.func,
+  emptyStateText: PropTypes.string,
 };
 
 export default DataList;

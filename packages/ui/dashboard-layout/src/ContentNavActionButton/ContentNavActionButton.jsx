@@ -40,7 +40,7 @@ ContentNavActionButton.defaultProps = {
 ContentNavActionButton.propTypes = {
   className: PropTypes.string,
   text: PropTypes.string.isRequired,
-  Icon: PropTypes.node.isRequired,
+  Icon: PropTypes.func.isRequired,
 };
 
 export default ContentNavActionButton;
