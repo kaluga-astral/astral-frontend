@@ -13,12 +13,12 @@ const useStyles = makeStyles(
       padding: theme.spacing(2.5, 4),
       borderRadius: theme.shape.borderRadius,
       color: theme.palette.primary.main,
+      textDecoration: 'none',
       '&:not(:last-child)': {
         marginRight: theme.spacing(4),
       },
     },
     active: {
-      fontWeight: theme.typography.fontWeightBold,
       backgroundColor: theme.palette.primary.light,
     },
   }),
