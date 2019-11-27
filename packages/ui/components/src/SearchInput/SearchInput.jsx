@@ -38,7 +38,7 @@ const SearchInput = ({
   className,
   placeholder,
   inputValue,
-  onInputChange,
+  onChange,
   ...props
 }) => {
   const classes = useStyles();
@@ -48,7 +48,7 @@ const SearchInput = ({
       <SearchIcon className={classes.icon} />
       <InputBase
         placeholder={placeholder}
-        onChange={onInputChange}
+        onChange={onChange}
         inputProps={{
           'aria-label': 'Поиск',
         }}
@@ -73,7 +73,7 @@ SearchInput.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onInputChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default SearchInput;
