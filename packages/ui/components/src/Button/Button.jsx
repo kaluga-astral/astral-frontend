@@ -6,11 +6,14 @@ import { makeStyles } from '@astral-frontend/styles';
 import ButtonBase from '../ButtonBase';
 import CircularProgress from '../CircularProgress';
 
-const getIsTextVariant = variant => variant === 'text' || variant === 'textBlock';
-const getIsBlockVariant = variant => variant === 'textBlock' || variant === 'regularBlock';
-const getIsRegularVariant = variant => variant === 'regular' || variant === 'regularBlock';
+const getIsTextVariant = variant =>
+  variant === 'text' || variant === 'textBlock';
+const getIsBlockVariant = variant =>
+  variant === 'textBlock' || variant === 'regularBlock';
+const getIsRegularVariant = variant =>
+  variant === 'regular' || variant === 'regularBlock';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(theme => {
   const getMinHeight = ({ size }) => {
     switch (size) {
       case 'extraSmall':
@@ -160,7 +163,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const getLoaderSize = (size) => {
+const getLoaderSize = size => {
   if (size === 'extraSmall') {
     return '10px';
   }
@@ -168,9 +171,16 @@ const getLoaderSize = (size) => {
   return '14px';
 };
 
-const Button = (props) => {
+const Button = props => {
   const {
-    disabled, loading, variant, color, size, className, children, ...rootProps
+    disabled,
+    loading,
+    variant,
+    color,
+    size,
+    className,
+    children,
+    ...rootProps
   } = props;
   const classes = useStyles(props);
   const loaderSize = getLoaderSize(size);

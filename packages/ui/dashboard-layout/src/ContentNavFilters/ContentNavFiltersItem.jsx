@@ -4,34 +4,22 @@ import React from 'react';
 
 import { makeStyles } from '@astral-frontend/styles';
 
+import ContentNavFiltersItemCount from './ContentNavFiltersItemCount';
+
 const useStyles = makeStyles(
   theme => ({
     root: {
       display: 'flex',
-      color: 'rgba(29, 63, 102, 0.62)',
-      textDecoration: 'none',
+      padding: theme.spacing(2.5, 4),
+      borderRadius: theme.shape.borderRadius,
+      color: theme.palette.primary.main,
       '&:not(:last-child)': {
-        marginRight: theme.spacing(5),
+        marginRight: theme.spacing(4),
       },
     },
     active: {
-      color: theme.palette.primary.main,
-      '& div': {
-        backgroundColor: theme.palette.primary.main,
-        color: 'white',
-      },
-    },
-    text: {},
-    count: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '20px',
-      marginLeft: '10px',
-      padding: '0 5px',
-      backgroundColor: 'rgba(29, 63, 102, 0.09)',
-      color: 'rgba(29, 63, 102, 0.45)',
-      borderRadius: `${theme.shape.borderRadius}px`,
+      fontWeight: theme.typography.fontWeightBold,
+      backgroundColor: theme.palette.primary.light,
     },
   }),
   { name: 'DashboardLayoutContentNavItem' },
@@ -53,7 +41,7 @@ const DashboardLayoutContentNavItem = ({
       {...props}
     >
       <span className={classes.text}>{text}</span>
-      <div className={classes.count}>{count}</div>
+      <ContentNavFiltersItemCount active={active} count={count} />
     </Component>
   );
 };
