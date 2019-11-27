@@ -3,8 +3,6 @@ import React from 'react';
 import { FlexContainer } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import DataListEmptyStateIllustration from './DataListEmptyStateIllustration';
-
 const useStyles = makeStyles(
   theme => ({
     root: {
@@ -14,17 +12,19 @@ const useStyles = makeStyles(
       maxWidth: '300px',
     },
     illustration: {
+      height: '200px',
       marginBottom: theme.spacing(5),
     },
     text: {
       color: theme.palette.gray[600],
       textAlign: 'center',
+      height: '2em',
     },
   }),
   { name: 'DataListEmptyState' },
 );
 
-const DataListEmptyState = ({ text }) => {
+const DataListEmptyState = ({ text, Illustration }) => {
   const classes = useStyles();
 
   return (
@@ -39,15 +39,21 @@ const DataListEmptyState = ({ text }) => {
         justifyContent="center"
         className={classes.content}
       >
-        <DataListEmptyStateIllustration className={classes.illustration} />
+        {Illustration && <Illustration className={classes.illustration} />}
         <div className={classes.text}>{text}</div>
       </FlexContainer>
     </FlexContainer>
   );
 };
 
+DataListEmptyState.defaultProps = {
+  text: 'Список пуст',
+  Illustration: null,
+};
+
 DataListEmptyState.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  Illustration: PropTypes.func,
 };
 
 export default DataListEmptyState;

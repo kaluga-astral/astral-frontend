@@ -46,14 +46,14 @@ const DataList = ({
   RowActions,
   ListItemComponent,
   data,
-  emptyStateText,
+  EmptyStateProps,
   ...props
 }) => {
   const { columns } = props;
   const classes = useStyles(props);
 
   if (!loading && data.length === 0) {
-    return <DataListEmptyState text={emptyStateText} />;
+    return <DataListEmptyState {...EmptyStateProps} />;
   }
 
   return (
@@ -87,7 +87,7 @@ DataList.defaultProps = {
   error: null,
   ListItemComponent: null,
   RowActions: () => null,
-  emptyStateText: 'Список пуст',
+  EmptyStateProps: null,
 };
 
 DataList.propTypes = {
@@ -102,7 +102,10 @@ DataList.propTypes = {
   ).isRequired,
   ListItemComponent: PropTypes.func,
   RowActions: PropTypes.func,
-  emptyStateText: PropTypes.string,
+  EmptyStateProps: PropTypes.shape({
+    text: PropTypes.string,
+    Illustration: PropTypes.func,
+  }),
 };
 
 export default DataList;
