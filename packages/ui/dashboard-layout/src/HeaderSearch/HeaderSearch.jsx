@@ -14,6 +14,7 @@ const useStyles = makeStyles(
       transition: theme.transitions.create('width'),
       '&:focus-within': {
         width: '100%',
+        marginLeft: theme.spacing(2),
       },
     },
   }),
