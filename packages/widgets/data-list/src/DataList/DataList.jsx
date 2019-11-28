@@ -47,14 +47,36 @@ const DataList = ({
   ListItemComponent,
   data,
   EmptyStateProps,
+  // onLoadMore,
   ...props
 }) => {
   const { columns } = props;
   const classes = useStyles(props);
+  const Children = () => {
+    if (!loading && data.length === 0) {
+      return <DataListEmptyState {...EmptyStateProps} />;
+    }
 
-  if (!loading && data.length === 0) {
-    return <DataListEmptyState {...EmptyStateProps} />;
-  }
+    return (
+      <>
+        <DataListHeader className={classes.row} columns={columns} />
+        {data.map(dataItem => (
+          <li key={dataItem.key} className={classes.bodyRow}>
+            <DataListItemContext.Provider value={dataItem}>
+              <ListItemComponent className={cn(classes.row)}>
+                {columns.map(column => {
+                  const Component = column.component;
+
+                  return <Component key={column.title} data={dataItem} />;
+                })}
+              </ListItemComponent>
+            </DataListItemContext.Provider>
+            <RowActions data={dataItem} />
+          </li>
+        ))}
+      </>
+    );
+  };
 
   return (
     <ContentState
@@ -64,21 +86,7 @@ const DataList = ({
       component={List}
       disablePadding
     >
-      <DataListHeader className={classes.row} columns={columns} />
-      {data.map(dataItem => (
-        <li key={dataItem.key} className={classes.bodyRow}>
-          <DataListItemContext.Provider value={dataItem}>
-            <ListItemComponent className={cn(classes.row)}>
-              {columns.map(column => {
-                const Component = column.component;
-
-                return <Component key={column.title} data={dataItem} />;
-              })}
-            </ListItemComponent>
-          </DataListItemContext.Provider>
-          <RowActions data={dataItem} />
-        </li>
-      ))}
+      <Children />
     </ContentState>
   );
 };
@@ -106,6 +114,7 @@ DataList.propTypes = {
     text: PropTypes.string,
     Illustration: PropTypes.func,
   }),
+  // onLoadMore: PropTypes.func.isRequired,
 };
 
 export default DataList;
