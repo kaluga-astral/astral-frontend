@@ -14,6 +14,7 @@ export { default as Checkbox } from './Checkbox';
 export { default as CircularProgress } from './CircularProgress';
 export { default as ClickAwayListener } from './ClickAwayListener';
 export { default as Collapse } from './Collapse';
+export { default as ContentLoader } from './ContentLoader';
 export { default as ContentState } from './ContentState';
 export { default as SlideModal } from './SlideModal';
 export { default as Dialog } from './Dialog';
