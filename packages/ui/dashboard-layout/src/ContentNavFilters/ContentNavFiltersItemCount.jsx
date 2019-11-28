@@ -36,6 +36,7 @@ const useStyles = makeStyles(
       lineHeight: '20px',
       marginLeft: theme.spacing(2),
       padding: theme.spacing(0, 2),
+      textAlign: 'center',
       borderRadius: `${theme.shape.borderRadius}px`,
       backgroundColor: theme.palette.primary.light,
       '&$active': {
