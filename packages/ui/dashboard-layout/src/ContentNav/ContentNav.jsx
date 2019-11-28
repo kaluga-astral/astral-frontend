@@ -8,10 +8,8 @@ import { makeStyles } from '@astral-frontend/styles';
 const useStyles = makeStyles(
   theme => ({
     root: {
-      minHeight: '65px',
       alignItems: 'center',
-      margin: `0 ${theme.spacing(4)}px`,
-      borderBottom: `1px solid ${theme.palette.primary.light}`,
+      margin: theme.spacing(0, 4),
     },
   }),
   { name: 'DashboardLayoutContentNav' },
