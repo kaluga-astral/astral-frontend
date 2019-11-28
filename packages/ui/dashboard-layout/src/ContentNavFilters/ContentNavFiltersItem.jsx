@@ -26,6 +26,7 @@ const useStyles = makeStyles(
 );
 
 const DashboardLayoutContentNavItem = ({
+  loading,
   active,
   text,
   count,
@@ -41,18 +42,24 @@ const DashboardLayoutContentNavItem = ({
       {...props}
     >
       <span className={classes.text}>{text}</span>
-      <ContentNavFiltersItemCount active={active} count={count} />
+      <ContentNavFiltersItemCount
+        active={active}
+        count={count}
+        loading={loading}
+      />
     </Component>
   );
 };
 
 DashboardLayoutContentNavItem.defaultProps = {
+  loading: false,
   active: false,
   className: null,
   component: 'div',
 };
 
 DashboardLayoutContentNavItem.propTypes = {
+  loading: PropTypes.bool,
   active: PropTypes.bool,
   text: PropTypes.string.isRequired,
   count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
