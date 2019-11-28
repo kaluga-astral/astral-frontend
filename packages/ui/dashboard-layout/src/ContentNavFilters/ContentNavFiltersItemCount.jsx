@@ -1,9 +1,10 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { ContentLoader } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-// TODO: вынести в паке utils
+// TODO: #29242. Вынести nFormatter в пакет utils.
 function nFormatter(num, digits) {
   const si = [
     { value: 1, symbol: '' },
@@ -31,8 +32,9 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       height: '20px',
+      minWidth: '30px',
       lineHeight: '20px',
-      marginLeft: '6px',
+      marginLeft: theme.spacing(2),
       padding: theme.spacing(0, 2),
       borderRadius: `${theme.shape.borderRadius}px`,
       backgroundColor: theme.palette.primary.light,
@@ -40,8 +42,17 @@ const useStyles = makeStyles(
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.common.white,
       },
+      '&$loading': {
+        // padding: 0,
+        // backgroundColor: 'transparent',
+      },
     },
     active: {},
+    loading: {},
+    contentLoader: {
+      width: '30px',
+      height: '20px',
+    },
   }),
   { name: 'DashboardLayoutContentNavItemCount' },
 );
@@ -56,7 +67,13 @@ const DashboardLayoutContentNavItemCount = ({
   const children = loading ? null : nFormatter(count, 1);
 
   return (
-    <div className={cn(classes.root, { [classes.active]: active }, className)}>
+    <div
+      className={cn(
+        classes.root,
+        { [classes.active]: active, [classes.loading]: loading },
+        className,
+      )}
+    >
       {children}
     </div>
   );

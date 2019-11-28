@@ -3,19 +3,20 @@ import React from 'react';
 import ReactContentLoader from 'react-content-loader';
 import { useTheme } from '@astral-frontend/styles';
 
-const ContentLoader = ({ height, width, speed, children }) => {
+const ContentLoader = props => {
   const theme = useTheme();
+  const {
+    primaryColor = theme.palette.gray[100],
+    secondaryColor = theme.palette.gray[300],
+    ...restProps
+  } = props;
 
   return (
     <ReactContentLoader
-      height={height}
-      width={width}
-      speed={speed}
-      primaryColor={theme.palette.gray[100]}
-      secondaryColor={theme.palette.gray[300]}
-    >
-      {children}
-    </ReactContentLoader>
+      {...restProps}
+      primaryColor={primaryColor}
+      secondaryColor={secondaryColor}
+    />
   );
 };
 
@@ -23,6 +24,8 @@ ContentLoader.defaultProps = {
   height: 10,
   width: 400,
   speed: 2,
+  primaryColor: undefined,
+  secondaryColor: undefined,
 };
 
 ContentLoader.propTypes = {
@@ -30,6 +33,8 @@ ContentLoader.propTypes = {
   speed: PropTypes.number,
   width: PropTypes.number,
   children: PropTypes.node.isRequired,
+  primaryColor: PropTypes.string,
+  secondaryColor: PropTypes.string,
 };
 
 export default ContentLoader;

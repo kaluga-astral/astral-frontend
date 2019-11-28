@@ -1,7 +1,6 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { makeStyles } from '@astral-frontend/styles';
 
 import ContentNavFiltersItemCount from './ContentNavFiltersItemCount';
@@ -42,11 +41,13 @@ const DashboardLayoutContentNavItem = ({
       {...props}
     >
       <span className={classes.text}>{text}</span>
-      <ContentNavFiltersItemCount
-        active={active}
-        count={count}
-        loading={loading}
-      />
+      {count && (
+        <ContentNavFiltersItemCount
+          active={active}
+          count={count}
+          loading={loading}
+        />
+      )}
     </Component>
   );
 };
@@ -54,6 +55,7 @@ const DashboardLayoutContentNavItem = ({
 DashboardLayoutContentNavItem.defaultProps = {
   loading: false,
   active: false,
+  count: null,
   className: null,
   component: 'div',
 };
@@ -62,7 +64,7 @@ DashboardLayoutContentNavItem.propTypes = {
   loading: PropTypes.bool,
   active: PropTypes.bool,
   text: PropTypes.string.isRequired,
-  count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   component: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.object,
