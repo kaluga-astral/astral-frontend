@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { ListItem } from '@astral-frontend/components';
@@ -11,7 +10,7 @@ const useStyles = makeStyles(
       borderColor: 'transparent',
       padding: theme.spacing(4, 0),
       marginBottom: theme.spacing(1),
-      borderLeftWidth: theme.spacing(1),
+      borderWidth: theme.spacing(0, 0, 0, 1),
       borderRadius: theme.shape.borderRadius,
       color: theme.palette.gray[800],
       backgroundColor: theme.palette.common.white,
@@ -42,7 +41,7 @@ const DataListItem = ({ className, disableGutters, button, ...props }) => {
 DataListItem.defaultProps = {
   className: null,
   disableGutters: true,
-  button: true,
+  button: false,
 };
 
 DataListItem.propTypes = {
