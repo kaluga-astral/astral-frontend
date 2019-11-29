@@ -33,6 +33,7 @@ const DataListItem = ({ className, disableGutters, button, ...props }) => {
       classes={classes}
       disableGutters={disableGutters}
       button={button}
+      component="div"
       {...props}
     />
   );
