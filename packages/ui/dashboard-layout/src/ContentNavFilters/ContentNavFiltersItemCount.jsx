@@ -84,12 +84,13 @@ DashboardLayoutContentNavItemCount.defaultProps = {
   loading: false,
   active: false,
   className: null,
+  count: null,
 };
 
 DashboardLayoutContentNavItemCount.propTypes = {
   loading: PropTypes.bool,
   active: PropTypes.bool,
-  count: PropTypes.number.isRequired,
+  count: PropTypes.number,
   className: PropTypes.string,
 };
 
