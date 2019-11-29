@@ -56,6 +56,7 @@ const DataList = ({
   const classes = useStyles(props);
   const Children = () => {
     if (!loading && data.length === 0) {
+      // TODO: вынести DataListEmptyState как отдельный компонент и удалить EmptyStateProps
       return <DataListEmptyState {...EmptyStateProps} />;
     }
 

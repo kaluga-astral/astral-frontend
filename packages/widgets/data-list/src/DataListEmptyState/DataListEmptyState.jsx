@@ -7,6 +7,7 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       height: '100%',
+      userSelect: 'none',
     },
     content: {
       maxWidth: '300px',
