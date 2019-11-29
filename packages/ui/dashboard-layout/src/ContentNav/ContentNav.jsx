@@ -10,6 +10,7 @@ const useStyles = makeStyles(
     root: {
       alignItems: 'center',
       margin: theme.spacing(0, 4),
+      userSelect: 'none',
     },
   }),
   { name: 'DashboardLayoutContentNav' },

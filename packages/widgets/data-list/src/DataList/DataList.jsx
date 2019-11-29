@@ -10,14 +10,16 @@ import { __Context as DataListItemContext } from '../DataListItem';
 
 const useStyles = makeStyles(
   theme => ({
-    root: {},
+    root: {
+      height: '100%',
+    },
     row: {
       display: 'grid',
       gridGap: theme.spacing(2),
       gridTemplateColumns: props => {
         return `${props.columns
           .map(column => `${column.fr || '1'}fr`)
-          .join(' ')} 100px`;
+          .join(' ')}`;
       },
     },
     bodyRow: {
@@ -71,7 +73,7 @@ const DataList = ({
                 })}
               </ListItemComponent>
             </DataListItemContext.Provider>
-            <RowActions data={dataItem} />
+            {/* <RowActions data={dataItem} /> */}
           </li>
         ))}
       </>
