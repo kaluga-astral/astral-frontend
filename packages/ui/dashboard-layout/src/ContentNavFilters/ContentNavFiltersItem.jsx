@@ -1,4 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import cn from 'classnames';
+import { isEmpty } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
@@ -41,7 +43,7 @@ const DashboardLayoutContentNavItem = ({
       {...props}
     >
       <span className={classes.text}>{text}</span>
-      {count && (
+      {isEmpty(count) && (
         <ContentNavFiltersItemCount
           active={active}
           count={count}
@@ -64,7 +66,7 @@ DashboardLayoutContentNavItem.propTypes = {
   loading: PropTypes.bool,
   active: PropTypes.bool,
   text: PropTypes.string.isRequired,
-  count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  count: PropTypes.number,
   component: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.object,
