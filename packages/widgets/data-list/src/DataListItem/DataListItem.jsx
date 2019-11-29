@@ -7,16 +7,18 @@ import { makeStyles } from '@astral-frontend/styles';
 const useStyles = makeStyles(
   theme => ({
     root: {
-      borderLeftWidth: theme.spacing(1),
       borderStyle: 'solid',
       borderColor: 'transparent',
       padding: theme.spacing(4, 0),
       marginBottom: theme.spacing(1),
+      borderLeftWidth: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
       color: theme.palette.gray[800],
-      background: theme.palette.common.white,
+      backgroundColor: theme.palette.common.white,
       '&:hover': {
         borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.common.white,
+        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.08)',
       },
     },
   }),
@@ -28,7 +30,8 @@ const DataListItem = ({ className, disableGutters, button, ...props }) => {
 
   return (
     <ListItem
-      className={cn(className, classes.root)}
+      className={className}
+      classes={classes}
       disableGutters={disableGutters}
       button={button}
       {...props}

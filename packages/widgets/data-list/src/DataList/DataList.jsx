@@ -26,7 +26,6 @@ const useStyles = makeStyles(
       position: 'relative',
     },
     dataItem: {
-      borderLeftWidth: theme.spacing(1),
       borderStyle: 'solid',
       borderColor: 'transparent',
       padding: theme.spacing(4, 0),
@@ -34,9 +33,6 @@ const useStyles = makeStyles(
       borderRadius: theme.shape.borderRadius,
       color: theme.palette.gray[800],
       background: theme.palette.common.white,
-      '&:hover': {
-        borderColor: theme.palette.primary.main,
-      },
     },
   }),
   { name: 'DataList' },
