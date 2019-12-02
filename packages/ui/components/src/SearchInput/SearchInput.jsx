@@ -1,3 +1,4 @@
+import { debounce } from 'lodash-es';
 import React from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
@@ -34,29 +35,21 @@ const useStyles = makeStyles(
   { name: 'SearchInput' },
 );
 
-const SearchInput = ({
-  className,
-  placeholder,
-  inputValue,
-  onChange,
-  ...props
-}) => {
+const SearchInput = ({ className, ...props }) => {
   const classes = useStyles();
 
   return (
     <FlexContainer className={cn(classes.root, className)} alignItems="center">
       <SearchIcon className={classes.icon} />
       <InputBase
-        placeholder={placeholder}
-        onChange={onChange}
-        inputProps={{
-          'aria-label': 'Поиск',
-        }}
-        type="search"
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
+        inputProps={{
+          'aria-label': 'Поиск',
+        }}
+        type="search"
         {...props}
       />
     </FlexContainer>
@@ -66,13 +59,13 @@ const SearchInput = ({
 SearchInput.defaultProps = {
   className: null,
   placeholder: 'Поиск',
-  inputValue: '',
+  value: undefined,
 };
 
 SearchInput.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
-  inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
 };
 
