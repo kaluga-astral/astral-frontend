@@ -24,6 +24,9 @@ const useStyles = makeStyles(
     },
     bodyRow: {
       position: 'relative',
+      '&:hover $rowActions': {
+        opacity: 1,
+      },
     },
     dataItem: {
       borderStyle: 'solid',
@@ -33,6 +36,10 @@ const useStyles = makeStyles(
       borderRadius: theme.shape.borderRadius,
       color: theme.palette.gray[800],
       background: theme.palette.common.white,
+    },
+    rowActions: {
+      opacity: 0,
+      transition: theme.transitions.create(['opacity']),
     },
   }),
   { name: 'DataList' },
@@ -70,7 +77,9 @@ const DataList = ({
                 })}
               </ListItemComponent>
             </DataListItemContext.Provider>
-            {/* <RowActions data={dataItem} /> */}
+            {RowActions && (
+              <RowActions className={classes.rowActions} data={dataItem} />
+            )}
           </li>
         ))}
       </>
@@ -93,7 +102,7 @@ const DataList = ({
 DataList.defaultProps = {
   error: null,
   ListItemComponent: null,
-  RowActions: () => null,
+  RowActions: null,
   EmptyStateProps: null,
 };
 
