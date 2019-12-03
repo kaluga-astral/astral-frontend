@@ -1,10 +1,11 @@
-import { debounce } from 'lodash-es';
 import React from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import { SearchIcon } from '@astral-frontend/icons';
 import { makeStyles } from '@astral-frontend/styles';
-import { FlexContainer, InputBase } from '../index';
+
+import FlexContainer from '../FlexContainer';
+import InputBase from '../InputBase';
 
 const useStyles = makeStyles(
   theme => ({
