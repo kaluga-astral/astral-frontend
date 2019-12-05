@@ -19,7 +19,6 @@ const useStyles = makeStyles(
       color: theme.palette.primary.main,
       backgroundColor: theme.palette.primary.light,
       borderRadius: `${theme.shape.borderRadius}px`,
-      margin: `0 ${theme.spacing(1)}px`,
     },
   }),
   {

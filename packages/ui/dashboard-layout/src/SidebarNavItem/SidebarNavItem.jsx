@@ -18,7 +18,6 @@ const useStyles = makeStyles(
       textAlign: 'left',
       textDecoration: 'none',
       color: theme.palette.grey[600],
-      margin: `0 ${theme.spacing(1)}px`,
     },
     icon: {
       display: 'flex',
