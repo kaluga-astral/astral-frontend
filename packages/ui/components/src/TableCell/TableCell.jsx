@@ -18,10 +18,10 @@ const useStyles = makeStyles(
   { name: 'TableCell' },
 );
 
-const TableCell = (props) => {
+const TableCell = React.forwardRef((props, ref) => {
   const classes = useStyles();
 
-  return <MuiTableCell classes={classes} {...props} />;
-};
+  return <MuiTableCell classes={classes} ref={ref} {...props} />;
+});
 
 export default TableCell;
