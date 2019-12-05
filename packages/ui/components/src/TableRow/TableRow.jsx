@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const TableRow = ({ children, Actions, ...props }) => {
+const TableRow = React.forwardRef((props, ref) => {
+  const { children, Actions, ...rest } = props;
   const classes = useStyles();
   const [hovered, setHovered] = React.useState(false);
   const handleMouseEnter = () => {
@@ -36,14 +37,15 @@ const TableRow = ({ children, Actions, ...props }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={onMouseLeave}
         classes={classes}
-        {...props}
+        ref={ref}
+        {...rest}
       >
         {children}
         <Actions />
       </MuiTableRow>
     </TableRowContext.Provider>
   );
-};
+});
 
 TableRow.defaultProps = {
   Actions: () => null,
@@ -53,7 +55,10 @@ TableRow.defaultProps = {
 TableRow.propTypes = {
   hover: PropTypes.bool,
   Actions: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
 };
 
 export default TableRow;
