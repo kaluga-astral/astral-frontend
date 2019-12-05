@@ -6,9 +6,13 @@ import { makeStyles } from '@astral-frontend/styles';
 const useStyles = makeStyles(
   theme => ({
     root: {
-      marginBottom: theme.spacing(5),
+      position: 'sticky',
+      top: 0,
+      paddingBottom: theme.spacing(3),
+      backgroundColor: theme.palette.background.default,
       color: theme.palette.gray[500],
       fontWeight: theme.typography.fontWeightBold,
+      zIndex: 2,
     },
   }),
   { name: 'DataListHeader' },
@@ -18,11 +22,11 @@ const DataListHeader = ({ className, columns }) => {
   const classes = useStyles();
 
   return (
-    <li className={cn(classes.root, className)}>
+    <div className={cn(classes.root, className)}>
       {columns.map(column => (
         <div key={column.title}>{column.title}</div>
       ))}
-    </li>
+    </div>
   );
 };
 

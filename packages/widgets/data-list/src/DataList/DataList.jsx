@@ -11,7 +11,15 @@ import { __Context as DataListItemContext } from '../DataListItem';
 const useStyles = makeStyles(
   theme => ({
     root: {
+      display: 'flex',
+      flexDirection: 'column',
       height: '100%',
+    },
+    list: {
+      height: '100%',
+      paddingTop: 0,
+      paddingBottom: 0,
+      overflowY: 'auto',
     },
     row: {
       display: 'grid',
@@ -65,7 +73,6 @@ const DataList = ({
 
     return (
       <>
-        <DataListHeader className={classes.row} columns={columns} />
         {data.map(dataItem => (
           <li key={dataItem.key} className={classes.bodyRow}>
             <DataListItemContext.Provider value={dataItem}>
@@ -87,14 +94,13 @@ const DataList = ({
   };
 
   return (
-    <ContentState
-      className={classes.root}
-      loading={loading}
-      error={error}
-      component={List}
-      disablePadding
-    >
-      <Children />
+    <ContentState loading={loading} error={error} disablePadding>
+      <div className={classes.root}>
+        <DataListHeader className={classes.row} columns={columns} />
+        <List className={classes.list}>
+          <Children />
+        </List>
+      </div>
     </ContentState>
   );
 };
