@@ -1,4 +1,4 @@
-const phoneRegExp = /^\+?79(\d{9})$/;
+const phoneRegExp = /^\+?7\d{10}$/;
 
 function mustBePhone(value) {
   if (phoneRegExp.test(value)) {
