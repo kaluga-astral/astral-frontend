@@ -15,7 +15,7 @@ const useStyles = makeStyles(
     root: {},
     list: {
       padding: `0 0 ${theme.spacing(4)}px 0`,
-      margin: `0 ${theme.spacing(1)}px`,
+      // margin: `0 ${theme.spacing(1)}px`,
       listStyle: 'none',
       backgroundColor: theme.palette.primary.light,
       borderRadius: `0 0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px`,

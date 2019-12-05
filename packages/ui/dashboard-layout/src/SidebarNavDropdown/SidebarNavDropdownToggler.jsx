@@ -11,8 +11,8 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       display: 'flex',
-      width: 'fill-available',
-      margin: `0 ${theme.spacing(1)}px`,
+      width: '100%',
+      margin: 0,
     },
     activeToggler: {
       borderRadius: `${theme.spacing(1)}px ${theme.spacing(1)}px 0 0`,

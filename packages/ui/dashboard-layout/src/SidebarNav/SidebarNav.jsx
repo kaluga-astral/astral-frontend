@@ -7,7 +7,7 @@ import { makeStyles } from '@astral-frontend/styles';
 import DropdownContext from '../SidebarNavDropdown/SidebarNavDropdownContext';
 
 const useStyles = makeStyles(
-  () => ({
+  theme => ({
     root: {
       flexGrow: 1,
       padding: 0,
@@ -18,7 +18,10 @@ const useStyles = makeStyles(
         display: 'none',
       },
     },
-    list: {},
+    list: {
+      marginRight: theme.spacing(1),
+      marginLeft: theme.spacing(1),
+    },
   }),
   {
     name: 'DashboardLayoutSidebarNav',
@@ -30,7 +33,9 @@ const DashboardLayoutSidebarNav = ({ className, children, ...props }) => {
   const [expandedNavDropdownId, setExpandedNavDropdownId] = useState(null);
 
   return (
-    <DropdownContext.Provider value={{ expandedNavDropdownId, setExpandedNavDropdownId }}>
+    <DropdownContext.Provider
+      value={{ expandedNavDropdownId, setExpandedNavDropdownId }}
+    >
       <nav className={cn(classes.root, className)} {...props}>
         <List className={classes.list}>{children}</List>
       </nav>
