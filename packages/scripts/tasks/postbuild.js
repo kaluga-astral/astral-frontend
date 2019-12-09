@@ -5,9 +5,7 @@ const fs = require('fs');
 const npmrcPath = resolve(__dirname, '..', '..', '.npmrc');
 
 module.exports = () => {
-  const {
-    scripts, devDependencies, workspaces, ...packageData
-  } = JSON.parse(
+  const { scripts, devDependencies, workspaces, ...packageData } = JSON.parse(
     fs.readFileSync('./package.json'),
   );
 

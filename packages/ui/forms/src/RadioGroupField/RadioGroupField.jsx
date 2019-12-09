@@ -32,9 +32,7 @@ const FormRadioGroupField = ({
               type="radio"
               labelPlacement={labelPlacement}
               value={String(option.value)}
-              render={({
-                checked, onChange, onFocus, onBlur,
-              }) => (
+              render={({ checked, onChange, onFocus, onBlur }) => (
                 <Radio
                   {...option}
                   checked={checked}
@@ -74,7 +72,8 @@ FormRadioGroupField.propTypes = {
     PropTypes.shape({
       disabled: PropTypes.bool,
       label: PropTypes.string.isRequired,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
     }),
   ).isRequired,
 };

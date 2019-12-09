@@ -19,16 +19,26 @@ const SlideModalExample = ({ size, contain }) => {
 
   return (
     <ThemeProvider theme={new AstralEDOTheme()}>
-      <div style={{ height: contain && 600, position: 'relative', overflow: 'hidden' }} ref={containerRef}>
-        <button type="button" onClick={handleOpen}>Open modal</button>
-        <SlideModal open={open} size={size} containerRef={contain ? containerRef : null} onClose={handleClose}>
-            <SlideModal.Title>
-              Title
-            </SlideModal.Title>
-            <SlideModal.Content>
-              Content
-            </SlideModal.Content>
-          </SlideModal>
+      <div
+        style={{
+          height: contain && 600,
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+        ref={containerRef}
+      >
+        <button type="button" onClick={handleOpen}>
+          Open modal
+        </button>
+        <SlideModal
+          open={open}
+          size={size}
+          containerRef={contain ? containerRef : null}
+          onClose={handleClose}
+        >
+          <SlideModal.Title>Title</SlideModal.Title>
+          <SlideModal.Content>Content</SlideModal.Content>
+        </SlideModal>
       </div>
     </ThemeProvider>
   );

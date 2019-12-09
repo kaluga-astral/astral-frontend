@@ -14,12 +14,12 @@ import './theme.css';
 const CONTENT_CLASS_NAME = 'introjs-tooltipcontent';
 const TOOLTIP_CLASS_NAME = 'introjs-tooltip';
 
-const Intro = ({
-  initialStep, steps, open, onChange, onComplete, options,
-}) => {
+const Intro = ({ initialStep, steps, open, onChange, onComplete, options }) => {
   const theme = useTheme();
   const stepsRef = React.useRef({});
-  const contentRef = React.useRef(document.getElementsByClassName(CONTENT_CLASS_NAME));
+  const contentRef = React.useRef(
+    document.getElementsByClassName(CONTENT_CLASS_NAME),
+  );
   const [currentStep, setCurrentStep] = React.useState(initialStep);
   const handlePrevStepIconClick = () => {
     setCurrentStep(prevCurrentStep => prevCurrentStep - 1);

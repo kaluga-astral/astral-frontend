@@ -5,7 +5,8 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
-const WebpackDeepScopeAnalysisPlugin = require('webpack-deep-scope-plugin').default;
+const WebpackDeepScopeAnalysisPlugin = require('webpack-deep-scope-plugin')
+  .default;
 
 const getPaths = require('./utils/getPaths');
 const commonConfig = require('./common');

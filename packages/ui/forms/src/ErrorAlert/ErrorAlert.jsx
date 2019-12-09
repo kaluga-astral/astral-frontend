@@ -5,7 +5,9 @@ import { withStyles } from '@astral-frontend/styles';
 
 const FormErrorAlert = ({ classes }) => (
   <FormSpy subscription={{ submitError: true }}>
-    {({ submitError }) => (submitError ? <div className={classes.root}>{submitError}</div> : null)}
+    {({ submitError }) =>
+      submitError ? <div className={classes.root}>{submitError}</div> : null
+    }
   </FormSpy>
 );
 

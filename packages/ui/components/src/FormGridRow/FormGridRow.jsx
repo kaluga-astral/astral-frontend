@@ -21,9 +21,7 @@ const useStyles = makeStyles(
   { name: 'FormGridRow' },
 );
 
-const FormGridRow = ({
-  children, title, className, ...props
-}) => {
+const FormGridRow = ({ children, title, className, ...props }) => {
   const classes = useStyles();
 
   return (

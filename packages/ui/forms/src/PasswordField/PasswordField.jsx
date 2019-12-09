@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import VisibilityButton from './VisibilityButton';
 import Field from '../Field';
 
-const PasswordField = (props) => {
+const PasswordField = props => {
   const [isVisible, setIsVisible] = useState(false);
   const handleVisibilityButtonClick = () => setIsVisible(!isVisible);
 
@@ -17,7 +17,8 @@ const PasswordField = (props) => {
           <VisibilityButton
             isVisible={isVisible}
             onClick={handleVisibilityButtonClick}
-          />),
+          />
+        ),
       }}
     />
   );

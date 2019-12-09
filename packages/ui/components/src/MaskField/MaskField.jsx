@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import MaskInput from './MaskInput';
 import TextField from '../TextField';
 
-const MaskField = ({
-  placeholder, placeholderChar, mask, pipe, ...props
-}) => (
+const MaskField = ({ placeholder, placeholderChar, mask, pipe, ...props }) => (
   <TextField
     InputProps={{
       inputComponent: MaskInput,

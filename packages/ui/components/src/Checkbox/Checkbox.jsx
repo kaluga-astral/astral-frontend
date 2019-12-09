@@ -7,28 +7,31 @@ import FormControlLabel from '../FormControlLabel';
 
 /* eslint-disable */
 const getIconColor = theme => ({ disabled }) =>
-  (disabled ? theme.palette.grey[500] : theme.palette.primary.main);
+  disabled ? theme.palette.grey[500] : theme.palette.primary.main;
 /* eslint-enable */
 
-const useStyles = makeStyles(theme => ({
-  checkedIcon: {
-    width: 20,
-    height: 20,
-    fill: getIconColor(theme),
-  },
-  uncheckedIcon: {
-    width: 20,
-    height: 20,
-    stroke: getIconColor(theme),
-    fill: 'transparent',
-  },
-  noLabel: {
-    margin: 0,
-  },
-  endLabel: {
-    marginLeft: -9,
-  },
-}), { withTheme: true });
+const useStyles = makeStyles(
+  theme => ({
+    checkedIcon: {
+      width: 20,
+      height: 20,
+      fill: getIconColor(theme),
+    },
+    uncheckedIcon: {
+      width: 20,
+      height: 20,
+      stroke: getIconColor(theme),
+      fill: 'transparent',
+    },
+    noLabel: {
+      margin: 0,
+    },
+    endLabel: {
+      marginLeft: -9,
+    },
+  }),
+  { withTheme: true },
+);
 
 const END_LABEL_PLACEMENT = 'end';
 
@@ -56,9 +59,9 @@ const Checkbox = ({
       labelPlacement={labelPlacement}
       className={className}
       classes={{
-        root: (endLabelPlacement && label) ? classes.endLabel : classes.noLabel,
+        root: endLabelPlacement && label ? classes.endLabel : classes.noLabel,
       }}
-      control={(
+      control={
         <MuiCheckbox
           value={String(value)}
           color="primary"
@@ -66,7 +69,7 @@ const Checkbox = ({
           icon={<UncheckedCircleIcon className={classes.uncheckedIcon} />}
           checkedIcon={<CheckedCircleIcon className={classes.checkedIcon} />}
         />
-      )}
+      }
       onChange={onChange}
       onBlur={onBlur}
       onFocus={onFocus}

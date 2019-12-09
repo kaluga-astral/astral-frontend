@@ -8,7 +8,9 @@ const BugsnagProvider = ({ bugsnagClient, children }) => {
   bugsnagClient.use(bugsnagReact, React);
   const WrapComponent = bugsnagClient.getPlugin('react');
 
-  return <Context.Provider value={{ WrapComponent }}>{children}</Context.Provider>;
+  return (
+    <Context.Provider value={{ WrapComponent }}>{children}</Context.Provider>
+  );
 };
 
 BugsnagProvider.propTypes = {

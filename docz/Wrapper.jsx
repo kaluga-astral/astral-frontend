@@ -6,9 +6,7 @@ import { AstralEDOTheme } from '../packages/ui/themes';
 const theme = new AstralEDOTheme();
 
 const Wrapper = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    {children}
-  </ThemeProvider>
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );
 
 export default Wrapper;

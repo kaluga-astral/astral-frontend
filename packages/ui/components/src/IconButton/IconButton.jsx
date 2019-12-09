@@ -7,7 +7,7 @@ import { IconButton as MuiIconButton } from '@astral-frontend/core';
 import SvgIcon from '../SvgIcon';
 import CircularProgress from '../CircularProgress';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(theme => {
   const getDimension = ({ size }) => {
     if (size === 'small') {
       return '24px';
@@ -42,7 +42,13 @@ const useStyles = makeStyles((theme) => {
 });
 
 const IconButton = ({
-  loading, success, disabled, className, children, size, ...props
+  loading,
+  success,
+  disabled,
+  className,
+  children,
+  size,
+  ...props
 }) => {
   const classes = useStyles({ ...props, success, size });
   const renderChildren = () => {

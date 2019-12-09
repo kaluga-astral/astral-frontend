@@ -10,7 +10,7 @@ const DEFAULT_CHECKED_SUM = [0, 100, 101];
  * @param {string} value - Валидируемое значение
  *
  */
-const mustBeSNILS = (value) => {
+const mustBeSNILS = value => {
   if (!/^(\d{3})-(\d{3})-(\d{3})\s(\d{2})$/.test(value)) {
     return ERROR_MESSAGE;
   }
@@ -23,7 +23,9 @@ const mustBeSNILS = (value) => {
   }
 
   const checkSum = Number(removeSpecialCharacters(value).slice(9, 11));
-  const calculatedCheckSum = calcCheckSumForSNILS(removeSpecialCharacters(value));
+  const calculatedCheckSum = calcCheckSumForSNILS(
+    removeSpecialCharacters(value),
+  );
 
   if (calculatedCheckSum < DEFAULT_CHECKED_SUM[1]) {
     if (calculatedCheckSum === checkSum) {
@@ -33,8 +35,8 @@ const mustBeSNILS = (value) => {
   }
 
   if (
-    calculatedCheckSum === DEFAULT_CHECKED_SUM[1]
-    || calculatedCheckSum === DEFAULT_CHECKED_SUM[2]
+    calculatedCheckSum === DEFAULT_CHECKED_SUM[1] ||
+    calculatedCheckSum === DEFAULT_CHECKED_SUM[2]
   ) {
     if (checkSum === DEFAULT_CHECKED_SUM[0]) {
       return null;
@@ -45,9 +47,9 @@ const mustBeSNILS = (value) => {
 
   if (calculatedCheckSum > DEFAULT_CHECKED_SUM[2]) {
     if (
-      calculatedCheckSum % DEFAULT_CHECKED_SUM[2] === checkSum
-      || (calculatedCheckSum % DEFAULT_CHECKED_SUM[2] === DEFAULT_CHECKED_SUM[1]
-        && checkSum === DEFAULT_CHECKED_SUM[0])
+      calculatedCheckSum % DEFAULT_CHECKED_SUM[2] === checkSum ||
+      (calculatedCheckSum % DEFAULT_CHECKED_SUM[2] === DEFAULT_CHECKED_SUM[1] &&
+        checkSum === DEFAULT_CHECKED_SUM[0])
     ) {
       return null;
     }

@@ -7,7 +7,7 @@ const expressStaticGzip = require('express-static-gzip');
 // const logger = require('morgan');
 
 const cache = cacheManager.caching({ store: 'memory', max: 100, ttl: 10 });
-const createCacheStream = (key) => {
+const createCacheStream = key => {
   const bufferedChunks = [];
   return new Transform({
     transform(data, enc, cb) {

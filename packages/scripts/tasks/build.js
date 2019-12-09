@@ -8,7 +8,7 @@ const copyAssets = () => {
     expand: true,
     dot: true,
     junk: true,
-  }).catch((error) => {
+  }).catch(error => {
     console.error(error);
 
     process.exit(1);
@@ -16,7 +16,9 @@ const copyAssets = () => {
 };
 
 module.exports = () => {
-  const { code } = shell.exec('babel ./src --out-dir ./lib --ignore "**/*.percy.jsx"');
+  const { code } = shell.exec(
+    'babel ./src --out-dir ./lib --ignore "**/*.percy.jsx"',
+  );
 
   if (code !== 0) {
     shell.exit(code);

@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@astral-frontend/styles';
 
-const DashboardLayoutActionButtonIcon = ({ classes, className, children }) => (
+const DashboardLayoutActionButtonIcon = ({ classes, className, children }) =>
   // prettier-ignore
-  React.cloneElement(children, { className: cn(classes.root, className) })
-);
+  React.cloneElement(children, { className: cn(classes.root, className) });
 
 DashboardLayoutActionButtonIcon.defaultProps = {
   className: null,

@@ -12,19 +12,15 @@ const DialogExample = () => {
 
   return (
     <>
-      <button type="button" onClick={handleModalOpen}>open modal</button>
+      <button type="button" onClick={handleModalOpen}>
+        open modal
+      </button>
       <Dialog onClose={handleModalClose} open={open}>
         <DialogTitle>TITLE</DialogTitle>
-        <DialogContent>
-          CONTENT
-        </DialogContent>
+        <DialogContent>CONTENT</DialogContent>
         <DialogActions>
-          <Button>
-            Disagree
-          </Button>
-          <Button variant="regular">
-            Agree
-          </Button>
+          <Button>Disagree</Button>
+          <Button variant="regular">Agree</Button>
         </DialogActions>
       </Dialog>
     </>

@@ -18,7 +18,18 @@ describe('Convert string to string without сharacters', () => {
 describe('Calculate checknum from string', () => {
   it('должна возвращать корректную контрольную цифру для ИНН (2 параметр - веса для контрольной суммы)', () => {
     expect(
-      calcCheckNumForINN(getArrayDigitsOfValue('7728168971'), [2, 4, 10, 3, 5, 9, 4, 6, 8, 0]),
+      calcCheckNumForINN(getArrayDigitsOfValue('7728168971'), [
+        2,
+        4,
+        10,
+        3,
+        5,
+        9,
+        4,
+        6,
+        8,
+        0,
+      ]),
     ).toEqual(1);
   });
 });

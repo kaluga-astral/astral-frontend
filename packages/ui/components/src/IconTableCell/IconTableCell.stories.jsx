@@ -19,7 +19,9 @@ storiesOf('IconTableCell', module)
     const [loadingPercent, setLoadingPercent] = React.useState(10);
     React.useEffect(() => {
       setInterval(() => {
-        setLoadingPercent(prevPercent => (prevPercent > 99 ? 0 : prevPercent + 10));
+        setLoadingPercent(prevPercent =>
+          prevPercent > 99 ? 0 : prevPercent + 10,
+        );
       }, 300);
     }, []);
 

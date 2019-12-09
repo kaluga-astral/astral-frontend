@@ -8,7 +8,12 @@ import ProductsIcon from './ProductsIcon';
 import useStyles from './styles';
 
 const OpenWidgetButton = ({
-  id, className, color, size, onClick, ...props
+  id,
+  className,
+  color,
+  size,
+  onClick,
+  ...props
 }) => {
   const classes = useStyles();
 

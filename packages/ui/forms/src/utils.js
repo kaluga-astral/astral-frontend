@@ -1,4 +1,7 @@
-import { mustBePresent, composeValidations } from '@astral-frontend/validations';
+import {
+  mustBePresent,
+  composeValidations,
+} from '@astral-frontend/validations';
 
 // eslint-disable-next-line import/prefer-default-export
 export const createValidationFunction = (required, validate) => {
@@ -11,7 +14,7 @@ export const createValidationFunction = (required, validate) => {
   }
 
   if (!required && validate) {
-    return composeValidations((value) => {
+    return composeValidations(value => {
       if (value) {
         return validate(value);
       }

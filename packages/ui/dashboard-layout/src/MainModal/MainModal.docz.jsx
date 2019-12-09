@@ -19,22 +19,20 @@ const MainModalExample = ({ size }) => {
   };
 
   return (
-      <ThemeProvider theme={new AstralEDOTheme()}>
-        <Header>Header</Header>
-        <Main>
-          Main
-          <button type="button" onClick={handleOpen}>Open modal</button>
-          <div style={{ height: 500 }} />
-          <MainModal open={open} size={size} onClose={handleClose}>
-            <MainModal.Title>
-              Title
-            </MainModal.Title>
-            <MainModal.Content>
-              Content
-            </MainModal.Content>
-          </MainModal>
-        </Main>
-      </ThemeProvider>
+    <ThemeProvider theme={new AstralEDOTheme()}>
+      <Header>Header</Header>
+      <Main>
+        Main
+        <button type="button" onClick={handleOpen}>
+          Open modal
+        </button>
+        <div style={{ height: 500 }} />
+        <MainModal open={open} size={size} onClose={handleClose}>
+          <MainModal.Title>Title</MainModal.Title>
+          <MainModal.Content>Content</MainModal.Content>
+        </MainModal>
+      </Main>
+    </ThemeProvider>
   );
 };
 

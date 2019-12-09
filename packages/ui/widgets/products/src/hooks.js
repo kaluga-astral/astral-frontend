@@ -8,7 +8,7 @@ const INITIAL_FETCH_STATUS_INFO = {
   fail: false,
 };
 
-const useProductsFetch = (identityApiUrl) => {
+const useProductsFetch = identityApiUrl => {
   const [fetchInfo, setFetchInfo] = useState({
     status: INITIAL_FETCH_STATUS_INFO,
     products: [],

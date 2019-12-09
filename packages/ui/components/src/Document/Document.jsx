@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const Document = ({
-  css, htmlAttrs, title, meta, link, bodyAttrs, staticAssets,
+  css,
+  htmlAttrs,
+  title,
+  meta,
+  link,
+  bodyAttrs,
+  staticAssets,
 }) => (
   <html {...htmlAttrs}>
     <head>
@@ -11,7 +17,11 @@ const Document = ({
       {meta}
       {link}
       {/* TODO: replace by normaly favicon */}
-      <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
+      <link
+        rel="shortcut icon"
+        href="data:image/x-icon;,"
+        type="image/x-icon"
+      />
       {/* <style id="jss-server-side">{css}</style> */}
       <style id="jss-server-side" dangerouslySetInnerHTML={{ __html: css }} />
     </head>

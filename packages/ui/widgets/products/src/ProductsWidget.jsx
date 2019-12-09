@@ -33,7 +33,7 @@ const ProductsWidget = ({ identityApiUrl, buttonProps }) => {
     setAnchorEl(null);
   };
 
-  const openPopover = (event) => {
+  const openPopover = event => {
     handleGetProducts();
 
     setAnchorEl(event.currentTarget);
@@ -41,11 +41,7 @@ const ProductsWidget = ({ identityApiUrl, buttonProps }) => {
 
   return (
     <ApiUrlContext.Provider value={{ apiUrl: identityApiUrl }}>
-      <OpenWidgetButton
-        {...buttonProps}
-        id={popoverId}
-        onClick={openPopover}
-      />
+      <OpenWidgetButton {...buttonProps} id={popoverId} onClick={openPopover} />
       <Popover
         open={open}
         id={popoverId}

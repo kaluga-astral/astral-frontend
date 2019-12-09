@@ -13,10 +13,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Dialog = (props) => {
-  const {
-    open, className, onClose, ...rootProps
-  } = props;
+const Dialog = props => {
+  const { open, className, onClose, ...rootProps } = props;
   const classes = useStyles(props);
 
   return (

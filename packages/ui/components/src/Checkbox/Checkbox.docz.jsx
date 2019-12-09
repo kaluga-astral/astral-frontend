@@ -12,7 +12,7 @@ const CheckboxBaseExample = () => {
     <Checkbox
       checked={currentValue === checkboxValue}
       value={checkboxValue}
-      onChange={(event) => {
+      onChange={event => {
         const { target } = event;
         const { checked, value } = target;
 
@@ -24,7 +24,11 @@ const CheckboxBaseExample = () => {
 };
 
 const CheckboxExtendedExample = ({
-  disabled, label, labelPlacement, checkboxValue, checked
+  disabled,
+  label,
+  labelPlacement,
+  checkboxValue,
+  checked,
 }) => {
   const [currentValue, setCurrentValue] = useState(null);
 
@@ -33,11 +37,11 @@ const CheckboxExtendedExample = ({
   return (
     <Checkbox
       disabled={disabled}
-      checked={checked || (currentValue === checkboxValue)}
+      checked={checked || currentValue === checkboxValue}
       label={label}
       labelPlacement={labelPlacement}
       value={checkboxValue}
-      onChange={(event) => {
+      onChange={event => {
         const { target } = event;
         const { checked, value } = target;
 

@@ -32,10 +32,10 @@ const FormField = ({
   ...MuiTextFieldProps
 }) => {
   const { required } = MuiTextFieldProps;
-  const validationFunction = useMemo(() => createValidationFunction(required, validate), [
-    required,
-    validate,
-  ]);
+  const validationFunction = useMemo(
+    () => createValidationFunction(required, validate),
+    [required, validate],
+  );
 
   return (
     <>
@@ -54,11 +54,21 @@ const FormField = ({
           const helperText = meta.error && meta.touched ? meta.error : null;
 
           if (render) {
-            return render({ ...input, ...MuiTextFieldProps, error, helperText });
+            return render({
+              ...input,
+              ...MuiTextFieldProps,
+              error,
+              helperText,
+            });
           }
 
           return (
-            <MuiTextField {...input} {...MuiTextFieldProps} error={error} helperText={helperText} />
+            <MuiTextField
+              {...input}
+              {...MuiTextFieldProps}
+              error={error}
+              helperText={helperText}
+            />
           );
         }}
         subscription={subscription}
@@ -114,7 +124,9 @@ FormField.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+    ),
   ]),
   /**
    * Функция форматирует текущее значение для вывода в input
@@ -132,7 +144,9 @@ FormField.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+    ),
   ]),
   /**
    * Функция для определения, равны ли два значения.

@@ -31,7 +31,9 @@ INNField.defaultProps = {
 INNField.propTypes = {
   name: PropTypes.string,
   placeholder: PropTypes.string,
-  organizationType: PropTypes.oneOf(Object.keys(ORGANIZATION_VALIDATIONS_PARAMS)),
+  organizationType: PropTypes.oneOf(
+    Object.keys(ORGANIZATION_VALIDATIONS_PARAMS),
+  ),
 };
 
 export default INNField;

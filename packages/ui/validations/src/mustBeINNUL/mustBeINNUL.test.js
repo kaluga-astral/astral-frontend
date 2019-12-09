@@ -5,7 +5,9 @@ import { ORGANIZATION_VALIDATIONS_PARAMS } from '../constants';
 describe('mustBeULINN', () => {
   let mustBeINNUL;
   beforeEach(() => {
-    mustBeINNUL = mustBeINNULValidation.bind(ORGANIZATION_VALIDATIONS_PARAMS.ul);
+    mustBeINNUL = mustBeINNULValidation.bind(
+      ORGANIZATION_VALIDATIONS_PARAMS.ul,
+    );
   });
   it('должна возвращать сообщение об ошибке если value < 10 символов', () => {
     const value = new Array(9).fill('1').join('');

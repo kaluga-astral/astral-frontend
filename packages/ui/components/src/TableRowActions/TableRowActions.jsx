@@ -21,13 +21,13 @@ const useStyles = makeStyles({
   },
 });
 
-const TableRowActions = (props) => {
+const TableRowActions = props => {
   const classes = useStyles(props);
   const { hovered: tableRowHovered } = React.useContext(TableRowContext);
 
   return (
     <MuiTableCell
-      onClick={(e) => {
+      onClick={e => {
         e.stopPropagation();
       }}
       className={cn(classes.root, { [classes.visible]: tableRowHovered })}

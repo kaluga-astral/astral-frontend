@@ -2,7 +2,9 @@ import maxLength from './maxLength';
 
 describe('`maxLength` validation rule', () => {
   test('should return an error object if value is invalid', () => {
-    expect(maxLength(3)('012300000')).toEqual('Максимальная длина поля 3 символов.');
+    expect(maxLength(3)('012300000')).toEqual(
+      'Максимальная длина поля 3 символов.',
+    );
   });
 
   test('should return empty object if value is valid', () => {

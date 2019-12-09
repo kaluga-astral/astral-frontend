@@ -4,10 +4,11 @@ import React, { Component } from 'react';
 import ReactPagination from 'react-js-pagination';
 import { withStyles } from '@astral-frontend/styles';
 
-const getActivePageNumber = (offset, count) => Math.ceil((offset + count) / count - 1) + 1;
+const getActivePageNumber = (offset, count) =>
+  Math.ceil((offset + count) / count - 1) + 1;
 
 class Pagination extends Component {
-  static getDerivedStateFromProps = (props) => {
+  static getDerivedStateFromProps = props => {
     const { offset, count } = props;
 
     return {
@@ -19,14 +20,14 @@ class Pagination extends Component {
     activePage: undefined,
   };
 
-  handleCountButtonClick = (e) => {
+  handleCountButtonClick = e => {
     const { onChange } = this.props;
     const count = Number(e.target.value);
 
     onChange({ count, offset: 0 });
   };
 
-  handlePageButtonClick = (pageNumber) => {
+  handlePageButtonClick = pageNumber => {
     const { count, onChange } = this.props;
     const offset = (pageNumber - 1) * count;
 

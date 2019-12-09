@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import {
   configure,
   getStorybook,
   setAddon,
   addDecorator,
-} from "@storybook/react";
-import { ThemeProvider } from "@astral-frontend/components";
-import { AstralEDOTheme } from "@astral-frontend/themes";
+} from '@storybook/react';
+import { ThemeProvider } from '@astral-frontend/components';
+import { AstralEDOTheme } from '@astral-frontend/themes';
 
 const theme = new AstralEDOTheme();
-const req = require.context("../packages", true, /\.stories\.(jsx|mdx)$/);
+const req = require.context('../packages', true, /\.stories\.(jsx|mdx)$/);
 function loadStories() {
   req.keys().forEach(filename => req(filename));
 }

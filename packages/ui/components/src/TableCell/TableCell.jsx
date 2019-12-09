@@ -18,7 +18,7 @@ const useStyles = makeStyles(
   { name: 'TableCell' },
 );
 
-const TableCell = (props) => {
+const TableCell = props => {
   const classes = useStyles();
 
   return <MuiTableCell classes={classes} {...props} />;

@@ -9,7 +9,7 @@ export default {
     babelrc: false,
     ...babelPresetReactApp(),
   }),
-  modifyBundlerConfig: (config) => {
+  modifyBundlerConfig: config => {
     config.resolve.extensions.push('.css');
     config.module.rules.push({
       test: /\.css$/,

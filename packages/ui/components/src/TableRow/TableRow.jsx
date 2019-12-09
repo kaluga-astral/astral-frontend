@@ -53,7 +53,10 @@ TableRow.defaultProps = {
 TableRow.propTypes = {
   hover: PropTypes.bool,
   Actions: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
 };
 
 export default TableRow;

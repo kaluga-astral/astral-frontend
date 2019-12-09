@@ -18,9 +18,15 @@ const useStyles = makeStyles(
   },
 );
 
-const FlexItem = (props) => {
+const FlexItem = props => {
   const {
-    className, component: Component, grow, shrink, basis, alignSelf, ...other
+    className,
+    component: Component,
+    grow,
+    shrink,
+    basis,
+    alignSelf,
+    ...other
   } = props;
   const classes = useStyles(props);
 
@@ -38,7 +44,11 @@ FlexItem.defaultProps = {
 
 FlexItem.propTypes = {
   className: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string]),
+  component: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   alignSelf: PropTypes.oneOf([
     'auto',
     'normal',

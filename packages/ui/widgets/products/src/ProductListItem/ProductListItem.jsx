@@ -8,7 +8,11 @@ import useStyles from './styles';
 import { getFileServiceUrl } from '../utils';
 
 const ProductListItem = ({
-  iconFileId, backgroundHexColor, name, productUrl, shortDescription,
+  iconFileId,
+  backgroundHexColor,
+  name,
+  productUrl,
+  shortDescription,
 }) => {
   const { apiUrl } = useContext(ApiUrlContext);
   const classes = useStyles({ backgroundHexColor });

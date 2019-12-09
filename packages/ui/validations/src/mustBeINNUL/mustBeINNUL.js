@@ -8,7 +8,8 @@ import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
  * @param {string} value
  */
 function mustBeINNUL(value) {
-  const isINNLengthValid = getArrayDigitsOfValue(value).length === this.maxLengthINN;
+  const isINNLengthValid =
+    getArrayDigitsOfValue(value).length === this.maxLengthINN;
 
   const checkNumFromINNString = getArrayDigitsOfValue(value)[9];
 
@@ -17,7 +18,8 @@ function mustBeINNUL(value) {
     this.weightsForCheckNumINN,
   );
 
-  const isINNCheckNumValid = calcCheckNumFromINNString !== checkNumFromINNString;
+  const isINNCheckNumValid =
+    calcCheckNumFromINNString !== checkNumFromINNString;
 
   if (!/^(\d{10})$/.test(value)) {
     return ERROR_MESSAGE;

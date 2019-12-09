@@ -17,7 +17,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const DashboardLayoutOrganizationSelectorItem = ({ className, name, ...props }) => {
+const DashboardLayoutOrganizationSelectorItem = ({
+  className,
+  name,
+  ...props
+}) => {
   const classes = useStyles();
 
   return (

@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Table = (props) => {
+const Table = props => {
   const { tableLayout, className, ...rootProps } = props;
   const classes = useStyles(props);
 

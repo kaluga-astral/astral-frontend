@@ -54,7 +54,8 @@ const IconTableCell = ({
 }) => {
   const classes = useStyles();
   const { hovered: tableRowHovered } = React.useContext(TableRowContext);
-  const shouldSelectorComponentBeRendered = (tableRowHovered || selected) && !loading;
+  const shouldSelectorComponentBeRendered =
+    (tableRowHovered || selected) && !loading;
 
   const renderStatus = () => {
     if (error) return <ErrorIcon className={classes.errorIcon} />;
@@ -62,7 +63,9 @@ const IconTableCell = ({
     if (loading) {
       return (
         <>
-          <Icon className={cn(classes.icon, { [classes.downloadedIcon]: !loading })} />
+          <Icon
+            className={cn(classes.icon, { [classes.downloadedIcon]: !loading })}
+          />
           <div className={classes.progressWrapper}>
             <CircularProgress
               size={36}
@@ -75,7 +78,11 @@ const IconTableCell = ({
       );
     }
 
-    return <Icon className={cn(classes.icon, { [classes.downloadedIcon]: !loading })} />;
+    return (
+      <Icon
+        className={cn(classes.icon, { [classes.downloadedIcon]: !loading })}
+      />
+    );
   };
 
   return (

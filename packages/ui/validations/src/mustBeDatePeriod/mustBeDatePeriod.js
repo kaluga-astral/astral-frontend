@@ -1,5 +1,4 @@
-export default (min, value, max) => (
+export default (min, value, max) =>
   new Date(value) >= new Date(min) && new Date(value) <= new Date(max)
     ? null
-    : 'Дата имеет недопустимое значение'
-);
+    : 'Дата имеет недопустимое значение';
