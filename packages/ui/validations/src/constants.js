@@ -10,6 +10,7 @@ import mustBeOGRN from './mustBeOGRN';
 export const ORGANIZATION_VALIDATIONS_PARAMS = {
   ip: {
     labelINN: 'ИНН ИП',
+    labelOGRN: 'ОГРН ИП',
     maxLengthINN: 12,
     maxLengthOGRN: 15,
     weightsForCheckNumINN: {
@@ -25,6 +26,7 @@ export const ORGANIZATION_VALIDATIONS_PARAMS = {
   },
   ul: {
     labelINN: 'ИНН ЮЛ',
+    labelOGRN: 'ОГРН ЮЛ',
     maxLengthINN: 10,
     maxLengthOGRN: 13,
     weightsForCheckNumINN: [2, 4, 10, 3, 5, 9, 4, 6, 8, 0],

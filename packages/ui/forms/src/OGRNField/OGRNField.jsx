@@ -8,14 +8,16 @@ import TextField from '../TextField';
 const OGRNField = ({ organizationType, ...props }) => {
   const {
     validateOGRN: validate,
-    ...validationParams
+    maxLengthORGN: maxLength,
+    labelOGRN: label,
   } = ORGANIZATION_VALIDATIONS_PARAMS[organizationType];
 
   return (
     <TextField
-      inputProps={{ maxLength: validationParams.maxLengthORGN }}
+      inputProps={{ maxLength }}
       parse={value => value.replace(/[^\d]/g, '')}
       validate={validate}
+      label={label}
       {...props}
     />
   );
