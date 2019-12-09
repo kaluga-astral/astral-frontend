@@ -25,14 +25,12 @@ const OGRNField = ({ organizationType, ...props }) => {
 
 OGRNField.defaultProps = {
   name: 'ogrn',
-  label: 'ОГРН',
   placeholder: null,
   organizationType: null,
 };
 
 OGRNField.propTypes = {
   name: PropTypes.string,
-  label: PropTypes.string,
   placeholder: PropTypes.string,
   organizationType: PropTypes.oneOf(
     Object.keys(ORGANIZATION_VALIDATIONS_PARAMS),
