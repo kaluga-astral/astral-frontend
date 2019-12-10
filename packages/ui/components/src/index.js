@@ -52,6 +52,7 @@ export { default as Grid } from './Grid';
 export { default as Grow } from './Grow';
 export { default as IconButton } from './IconButton';
 export { default as IconTableCell } from './IconTableCell';
+export { default as InfiniteList } from './InfiniteList';
 export { default as InputAdornment } from './InputAdornment';
 export { default as InputBase } from './InputBase';
 export { default as InputLabel } from './InputLabel';

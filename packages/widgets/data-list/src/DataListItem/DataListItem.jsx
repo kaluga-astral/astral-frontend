@@ -9,7 +9,6 @@ const useStyles = makeStyles(
       borderStyle: 'solid',
       borderColor: 'transparent',
       padding: theme.spacing(4, 0),
-      marginBottom: theme.spacing(1),
       borderWidth: theme.spacing(0, 0, 0, 1),
       borderRadius: theme.shape.borderRadius,
       color: theme.palette.gray[800],

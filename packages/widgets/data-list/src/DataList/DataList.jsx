@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ContentState, List } from '@astral-frontend/components';
+import { ContentState, List, InfiniteList } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import DataListEmptyState from '../DataListEmptyState';
@@ -32,6 +32,7 @@ const useStyles = makeStyles(
     },
     bodyRow: {
       position: 'relative',
+      marginBottom: theme.spacing(1),
       '&:hover $rowActions': {
         opacity: 1,
       },
@@ -60,7 +61,7 @@ const DataList = ({
   ListItemComponent,
   data,
   EmptyStateProps,
-  // onLoadMore,
+  onLoadMoreItems,
   ...props
 }) => {
   const { columns } = props;
@@ -74,34 +75,50 @@ const DataList = ({
     return (
       <>
         <DataListHeader className={classes.row} columns={columns} />
-        <List className={classes.list}>
-          {data.map(dataItem => (
-            <li key={dataItem.key} className={classes.bodyRow}>
-              <DataListItemContext.Provider value={dataItem}>
-                <ListItemComponent className={cn(classes.row)}>
-                  {columns.map(column => {
-                    const Component = column.component;
+        <InfiniteList
+          awaitMore
+          itemCount={data.length}
+          itemsRenderer={(items, ref) => (
+            <List className={classes.list} ref={ref}>
+              {items}
+            </List>
+          )}
+          renderItem={(index, key) => {
+            const dataItem = data[index];
 
-                    return <Component key={column.title} data={dataItem} />;
-                  })}
-                </ListItemComponent>
-              </DataListItemContext.Provider>
-              {RowActions && (
-                <RowActions className={classes.rowActions} data={dataItem} />
-              )}
-            </li>
-          ))}
-        </List>
+            return (
+              <li key={key} className={classes.bodyRow}>
+                <DataListItemContext.Provider value={dataItem}>
+                  <ListItemComponent className={cn(classes.row)}>
+                    {columns.map(column => {
+                      const Component = column.component;
+
+                      return <Component key={column.title} data={dataItem} />;
+                    })}
+                  </ListItemComponent>
+                </DataListItemContext.Provider>
+                {RowActions && (
+                  <RowActions className={classes.rowActions} data={dataItem} />
+                )}
+              </li>
+            );
+          }}
+          onIntersection={onLoadMoreItems}
+          {...props}
+        />
       </>
     );
   };
 
   return (
-    <div className={classes.root}>
-      <ContentState loading={loading} error={error}>
-        <Children />
-      </ContentState>
-    </div>
+    <ContentState
+      loading={loading}
+      error={error}
+      className={classes.root}
+      component="div"
+    >
+      <Children />
+    </ContentState>
   );
 };
 
@@ -110,6 +127,7 @@ DataList.defaultProps = {
   ListItemComponent: null,
   RowActions: null,
   EmptyStateProps: null,
+  onLoadMoreItems: null,
 };
 
 DataList.propTypes = {
@@ -128,7 +146,7 @@ DataList.propTypes = {
     text: PropTypes.string,
     Illustration: PropTypes.func,
   }),
-  // onLoadMore: PropTypes.func.isRequired,
+  onLoadMoreItems: PropTypes.func,
 };
 
 export default DataList;
