@@ -73,35 +73,35 @@ const DataList = ({
 
     return (
       <>
-        {data.map(dataItem => (
-          <li key={dataItem.key} className={classes.bodyRow}>
-            <DataListItemContext.Provider value={dataItem}>
-              <ListItemComponent className={cn(classes.row)}>
-                {columns.map(column => {
-                  const Component = column.component;
+        <DataListHeader className={classes.row} columns={columns} />
+        <List className={classes.list}>
+          {data.map(dataItem => (
+            <li key={dataItem.key} className={classes.bodyRow}>
+              <DataListItemContext.Provider value={dataItem}>
+                <ListItemComponent className={cn(classes.row)}>
+                  {columns.map(column => {
+                    const Component = column.component;
 
-                  return <Component key={column.title} data={dataItem} />;
-                })}
-              </ListItemComponent>
-            </DataListItemContext.Provider>
-            {RowActions && (
-              <RowActions className={classes.rowActions} data={dataItem} />
-            )}
-          </li>
-        ))}
+                    return <Component key={column.title} data={dataItem} />;
+                  })}
+                </ListItemComponent>
+              </DataListItemContext.Provider>
+              {RowActions && (
+                <RowActions className={classes.rowActions} data={dataItem} />
+              )}
+            </li>
+          ))}
+        </List>
       </>
     );
   };
 
   return (
-    <ContentState loading={loading} error={error} disablePadding>
-      <div className={classes.root}>
-        <DataListHeader className={classes.row} columns={columns} />
-        <List className={classes.list}>
-          <Children />
-        </List>
-      </div>
-    </ContentState>
+    <div className={classes.root}>
+      <ContentState loading={loading} error={error}>
+        <Children />
+      </ContentState>
+    </div>
   );
 };
 
