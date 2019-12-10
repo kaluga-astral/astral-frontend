@@ -1,6 +1,11 @@
-import mustBeOGRN, { ERROR_MESSAGE } from './mustBeOGRN';
+import mustBeOGRNValidation, { ERROR_MESSAGE } from './mustBeOGRN';
+import { ORGANIZATION_VALIDATIONS_PARAMS } from '../constants';
 
 describe('mustBeOGRN', () => {
+  let mustBeOGRN;
+  beforeEach(() => {
+    mustBeOGRN = mustBeOGRNValidation.bind(ORGANIZATION_VALIDATIONS_PARAMS);
+  });
   it('должна возвращать сообщение об ошибке если value < 13 символов', () => {
     const value = new Array(12).fill('1').join('');
 
