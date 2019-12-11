@@ -4,7 +4,6 @@ import React from 'react';
 import { ContentState, List, InfiniteList } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import DataListEmptyState from '../DataListEmptyState';
 import DataListHeader from './DataListHeader';
 import { __Context as DataListItemContext } from '../DataListItem';
 
@@ -57,10 +56,10 @@ const useStyles = makeStyles(
 const DataList = ({
   loading,
   error,
-  RowActions,
-  ListItemComponent,
   data,
-  EmptyStateProps,
+  ListItemComponent,
+  RowActionsComponent,
+  EmptyStateComponent,
   onLoadMoreItems,
   ...props
 }) => {
@@ -68,10 +67,10 @@ const DataList = ({
   const classes = useStyles(props);
   const Children = () => {
     if (!loading && data.length === 0) {
-      // TODO: вынести DataListEmptyState как отдельный компонент и удалить EmptyStateProps
-      return <DataListEmptyState {...EmptyStateProps} />;
+      return <EmptyStateComponent />;
     }
 
+    // TODO: awaitMore
     return (
       <>
         <DataListHeader className={classes.row} columns={columns} />
@@ -97,8 +96,11 @@ const DataList = ({
                     })}
                   </ListItemComponent>
                 </DataListItemContext.Provider>
-                {RowActions && (
-                  <RowActions className={classes.rowActions} data={dataItem} />
+                {RowActionsComponent && (
+                  <RowActionsComponent
+                    className={classes.rowActions}
+                    data={dataItem}
+                  />
                 )}
               </li>
             );
@@ -125,8 +127,8 @@ const DataList = ({
 DataList.defaultProps = {
   error: null,
   ListItemComponent: null,
-  RowActions: null,
-  EmptyStateProps: null,
+  RowActionsComponent: null,
+  pageSize: 25,
   onLoadMoreItems: null,
 };
 
@@ -141,11 +143,9 @@ DataList.propTypes = {
     }),
   ).isRequired,
   ListItemComponent: PropTypes.func,
-  RowActions: PropTypes.func,
-  EmptyStateProps: PropTypes.shape({
-    text: PropTypes.string,
-    Illustration: PropTypes.func,
-  }),
+  RowActionsComponent: PropTypes.func,
+  EmptyStateComponent: PropTypes.func.isRequired,
+  pageSize: PropTypes.number,
   onLoadMoreItems: PropTypes.func,
 };
 
