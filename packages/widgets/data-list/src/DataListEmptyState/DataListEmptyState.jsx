@@ -25,7 +25,7 @@ const useStyles = makeStyles(
   { name: 'DataListEmptyState' },
 );
 
-const DataListEmptyState = ({ text, Illustration }) => {
+const DataListEmptyState = ({ text, IllustrationComponent }) => {
   const classes = useStyles();
 
   return (
@@ -40,7 +40,9 @@ const DataListEmptyState = ({ text, Illustration }) => {
         justifyContent="center"
         className={classes.content}
       >
-        {Illustration && <Illustration className={classes.illustration} />}
+        {IllustrationComponent && (
+          <IllustrationComponent className={classes.illustration} />
+        )}
         <div className={classes.text}>{text}</div>
       </FlexContainer>
     </FlexContainer>
@@ -49,12 +51,12 @@ const DataListEmptyState = ({ text, Illustration }) => {
 
 DataListEmptyState.defaultProps = {
   text: 'Список пуст',
-  Illustration: null,
+  IllustrationComponent: null,
 };
 
 DataListEmptyState.propTypes = {
   text: PropTypes.string,
-  Illustration: PropTypes.func,
+  IllustrationComponent: PropTypes.func,
 };
 
 export default DataListEmptyState;
