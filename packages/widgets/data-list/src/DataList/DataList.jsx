@@ -1,7 +1,12 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ContentState, List, InfiniteList } from '@astral-frontend/components';
+import {
+  ContentState,
+  List,
+  InfiniteList,
+  Placeholder,
+} from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import DataListHeader from './DataListHeader';
@@ -65,62 +70,68 @@ const DataList = ({
 }) => {
   const { columns } = props;
   const classes = useStyles(props);
-  const Children = () => {
-    if (!loading && data.length === 0) {
-      return <EmptyStateComponent />;
-    }
 
-    // TODO: awaitMore
-    return (
-      <>
-        <DataListHeader className={classes.row} columns={columns} />
-        <InfiniteList
-          awaitMore
-          itemCount={data.length}
-          itemsRenderer={(items, ref) => (
-            <List className={classes.list} ref={ref}>
-              {items}
-            </List>
-          )}
-          renderItem={(index, key) => {
-            const dataItem = data[index];
+  if (error) {
+    return <Placeholder state="failure" error={error} />;
+  }
 
-            return (
-              <li key={key} className={classes.bodyRow}>
-                <DataListItemContext.Provider value={dataItem}>
-                  <ListItemComponent className={cn(classes.row)}>
-                    {columns.map(column => {
-                      const Component = column.component;
+  // if (loading) {
+  //   return <Placeholder state="loading" />;
+  // }
 
-                      return <Component key={column.title} data={dataItem} />;
-                    })}
-                  </ListItemComponent>
-                </DataListItemContext.Provider>
-                {RowActionsComponent && (
-                  <RowActionsComponent
-                    className={classes.rowActions}
-                    data={dataItem}
-                  />
-                )}
-              </li>
-            );
-          }}
-          onIntersection={onLoadMoreItems}
-          {...props}
-        />
-      </>
-    );
-  };
+  if (!loading && data.length === 0) {
+    return <EmptyStateComponent />;
+  }
 
   return (
-    <ContentState
-      loading={loading}
-      error={error}
-      className={classes.root}
-      component="div"
-    >
-      <Children />
-    </ContentState>
+    <div className={classes.root}>
+      <DataListHeader className={classes.row} columns={columns} />
+      <InfiniteList
+        itemCount={data.length}
+        itemsRenderer={(items, ref) => (
+          <List className={classes.list} ref={ref}>
+            {items}
+          </List>
+        )}
+        renderItem={(index, key) => {
+          const dataItem = data[index];
+
+          return (
+            <li key={key} className={classes.bodyRow}>
+              <DataListItemContext.Provider value={dataItem}>
+                <ListItemComponent
+                  className={cn(classes.row)}
+                  loading={loading}
+                  error={error}
+                  data={dataItem}
+                >
+                  {columns.map(column => {
+                    const Component = column.component;
+
+                    return (
+                      <Component
+                        key={column.title}
+                        loading={loading}
+                        error={error}
+                        data={dataItem}
+                      />
+                    );
+                  })}
+                </ListItemComponent>
+              </DataListItemContext.Provider>
+              {RowActionsComponent && (
+                <RowActionsComponent
+                  className={classes.rowActions}
+                  data={dataItem}
+                />
+              )}
+            </li>
+          );
+        }}
+        onIntersection={onLoadMoreItems}
+        {...props}
+      />
+    </div>
   );
 };
 
@@ -128,7 +139,6 @@ DataList.defaultProps = {
   error: null,
   ListItemComponent: null,
   RowActionsComponent: null,
-  pageSize: 25,
   onLoadMoreItems: null,
 };
 
@@ -145,7 +155,7 @@ DataList.propTypes = {
   ListItemComponent: PropTypes.func,
   RowActionsComponent: PropTypes.func,
   EmptyStateComponent: PropTypes.func.isRequired,
-  pageSize: PropTypes.number,
+  pageSize: PropTypes.number.isRequired,
   onLoadMoreItems: PropTypes.func,
 };
 
