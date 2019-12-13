@@ -41,7 +41,7 @@ const DashboardLayoutHeaderSearch = ({
 DashboardLayoutHeaderSearch.defaultProps = {
   className: null,
   placeholder: 'Поиск',
-  inputValue: '',
+  inputValue: undefined,
 };
 
 DashboardLayoutHeaderSearch.propTypes = {
