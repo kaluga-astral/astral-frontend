@@ -24,6 +24,7 @@ const DashboardLayoutHeaderSearch = ({
   className,
   placeholder,
   inputValue,
+  defaultInputValue,
   onInputChange,
 }) => {
   const classes = useStyles();
@@ -33,6 +34,7 @@ const DashboardLayoutHeaderSearch = ({
       className={cn(classes.root, className)}
       placeholder={placeholder}
       value={inputValue}
+      defaultValue={defaultInputValue}
       onChange={onInputChange}
     />
   );
@@ -42,12 +44,14 @@ DashboardLayoutHeaderSearch.defaultProps = {
   className: null,
   placeholder: 'Поиск',
   inputValue: undefined,
+  defaultInputValue: undefined,
 };
 
 DashboardLayoutHeaderSearch.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  defaultInputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onInputChange: PropTypes.func.isRequired,
 };
 
