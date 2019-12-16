@@ -1,7 +1,6 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ContentLoader } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 // TODO: #29242. Вынести nFormatter в пакет utils.
@@ -32,10 +31,10 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       height: '20px',
-      minWidth: '30px',
+      minWidth: '32px',
       lineHeight: '20px',
       marginLeft: theme.spacing(2),
-      padding: theme.spacing(0, 2),
+      padding: theme.spacing(0, 1),
       textAlign: 'center',
       borderRadius: `${theme.shape.borderRadius}px`,
       backgroundColor: theme.palette.primary.light,
