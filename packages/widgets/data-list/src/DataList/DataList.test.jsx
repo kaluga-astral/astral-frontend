@@ -28,7 +28,7 @@ MockedTheme.propTypes = {
 };
 
 describe('<DataList />', () => {
-  it('should render `EmptyStateComponent` when `items` is empty and `totalCount` is loading', async () => {
+  it('should render `EmptyStateComponent` when `items` is empty', async () => {
     const props = {
       pageSize: 15,
       columns: [
@@ -44,102 +44,6 @@ describe('<DataList />', () => {
         loading: true,
         called: true,
         data: { totalCount: undefined },
-      },
-      EmptyStateComponent: EmptyState,
-    };
-    const wrapper = mount(
-      <MockedTheme>
-        <DataList {...props} />
-      </MockedTheme>,
-    );
-
-    expect(
-      wrapper
-        .find(DataList)
-        .children()
-        .equals(<EmptyState />),
-    ).toBeTruthy();
-  });
-  it('should render `EmptyStateComponent` when `items` is empty and `totalCount` is loaded', async () => {
-    const props = {
-      pageSize: 15,
-      columns: [
-        { title: 'test0', component: () => null },
-        { title: 'test1', component: () => null },
-      ],
-      dataQueryResult: {
-        loading: false,
-        called: true,
-        data: { items: [] },
-      },
-      totalCountQueryResult: {
-        loading: false,
-        called: true,
-        data: { totalCount: 0 },
-      },
-      EmptyStateComponent: EmptyState,
-    };
-    const wrapper = mount(
-      <MockedTheme>
-        <DataList {...props} />
-      </MockedTheme>,
-    );
-
-    expect(
-      wrapper
-        .find(DataList)
-        .children()
-        .equals(<EmptyState />),
-    ).toBeTruthy();
-  });
-  it('should render `EmptyStateComponent` when `totalCount` is 0 and `items` is loading ', async () => {
-    const props = {
-      pageSize: 15,
-      columns: [
-        { title: 'test0', component: () => null },
-        { title: 'test1', component: () => null },
-      ],
-      dataQueryResult: {
-        loading: true,
-        called: true,
-        data: { items: [] },
-      },
-      totalCountQueryResult: {
-        loading: false,
-        called: true,
-        data: { totalCount: 0 },
-      },
-      EmptyStateComponent: EmptyState,
-    };
-    const wrapper = mount(
-      <MockedTheme>
-        <DataList {...props} />
-      </MockedTheme>,
-    );
-
-    expect(
-      wrapper
-        .find(DataList)
-        .children()
-        .equals(<EmptyState />),
-    ).toBeTruthy();
-  });
-  it('should render `EmptyStateComponent` when `totalCount` is 0 and `items` is loaded ', async () => {
-    const props = {
-      pageSize: 15,
-      columns: [
-        { title: 'test0', component: () => null },
-        { title: 'test1', component: () => null },
-      ],
-      dataQueryResult: {
-        loading: false,
-        called: true,
-        data: { items: [] },
-      },
-      totalCountQueryResult: {
-        loading: false,
-        called: true,
-        data: { totalCount: 0 },
       },
       EmptyStateComponent: EmptyState,
     };
