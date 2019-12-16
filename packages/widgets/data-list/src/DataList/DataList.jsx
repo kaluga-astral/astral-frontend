@@ -1,12 +1,7 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  ContentState,
-  List,
-  InfiniteList,
-  Placeholder,
-} from '@astral-frontend/components';
+import { List, InfiniteList, Placeholder } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import DataListHeader from './DataListHeader';
@@ -59,27 +54,31 @@ const useStyles = makeStyles(
 );
 
 const DataList = ({
-  loading,
-  error,
-  data,
+  idleTimeout,
+  columns,
+  dataQueryResult: {
+    data: { items },
+    ...dataQueryResult
+  },
+  totalCountQueryResult,
   ListItemComponent,
   RowActionsComponent,
   EmptyStateComponent,
   onLoadMoreItems,
   ...props
 }) => {
-  const { columns } = props;
-  const classes = useStyles(props);
+  const classes = useStyles({ columns });
 
-  if (error) {
-    return <Placeholder state="failure" error={error} />;
+  if (dataQueryResult.erorr || totalCountQueryResult.error) {
+    return (
+      <Placeholder
+        state="failure"
+        error={dataQueryResult.erorr || totalCountQueryResult.error}
+      />
+    );
   }
 
-  // if (loading) {
-  //   return <Placeholder state="loading" />;
-  // }
-
-  if (!loading && data.length === 0) {
+  if (!dataQueryResult.loading && items.length === 0) {
     return <EmptyStateComponent />;
   }
 
@@ -87,22 +86,21 @@ const DataList = ({
     <div className={classes.root}>
       <DataListHeader className={classes.row} columns={columns} />
       <InfiniteList
-        itemCount={data.length}
-        itemsRenderer={(items, ref) => (
+        itemCount={items.length}
+        itemsRenderer={(children, ref) => (
           <List className={classes.list} ref={ref}>
-            {items}
+            {children}
           </List>
         )}
         renderItem={(index, key) => {
-          const dataItem = data[index];
+          const dataItem = items[index];
 
           return (
             <li key={key} className={classes.bodyRow}>
               <DataListItemContext.Provider value={dataItem}>
                 <ListItemComponent
                   className={cn(classes.row)}
-                  loading={loading}
-                  error={error}
+                  loading={dataQueryResult.loading}
                   data={dataItem}
                 >
                   {columns.map(column => {
@@ -111,8 +109,7 @@ const DataList = ({
                     return (
                       <Component
                         key={column.title}
-                        loading={loading}
-                        error={error}
+                        loading={dataQueryResult.loading}
                         data={dataItem}
                       />
                     );
@@ -136,16 +133,30 @@ const DataList = ({
 };
 
 DataList.defaultProps = {
-  error: null,
+  idleTimeout: 300,
   ListItemComponent: null,
   RowActionsComponent: null,
   onLoadMoreItems: null,
 };
 
 DataList.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  error: PropTypes.instanceOf(Error),
-  data: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  idleTimeout: PropTypes.number,
+  dataQueryResult: PropTypes.shape({
+    loading: PropTypes.bool.isRequired,
+    called: PropTypes.bool.isRequired,
+    error: PropTypes.instanceOf(Error),
+    data: PropTypes.shape({
+      items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+    }).isRequired,
+  }).isRequired,
+  totalCountQueryResult: PropTypes.shape({
+    loading: PropTypes.bool.isRequired,
+    called: PropTypes.bool.isRequired,
+    error: PropTypes.instanceOf(Error),
+    data: PropTypes.shape({
+      totalCount: PropTypes.number,
+    }).isRequired,
+  }).isRequired,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
