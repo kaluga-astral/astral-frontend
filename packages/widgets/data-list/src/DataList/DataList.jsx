@@ -78,6 +78,10 @@ const DataList = ({
     );
   }
 
+  if (dataQueryResult.loading) {
+    return <Placeholder state="loading" />;
+  }
+
   if (!dataQueryResult.loading && items.length === 0) {
     return <EmptyStateComponent />;
   }
