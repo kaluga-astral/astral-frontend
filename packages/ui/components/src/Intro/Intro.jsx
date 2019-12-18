@@ -52,6 +52,7 @@ const Intro = ({ initialStep, steps, open, onChange, onComplete, options }) => {
           <TooltipContent
             title={steps[currentStep].title}
             text={steps[currentStep].intro}
+            Picture={steps[currentStep].Picture}
             currentStep={currentStep}
             stepsLength={steps.length}
             onPrevStepIconClick={handlePrevStepIconClick}
@@ -100,6 +101,7 @@ Intro.propTypes = {
       element: PropTypes.string,
       intro: PropTypes.string.isRequired,
       title: PropTypes.string,
+      Picture: PropTypes.func,
       position: PropTypes.oneOf([
         'top',
         'right',
