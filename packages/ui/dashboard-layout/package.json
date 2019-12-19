@@ -16,7 +16,7 @@
   },
   "peerDependencies": {
     "@astral-frontend/components": "^0.3.0",
-    "react": "^16.8.0",
+    "react": "^16.12.0",
     "react-router-dom": "^5.0.0"
   },
   "sideEffects": false
