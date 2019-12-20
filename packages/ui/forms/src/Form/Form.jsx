@@ -26,11 +26,12 @@ const Form = ({ children, className, mutators, ...props }) => (
 
 Form.defaultProps = {
   className: null,
+  mutators: null,
 };
 
 Form.propTypes = {
   className: PropTypes.string,
-  mutators: PropTypes.shape({}).isRequired,
+  mutators: PropTypes.shape({}),
   children: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
