@@ -5,12 +5,15 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import DashboardLayoutContext from './Context';
 
-const useStyles = makeStyles(() => ({
-  root: {
-    display: 'flex',
-    height: '100vh',
-  },
-}));
+const useStyles = makeStyles(
+  () => ({
+    root: {
+      display: 'flex',
+      height: '100vh',
+    },
+  }),
+  { name: 'DashboardLayout' },
+);
 
 const DashboardLayout = ({ className, children }) => {
   const classes = useStyles();
