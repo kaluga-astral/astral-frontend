@@ -28,19 +28,20 @@ const ContentNavActionButton = ({ className, text, Icon, ...props }) => {
       {...props}
     >
       <span className={classes.text}>{text}</span>
-      <Icon className={classes.icon} />
+      {Icon && <Icon className={classes.icon} />}
     </Button>
   );
 };
 
 ContentNavActionButton.defaultProps = {
   className: null,
+  Icon: null,
 };
 
 ContentNavActionButton.propTypes = {
   className: PropTypes.string,
   text: PropTypes.string.isRequired,
-  Icon: PropTypes.func.isRequired,
+  Icon: PropTypes.func,
 };
 
 export default ContentNavActionButton;
