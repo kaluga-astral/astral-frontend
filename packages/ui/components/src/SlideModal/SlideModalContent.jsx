@@ -8,8 +8,7 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       flexGrow: 1,
-      paddingRight: theme.spacing(12),
-      paddingLeft: theme.spacing(12),
+      padding: theme.spacing(6, 12),
       overflowY: 'auto',
       overflowX: 'hidden',
     },
