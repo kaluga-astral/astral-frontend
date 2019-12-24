@@ -85,6 +85,11 @@ module.exports = {
         test: /\.(pdf)$/,
         use: ['thread-loader', 'file-loader?minetype=application/pdf'],
       },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: ['thread-loader', 'graphql-tag/loader'],
+      },
     ],
   },
 
