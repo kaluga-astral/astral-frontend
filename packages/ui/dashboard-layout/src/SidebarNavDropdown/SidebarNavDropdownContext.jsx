@@ -1,8 +1,8 @@
 import React from 'react';
 
 const SidebarNavDropdownContext = React.createContext({
-  expandedItemId: null,
-  onNavDropdownItemSelect: null,
+  expandedNavDropdownId: null,
+  setExpandedNavDropdownId: null,
 });
 
 export default SidebarNavDropdownContext;
