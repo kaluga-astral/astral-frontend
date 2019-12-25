@@ -77,10 +77,10 @@ Autocomplete.defaultProps = {
   filterOptions: (options, { inputValue }) => {
     return matchSorter(options, inputValue, { keys: [item => item.label] });
   },
-  onChange: PropTypes.func,
-  onClose: PropTypes.func,
-  onInputChange: PropTypes.func,
-  onOpen: PropTypes.func,
+  onChange: () => {},
+  onClose: () => {},
+  onInputChange: () => {},
+  onOpen: () => {},
   value: null,
   options: [],
 };
