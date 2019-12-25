@@ -69,7 +69,7 @@ const Autocomplete = ({
 Autocomplete.defaultProps = {
   className: null,
   disabled: false,
-  open: false,
+  open: null,
   loading: null,
   loadingText: 'Загрузка...',
   noOptionsText: 'Ничего не найдено',
