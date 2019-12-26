@@ -30,6 +30,7 @@ export { default as Fade } from './Fade';
 export { default as FlexContainer } from './FlexContainer';
 export { default as FlexItem } from './FlexItem';
 export { default as FormattedCurrency } from './FormattedCurrency';
+export { default as Popover } from './Popover';
 export { default as Popper } from './Popper';
 export { default as Paper } from './Paper';
 export { default as Placeholder } from './Placeholder';
