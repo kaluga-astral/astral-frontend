@@ -38,12 +38,13 @@ const DashboardLayoutOrganizationSelectorCurrentOrganization = React.forwardRef(
 
 DashboardLayoutOrganizationSelectorCurrentOrganization.defaultProps = {
   className: null,
+  name: null,
 };
 
 DashboardLayoutOrganizationSelectorCurrentOrganization.propTypes = {
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
 };
 
 export default withStyles(theme => ({
