@@ -13,155 +13,158 @@ const getIsBlockVariant = variant =>
 const getIsRegularVariant = variant =>
   variant === 'regular' || variant === 'regularBlock';
 
-const useStyles = makeStyles(theme => {
-  const getMinHeight = ({ size }) => {
-    switch (size) {
-      case 'extraSmall':
-        return '20px';
-      case 'small':
-        return '32px';
-      case 'medium':
-        return '40px';
-      case 'large':
-        return '64px';
-      default:
-        return null;
-    }
-  };
-  const getPadding = ({ size }) => {
-    if (size === 'extraSmall') {
-      return '3px 10px';
-    }
-
-    return '5px 20px';
-  };
-  const getBorderRadius = ({ variant }) => {
-    const isBlockVariant = getIsBlockVariant(variant);
-
-    if (isBlockVariant) {
-      return '0';
-    }
-
-    return '4px';
-  };
-  const getFontSize = ({ size }) => {
-    if (size === 'extraSmall') {
-      return theme.typography.pxToRem(10);
-    }
-    if (size === 'small') {
-      return theme.typography.pxToRem(12);
-    }
-
-    return theme.typography.pxToRem(14);
-  };
-  const getBackgroundColor = ({ loading, variant }) => {
-    const isTextVariant = getIsTextVariant(variant);
-    const isRegularVariant = getIsRegularVariant(variant);
-
-    if (isTextVariant) {
-      return null;
-    }
-
-    if (loading) {
-      return theme.palette.grey[100];
-    }
-
-    if (isRegularVariant) {
-      return theme.palette.primary.main;
-    }
-
-    return null;
-  };
-  const getDisabledBackgroundColor = ({ variant }) => {
-    const isTextVariant = getIsTextVariant(variant);
-    const isRegularVariant = getIsRegularVariant(variant);
-
-    if (isTextVariant) {
-      return null;
-    }
-
-    if (isRegularVariant) {
-      return theme.palette.grey[100];
-    }
-
-    return null;
-  };
-  const getColor = ({ loading, variant }) => {
-    const isTextVariant = getIsTextVariant(variant);
-    const isRegularVariant = getIsRegularVariant(variant);
-
-    if (isTextVariant) {
-      if (loading) {
-        return 'transparent';
+const useStyles = makeStyles(
+  theme => {
+    const getMinHeight = ({ size }) => {
+      switch (size) {
+        case 'extraSmall':
+          return '20px';
+        case 'small':
+          return '32px';
+        case 'medium':
+          return '40px';
+        case 'large':
+          return '64px';
+        default:
+          return null;
+      }
+    };
+    const getPadding = ({ size }) => {
+      if (size === 'extraSmall') {
+        return '3px 10px';
       }
 
-      return theme.palette.primary.main;
-    }
+      return '5px 20px';
+    };
+    const getBorderRadius = ({ variant }) => {
+      const isBlockVariant = getIsBlockVariant(variant);
 
-    if (isRegularVariant) {
+      if (isBlockVariant) {
+        return '0';
+      }
+
+      return '4px';
+    };
+    const getFontSize = ({ size }) => {
+      if (size === 'extraSmall') {
+        return theme.typography.pxToRem(10);
+      }
+      if (size === 'small') {
+        return theme.typography.pxToRem(12);
+      }
+
+      return theme.typography.pxToRem(14);
+    };
+    const getBackgroundColor = ({ loading, variant }) => {
+      const isTextVariant = getIsTextVariant(variant);
+      const isRegularVariant = getIsRegularVariant(variant);
+
+      if (isTextVariant) {
+        return null;
+      }
+
       if (loading) {
         return theme.palette.grey[100];
       }
 
-      return theme.palette.common.white;
-    }
+      if (isRegularVariant) {
+        return theme.palette.primary.main;
+      }
 
-    return theme.palette.common.white;
-  };
-  const getHoverBackgroundColor = ({ loading, variant }) => {
-    const isTextVariant = getIsTextVariant(variant);
-
-    if (loading) {
       return null;
-    }
+    };
+    const getDisabledBackgroundColor = ({ variant }) => {
+      const isTextVariant = getIsTextVariant(variant);
+      const isRegularVariant = getIsRegularVariant(variant);
 
-    if (isTextVariant) {
-      return theme.palette.grey[100];
-    }
+      if (isTextVariant) {
+        return null;
+      }
 
-    return theme.palette.primary.dark;
-  };
+      if (isRegularVariant) {
+        return theme.palette.grey[100];
+      }
 
-  return {
-    root: {
-      position: 'relative',
-      minHeight: getMinHeight,
-      padding: getPadding,
-      borderRadius: getBorderRadius,
-      fontSize: getFontSize,
-      fontWeight: theme.typography.fontWeightBold,
-      backgroundColor: getBackgroundColor,
-      color: getColor,
-      transition: 'background .25s ease-out',
-      '&:hover': {
-        backgroundColor: getHoverBackgroundColor,
+      return null;
+    };
+    const getColor = ({ loading, variant }) => {
+      const isTextVariant = getIsTextVariant(variant);
+      const isRegularVariant = getIsRegularVariant(variant);
+
+      if (isTextVariant) {
+        if (loading) {
+          return 'transparent';
+        }
+
+        return theme.palette.primary.main;
+      }
+
+      if (isRegularVariant) {
+        if (loading) {
+          return theme.palette.grey[100];
+        }
+
+        return theme.palette.common.white;
+      }
+
+      return theme.palette.common.white;
+    };
+    const getHoverBackgroundColor = ({ loading, variant }) => {
+      const isTextVariant = getIsTextVariant(variant);
+
+      if (loading) {
+        return null;
+      }
+
+      if (isTextVariant) {
+        return theme.palette.grey[100];
+      }
+
+      return theme.palette.primary.dark;
+    };
+
+    return {
+      root: {
+        position: 'relative',
+        minHeight: getMinHeight,
+        padding: getPadding,
+        borderRadius: getBorderRadius,
+        fontSize: getFontSize,
+        fontWeight: theme.typography.fontWeightBold,
+        backgroundColor: getBackgroundColor,
+        color: getColor,
+        transition: 'background .25s ease-out',
+        '&:hover': {
+          backgroundColor: getHoverBackgroundColor,
+        },
+        '&:disabled': {
+          backgroundColor: getDisabledBackgroundColor,
+          color: theme.palette.grey[400],
+        },
       },
-      '&:disabled': {
-        backgroundColor: getDisabledBackgroundColor,
-        color: theme.palette.grey[400],
+      loaderContainer: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+        backgroundColor: getBackgroundColor,
       },
-    },
-    loaderContainer: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      height: '100%',
-      backgroundColor: getBackgroundColor,
-    },
-    loader: {
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      left: 0,
-      bottom: 0,
-      margin: 'auto',
-    },
-  };
-});
+      loader: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        left: 0,
+        bottom: 0,
+        margin: 'auto',
+      },
+    };
+  },
+  { name: 'Button' },
+);
 
 const getLoaderSize = size => {
   if (size === 'extraSmall') {
