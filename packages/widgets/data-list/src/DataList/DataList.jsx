@@ -69,11 +69,11 @@ const DataList = ({
 }) => {
   const classes = useStyles({ columns });
 
-  if (dataQueryResult.erorr || totalCountQueryResult.error) {
+  if (dataQueryResult.error || totalCountQueryResult.error) {
     return (
       <Placeholder
         state="failure"
-        error={dataQueryResult.erorr || totalCountQueryResult.error}
+        error={dataQueryResult.error || totalCountQueryResult.error}
       />
     );
   }
