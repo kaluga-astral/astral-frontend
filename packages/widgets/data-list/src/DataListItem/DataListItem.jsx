@@ -70,6 +70,7 @@ DataListItem.defaultProps = {
   className: null,
   disableGutters: true,
   button: false,
+  Icon: () => <div>&nbsp;</div>,
 };
 
 DataListItem.propTypes = {
@@ -77,7 +78,7 @@ DataListItem.propTypes = {
   disableGutters: PropTypes.bool,
   button: PropTypes.bool,
   children: PropTypes.func.isRequired,
-  Icon: PropTypes.func.isRequired,
+  Icon: PropTypes.func,
 };
 
 export default DataListItem;
