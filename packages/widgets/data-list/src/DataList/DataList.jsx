@@ -6,6 +6,7 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import DataListHeader from './DataListHeader';
 import { __Context as DataListItemContext } from '../DataListItem';
+import InternalDataListContext from '../DataListContext';
 
 const useStyles = makeStyles(
   theme => ({
@@ -24,7 +25,7 @@ const useStyles = makeStyles(
       display: 'grid',
       gridGap: theme.spacing(2),
       gridTemplateColumns: props => {
-        return `${props.columns
+        return `0.3fr ${props.columns
           .map(column => `${column.fr || '1'}fr`)
           .join(' ')}`;
       },
@@ -54,6 +55,7 @@ const useStyles = makeStyles(
 );
 
 const DataList = ({
+  Context: ExternalDataListContext,
   idleTimeout,
   columns,
   dataQueryResult: {
@@ -65,9 +67,13 @@ const DataList = ({
   RowActionsComponent,
   EmptyStateComponent,
   onLoadMoreItems,
+  isItemNotSelectable,
   ...props
 }) => {
   const classes = useStyles({ columns });
+  const externalDataListContextValue = React.useContext(
+    ExternalDataListContext,
+  );
 
   if (dataQueryResult.error || totalCountQueryResult.error) {
     return (
@@ -88,50 +94,58 @@ const DataList = ({
 
   return (
     <div className={classes.root}>
-      <DataListHeader className={classes.row} columns={columns} />
-      <InfiniteList
-        itemCount={items.length}
-        itemsRenderer={(children, ref) => (
-          <List className={classes.list} ref={ref}>
-            {children}
-          </List>
-        )}
-        renderItem={(index, key) => {
-          const dataItem = items[index];
-
-          return (
-            <li key={key} className={classes.bodyRow}>
-              <DataListItemContext.Provider value={dataItem}>
-                <ListItemComponent
-                  className={cn(classes.row)}
-                  loading={dataQueryResult.loading}
-                  data={dataItem}
-                >
-                  {columns.map(column => {
-                    const Component = column.component;
-
-                    return (
-                      <Component
-                        key={column.title}
-                        loading={dataQueryResult.loading}
-                        data={dataItem}
-                      />
-                    );
-                  })}
-                </ListItemComponent>
-              </DataListItemContext.Provider>
-              {RowActionsComponent && (
-                <RowActionsComponent
-                  className={classes.rowActions}
-                  data={dataItem}
-                />
-              )}
-            </li>
-          );
+      <InternalDataListContext.Provider
+        value={{
+          ...externalDataListContextValue,
+          items,
+          isItemSelectable: item => !isItemNotSelectable(item),
+          selectableItems: items.filter(item => !isItemNotSelectable(item)),
         }}
-        onIntersection={onLoadMoreItems}
-        {...props}
-      />
+      >
+        <DataListHeader className={classes.row} columns={columns} />
+        <InfiniteList
+          itemCount={items.length}
+          itemsRenderer={(children, ref) => (
+            <List className={classes.list} ref={ref}>
+              {children}
+            </List>
+          )}
+          renderItem={(index, key) => {
+            const dataItem = items[index];
+
+            return (
+              <li key={key} className={classes.bodyRow}>
+                <DataListItemContext.Provider value={{ dataItem }}>
+                  <ListItemComponent
+                    className={cn(classes.row)}
+                    loading={dataQueryResult.loading}
+                    data={dataItem}
+                  >
+                    {columns.map(column => {
+                      const Component = column.component;
+                      return (
+                        <Component
+                          key={column.title}
+                          loading={dataQueryResult.loading}
+                          data={dataItem}
+                        />
+                      );
+                    })}
+                  </ListItemComponent>
+                </DataListItemContext.Provider>
+                {RowActionsComponent && (
+                  <RowActionsComponent
+                    className={classes.rowActions}
+                    data={dataItem}
+                  />
+                )}
+              </li>
+            );
+          }}
+          onIntersection={onLoadMoreItems}
+          {...props}
+        />
+      </InternalDataListContext.Provider>
     </div>
   );
 };
@@ -141,9 +155,14 @@ DataList.defaultProps = {
   ListItemComponent: null,
   RowActionsComponent: null,
   onLoadMoreItems: null,
+  isItemNotSelectable: () => false,
 };
 
 DataList.propTypes = {
+  Context: PropTypes.shape({
+    selectedItems: PropTypes.arrayOf(PropTypes.string).isRequired,
+    setSelectedItems: PropTypes.func.isRequired,
+  }).isRequired,
   idleTimeout: PropTypes.number,
   dataQueryResult: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
@@ -172,6 +191,7 @@ DataList.propTypes = {
   EmptyStateComponent: PropTypes.func.isRequired,
   pageSize: PropTypes.number.isRequired,
   onLoadMoreItems: PropTypes.func,
+  isItemNotSelectable: PropTypes.func,
 };
 
 export default DataList;

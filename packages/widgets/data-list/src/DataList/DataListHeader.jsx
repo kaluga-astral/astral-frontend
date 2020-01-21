@@ -2,6 +2,10 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
+import { Checkbox } from '@astral-frontend/components';
+
+import DataListContext from '../DataListContext';
+import useDataListManager from '../useDataListManager';
 
 const useStyles = makeStyles(
   theme => ({
@@ -14,17 +18,35 @@ const useStyles = makeStyles(
       fontWeight: theme.typography.fontWeightBold,
       zIndex: 2,
     },
+    item: {
+      display: 'flex',
+      alignItems: 'center',
+    },
   }),
   { name: 'DataListHeader' },
 );
 
 const DataListHeader = ({ className, columns }) => {
   const classes = useStyles();
+  const { items, selectedItems, selectableItems } = React.useContext(
+    DataListContext,
+  );
+  const { toggleAllItemsSelector } = useDataListManager(DataListContext);
+  const checked =
+    selectedItems.length === selectableItems.length && items.length > 0;
+  const handleAllItemsSelectorChange = React.useCallback(() => {
+    toggleAllItemsSelector(selectableItems);
+  }, [selectableItems]);
 
   return (
     <div className={cn(classes.root, className)}>
+      <div className={classes.item}>
+        <Checkbox onChange={handleAllItemsSelectorChange} checked={checked} />
+      </div>
       {columns.map(column => (
-        <div key={column.title}>{column.title}</div>
+        <div key={column.item} className={classes.item}>
+          {column.title}
+        </div>
       ))}
     </div>
   );

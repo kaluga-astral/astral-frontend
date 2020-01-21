@@ -3,6 +3,10 @@ import React from 'react';
 import { ListItem } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
+import ListItemIcon from './DataListItemIcon';
+import DataListContext from '../DataListContext';
+import DataListItemContext from './DataListItemContext';
+
 const useStyles = makeStyles(
   theme => ({
     root: {
@@ -23,8 +27,27 @@ const useStyles = makeStyles(
   { name: 'DataListItem' },
 );
 
-const DataListItem = ({ className, disableGutters, button, ...props }) => {
+const DataListItem = ({
+  className,
+  disableGutters,
+  button,
+  Icon,
+  children,
+  ...props
+}) => {
   const classes = useStyles(props);
+  const [hovered, setHovered] = React.useState(false);
+  const { dataItem } = React.useContext(DataListItemContext);
+  const { isItemSelectable } = React.useContext(DataListContext);
+
+  const handleListItemMouseEnter = React.useCallback(() => {
+    if (isItemSelectable(dataItem)) {
+      setHovered(true);
+    }
+  }, [dataItem]);
+  const handleListItemMouseLeave = () => {
+    setHovered(false);
+  };
 
   return (
     <ListItem
@@ -33,8 +56,13 @@ const DataListItem = ({ className, disableGutters, button, ...props }) => {
       disableGutters={disableGutters}
       button={button}
       component="div"
+      onMouseEnter={handleListItemMouseEnter}
+      onMouseLeave={handleListItemMouseLeave}
       {...props}
-    />
+    >
+      <ListItemIcon Icon={Icon} itemHovered={hovered} />
+      {children}
+    </ListItem>
   );
 };
 
@@ -48,6 +76,8 @@ DataListItem.propTypes = {
   className: PropTypes.string,
   disableGutters: PropTypes.bool,
   button: PropTypes.bool,
+  children: PropTypes.func.isRequired,
+  Icon: PropTypes.func.isRequired,
 };
 
 export default DataListItem;
