@@ -22,6 +22,9 @@ const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
     },
+    checkbox: {
+      marginLeft: '4px',
+    },
   }),
   { name: 'DataListHeader' },
 );
@@ -45,7 +48,11 @@ const DataListHeader = ({ className, columns }) => {
     <div className={cn(classes.root, className)}>
       {!disableSelect ? (
         <div className={classes.item}>
-          <Checkbox onChange={handleAllItemsSelectorChange} checked={checked} />
+          <Checkbox
+            className={classes.checkbox}
+            onChange={handleAllItemsSelectorChange}
+            checked={checked}
+          />
         </div>
       ) : (
         <>&nbsp;</>
