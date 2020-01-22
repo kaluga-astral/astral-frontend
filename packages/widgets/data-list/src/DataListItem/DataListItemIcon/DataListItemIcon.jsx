@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { FlexContainer } from '@astral-frontend/components';
+
 import DefaultSelector from './DataListItemDefaultSelector';
 import DataListContext from '../../DataListContext';
 import DataListItemContext from '../DataListItemContext';
@@ -24,7 +26,7 @@ const DataListItemIcon = ({ Icon, SelectorComponent, itemHovered }) => {
     !disableSelect && (itemHovered || itemSelected);
 
   return (
-    <div>
+    <FlexContainer justifyContent="center">
       {shouldSelectorComponentBeRendered ? (
         <SelectorComponent
           selected={itemSelected}
@@ -33,7 +35,7 @@ const DataListItemIcon = ({ Icon, SelectorComponent, itemHovered }) => {
       ) : (
         <Icon />
       )}
-    </div>
+    </FlexContainer>
   );
 };
 

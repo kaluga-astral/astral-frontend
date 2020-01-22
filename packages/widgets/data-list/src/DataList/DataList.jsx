@@ -14,12 +14,12 @@ const useStyles = makeStyles(
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
+      overflowY: 'scroll',
     },
     list: {
       height: '100%',
       paddingTop: 0,
       paddingBottom: 0,
-      overflowY: 'auto',
     },
     row: {
       display: 'grid',

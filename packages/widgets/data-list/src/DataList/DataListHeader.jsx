@@ -21,9 +21,12 @@ const useStyles = makeStyles(
     item: {
       display: 'flex',
       alignItems: 'center',
+      '&:first-child': {
+        justifyContent: 'center',
+      },
     },
     checkbox: {
-      marginLeft: '4px',
+      marginLeft: theme.spacing(1),
     },
   }),
   { name: 'DataListHeader' },
