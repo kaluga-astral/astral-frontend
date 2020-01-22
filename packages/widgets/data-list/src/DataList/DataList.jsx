@@ -67,7 +67,8 @@ const DataList = ({
   RowActionsComponent,
   EmptyStateComponent,
   onLoadMoreItems,
-  isItemNotSelectable,
+  itemSelectorDisabled,
+  disableSelect,
   ...props
 }) => {
   const classes = useStyles({ columns });
@@ -98,8 +99,9 @@ const DataList = ({
         value={{
           ...externalDataListContextValue,
           items,
-          isItemSelectable: item => !isItemNotSelectable(item),
-          selectableItems: items.filter(item => !isItemNotSelectable(item)),
+          isItemSelectable: item => !itemSelectorDisabled(item),
+          selectableItems: items.filter(item => !itemSelectorDisabled(item)),
+          disableSelect,
         }}
       >
         <DataListHeader className={classes.row} columns={columns} />
@@ -151,18 +153,23 @@ const DataList = ({
 };
 
 DataList.defaultProps = {
+  Context: React.createContext({
+    selectedItems: [],
+    setSelectedItems: () => null,
+  }),
   idleTimeout: 300,
   ListItemComponent: null,
   RowActionsComponent: null,
   onLoadMoreItems: null,
-  isItemNotSelectable: () => false,
+  itemSelectorDisabled: () => false,
+  disableSelect: false,
 };
 
 DataList.propTypes = {
   Context: PropTypes.shape({
     selectedItems: PropTypes.arrayOf(PropTypes.string).isRequired,
     setSelectedItems: PropTypes.func.isRequired,
-  }).isRequired,
+  }),
   idleTimeout: PropTypes.number,
   dataQueryResult: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
@@ -191,7 +198,8 @@ DataList.propTypes = {
   EmptyStateComponent: PropTypes.func.isRequired,
   pageSize: PropTypes.number.isRequired,
   onLoadMoreItems: PropTypes.func,
-  isItemNotSelectable: PropTypes.func,
+  itemSelectorDisabled: PropTypes.func,
+  disableSelect: PropTypes.bool,
 };
 
 export default DataList;

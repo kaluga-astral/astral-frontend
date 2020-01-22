@@ -8,7 +8,7 @@ import useDataListManager from '../../useDataListManager';
 
 const DataListItemIcon = ({ Icon, SelectorComponent, itemHovered }) => {
   const { dataItem } = React.useContext(DataListItemContext);
-  const { selectedItems } = React.useContext(DataListContext);
+  const { selectedItems, disableSelect } = React.useContext(DataListContext);
   const { toggleItemSelector } = useDataListManager(DataListContext);
 
   const itemSelected = React.useMemo(
@@ -20,7 +20,8 @@ const DataListItemIcon = ({ Icon, SelectorComponent, itemHovered }) => {
     toggleItemSelector(dataItem);
   }, [itemSelected]);
 
-  const shouldSelectorComponentBeRendered = itemHovered || itemSelected;
+  const shouldSelectorComponentBeRendered =
+    !disableSelect && (itemHovered || itemSelected);
 
   return (
     <div>

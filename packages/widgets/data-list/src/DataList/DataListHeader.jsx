@@ -28,9 +28,12 @@ const useStyles = makeStyles(
 
 const DataListHeader = ({ className, columns }) => {
   const classes = useStyles();
-  const { items, selectedItems, selectableItems } = React.useContext(
-    DataListContext,
-  );
+  const {
+    items,
+    selectedItems,
+    selectableItems,
+    disableSelect,
+  } = React.useContext(DataListContext);
   const { toggleAllItemsSelector } = useDataListManager(DataListContext);
   const checked =
     selectedItems.length === selectableItems.length && items.length > 0;
@@ -40,9 +43,13 @@ const DataListHeader = ({ className, columns }) => {
 
   return (
     <div className={cn(classes.root, className)}>
-      <div className={classes.item}>
-        <Checkbox onChange={handleAllItemsSelectorChange} checked={checked} />
-      </div>
+      {!disableSelect ? (
+        <div className={classes.item}>
+          <Checkbox onChange={handleAllItemsSelectorChange} checked={checked} />
+        </div>
+      ) : (
+        <>&nbsp;</>
+      )}
       {columns.map(column => (
         <div key={column.item} className={classes.item}>
           {column.title}
