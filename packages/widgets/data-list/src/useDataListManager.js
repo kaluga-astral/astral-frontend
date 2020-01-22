@@ -14,7 +14,7 @@ const useDataListManager = Context => {
   };
 
   const toggleAllItemsSelector = items => {
-    if (selectedItems.length === 0) {
+    if (selectedItems.length !== items.length) {
       setSelectedItems(items);
     } else {
       setSelectedItems([]);
