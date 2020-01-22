@@ -167,8 +167,8 @@ DataList.defaultProps = {
 
 DataList.propTypes = {
   Context: PropTypes.shape({
-    selectedItems: PropTypes.arrayOf(PropTypes.string).isRequired,
-    setSelectedItems: PropTypes.func.isRequired,
+    selectedItems: PropTypes.arrayOf(PropTypes.string),
+    setSelectedItems: PropTypes.func,
   }),
   idleTimeout: PropTypes.number,
   dataQueryResult: PropTypes.shape({

@@ -51,7 +51,7 @@ const DataListHeader = ({ className, columns }) => {
         <>&nbsp;</>
       )}
       {columns.map(column => (
-        <div key={column.item} className={classes.item}>
+        <div key={column.title} className={classes.item}>
           {column.title}
         </div>
       ))}

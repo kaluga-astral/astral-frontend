@@ -78,7 +78,9 @@ DataListItem.propTypes = {
   className: PropTypes.string,
   disableGutters: PropTypes.bool,
   button: PropTypes.bool,
-  children: PropTypes.func.isRequired,
+  children: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  ).isRequired,
   Icon: PropTypes.func,
 };
 
