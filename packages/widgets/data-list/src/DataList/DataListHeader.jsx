@@ -13,6 +13,9 @@ const useStyles = makeStyles(
       position: 'sticky',
       top: 0,
       paddingBottom: theme.spacing(3),
+      borderStyle: 'solid',
+      borderColor: 'transparent',
+      borderWidth: theme.spacing(0, 0, 0, 1),
       backgroundColor: theme.palette.background.default,
       color: theme.palette.gray[500],
       fontWeight: theme.typography.fontWeightBold,
@@ -24,9 +27,6 @@ const useStyles = makeStyles(
       '&:first-child': {
         justifyContent: 'center',
       },
-    },
-    checkbox: {
-      marginLeft: theme.spacing(1),
     },
   }),
   { name: 'DataListHeader' },
@@ -51,11 +51,7 @@ const DataListHeader = ({ className, columns }) => {
     <div className={cn(classes.root, className)}>
       {!disableSelect ? (
         <div className={classes.item}>
-          <Checkbox
-            className={classes.checkbox}
-            onChange={handleAllItemsSelectorChange}
-            checked={checked}
-          />
+          <Checkbox onChange={handleAllItemsSelectorChange} checked={checked} />
         </div>
       ) : (
         <>&nbsp;</>
