@@ -39,10 +39,10 @@ const DataListItem = ({
   const classes = useStyles(props);
   const [hovered, setHovered] = React.useState(false);
   const { dataItem } = React.useContext(DataListItemContext);
-  const { isItemSelectable } = React.useContext(DataListContext);
+  const { isItemSelectable, disableSelect } = React.useContext(DataListContext);
 
   const handleListItemMouseEnter = React.useCallback(() => {
-    if (isItemSelectable(dataItem)) {
+    if (!disableSelect && isItemSelectable(dataItem)) {
       setHovered(true);
     }
   }, [dataItem]);
