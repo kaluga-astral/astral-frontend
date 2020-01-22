@@ -10,6 +10,7 @@ import DataListItemContext from './DataListItemContext';
 const useStyles = makeStyles(
   theme => ({
     root: {
+      minHeight: '70px',
       borderStyle: 'solid',
       borderColor: 'transparent',
       padding: theme.spacing(4, 0),

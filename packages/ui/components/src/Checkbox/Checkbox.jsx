@@ -1,26 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox as MuiCheckbox, makeStyles } from '@astral-frontend/core';
-import { CheckedCircleIcon, UncheckedCircleIcon } from '@astral-frontend/icons';
+import { CheckedRectIcon, UncheckedRectIcon } from '@astral-frontend/icons';
 
 import FormControlLabel from '../FormControlLabel';
 
-/* eslint-disable */
-const getIconColor = theme => ({ disabled }) =>
-  disabled ? theme.palette.grey[500] : theme.palette.primary.main;
-/* eslint-enable */
-
 const useStyles = makeStyles(
-  theme => ({
+  () => ({
     checkedIcon: {
       width: 20,
       height: 20,
-      fill: getIconColor(theme),
     },
     uncheckedIcon: {
       width: 20,
       height: 20,
-      stroke: getIconColor(theme),
       fill: 'transparent',
     },
     noLabel: {
@@ -66,8 +59,8 @@ const Checkbox = ({
           value={String(value)}
           color="primary"
           className={classes.checkbox}
-          icon={<UncheckedCircleIcon className={classes.uncheckedIcon} />}
-          checkedIcon={<CheckedCircleIcon className={classes.checkedIcon} />}
+          icon={<UncheckedRectIcon className={classes.uncheckedIcon} />}
+          checkedIcon={<CheckedRectIcon className={classes.checkedIcon} />}
         />
       }
       onChange={onChange}
