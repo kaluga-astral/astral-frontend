@@ -37,7 +37,10 @@ DataListRowActions.defaultProps = {
 };
 
 DataListRowActions.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+  ]).isRequired,
   className: PropTypes.string,
 };
 
