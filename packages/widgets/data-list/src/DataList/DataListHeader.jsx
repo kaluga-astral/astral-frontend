@@ -41,11 +41,13 @@ const DataListHeader = ({ className, columns }) => {
     disableSelect,
   } = React.useContext(DataListContext);
   const { toggleAllItemsSelector } = useDataListManager(DataListContext);
-  const checked =
-    selectedItems.length === selectableItems.length && items.length > 0;
+  const checked = React.useMemo(
+    () => selectedItems.length === selectableItems.length && items.length > 0,
+    [selectableItems, selectedItems, items],
+  );
   const handleAllItemsSelectorChange = React.useCallback(() => {
     toggleAllItemsSelector(selectableItems);
-  }, [JSON.stringify(selectableItems), JSON.stringify(items)]);
+  }, [selectableItems, items]);
 
   return (
     <div className={cn(classes.root, className)}>

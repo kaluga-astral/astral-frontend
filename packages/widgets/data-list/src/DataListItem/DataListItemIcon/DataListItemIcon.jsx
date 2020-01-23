@@ -16,14 +16,16 @@ const DataListItemIcon = ({ Icon, SelectorComponent, itemHovered }) => {
   const itemSelected = React.useMemo(
     () =>
       selectedItems.map(selectedItem => selectedItem.id).includes(dataItem.id),
-    [JSON.stringify(selectedItems), JSON.stringify(dataItem)],
+    [selectedItems, JSON.stringify(dataItem)],
   );
   const handleSelectorChange = React.useCallback(() => {
     toggleItemSelector(dataItem);
   }, [itemSelected, JSON.stringify(dataItem)]);
 
-  const shouldSelectorComponentBeRendered =
-    !disableSelect && (itemHovered || itemSelected);
+  const shouldSelectorComponentBeRendered = React.useMemo(
+    () => !disableSelect && (itemHovered || itemSelected),
+    [disableSelect, itemHovered, itemSelected],
+  );
 
   return (
     <FlexContainer justifyContent="center">
