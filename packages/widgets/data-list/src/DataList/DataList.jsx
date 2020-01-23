@@ -85,6 +85,13 @@ const DataList = ({
     );
   }
 
+  React.useEffect(
+    () => () => {
+      externalDataListContextValue.setSelectedItems([]);
+    },
+    [],
+  );
+
   if (dataQueryResult.loading) {
     return <Placeholder state="loading" />;
   }

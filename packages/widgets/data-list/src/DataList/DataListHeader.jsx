@@ -45,7 +45,7 @@ const DataListHeader = ({ className, columns }) => {
     selectedItems.length === selectableItems.length && items.length > 0;
   const handleAllItemsSelectorChange = React.useCallback(() => {
     toggleAllItemsSelector(selectableItems);
-  }, [selectableItems]);
+  }, [JSON.stringify(selectableItems), JSON.stringify(items)]);
 
   return (
     <div className={cn(classes.root, className)}>
