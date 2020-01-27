@@ -1,4 +1,5 @@
 export { default as ArrowIcon } from './ArrowIcon';
+export { default as AlertIcon } from './AlertIcon';
 export { default as ArrowRightIcon } from './ArrowRightIcon';
 export { default as CheckedRectIcon } from './CheckedRectIcon';
 export { default as DeleteIcon } from './DeleteIcon';
