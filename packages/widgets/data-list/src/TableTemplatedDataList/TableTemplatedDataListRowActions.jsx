@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { FlexContainer } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
@@ -15,10 +16,14 @@ const useStyles = makeStyles(
       backgroundColor: theme.palette.common.white,
     },
   }),
-  { name: 'DataListRowActions' },
+  { name: 'TableTemplatedDataListRowActions' },
 );
 
-const DataListRowActions = ({ className, children, ...props }) => {
+const TableTemplatedDataListRowActions = ({
+  className,
+  children,
+  ...props
+}) => {
   const classes = useStyles();
 
   return (
@@ -32,11 +37,11 @@ const DataListRowActions = ({ className, children, ...props }) => {
   );
 };
 
-DataListRowActions.defaultProps = {
+TableTemplatedDataListRowActions.defaultProps = {
   className: null,
 };
 
-DataListRowActions.propTypes = {
+TableTemplatedDataListRowActions.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.arrayOf(PropTypes.element),
@@ -44,4 +49,4 @@ DataListRowActions.propTypes = {
   className: PropTypes.string,
 };
 
-export default DataListRowActions;
+export default TableTemplatedDataListRowActions;

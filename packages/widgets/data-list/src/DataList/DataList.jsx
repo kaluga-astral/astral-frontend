@@ -1,76 +1,29 @@
-import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { List, InfiniteList, Placeholder } from '@astral-frontend/components';
-import { makeStyles } from '@astral-frontend/styles';
+import ReactIntersectionList from '@researchgate/react-intersection-list';
 
-import DataListHeader from './DataListHeader';
-import DataListItemContext from '../DataListItemContext';
+import { Placeholder } from '@astral-frontend/components';
 
-const useStyles = makeStyles(
-  theme => ({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      overflowY: 'scroll',
-    },
-    list: {
-      height: '100%',
-      paddingTop: 0,
-      paddingBottom: 0,
-    },
-    row: {
-      display: 'grid',
-      gridGap: theme.spacing(2),
-      gridTemplateColumns: props => {
-        return `0.3fr ${props.columns
-          .map(column => `${column.fr || '1'}fr`)
-          .join(' ')}`;
-      },
-    },
-    bodyRow: {
-      position: 'relative',
-      marginBottom: theme.spacing(1),
-      '&:hover $rowActions': {
-        opacity: 1,
-      },
-    },
-    dataItem: {
-      borderStyle: 'solid',
-      borderColor: 'transparent',
-      padding: theme.spacing(4, 0),
-      marginBottom: theme.spacing(1),
-      borderRadius: theme.shape.borderRadius,
-      color: theme.palette.gray[800],
-      background: theme.palette.common.white,
-    },
-    rowActions: {
-      opacity: 0,
-      transition: theme.transitions.create(['opacity']),
-    },
-  }),
-  { name: 'DataList' },
-);
+import DataListContext from './DataListContext';
+import DataListItemContext from './DataListItemContext';
 
-const DataList = ({
-  disableSelect,
+const InfiniteList = ({
   selectedItems,
   setSelectedItems,
-  columns,
+
+  listRenderer,
+  renderItem,
+
   dataQueryResult: {
     data: { items },
     ...dataQueryResult
   },
   totalCountQueryResult,
-  ListItemComponent,
-  RowActionsComponent,
+
   EmptyStateComponent,
   onLoadMoreItems,
   ...props
 }) => {
-  const classes = useStyles({ columns });
-
   React.useEffect(
     () => () => {
       setSelectedItems([]);
@@ -96,82 +49,39 @@ const DataList = ({
   }
 
   return (
-    <div className={classes.root}>
-      <DataListHeader
-        className={classes.row}
-        columns={columns}
-        disableSelect={disableSelect}
-        items={items}
-        selectedItems={selectedItems}
-        setSelectedItems={setSelectedItems}
-      />
-      <InfiniteList
+    <DataListContext.Provider
+      value={{ items, selectedItems, setSelectedItems }}
+    >
+      <ReactIntersectionList
         itemCount={items.length}
-        itemsRenderer={(children, ref) => (
-          <List className={classes.list} ref={ref}>
-            {children}
-          </List>
-        )}
+        itemsRenderer={(children, ref) => listRenderer({ children, ref })}
         renderItem={(index, key) => {
           const data = items[index];
 
           return (
-            <DataListItemContext.Provider
-              key={key}
-              value={{
-                data,
-                selectedItems,
-                setSelectedItems,
-              }}
-            >
-              <li className={classes.bodyRow}>
-                <ListItemComponent
-                  className={cn(classes.row)}
-                  loading={dataQueryResult.loading}
-                  data={data}
-                >
-                  {columns.map(column => {
-                    const Component = column.component;
-
-                    return (
-                      <Component
-                        key={column.title}
-                        loading={dataQueryResult.loading}
-                        data={data}
-                      />
-                    );
-                  })}
-                </ListItemComponent>
-                {RowActionsComponent && (
-                  <RowActionsComponent
-                    className={classes.rowActions}
-                    data={data}
-                  />
-                )}
-              </li>
+            <DataListItemContext.Provider key={key} value={{ data, key }}>
+              {renderItem({ data, key })}
             </DataListItemContext.Provider>
           );
         }}
         onIntersection={onLoadMoreItems}
         {...props}
       />
-    </div>
+    </DataListContext.Provider>
   );
 };
 
-DataList.defaultProps = {
-  disableSelect: false,
+InfiniteList.defaultProps = {
   selectedItems: null,
   setSelectedItems: null,
-  ListItemComponent: null,
-  RowActionsComponent: null,
   onLoadMoreItems: null,
 };
 
-DataList.propTypes = {
-  disableSelect: PropTypes.bool,
+InfiniteList.propTypes = {
   selectedItems: PropTypes.arrayOf(PropTypes.any),
   setSelectedItems: PropTypes.func,
+  listRenderer: PropTypes.func.isRequired,
+  renderItem: PropTypes.func.isRequired,
   dataQueryResult: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
     called: PropTypes.bool.isRequired,
@@ -188,17 +98,9 @@ DataList.propTypes = {
       totalCount: PropTypes.number,
     }).isRequired,
   }).isRequired,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      component: PropTypes.func.isRequired,
-    }),
-  ).isRequired,
-  ListItemComponent: PropTypes.func,
-  RowActionsComponent: PropTypes.func,
   EmptyStateComponent: PropTypes.func.isRequired,
   pageSize: PropTypes.number.isRequired,
   onLoadMoreItems: PropTypes.func,
 };
 
-export default DataList;
+export default InfiniteList;

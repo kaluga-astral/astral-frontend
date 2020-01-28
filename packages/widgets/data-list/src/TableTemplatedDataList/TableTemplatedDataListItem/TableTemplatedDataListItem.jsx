@@ -6,8 +6,8 @@ import React from 'react';
 import { ListItem, FlexContainer } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import DataListItemContext from '../DataListItemContext';
-import DataListItemDefaultSelector from './DataListItemDefaultSelector';
+import { DataListContext, DataListItemContext } from '../../DataList';
+import TableTemplatedDataListItemDefaultSelector from './TableTemplatedDataListItemDefaultSelector';
 
 const useStyles = makeStyles(
   theme => ({
@@ -43,14 +43,19 @@ const useStyles = makeStyles(
       display: 'none',
     },
   }),
-  { name: 'DataListItem' },
+  { name: 'TableTemplatedDataListItem' },
 );
 
-const DataListItem = ({ className, Icon, Selector, children, ...props }) => {
+const TableTemplatedDataListItem = ({
+  className,
+  Icon,
+  Selector,
+  children,
+  ...props
+}) => {
   const classes = useStyles();
-  const { data, selectedItems, setSelectedItems } = React.useContext(
-    DataListItemContext,
-  );
+  const { selectedItems, setSelectedItems } = React.useContext(DataListContext);
+  const { data } = React.useContext(DataListItemContext);
   const checked = selectedItems.includes(data.id);
   const handleSelectorChange = () => {
     setSelectedItems(prevSelectedItems => {
@@ -80,15 +85,15 @@ const DataListItem = ({ className, Icon, Selector, children, ...props }) => {
   );
 };
 
-DataListItem.defaultProps = {
+TableTemplatedDataListItem.defaultProps = {
   className: null,
   disableGutters: true,
   button: false,
   Icon: () => <div />,
-  Selector: DataListItemDefaultSelector,
+  Selector: TableTemplatedDataListItemDefaultSelector,
 };
 
-DataListItem.propTypes = {
+TableTemplatedDataListItem.propTypes = {
   className: PropTypes.string,
   disableGutters: PropTypes.bool,
   button: PropTypes.bool,
@@ -99,4 +104,4 @@ DataListItem.propTypes = {
   Selector: PropTypes.func,
 };
 
-export default DataListItem;
+export default TableTemplatedDataListItem;

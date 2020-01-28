@@ -5,6 +5,8 @@ import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 import { Checkbox } from '@astral-frontend/components';
 
+import DataListContext from '../DataList/DataListContext';
+
 const useStyles = makeStyles(
   theme => ({
     root: {
@@ -27,18 +29,14 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'DataListHeader' },
+  { name: 'TableTemplatedDataListHeader' },
 );
 
-const DataListHeader = ({
-  className,
-  columns,
-  disableSelect,
-  items,
-  selectedItems,
-  setSelectedItems,
-}) => {
+const TableTemplatedDataListHeader = ({ className, columns }) => {
   const classes = useStyles();
+  const { items, selectedItems, setSelectedItems } = React.useContext(
+    DataListContext,
+  );
   const checked = items.length === selectedItems.length;
   const handleCheckboxChange = () => {
     if (checked) {
@@ -51,9 +49,7 @@ const DataListHeader = ({
   return (
     <div className={cn(classes.root, className)}>
       <div className={classes.item}>
-        {!disableSelect && (
-          <Checkbox checked={checked} onChange={handleCheckboxChange} />
-        )}
+        <Checkbox checked={checked} onChange={handleCheckboxChange} />
       </div>
 
       {columns.map(column => (
@@ -65,18 +61,11 @@ const DataListHeader = ({
   );
 };
 
-DataListHeader.defaultProps = {
+TableTemplatedDataListHeader.defaultProps = {
   className: null,
-  disableSelect: null,
-  selectedItems: null,
-  setSelectedItems: null,
 };
 
-DataListHeader.propTypes = {
-  disableSelect: PropTypes.bool,
-  items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  selectedItems: PropTypes.arrayOf(PropTypes.any),
-  setSelectedItems: PropTypes.func,
+TableTemplatedDataListHeader.propTypes = {
   className: PropTypes.string,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
@@ -86,4 +75,4 @@ DataListHeader.propTypes = {
   ).isRequired,
 };
 
-export default DataListHeader;
+export default TableTemplatedDataListHeader;
