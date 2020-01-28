@@ -78,14 +78,6 @@ const DataList = ({
     [],
   );
 
-  React.useEffect(
-    () => () => {
-      // eslint-disable-next-line no-unused-expressions
-      externalDataListContextValue.setSelectedItems?.([]);
-    },
-    [],
-  );
-
   if (dataQueryResult.error || totalCountQueryResult.error) {
     return (
       <Placeholder
