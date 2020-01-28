@@ -5,8 +5,7 @@ import { List, InfiniteList, Placeholder } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import DataListHeader from './DataListHeader';
-import { __Context as DataListItemContext } from '../DataListItem';
-import InternalDataListContext from '../DataListContext';
+import DataListItemContext from '../DataListItemContext';
 
 const useStyles = makeStyles(
   theme => ({
@@ -55,8 +54,9 @@ const useStyles = makeStyles(
 );
 
 const DataList = ({
-  Context: ExternalDataListContext,
-  idleTimeout,
+  disableSelect,
+  selectedItems,
+  setSelectedItems,
   columns,
   dataQueryResult: {
     data: { items },
@@ -67,13 +67,15 @@ const DataList = ({
   RowActionsComponent,
   EmptyStateComponent,
   onLoadMoreItems,
-  itemSelectorDisabled,
-  disableSelect,
   ...props
 }) => {
   const classes = useStyles({ columns });
-  const externalDataListContextValue = React.useContext(
-    ExternalDataListContext,
+
+  React.useEffect(
+    () => () => {
+      setSelectedItems([]);
+    },
+    [],
   );
 
   if (dataQueryResult.error || totalCountQueryResult.error) {
@@ -85,13 +87,6 @@ const DataList = ({
     );
   }
 
-  React.useEffect(
-    () => () => {
-      externalDataListContextValue.setSelectedItems([]);
-    },
-    [],
-  );
-
   if (dataQueryResult.loading) {
     return <Placeholder state="loading" />;
   }
@@ -102,78 +97,81 @@ const DataList = ({
 
   return (
     <div className={classes.root}>
-      <InternalDataListContext.Provider
-        value={{
-          ...externalDataListContextValue,
-          items,
-          isItemSelectable: item => !itemSelectorDisabled(item),
-          selectableItems: items.filter(item => !itemSelectorDisabled(item)),
-          disableSelect,
-        }}
-      >
-        <DataListHeader className={classes.row} columns={columns} />
-        <InfiniteList
-          itemCount={items.length}
-          itemsRenderer={(children, ref) => (
-            <List className={classes.list} ref={ref}>
-              {children}
-            </List>
-          )}
-          renderItem={(index, key) => {
-            const dataItem = items[index];
+      <DataListHeader
+        className={classes.row}
+        columns={columns}
+        disableSelect={disableSelect}
+        items={items}
+        selectedItems={selectedItems}
+        setSelectedItems={setSelectedItems}
+      />
+      <InfiniteList
+        itemCount={items.length}
+        itemsRenderer={(children, ref) => (
+          <List className={classes.list} ref={ref}>
+            {children}
+          </List>
+        )}
+        renderItem={(index, key) => {
+          const data = items[index];
 
-            return (
-              <li key={key} className={classes.bodyRow}>
-                <DataListItemContext.Provider value={{ dataItem }}>
-                  <ListItemComponent
-                    className={cn(classes.row)}
-                    loading={dataQueryResult.loading}
-                    data={dataItem}
-                  >
-                    {columns.map(column => {
-                      const Component = column.component;
-                      return (
-                        <Component
-                          key={column.title}
-                          loading={dataQueryResult.loading}
-                          data={dataItem}
-                        />
-                      );
-                    })}
-                  </ListItemComponent>
-                </DataListItemContext.Provider>
+          return (
+            <DataListItemContext.Provider
+              key={key}
+              value={{
+                data,
+                selectedItems,
+                setSelectedItems,
+              }}
+            >
+              <li className={classes.bodyRow}>
+                <ListItemComponent
+                  className={cn(classes.row)}
+                  loading={dataQueryResult.loading}
+                  data={data}
+                >
+                  {columns.map(column => {
+                    const Component = column.component;
+
+                    return (
+                      <Component
+                        key={column.title}
+                        loading={dataQueryResult.loading}
+                        data={data}
+                      />
+                    );
+                  })}
+                </ListItemComponent>
                 {RowActionsComponent && (
                   <RowActionsComponent
                     className={classes.rowActions}
-                    data={dataItem}
+                    data={data}
                   />
                 )}
               </li>
-            );
-          }}
-          onIntersection={onLoadMoreItems}
-          {...props}
-        />
-      </InternalDataListContext.Provider>
+            </DataListItemContext.Provider>
+          );
+        }}
+        onIntersection={onLoadMoreItems}
+        {...props}
+      />
     </div>
   );
 };
 
 DataList.defaultProps = {
-  idleTimeout: 300,
+  disableSelect: false,
+  selectedItems: null,
+  setSelectedItems: null,
   ListItemComponent: null,
   RowActionsComponent: null,
   onLoadMoreItems: null,
-  itemSelectorDisabled: () => false,
-  disableSelect: false,
 };
 
 DataList.propTypes = {
-  Context: PropTypes.shape({
-    selectedItems: PropTypes.arrayOf(PropTypes.string).isRequired,
-    setSelectedItems: PropTypes.func.isRequired,
-  }).isRequired,
-  idleTimeout: PropTypes.number,
+  disableSelect: PropTypes.bool,
+  selectedItems: PropTypes.arrayOf(PropTypes.any),
+  setSelectedItems: PropTypes.func,
   dataQueryResult: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
     called: PropTypes.bool.isRequired,
@@ -201,8 +199,6 @@ DataList.propTypes = {
   EmptyStateComponent: PropTypes.func.isRequired,
   pageSize: PropTypes.number.isRequired,
   onLoadMoreItems: PropTypes.func,
-  itemSelectorDisabled: PropTypes.func,
-  disableSelect: PropTypes.bool,
 };
 
 export default DataList;

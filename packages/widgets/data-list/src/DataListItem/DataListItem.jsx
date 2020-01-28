@@ -1,11 +1,13 @@
+import { xor } from 'lodash-es';
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ListItem } from '@astral-frontend/components';
+
+import { ListItem, FlexContainer } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import ListItemIcon from './DataListItemIcon';
-import DataListContext from '../DataListContext';
-import DataListItemContext from './DataListItemContext';
+import DataListItemContext from '../DataListItemContext';
+import DataListItemDefaultSelector from './DataListItemDefaultSelector';
 
 const useStyles = makeStyles(
   theme => ({
@@ -23,45 +25,56 @@ const useStyles = makeStyles(
         backgroundColor: theme.palette.common.white,
         boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.08)',
       },
+      '&:hover $selector': {
+        display: 'block',
+      },
+      '&:hover $icon': {
+        display: 'none',
+      },
+    },
+    icon: {},
+    selector: {
+      display: 'none',
+    },
+    checked: {
+      display: 'block',
+    },
+    hidden: {
+      display: 'none',
     },
   }),
   { name: 'DataListItem' },
 );
 
-const DataListItem = ({
-  className,
-  disableGutters,
-  button,
-  Icon,
-  children,
-  ...props
-}) => {
-  const classes = useStyles(props);
-  const [hovered, setHovered] = React.useState(false);
-  const { dataItem } = React.useContext(DataListItemContext);
-  const { isItemSelectable, disableSelect } = React.useContext(DataListContext);
-
-  const handleListItemMouseEnter = React.useCallback(() => {
-    if (!disableSelect && isItemSelectable(dataItem)) {
-      setHovered(true);
-    }
-  }, [dataItem]);
-  const handleListItemMouseLeave = () => {
-    setHovered(false);
+const DataListItem = ({ className, Icon, Selector, children, ...props }) => {
+  const classes = useStyles();
+  const { data, selectedItems, setSelectedItems } = React.useContext(
+    DataListItemContext,
+  );
+  const checked = selectedItems.includes(data.id);
+  const handleSelectorChange = () => {
+    setSelectedItems(prevSelectedItems => {
+      return xor(prevSelectedItems, [data.id]);
+    });
   };
 
   return (
     <ListItem
-      className={className}
-      classes={classes}
-      disableGutters={disableGutters}
-      button={button}
+      className={cn(classes.root, className)}
       component="div"
-      onMouseEnter={handleListItemMouseEnter}
-      onMouseLeave={handleListItemMouseLeave}
       {...props}
     >
-      <ListItemIcon Icon={Icon} itemHovered={hovered} />
+      <FlexContainer justifyContent="center">
+        <Icon className={cn(classes.icon, { [classes.hidden]: checked })} />
+        <Selector
+          className={classes.selector}
+          classes={{
+            checked: classes.checked,
+          }}
+          checked={checked}
+          onChange={handleSelectorChange}
+        />
+      </FlexContainer>
       {children}
     </ListItem>
   );
@@ -71,7 +84,8 @@ DataListItem.defaultProps = {
   className: null,
   disableGutters: true,
   button: false,
-  Icon: () => <div>&nbsp;</div>,
+  Icon: () => <div />,
+  Selector: DataListItemDefaultSelector,
 };
 
 DataListItem.propTypes = {
@@ -82,6 +96,7 @@ DataListItem.propTypes = {
     PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   ).isRequired,
   Icon: PropTypes.func,
+  Selector: PropTypes.func,
 };
 
 export default DataListItem;
