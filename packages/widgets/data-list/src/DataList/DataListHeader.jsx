@@ -1,11 +1,9 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { makeStyles } from '@astral-frontend/styles';
 import { Checkbox } from '@astral-frontend/components';
-
-import DataListContext from '../DataListContext';
-import useDataListManager from '../useDataListManager';
 
 const useStyles = makeStyles(
   theme => ({
@@ -32,32 +30,32 @@ const useStyles = makeStyles(
   { name: 'DataListHeader' },
 );
 
-const DataListHeader = ({ className, columns }) => {
+const DataListHeader = ({
+  className,
+  columns,
+  disableSelect,
+  items,
+  selectedItems,
+  setSelectedItems,
+}) => {
   const classes = useStyles();
-  const {
-    items,
-    selectedItems,
-    selectableItems,
-    disableSelect,
-  } = React.useContext(DataListContext);
-  const { toggleAllItemsSelector } = useDataListManager(DataListContext);
-  const checked = React.useMemo(
-    () => selectedItems.length === selectableItems.length && items.length > 0,
-    [selectableItems, selectedItems, items],
-  );
-  const handleAllItemsSelectorChange = React.useCallback(() => {
-    toggleAllItemsSelector(selectableItems);
-  }, [selectableItems, items]);
+  const checked = items.length === selectedItems.length;
+  const handleCheckboxChange = () => {
+    if (checked) {
+      setSelectedItems([]);
+    } else {
+      setSelectedItems(items.map(item => item.id));
+    }
+  };
 
   return (
     <div className={cn(classes.root, className)}>
-      {!disableSelect ? (
-        <div className={classes.item}>
-          <Checkbox onChange={handleAllItemsSelectorChange} checked={checked} />
-        </div>
-      ) : (
-        <>&nbsp;</>
-      )}
+      <div className={classes.item}>
+        {!disableSelect && (
+          <Checkbox checked={checked} onChange={handleCheckboxChange} />
+        )}
+      </div>
+
       {columns.map(column => (
         <div key={column.title} className={classes.item}>
           {column.title}
@@ -69,9 +67,16 @@ const DataListHeader = ({ className, columns }) => {
 
 DataListHeader.defaultProps = {
   className: null,
+  disableSelect: null,
+  selectedItems: null,
+  setSelectedItems: null,
 };
 
 DataListHeader.propTypes = {
+  disableSelect: PropTypes.bool,
+  items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  selectedItems: PropTypes.arrayOf(PropTypes.any),
+  setSelectedItems: PropTypes.func,
   className: PropTypes.string,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
