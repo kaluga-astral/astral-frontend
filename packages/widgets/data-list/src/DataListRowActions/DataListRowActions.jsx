@@ -13,6 +13,8 @@ const useStyles = makeStyles(
       bottom: 0,
       padding: theme.spacing(0, 4),
       backgroundColor: theme.palette.common.white,
+      margin: theme.spacing(1, 0),
+      borderLeft: `1px solid ${theme.palette.primary.light}`,
     },
   }),
   { name: 'DataListRowActions' },
