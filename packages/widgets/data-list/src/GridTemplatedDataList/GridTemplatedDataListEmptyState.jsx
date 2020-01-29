@@ -22,10 +22,10 @@ const useStyles = makeStyles(
       height: '2em',
     },
   }),
-  { name: 'TableTemplatedDataList' },
+  { name: 'GridTemplatedDataListEmptyState' },
 );
 
-const TableTemplatedDataList = ({ text, IllustrationComponent }) => {
+const GridTemplatedDataListEmptyState = ({ text, IllustrationComponent }) => {
   const classes = useStyles();
 
   return (
@@ -49,14 +49,14 @@ const TableTemplatedDataList = ({ text, IllustrationComponent }) => {
   );
 };
 
-TableTemplatedDataList.defaultProps = {
+GridTemplatedDataListEmptyState.defaultProps = {
   text: 'Список пуст',
   IllustrationComponent: null,
 };
 
-TableTemplatedDataList.propTypes = {
+GridTemplatedDataListEmptyState.propTypes = {
   text: PropTypes.string,
   IllustrationComponent: PropTypes.func,
 };
 
-export default TableTemplatedDataList;
+export default GridTemplatedDataListEmptyState;

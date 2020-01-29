@@ -10,16 +10,13 @@ import DataListItemContext from './DataListItemContext';
 const InfiniteList = ({
   selectedItems,
   setSelectedItems,
-
   listRenderer,
   renderItem,
-
   dataQueryResult: {
     data: { items },
     ...dataQueryResult
   },
   totalCountQueryResult,
-
   EmptyStateComponent,
   onLoadMoreItems,
   ...props
