@@ -14,8 +14,7 @@
     "@astral-frontend/styles": "^0.1.0",
     "classnames": "^2.2.6",
     "lodash-es": "^4.17.11",
-    "prop-types": "^15.7.2",
-    "@researchgate/react-intersection-list": "^3.0.8"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "^0.1.0"

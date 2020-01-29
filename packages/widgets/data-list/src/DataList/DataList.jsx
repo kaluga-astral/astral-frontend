@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactIntersectionList from '@researchgate/react-intersection-list';
 
-import { Placeholder } from '@astral-frontend/components';
+import {
+  Placeholder,
+  InfiniteList as ReactIntersectionList,
+} from '@astral-frontend/components';
 
 import DataListContext from './DataListContext';
 import DataListItemContext from './DataListItemContext';
