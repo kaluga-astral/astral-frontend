@@ -1,4 +1,4 @@
-import { xor } from 'lodash-es';
+import { xorBy } from 'lodash-es';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -61,7 +61,7 @@ const TableTemplatedDataListItem = ({
   );
   const handleSelectorChange = () => {
     setSelectedItems(prevSelectedItems => {
-      return xor(prevSelectedItems, [data]);
+      return xorBy(prevSelectedItems, [data], 'id');
     });
   };
 
