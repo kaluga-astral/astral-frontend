@@ -21,6 +21,7 @@ const InfiniteList = ({
   totalCountQueryResult,
   EmptyStateComponent,
   onLoadMoreItems,
+  disableSelect,
   ...props
 }) => {
   React.useEffect(
@@ -49,7 +50,7 @@ const InfiniteList = ({
 
   return (
     <DataListContext.Provider
-      value={{ items, selectedItems, setSelectedItems }}
+      value={{ items, selectedItems, setSelectedItems, disableSelect }}
     >
       <ReactIntersectionList
         itemCount={items.length}
@@ -74,6 +75,7 @@ InfiniteList.defaultProps = {
   selectedItems: null,
   setSelectedItems: null,
   onLoadMoreItems: null,
+  disableSelect: false,
 };
 
 InfiniteList.propTypes = {
@@ -100,6 +102,7 @@ InfiniteList.propTypes = {
   EmptyStateComponent: PropTypes.func.isRequired,
   pageSize: PropTypes.number.isRequired,
   onLoadMoreItems: PropTypes.func,
+  disableSelect: PropTypes.bool,
 };
 
 export default InfiniteList;

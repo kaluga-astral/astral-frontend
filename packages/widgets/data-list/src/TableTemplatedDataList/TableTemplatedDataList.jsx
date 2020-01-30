@@ -58,6 +58,7 @@ const TableTemplatedDataList = ({
   dataQueryResult,
   ListItemComponent,
   RowActionsComponent,
+  disableSelect,
   ...props
 }) => {
   const classes = useStyles({ columns });
@@ -109,12 +110,14 @@ const TableTemplatedDataList = ({
       dataQueryResult={dataQueryResult}
       listRenderer={listRenderer}
       renderItem={renderItem}
+      disableSelect={disableSelect}
     />
   );
 };
 
 TableTemplatedDataList.defaultProps = {
   RowActionsComponent: null,
+  disableSelect: false,
 };
 
 TableTemplatedDataList.propTypes = {
@@ -134,6 +137,7 @@ TableTemplatedDataList.propTypes = {
   }).isRequired,
   ListItemComponent: PropTypes.func.isRequired,
   RowActionsComponent: PropTypes.func,
+  disableSelect: PropTypes.bool,
 };
 
 export default TableTemplatedDataList;

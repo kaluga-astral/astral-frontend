@@ -12,7 +12,7 @@ const useStyles = makeStyles(
     root: {
       position: 'sticky',
       top: 0,
-      paddingBottom: theme.spacing(3),
+      padding: theme.spacing(3, 0),
       borderStyle: 'solid',
       borderColor: 'transparent',
       borderWidth: theme.spacing(0, 0, 0, 1),
@@ -34,9 +34,12 @@ const useStyles = makeStyles(
 
 const TableTemplatedDataListHeader = ({ className, columns }) => {
   const classes = useStyles();
-  const { items, selectedItems, setSelectedItems } = React.useContext(
-    DataListContext,
-  );
+  const {
+    items,
+    selectedItems,
+    setSelectedItems,
+    disableSelect,
+  } = React.useContext(DataListContext);
   const checked = items.length === selectedItems.length;
   const handleCheckboxChange = () => {
     if (checked) {
@@ -49,7 +52,11 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
   return (
     <div className={cn(classes.root, className)}>
       <div className={classes.item}>
-        <Checkbox checked={checked} onChange={handleCheckboxChange} />
+        {!disableSelect ? (
+          <Checkbox checked={checked} onChange={handleCheckboxChange} />
+        ) : (
+          <div />
+        )}
       </div>
 
       {columns.map(column => (

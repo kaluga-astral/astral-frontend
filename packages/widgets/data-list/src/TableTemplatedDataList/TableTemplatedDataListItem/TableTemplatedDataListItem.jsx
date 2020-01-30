@@ -25,22 +25,6 @@ const useStyles = makeStyles(
         backgroundColor: theme.palette.common.white,
         boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.08)',
       },
-      '&:hover $selector': {
-        display: 'block',
-      },
-      '&:hover $icon': {
-        display: 'none',
-      },
-    },
-    icon: {},
-    selector: {
-      display: 'none',
-    },
-    checked: {
-      display: 'block',
-    },
-    hidden: {
-      display: 'none',
     },
   }),
   { name: 'TableTemplatedDataListItem' },
@@ -54,31 +38,44 @@ const TableTemplatedDataListItem = ({
   ...props
 }) => {
   const classes = useStyles();
-  const { selectedItems, setSelectedItems } = React.useContext(DataListContext);
+  const { selectedItems, setSelectedItems, disableSelect } = React.useContext(
+    DataListContext,
+  );
   const { data } = React.useContext(DataListItemContext);
+  const [hovered, setHovered] = React.useState(false);
   const checked = selectedItems.includes(data.id);
+  const selectorVisible = (!disableSelect && hovered) || checked;
   const handleSelectorChange = () => {
     setSelectedItems(prevSelectedItems => {
       return xor(prevSelectedItems, [data.id]);
     });
+  };
+  const handleListItemMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleListItemMouseLeave = () => {
+    setHovered(false);
   };
 
   return (
     <ListItem
       className={cn(classes.root, className)}
       component="div"
+      onMouseEnter={handleListItemMouseEnter}
+      onMouseLeave={handleListItemMouseLeave}
       {...props}
     >
       <FlexContainer justifyContent="center">
-        <Icon className={cn(classes.icon, { [classes.hidden]: checked })} />
-        <Selector
-          className={classes.selector}
-          classes={{
-            checked: classes.checked,
-          }}
-          checked={checked}
-          onChange={handleSelectorChange}
-        />
+        {selectorVisible ? (
+          <Selector
+            className={classes.selector}
+            checked={checked}
+            onChange={handleSelectorChange}
+          />
+        ) : (
+          <Icon />
+        )}
       </FlexContainer>
       {children}
     </ListItem>
