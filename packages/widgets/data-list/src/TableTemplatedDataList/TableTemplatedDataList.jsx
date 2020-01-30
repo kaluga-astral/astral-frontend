@@ -113,6 +113,10 @@ const TableTemplatedDataList = ({
   );
 };
 
+TableTemplatedDataList.defaultProps = {
+  RowActionsComponent: null,
+};
+
 TableTemplatedDataList.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
@@ -129,7 +133,7 @@ TableTemplatedDataList.propTypes = {
     }).isRequired,
   }).isRequired,
   ListItemComponent: PropTypes.func.isRequired,
-  RowActionsComponent: PropTypes.func.isRequired,
+  RowActionsComponent: PropTypes.func,
 };
 
 export default TableTemplatedDataList;
