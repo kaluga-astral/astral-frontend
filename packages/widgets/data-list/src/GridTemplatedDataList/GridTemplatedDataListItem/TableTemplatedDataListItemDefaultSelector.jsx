@@ -1,7 +1,7 @@
 import React from 'react';
 import { Checkbox } from '@astral-frontend/components';
 
-const DataListItemDefaultSelector = props => (
+const TableTemplatedDataListItemDefaultSelector = props => (
   <Checkbox
     onClick={e => {
       e.stopPropagation();
@@ -10,4 +10,4 @@ const DataListItemDefaultSelector = props => (
   />
 );
 
-export default DataListItemDefaultSelector;
+export default TableTemplatedDataListItemDefaultSelector;

@@ -22,10 +22,10 @@ const useStyles = makeStyles(
       height: '2em',
     },
   }),
-  { name: 'DataListEmptyState' },
+  { name: 'TableTemplatedDataList' },
 );
 
-const DataListEmptyState = ({ text, IllustrationComponent }) => {
+const TableTemplatedDataList = ({ text, IllustrationComponent }) => {
   const classes = useStyles();
 
   return (
@@ -49,14 +49,14 @@ const DataListEmptyState = ({ text, IllustrationComponent }) => {
   );
 };
 
-DataListEmptyState.defaultProps = {
+TableTemplatedDataList.defaultProps = {
   text: 'Список пуст',
   IllustrationComponent: null,
 };
 
-DataListEmptyState.propTypes = {
+TableTemplatedDataList.propTypes = {
   text: PropTypes.string,
   IllustrationComponent: PropTypes.func,
 };
 
-export default DataListEmptyState;
+export default TableTemplatedDataList;
