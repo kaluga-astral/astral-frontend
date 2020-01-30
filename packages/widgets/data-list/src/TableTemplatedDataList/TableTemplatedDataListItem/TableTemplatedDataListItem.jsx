@@ -43,11 +43,13 @@ const TableTemplatedDataListItem = ({
   );
   const { data } = React.useContext(DataListItemContext);
   const [hovered, setHovered] = React.useState(false);
-  const checked = selectedItems.includes(data.id);
+  const checked = selectedItems.find(
+    selectedItem => selectedItem.id === data.id,
+  );
   const selectorVisible = (!disableSelect && hovered) || checked;
   const handleSelectorChange = () => {
     setSelectedItems(prevSelectedItems => {
-      return xor(prevSelectedItems, [data.id]);
+      return xor(prevSelectedItems, [data]);
     });
   };
   const handleListItemMouseEnter = () => {

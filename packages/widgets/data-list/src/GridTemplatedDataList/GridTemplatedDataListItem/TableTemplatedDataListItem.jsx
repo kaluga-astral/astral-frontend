@@ -56,10 +56,12 @@ const TableTemplatedDataListItem = ({
   const classes = useStyles();
   const { selectedItems, setSelectedItems } = React.useContext(DataListContext);
   const { data } = React.useContext(DataListItemContext);
-  const checked = selectedItems.includes(data.id);
+  const checked = selectedItems.find(
+    selectedItem => selectedItem.id === data.id,
+  );
   const handleSelectorChange = () => {
     setSelectedItems(prevSelectedItems => {
-      return xor(prevSelectedItems, [data.id]);
+      return xor(prevSelectedItems, [data]);
     });
   };
 
