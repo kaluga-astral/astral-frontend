@@ -5,14 +5,17 @@ import React from 'react';
 import { FlexContainer } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    height: '100%',
-    marginLeft: 'auto',
-    paddingLeft: theme.spacing(4),
-    borderLeft: `1px solid ${theme.palette.primary.light}`,
-  },
-}));
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      height: '100%',
+      marginLeft: 'auto',
+      paddingLeft: theme.spacing(4),
+      borderLeft: `1px solid ${theme.palette.primary.light}`,
+    },
+  }),
+  { name: 'ContentNavActions' },
+);
 
 const ContentNavActions = ({ className, children }) => {
   const classes = useStyles();
