@@ -28,12 +28,13 @@ const OrganizationSelectorNotFoundPlaceholder = ({
 
 OrganizationSelectorNotFoundPlaceholder.defaultProps = {
   className: null,
+  name: null,
 };
 
 OrganizationSelectorNotFoundPlaceholder.propTypes = {
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   addLinkHref: PropTypes.string.isRequired,
 };
 
