@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => {
   };
 });
 
-const IconButton = React.forwardRef(function IconButton(props, ref) {
+const IconButton = React.forwardRef((props, ref) => {
   const {
     loading,
     success,
@@ -75,7 +75,7 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
       ref={ref}
       disabled={disabled || loading || success}
       className={cn(classes.root, className)}
-      {...props}
+      {...other}
     >
       {renderChildren()}
     </MuiIconButton>
