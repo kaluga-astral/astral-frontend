@@ -8,6 +8,7 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       height: '100%',
+      width: '274px',
       marginLeft: theme.spacing(4),
     },
     text: {

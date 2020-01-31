@@ -9,8 +9,8 @@ import SidebarContext from './Context';
 
 const useStyles = makeStyles(
   theme => ({
-    root: {
-      width: '260px',
+    root: props => ({
+      width: props.width,
       height: '100%',
       backgroundColor: theme.palette.background.paper,
       transition: theme.transitions.create(['width'], {
@@ -24,7 +24,7 @@ const useStyles = makeStyles(
           duration: theme.transitions.duration.leavingScreen,
         }),
       },
-    },
+    }),
     collapsed: {},
   }),
   { name: 'DashboardLayoutSidebar' },
@@ -32,8 +32,8 @@ const useStyles = makeStyles(
 
 const asideRef = React.createRef();
 
-const DashboardLayoutSidebar = ({ className, children }) => {
-  const classes = useStyles();
+const DashboardLayoutSidebar = ({ className, children, width }) => {
+  const classes = useStyles({ width });
   const { isSidebarOpen } = React.useContext(LayoutContext);
   const [isTransitioning, setIsTransitioning] = React.useState(false);
 
@@ -62,10 +62,12 @@ const DashboardLayoutSidebar = ({ className, children }) => {
 
 DashboardLayoutSidebar.defaultProps = {
   className: null,
+  width: 260,
 };
 
 DashboardLayoutSidebar.propTypes = {
   className: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.number]),
   children: PropTypes.node.isRequired,
 };
 
