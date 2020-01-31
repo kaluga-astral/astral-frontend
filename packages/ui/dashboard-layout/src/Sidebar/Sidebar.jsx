@@ -9,8 +9,8 @@ import SidebarContext from './Context';
 
 const useStyles = makeStyles(
   theme => ({
-    root: props => ({
-      width: props.width,
+    root: {
+      width: '260px',
       height: '100%',
       backgroundColor: theme.palette.background.paper,
       transition: theme.transitions.create(['width'], {
@@ -24,7 +24,7 @@ const useStyles = makeStyles(
           duration: theme.transitions.duration.leavingScreen,
         }),
       },
-    }),
+    },
     collapsed: {},
   }),
   { name: 'DashboardLayoutSidebar' },
