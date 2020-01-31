@@ -17,15 +17,14 @@ const useStyles = makeStyles(
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      '&$collapsed': {
-        width: '70px',
-        transition: theme.transitions.create(['width'], {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        }),
-      },
     }),
-    collapsed: {},
+    collapsed: {
+      width: '70px',
+      transition: theme.transitions.create(['width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
   }),
   { name: 'DashboardLayoutSidebar' },
 );
@@ -50,9 +49,10 @@ const DashboardLayoutSidebar = ({ className, children, width }) => {
         ref={asideRef}
         component="aside"
         direction="column"
-        className={cn(classes.root, className, {
-          [classes.collapsed]: !isSidebarOpen,
-        })}
+        className={cn(
+          isSidebarOpen ? classes.root : classes.collapsed,
+          className,
+        )}
       >
         {children}
       </FlexContainer>
