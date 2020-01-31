@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
+import { Tooltip } from '@astral-frontend/components';
 import { __Context as LayoutContext } from '../Layout';
 import { __Context as SidebarContext } from '../Sidebar';
-import SidebarTooltip from '../SidebarTooltip';
 
 const useStyles = makeStyles(
   theme => ({
@@ -75,11 +75,11 @@ const DashboardLayoutSidebarNavItem = React.forwardRef(
     }
 
     return (
-      <SidebarTooltip text={tooltipText}>
+      <Tooltip arrow placement="right" title={tooltipText}>
         <div>
           <Item />
         </div>
-      </SidebarTooltip>
+      </Tooltip>
     );
   },
 );

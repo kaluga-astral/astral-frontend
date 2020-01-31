@@ -41,16 +41,18 @@ const useStyles = makeStyles(theme => {
   };
 });
 
-const IconButton = ({
-  loading,
-  success,
-  disabled,
-  className,
-  children,
-  size,
-  ...props
-}) => {
-  const classes = useStyles({ ...props, success, size });
+const IconButton = React.forwardRef(function IconButton(props, ref) {
+  const {
+    loading,
+    success,
+    disabled,
+    className,
+    children,
+    size,
+    ...other
+  } = props;
+
+  const classes = useStyles({ ...other, success, size });
   const renderChildren = () => {
     if (loading) {
       return <CircularProgress className={classes.loader} size="100%" />;
@@ -70,6 +72,7 @@ const IconButton = ({
 
   return (
     <MuiIconButton
+      ref={ref}
       disabled={disabled || loading || success}
       className={cn(classes.root, className)}
       {...props}
@@ -77,7 +80,7 @@ const IconButton = ({
       {renderChildren()}
     </MuiIconButton>
   );
-};
+});
 
 IconButton.defaultProps = {
   className: null,
