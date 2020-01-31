@@ -8,6 +8,7 @@ import { makeStyles } from '@astral-frontend/styles';
 const useStyles = makeStyles(
   theme => ({
     root: {
+      height: '64px',
       alignItems: 'center',
       margin: theme.spacing(0, 4),
       userSelect: 'none',
