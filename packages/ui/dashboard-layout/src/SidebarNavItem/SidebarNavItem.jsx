@@ -75,10 +75,8 @@ const DashboardLayoutSidebarNavItem = React.forwardRef(
     }
 
     return (
-      <Tooltip arrow placement="right" title={tooltipText}>
-        <div>
-          <Item />
-        </div>
+      <Tooltip placement="right" title={tooltipText}>
+        <Item />
       </Tooltip>
     );
   },
