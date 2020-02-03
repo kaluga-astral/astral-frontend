@@ -31,6 +31,14 @@ const InfiniteList = ({
     [],
   );
 
+  React.useEffect(() => {
+    setSelectedItems(
+      selectedItems.filter(selectedItem =>
+        items.find(item => item.id === selectedItem.id),
+      ),
+    );
+  }, [items.length]);
+
   if (dataQueryResult.error || totalCountQueryResult.error) {
     return (
       <Placeholder
