@@ -25,8 +25,8 @@ const ContentNavActionButton = ({ className, text, Icon, ...props }) => {
   return (
     <Button
       variant="regular"
-      className={cn(classes.root, className)}
       {...props}
+      className={cn(classes.root, className)}
     >
       <span className={classes.text}>{text}</span>
       {Icon && <Icon className={classes.icon} />}
