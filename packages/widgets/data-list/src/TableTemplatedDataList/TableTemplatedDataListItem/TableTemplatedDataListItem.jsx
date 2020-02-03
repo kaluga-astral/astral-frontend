@@ -12,6 +12,7 @@ import TableTemplatedDataListItemDefaultSelector from './TableTemplatedDataListI
 const useStyles = makeStyles(
   theme => ({
     root: {
+      display: 'grid',
       minHeight: '70px',
       borderStyle: 'solid',
       borderColor: 'transparent',
