@@ -5,7 +5,7 @@ import { makeStyles } from '@astral-frontend/styles';
 const useStyles = makeStyles(
   theme => ({
     root: {
-      margin: theme.spacing(0, 2),
+      margin: theme.spacing(0, 1),
     },
   }),
   { name: 'ButtonText' },
