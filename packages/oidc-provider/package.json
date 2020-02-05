@@ -1,5 +1,5 @@
 {
-  "name": "@astral-frontend/oidc-provider-middleware",
+  "name": "@astral-frontend/oidc-provider",
   "version": "0.1.0",
   "private": true,
   "main": "src/index.js",

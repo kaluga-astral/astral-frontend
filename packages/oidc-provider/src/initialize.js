@@ -1,5 +1,3 @@
-const cookieParser = require('cookie-parser');
-
 const {
   createSession,
   createOidcProtectedMiddleware,
@@ -21,14 +19,20 @@ const initializeOidcProvider = async entryParams => {
 
   const { app, store, oidcParams, sessionParams } = entryParams;
   const oidcSessionKey = generateOidcSessionKey(oidcParams.clientId);
+  const successAuthRedirectRoute = new URL(oidcParams.redirectUri).pathname;
 
   const { client: oidcClient } = await connectIdentity(oidcParams);
+
+  const oidcProtectedMiddleware = createOidcProtectedMiddleware({
+    oidcClient,
+    oidcParams,
+    oidcSessionKey,
+    sessionParams,
+  });
 
   // регистрация passport стратегий
   registerOidcAuthStrategy(oidcClient, oidcSessionKey);
   registerRefreshTokenStrategy(oidcClient);
-
-  app.use(cookieParser());
 
   app.use(createSession({ store, ...sessionParams }));
 
@@ -36,8 +40,11 @@ const initializeOidcProvider = async entryParams => {
   app.use(authStrategyService.initialize());
   app.use(authStrategyService.session());
 
+  // необходимо обрабатывать url, на который Identity произведет редирект после успешной авторизации
+  app.use(successAuthRedirectRoute, oidcProtectedMiddleware);
+
   return {
-    oidcProtected: createOidcProtectedMiddleware({ oidcClient, sessionParams }),
+    oidcProtected: oidcProtectedMiddleware,
   };
 };
 

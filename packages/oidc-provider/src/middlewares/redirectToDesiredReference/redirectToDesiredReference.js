@@ -6,7 +6,7 @@ const redirectToDesiredReferenceMiddleware = () => (req, res, next) => {
   // удаляем desiredReference
   res.clearCookie(DESIRED_REFERENCE_KEY);
 
-  res.redirect(req.cookies.desiredReference);
+  res.redirect(req.cookies[DESIRED_REFERENCE_KEY]);
 };
 
 module.exports = redirectToDesiredReferenceMiddleware;

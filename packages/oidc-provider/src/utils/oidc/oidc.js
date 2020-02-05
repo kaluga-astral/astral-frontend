@@ -9,15 +9,15 @@ const generateOidcSessionKey = clientId => `session${clientId}`;
 const getOidcClientConfig = ({
   clientId,
   clientSecret,
-  redirectUris,
-  postLogoutRedirectUris,
+  redirectUri,
+  postLogoutRedirectUri,
   scope,
 }) => ({
   client_id: clientId,
   client_secret: clientSecret,
-  redirect_uri: redirectUris,
+  redirect_uri: redirectUri,
   response_type: DEFAULT_OIDC_RESPONSE_TYPES,
-  post_logout_redirect_uris: postLogoutRedirectUris,
+  post_logout_redirect_uris: postLogoutRedirectUri,
   scope: generateOidcScope(scope),
 });
 

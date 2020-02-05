@@ -12,16 +12,16 @@ describe('getOidcClientConfig', () => {
       identityUrl: 'http://url.com',
       clientId: 'client_id',
       clientSecret: 'client_id',
-      redirectUris: ['http://url.com'],
-      postLogoutRedirectUris: ['http://url.com'],
+      redirectUri: 'http://url.com',
+      postLogoutRedirectUri: 'http://url.com',
       scope: 'email',
       refreshTokenMax_age: 20,
     };
     const expectedOidcClientConfig = {
       client_id: 'client_id',
       client_secret: 'client_id',
-      redirect_uri: ['http://url.com'],
-      post_logout_redirect_uris: ['http://url.com'],
+      redirect_uri: 'http://url.com',
+      post_logout_redirect_uris: 'http://url.com',
       scope: 'openid offline_access email',
       response_type: 'code',
     };

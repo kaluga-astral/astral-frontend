@@ -13,6 +13,7 @@ const { skipIfAuthorized } = require('../../utils/auth');
 const createOidcProtectedMiddleware = ({
   oidcClient,
   oidcParams,
+  oidcSessionKey,
   sessionParams,
 }) => (req, res, next) =>
   compose([
@@ -29,7 +30,7 @@ const createOidcProtectedMiddleware = ({
     refreshToken(),
 
     // если пользователь не авторизован, то происходит oidc аутентификация с редиректами
-    skipIfAuthorized(oidcAuth(oidcClient)),
+    skipIfAuthorized(oidcAuth(oidcClient, oidcSessionKey)),
     // все, что ниже будет выполняться, если пользователь авторизован
 
     // устанавливает expires для cookie и добавляет токен в заголовок

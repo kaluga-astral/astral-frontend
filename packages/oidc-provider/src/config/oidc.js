@@ -7,13 +7,13 @@ const OIDC_ENTRY_PARAMS_VALIDATION_SCHEME = {
     .required(),
   clientId: validator.string().required(),
   clientSecret: validator.string().required(),
-  redirectUris: validator
-    .array()
-    .items(validator.string().uri())
+  redirectUri: validator
+    .string()
+    .uri()
     .required(),
-  postLogoutRedirectUris: validator
-    .array()
-    .items(validator.string().uri())
+  postLogoutRedirectUri: validator
+    .string()
+    .uri()
     .required(),
   scope: validator.string().required(),
   refreshTokenMaxAge: validator.number().required(),

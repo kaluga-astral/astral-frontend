@@ -12,7 +12,7 @@ const saveDesiredReferenceMiddleware = oidcClient => (req, res, next) => {
 
   // сохраняем в cookie desiredReference для того, чтобы после авторизации редиректнуть пользователя на тот route, на который он хотел попасть
   // без этого пользователь после авторизации будет всегда попадать на redirect_uri
-  res.cookie(DESIRED_REFERENCE_KEY, req.url, {
+  res.cookie(DESIRED_REFERENCE_KEY, req.originalUrl, {
     maxAge: DESIRED_REFERENCE_MAX_AGE,
   });
 
