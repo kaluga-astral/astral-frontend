@@ -13,10 +13,10 @@ const useStyles = makeStyles(
       borderRadius: theme.shape.borderRadius,
     },
   }),
-  { name: 'DashboardLayoutContentNavFilters' },
+  { name: 'DashboardLayoutNavBar' },
 );
 
-const DashboardLayoutContentNavFilters = ({ children }) => {
+const DashboardLayoutNavBar = ({ children }) => {
   const classes = useStyles();
 
   return (
@@ -31,8 +31,8 @@ const DashboardLayoutContentNavFilters = ({ children }) => {
   );
 };
 
-DashboardLayoutContentNavFilters.propTypes = {
+DashboardLayoutNavBar.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default DashboardLayoutContentNavFilters;
+export default DashboardLayoutNavBar;

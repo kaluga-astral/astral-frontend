@@ -8,32 +8,32 @@ import { makeStyles } from '@astral-frontend/styles';
 const useStyles = makeStyles(
   theme => ({
     root: {
-      height: '64px',
-      alignItems: 'center',
-      margin: theme.spacing(0, 4),
-      userSelect: 'none',
+      height: '100%',
+      marginLeft: 'auto',
+      paddingLeft: theme.spacing(4),
+      borderLeft: `1px solid ${theme.palette.primary.light}`,
     },
   }),
-  { name: 'DashboardLayoutContentNav' },
+  { name: 'NavBarActions' },
 );
 
-const DashboardLayoutContentNav = ({ className, children }) => {
+const NavBarActions = ({ className, children }) => {
   const classes = useStyles();
 
   return (
-    <FlexContainer component="nav" className={cn(classes.root, className)}>
+    <FlexContainer alignItems="center" className={cn(classes.root, className)}>
       {children}
     </FlexContainer>
   );
 };
 
-DashboardLayoutContentNav.defaultProps = {
+NavBarActions.defaultProps = {
   className: null,
 };
 
-DashboardLayoutContentNav.propTypes = {
+NavBarActions.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
-export default DashboardLayoutContentNav;
+export default NavBarActions;

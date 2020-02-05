@@ -54,15 +54,10 @@ const useStyles = makeStyles(
       height: '20px',
     },
   }),
-  { name: 'DashboardLayoutContentNavItemCount' },
+  { name: 'NavBarCounterCount' },
 );
 
-const DashboardLayoutContentNavItemCount = ({
-  loading,
-  active,
-  count,
-  className,
-}) => {
+const NavBarCounterCount = ({ loading, active, count, className }) => {
   const classes = useStyles();
   const children = loading ? null : nFormatter(count, 1);
 
@@ -79,18 +74,18 @@ const DashboardLayoutContentNavItemCount = ({
   );
 };
 
-DashboardLayoutContentNavItemCount.defaultProps = {
+NavBarCounterCount.defaultProps = {
   loading: false,
   active: false,
   className: null,
   count: null,
 };
 
-DashboardLayoutContentNavItemCount.propTypes = {
+NavBarCounterCount.propTypes = {
   loading: PropTypes.bool,
   active: PropTypes.bool,
   count: PropTypes.number,
   className: PropTypes.string,
 };
 
-export default DashboardLayoutContentNavItemCount;
+export default NavBarCounterCount;

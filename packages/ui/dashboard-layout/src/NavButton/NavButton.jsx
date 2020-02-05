@@ -16,10 +16,10 @@ const useStyles = makeStyles(
       marginRight: theme.spacing(2),
     },
   }),
-  { name: 'ContentNavActionButton' },
+  { name: 'NavButton' },
 );
 
-const ContentNavActionButton = ({ className, text, Icon, ...props }) => {
+const NavButton = ({ className, text, Icon, ...props }) => {
   const classes = useStyles();
 
   return (
@@ -34,15 +34,15 @@ const ContentNavActionButton = ({ className, text, Icon, ...props }) => {
   );
 };
 
-ContentNavActionButton.defaultProps = {
+NavButton.defaultProps = {
   className: null,
   Icon: null,
 };
 
-ContentNavActionButton.propTypes = {
+NavButton.propTypes = {
   className: PropTypes.string,
   text: PropTypes.string.isRequired,
   Icon: PropTypes.func,
 };
 
-export default ContentNavActionButton;
+export default NavButton;

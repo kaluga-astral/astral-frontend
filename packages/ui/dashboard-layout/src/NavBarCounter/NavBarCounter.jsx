@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
-import ContentNavFiltersItemCount from './ContentNavFiltersItemCount';
+import NavBarCounterCount from './NavBarCounterCount';
 
 const useStyles = makeStyles(
   theme => ({
@@ -23,10 +23,10 @@ const useStyles = makeStyles(
       backgroundColor: theme.palette.primary.light,
     },
   }),
-  { name: 'DashboardLayoutContentNavItem' },
+  { name: 'DashboardLayoutNavCounter' },
 );
 
-const DashboardLayoutContentNavItem = ({
+const DashboardLayoutNavCounter = ({
   loading,
   active,
   text,
@@ -44,17 +44,13 @@ const DashboardLayoutContentNavItem = ({
     >
       <span className={classes.text}>{text}</span>
       {isEmpty(count) && (
-        <ContentNavFiltersItemCount
-          active={active}
-          count={count}
-          loading={loading}
-        />
+        <NavBarCounterCount active={active} count={count} loading={loading} />
       )}
     </Component>
   );
 };
 
-DashboardLayoutContentNavItem.defaultProps = {
+DashboardLayoutNavCounter.defaultProps = {
   loading: false,
   active: false,
   count: null,
@@ -62,7 +58,7 @@ DashboardLayoutContentNavItem.defaultProps = {
   component: 'div',
 };
 
-DashboardLayoutContentNavItem.propTypes = {
+DashboardLayoutNavCounter.propTypes = {
   loading: PropTypes.bool,
   active: PropTypes.bool,
   text: PropTypes.string.isRequired,
@@ -75,4 +71,4 @@ DashboardLayoutContentNavItem.propTypes = {
   className: PropTypes.string,
 };
 
-export default DashboardLayoutContentNavItem;
+export default DashboardLayoutNavCounter;
