@@ -10,12 +10,12 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "@hapi/joi": "^16.1.7",
+    "@hapi/joi": "16.1.7",
     "compose-middleware": "5.0.1",
     "cookie-parser": "1.4.4",
-    "express-session": "^1.17.0",
-    "lodash": "^4.17.15",
-    "openid-client": "^3.8.1",
+    "express-session": "1.17.0",
+    "lodash": "4.17.15",
+    "openid-client": "3.8.1",
     "passport": "0.4.0",
     "passport-custom": "1.1.0"
   },
