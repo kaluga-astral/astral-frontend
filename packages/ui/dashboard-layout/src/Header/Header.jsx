@@ -11,6 +11,7 @@ const useStyles = makeStyles(
       flexShrink: 0,
       height: '75px',
       margin: `0 ${theme.spacing(4)}px`,
+      userSelect: 'none',
     },
   }),
   { name: 'DashboardLayoutHeader' },
