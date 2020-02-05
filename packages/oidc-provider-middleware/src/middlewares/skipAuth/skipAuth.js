@@ -1,10 +1,8 @@
 const { skipAuth } = require('../../utils/auth');
 
-const httpProxy = require('../httpProxy');
-
-const skipAuthMiddleware = () => (req, res, next) => {
+const skipAuthMiddleware = prematureTermination => (req, res, next) => {
   if (skipAuth(req)) {
-    httpProxy(req, res, next);
+    prematureTermination();
 
     return;
   }

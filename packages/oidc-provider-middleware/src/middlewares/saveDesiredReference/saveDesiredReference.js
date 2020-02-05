@@ -3,7 +3,7 @@ const { isEmpty } = require('lodash');
 const {
   DESIRED_REFERENCE_MAX_AGE,
   DESIRED_REFERENCE_KEY,
-} = require('../../config/server');
+} = require('../../config/session');
 
 const saveDesiredReferenceMiddleware = oidcClient => (req, res, next) => {
   if (!isEmpty(oidcClient.callbackParams(req))) {

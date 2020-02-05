@@ -1,6 +1,6 @@
 const validator = require('@hapi/joi');
 
-const { validateObject } = require('./validation');
+const { validateObject, validateSessionEntryParams } = require('./validation');
 
 describe('validateObject', () => {
   const validatedObject = { email: 'email', password: 3001 };

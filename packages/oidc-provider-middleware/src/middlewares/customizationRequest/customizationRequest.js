@@ -7,14 +7,16 @@ const { setTokenHeader } = require('./utils');
 const {
   SESSION_COOKIE_KEY,
   DESIRED_REFERENCE_KEY,
-} = require('../../config/server');
+} = require('../../config/session');
 
 const SESSION_INFO_FIELDS = [SESSION_COOKIE_KEY, DESIRED_REFERENCE_KEY];
 
-const customizationRequestMiddleware = () => (req, res, next) => {
+const customizationRequestMiddleware = oidcParams => (req, res, next) => {
   if (!req.session.cookie.expires) {
+    const { refreshTokenMaxAge } = oidcParams;
+
     // устанавливаем expires, если его нет
-    updateSessionExpires(req);
+    updateSessionExpires(req, refreshTokenMaxAge);
   }
 
   // данные о сессии нужны только для этого proxy

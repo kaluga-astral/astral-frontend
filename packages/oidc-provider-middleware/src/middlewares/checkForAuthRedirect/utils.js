@@ -1,7 +1,5 @@
-const { ALLOW_ORIGIN } = require('../../config/server');
-
-const addCorsHeaders = (req, res) => {
-  res.header('Access-Control-Allow-Origin', ALLOW_ORIGIN);
+const addCorsHeaders = (res, allowOrigin) => {
+  res.header('Access-Control-Allow-Origin', allowOrigin);
   res.header('Access-control-allow-credentials', 'true');
 };
 

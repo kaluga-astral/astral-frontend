@@ -1,6 +1,6 @@
 const { secondsToMilliseconds } = require('../../utils/dateTime');
 
-const { TOKEN_CLOCK_SKEW_PERCENT } = require('../../config/server');
+const { TOKEN_CLOCK_SKEW_PERCENT } = require('../../config/session');
 
 const getExpiresConsideringClockSkew = (expiresAt, expiresIn) => {
   const diffValue = expiresIn * (TOKEN_CLOCK_SKEW_PERCENT / 100);

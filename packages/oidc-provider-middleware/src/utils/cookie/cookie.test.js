@@ -8,8 +8,6 @@ const {
 
 const { secondsToMilliseconds } = require('../dateTime');
 
-const { REFRESH_TOKEN_MAX_AGE } = require('../../config/oidc');
-
 describe('stringifyCookie', () => {
   it('преобразует объект в валидную строку cookie', () => {
     const cookieValues = {
@@ -39,6 +37,8 @@ describe('stringifyCookie', () => {
 });
 
 describe('updateSessionExpires', () => {
+  const REFRESH_TOKEN_MAX_AGE = 600;
+
   it('устанавливает для сессии время жизни на основе resresh_token maxAge', () => {
     const request = {
       session: {
@@ -48,7 +48,7 @@ describe('updateSessionExpires', () => {
       },
     };
 
-    updateSessionExpires(request);
+    updateSessionExpires(request, REFRESH_TOKEN_MAX_AGE);
 
     expect(request.session.cookie.maxAge).toBe(
       secondsToMilliseconds(REFRESH_TOKEN_MAX_AGE),

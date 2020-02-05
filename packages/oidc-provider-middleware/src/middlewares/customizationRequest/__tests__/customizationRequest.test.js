@@ -5,12 +5,12 @@ const { secondsToMilliseconds } = require('../../../utils/dateTime');
 const {
   SESSION_COOKIE_KEY,
   DESIRED_REFERENCE_KEY,
-} = require('../../../config/server');
-const { REFRESH_TOKEN_MAX_AGE } = require('../../../config/oidc');
+} = require('../../../config/session');
 
 const customizationRequestMiddleware = require('../customizationRequest');
 
 describe('customizationRequestMiddleware', () => {
+  const refreshTokenMaxAge = 600;
   const request = httpMock.createRequest({
     session: {
       cookie: {
@@ -37,16 +37,13 @@ describe('customizationRequestMiddleware', () => {
   });
   const response = {};
   const next = () => null;
+  const oidcParams = { refreshTokenMaxAge };
 
-  customizationRequestMiddleware()(request, response, next);
-
-  // it('устанавливает domain для cookie', () => {
-  //   expect(request.session.cookie.domain).toBe('.astral.ru');
-  // });
+  customizationRequestMiddleware(oidcParams)(request, response, next);
 
   it('устанавливает expires для сессии', () => {
     expect(request.session.cookie.maxAge).toBe(
-      secondsToMilliseconds(REFRESH_TOKEN_MAX_AGE),
+      secondsToMilliseconds(refreshTokenMaxAge),
     );
   });
 

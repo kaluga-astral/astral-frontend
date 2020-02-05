@@ -6,6 +6,7 @@ const customizationRequest = require('./customizationRequest');
 const refreshToken = require('./refreshToken');
 const saveDesiredReference = require('./saveDesiredReference');
 const redirectToDesiredReference = require('./redirectToDesiredReference');
+const createOidcProtectedMiddleware = require('./oidcProtected');
 
 module.exports = {
   skipAuth,
@@ -16,4 +17,5 @@ module.exports = {
   refreshToken,
   saveDesiredReference,
   redirectToDesiredReference,
+  createOidcProtectedMiddleware,
 };

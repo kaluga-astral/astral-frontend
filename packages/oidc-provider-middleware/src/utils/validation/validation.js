@@ -1,6 +1,9 @@
 const validator = require('@hapi/joi');
 
 const { OIDC_ENTRY_PARAMS_VALIDATION_SCHEME } = require('../../config/oidc');
+const {
+  SESSION_ENTRY_PARAMS_VALIDATION_SCHEME,
+} = require('../../config/session');
 
 const throwValidationError = errorText => {
   console.error(errorText);
@@ -31,7 +34,19 @@ const validateOidcEntryParams = oidcParams =>
     'Ошибка в переданных oidcParams',
   );
 
-const validateInitializeEntryParam = ({ app, store, oidcParams }) => {
+const validateSessionEntryParams = sessionParams =>
+  validateObject(
+    sessionParams,
+    SESSION_ENTRY_PARAMS_VALIDATION_SCHEME,
+    'Ошибка в переданных sessionParams',
+  );
+
+const validateInitializeEntryParam = ({
+  app,
+  store,
+  oidcParams,
+  sessionParams,
+}) => {
   if (!app) {
     throwValidationError('Во входных параметрах отсутсвует app (express)');
   }
@@ -41,6 +56,11 @@ const validateInitializeEntryParam = ({ app, store, oidcParams }) => {
   }
 
   validateOidcEntryParams(oidcParams);
+  validateSessionEntryParams(sessionParams);
 };
 
-module.exports = { validateObject, validateInitializeEntryParam };
+module.exports = {
+  validateObject,
+  validateInitializeEntryParam,
+  validateSessionEntryParams,
+};

@@ -1,6 +1,6 @@
-const { skipIfSuccessAuth } = require('./auth');
+const { skipIfAuthorized } = require('./auth');
 
-describe('skipIfSuccessAuth', () => {
+describe('skipIfAuthorized', () => {
   const middleware = () => 'call';
   const next = () => undefined;
   const res = {};
@@ -10,12 +10,12 @@ describe('skipIfSuccessAuth', () => {
       isAuthenticated: () => true,
     };
 
-    expect(skipIfSuccessAuth(middleware)(req, res, next)).toBe(undefined);
+    expect(skipIfAuthorized(middleware)(req, res, next)).toBe(undefined);
   });
 
   it('вызывает middleware', () => {
     const req = { isAuthenticated: () => false };
 
-    expect(skipIfSuccessAuth(middleware)(req, res, next)).toBe('call');
+    expect(skipIfAuthorized(middleware)(req, res, next)).toBe('call');
   });
 });

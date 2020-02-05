@@ -4,10 +4,9 @@ const { createMockOidcClient } = require('../../../__mocks__/oidc');
 
 const { isActingUrlOidcParams, clearQueryParams } = require('../utils');
 
-const { OIDC_SESSION_KEY } = require('../../../config/oidc');
-
 describe('isActingUrlOidcParams', () => {
   const oidcClient = createMockOidcClient();
+  const OIDC_SESSION_KEY = 'sessionKey';
 
   it('проверяет oidc параметры в строке запроса на актуальность', () => {
     const request = httpMock.createRequest({
@@ -19,7 +18,9 @@ describe('isActingUrlOidcParams', () => {
       },
     });
 
-    expect(isActingUrlOidcParams(request, oidcClient)).toBe(true);
+    expect(isActingUrlOidcParams(request, oidcClient, OIDC_SESSION_KEY)).toBe(
+      true,
+    );
   });
 
   it('проверяет oidc параметры в строке запроса на неактуальность', () => {
@@ -32,7 +33,9 @@ describe('isActingUrlOidcParams', () => {
       },
     });
 
-    expect(isActingUrlOidcParams(request, oidcClient)).toBe(false);
+    expect(isActingUrlOidcParams(request, oidcClient, OIDC_SESSION_KEY)).toBe(
+      false,
+    );
   });
 
   it('oidc параметры неактуальны, если их нет', () => {
@@ -45,11 +48,15 @@ describe('isActingUrlOidcParams', () => {
       },
     });
 
-    expect(isActingUrlOidcParams(request, oidcClient)).toBe(false);
+    expect(isActingUrlOidcParams(request, oidcClient, OIDC_SESSION_KEY)).toBe(
+      false,
+    );
   });
 });
 
 describe('clearQueryParams', () => {
+  const OIDC_SESSION_KEY = 'sessionKey';
+
   it('удаляет query параметры из request', () => {
     const request = httpMock.createRequest({
       method: 'GET',

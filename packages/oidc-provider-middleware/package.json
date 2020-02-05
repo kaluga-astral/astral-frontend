@@ -2,7 +2,7 @@
   "name": "@astral-frontend/oidc-provider-middleware",
   "version": "0.1.0",
   "private": true,
-  "main": "src/app.js",
+  "main": "src/index.js",
   "engines": {
     "node": ">=10.0.0"
   },

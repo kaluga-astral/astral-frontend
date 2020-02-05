@@ -20,8 +20,8 @@ const stringifyCookie = values => {
   }, '');
 };
 
-const updateSessionExpires = req => {
-  const refreshTokenMaxAge = secondsToMilliseconds(REFRESH_TOKEN_MAX_AGE);
+const updateSessionExpires = (req, refreshTokenMaxAgeInSec) => {
+  const refreshTokenMaxAge = secondsToMilliseconds(refreshTokenMaxAgeInSec);
 
   if (req.session.cookie.maxAge !== refreshTokenMaxAge) {
     req.session.cookie.maxAge = refreshTokenMaxAge;

@@ -2,7 +2,6 @@ const authStrategyService = require('passport');
 const { Strategy: CustomStrategy } = require('passport-custom');
 const { Strategy: OidcStrategy } = require('openid-client');
 
-const { generateOidcSessionKey } = require('../utils/oidc');
 const { updateSessionExpires } = require('../utils/cookie');
 
 authStrategyService.serializeUser((user, done) => {
@@ -13,11 +12,11 @@ authStrategyService.deserializeUser((user, done) => {
   done(null, user);
 });
 
-const registerOidcAuthStrategy = (oidcClient, clientId) => {
+const registerOidcAuthStrategy = (oidcClient, oidcSessionKey) => {
   const oidcStrategy = new OidcStrategy(
     {
       client: oidcClient,
-      sessionKey: generateOidcSessionKey(clientId),
+      sessionKey: oidcSessionKey,
     },
     (tokenSet, userInfo, done) => {
       done(null, {
