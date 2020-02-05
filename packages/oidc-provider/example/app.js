@@ -1,12 +1,11 @@
 const express = require('express');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
+const { initializeOidcProvider } = require('@astral-frontend/oidc-provider');
 
 const { createMockApi } = require('./__mocks__/api');
 
 const { httpProxy, httpLogger, errorLogger } = require('./middlewares');
-
-const { initializeOidcProvider } = require('../src');
 
 const { connectStore } = require('./services/store');
 
@@ -39,7 +38,7 @@ const initializeServer = async () => {
   app.use(compression());
   app.use(cookieParser());
 
-  const { oidcProtected } = await initializeOidcProvider({
+  const { oidcProtected, logout } = await initializeOidcProvider({
     app,
     store,
     oidcParams: OIDC_PARAMS,
@@ -49,6 +48,8 @@ const initializeServer = async () => {
   app.use('/main', oidcProtected, (req, res, next) => {
     httpProxy(req, res, next);
   });
+
+  app.get('/account/logout', logout);
 
   app.use(errorLogger);
 

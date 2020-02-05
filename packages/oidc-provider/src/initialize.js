@@ -1,6 +1,9 @@
+const { compose } = require('compose-middleware');
+
 const {
   createSession,
-  createOidcProtectedMiddleware,
+  oidcProtected: createOidcProtectedMiddleware,
+  logout: createLogoutMiddleware,
 } = require('./middlewares');
 
 const {
@@ -23,12 +26,13 @@ const initializeOidcProvider = async entryParams => {
 
   const { client: oidcClient } = await connectIdentity(oidcParams);
 
-  const oidcProtectedMiddleware = createOidcProtectedMiddleware({
+  const oidcProtected = createOidcProtectedMiddleware({
     oidcClient,
     oidcParams,
     oidcSessionKey,
     sessionParams,
   });
+  const logout = createLogoutMiddleware(oidcClient);
 
   // регистрация passport стратегий
   registerOidcAuthStrategy(oidcClient, oidcSessionKey);
@@ -40,11 +44,13 @@ const initializeOidcProvider = async entryParams => {
   app.use(authStrategyService.initialize());
   app.use(authStrategyService.session());
 
-  // необходимо обрабатывать url, на который Identity произведет редирект после успешной авторизации
-  app.use(successAuthRedirectRoute, oidcProtectedMiddleware);
+  // url, на который Identity произведет редирект после успешной авторизации, должен быть защищен
+  app.use(successAuthRedirectRoute, oidcProtected);
 
   return {
-    oidcProtected: oidcProtectedMiddleware,
+    oidcProtected,
+    // logout должен работать только для авторизованного пользователя
+    logout: compose([oidcProtected, logout]),
   };
 };
 

@@ -10,7 +10,7 @@ const redirectToDesiredReference = require('../redirectToDesiredReference');
 
 const { skipIfAuthorized } = require('../../utils/auth');
 
-const createOidcProtectedMiddleware = ({
+const oidcProtectedMiddleware = ({
   oidcClient,
   oidcParams,
   oidcSessionKey,
@@ -39,4 +39,4 @@ const createOidcProtectedMiddleware = ({
     redirectToDesiredReference(),
   ])(req, res, next);
 
-module.exports = createOidcProtectedMiddleware;
+module.exports = oidcProtectedMiddleware;

@@ -2,8 +2,8 @@
 Предназначен для работы с OIDC авторизацией и работой с токенами Identity.
 
 ## Интеграция
-Для интегрирования OIDC-provider-middleware в сервер на Express необходимо:
-- установить и проиниициальзировать cookie-parser
+Для интегрирования OIDC-provider в сервер на Express необходимо:
+
 
 ## Развертывание
 Образ proxy: registry.astralnalog.ru/astral-services/identity-proxy:(master | work)
