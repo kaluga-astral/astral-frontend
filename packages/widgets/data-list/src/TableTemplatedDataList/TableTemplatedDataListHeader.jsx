@@ -20,6 +20,7 @@ const useStyles = makeStyles(
       color: theme.palette.gray[500],
       fontWeight: theme.typography.fontWeightBold,
       zIndex: 2,
+      userSelect: 'none',
     },
     item: {
       display: 'flex',

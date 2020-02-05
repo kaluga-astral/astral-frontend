@@ -36,6 +36,7 @@ export { default as FlexItem } from './FlexItem';
 export { default as FormattedCurrency } from './FormattedCurrency';
 export { default as Popper } from './Popper';
 export { default as Paper } from './Paper';
+export { default as PDFViewer } from './PDFViewer';
 export { default as Placeholder } from './Placeholder';
 export { default as Radio } from './Radio';
 export { default as RadioGroup } from './RadioGroup';

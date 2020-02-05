@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(3),
     wordBreak: 'break-all',
     borderBottom: `1px solid ${theme.palette.primary.light}`,
+    userSelect: 'none',
   },
   backButton: {
     marginRight: theme.spacing(1),

@@ -13,6 +13,7 @@ const useStyles = makeStyles(
       width: '260px',
       height: '100%',
       backgroundColor: theme.palette.background.paper,
+      userSelect: 'none',
       transition: theme.transitions.create(['width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
