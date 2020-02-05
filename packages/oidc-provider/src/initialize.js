@@ -4,6 +4,7 @@ const {
   createSession,
   oidcProtected: createOidcProtectedMiddleware,
   logout: createLogoutMiddleware,
+  getProfile: createGetProfileMiddleware,
 } = require('./middlewares');
 
 const {
@@ -33,6 +34,7 @@ const initializeOidcProvider = async entryParams => {
     sessionParams,
   });
   const logout = createLogoutMiddleware(oidcClient);
+  const getProfile = createGetProfileMiddleware(oidcClient);
 
   // регистрация passport стратегий
   registerOidcAuthStrategy(oidcClient, oidcSessionKey);
@@ -51,6 +53,7 @@ const initializeOidcProvider = async entryParams => {
     oidcProtected,
     // logout должен работать только для авторизованного пользователя
     logout: compose([oidcProtected, logout]),
+    getProfile: compose([getProfile, logout]),
   };
 };
 

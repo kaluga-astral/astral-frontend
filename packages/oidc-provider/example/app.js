@@ -38,7 +38,7 @@ const initializeServer = async () => {
   app.use(compression());
   app.use(cookieParser());
 
-  const { oidcProtected, logout } = await initializeOidcProvider({
+  const { oidcProtected, logout, getProfile } = await initializeOidcProvider({
     app,
     store,
     oidcParams: OIDC_PARAMS,
@@ -49,7 +49,9 @@ const initializeServer = async () => {
     httpProxy(req, res, next);
   });
 
-  app.get('/account/logout', logout);
+  app.post('/account/logout', logout);
+
+  app.get('/account/profile', getProfile);
 
   app.use(errorLogger);
 

@@ -8,6 +8,7 @@ const saveDesiredReference = require('./saveDesiredReference');
 const redirectToDesiredReference = require('./redirectToDesiredReference');
 const oidcProtected = require('./oidcProtected');
 const logout = require('./logout');
+const getProfile = require('./getProfile');
 
 module.exports = {
   skipAuth,
@@ -20,4 +21,5 @@ module.exports = {
   redirectToDesiredReference,
   oidcProtected,
   logout,
+  getProfile,
 };
