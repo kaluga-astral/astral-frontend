@@ -1,29 +1,54 @@
 # OIDC-provider
 Предназначен для работы с OIDC авторизацией и работой с токенами Identity.
+В данной реализации поддерживает только code flow.
 
 ## Интеграция
-Пример интеграции находится в директории ```example```.
+Пример интеграции находится в директории ```./example```.
 
-Для интегрирования OIDC-provider в Express сервер необходимо:
+Для интегрирования OIDC-provider в Express сервер необходимо проиницализировать cookieParser, а затем oidcProvider (все есть в example).
 
+## API
+### initializeOidcProvider
+```js
+const { initializeOidcProvider } = require('@astral-frontend/oidc-provider');
 
-При развертывании необходимо указать следующие ENV переменные:
-- **SERVER_PORT** - на каком порту будет запускаться прокси (required);
-- **PROXY_URL** - проксируемый url (required);
-- **SESSION_SECRET** - любая строка (required);
-- **REDIS_URL** - путь до Redis (required);
-- **IDENTITY_URL** - путь до instance identity (required);
-- **CLIENT_ID** - client_id для oidc (required);
-- **CLIENT_SECRET** - client_secret для oidc (required);
-- **REDIRECT_URIS** - redirect_uris для oidc, значения отделяются друг от друга пробелом (пример, ```https://google.com https://yandex.com```) (required);
-- **POST_LOGOUT_REDIRECT_URIS** - post_logout_redirect_uris для oidc - разрешенные редиректы после logout. Значения отделяются друг от друга пробелом (пример, ```https://google.com https://yandex.com```) (required);
-- **SCOPE** - scope для oidc (default - 'openid offline_access') - определяет границы доступа к пользовательской информации.Значения отделяются друг от друга пробелом (пример, ```openid email profile```) (required)
-- **REFRESH_TOKEN_MAX_AGE** - время жизни refresh токена в секундах (required)
-- **ALLOW_SUBDOMAINS** - если необходима поддержка поддоменов, то необходимо указать эту переменную (пример, ```.astral.ru```)
-- **ALLOW_ORIGIN** - если необходима поддержка поддоменов, то необходимо указать эту переменную (пример, ```https://astral.ru```). Она будет подставлена в заголовок Access-control-allow-origin при ответе данного сервера 401 ошибкой
+const main = async () => {
+ const {  } = await initializeOidcProvider(params);
+}
+```
+
+Метод initializeOidcProvider необходим для инициализации oidc-provider. При инициализации будет создана express-session и зарегестрированы passport старатегии для авторизации и refresh token.
+Также будет установлена связь с Identity.
+initializeOidcProvider возвращает Promise, необходимо дождаться его выполнения.
+
+#### Входные параметры initializeOidcProvider
+Входные параметры initializeOidcProvider обязательны и являются объектом.
+
+```params```: ```required <Object>```
+* ```app```: ```required <Object>```. Express app;
+* ```store```: ```required <Object>```. Хранилище для сессии (Redis);
+
+* ```oidcParams```: ```required <Object>```
+    * ```identityUrl```: ```required <String>```. Путь до instance identity ('https://identity.astral-dev.ru');
+    * ```clientId```: ```required <String>```. client_id для oidc;
+    * ```clientSecret```: ```required <String>```. client_secret для oidc;
+    * ```redirectUri```: ```required <String>```. Указывается один uri, на него пользователь будет возвращен после успешной авторизации для получения токенов. После успешного получения токенов пользователь будет возвращен на тот route, на который он хотел попасть перед редиректом на Identity;
+    * ```postLogoutRedirectUri```: ```required <String>```. Указывается один uri, на который пользователь будет перенаправлен после выхода;
+    * ```scope```: ```required <String>```. scope для oidc (переданное значение будет приклеяно к 'openid offline_access') - определяет границы доступа к пользовательской информации.Значения отделяются друг от друга пробелом (пример, ```email profile```);
+    * ```refreshTokenMaxAge```: ```required <Number>```. время жизни refresh токена в секундах;
+
+* ```sessionParams```: ```required <Object>```
+    * ```sessionSecret```: ```required <String>```. Любая строка. Необходима для инициализации сессии;
+    * ```allowDomains```: ```<String>```. если необходима поддержка поддоменов, то необходимо указать этот параметр (пример, ```.astral.ru```);
+    * ```allowOrigin```: ```<String>```. если необходима поддержка поддоменов, то необходимо указать эту переменную (пример, https://astral.ru). Она будет подставлена в заголовок Access-control-allow-origin при ответе OIDC Provider;
+
+#### Выходные значения initializeOidcProvider
+После успешной авторизации initializeOidcProvider вернет объект со следующими middleware:
+- oidcProtected. Middleware, который необходимо добавлять к роутам, для которых необходима авторизация;
+- logout. Middleware для выхода из текущего клиента;
+- getProfile. Middleware для получения информации о пользователе;
 
 ## Принцип работы
-Все запросы для которых надо получить защищенные данные должны проходить через данный прокси.
 В процессе обработки запроса middleware проверит наличие в coockie SessionID и если его там нет, то произведет редирект на Identity.
 
 После успешной авторизации в cookie браузера появится connect.sid (session id). При всех последующий запросах id_token будет помещаться в headers request.
@@ -31,11 +56,10 @@
 Middleware в ответ отсылает редирект только при получении html, в других случаях в ответ отсылается 401 с redirectUrl (отвественность за редирект перекладывается на клиента).
 
 ### Code flow
-После авторизации на Identity пользователь получит code, затем для получения данных он пришлет его на сервер, на котором установлен OIDC-provider-middleware.
+После авторизации на Identity пользователь получит code, затем для получения данных он пришлет его на сервер, на котором установлен OIDC-provider.
 Middleware с помощью code сделает запрос на Identity и получит set tokens, на основе них проинициализируется сессия в Redis.
 
 ## Требование к клиенту
-
 Необходимо обрабатывать все 401 ошибки на клиенте и делать редирект страницы на redirectUrl, который всегда будет находиться в теле ответа.
 
 Если пользователь получил html, то он считается авторизованным (аккуратней с кэшированием html в браузере).
