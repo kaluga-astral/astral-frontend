@@ -1,0 +1,25 @@
+{
+  "name": "oidc-provider-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon --inspect ./app.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "connect-redis": "^4.0.3",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "express-session": "^1.17.0",
+    "express-winston": "^4.0.1",
+    "http-proxy-middleware": "^0.20.0",
+    "pretty-error": "^2.1.1",
+    "redis": "^2.8.0",
+    "winston": "^3.2.1",
+    "@astral-frontend/oidc-provider": "^0.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}

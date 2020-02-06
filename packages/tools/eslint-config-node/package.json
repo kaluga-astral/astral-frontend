@@ -1,13 +1,14 @@
 {
   "name": "@astral-frontend/eslint-config-node",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "main": "./index.js",
   "scripts": {},
   "dependencies": {
     "babel-eslint": "^10.0.1",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0"
+    "eslint-plugin-import": "^2.16.0",
+    "prettier": "1.19.1"
   },
   "devDependencies": {},
   "peerDependencies": {}
