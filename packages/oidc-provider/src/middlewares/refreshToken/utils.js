@@ -10,11 +10,9 @@ const getExpiresConsideringClockSkew = (expiresAt, expiresIn) => {
 
 // expiresInTokenId жизнь токена в секундах от выдачи токена
 const isActsTokenId = (expiresAt, expiresIn) => {
-  const nowDate = new Date();
-
-  // существует clock skew - двиг времени для улучшения безопасности. Если его не учитывать токен может стухнуть раньше, чем мы ожидаем
+  // существует clock skew - сдвиг времени. Если его не учитывать токен может стухнуть раньше, чем мы ожидаем
   return (
-    nowDate.getTime() <
+    Date.now() <
     getExpiresConsideringClockSkew(
       secondsToMilliseconds(expiresAt),
       secondsToMilliseconds(expiresIn),
