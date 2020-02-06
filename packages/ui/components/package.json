@@ -17,6 +17,7 @@
     "@researchgate/react-intersection-list": "^3.0.8",
     "classnames": "^2.2.6",
     "downshift": "^3.3.5",
+    "material-ui-popup-state": "^1.5.1",
     "intro.js": "2.9.3",
     "intro.js-react": "0.2.0",
     "lodash-es": "^4.17.11",
