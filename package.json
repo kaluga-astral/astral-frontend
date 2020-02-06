@@ -24,6 +24,7 @@
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.6",
     "core-js": "^3.2.1",
+    "cross-env": "^7.0.0",
     "css-loader": "3.2.0",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
