@@ -151,10 +151,13 @@ Autocomplete.propTypes = {
   /**
    * The value of the autocomplete.
    */
-  value: PropTypes.shape({
-    key: PropTypes.string,
-    label: PropTypes.string,
-    value: PropTypes.any,
-  }),
+  value: PropTypes.oneOfType([
+    PropTypes.shape({
+      key: PropTypes.string,
+      label: PropTypes.string,
+      value: PropTypes.any,
+    }),
+    PropTypes.string,
+  ]),
 };
 export default Autocomplete;

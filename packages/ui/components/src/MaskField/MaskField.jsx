@@ -24,6 +24,7 @@ MaskField.defaultProps = {
   pipe: undefined,
   placeholder: null,
   placeholderChar: '\u2000',
+  InputProps: {},
 };
 
 MaskField.propTypes = {
@@ -35,6 +36,7 @@ MaskField.propTypes = {
   ]).isRequired,
   placeholder: PropTypes.string,
   placeholderChar: PropTypes.string,
+  InputProps: PropTypes.objectOf(PropTypes.any),
   pipe: PropTypes.func,
 };
 

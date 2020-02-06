@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { DocumentIcon, DocumentIconError } from '@astral-frontend/icons';
 import IconTableCell from './IconTableCell';
 
-storiesOf('IconTableCell', module)
+storiesOf('packages/components/IconTableCell', module)
   .add('indeterminateLoading', () => (
     <IconTableCell
       loading

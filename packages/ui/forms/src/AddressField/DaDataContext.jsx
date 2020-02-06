@@ -34,21 +34,24 @@ const fetchAddressSuggestions = query => {
     },
   });
 
-  return fetch(
-    'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address',
-    {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Token ${DA_DATA_TOKEN}`,
-      }),
-      body: JSON.stringify({ query, count: 10 }),
-    },
-  )
-    .then(response => response.json())
-    .then(data => data.suggestions.map(mapSuggestionsToResult))
-    .catch(console.error);
+  return (
+    fetch(
+      'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address',
+      {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Token ${DA_DATA_TOKEN}`,
+        }),
+        body: JSON.stringify({ query, count: 10 }),
+      },
+    )
+      .then(response => response.json())
+      .then(data => data.suggestions.map(mapSuggestionsToResult))
+      // eslint-disable-next-line no-console
+      .catch(console.error)
+  );
 };
 
 const DaDataContext = React.createContext({ fetchAddressSuggestions });
