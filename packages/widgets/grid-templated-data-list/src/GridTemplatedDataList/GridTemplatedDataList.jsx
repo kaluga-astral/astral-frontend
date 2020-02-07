@@ -5,7 +5,7 @@ import { List } from '@astral-frontend/components';
 
 import { makeStyles } from '@astral-frontend/styles';
 
-import DataList from '../DataList';
+import DataList from '@astral-frontend/data-list';
 
 const useStyles = makeStyles(
   theme => ({

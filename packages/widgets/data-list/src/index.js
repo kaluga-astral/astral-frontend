@@ -1,2 +1,3 @@
-export { default as TableTemplatedDataList } from './TableTemplatedDataList';
-export { default as GridTemplatedDataList } from './GridTemplatedDataList';
+export { default } from './DataList';
+export { DataListContext } from './DataList';
+export { DataListItemContext } from './DataList';

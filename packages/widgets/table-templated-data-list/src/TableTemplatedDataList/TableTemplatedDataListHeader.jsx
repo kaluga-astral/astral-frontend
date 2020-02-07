@@ -5,7 +5,7 @@ import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 import { Checkbox } from '@astral-frontend/components';
 
-import DataListContext from '../DataList/DataListContext';
+import { DataListContext } from '@astral-frontend/data-list';
 
 const useStyles = makeStyles(
   theme => ({

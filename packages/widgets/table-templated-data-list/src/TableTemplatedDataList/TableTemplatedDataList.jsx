@@ -4,7 +4,7 @@ import React from 'react';
 
 import { makeStyles } from '@astral-frontend/styles';
 
-import DataList from '../DataList';
+import DataList from '@astral-frontend/data-list';
 import TableTemplatedDataListHeader from './TableTemplatedDataListHeader';
 
 const useStyles = makeStyles(

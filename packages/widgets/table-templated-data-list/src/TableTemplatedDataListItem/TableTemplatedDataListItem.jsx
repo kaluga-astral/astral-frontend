@@ -6,7 +6,10 @@ import React from 'react';
 import { ListItem, FlexContainer } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import { DataListContext, DataListItemContext } from '../../DataList';
+import {
+  DataListContext,
+  DataListItemContext,
+} from '@astral-frontend/data-list';
 import TableTemplatedDataListItemDefaultSelector from './TableTemplatedDataListItemDefaultSelector';
 
 const useStyles = makeStyles(
