@@ -5,7 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const getPaths = require('./utils/getPaths');
 
 const { appClientEntry, appDist } = getPaths();
-const { RELEASE_STAGE } = process.env;
 
 module.exports = {
   target: 'web',
@@ -94,9 +93,7 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.EnvironmentPlugin({
-      RELEASE_STAGE,
-    }),
+    new webpack.EnvironmentPlugin(process.env),
     new MiniCssExtractPlugin({
       filename: '[name].[chunkhash].css',
       chunkFilename: '[id].[chunkhash].css',
