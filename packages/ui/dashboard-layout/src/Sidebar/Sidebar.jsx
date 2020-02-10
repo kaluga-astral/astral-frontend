@@ -4,8 +4,8 @@ import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 import { FlexContainer } from '@astral-frontend/components';
 
+import Aside from '../Aside';
 import { __Context as LayoutContext } from '../Layout';
-import SidebarContext from './Context';
 
 const useStyles = makeStyles(
   theme => ({
@@ -21,6 +21,7 @@ const useStyles = makeStyles(
     },
     collapsed: {
       width: '70px',
+      backgroundColor: theme.palette.background.paper,
       transition: theme.transitions.create(['width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -30,34 +31,21 @@ const useStyles = makeStyles(
   { name: 'DashboardLayoutSidebar' },
 );
 
-const asideRef = React.createRef();
-
 const DashboardLayoutSidebar = ({ className, children }) => {
   const classes = useStyles();
   const { isSidebarOpen } = React.useContext(LayoutContext);
-  const [isTransitioning, setIsTransitioning] = React.useState(false);
-
-  React.useEffect(() => {
-    asideRef.current.addEventListener('transitionend', event => {
-      event.stopPropagation();
-      setIsTransitioning(false);
-    });
-  }, []);
 
   return (
-    <SidebarContext.Provider value={{ isTransitioning }}>
-      <FlexContainer
-        ref={asideRef}
-        component="aside"
-        direction="column"
-        className={cn(
-          isSidebarOpen ? classes.root : classes.collapsed,
-          className,
-        )}
-      >
-        {children}
-      </FlexContainer>
-    </SidebarContext.Provider>
+    <FlexContainer
+      component={Aside}
+      direction="column"
+      className={cn(
+        isSidebarOpen ? classes.root : classes.collapsed,
+        className,
+      )}
+    >
+      {children}
+    </FlexContainer>
   );
 };
 
