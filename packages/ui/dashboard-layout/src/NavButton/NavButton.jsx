@@ -11,6 +11,8 @@ const useStyles = makeStyles(
       height: '100%',
       width: '274px',
       marginLeft: theme.spacing(4),
+      whiteSpace: 'nowrap',
+      flexShrink: 0,
     },
   }),
   { name: 'NavButton' },
