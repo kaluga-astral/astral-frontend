@@ -3,6 +3,7 @@ export { default as AsyncAutocomplete } from './AsyncAutocomplete';
 export { default as Autocomplete } from './Autocomplete';
 export { default as Avatar } from './Avatar';
 export { default as Button } from './Button';
+export { default as Box } from './Box';
 export { default as ButtonBase } from './ButtonBase';
 export { default as ButtonIcon } from './ButtonIcon';
 export { default as ButtonText } from './ButtonText';
