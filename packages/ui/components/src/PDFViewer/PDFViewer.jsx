@@ -1,8 +1,9 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Placeholder } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
+
+import Placeholder from '../Placeholder';
 
 const useStyles = makeStyles(
   () => ({
