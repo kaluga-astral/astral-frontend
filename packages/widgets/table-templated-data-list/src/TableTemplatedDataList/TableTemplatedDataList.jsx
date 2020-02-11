@@ -1,3 +1,4 @@
+import { uniqueId } from 'lodash-es';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -79,21 +80,11 @@ const TableTemplatedDataList = ({
   const renderItem = React.useCallback(
     ({ data, key }) => (
       <li key={key} className={classes.bodyRow}>
-        <ListItemComponent
-          className={cn(classes.row)}
-          loading={dataQueryResult.loading}
-          data={data}
-        >
+        <ListItemComponent className={cn(classes.row)}>
           {columns.map(column => {
-            const Component = column.component;
-
-            return (
-              <Component
-                key={column.title}
-                loading={dataQueryResult.loading}
-                data={data}
-              />
-            );
+            return React.cloneElement(column.component(data), {
+              key: uniqueId(),
+            });
           })}
         </ListItemComponent>
         {RowActionsComponent && (
