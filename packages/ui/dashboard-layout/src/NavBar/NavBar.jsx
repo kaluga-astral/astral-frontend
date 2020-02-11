@@ -11,6 +11,7 @@ const useStyles = makeStyles(
       padding: theme.spacing(3, 4),
       backgroundColor: theme.palette.common.white,
       borderRadius: theme.shape.borderRadius,
+      overflow: 'hidden',
     },
   }),
   { name: 'DashboardLayoutNavBar' },

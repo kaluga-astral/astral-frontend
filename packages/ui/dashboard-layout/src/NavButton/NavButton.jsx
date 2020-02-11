@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { Button } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
@@ -10,16 +11,14 @@ const useStyles = makeStyles(
       height: '100%',
       width: '274px',
       marginLeft: theme.spacing(4),
-    },
-    text: {
-      fontWeight: theme.typography.fontWeightBold,
-      marginRight: theme.spacing(2),
+      whiteSpace: 'nowrap',
+      flexShrink: 0,
     },
   }),
   { name: 'NavButton' },
 );
 
-const NavButton = ({ className, text, Icon, ...props }) => {
+const NavButton = ({ className, ...props }) => {
   const classes = useStyles();
 
   return (
@@ -27,22 +26,16 @@ const NavButton = ({ className, text, Icon, ...props }) => {
       variant="regular"
       {...props}
       className={cn(classes.root, className)}
-    >
-      <span className={classes.text}>{text}</span>
-      {Icon && <Icon className={classes.icon} />}
-    </Button>
+    />
   );
 };
 
 NavButton.defaultProps = {
   className: null,
-  Icon: null,
 };
 
 NavButton.propTypes = {
   className: PropTypes.string,
-  text: PropTypes.string.isRequired,
-  Icon: PropTypes.func,
 };
 
 export default NavButton;

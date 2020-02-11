@@ -1,4 +1,5 @@
 export { default as ActionButton } from './ActionButton';
+export { default as Aside } from './Aside';
 export { default as Content } from './Content';
 export { default as CurrentUserInfo } from './CurrentUserInfo';
 export { default as Header } from './Header';

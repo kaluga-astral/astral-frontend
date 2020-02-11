@@ -6,7 +6,7 @@ import { ButtonBase } from '@astral-frontend/components';
 import { CollapseIcon } from '@astral-frontend/icons';
 
 import { __Context as LayoutContext } from '../Layout';
-import { __Context as SidebarContext } from '../Sidebar';
+import { __Context as AsideContext } from '../Aside';
 
 const useStyles = makeStyles(
   theme => ({
@@ -59,7 +59,7 @@ const useStyles = makeStyles(
 const SidebarNavItemToggleButton = ({ className }) => {
   const classes = useStyles();
   const { isSidebarOpen, setIsSidebarOpen } = React.useContext(LayoutContext);
-  const { isTransitioning } = React.useContext(SidebarContext);
+  const { isTransitioning } = React.useContext(AsideContext);
   const isToggleButtonTextVisible = isSidebarOpen && !isTransitioning;
 
   const toogleSidebarHandleClick = () => {

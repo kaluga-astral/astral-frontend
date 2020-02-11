@@ -14,7 +14,7 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import Item from './Item';
 import { __Context as LayoutContext } from '../Layout';
-import { __Context as SidebarContext } from '../Sidebar';
+import { __Context as AsideContext } from '../Aside';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -66,7 +66,7 @@ const DashboardLayoutCurrentUserInfo = ({
   const buttonRef = React.createRef();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { isTransitioning } = React.useContext(SidebarContext);
+  const { isTransitioning } = React.useContext(AsideContext);
   const { isSidebarOpen } = React.useContext(LayoutContext);
   const isUserNameVisible = !isTransitioning && isSidebarOpen;
   const handleTogglerButtonClick = event => {
