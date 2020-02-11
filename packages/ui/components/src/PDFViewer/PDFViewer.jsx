@@ -18,12 +18,13 @@ const useStyles = makeStyles(
   { name: 'PDFViewer' },
 );
 
-const PDFViewer = ({ className, ...props }) => {
+const PDFViewer = ({ loading: exteralLoading, className, ...props }) => {
   const classes = useStyles();
-  const [loading, setLoading] = React.useState(true);
+  const [internalLoading, setInternalLoading] = React.useState(true);
   const handleLoad = () => {
-    setLoading(false);
+    setInternalLoading(false);
   };
+  const loading = exteralLoading && internalLoading;
 
   return (
     <div className={cn(classes.root, className)}>
@@ -41,10 +42,12 @@ const PDFViewer = ({ className, ...props }) => {
 
 PDFViewer.defaultProps = {
   className: null,
+  loading: false,
 };
 
 PDFViewer.propTypes = {
   className: PropTypes.string,
+  loading: PropTypes.bool,
 };
 
 export default PDFViewer;
