@@ -12,8 +12,8 @@ const useStyles = makeStyles(
     root: {},
     icon: {},
     text: {
-      fontSize: theme.typography.pxToRem(16),
-      fontWeight: theme.typography.fontWeightMedium,
+      fontSize: theme.typography.pxToRem(14),
+      fontWeight: theme.typography.fontWeightBold,
     },
     active: {
       color: theme.palette.primary.main,

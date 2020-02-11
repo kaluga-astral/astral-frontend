@@ -26,8 +26,8 @@ const useStyles = makeStyles(
       fontSize: theme.typography.pxToRem(20),
     },
     text: {
-      fontSize: theme.typography.pxToRem(16),
-      fontWeight: theme.typography.fontWeightMedium,
+      fontSize: theme.typography.pxToRem(14),
+      fontWeight: theme.typography.fontWeightBold,
     },
   }),
   {
