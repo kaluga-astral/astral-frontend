@@ -39,6 +39,7 @@ const TableTemplatedDataListItem = ({
   Icon,
   Selector,
   children,
+  component,
   ...props
 }) => {
   const classes = useStyles();
@@ -67,7 +68,7 @@ const TableTemplatedDataListItem = ({
   return (
     <ListItem
       className={cn(classes.root, className)}
-      component="div"
+      component={component}
       onMouseEnter={handleListItemMouseEnter}
       onMouseLeave={handleListItemMouseLeave}
       {...props}
@@ -89,6 +90,7 @@ const TableTemplatedDataListItem = ({
 };
 
 TableTemplatedDataListItem.defaultProps = {
+  component: 'div',
   className: null,
   disableGutters: true,
   button: false,
@@ -97,6 +99,7 @@ TableTemplatedDataListItem.defaultProps = {
 };
 
 TableTemplatedDataListItem.propTypes = {
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   className: PropTypes.string,
   disableGutters: PropTypes.bool,
   button: PropTypes.bool,

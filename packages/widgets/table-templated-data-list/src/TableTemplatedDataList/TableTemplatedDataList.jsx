@@ -80,7 +80,7 @@ const TableTemplatedDataList = ({
   const renderItem = React.useCallback(
     ({ data, key }) => (
       <li key={key} className={classes.bodyRow}>
-        <ListItemComponent className={cn(classes.row)}>
+        <ListItemComponent data={data} className={cn(classes.row)}>
           {columns.map(column => {
             return React.cloneElement(column.component(data), {
               key: uniqueId(),
