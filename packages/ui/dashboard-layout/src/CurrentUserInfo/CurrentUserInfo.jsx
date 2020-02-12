@@ -14,13 +14,12 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import Item from './Item';
 import { __Context as LayoutContext } from '../Layout';
-import { __Context as AsideContext } from '../Aside';
+import { __Context as SidebarContext } from '../Sidebar';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'flex-start',
-    borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
     width: '260px',
     overflow: 'hidden',
   },
@@ -29,9 +28,13 @@ const useStyles = makeStyles(theme => ({
   },
   toggler: {
     display: 'flex',
+    justifyContent: 'flex-start',
+    borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
     width: '100%',
     height: '100%',
-    padding: `${theme.spacing(5)}px`,
+    paddingTop: theme.spacing(6),
+    paddingBottom: theme.spacing(4),
+    margin: `0px ${theme.spacing(4)}px `,
   },
   avatar: {
     width: '40px',
@@ -43,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   userName: {
     fontWeight: 400,
     fontSize: theme.typography.pxToRem(14),
-    marginLeft: `${theme.spacing(4)}px`,
+    marginLeft: theme.spacing(2),
     textAlign: 'left',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -66,7 +69,7 @@ const DashboardLayoutCurrentUserInfo = ({
   const buttonRef = React.createRef();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { isTransitioning } = React.useContext(AsideContext);
+  const { isTransitioning } = React.useContext(SidebarContext);
   const { isSidebarOpen } = React.useContext(LayoutContext);
   const isUserNameVisible = !isTransitioning && isSidebarOpen;
   const handleTogglerButtonClick = event => {

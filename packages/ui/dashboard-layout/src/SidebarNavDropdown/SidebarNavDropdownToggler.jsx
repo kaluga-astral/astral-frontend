@@ -5,7 +5,7 @@ import { ButtonBase } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import { __Context as LayoutContext } from '../Layout';
-import { __Context as AsideContext } from '../Aside';
+import { __Context as SidebarContext } from '../Sidebar';
 
 const useStyles = makeStyles(
   theme => ({
@@ -61,7 +61,7 @@ const DashboardLayoutSidebarNavDropdownToggler = React.forwardRef(
     } = props;
     const classes = useStyles(expanded);
     const { isSidebarOpen } = React.useContext(LayoutContext);
-    const { isTransitioning } = React.useContext(AsideContext);
+    const { isTransitioning } = React.useContext(SidebarContext);
     const isTooglerContentVisible = !isTransitioning && isSidebarOpen;
 
     return (

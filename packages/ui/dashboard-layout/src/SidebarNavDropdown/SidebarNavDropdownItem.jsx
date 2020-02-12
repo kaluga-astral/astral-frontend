@@ -13,7 +13,7 @@ const useStyles = makeStyles(
     root: {},
     navItem: {
       borderLeft: `2px solid ${theme.palette.primary.light}`,
-      marginLeft: `${theme.spacing(6)}px`,
+      marginLeft: `${theme.spacing(4)}px`,
     },
     collapsedItem: {
       padding: `${theme.spacing(5)}px 0 ${theme.spacing(5)}px ${theme.spacing(

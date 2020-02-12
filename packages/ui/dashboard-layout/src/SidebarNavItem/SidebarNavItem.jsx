@@ -5,7 +5,6 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import { Tooltip } from '@astral-frontend/components';
 import { __Context as LayoutContext } from '../Layout';
-import { __Context as AsideContext } from '../Aside';
 
 const useStyles = makeStyles(
   theme => ({
@@ -13,7 +12,7 @@ const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-start',
-      padding: `${theme.spacing(4)}px`,
+      padding: `${theme.spacing(4)}px ${theme.spacing(3)}px`,
       lineHeight: theme.typography.pxToRem(20),
       textAlign: 'left',
       textDecoration: 'none',
@@ -53,8 +52,6 @@ const DashboardLayoutSidebarNavItem = React.forwardRef(
   ) => {
     const classes = useStyles();
     const { isSidebarOpen } = React.useContext(LayoutContext);
-    const { isTransitioning } = React.useContext(AsideContext);
-    const isNavItemTextVisible = !isTransitioning && isSidebarOpen;
     const Item = () => (
       <Component ref={ref} className={cn(classes.root, className)} {...props}>
         {Icon && (
@@ -66,7 +63,7 @@ const DashboardLayoutSidebarNavItem = React.forwardRef(
             <Icon />
           </div>
         )}
-        {isNavItemTextVisible && <Text className={classes.text} />}
+        {isSidebarOpen && <Text className={classes.text} />}
       </Component>
     );
 
