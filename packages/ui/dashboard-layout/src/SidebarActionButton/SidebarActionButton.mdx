@@ -1,0 +1,36 @@
+---
+menu: dashboard-layout
+name: SidebarActionButton
+---
+
+import { Playground, Props } from 'docz';
+import { MemoryRouter } from 'react-router-dom';
+import { SaveIcon } from '@astral-frontend/icons';
+
+import SidebarActionButton from './SidebarActionButton';
+
+# SidebarActionButton
+
+<Props of={SidebarActionButton} />
+
+## Basic code
+
+```
+  <SidebarActionButton>
+    <SidebarActionButton.Icon>
+      <SaveIcon />
+    </SidebarActionButton.Icon>
+    <SidebarActionButton.Text>Новое заявление</SidebarActionButton.Text>
+  </SidebarActionButton>
+```
+
+## Basic usage
+
+<Playground>
+  <SidebarActionButton>
+    <SidebarActionButton.Icon>
+      <SaveIcon />
+    </SidebarActionButton.Icon>
+    <SidebarActionButton.Text>Новое заявление</SidebarActionButton.Text>
+  </SidebarActionButton>
+</Playground>

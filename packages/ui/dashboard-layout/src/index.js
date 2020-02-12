@@ -1,4 +1,4 @@
-export { default as ActionButton } from './ActionButton';
+export { default as SidebarActionButton } from './SidebarActionButton';
 export { default as Aside } from './Aside';
 export { default as Content } from './Content';
 export { default as CurrentUserInfo } from './CurrentUserInfo';
