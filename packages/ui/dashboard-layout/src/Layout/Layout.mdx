@@ -16,9 +16,9 @@ import HeaderSearch from "../HeaderSearch";
 import Main from "../Main";
 import Product from "../Product";
 import Sidebar from "../Sidebar";
-import SidebarNav from "../SidebarNav";
-import SidebarNavLink from "../SidebarNavLink";
-import SidebarNavDropdown from "../SidebarNavDropdown";
+import AsideNav from "../AsideNav";
+import AsideNavLink from "../AsideNavLink";
+import AsideNavDropdown from "../AsideNavDropdown";
 import CurrentUserInfo from "../CurrentUserInfo";
 
 # Layout
@@ -41,21 +41,21 @@ import CurrentUserInfo from "../CurrentUserInfo";
           </ActionButton.Icon>
           <ActionButton.Text>Новое заявление</ActionButton.Text>
         </ActionButton>
-        <SidebarNav>
-          <SidebarNavDropdown
+        <AsideNav>
+          <AsideNavDropdown
             text="Документы"
             Icon={SaveIcon}
           >
-            <SidebarNavDropdown.Item text="Входящие" to="/documents/incoming" />
-            <SidebarNavDropdown.Item text="Исходящие" to="/documents/outgoing" />
-            <SidebarNavDropdown.Item text="Черновики" to="/documents/drafts" />
-          </SidebarNavDropdown>
-          <SidebarNavLink
+            <AsideNavDropdown.Item text="Входящие" to="/documents/incoming" />
+            <AsideNavDropdown.Item text="Исходящие" to="/documents/outgoing" />
+            <AsideNavDropdown.Item text="Черновики" to="/documents/drafts" />
+          </AsideNavDropdown>
+          <AsideNavLink
             Icon={SaveIcon}
             to="Сформированные"
             text="Сформированные"
           />        
-        </SidebarNav>
+        </AsideNav>
         <CurrentUserInfo avatarAlt="AA" avatarSrc={null} userName="userName">
           <CurrentUserInfo.Item Icon={SaveIcon} text="Выйти" />
         </CurrentUserInfo>
@@ -91,21 +91,21 @@ import CurrentUserInfo from "../CurrentUserInfo";
           </ActionButton.Icon>
           <ActionButton.Text>Новое заявление</ActionButton.Text>
         </ActionButton>
-        <SidebarNav>
-          <SidebarNavDropdown
+        <AsideNav>
+          <AsideNavDropdown
             text="Документы"
             Icon={SaveIcon}
           >
-            <SidebarNavDropdown.Item text="Входящие" to="/documents/incoming" />
-            <SidebarNavDropdown.Item text="Исходящие" to="/documents/outgoing" />
-            <SidebarNavDropdown.Item text="Черновики" to="/documents/drafts" />
-          </SidebarNavDropdown>
-          <SidebarNavLink
+            <AsideNavDropdown.Item text="Входящие" to="/documents/incoming" />
+            <AsideNavDropdown.Item text="Исходящие" to="/documents/outgoing" />
+            <AsideNavDropdown.Item text="Черновики" to="/documents/drafts" />
+          </AsideNavDropdown>
+          <AsideNavLink
             Icon={SaveIcon}
             to="Сформированные"
             text="Сформированные"
           />        
-        </SidebarNav>
+        </AsideNav>
         <CurrentUserInfo avatarAlt="AA" avatarSrc={null} userName="userName">
           <CurrentUserInfo.Item Icon={SaveIcon} text="Выйти" />
         </CurrentUserInfo>

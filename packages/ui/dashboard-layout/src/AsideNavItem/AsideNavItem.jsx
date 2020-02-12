@@ -41,11 +41,11 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'DashboardLayoutSidebarNavItem',
+    name: 'DashboardLayoutAsideNavItem',
   },
 );
 
-const DashboardLayoutSidebarNavItem = React.forwardRef(
+const DashboardLayoutAsideNavItem = React.forwardRef(
   (
     { className, component: Component, Icon, tooltipText, Text, ...props },
     ref,
@@ -79,11 +79,11 @@ const DashboardLayoutSidebarNavItem = React.forwardRef(
   },
 );
 
-DashboardLayoutSidebarNavItem.defaultProps = {
+DashboardLayoutAsideNavItem.defaultProps = {
   className: null,
 };
 
-DashboardLayoutSidebarNavItem.propTypes = {
+DashboardLayoutAsideNavItem.propTypes = {
   className: PropTypes.string,
   component: PropTypes.oneOfType([
     PropTypes.shape(),
@@ -95,4 +95,4 @@ DashboardLayoutSidebarNavItem.propTypes = {
   tooltipText: PropTypes.string.isRequired,
 };
 
-export default DashboardLayoutSidebarNavItem;
+export default DashboardLayoutAsideNavItem;

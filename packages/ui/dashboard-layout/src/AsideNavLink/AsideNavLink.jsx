@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { ButtonBase } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import SidebarNavItem from '../SidebarNavItem';
+import AsideNavItem from '../AsideNavItem';
 
 const useStyles = makeStyles(
   theme => ({
@@ -41,7 +41,7 @@ const DashboardLayoutSidebarNavLink = ({ className, Icon, text, ...props }) => {
 
   return (
     <li className={cn(classes.root, className)}>
-      <SidebarNavItem
+      <AsideNavItem
         tooltipText={text}
         activeClassName={classes.active}
         Icon={iconProps => (

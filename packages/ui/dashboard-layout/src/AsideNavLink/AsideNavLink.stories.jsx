@@ -2,35 +2,35 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { StaticRouter } from 'react-router-dom';
-import { OrganizationNotFoundIcon } from '../../../icons/src';
+import { OrganizationNotFoundIcon } from '@astral-frontend/icons';
 
 import Sidebar from '../Sidebar';
 import Layout from '../Layout';
-import SidebarNavLink from './SidebarNavLink';
-import SidebarNav from '../SidebarNav';
+import AsideNavLink from './AsideNavLink';
+import AsideNav from '../AsideNav';
 
-storiesOf('packages/dashboard-layout/SidebarNavLink', module).add(
+storiesOf('packages/dashboard-layout/AsideNavLink', module).add(
   'default',
   () => (
     <Layout>
       <Sidebar>
         <StaticRouter>
-          <SidebarNav location="/">
-            <SidebarNavLink
+          <AsideNav location="/">
+            <AsideNavLink
               key="home"
               to="/"
               exact
               Icon={OrganizationNotFoundIcon}
               text="Главная"
             />
-            <SidebarNavLink
+            <AsideNavLink
               key="home"
               to="/products"
               exact
               Icon={OrganizationNotFoundIcon}
               text="Продукты"
             />
-          </SidebarNav>
+          </AsideNav>
         </StaticRouter>
       </Sidebar>
     </Layout>

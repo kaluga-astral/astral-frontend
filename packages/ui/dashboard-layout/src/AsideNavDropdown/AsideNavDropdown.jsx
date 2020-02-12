@@ -6,9 +6,9 @@ import { withRouter, matchPath } from 'react-router-dom';
 import { Collapse, List } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import SidebarNavItem from '../SidebarNavItem';
-import SidebarNavDropdownToggler from './SidebarNavDropdownToggler';
-import SidebarNavDropdownContext from './SidebarNavDropdownContext';
+import AsideNavItem from '../AsideNavItem';
+import AsideNavDropdownToggler from './AsideNavDropdownToggler';
+import AsideNavDropdownContext from './AsideNavDropdownContext';
 
 const useStyles = makeStyles(
   theme => ({
@@ -31,11 +31,11 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'DashboardLayoutSidebarNavDropdown',
+    name: 'DashboardLayoutAsideNavDropdown',
   },
 );
 
-const DashboardLayoutSidebarNavDropdown = ({
+const DashboardLayoutAsideNavDropdown = ({
   className,
   Icon,
   text,
@@ -47,7 +47,7 @@ const DashboardLayoutSidebarNavDropdown = ({
   const id = React.useMemo(() => nanoid(), []);
   const [expanded, setExpanded] = React.useState(false);
   const { expandedNavDropdownId, setExpandedNavDropdownId } = React.useContext(
-    SidebarNavDropdownContext,
+    AsideNavDropdownContext,
   );
   const handleSidebarNavItemToggle = () => {
     const expandedByUserReason = expandedNavDropdownId === id;
@@ -75,7 +75,7 @@ const DashboardLayoutSidebarNavDropdown = ({
 
   return (
     <li className={cn(classes.root, className)}>
-      <SidebarNavItem
+      <AsideNavItem
         tooltipText={text}
         expanded={expanded}
         counterValue={counterValue}
@@ -85,7 +85,7 @@ const DashboardLayoutSidebarNavDropdown = ({
         Text={textProps => (
           <div className={cn(classes.text, textProps.className)}>{text}</div>
         )}
-        component={SidebarNavDropdownToggler}
+        component={AsideNavDropdownToggler}
         onToggle={handleSidebarNavItemToggle}
       />
       <Collapse
@@ -100,12 +100,12 @@ const DashboardLayoutSidebarNavDropdown = ({
   );
 };
 
-DashboardLayoutSidebarNavDropdown.defaultProps = {
+DashboardLayoutAsideNavDropdown.defaultProps = {
   className: null,
   counterValue: null,
 };
 
-DashboardLayoutSidebarNavDropdown.propTypes = {
+DashboardLayoutAsideNavDropdown.propTypes = {
   className: PropTypes.string,
   Icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
@@ -116,4 +116,4 @@ DashboardLayoutSidebarNavDropdown.propTypes = {
   }).isRequired,
 };
 
-export default withRouter(DashboardLayoutSidebarNavDropdown);
+export default withRouter(DashboardLayoutAsideNavDropdown);

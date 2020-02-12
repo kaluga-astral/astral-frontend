@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { List } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import DropdownContext from '../SidebarNavDropdown/SidebarNavDropdownContext';
+import DropdownContext from '../AsideNavDropdown/AsideNavDropdownContext';
 
 const useStyles = makeStyles(
   theme => ({

@@ -3,14 +3,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Sidebar from '../Sidebar';
 import Layout from '../Layout';
-import SidebarNavItemToggleButton from './SidebarNavItemToggleButton';
+import AsideNavItemToggleButton from './AsideNavItemToggleButton';
 
-storiesOf('packages/dashboard-layout/SidebarNavItemToggleButton', module).add(
+storiesOf('packages/dashboard-layout/AsideNavItemToggleButton', module).add(
   'default',
   () => (
     <Layout>
       <Sidebar>
-        <SidebarNavItemToggleButton />
+        <AsideNavItemToggleButton />
       </Sidebar>
     </Layout>
   ),

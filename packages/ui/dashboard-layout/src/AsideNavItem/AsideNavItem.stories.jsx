@@ -5,14 +5,14 @@ import { StaticRouter, NavLink } from 'react-router-dom';
 import { ButtonBase } from '@astral-frontend/components';
 import Sidebar from '../Sidebar';
 import Layout from '../Layout';
-import SidebarNavItem from './SidebarNavItem';
+import AsideNavItem from './AsideNavItem';
 
-storiesOf('packages/dashboard-layout/SidebarNavItem', module).add(
+storiesOf('packages/dashboard-layout/AsideNavItem', module).add(
   'default',
   () => (
     <Layout>
       <Sidebar>
-        <SidebarNavItem
+        <AsideNavItem
           component={() => (
             <ButtonBase
               component={() => (

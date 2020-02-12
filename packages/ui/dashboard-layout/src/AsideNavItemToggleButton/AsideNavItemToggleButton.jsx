@@ -52,11 +52,11 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'SidebarNavItemToggleButton',
+    name: 'AsideNavItemToggleButton',
   },
 );
 
-const SidebarNavItemToggleButton = ({ className }) => {
+const AsideNavItemToggleButton = ({ className }) => {
   const classes = useStyles();
   const { isSidebarOpen, setIsSidebarOpen } = React.useContext(LayoutContext);
   const { isTransitioning } = React.useContext(SidebarContext);
@@ -85,12 +85,12 @@ const SidebarNavItemToggleButton = ({ className }) => {
   );
 };
 
-SidebarNavItemToggleButton.defaultProps = {
+AsideNavItemToggleButton.defaultProps = {
   className: null,
 };
 
-SidebarNavItemToggleButton.propTypes = {
+AsideNavItemToggleButton.propTypes = {
   className: PropTypes.string,
 };
 
-export default SidebarNavItemToggleButton;
+export default AsideNavItemToggleButton;

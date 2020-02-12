@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { SvgIcon } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import SidebarNavItem from '../SidebarNavItem';
+import AsideNavItem from '../AsideNavItem';
 import { __Context as LayoutContext } from '../Layout';
 
 const useStyles = makeStyles(
@@ -51,7 +51,7 @@ const DashboardLayoutSidebarNavDropdownItem = ({
 
   return (
     <li className={cn(classes.root, className)}>
-      <SidebarNavItem
+      <AsideNavItem
         tooltipText={text}
         activeClassName={classes.active}
         className={cn(classes.navItem, {

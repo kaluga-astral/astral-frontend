@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SidebarNavDropdownContext = React.createContext({
+const AsideNavDropdownContext = React.createContext({
   expandedNavDropdownId: null,
   setExpandedNavDropdownId: null,
 });
 
-export default SidebarNavDropdownContext;
+export default AsideNavDropdownContext;

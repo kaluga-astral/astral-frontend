@@ -10,8 +10,8 @@ import { SaveIcon } from "@astral-frontend/icons";
 import Sidebar from "./Sidebar";
 import Product from "../Product";
 import ActionButton from "../ActionButton";
-import SidebarNav from "../SidebarNav";
-import SidebarNavDropdown from "../SidebarNavDropdown";
+import AsideNav from "../AsideNav";
+import AsideNavDropdown from "../AsideNavDropdown";
 import CurrentUserInfo from "../CurrentUserInfo";
 
 # Sidebar
@@ -32,14 +32,14 @@ import CurrentUserInfo from "../CurrentUserInfo";
           </ActionButton.Icon>
           <ActionButton.Text>Новое заявление</ActionButton.Text>
         </ActionButton>
-        <SidebarNav>
-          <SidebarNavDropdown
+        <AsideNav>
+          <AsideNavDropdown
             text="Документы"
             Icon={SaveIcon}
           >
-            <SidebarNavDropdown.Item text="Входящие" to="/documents/incoming" />
-          </SidebarNavDropdown>
-        </SidebarNav>
+            <AsideNavDropdown.Item text="Входящие" to="/documents/incoming" />
+          </AsideNavDropdown>
+        </AsideNav>
         <CurrentUserInfo avatarAlt="AA" avatarSrc={null} userName="userName">
           <CurrentUserInfo.Item Icon={SaveIcon} text="Выйти" />
         </CurrentUserInfo>
@@ -61,16 +61,16 @@ import CurrentUserInfo from "../CurrentUserInfo";
           </ActionButton.Icon>
           <ActionButton.Text>Новое заявление</ActionButton.Text>
         </ActionButton>
-        <SidebarNav>
-          <SidebarNavDropdown
+        <AsideNav>
+          <AsideNavDropdown
             text="Документы"
             Icon={SaveIcon}
           >
-            <SidebarNavDropdown.Item text="Входящие" to="/documents/incoming" />
-            <SidebarNavDropdown.Item text="Исходящие" to="/documents/outgoing" />
-            <SidebarNavDropdown.Item text="Черновики" to="/documents/drafts" />
-          </SidebarNavDropdown>
-        </SidebarNav>
+            <AsideNavDropdown.Item text="Входящие" to="/documents/incoming" />
+            <AsideNavDropdown.Item text="Исходящие" to="/documents/outgoing" />
+            <AsideNavDropdown.Item text="Черновики" to="/documents/drafts" />
+          </AsideNavDropdown>
+        </AsideNav>
         <CurrentUserInfo avatarAlt="AA" avatarSrc={null} userName="userName">
           <CurrentUserInfo.Item Icon={SaveIcon} text="Выйти" />
         </CurrentUserInfo>
