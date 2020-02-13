@@ -27,7 +27,7 @@ const useStyles = makeStyles(
       '&:hover': {
         borderColor: theme.palette.primary.main,
         backgroundColor: theme.palette.common.white,
-        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.08)',
+        boxShadow: theme.shadows[1],
       },
     },
   }),

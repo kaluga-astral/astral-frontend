@@ -6,7 +6,7 @@ import { makeStyles } from '@astral-frontend/styles';
 import Drawer from '../Drawer';
 
 const useStyles = makeStyles(
-  () => {
+  theme => {
     const getWidth = ({ size }) => {
       switch (size) {
         case 'small':
@@ -23,7 +23,7 @@ const useStyles = makeStyles(
     return {
       paper: {
         width: getWidth,
-        boxShadow: '0 5px 20px rgba(0, 0, 0, 0.1)',
+        boxShadow: theme.shadows[2],
         borderLeft: 'none',
       },
     };

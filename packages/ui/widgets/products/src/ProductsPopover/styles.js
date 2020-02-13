@@ -2,7 +2,7 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import { getPopoverArrowStyles } from '../utils';
 
-export default makeStyles(() => ({
+export default makeStyles(theme => ({
   arrow: getPopoverArrowStyles('#ffffff'),
   popoverContainer: {
     display: 'flex',
@@ -12,6 +12,6 @@ export default makeStyles(() => ({
     marginLeft: 6,
     minHeight: 80,
     borderRadius: 2,
-    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+    boxShadow: theme.shadows[2],
   },
 }));

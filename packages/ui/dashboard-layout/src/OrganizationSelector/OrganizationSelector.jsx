@@ -22,7 +22,7 @@ import OrganizationSelectorNotFoundPlaceholder from './OrganizationSelectorNotFo
 const rootRef = React.createRef();
 
 const useStyles = makeStyles(
-  () => ({
+  theme => ({
     root: {
       height: '100%',
       flexShrink: 0,
@@ -31,7 +31,7 @@ const useStyles = makeStyles(
       maxHeight: '325px',
       maxWidth: '300px',
       overflowY: 'auto',
-      boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.09)',
+      boxShadow: theme.shadows[2],
     },
     addButton: {
       width: '100%',

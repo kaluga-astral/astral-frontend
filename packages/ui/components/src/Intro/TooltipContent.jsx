@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     padding: '24px',
     color: theme.palette.text.primary,
-    boxShadow: '0px 16px 56px rgba(0, 0, 0, 0.1)',
+    boxShadow: theme.shadows[3],
     borderRadius: `${theme.shape.borderRadius}px`,
   },
   title: {
