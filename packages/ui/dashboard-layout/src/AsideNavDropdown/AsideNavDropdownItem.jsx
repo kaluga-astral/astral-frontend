@@ -33,19 +33,15 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'DashboardLayoutSidebarNavDropdownItem',
+    name: 'DashboardLayoutAsideNavDropdownItem',
   },
 );
 
-const DashboardLayoutSidebarNavDropdownItemComponent = React.forwardRef(
+const DashboardLayoutAsideNavDropdownItemComponent = React.forwardRef(
   (componentProps, ref) => <NavLink {...componentProps} ref={ref} />,
 );
 
-const DashboardLayoutSidebarNavDropdownItem = ({
-  className,
-  text,
-  ...props
-}) => {
+const DashboardLayoutAsideNavDropdownItem = ({ className, text, ...props }) => {
   const { isOpen } = React.useContext(AsideContext);
   const classes = useStyles();
 
@@ -67,20 +63,20 @@ const DashboardLayoutSidebarNavDropdownItem = ({
             </SvgIcon>
           )
         }
-        component={DashboardLayoutSidebarNavDropdownItemComponent}
+        component={DashboardLayoutAsideNavDropdownItemComponent}
         {...props}
       />
     </li>
   );
 };
 
-DashboardLayoutSidebarNavDropdownItem.defaultProps = {
+DashboardLayoutAsideNavDropdownItem.defaultProps = {
   className: null,
 };
 
-DashboardLayoutSidebarNavDropdownItem.propTypes = {
+DashboardLayoutAsideNavDropdownItem.propTypes = {
   className: PropTypes.string,
   text: PropTypes.string.isRequired,
 };
 
-export default DashboardLayoutSidebarNavDropdownItem;
+export default DashboardLayoutAsideNavDropdownItem;

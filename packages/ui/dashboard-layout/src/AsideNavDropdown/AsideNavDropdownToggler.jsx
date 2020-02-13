@@ -44,11 +44,11 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'DashboardLayoutSidebarNavDropdownToggler',
+    name: 'DashboardLayoutAsideNavDropdownToggler',
   },
 );
 
-const DashboardLayoutSidebarNavDropdownToggler = React.forwardRef(
+const DashboardLayoutAsideNavDropdownToggler = React.forwardRef(
   (props, ref) => {
     const {
       className,
@@ -87,12 +87,12 @@ const DashboardLayoutSidebarNavDropdownToggler = React.forwardRef(
   },
 );
 
-DashboardLayoutSidebarNavDropdownToggler.defaultProps = {
+DashboardLayoutAsideNavDropdownToggler.defaultProps = {
   className: null,
   counterValue: null,
 };
 
-DashboardLayoutSidebarNavDropdownToggler.propTypes = {
+DashboardLayoutAsideNavDropdownToggler.propTypes = {
   className: PropTypes.string,
   counterValue: PropTypes.string,
   expanded: PropTypes.bool.isRequired,
@@ -100,4 +100,4 @@ DashboardLayoutSidebarNavDropdownToggler.propTypes = {
   onToggle: PropTypes.func.isRequired,
 };
 
-export default DashboardLayoutSidebarNavDropdownToggler;
+export default DashboardLayoutAsideNavDropdownToggler;

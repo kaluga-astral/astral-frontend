@@ -24,11 +24,11 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'DashboardLayoutSidebarNav',
+    name: 'DashboardLayoutAsideNav',
   },
 );
 
-const DashboardLayoutSidebarNav = ({ className, children, ...props }) => {
+const DashboardLayoutAsideNav = ({ className, children, ...props }) => {
   const classes = useStyles();
   const [expandedNavDropdownId, setExpandedNavDropdownId] = useState(null);
 
@@ -43,13 +43,13 @@ const DashboardLayoutSidebarNav = ({ className, children, ...props }) => {
   );
 };
 
-DashboardLayoutSidebarNav.defaultProps = {
+DashboardLayoutAsideNav.defaultProps = {
   className: null,
 };
 
-DashboardLayoutSidebarNav.propTypes = {
+DashboardLayoutAsideNav.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
-export default DashboardLayoutSidebarNav;
+export default DashboardLayoutAsideNav;
