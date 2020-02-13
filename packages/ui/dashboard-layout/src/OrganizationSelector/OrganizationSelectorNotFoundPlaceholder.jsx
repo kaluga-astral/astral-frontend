@@ -43,7 +43,7 @@ export default withStyles(theme => ({
     width: '270px',
     height: '250px',
     background: '#FFFFFF',
-    boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.09)',
+    boxShadow: theme.shadows[2],
     borderRadius: '5px',
     fontFamily: 'Manrope',
     display: 'flex',

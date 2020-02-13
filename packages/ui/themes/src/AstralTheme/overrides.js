@@ -1,4 +1,5 @@
 import palette from './palette';
+import shadows from './shadows';
 
 export default {
   MuiStepper: {
@@ -8,7 +9,7 @@ export default {
   },
   MuiPaper: {
     root: {
-      boxShadow: 'none',
+      boxShadow: shadows[0],
     },
   },
   MuiTableCell: {
