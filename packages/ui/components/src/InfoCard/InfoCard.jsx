@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
       borderColor: 'transparent',
       boxShadow: theme.shadows[2],
     },
-    '&:hover $heading': {
+    '&:hover $name': {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
     },
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
       fill: `${theme.palette.common.white}10`,
     },
   },
-  heading: {
+  name: {
     position: 'relative',
     padding: theme.spacing(5),
     backgroundColor: theme.palette.primary.light,
@@ -55,13 +55,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const InfoCard = ({ className, heading, description, Icon, ...props }) => {
+const InfoCard = ({ className, name, description, Icon, ...props }) => {
   const classes = useStyles();
 
   return (
     <div className={cn(classes.root, className)} {...props}>
-      <div className={classes.heading}>
-        {heading}
+      <div className={classes.name}>
+        {name}
         {Icon && <Icon className={classes.icon} />}
       </div>
       <div className={classes.description}>{description}</div>
@@ -72,7 +72,7 @@ const InfoCard = ({ className, heading, description, Icon, ...props }) => {
 InfoCard.defaultProps = {
   className: null,
   description: null,
-  heading: null,
+  name: null,
   Icon: null,
 };
 
@@ -83,11 +83,7 @@ InfoCard.propTypes = {
     PropTypes.node,
     PropTypes.string,
   ]),
-  heading: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.node,
-    PropTypes.string,
-  ]),
+  name: PropTypes.oneOfType([PropTypes.func, PropTypes.node, PropTypes.string]),
   Icon: PropTypes.oneOfType([PropTypes.func, PropTypes.node, PropTypes.string]),
 };
 

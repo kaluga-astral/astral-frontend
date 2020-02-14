@@ -51,15 +51,15 @@ const useStyles = makeStyles(
       fill: theme.palette.common.white,
     },
   }),
-  'Dropover',
+  { name: 'DropOverlay' },
 );
 
-const Dropover = ({ className, Icon, open, ...props }) => {
+const DropOverlay = ({ className, Icon, open, rootProps, ...props }) => {
   const classes = useStyles();
 
   return (
     open && (
-      <div className={cn(classes.root, className)} {...props}>
+      <div className={cn(classes.root, className)} {...rootProps} {...props}>
         <div className={classes.iconWrapper}>
           <Icon className={classes.icon} />
         </div>
@@ -68,15 +68,16 @@ const Dropover = ({ className, Icon, open, ...props }) => {
   );
 };
 
-Dropover.defaultProps = {
+DropOverlay.defaultProps = {
   Icon: DownloadIcon,
   className: null,
 };
 
-Dropover.propTypes = {
+DropOverlay.propTypes = {
   Icon: PropTypes.func,
   className: PropTypes.string,
   open: PropTypes.bool.isRequired,
+  rootProps: PropTypes.shape({}).isRequired,
 };
 
-export default Dropover;
+export default DropOverlay;
