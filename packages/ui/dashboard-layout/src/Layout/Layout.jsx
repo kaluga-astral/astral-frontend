@@ -15,7 +15,7 @@ const useStyles = makeStyles(
   { name: 'DashboardLayout' },
 );
 
-const DashboardLayout = ({ className, children }) => {
+const DashboardLayout = ({ className, ...props }) => {
   const classes = useStyles();
   const [currentMainModalKey, setCurrentMainModalKey] = React.useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
@@ -29,7 +29,7 @@ const DashboardLayout = ({ className, children }) => {
         setIsSidebarOpen,
       }}
     >
-      <div className={cn(classes.root, className)}>{children}</div>
+      <div {...props} className={cn(classes.root, className)} />
     </DashboardLayoutContext.Provider>
   );
 };
