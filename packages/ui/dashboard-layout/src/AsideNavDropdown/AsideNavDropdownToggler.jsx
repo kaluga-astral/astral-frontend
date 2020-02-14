@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { ButtonBase } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import { __Context as LayoutContext } from '../Layout';
-import { __Context as SidebarContext } from '../Sidebar';
+import { __Context as AsideContext } from '../Aside';
 
 const useStyles = makeStyles(
   theme => ({
@@ -45,11 +44,11 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'DashboardLayoutSidebarNavDropdownToggler',
+    name: 'DashboardLayoutAsideNavDropdownToggler',
   },
 );
 
-const DashboardLayoutSidebarNavDropdownToggler = React.forwardRef(
+const DashboardLayoutAsideNavDropdownToggler = React.forwardRef(
   (props, ref) => {
     const {
       className,
@@ -60,9 +59,8 @@ const DashboardLayoutSidebarNavDropdownToggler = React.forwardRef(
       ...other
     } = props;
     const classes = useStyles(expanded);
-    const { isSidebarOpen } = React.useContext(LayoutContext);
-    const { isTransitioning } = React.useContext(SidebarContext);
-    const isTooglerContentVisible = !isTransitioning && isSidebarOpen;
+    const { isTransitioning, isOpen } = React.useContext(AsideContext);
+    const isTooglerContentVisible = !isTransitioning && isOpen;
 
     return (
       <ButtonBase
@@ -89,12 +87,12 @@ const DashboardLayoutSidebarNavDropdownToggler = React.forwardRef(
   },
 );
 
-DashboardLayoutSidebarNavDropdownToggler.defaultProps = {
+DashboardLayoutAsideNavDropdownToggler.defaultProps = {
   className: null,
   counterValue: null,
 };
 
-DashboardLayoutSidebarNavDropdownToggler.propTypes = {
+DashboardLayoutAsideNavDropdownToggler.propTypes = {
   className: PropTypes.string,
   counterValue: PropTypes.string,
   expanded: PropTypes.bool.isRequired,
@@ -102,4 +100,4 @@ DashboardLayoutSidebarNavDropdownToggler.propTypes = {
   onToggle: PropTypes.func.isRequired,
 };
 
-export default DashboardLayoutSidebarNavDropdownToggler;
+export default DashboardLayoutAsideNavDropdownToggler;

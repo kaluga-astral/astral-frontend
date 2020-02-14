@@ -17,14 +17,11 @@ const useStyles = makeStyles(
 
 const DashboardLayout = ({ className, ...props }) => {
   const classes = useStyles();
-  const [currentMainModalKey, setCurrentMainModalKey] = React.useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
 
   return (
     <DashboardLayoutContext.Provider
       value={{
-        currentMainModalKey,
-        setCurrentMainModalKey,
         isSidebarOpen,
         setIsSidebarOpen,
       }}

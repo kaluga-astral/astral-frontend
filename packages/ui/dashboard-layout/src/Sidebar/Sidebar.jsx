@@ -5,8 +5,8 @@ import { makeStyles } from '@astral-frontend/styles';
 import { FlexContainer } from '@astral-frontend/components';
 
 import Aside from '../Aside';
+import AsideContext from '../Aside/Context';
 import { __Context as LayoutContext } from '../Layout';
-import SidebarContext from './Context';
 
 const useStyles = makeStyles(
   theme => ({
@@ -47,7 +47,7 @@ const DashboardLayoutSidebar = ({ className, children }) => {
   }, []);
 
   return (
-    <SidebarContext.Provider value={{ isTransitioning, isSidebarOpen }}>
+    <AsideContext.Provider value={{ isTransitioning, isOpen: isSidebarOpen }}>
       <FlexContainer
         ref={asideRef}
         component={Aside}
@@ -59,7 +59,7 @@ const DashboardLayoutSidebar = ({ className, children }) => {
       >
         {children}
       </FlexContainer>
-    </SidebarContext.Provider>
+    </AsideContext.Provider>
   );
 };
 

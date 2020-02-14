@@ -6,7 +6,7 @@ import { SvgIcon } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import AsideNavItem from '../AsideNavItem';
-import { __Context as LayoutContext } from '../Layout';
+import { __Context as AsideContext } from '../Aside';
 
 const useStyles = makeStyles(
   theme => ({
@@ -33,20 +33,16 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'DashboardLayoutSidebarNavDropdownItem',
+    name: 'DashboardLayoutAsideNavDropdownItem',
   },
 );
 
-const DashboardLayoutSidebarNavDropdownItemComponent = React.forwardRef(
+const DashboardLayoutAsideNavDropdownItemComponent = React.forwardRef(
   (componentProps, ref) => <NavLink {...componentProps} ref={ref} />,
 );
 
-const DashboardLayoutSidebarNavDropdownItem = ({
-  className,
-  text,
-  ...props
-}) => {
-  const { isSidebarOpen } = React.useContext(LayoutContext);
+const DashboardLayoutAsideNavDropdownItem = ({ className, text, ...props }) => {
+  const { isOpen } = React.useContext(AsideContext);
   const classes = useStyles();
 
   return (
@@ -55,32 +51,32 @@ const DashboardLayoutSidebarNavDropdownItem = ({
         tooltipText={text}
         activeClassName={classes.active}
         className={cn(classes.navItem, {
-          [classes.collapsedItem]: !isSidebarOpen,
+          [classes.collapsedItem]: !isOpen,
         })}
         Text={textProps => (
           <div className={cn(classes.text, textProps.className)}>{text}</div>
         )}
         Icon={() =>
-          !isSidebarOpen && (
+          !isOpen && (
             <SvgIcon viewBox="0 0 4 4" className={classes.icon}>
               <circle cx="2" cy="2" r="2" fill="currentColor" />
             </SvgIcon>
           )
         }
-        component={DashboardLayoutSidebarNavDropdownItemComponent}
+        component={DashboardLayoutAsideNavDropdownItemComponent}
         {...props}
       />
     </li>
   );
 };
 
-DashboardLayoutSidebarNavDropdownItem.defaultProps = {
+DashboardLayoutAsideNavDropdownItem.defaultProps = {
   className: null,
 };
 
-DashboardLayoutSidebarNavDropdownItem.propTypes = {
+DashboardLayoutAsideNavDropdownItem.propTypes = {
   className: PropTypes.string,
   text: PropTypes.string.isRequired,
 };
 
-export default DashboardLayoutSidebarNavDropdownItem;
+export default DashboardLayoutAsideNavDropdownItem;

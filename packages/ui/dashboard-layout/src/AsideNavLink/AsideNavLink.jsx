@@ -22,11 +22,11 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'DashboardLayoutSidebarNavLink',
+    name: 'DashboardLayoutAsideNavLink',
   },
 );
 
-const SidebarNavItemComponent = React.forwardRef((props, ref) => (
+const AsideNavItemComponent = React.forwardRef((props, ref) => (
   <ButtonBase
     {...props}
     ref={ref}
@@ -36,7 +36,7 @@ const SidebarNavItemComponent = React.forwardRef((props, ref) => (
   />
 ));
 
-const DashboardLayoutSidebarNavLink = ({ className, Icon, text, ...props }) => {
+const DashboardLayoutAsideNavLink = ({ className, Icon, text, ...props }) => {
   const classes = useStyles();
 
   return (
@@ -50,21 +50,21 @@ const DashboardLayoutSidebarNavLink = ({ className, Icon, text, ...props }) => {
         Text={textProps => (
           <div className={cn(classes.text, textProps.className)}>{text}</div>
         )}
-        component={SidebarNavItemComponent}
+        component={AsideNavItemComponent}
         {...props}
       />
     </li>
   );
 };
 
-DashboardLayoutSidebarNavLink.defaultProps = {
+DashboardLayoutAsideNavLink.defaultProps = {
   className: null,
 };
 
-DashboardLayoutSidebarNavLink.propTypes = {
+DashboardLayoutAsideNavLink.propTypes = {
   className: PropTypes.string,
   Icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
 };
 
-export default DashboardLayoutSidebarNavLink;
+export default DashboardLayoutAsideNavLink;

@@ -4,7 +4,7 @@ import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
 import { Tooltip } from '@astral-frontend/components';
-import { __Context as LayoutContext } from '../Layout';
+import { __Context as AsideContext } from '../Aside';
 
 const useStyles = makeStyles(
   theme => ({
@@ -51,23 +51,23 @@ const DashboardLayoutAsideNavItem = React.forwardRef(
     ref,
   ) => {
     const classes = useStyles();
-    const { isSidebarOpen } = React.useContext(LayoutContext);
+    const { isOpen } = React.useContext(AsideContext);
     const Item = () => (
       <Component ref={ref} className={cn(classes.root, className)} {...props}>
         {Icon && (
           <div
             className={cn(classes.icon, {
-              [classes.collapsedIcon]: !isSidebarOpen,
+              [classes.collapsedIcon]: !isOpen,
             })}
           >
             <Icon />
           </div>
         )}
-        {isSidebarOpen && <Text className={classes.text} />}
+        {isOpen && <Text className={classes.text} />}
       </Component>
     );
 
-    if (isSidebarOpen) {
+    if (isOpen) {
       return <Item />;
     }
 

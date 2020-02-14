@@ -6,7 +6,7 @@ import { ButtonBase } from '@astral-frontend/components';
 import { CollapseIcon } from '@astral-frontend/icons';
 
 import { __Context as LayoutContext } from '../Layout';
-import { __Context as SidebarContext } from '../Sidebar';
+import { __Context as AsideContext } from '../Aside';
 
 const useStyles = makeStyles(
   theme => ({
@@ -58,9 +58,9 @@ const useStyles = makeStyles(
 
 const AsideNavItemToggleButton = ({ className }) => {
   const classes = useStyles();
-  const { isSidebarOpen, setIsSidebarOpen } = React.useContext(LayoutContext);
-  const { isTransitioning } = React.useContext(SidebarContext);
-  const isToggleButtonTextVisible = isSidebarOpen && !isTransitioning;
+  const { setIsSidebarOpen } = React.useContext(LayoutContext);
+  const { isTransitioning, isOpen } = React.useContext(AsideContext);
+  const isToggleButtonTextVisible = isOpen && !isTransitioning;
 
   const toogleSidebarHandleClick = () => {
     setIsSidebarOpen(prevValue => !prevValue);
@@ -73,7 +73,7 @@ const AsideNavItemToggleButton = ({ className }) => {
     >
       <div
         className={cn(classes.icon, {
-          [classes.collapsedIcon]: !isSidebarOpen,
+          [classes.collapsedIcon]: !isOpen,
         })}
       >
         <CollapseIcon />
