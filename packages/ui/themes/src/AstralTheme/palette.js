@@ -2,6 +2,10 @@ export default {
   background: {
     default: '#f2f5fa',
   },
+  common: {
+    black: '#000000',
+    white: '#ffffff',
+  },
   gray: {
     100: 'rgba(29, 63, 102, 0.09)',
     300: 'rgba(29, 63, 102, 0.24)',
