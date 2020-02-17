@@ -77,7 +77,14 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ['url-loader'], // хз почему file-loader не работает
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 2048,
+            },
+          },
+        ],
       },
       {
         test: /\.(pdf)$/,
