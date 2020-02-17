@@ -82,6 +82,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 2048,
+              name: 'fonts/[name].[hash].[ext]',
             },
           },
         ],
