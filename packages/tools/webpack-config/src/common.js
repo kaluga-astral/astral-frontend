@@ -73,21 +73,21 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif)$/,
-        use: ['thread-loader', 'image-webpack-loader'],
+        use: ['image-webpack-loader'],
         enforce: 'pre',
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ['thread-loader', 'url-loader'], // хз почему file-loader не работает
+        use: ['url-loader'], // хз почему file-loader не работает
       },
       {
         test: /\.(pdf)$/,
-        use: ['thread-loader', 'file-loader?minetype=application/pdf'],
+        use: ['file-loader?minetype=application/pdf'],
       },
       {
         test: /\.(graphql|gql)$/,
         exclude: /node_modules/,
-        loader: ['thread-loader', 'graphql-tag/loader'],
+        loader: ['graphql-tag/loader'],
       },
     ],
   },
