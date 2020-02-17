@@ -50,7 +50,6 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
-          'thread-loader',
           {
             loader: 'url-loader',
             options: {
