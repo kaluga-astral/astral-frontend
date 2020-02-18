@@ -1,10 +1,8 @@
 const { Issuer, custom } = require('openid-client');
 
-const { getOidcClientConfig } = require('../utils/oidc');
-
 const { OIDC_CLOCK_SKEW } = require('../config/oidc');
 
-const connectIdentity = async oidcParams => {
+const connectIdentity = async (oidcParams, oidcClientConfig) => {
   const { identityUrl } = oidcParams;
 
   try {
@@ -12,7 +10,7 @@ const connectIdentity = async oidcParams => {
 
     console.log('Discovered issuer', issuer);
 
-    const client = new issuer.Client(getOidcClientConfig(oidcParams));
+    const client = new issuer.Client(oidcClientConfig);
 
     client[custom.clock_tolerance] = OIDC_CLOCK_SKEW;
 
