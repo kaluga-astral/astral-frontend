@@ -16,10 +16,10 @@ const OIDC_PARAMS = {
   identityUrl: 'https://identity.astral-dev.ru',
   clientId: 'local_code_flow',
   clientSecret: 'secret',
-  redirectUri: 'http://localhost:3000/signIn',
+  redirectUri: 'http://localhost:3000',
   postLogoutRedirectUri: 'http://localhost:3000',
-  scope: 'profile',
-  refreshTokenMaxAge: 600,
+  scope: 'profile email',
+  refreshTokenMaxAge: 2592000,
 };
 
 const SESSION_PARAMS = {

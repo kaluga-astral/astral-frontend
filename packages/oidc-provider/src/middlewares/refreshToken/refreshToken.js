@@ -1,5 +1,9 @@
 const { authStrategyService } = require('../../services/authStrategy');
 
+const {
+  saveDesiredReferenceInCookie,
+} = require('../saveDesiredReference/utils');
+
 const { isActsTokenId } = require('./utils');
 
 const refreshTokenMiddleware = () => (req, res, next) => {
@@ -11,7 +15,24 @@ const refreshTokenMiddleware = () => (req, res, next) => {
     return next();
   }
 
-  authStrategyService.authenticate('refreshToken')(req, res, next);
+  const refreshTokenCb = async err => {
+    // если произошла ошибка, значит refresh_token недействителен
+    // после logout - request попадет в oidcAuthStrategy
+    if (err) {
+      await req.logout();
+
+      // также будет необходимо вернуться на текущий route
+      saveDesiredReferenceInCookie(req, res);
+    }
+
+    next();
+  };
+
+  authStrategyService.authenticate('refreshToken', refreshTokenCb)(
+    req,
+    res,
+    next,
+  );
 };
 
 module.exports = refreshTokenMiddleware;
