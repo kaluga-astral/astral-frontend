@@ -2,7 +2,7 @@ const validator = require('@hapi/joi');
 
 const SESSION_ENTRY_PARAMS_VALIDATION_SCHEME = {
   sessionSecret: validator.string().required(),
-  allowDomains: validator.string(),
+  allowSubdomains: validator.string(),
   allowOrigin: validator.string(),
 };
 
