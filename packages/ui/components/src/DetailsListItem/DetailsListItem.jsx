@@ -8,17 +8,19 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       display: 'flex',
+      alignItems: 'baseline',
       fontSize: theme.typography.pxToRem(14),
     },
     title: {
       color: theme.palette.gray[600],
       marginRight: theme.spacing(1),
+      whiteSpace: 'nowrap',
     },
     value: {
       display: 'inline-block',
       color: theme.palette.gray[800],
       overflow: 'hidden',
-      whiteSpace: 'nowrap',
+      wordBreak: 'break-word',
       textOverflow: 'ellipsis',
     },
   }),
