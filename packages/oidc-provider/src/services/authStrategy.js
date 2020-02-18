@@ -4,6 +4,11 @@ const { Strategy: OidcStrategy } = require('openid-client');
 
 const { updateSessionExpires } = require('../utils/cookie');
 
+const {
+  AUTH_STRATEGY_NAME,
+  REFRESH_TOKEN_STRATEGY_NAME,
+} = require('../config/authStrategies');
+
 authStrategyService.serializeUser((user, done) => {
   done(null, user);
 });
@@ -33,7 +38,7 @@ const registerOidcAuthStrategy = (
     },
   );
 
-  authStrategyService.use('oidcAuth', oidcStrategy);
+  authStrategyService.use(AUTH_STRATEGY_NAME, oidcStrategy);
 };
 
 const registerRefreshTokenStrategy = (oidcClient, refreshTokenMaxAge) => {
@@ -53,7 +58,7 @@ const registerRefreshTokenStrategy = (oidcClient, refreshTokenMaxAge) => {
     }
   });
 
-  authStrategyService.use('refreshToken', refreshTokenStrategy);
+  authStrategyService.use(REFRESH_TOKEN_STRATEGY_NAME, refreshTokenStrategy);
 };
 
 module.exports = {

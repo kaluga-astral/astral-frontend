@@ -3,8 +3,9 @@ const { authStrategyService } = require('../../services/authStrategy');
 const {
   saveDesiredReferenceInCookie,
 } = require('../saveDesiredReference/utils');
-
 const { isActsTokenId } = require('./utils');
+
+const { REFRESH_TOKEN_STRATEGY_NAME } = require('../../config/authStrategies');
 
 const refreshTokenMiddleware = () => (req, res, next) => {
   if (!req.isAuthenticated()) return next();
@@ -28,7 +29,7 @@ const refreshTokenMiddleware = () => (req, res, next) => {
     next();
   };
 
-  authStrategyService.authenticate('refreshToken', refreshTokenCb)(
+  authStrategyService.authenticate(REFRESH_TOKEN_STRATEGY_NAME, refreshTokenCb)(
     req,
     res,
     next,
