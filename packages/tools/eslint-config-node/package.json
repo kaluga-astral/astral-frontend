@@ -1,7 +1,6 @@
 {
   "name": "@astral-frontend/eslint-config-node",
   "version": "0.2.1",
-  "private": true,
   "main": "./index.js",
   "scripts": {},
   "dependencies": {
