@@ -15,7 +15,7 @@ const {
 const { connectIdentity } = require('./services/oidc');
 
 const { validateInitializeEntryParam } = require('./utils/validation');
-const { generateOidcSessionKey } = require('./utils/oidc');
+const { generateOidcSessionKey, getOidcClientConfig } = require('./utils/oidc');
 
 const initializeOidcProvider = async entryParams => {
   // выдаст ошибку и завершит процесс, если какие-либо из входных параметров заданы неверно
@@ -23,9 +23,13 @@ const initializeOidcProvider = async entryParams => {
 
   const { app, store, oidcParams, sessionParams } = entryParams;
   const oidcSessionKey = generateOidcSessionKey(oidcParams.clientId);
+  const oidcClientConfig = getOidcClientConfig(oidcParams);
   const successAuthRedirectRoute = new URL(oidcParams.redirectUri).pathname;
 
-  const { client: oidcClient } = await connectIdentity(oidcParams);
+  const { client: oidcClient } = await connectIdentity(
+    oidcParams,
+    oidcClientConfig,
+  );
 
   const oidcProtected = createOidcProtectedMiddleware({
     oidcClient,
@@ -37,8 +41,8 @@ const initializeOidcProvider = async entryParams => {
   const getProfile = createGetProfileMiddleware(oidcClient);
 
   // регистрация passport стратегий
-  registerOidcAuthStrategy(oidcClient, oidcSessionKey);
-  registerRefreshTokenStrategy(oidcClient);
+  registerOidcAuthStrategy(oidcClient, oidcClientConfig, oidcSessionKey);
+  registerRefreshTokenStrategy(oidcClient, oidcParams.refreshTokenMaxAge);
 
   app.use(createSession({ store, ...sessionParams }));
 

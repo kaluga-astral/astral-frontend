@@ -18,7 +18,13 @@ const useStyles = makeStyles(
   { name: 'PDFViewer' },
 );
 
-const PDFViewer = ({ loading: exteralLoading, className, ...props }) => {
+const PDFViewer = ({
+  loading: exteralLoading,
+  className,
+  component: Component,
+  data,
+  ...props
+}) => {
   const classes = useStyles();
   const [internalLoading, setInternalLoading] = React.useState(true);
   const handleLoad = () => {
@@ -27,26 +33,30 @@ const PDFViewer = ({ loading: exteralLoading, className, ...props }) => {
   const loading = exteralLoading && internalLoading;
 
   return (
-    <div className={cn(classes.root, className)}>
+    <Component className={cn(classes.root, className)} {...props}>
       {loading && <Placeholder state="loading" />}
       <object
-        {...props}
         className={classes.object}
         type="application/pdf"
         aria-label="Просмотр PDF"
+        data={data}
         onLoad={handleLoad}
       />
-    </div>
+    </Component>
   );
 };
 
 PDFViewer.defaultProps = {
   className: null,
   loading: false,
+  component: 'div',
 };
 
 PDFViewer.propTypes = {
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   className: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  data: PropTypes.any.isRequired,
   loading: PropTypes.bool,
 };
 

@@ -4,6 +4,11 @@ const { Strategy: OidcStrategy } = require('openid-client');
 
 const { updateSessionExpires } = require('../utils/cookie');
 
+const {
+  AUTH_STRATEGY_NAME,
+  REFRESH_TOKEN_STRATEGY_NAME,
+} = require('../config/authStrategies');
+
 authStrategyService.serializeUser((user, done) => {
   done(null, user);
 });
@@ -12,10 +17,15 @@ authStrategyService.deserializeUser((user, done) => {
   done(null, user);
 });
 
-const registerOidcAuthStrategy = (oidcClient, oidcSessionKey) => {
+const registerOidcAuthStrategy = (
+  oidcClient,
+  oidcClientConfig,
+  oidcSessionKey,
+) => {
   const oidcStrategy = new OidcStrategy(
     {
       client: oidcClient,
+      params: oidcClientConfig,
       sessionKey: oidcSessionKey,
     },
     (tokenSet, userInfo, done) => {
@@ -28,10 +38,10 @@ const registerOidcAuthStrategy = (oidcClient, oidcSessionKey) => {
     },
   );
 
-  authStrategyService.use('oidcAuth', oidcStrategy);
+  authStrategyService.use(AUTH_STRATEGY_NAME, oidcStrategy);
 };
 
-const registerRefreshTokenStrategy = oidcClient => {
+const registerRefreshTokenStrategy = (oidcClient, refreshTokenMaxAge) => {
   const refreshTokenStrategy = new CustomStrategy(async (req, done) => {
     const setTokenInfo = req.user.tokenSet;
 
@@ -42,17 +52,13 @@ const registerRefreshTokenStrategy = oidcClient => {
         done(null, { ...req.user, tokenSet: newTokenSet });
       });
 
-      updateSessionExpires(req);
+      updateSessionExpires(req, refreshTokenMaxAge);
     } catch (err) {
-      // если произошла ошибка, значит refresh_token недействителен
-      // после logout - request попадет в oidcAuthStrategy
-      await req.logout();
-
-      done(null);
+      done(err);
     }
   });
 
-  authStrategyService.use('refreshToken', refreshTokenStrategy);
+  authStrategyService.use(REFRESH_TOKEN_STRATEGY_NAME, refreshTokenStrategy);
 };
 
 module.exports = {
