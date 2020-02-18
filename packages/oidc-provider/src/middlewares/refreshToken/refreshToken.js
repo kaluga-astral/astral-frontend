@@ -21,6 +21,7 @@ const refreshTokenMiddleware = () => (req, res, next) => {
     if (err) {
       await req.logout();
 
+      // также будет необходимо вернуться на текущий route
       saveDesiredReferenceInCookie(req, res);
     }
 
