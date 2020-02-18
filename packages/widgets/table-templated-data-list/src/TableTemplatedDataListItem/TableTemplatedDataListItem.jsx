@@ -99,7 +99,7 @@ TableTemplatedDataListItem.defaultProps = {
 };
 
 TableTemplatedDataListItem.propTypes = {
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})]),
   className: PropTypes.string,
   disableGutters: PropTypes.bool,
   button: PropTypes.bool,
