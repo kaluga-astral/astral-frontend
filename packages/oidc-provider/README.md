@@ -39,7 +39,7 @@ initializeOidcProvider возвращает Promise, необходимо дож
 
 * ```sessionParams```: ```required <Object>```
     * ```sessionSecret```: ```required <String>```. Любая строка. Необходима для инициализации сессии;
-    * ```allowDomains```: ```<String>```. если необходима поддержка поддоменов, то необходимо указать этот параметр (пример, ```.astral.ru```);
+    * ```allowSubdomains```: ```<String>```. если необходима поддержка поддоменов, то необходимо указать этот параметр (пример, ```.astral.ru```);
     * ```allowOrigin```: ```<String>```. если необходима поддержка поддоменов, то необходимо указать эту переменную (пример, https://astral.ru). Она будет подставлена в заголовок Access-control-allow-origin при ответе OIDC Provider;
 
 #### Выходные значения initializeOidcProvider
