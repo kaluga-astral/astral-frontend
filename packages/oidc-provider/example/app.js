@@ -19,7 +19,7 @@ const OIDC_PARAMS = {
   redirectUri: 'http://localhost:3000',
   postLogoutRedirectUri: 'http://localhost:3000',
   scope: 'profile email',
-  refreshTokenMaxAge: 600,
+  refreshTokenMaxAge: 2592000,
 };
 
 const SESSION_PARAMS = {
