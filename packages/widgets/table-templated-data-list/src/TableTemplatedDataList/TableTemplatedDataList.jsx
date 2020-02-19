@@ -25,8 +25,8 @@ const useStyles = makeStyles(
       display: 'grid',
       gridGap: theme.spacing(2),
       gridTemplateColumns: props => {
-        return `0.3fr ${props.columns
-          .map(column => `${column.fr || '1'}fr`)
+        return `50px ${props.columns
+          .map(column => `minmax(0, ${column.fr || '1'}fr)`)
           .join(' ')}`;
       },
     },
