@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Popper,
-  Grow,
+  Collapse,
   Paper,
   ClickAwayListener,
   MenuList,
@@ -39,6 +38,12 @@ const useStyles = makeStyles(
       bottom: 0,
       zIndex: 1000,
       backgroundColor: 'white',
+    },
+    collapse: {
+      position: 'absolute',
+      top: '100%',
+      right: 0,
+      zIndex: theme.zIndex.appBar,
     },
   }),
   { name: 'DashboardLayoutOrganizationSelector' },
@@ -96,23 +101,16 @@ const DashboardLayoutOrganizationSelector = ({
     >
       <ContentState loading={loading} error={error}>
         <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-          <CurrentOrganization
-            name={currentOrganization && currentOrganization.name}
-            onClick={handleTogglerButtonClick}
-          />
-        </ClickAwayListener>
-        <Popper
-          transition
-          open={open}
-          anchorEl={rootRef.current}
-          style={{ zIndex: 1300 }}
-        >
-          {({ TransitionProps }) => (
-            <Grow {...TransitionProps}>
+          <FlexContainer direction="column" style={{ position: 'relative' }}>
+            <CurrentOrganization
+              name={currentOrganization && currentOrganization.name}
+              onClick={handleTogglerButtonClick}
+            />
+            <Collapse in={open} className={classes.collapse}>
               <Paper className={classes.popperPaper}>{renderChildren()}</Paper>
-            </Grow>
-          )}
-        </Popper>
+            </Collapse>
+          </FlexContainer>
+        </ClickAwayListener>
       </ContentState>
     </FlexContainer>
   );
