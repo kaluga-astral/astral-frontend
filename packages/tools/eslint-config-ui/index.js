@@ -4,9 +4,7 @@ module.exports = {
   env: {
     browser: true,
     jest: true,
-    'react-percy/globals': true,
   },
-  plugins: ['react-percy'],
   rules: {
     'jsx-a11y/anchor-is-valid': [
       'error',
