@@ -41,7 +41,7 @@ const registerOidcAuthStrategy = (
   authStrategyService.use(AUTH_STRATEGY_NAME, oidcStrategy);
 };
 
-const registerRefreshTokenStrategy = (oidcClient, refreshTokenMaxAge) => {
+const registerRefreshTokenStrategy = (oidcClient, { refreshTokenMaxAge }) => {
   const refreshTokenStrategy = new CustomStrategy(async (req, done) => {
     const setTokenInfo = req.user.tokenSet;
 
