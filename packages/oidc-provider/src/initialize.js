@@ -37,7 +37,10 @@ const initializeOidcProvider = async entryParams => {
     oidcSessionKey,
     sessionParams,
   });
-  const logout = createLogoutMiddleware(oidcClient);
+  const logout = createLogoutMiddleware(
+    oidcClient,
+    oidcParams.postLogoutRedirectUri,
+  );
   const getProfile = createGetProfileMiddleware(oidcClient);
 
   // регистрация passport стратегий

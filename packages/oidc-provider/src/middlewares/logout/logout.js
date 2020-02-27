@@ -1,4 +1,7 @@
-const logoutMiddleware = oidcClient => async (req, res) => {
+const logoutMiddleware = (oidcClient, postLogoutRedirectUri) => async (
+  req,
+  res,
+) => {
   const idToken = req.user.tokenSet.id_token;
 
   req.logout();
@@ -8,6 +11,7 @@ const logoutMiddleware = oidcClient => async (req, res) => {
   res.status(200).send({
     redirectUrl: oidcClient.endSessionUrl({
       id_token_hint: idToken,
+      post_logout_redirect_uri: postLogoutRedirectUri,
     }),
   });
 };
