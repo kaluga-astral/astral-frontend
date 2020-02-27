@@ -1,4 +1,4 @@
-const logoutMiddleware = (oidcClient, postLogoutRedirectUri) => async (
+const logoutMiddleware = (oidcClient, { postLogoutRedirectUri }) => async (
   req,
   res,
 ) => {
