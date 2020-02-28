@@ -1,4 +1,4 @@
-const mustBeINN = (value) => {
+const mustBeIGK = value => {
   if (!/^(\d{20,25})$/.test(value)) {
     return 'Неверный идентификатор гос. контракта. Введите корректный ИГК.';
   }
@@ -6,4 +6,4 @@ const mustBeINN = (value) => {
   return null;
 };
 
-export default mustBeINN;
+export default mustBeIGK;
