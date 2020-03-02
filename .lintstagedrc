@@ -1,3 +1,0 @@
-{
-  "*.{js,jsx}": ["prettier --write", "eslint --fix", "cross-env NODE_ENV=test jest --bail --findRelatedTests", "git add"]
-}

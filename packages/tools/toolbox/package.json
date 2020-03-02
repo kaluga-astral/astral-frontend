@@ -8,11 +8,11 @@
   "scripts": {},
   "dependencies": {
     "@astral-frontend/webpack-config": "^0.1.0",
-    "chalk": "^2.4.2",
-    "react-dev-utils": "^8.0.0",
-    "webpack": "^4.29.6",
-    "webpack-dev-middleware": "^3.6.2",
-    "webpack-dev-server": "^3.2.1"
+    "chalk": "^3.0.0",
+    "react-dev-utils": "^10.2.0",
+    "webpack": "^4.41.6",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.10.3"
   },
   "devDependencies": {},
   "peerDependencies": {}
