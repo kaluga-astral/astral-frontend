@@ -36,6 +36,8 @@ const PDFViewer = ({
   const loading = exteralLoading || internalLoading;
   const error = externalError || internalError;
 
+  console.log({ loading, error });
+
   React.useEffect(() => {
     setInternalLoading(true);
     fetch(data).then(response => {
