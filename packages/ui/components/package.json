@@ -13,6 +13,8 @@
     "@astral-frontend/fonts": "^0.2.0",
     "@astral-frontend/icons": "^0.1.0",
     "@astral-frontend/styles": "^0.1.5",
+    "@researchgate/react-intersection-list": "^3.0.8",
+    "material-ui-popup-state": "^1.5.1",
     "@bugsnag/plugin-react": "^6.5.0",
     "@material-ui/lab": "^4.0.0-alpha.44",
     "classnames": "^2.2.6",
@@ -22,6 +24,7 @@
     "lodash-es": "^4.17.11",
     "match-sorter": "^4.0.2",
     "prop-types": "^15.7.2",
+    "react-content-loader": "^4.2.2",
     "react-js-pagination": "^3.0.3",
     "react-text-mask": "^5.4.3"
   },

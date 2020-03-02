@@ -12,6 +12,19 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "cross-env NODE_ENV=test jest --bail --findRelatedTests",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run test && lint-staged"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "@babel/plugin-proposal-export-default-from": "^7.8.3",
@@ -28,6 +41,7 @@
     "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
     "core-js": "^3.6.4",
+    "cross-env": "^7.0.0",
     "css-loader": "3.4.2",
     "docz": "^2.2.0",
     "docz-theme-default": "^1.2.0",
