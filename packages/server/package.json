@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/server",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "main": "./index.js",
   "scripts": {},
   "dependencies": {
@@ -12,7 +12,7 @@
     "webpack-hot-middleware": "^2.24.3"
   },
   "devDependencies": {
-    "@astral-frontend/eslint-config-node": "^0.2.0"
+    "@astral-frontend/eslint-config-node": "^0.4.0"
   },
   "peerDependencies": {},
   "sideEffects": false
