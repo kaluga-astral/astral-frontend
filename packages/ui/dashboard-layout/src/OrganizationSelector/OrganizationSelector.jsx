@@ -53,6 +53,7 @@ const OrganizationSelector = ({
   showAddButton,
   error,
   loading,
+  disabled,
   currentOrganizationName,
   addLinkHref,
   addLinkText,
@@ -78,9 +79,10 @@ const OrganizationSelector = ({
           <FlexContainer direction="column" style={{ position: 'relative' }}>
             <OrganizationSelectorCurrentOrganization
               name={currentOrganizationName}
+              disabled={disabled}
               onClick={handleTogglerButtonClick}
             />
-            <ButtonBase onClick={handleTogglerButtonClick}>
+            <ButtonBase disabled={disabled} onClick={handleTogglerButtonClick}>
               <Collapse in={open} className={classes.collapse}>
                 <Paper className={classes.popperPaper}>
                   <FlatTemplatedDataList
@@ -114,6 +116,7 @@ OrganizationSelector.defaultProps = {
   addLinkHref: null,
   addLinkText: null,
   error: null,
+  disabled: false,
 };
 
 OrganizationSelector.propTypes = {
@@ -131,6 +134,7 @@ OrganizationSelector.propTypes = {
   currentOrganizationName: PropTypes.string.isRequired,
   error: PropTypes.instanceOf(Error),
   loading: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
   showAddButton: PropTypes.bool.isRequired,
 };
 
