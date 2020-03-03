@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FlexContainer, FlexItem, Box } from '@astral-frontend/components';
 
+const DashboardLayoutContentComponent = componentProps => (
+  <FlexItem {...componentProps} component={Box} grow={1} overflow="hidden" />
+);
+
 const DashboardLayoutContent = ({ className, children }) => {
   return (
     <FlexContainer
       className={cn(className)}
       direction="column"
-      component={componentProps => (
-        <FlexItem {...componentProps} component={Box} overflow="hidden" />
-      )}
-      grow={1}
+      component={DashboardLayoutContentComponent}
     >
       {children}
     </FlexContainer>
