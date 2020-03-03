@@ -1,30 +1,30 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@astral-frontend/styles';
+import { FlexContainer, FlexItem, Box } from '@astral-frontend/components';
 
-const DashboardLayoutContent = ({ classes, className, children }) => (
-  <div className={cn(classes.root, className)}>{children}</div>
-);
+const DashboardLayoutContent = ({ className, children }) => {
+  return (
+    <FlexContainer
+      className={cn(className)}
+      direction="column"
+      component={componentProps => (
+        <FlexItem {...componentProps} component={Box} overflow="hidden" />
+      )}
+      grow={1}
+    >
+      {children}
+    </FlexContainer>
+  );
+};
 
 DashboardLayoutContent.defaultProps = {
   className: null,
 };
 
 DashboardLayoutContent.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
-export default withStyles(
-  () => ({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      flexGrow: 1,
-      overflow: 'hidden',
-    },
-  }),
-  { name: 'DashboardLayoutContent' },
-)(DashboardLayoutContent);
+export default DashboardLayoutContent;
