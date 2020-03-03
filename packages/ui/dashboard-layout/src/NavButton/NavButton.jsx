@@ -6,11 +6,10 @@ import { Button } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(
-  theme => ({
+  () => ({
     root: {
-      height: '100%',
+      height: '64px',
       width: '274px',
-      marginLeft: theme.spacing(4),
       whiteSpace: 'nowrap',
       flexShrink: 0,
     },

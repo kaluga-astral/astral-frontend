@@ -12,7 +12,7 @@ const useStyles = makeStyles(
     root: {
       position: 'sticky',
       top: 0,
-      padding: theme.spacing(3, 0),
+      marginBottom: theme.spacing(3),
       borderStyle: 'solid',
       borderColor: 'transparent',
       borderWidth: theme.spacing(0, 0, 0, 1),

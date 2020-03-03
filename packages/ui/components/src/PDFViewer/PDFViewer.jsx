@@ -37,16 +37,33 @@ const PDFViewer = ({
   const error = externalError || internalError;
 
   React.useEffect(() => {
-    setInternalLoading(true);
-    fetch(data).then(response => {
-      setInternalLoading(false);
-      if (response.ok) {
-        setInternalError(null);
-      } else {
-        setInternalError(new Error(response.statusText));
-      }
-    });
-  }, []);
+    if (data) {
+      setInternalLoading(true);
+      fetch(data).then(response => {
+        setInternalLoading(false);
+        if (response.ok) {
+          setInternalError(null);
+        } else {
+          setInternalError(new Error(response.statusText));
+        }
+      });
+    }
+  }, [data]);
+  const Children = () => {
+    if (!data) {
+      return null;
+    }
+
+    return (
+      <object
+        className={classes.object}
+        type="application/pdf"
+        aria-label="Просмотр PDF"
+        data={data}
+        onLoad={handleLoad}
+      />
+    );
+  };
 
   return (
     <Component className={cn(classes.root, className)} {...props}>
@@ -55,13 +72,7 @@ const PDFViewer = ({
         error={error}
         FailureStateComponent={PDFViewerFailureState}
       >
-        <object
-          className={classes.object}
-          type="application/pdf"
-          aria-label="Просмотр PDF"
-          data={data}
-          onLoad={handleLoad}
-        />
+        <Children />
       </ContentState>
     </Component>
   );
