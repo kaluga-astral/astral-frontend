@@ -17,15 +17,16 @@ const useStyles = makeStyles(
   { name: 'DashboardLayoutNavBar' },
 );
 
-const DashboardLayoutNavBar = ({ children }) => {
+const DashboardLayoutNavBar = ({ children, ...props }) => {
   const classes = useStyles();
 
   return (
     <FlexContainer
       className={classes.root}
-      component={FlexItem}
-      grow={1}
       alignItems="center"
+      component={componentProps => (
+        <FlexItem {...componentProps} {...props} grow={1} />
+      )}
     >
       {children}
     </FlexContainer>
