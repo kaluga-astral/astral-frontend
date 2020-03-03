@@ -32,8 +32,8 @@
     "@astral-frontend/assembly-scripts": "^0.4.0"
   },
   "peerDependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   },
   "sideEffects": [
     "*.css"
