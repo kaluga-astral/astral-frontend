@@ -19,7 +19,6 @@ const useStyles = makeStyles(
     list: {
       margin: 0,
       padding: 0,
-      height: '100%',
     },
     row: {
       display: 'grid',
@@ -32,7 +31,9 @@ const useStyles = makeStyles(
     },
     bodyRow: {
       position: 'relative',
-      marginBottom: theme.spacing(1),
+      '&:not(:last-child)': {
+        marginBottom: theme.spacing(1),
+      },
       '&:hover $rowActions': {
         opacity: 1,
       },

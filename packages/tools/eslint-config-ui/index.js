@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb'],
+  extends: ['airbnb', 'plugin:prettier/recommended'],
   parser: 'babel-eslint',
   env: {
     browser: true,
@@ -12,6 +12,17 @@ module.exports = {
         components: ['Link'],
         specialLink: ['to', 'hrefLeft', 'hrefRight'],
         aspects: ['noHref', 'invalidHref', 'preferButton'],
+      },
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: ['**/*.stories.jsx', '**/*.test.jsx'] },
+    ],
+    'react/jsx-props-no-spreading': [
+      'error',
+      {
+        html: 'enforce',
+        custom: 'ignore',
       },
     ],
   },
