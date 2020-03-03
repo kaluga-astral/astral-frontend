@@ -83,14 +83,14 @@ PDFViewer.defaultProps = {
   error: null,
   loading: false,
   component: 'div',
+  data: undefined,
 };
 
 PDFViewer.propTypes = {
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   error: PropTypes.instanceOf(Error),
   className: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
-  data: PropTypes.any.isRequired,
+  data: PropTypes.string,
   loading: PropTypes.bool,
 };
 
