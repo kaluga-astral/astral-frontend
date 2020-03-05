@@ -12,7 +12,6 @@ const useStyles = makeStyles(
     root: {
       height: '100%',
       flexGrow: 1,
-      overflowY: 'auto',
     },
     list: {},
   }),
@@ -22,6 +21,7 @@ const useStyles = makeStyles(
 const FlatTemplatedDataList = ({
   dataQueryResult,
   ListItemComponent,
+  EmptyStateComponent,
   ...props
 }) => {
   const classes = useStyles();
@@ -50,6 +50,7 @@ const FlatTemplatedDataList = ({
   return (
     <DataList
       {...props}
+      EmptyStateComponent={EmptyStateComponent}
       dataQueryResult={dataQueryResult}
       listRenderer={listRenderer}
       renderItem={renderItem}
@@ -67,6 +68,7 @@ FlatTemplatedDataList.propTypes = {
     }).isRequired,
   }).isRequired,
   ListItemComponent: PropTypes.func.isRequired,
+  EmptyStateComponent: PropTypes.func.isRequired,
 };
 
 export default FlatTemplatedDataList;
