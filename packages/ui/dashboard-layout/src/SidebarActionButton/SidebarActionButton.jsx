@@ -4,6 +4,9 @@ import React from 'react';
 import { ButtonBase } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
+import SidebarActionButtonIcon from './SidebarActionButtonIcon';
+import SidebarActionButtonText from './SidebarActionButtonText';
+
 const useStyles = makeStyles(
   theme => ({
     root: {
@@ -28,12 +31,13 @@ const useStyles = makeStyles(
 );
 
 const DashboardLayoutActionButton = React.forwardRef(
-  ({ className, children, ...props }, ref) => {
+  ({ className, Icon, text, ...props }, ref) => {
     const classes = useStyles();
 
     return (
       <ButtonBase ref={ref} className={cn(classes.root, className)} {...props}>
-        {children}
+        <SidebarActionButtonIcon Icon={Icon} />
+        <SidebarActionButtonText text={text} />
       </ButtonBase>
     );
   },
@@ -44,8 +48,9 @@ DashboardLayoutActionButton.defaultProps = {
 };
 
 DashboardLayoutActionButton.propTypes = {
+  Icon: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
 };
 
 export default DashboardLayoutActionButton;
