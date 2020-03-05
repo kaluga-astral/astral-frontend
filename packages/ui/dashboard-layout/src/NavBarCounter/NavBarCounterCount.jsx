@@ -61,6 +61,10 @@ const NavBarCounterCount = ({ loading, active, count, className }) => {
   const classes = useStyles();
   const children = loading ? null : nFormatter(count, 1);
 
+  if (!loading && count === null) {
+    return null;
+  }
+
   return (
     <div
       className={cn(
