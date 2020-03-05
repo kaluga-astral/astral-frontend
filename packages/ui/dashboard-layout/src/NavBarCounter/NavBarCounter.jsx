@@ -43,7 +43,7 @@ const DashboardLayoutNavCounter = ({
       {...props}
     >
       <span className={classes.text}>{text}</span>
-      {isEmpty(count) && (
+      {!isEmpty(count) && (
         <NavBarCounterCount active={active} count={count} loading={loading} />
       )}
     </Component>
