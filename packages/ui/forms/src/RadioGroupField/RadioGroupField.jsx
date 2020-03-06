@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { RadioGroup, Radio, FormControl } from '@astral-frontend/components';
+import {
+  RadioGroup,
+  Radio,
+  FormControl,
+  FormControlLabel,
+} from '@astral-frontend/components';
 import { FormLabel, FormHelperText } from '@astral-frontend/core';
 
 import Field from '../Field';
@@ -33,7 +38,7 @@ const FormRadioGroupField = ({
               labelPlacement={labelPlacement}
               value={String(option.value)}
               render={({ checked, onChange, onFocus, onBlur }) => (
-                <Radio
+                <FormControlLabel
                   {...option}
                   checked={checked}
                   labelPlacement={labelPlacement}
@@ -41,6 +46,7 @@ const FormRadioGroupField = ({
                   onFocus={onFocus}
                   onBlur={onBlur}
                   onChange={onChange}
+                  control={<Radio />}
                 />
               )}
             />

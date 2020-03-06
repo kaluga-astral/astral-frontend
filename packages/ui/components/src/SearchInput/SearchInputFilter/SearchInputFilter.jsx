@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
@@ -45,7 +46,7 @@ const SearchInputFilter = ({ disabled, Icon, children, ...props }) => {
   // };
 
   return (
-    <FlexContainer direction="column" className={classes.root}>
+    <FlexContainer direction="column" className={classes.root} {...props}>
       <IconButton
         disabled={disabled}
         className={cn(classes.iconButton, { [classes.iconButtonActive]: open })}
@@ -74,6 +75,12 @@ const SearchInputFilter = ({ disabled, Icon, children, ...props }) => {
       )}
     </FlexContainer>
   );
+};
+
+SearchInputFilter.propTypes = {
+  Icon: PropTypes.any,
+  children: PropTypes.any,
+  disabled: PropTypes.any,
 };
 
 export default SearchInputFilter;
