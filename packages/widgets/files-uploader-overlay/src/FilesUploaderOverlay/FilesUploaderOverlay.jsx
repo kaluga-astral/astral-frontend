@@ -1,9 +1,13 @@
-import PropTypes from 'prop-types';
+/* eslint-disable react/jsx-props-no-spreading */
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
+import { useDropzone } from 'react-dropzone';
 
 import { makeStyles } from '@astral-frontend/styles';
-import DownloadIcon from './DownloadIcon';
+
+import FilesUploaderOverlayContext from '../FilesUploaderOverlayContext';
+import FilesUploaderOverlayIcon from './FilesUploaderOverlayIcon';
 
 const useStyles = makeStyles(
   theme => ({
@@ -51,33 +55,38 @@ const useStyles = makeStyles(
       fill: theme.palette.common.white,
     },
   }),
-  { name: 'DropOverlay' },
+  { name: 'FilesUploaderOverlay' },
 );
 
-const DropOverlay = ({ className, Icon, open, rootProps, ...props }) => {
+const FilesUploaderOverlay = ({ className, Icon, children, onDrop }) => {
   const classes = useStyles();
+  const { isDragActive, getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  return (
-    open && (
-      <div className={cn(classes.root, className)} {...rootProps} {...props}>
-        <div className={classes.iconWrapper}>
-          <Icon className={classes.icon} />
+  return [
+    <input key="input" {...getInputProps()} />,
+    <div key="overlay" {...getRootProps()}>
+      {isDragActive && (
+        <div className={cn(classes.root, className)}>
+          <div className={classes.iconWrapper}>
+            <Icon className={classes.icon} />
+          </div>
         </div>
-      </div>
-    )
-  );
+      )}
+      <FilesUploaderOverlayContext.Provider value={{}}>
+        {children}
+      </FilesUploaderOverlayContext.Provider>
+    </div>,
+  ];
 };
 
-DropOverlay.defaultProps = {
-  Icon: DownloadIcon,
+FilesUploaderOverlay.defaultProps = {
+  Icon: FilesUploaderOverlayIcon,
   className: null,
 };
 
-DropOverlay.propTypes = {
+FilesUploaderOverlay.propTypes = {
   Icon: PropTypes.func,
   className: PropTypes.string,
-  open: PropTypes.bool.isRequired,
-  rootProps: PropTypes.shape({}).isRequired,
 };
 
-export default DropOverlay;
+export default FilesUploaderOverlay;

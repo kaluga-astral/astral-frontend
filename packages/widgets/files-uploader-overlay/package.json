@@ -9,11 +9,11 @@
   },
   "dependencies": {
     "@astral-frontend/components": "^0.4.0",
-    "@astral-frontend/icons": "^0.4.0",
     "@astral-frontend/styles": "^0.4.0",
     "classnames": "^2.2.6",
+    "notistack": "^0.9.5",
     "prop-types": "^15.7.2",
-    "notistack": "^0.9.5"
+    "react-dropzone": "^10.2.1"
   },
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "^0.4.0"
