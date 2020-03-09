@@ -37,6 +37,7 @@ const useStyles = makeStyles(
     },
     circularProgress: {
       position: 'absolute',
+      marginLeft: '5px',
     },
   }),
   { name: 'TableTemplatedDataListItem' },
@@ -82,7 +83,7 @@ const TableTemplatedDataListItem = ({
       onMouseLeave={handleListItemMouseLeave}
       {...props}
     >
-      {(percentCompleted || percentCompleted === 100) && (
+      {Boolean(percentCompleted && percentCompleted < 100) && (
         <CircularProgress
           className={classes.circularProgress}
           variant="static"
