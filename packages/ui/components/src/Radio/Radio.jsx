@@ -27,8 +27,6 @@ const Radio = ({
   disabled,
   checked,
   color,
-  label,
-  labelPlacement,
   className,
   value,
   onChange,
@@ -44,8 +42,6 @@ const Radio = ({
       color={color}
       checked={checked}
       disabled={disabled}
-      label={label}
-      labelPlacement={labelPlacement}
       value={String(value)}
       onBlur={onBlur}
       onFocus={onFocus}
@@ -60,9 +56,7 @@ const Radio = ({
 Radio.defaultProps = {
   disabled: false,
   checked: false,
-  labelPlacement: 'end',
   className: null,
-  label: '',
   onBlur: null,
   onFocus: null,
   onChange: null,
@@ -72,9 +66,7 @@ Radio.defaultProps = {
 Radio.propTypes = {
   disabled: PropTypes.bool,
   checked: PropTypes.bool,
-  labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
   className: PropTypes.string,
-  label: PropTypes.node,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   onChange: PropTypes.func,

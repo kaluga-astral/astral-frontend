@@ -25,7 +25,6 @@ const useStyles = makeStyles(
       marginTop: '5px',
     },
     paper: {
-      maxHeight: '325px',
       maxWidth: '300px',
       overflowY: 'auto',
       boxShadow: theme.shadows[2],
