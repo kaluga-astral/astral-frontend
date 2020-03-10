@@ -44,7 +44,7 @@ const useStyles = makeStyles(
 const DocumentsFilter = () => {
   const classes = useStyles();
   const [
-    { recipientFilterOption, documentTypeFilterOptions },
+    { recipientFilterOption, documentTypeFilterOptions, restQueryParams },
     setQueryParams,
   ] = useQueryParams();
 
@@ -58,6 +58,7 @@ const DocumentsFilter = () => {
     setQueryParams({
       recipientFilterOption: recipientType,
       documentTypeFilterOptions,
+      restQueryParams,
     });
   }, [recipientType]);
   const recipientTypeButtons = [
@@ -96,6 +97,7 @@ const DocumentsFilter = () => {
       documentTypeFilterOptions: Object.keys(documentsTypes).filter(
         key => documentsTypes[key],
       ),
+      restQueryParams,
     });
   }, [documentsTypes]);
   const documentsTypesButtons = Object.entries(documentsTypes).map(
