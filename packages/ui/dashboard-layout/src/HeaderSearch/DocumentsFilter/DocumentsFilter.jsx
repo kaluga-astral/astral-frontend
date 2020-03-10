@@ -13,6 +13,7 @@ import {
 import { Form, Field } from '@astral-frontend/forms';
 import { FormLabel } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
+import { useQueryParams } from '@astraledo-web/common/hooks';
 import SettingsIcon from './SettingsIcon';
 import NavBarCounter from '../../NavBarCounter';
 
@@ -42,10 +43,23 @@ const useStyles = makeStyles(
 
 const DocumentsFilter = () => {
   const classes = useStyles();
-  const [recipientType, setRecipientType] = React.useState('AllDocuments');
+  const [
+    { recipientFilterOption, documentTypeFilterOptions },
+    setQueryParams,
+  ] = useQueryParams();
+
+  const [recipientType, setRecipientType] = React.useState(
+    recipientFilterOption || 'allDocuments',
+  );
   const handleRecipientTypeChange = event => {
     setRecipientType(event.target.value);
   };
+  React.useEffect(() => {
+    setQueryParams({
+      recipientFilterOption: recipientType,
+      documentTypeFilterOptions,
+    });
+  }, [recipientType]);
   const recipientTypeButtons = [
     {
       label: 'Все документы',
@@ -65,6 +79,9 @@ const DocumentsFilter = () => {
     upd: false,
     ucd: false,
     informal: false,
+    ...Object.fromEntries(
+      [...documentTypeFilterOptions].map(item => [item, true]),
+    ),
   });
   const handleDocumentsTypesChange = name => event => {
     event.persist();
@@ -73,6 +90,14 @@ const DocumentsFilter = () => {
       [name]: event.target.checked,
     }));
   };
+  React.useEffect(() => {
+    setQueryParams({
+      recipientFilterOption: recipientType,
+      documentTypeFilterOptions: Object.keys(documentsTypes).filter(
+        key => documentsTypes[key],
+      ),
+    });
+  }, [documentsTypes]);
   const documentsTypesButtons = Object.entries(documentsTypes).map(
     ([key, value]) => ({
       checked: value,
