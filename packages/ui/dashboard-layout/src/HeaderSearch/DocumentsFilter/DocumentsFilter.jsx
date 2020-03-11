@@ -44,7 +44,11 @@ const useStyles = makeStyles(
 const DocumentsFilter = () => {
   const classes = useStyles();
   const [
-    { recipientFilterOption, documentTypeFilterOptions, restQueryParams },
+    {
+      recipientFilterOption,
+      documentTypeFilterOptions = [],
+      ...restQueryParams
+    },
     setQueryParams,
   ] = useQueryParams();
 
@@ -55,11 +59,18 @@ const DocumentsFilter = () => {
     setRecipientType(event.target.value);
   };
   React.useEffect(() => {
-    setQueryParams({
-      recipientFilterOption: recipientType,
-      documentTypeFilterOptions,
-      restQueryParams,
-    });
+    setQueryParams(
+      recipientType === 'allDocuments'
+        ? {
+            documentTypeFilterOptions,
+            ...restQueryParams,
+          }
+        : {
+            recipientFilterOption: recipientType,
+            documentTypeFilterOptions,
+            ...restQueryParams,
+          },
+    );
   }, [recipientType]);
   const recipientTypeButtons = [
     {
@@ -75,9 +86,8 @@ const DocumentsFilter = () => {
       value: 'notAssigned',
     },
   ];
-  const [documentsTypes, setDocumentsTypes] = React.useState({
-    allTypes: true,
-    upd: false,
+  const [documentTypes, setDocumentTypes] = React.useState({
+    utd: false,
     ucd: false,
     informal: false,
     ...Object.fromEntries(
@@ -86,21 +96,21 @@ const DocumentsFilter = () => {
   });
   const handleDocumentsTypesChange = name => event => {
     event.persist();
-    setDocumentsTypes(prevValue => ({
+    setDocumentTypes(prevValue => ({
       ...prevValue,
       [name]: event.target.checked,
     }));
   };
   React.useEffect(() => {
     setQueryParams({
-      recipientFilterOption: recipientType,
-      documentTypeFilterOptions: Object.keys(documentsTypes).filter(
-        key => documentsTypes[key],
+      recipientFilterOption,
+      documentTypeFilterOptions: Object.keys(documentTypes).filter(
+        key => documentTypes[key],
       ),
-      restQueryParams,
+      ...restQueryParams,
     });
-  }, [documentsTypes]);
-  const documentsTypesButtons = Object.entries(documentsTypes).map(
+  }, [documentTypes]);
+  const documentsTypesButtons = Object.entries(documentTypes).map(
     ([key, value]) => ({
       checked: value,
       value: key,
@@ -108,8 +118,7 @@ const DocumentsFilter = () => {
     }),
   );
   const documentsTypesButtonsLabels = {
-    allTypes: 'Все типы',
-    upd: 'УПД',
+    utd: 'УПД',
     ucd: 'УКД',
     informal: 'Неформализованный',
   };

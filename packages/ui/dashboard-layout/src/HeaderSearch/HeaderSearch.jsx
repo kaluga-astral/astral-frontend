@@ -1,25 +1,10 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-import {
-  Checkbox,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  SearchInput,
-  SearchInputFilter,
-  FormControlLabel,
-  FlexContainer,
-} from '@astral-frontend/components';
-import {
-  CheckboxGroupField,
-  Form,
-  RadioGroupField,
-} from '@astral-frontend/forms';
+import { SearchInput } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
-import NavBarCounter from '../NavBarCounter';
-import CalendarIcon from './UploadDateFilter/CalendarIcon';
 import DocumentsFilter from './DocumentsFilter';
 import UploadDateFilter from './UploadDateFilter';
 
@@ -46,6 +31,8 @@ const DashboardLayoutHeaderSearch = ({
   onInputChange,
 }) => {
   const classes = useStyles();
+  const { pathname } = useLocation();
+  const renderFilters = pathname.match(/\/drafts/);
 
   return (
     <SearchInput
@@ -54,12 +41,14 @@ const DashboardLayoutHeaderSearch = ({
       value={inputValue}
       defaultValue={defaultInputValue}
       onChange={onInputChange}
-      renderFilters={() => (
-        <>
-          <UploadDateFilter />
-          <DocumentsFilter />
-        </>
-      )}
+      renderFilters={() =>
+        renderFilters && (
+          <>
+            <UploadDateFilter />
+            <DocumentsFilter />
+          </>
+        )
+      }
     />
   );
 };
