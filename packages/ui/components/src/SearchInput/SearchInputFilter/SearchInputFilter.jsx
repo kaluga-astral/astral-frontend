@@ -40,9 +40,9 @@ const SearchInputFilter = ({ disabled, Icon, children, ...props }) => {
   const handleTogglerButtonClick = () => {
     setOpen(prevValue => !prevValue);
   };
-  // const handleClickAwayListenerClickAway = () => {
-  //   setOpen(false);
-  // };
+  const handleClickAwayListenerClickAway = () => {
+    setOpen(false);
+  };
 
   return (
     <FlexContainer direction="column" className={classes.root} {...props}>
@@ -64,10 +64,9 @@ const SearchInputFilter = ({ disabled, Icon, children, ...props }) => {
         >
           {({ TransitionProps }) => (
             <Fade {...TransitionProps}>
-              <Paper className={classes.paper}>{children}</Paper>
-              {/* <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
+              <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
                 <Paper className={classes.paper}>{children}</Paper>
-              </ClickAwayListener> */}
+              </ClickAwayListener>
             </Fade>
           )}
         </Popper>
@@ -76,10 +75,14 @@ const SearchInputFilter = ({ disabled, Icon, children, ...props }) => {
   );
 };
 
+SearchInputFilter.defaultProps = {
+  disabled: false,
+};
+
 SearchInputFilter.propTypes = {
-  Icon: PropTypes.any,
-  children: PropTypes.any,
-  disabled: PropTypes.any,
+  Icon: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default SearchInputFilter;
