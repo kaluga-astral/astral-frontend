@@ -80,7 +80,7 @@ SearchInputFilter.defaultProps = {
 };
 
 SearchInputFilter.propTypes = {
-  Icon: PropTypes.node.isRequired,
+  Icon: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
 };
