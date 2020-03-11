@@ -10,7 +10,7 @@ import SidebarContext from './SidebarContext';
 const useStyles = makeStyles(
   theme => ({
     root: {
-      width: '260px',
+      width: '70px',
       height: '100%',
       backgroundColor: theme.palette.background.paper,
       userSelect: 'none',
@@ -20,32 +20,35 @@ const useStyles = makeStyles(
       }),
     },
     expanded: {
-      width: '70px',
+      width: '260px',
     },
   }),
   { name: 'DashboardLayoutSidebar' },
 );
 
-const asideRef = React.createRef();
-const LOCALSTORAGE_KEY = 'SIDEBAR_EXPANDED';
+const LOCALSTORAGE_KEY = '__SIDEBAR_CONTEXT__';
 
 const DashboardLayoutSidebar = ({ className, children }) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(
-    localStorage.getItem(LOCALSTORAGE_KEY) ?? false,
-  );
+  const initialExpanded = React.useMemo(() => {
+    return (
+      JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) ?? {
+        expanded: true,
+      }
+    ).expanded;
+  }, []);
+  const [expanded, setExpanded] = React.useState(initialExpanded);
   const toggleExpanded = React.useCallback(() => {
     setExpanded(prevValue => !prevValue);
   }, []);
 
   React.useEffect(() => {
-    localStorage.setItem(LOCALSTORAGE_KEY, expanded);
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify({ expanded }));
   }, [expanded]);
 
   return (
     <SidebarContext.Provider value={{ expanded, toggleExpanded }}>
       <FlexContainer
-        ref={asideRef}
         component={Aside}
         direction="column"
         className={cn(className, classes.root, {
