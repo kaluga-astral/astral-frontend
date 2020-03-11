@@ -60,22 +60,33 @@ const useStyles = makeStyles(
 
 const FilesUploaderOverlay = ({ className, Icon, children, onDrop }) => {
   const classes = useStyles();
-  const { isDragActive, getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { isDragActive, getRootProps, getInputProps, open } = useDropzone({
+    noClick: true,
+    onDrop,
+  });
+  const inputProps = getInputProps();
+  const rootProps = getRootProps();
+  const openFileDialog = React.useCallback(() => {
+    open();
+  }, []);
 
   return [
-    <input key="input" {...getInputProps()} />,
-    <div key="overlay" {...getRootProps()}>
-      {isDragActive && (
-        <div className={cn(classes.root, className)}>
-          <div className={classes.iconWrapper}>
-            <Icon className={classes.icon} />
+    <FilesUploaderOverlayContext.Provider
+      key="overlay"
+      value={{ openFileDialog }}
+    >
+      <div {...rootProps}>
+        {isDragActive && (
+          <div className={cn(classes.root, className)}>
+            <div className={classes.iconWrapper}>
+              <Icon className={classes.icon} />
+            </div>
           </div>
-        </div>
-      )}
-      <FilesUploaderOverlayContext.Provider value={{}}>
+        )}
         {children}
-      </FilesUploaderOverlayContext.Provider>
-    </div>,
+      </div>
+    </FilesUploaderOverlayContext.Provider>,
+    <input key="input" {...inputProps} />,
   ];
 };
 

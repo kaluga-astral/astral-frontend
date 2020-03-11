@@ -1,3 +1,1 @@
-import AsideNavItemToggleButton from './AsideNavItemToggleButton';
-
-export default AsideNavItemToggleButton;
+export { default } from './AsideNavItemToggleButton';

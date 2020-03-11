@@ -5,8 +5,7 @@ import { makeStyles } from '@astral-frontend/styles';
 import { FlexContainer } from '@astral-frontend/components';
 
 import Aside from '../Aside';
-import AsideContext from '../Aside/Context';
-import { __Context as LayoutContext } from '../Layout';
+import SidebarContext from './SidebarContext';
 
 const useStyles = makeStyles(
   theme => ({
@@ -20,46 +19,42 @@ const useStyles = makeStyles(
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
-    collapsed: {
+    expanded: {
       width: '70px',
-      backgroundColor: theme.palette.background.paper,
-      transition: theme.transitions.create(['width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
     },
   }),
   { name: 'DashboardLayoutSidebar' },
 );
 
 const asideRef = React.createRef();
+const LOCALSTORAGE_KEY = 'SIDEBAR_EXPANDED';
 
 const DashboardLayoutSidebar = ({ className, children }) => {
   const classes = useStyles();
-  const { isSidebarOpen } = React.useContext(LayoutContext);
-  const [isTransitioning, setIsTransitioning] = React.useState(false);
-
-  React.useEffect(() => {
-    asideRef.current.addEventListener('transitionend', event => {
-      event.stopPropagation();
-      setIsTransitioning(false);
-    });
+  const [expanded, setExpanded] = React.useState(
+    localStorage.getItem(LOCALSTORAGE_KEY) ?? false,
+  );
+  const toggleExpanded = React.useCallback(() => {
+    setExpanded(prevValue => !prevValue);
   }, []);
 
+  React.useEffect(() => {
+    localStorage.setItem(LOCALSTORAGE_KEY, expanded);
+  }, [expanded]);
+
   return (
-    <AsideContext.Provider value={{ isTransitioning, isOpen: isSidebarOpen }}>
+    <SidebarContext.Provider value={{ expanded, toggleExpanded }}>
       <FlexContainer
         ref={asideRef}
         component={Aside}
         direction="column"
-        className={cn(
-          isSidebarOpen ? classes.root : classes.collapsed,
-          className,
-        )}
+        className={cn(className, classes.root, {
+          [classes.expanded]: expanded,
+        })}
       >
         {children}
       </FlexContainer>
-    </AsideContext.Provider>
+    </SidebarContext.Provider>
   );
 };
 

@@ -1,43 +1,64 @@
+import nanoid from 'nanoid';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useLocation, matchPath } from 'react-router-dom';
+
+import {
+  ButtonBase,
+  SvgIcon,
+  Collapse,
+  List,
+} from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import { Tooltip } from '@astral-frontend/components';
 import { __Context as AsideContext } from '../Aside';
+import SidebarTooltip from '../SidebarTooltip';
 
 const useStyles = makeStyles(
   theme => ({
     root: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      padding: `${theme.spacing(4)}px ${theme.spacing(3)}px`,
-      lineHeight: theme.typography.pxToRem(20),
-      textAlign: 'left',
-      textDecoration: 'none',
+      borderRadius: theme.shape.borderRadius,
       color: theme.palette.grey[600],
+      marginBottom: theme.spacing(1),
+    },
+    expanded: {
+      backgroundColor: theme.palette.primary.light,
+    },
+    button: {
+      justifyContent: 'left',
+      borderRadius: theme.shape.borderRadius,
+      width: '100%',
     },
     icon: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
       flexShrink: 0,
-      marginRight: `${theme.spacing(4)}px`,
-      padding: `${theme.spacing(1)}px`,
-    },
-    collapsedIcon: {
-      margin: 0,
-      '&:hover': {
-        borderRadius: `${theme.shape.borderRadius}px`,
-        backgroundColor: theme.palette.primary.light,
-      },
+      margin: theme.spacing(3, 4),
     },
     text: {
       flexGrow: 1,
       overflow: 'hidden',
       textOverflow: 'ellipsis',
-      maxHeight: '20px',
+      whiteSpace: 'nowrap',
+      textAlign: 'left',
+      fontSize: theme.typography.pxToRem(14),
+      fontWeight: theme.typography.fontWeightBold,
+    },
+    counter: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: theme.palette.common.white,
+      flexShrink: 0,
+      marginRight: `${theme.spacing(1)}px`,
+      width: '20px',
+      height: '20px',
+      fontSize: '75%',
+      fontWeight: 'bold',
+      borderRadius: '50%',
+      backgroundColor: theme.palette.error.main,
+    },
+    expanderIcon: {
+      margin: theme.spacing(3, 4),
     },
   }),
   {
@@ -45,54 +66,91 @@ const useStyles = makeStyles(
   },
 );
 
-const DashboardLayoutAsideNavItem = React.forwardRef(
-  (
-    { className, component: Component, Icon, tooltipText, Text, ...props },
-    ref,
-  ) => {
-    const classes = useStyles();
-    const { isOpen } = React.useContext(AsideContext);
-    const Item = () => (
-      <Component ref={ref} className={cn(classes.root, className)} {...props}>
-        {Icon && (
-          <div
-            className={cn(classes.icon, {
-              [classes.collapsedIcon]: !isOpen,
-            })}
-          >
-            <Icon />
-          </div>
-        )}
-        {isOpen && <Text className={classes.text} />}
-      </Component>
-    );
-
-    if (isOpen) {
-      return <Item />;
+const DashboardLayoutAsideNavItem = ({
+  className,
+  text,
+  Icon,
+  counterValue,
+  children,
+  ...props
+}) => {
+  const location = useLocation();
+  const { expandedNavDropdownId, setExpandedNavDropdownId } = React.useContext(
+    AsideContext,
+  );
+  const id = React.useMemo(() => {
+    return nanoid();
+  }, []);
+  const expanded = React.useMemo(() => {
+    return id === expandedNavDropdownId;
+  }, [expandedNavDropdownId]);
+  const classes = useStyles({ expanded });
+  const handleSidebarNavItemClick = () => {
+    if (expanded) {
+      setExpandedNavDropdownId(null);
+    } else {
+      setExpandedNavDropdownId(id);
     }
+  };
 
-    return (
-      <Tooltip placement="right" title={tooltipText}>
-        <Item />
-      </Tooltip>
+  React.useEffect(() => {
+    const expandedByRouterReason = React.Children.toArray(children).some(
+      child => {
+        return Boolean(matchPath(location.pathname, child.props.to));
+      },
     );
-  },
-);
+
+    if (expandedByRouterReason) {
+      setExpandedNavDropdownId(id);
+    } else if (expanded) {
+      setExpandedNavDropdownId(null);
+    }
+  }, [location.pathname]);
+
+  return (
+    <li
+      className={cn(className, classes.root, { [classes.expanded]: expanded })}
+    >
+      <SidebarTooltip title={text}>
+        <ButtonBase
+          {...props}
+          className={classes.button}
+          onClick={handleSidebarNavItemClick}
+        >
+          <Icon className={classes.icon} />
+          <div className={classes.text}>{text}</div>
+          {counterValue && (
+            <div className={classes.counter}>{counterValue}</div>
+          )}
+          {children && (
+            <SvgIcon className={classes.expanderIcon}>
+              <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+              <path d="M0 0h24v24H0V0z" fill="none" />
+            </SvgIcon>
+          )}
+        </ButtonBase>
+      </SidebarTooltip>
+      {children && (
+        <Collapse unmountOnExit in={expanded} component={List}>
+          {children}
+        </Collapse>
+      )}
+    </li>
+  );
+};
 
 DashboardLayoutAsideNavItem.defaultProps = {
   className: null,
+  counterValue: null,
+  children: null,
 };
 
 DashboardLayoutAsideNavItem.propTypes = {
   className: PropTypes.string,
-  component: PropTypes.oneOfType([
-    PropTypes.shape(),
-    PropTypes.string,
-    PropTypes.func,
-  ]).isRequired,
   Icon: PropTypes.func.isRequired,
-  Text: PropTypes.func.isRequired,
-  tooltipText: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  counterValue: PropTypes.number,
+  children: PropTypes.node,
 };
 
 export default DashboardLayoutAsideNavItem;

@@ -55,6 +55,7 @@ export default withStyles(
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
+      fontWeight: theme.typography.fontWeightBold,
     },
   }),
   { name: 'DashboardLayoutProduct' },

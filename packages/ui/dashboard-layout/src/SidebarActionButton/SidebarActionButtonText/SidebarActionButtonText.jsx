@@ -3,12 +3,13 @@ import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(
-  () => ({
+  theme => ({
     root: {
       textAlign: 'left',
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
+      fontWeight: theme.typography.fontWeightBold,
     },
   }),
   { name: 'DashboardLayoutActionButtonText' },

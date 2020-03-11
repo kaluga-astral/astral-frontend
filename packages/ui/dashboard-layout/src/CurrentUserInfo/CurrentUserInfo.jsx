@@ -13,48 +13,42 @@ import {
 import { makeStyles } from '@astral-frontend/styles';
 
 import Item from './Item';
-import { __Context as AsideContext } from '../Aside';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    width: '260px',
-    overflow: 'hidden',
-  },
-  collapsed: {
-    width: '70px',
-  },
-  toggler: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    borderTop: '0.5px solid rgba(29, 63, 102, 0.45)',
-    width: '100%',
-    height: '100%',
-    paddingTop: theme.spacing(6),
-    paddingBottom: theme.spacing(4),
-    margin: `0px ${theme.spacing(4)}px `,
-  },
-  avatar: {
-    width: '40px',
-    height: '40px',
-    fontSize: theme.typography.pxToRem(18),
-    color: theme.palette.common.white,
-    background: theme.palette.primary.dark,
-  },
-  userName: {
-    fontWeight: 400,
-    fontSize: theme.typography.pxToRem(14),
-    marginLeft: theme.spacing(2),
-    textAlign: 'left',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  },
-  popperPaper: {
-    minWidth: '175px',
-  },
-}));
+const useStyles = makeStyles(
+  theme => ({
+    divider: {
+      margin: theme.spacing(0, 2),
+      height: '1px',
+      backgroundColor: 'rgba(29, 63, 102, 0.45)',
+    },
+    button: {
+      width: '100%',
+      padding: theme.spacing(3, 4),
+      overflow: 'hidden',
+      justifyContent: 'left',
+    },
+    avatar: {
+      width: '40px',
+      height: '40px',
+      fontSize: theme.typography.pxToRem(18),
+      color: theme.palette.common.white,
+      background: theme.palette.primary.dark,
+    },
+    userName: {
+      fontWeight: 400,
+      fontSize: theme.typography.pxToRem(14),
+      marginLeft: theme.spacing(2),
+      textAlign: 'left',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    },
+    popperPaper: {
+      minWidth: '175px',
+    },
+  }),
+  { name: 'DashboardLayoutCurrentUserInfo' },
+);
 
 const DashboardLayoutCurrentUserInfo = ({
   className,
@@ -68,10 +62,9 @@ const DashboardLayoutCurrentUserInfo = ({
   const buttonRef = React.createRef();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { isTransitioning, isOpen } = React.useContext(AsideContext);
-  const isUserNameVisible = !isTransitioning && isOpen;
   const handleTogglerButtonClick = event => {
     const { currentTarget } = event;
+
     setOpen(prevValue => !prevValue);
     setAnchorEl(currentTarget);
   };
@@ -82,38 +75,31 @@ const DashboardLayoutCurrentUserInfo = ({
   };
 
   return (
-    <ClickAwayListener onClickAway={handleClickAway}>
-      <div
-        {...props}
-        className={cn(
-          classes.root,
-          { [classes.collapsed]: !isOpen },
-          className,
-        )}
-      >
+    <div className={cn(classes.root, className)}>
+      <div className={classes.divider} />
+      <ClickAwayListener onClickAway={handleClickAway} {...props}>
         <ButtonBase
-          className={cn(classes.toggler)}
+          className={classes.button}
           buttonRef={buttonRef}
           onClick={handleTogglerButtonClick}
         >
           <Avatar className={classes.avatar} src={avatarSrc}>
             {avatarAlt}
           </Avatar>
-          {isUserNameVisible && (
-            <div className={classes.userName}>{userName}</div>
-          )}
+          <div className={classes.userName}>{userName}</div>
         </ButtonBase>
-        <Popper placement="top" transition open={open} anchorEl={anchorEl}>
-          {({ TransitionProps }) => (
-            <Grow {...TransitionProps}>
-              <Paper className={classes.popperPaper}>
-                <MenuList disablePadding>{children}</MenuList>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
-    </ClickAwayListener>
+      </ClickAwayListener>
+
+      <Popper placement="top" transition open={open} anchorEl={anchorEl}>
+        {({ TransitionProps }) => (
+          <Grow {...TransitionProps}>
+            <Paper className={classes.popperPaper}>
+              <MenuList disablePadding>{children}</MenuList>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    </div>
   );
 };
 

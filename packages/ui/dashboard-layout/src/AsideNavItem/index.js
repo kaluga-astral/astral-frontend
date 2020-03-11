@@ -1,3 +1,1 @@
-import AsideNavItem from './AsideNavItem';
-
-export default AsideNavItem;
+export { default } from './AsideNavItem';
