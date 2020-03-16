@@ -4,9 +4,16 @@ import React from 'react';
 import NotificationsMessage from './NotificationsMessage';
 
 export const useNotification = () => {
-  const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   return {
+    closeNotification: closeSnackbar,
+    enqueuePersistNotification({ content }) {
+      enqueueSnackbar('', {
+        persist: true,
+        content,
+      });
+    },
     enqueueSuccessNotification({
       title = 'Успешно',
       message = '',
