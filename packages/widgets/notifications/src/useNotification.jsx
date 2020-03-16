@@ -8,11 +8,8 @@ export const useNotification = () => {
 
   return {
     closeNotification: closeSnackbar,
-    enqueuePersistNotification({ content }) {
-      enqueueSnackbar('', {
-        persist: true,
-        content,
-      });
+    enqueueCustomNotification(...args) {
+      return enqueueSnackbar(...args);
     },
     enqueueSuccessNotification({
       title = 'Успешно',
