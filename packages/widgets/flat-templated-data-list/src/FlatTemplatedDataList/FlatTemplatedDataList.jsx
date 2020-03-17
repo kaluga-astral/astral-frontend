@@ -2,23 +2,21 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { List } from '@astral-frontend/components';
-
+import DataList from '@astral-frontend/data-list';
 import { makeStyles } from '@astral-frontend/styles';
 
-import DataList from '@astral-frontend/data-list';
-
 const useStyles = makeStyles(
-  theme => ({
+  () => ({
     root: {
       height: '100%',
       flexGrow: 1,
     },
-    list: {},
   }),
   { name: 'FlatTemplatedDataList' },
 );
 
 const FlatTemplatedDataList = ({
+  className,
   dataQueryResult,
   ListItemComponent,
   EmptyStateComponent,
@@ -27,11 +25,14 @@ const FlatTemplatedDataList = ({
   const classes = useStyles();
   const listRenderer = React.useCallback(
     ({ children, ref }) => (
-      <div className={classes.root}>
-        <List key="list" disablePadding className={classes.list} ref={ref}>
-          {children}
-        </List>
-      </div>
+      <List
+        key="list"
+        disablePadding
+        className={cn(classes.root, className)}
+        ref={ref}
+      >
+        {children}
+      </List>
     ),
     [],
   );
@@ -58,7 +59,12 @@ const FlatTemplatedDataList = ({
   );
 };
 
+FlatTemplatedDataList.defaultProps = {
+  className: null,
+};
+
 FlatTemplatedDataList.propTypes = {
+  className: PropTypes.string,
   dataQueryResult: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
     called: PropTypes.bool.isRequired,
