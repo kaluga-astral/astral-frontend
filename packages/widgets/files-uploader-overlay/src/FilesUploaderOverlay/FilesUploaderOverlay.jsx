@@ -58,12 +58,11 @@ const useStyles = makeStyles(
   { name: 'FilesUploaderOverlay' },
 );
 
-const FilesUploaderOverlay = ({ className, Icon, children, onDrop }) => {
+const FilesUploaderOverlay = ({ className, Icon, children, ...config }) => {
   const classes = useStyles();
-  const { isDragActive, getRootProps, getInputProps, open } = useDropzone({
-    noClick: true,
-    onDrop,
-  });
+  const { isDragActive, getRootProps, getInputProps, open } = useDropzone(
+    config,
+  );
   const inputProps = getInputProps();
   const rootProps = getRootProps();
   const openFileDialog = React.useCallback(() => {
