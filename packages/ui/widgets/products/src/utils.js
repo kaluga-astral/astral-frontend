@@ -21,4 +21,14 @@ const getPopoverArrowStyles = color => ({
 const getProductsUrl = identityApiUrl => `${identityApiUrl}/Products/Widget`;
 const getFileServiceUrl = identityApiUrl => `${identityApiUrl}/Files`;
 
-export { getPopoverArrowStyles, getProductsUrl, getFileServiceUrl };
+const productsToClientAdapter = responseProducts =>
+  responseProducts.filter(
+    ({ productUrl }) => !productUrl.includes(window.location.hostname),
+  );
+
+export {
+  getPopoverArrowStyles,
+  getProductsUrl,
+  getFileServiceUrl,
+  productsToClientAdapter,
+};

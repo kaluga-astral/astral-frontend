@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 // polyfill for fetch
@@ -11,7 +11,8 @@ import ApiUrlContext from './ApiUrlContext';
 
 import { useProductsFetch } from './hooks';
 
-const ProductsWidget = ({ identityApiUrl, buttonProps }) => {
+const ProductsWidget = ({ identityUrl, buttonProps }) => {
+  const { current: identityApiUrl } = useRef(`${identityUrl}/api`);
   const [getProducts, fetchProductsInfo] = useProductsFetch(identityApiUrl);
   const [anchorEl, setAnchorEl] = useState(null);
   const [firstBoot, setFirstBoot] = useState(true);
@@ -58,7 +59,7 @@ ProductsWidget.defaultProps = {
 };
 
 ProductsWidget.propTypes = {
-  identityApiUrl: PropTypes.string.isRequired,
+  identityUrl: PropTypes.string.isRequired,
   buttonProps: PropTypes.shape({
     className: PropTypes.string,
     color: PropTypes.oneOf(['primary', 'secondary']),

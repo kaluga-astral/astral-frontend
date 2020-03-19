@@ -2,16 +2,16 @@ import React from 'react';
 import { SvgIcon } from '@astral-frontend/core';
 
 const ProductsIcon = props => (
-  <SvgIcon width="15" height="15" viewBox="0 0 15 15" {...props}>
-    <rect width="3" height="3" />
-    <rect y="6" width="3" height="3" />
-    <rect y="12" width="3" height="3" />
-    <rect x="6" width="3" height="3" />
-    <rect x="6" y="6" width="3" height="3" />
-    <rect x="6" y="12" width="3" height="3" />
-    <rect x="12" width="3" height="3" />
-    <rect x="12" y="6" width="3" height="3" />
-    <rect x="12" y="12" width="3" height="3" />
+  <SvgIcon width="11" height="11" viewBox="0 0 12 12" {...props}>
+    <rect width="2.4" height="2.4" />
+    <rect y="4.80078" width="2.4" height="2.4" />
+    <rect y="9.59961" width="2.4" height="2.4" />
+    <rect x="4.79999" width="2.4" height="2.4" />
+    <rect x="4.79999" y="4.80078" width="2.4" height="2.4" />
+    <rect x="4.79999" y="9.59961" width="2.4" height="2.4" />
+    <rect x="9.59998" width="2.4" height="2.4" />
+    <rect x="9.59998" y="4.80078" width="2.4" height="2.4" />
+    <rect x="9.59998" y="9.59961" width="2.4" height="2.4" />
   </SvgIcon>
 );
 

@@ -24,7 +24,7 @@ ProductsList.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
       iconFileId: PropTypes.string.isRequired,
-      productColor: PropTypes.string.isRequired,
+      backgroundHexColor: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       productUrl: PropTypes.string.isRequired,
       shortDescription: PropTypes.string.isRequired,
