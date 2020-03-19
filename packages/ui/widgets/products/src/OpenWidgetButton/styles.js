@@ -2,10 +2,11 @@ import { makeStyles } from '@astral-frontend/styles';
 
 export default makeStyles(() => ({
   button: {
-    color: 'white',
+    padding: '10px !important',
+    color: 'white !important',
   },
   icon: {
-    width: 12,
-    height: 12,
+    width: '11px !important',
+    height: '11px !important',
   },
 }));
