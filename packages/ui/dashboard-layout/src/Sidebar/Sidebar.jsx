@@ -26,7 +26,7 @@ const useStyles = makeStyles(
   { name: 'DashboardLayoutSidebar' },
 );
 
-const LOCALSTORAGE_KEY = '__SIDEBAR_CONTEXT__';
+const LOCALSTORAGE_KEY = '__DASHBOARD_LAYOUT_SIDEBAR__';
 
 const DashboardLayoutSidebar = ({ className, children }) => {
   const classes = useStyles();
