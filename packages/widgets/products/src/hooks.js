@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { getProductsUrl } from './utils';
+import { getProductsUrl, productsToClientAdapter } from './utils';
 
 const INITIAL_FETCH_STATUS_INFO = {
   loading: true,
@@ -49,7 +49,7 @@ const useProductsFetch = identityApiUrl => {
             loading: false,
             success: true,
           },
-          products: jsonResponse.data,
+          products: productsToClientAdapter(jsonResponse.data),
         }));
       }
 

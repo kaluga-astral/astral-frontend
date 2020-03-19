@@ -33,11 +33,14 @@ const PDFViewer = ({
   const handleLoad = () => {
     setInternalLoading(false);
   };
-  const loading = exteralLoading || internalLoading;
+  const loading = exteralLoading && internalLoading;
   const error = externalError || internalError;
 
   React.useEffect(() => {
-    if (data) {
+    if (exteralLoading === false && externalError === null && !data) {
+      setInternalError(new Error('`data` should be a valid url'));
+    }
+    if (exteralLoading === false && externalError === null && data) {
       setInternalLoading(true);
       fetch(data).then(response => {
         setInternalLoading(false);
