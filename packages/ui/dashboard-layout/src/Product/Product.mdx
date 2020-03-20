@@ -26,3 +26,15 @@ import Product from "./Product";
     <Product Logo={SaveIcon} title="title"/>
   </MemoryRouter>
 </Playground>
+
+## With EndContent
+
+```
+  <Product Logo={SaveIcon} EndContent={() => <button>btn</button>} title="title"/>
+```
+
+<Playground>
+  <MemoryRouter initialEntries={['/']}>
+    <Product Logo={SaveIcon} EndContent={() => <button>btn</button>} title="title"/>
+  </MemoryRouter>
+</Playground>
