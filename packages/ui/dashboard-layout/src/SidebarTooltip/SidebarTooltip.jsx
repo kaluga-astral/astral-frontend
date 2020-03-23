@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Tooltip } from '@astral-frontend/components';
 
-import { __Context as SidebarContext } from '../Sidebar';
+import SidebarContext from '../Sidebar/SidebarContext';
 
 const SidebarTooltip = ({ children, ...props }) => {
   const { expanded } = React.useContext(SidebarContext);
