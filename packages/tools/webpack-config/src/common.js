@@ -61,13 +61,8 @@ module.exports = {
       {
         test: /\.svg$/,
         use: [
-          'thread-loader',
-          {
-            loader: 'svg-inline-loader',
-            options: {
-              extract: true,
-            },
-          },
+          'file-loader',
+          'image-webpack-loader',
         ],
       },
       {
