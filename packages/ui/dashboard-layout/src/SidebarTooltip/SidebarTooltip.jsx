@@ -5,9 +5,9 @@ import { Tooltip } from '@astral-frontend/components';
 import SidebarContext from '../Sidebar/SidebarContext';
 
 const SidebarTooltip = ({ children, ...props }) => {
-  const { expanded } = React.useContext(SidebarContext);
+  const { expanded } = React.useContext(SidebarContext) || { expanded: true };
 
-  if (expanded) {
+  if (!expanded) {
     return (
       <Tooltip placement="right" {...props}>
         {children}
