@@ -3,7 +3,11 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { ListItem, FlexContainer } from '@astral-frontend/components';
+import {
+  ListItem,
+  FlexContainer,
+  CircularProgress,
+} from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import {
@@ -15,6 +19,7 @@ import TableTemplatedDataListItemDefaultSelector from './TableTemplatedDataListI
 const useStyles = makeStyles(
   theme => ({
     root: {
+      position: 'relative',
       display: 'grid',
       minHeight: '70px',
       borderStyle: 'solid',
@@ -30,6 +35,10 @@ const useStyles = makeStyles(
         boxShadow: theme.shadows[1],
       },
     },
+    circularProgress: {
+      position: 'absolute',
+      marginLeft: '5px',
+    },
   }),
   { name: 'TableTemplatedDataListItem' },
 );
@@ -40,6 +49,7 @@ const TableTemplatedDataListItem = ({
   Selector,
   children,
   component,
+  percentCompleted,
   ...props
 }) => {
   const classes = useStyles();
@@ -73,6 +83,13 @@ const TableTemplatedDataListItem = ({
       onMouseLeave={handleListItemMouseLeave}
       {...props}
     >
+      {Boolean(percentCompleted && percentCompleted < 100) && (
+        <CircularProgress
+          className={classes.circularProgress}
+          variant="static"
+          value={percentCompleted}
+        />
+      )}
       <FlexContainer justifyContent="center">
         {selectorVisible ? (
           <Selector
@@ -96,6 +113,7 @@ TableTemplatedDataListItem.defaultProps = {
   button: false,
   Icon: () => <div />,
   Selector: TableTemplatedDataListItemDefaultSelector,
+  percentCompleted: null,
 };
 
 TableTemplatedDataListItem.propTypes = {
@@ -108,6 +126,7 @@ TableTemplatedDataListItem.propTypes = {
   ).isRequired,
   Icon: PropTypes.func,
   Selector: PropTypes.func,
+  percentCompleted: PropTypes.number,
 };
 
 export default TableTemplatedDataListItem;

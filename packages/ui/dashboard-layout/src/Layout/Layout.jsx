@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
-import DashboardLayoutContext from './Context';
-
 const useStyles = makeStyles(
   () => ({
     root: {
@@ -15,20 +13,10 @@ const useStyles = makeStyles(
   { name: 'DashboardLayout' },
 );
 
-const DashboardLayout = ({ className, ...props }) => {
+const DashboardLayout = ({ className, children }) => {
   const classes = useStyles();
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
 
-  return (
-    <DashboardLayoutContext.Provider
-      value={{
-        isSidebarOpen,
-        setIsSidebarOpen,
-      }}
-    >
-      <div {...props} className={cn(classes.root, className)} />
-    </DashboardLayoutContext.Provider>
-  );
+  return <div className={cn(classes.root, className)}>{children}</div>;
 };
 
 DashboardLayout.defaultProps = {

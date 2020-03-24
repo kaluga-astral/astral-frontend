@@ -1,52 +1,38 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { makeStyles } from '@astral-frontend/styles';
-import { ButtonBase } from '@astral-frontend/components';
-import { CollapseIcon } from '@astral-frontend/icons';
 
-import { __Context as LayoutContext } from '../Layout';
-import { __Context as AsideContext } from '../Aside';
+import { ButtonBase, SvgIcon, Tooltip } from '@astral-frontend/components';
+import { makeStyles } from '@astral-frontend/styles';
+
+import { __Context as SidebarContext } from '../Sidebar';
 
 const useStyles = makeStyles(
   theme => ({
     root: {
-      display: 'flex',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      padding: `${theme.spacing(5)}px ${theme.spacing(3)}px ${theme.spacing(
-        5,
-      )}px ${theme.spacing(5)}px`,
-      lineHeight: theme.typography.pxToRem(20),
-      textAlign: 'left',
+      margin: theme.spacing(2),
+      overflow: 'hidden',
+    },
+    button: {
+      width: '100%',
+      justifyContent: 'left',
       color: theme.palette.grey[600],
-      margin: `0 ${theme.spacing(1)}px`,
-      '&:hover': {
-        backgroundColor: 'transparent',
-      },
+      borderRadius: theme.shape.borderRadius,
     },
     icon: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
       flexShrink: 0,
-      marginRight: `${theme.spacing(1)}px`,
-      transition: 'transform 0.3s',
-    },
-    collapsedIcon: {
-      margin: 0,
-      transform: 'rotate(180deg)',
-      transition: 'transform 0.3s',
-      '&:hover': {
-        borderRadius: `${theme.shape.borderRadius}px`,
-        backgroundColor: theme.palette.primary.light,
+      margin: theme.spacing(3, 4),
+      transition: theme.transitions.create(['transform']),
+      transform: ({ expanded }) => {
+        return expanded ? 'rotateZ(0deg)' : 'rotateZ(180deg)';
       },
     },
     text: {
       flexGrow: 1,
       overflow: 'hidden',
       textOverflow: 'ellipsis',
-      maxHeight: '20px',
+      whiteSpace: 'nowrap',
+      textAlign: 'left',
       fontSize: theme.typography.pxToRem(14),
       fontWeight: theme.typography.fontWeightBold,
     },
@@ -56,32 +42,38 @@ const useStyles = makeStyles(
   },
 );
 
-const AsideNavItemToggleButton = ({ className }) => {
-  const classes = useStyles();
-  const { setIsSidebarOpen } = React.useContext(LayoutContext);
-  const { isTransitioning, isOpen } = React.useContext(AsideContext);
-  const isToggleButtonTextVisible = isOpen && !isTransitioning;
+const TEXT = 'Свернуть меню';
 
-  const toogleSidebarHandleClick = () => {
-    setIsSidebarOpen(prevValue => !prevValue);
+const AsideNavItemToggleButton = ({ className, ...props }) => {
+  const { expanded, toggleExpanded } = React.useContext(SidebarContext);
+  const classes = useStyles({ expanded });
+  const handleButtonClick = () => {
+    toggleExpanded();
   };
 
   return (
-    <ButtonBase
-      onClick={toogleSidebarHandleClick}
-      className={cn(classes.root, className)}
-    >
-      <div
-        className={cn(classes.icon, {
-          [classes.collapsedIcon]: !isOpen,
-        })}
+    <div className={cn(classes.root, className)}>
+      <ButtonBase
+        {...props}
+        className={classes.button}
+        onClick={handleButtonClick}
       >
-        <CollapseIcon />
-      </div>
-      {isToggleButtonTextVisible && (
-        <div className={classes.text}>Свернуть меню</div>
-      )}
-    </ButtonBase>
+        <Tooltip placement="top" title={TEXT}>
+          <SvgIcon className={classes.icon}>
+            <g>
+              <rect fill="none" height="24" width="24" />
+            </g>
+            <g>
+              <g>
+                <polygon points="15.5,5 11,5 16,12 11,19 15.5,19 20.5,12" />
+                <polygon points="8.5,5 4,5 9,12 4,19 8.5,19 13.5,12" />
+              </g>
+            </g>
+          </SvgIcon>
+        </Tooltip>
+        <div className={classes.text}>{TEXT}</div>
+      </ButtonBase>
+    </div>
   );
 };
 

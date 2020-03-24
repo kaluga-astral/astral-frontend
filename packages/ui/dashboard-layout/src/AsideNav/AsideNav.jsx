@@ -1,10 +1,9 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
+
 import { List } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
-
-import DropdownContext from '../AsideNavDropdown/AsideNavDropdownContext';
 
 const useStyles = makeStyles(
   theme => ({
@@ -28,18 +27,13 @@ const useStyles = makeStyles(
   },
 );
 
-const DashboardLayoutAsideNav = ({ className, children, ...props }) => {
+const DashboardLayoutAsideNav = ({ className, children }) => {
   const classes = useStyles();
-  const [expandedNavDropdownId, setExpandedNavDropdownId] = useState(null);
 
   return (
-    <DropdownContext.Provider
-      value={{ expandedNavDropdownId, setExpandedNavDropdownId }}
-    >
-      <nav className={cn(classes.root, className)} {...props}>
-        <List className={classes.list}>{children}</List>
-      </nav>
-    </DropdownContext.Provider>
+    <nav className={cn(classes.root, className)}>
+      <List className={classes.list}>{children}</List>
+    </nav>
   );
 };
 

@@ -44,10 +44,7 @@ TableTemplatedDataListRowActions.defaultProps = {
 };
 
 TableTemplatedDataListRowActions.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element),
-  ]).isRequired,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
 

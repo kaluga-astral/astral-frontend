@@ -8,7 +8,7 @@ const useStyles = makeStyles(
       margin: theme.spacing(0, 1),
     },
   }),
-  { name: 'ButtonText' },
+  { name: 'ButtonIcon' },
 );
 
 const ButtonIcon = ({ Icon }) => {

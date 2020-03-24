@@ -2,36 +2,9 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { AstralSquareLogo } from '@astral-frontend/components';
-import { withStyles } from '@astral-frontend/styles';
+import { makeStyles } from '@astral-frontend/styles';
 
-const DefaultLogo = props => <AstralSquareLogo color="monochrome" {...props} />;
-
-const DashboardLayoutProduct = ({
-  classes,
-  className,
-  Logo,
-  title,
-  ...props
-}) => (
-  <div className={cn(classes.root, className)} {...props}>
-    <Logo className={classes.logo} />
-    <div className={classes.title}>{title}</div>
-  </div>
-);
-
-DashboardLayoutProduct.defaultProps = {
-  className: null,
-  Logo: DefaultLogo,
-};
-
-DashboardLayoutProduct.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  className: PropTypes.string,
-  Logo: PropTypes.func,
-  title: PropTypes.string.isRequired,
-};
-
-export default withStyles(
+const useStyles = makeStyles(
   theme => ({
     root: {
       display: 'flex',
@@ -55,7 +28,43 @@ export default withStyles(
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
+      fontWeight: theme.typography.fontWeightBold,
     },
   }),
   { name: 'DashboardLayoutProduct' },
-)(DashboardLayoutProduct);
+);
+
+const DefaultLogo = props => <AstralSquareLogo color="monochrome" {...props} />;
+
+const DashboardLayoutProduct = ({
+  className,
+  Logo,
+  EndContent,
+  title,
+  ...props
+}) => {
+  const classes = useStyles();
+
+  return (
+    <div className={cn(classes.root, className)} {...props}>
+      <Logo className={classes.logo} />
+      <div className={classes.title}>{title}</div>
+      {EndContent && <EndContent />}
+    </div>
+  );
+};
+
+DashboardLayoutProduct.defaultProps = {
+  className: null,
+  EndContent: null,
+  Logo: DefaultLogo,
+};
+
+DashboardLayoutProduct.propTypes = {
+  className: PropTypes.string,
+  Logo: PropTypes.func,
+  EndContent: PropTypes.func,
+  title: PropTypes.string.isRequired,
+};
+
+export default DashboardLayoutProduct;

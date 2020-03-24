@@ -14,7 +14,7 @@ const commonConfig = require('./common');
 const { appSrc } = getPaths();
 
 module.exports = merge(commonConfig, {
-  mode: 'production',
+  mode: 'development',
 
   devtool: 'hidden-source-map',
 

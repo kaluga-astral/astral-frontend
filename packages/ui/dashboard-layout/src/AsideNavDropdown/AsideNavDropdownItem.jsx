@@ -2,34 +2,29 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { SvgIcon } from '@astral-frontend/components';
+import { ButtonBase, SvgIcon } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
-
-import AsideNavItem from '../AsideNavItem';
-import { __Context as AsideContext } from '../Aside';
 
 const useStyles = makeStyles(
   theme => ({
-    root: {},
-    navItem: {
-      borderLeft: `2px solid ${theme.palette.primary.light}`,
-      marginLeft: `${theme.spacing(4)}px`,
+    root: {
+      justifyContent: 'left',
     },
-    collapsedItem: {
-      padding: `${theme.spacing(5)}px 0 ${theme.spacing(5)}px ${theme.spacing(
-        2,
-      )}px`,
+    icon: {
+      flexShrink: 0,
+      margin: theme.spacing(3, 4),
+    },
+    text: {
+      marginRight: theme.spacing(4),
+      flexGrow: 1,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      fontSize: theme.typography.pxToRem(14),
+      fontWeight: theme.typography.fontWeightBold,
     },
     active: {
       color: theme.palette.primary.main,
-      borderLeft: `2px solid ${theme.palette.primary.main}`,
-    },
-    icon: {
-      fontSize: theme.typography.pxToRem(4),
-    },
-    text: {
-      fontWeight: theme.typography.fontWeightBold,
-      fontSize: theme.typography.pxToRem(14),
     },
   }),
   {
@@ -37,36 +32,21 @@ const useStyles = makeStyles(
   },
 );
 
-const DashboardLayoutAsideNavDropdownItemComponent = React.forwardRef(
-  (componentProps, ref) => <NavLink {...componentProps} ref={ref} />,
-);
-
 const DashboardLayoutAsideNavDropdownItem = ({ className, text, ...props }) => {
-  const { isOpen } = React.useContext(AsideContext);
   const classes = useStyles();
 
   return (
-    <li className={cn(classes.root, className)}>
-      <AsideNavItem
-        tooltipText={text}
-        activeClassName={classes.active}
-        className={cn(classes.navItem, {
-          [classes.collapsedItem]: !isOpen,
-        })}
-        Text={textProps => (
-          <div className={cn(classes.text, textProps.className)}>{text}</div>
-        )}
-        Icon={() =>
-          !isOpen && (
-            <SvgIcon viewBox="0 0 4 4" className={classes.icon}>
-              <circle cx="2" cy="2" r="2" fill="currentColor" />
-            </SvgIcon>
-          )
-        }
-        component={DashboardLayoutAsideNavDropdownItemComponent}
-        {...props}
-      />
-    </li>
+    <ButtonBase
+      {...props}
+      className={cn(classes.root, className)}
+      component={NavLink}
+      activeClassName={classes.active}
+    >
+      <SvgIcon className={classes.icon}>
+        <circle cx="12" cy="12" r="2" fill="currentColor" />
+      </SvgIcon>
+      <div className={classes.text}>{text}</div>
+    </ButtonBase>
   );
 };
 
