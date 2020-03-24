@@ -1,16 +1,16 @@
 import React from 'react';
 
-import AsideToggler from '../AsideToggler';
+import SidebarToggler from '../SidebarToggler';
 
 // TODO: Remove in v1
 const AsideNavItemToggleButton = props => {
   React.useEffect(() => {
     console.error(
-      'Component `AsideNavItemToggleButton` are deprecated, use `AsideToggler` insted.',
+      'Component `AsideNavItemToggleButton` are deprecated, use `SidebarToggler` insted.',
     );
   }, []);
 
-  return <AsideToggler {...props} />;
+  return <SidebarToggler {...props} />;
 };
 
 export default AsideNavItemToggleButton;

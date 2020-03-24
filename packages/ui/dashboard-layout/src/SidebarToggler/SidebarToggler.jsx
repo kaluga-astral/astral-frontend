@@ -39,13 +39,13 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'AsideToggler',
+    name: 'SidebarToggler',
   },
 );
 
 const TEXT = 'Свернуть меню';
 
-const AsideToggler = ({ className, ...props }) => {
+const SidebarToggler = ({ className, ...props }) => {
   const { expanded, toggleExpanded } = React.useContext(SidebarContext);
   const classes = useStyles({ expanded });
   const handleButtonClick = () => {
@@ -78,12 +78,12 @@ const AsideToggler = ({ className, ...props }) => {
   );
 };
 
-AsideToggler.defaultProps = {
+SidebarToggler.defaultProps = {
   className: null,
 };
 
-AsideToggler.propTypes = {
+SidebarToggler.propTypes = {
   className: PropTypes.string,
 };
 
-export default AsideToggler;
+export default SidebarToggler;

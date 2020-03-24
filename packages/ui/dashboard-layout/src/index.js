@@ -2,7 +2,7 @@ export { default as Aside } from './Aside';
 export { default as AsideNav } from './AsideNav';
 export { default as AsideNavDropdown } from './AsideNavDropdown';
 export { default as AsideNavItemToggleButton } from './AsideNavItemToggleButton';
-export { default as AsideToggler } from './AsideToggler';
+export { default as SidebarToggler } from './SidebarToggler';
 export { default as AsideNavLink } from './AsideNavLink';
 export { default as Content } from './Content';
 export { default as CurrentUserInfo } from './CurrentUserInfo';

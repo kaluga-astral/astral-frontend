@@ -4,14 +4,14 @@ import { storiesOf } from '@storybook/react';
 
 import Sidebar from '../Sidebar';
 import Layout from '../Layout';
-import AsideToggler from './AsideToggler';
+import SidebarToggler from './SidebarToggler';
 
-storiesOf('packages/dashboard-layout/AsideToggler', module).add(
+storiesOf('packages/dashboard-layout/SidebarToggler', module).add(
   'default',
   () => (
     <Layout>
       <Sidebar>
-        <AsideToggler />
+        <SidebarToggler />
       </Sidebar>
     </Layout>
   ),
