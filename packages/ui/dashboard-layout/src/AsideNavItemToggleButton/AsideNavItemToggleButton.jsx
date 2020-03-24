@@ -2,10 +2,11 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { ButtonBase, SvgIcon, Tooltip } from '@astral-frontend/components';
+import { ButtonBase, SvgIcon } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import { __Context as SidebarContext } from '../Sidebar';
+import SidebarTooltip from '../SidebarTooltip';
 
 const useStyles = makeStyles(
   theme => ({
@@ -24,7 +25,7 @@ const useStyles = makeStyles(
       margin: theme.spacing(3, 4),
       transition: theme.transitions.create(['transform']),
       transform: ({ expanded }) => {
-        return expanded ? 'rotateZ(0deg)' : 'rotateZ(180deg)';
+        return expanded ? 'rotateZ(180deg)' : 'rotateZ(0deg)';
       },
     },
     text: {
@@ -58,7 +59,7 @@ const AsideNavItemToggleButton = ({ className, ...props }) => {
         className={classes.button}
         onClick={handleButtonClick}
       >
-        <Tooltip placement="top" title={TEXT}>
+        <SidebarTooltip title={TEXT}>
           <SvgIcon className={classes.icon}>
             <g>
               <rect fill="none" height="24" width="24" />
@@ -70,7 +71,7 @@ const AsideNavItemToggleButton = ({ className, ...props }) => {
               </g>
             </g>
           </SvgIcon>
-        </Tooltip>
+        </SidebarTooltip>
         <div className={classes.text}>{TEXT}</div>
       </ButtonBase>
     </div>
