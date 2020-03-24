@@ -52,10 +52,46 @@ const UploadDateFilter = () => {
     {
       label: 'Сегодня',
       value: 'today',
+      getDateRange: () => {
+        const date = new Date();
+
+        return {
+          startDate: new Date(
+            date.getTime() -
+              date.getHours() * 3600 * 1000 -
+              date.getMinutes() * 60 * 1000 -
+              date.getSeconds() * 1000 -
+              date.getMilliseconds(),
+          ).toISOString(),
+          endDate: date.toISOString(),
+        };
+      },
     },
     {
       label: 'Вчера',
       value: 'tommorow',
+      getDateRange: () => {
+        const date = new Date();
+
+        return {
+          startDate: new Date(
+            date.getTime() -
+              date.getHours() * 3600 * 1000 -
+              date.getMinutes() * 60 * 1000 -
+              date.getSeconds() * 1000 -
+              date.getMilliseconds() -
+              24 * 3600 * 1000,
+          ).toISOString(),
+          endDate: new Date(
+            date.getTime() -
+              date.getHours() * 3600 * 1000 -
+              date.getMinutes() * 60 * 1000 -
+              date.getSeconds() * 1000 -
+              date.getMilliseconds() -
+              1000,
+          ).toISOString(),
+        };
+      },
     },
     {
       label: 'Последняя неделя',
