@@ -2,9 +2,14 @@ const { authStrategyService } = require('../../services/authStrategy');
 
 const { isActingUrlOidcParams, clearQueryParams } = require('./utils');
 
+const { serviceContext, oidcContext } = require('../../contexts');
+
 const { AUTH_STRATEGY_NAME } = require('../../config/authStrategies');
 
-const oidcAuthMiddleware = (oidcClient, oidcSessionKey) => (req, res, next) => {
+const oidcAuthMiddleware = () => (req, res, next) => {
+  const { oidcClient } = serviceContext.data;
+  const { oidcSessionKey } = oidcContext.data;
+
   // обход либы oidc-client (выкидывает exception, если хранилище пустое, а параметры oidc присутствуют)
   // определяем, что oidc параметры не актуальны и удаляем их из request для того, чтобы был произведен редирект на авторизацию
   if (!isActingUrlOidcParams(req, oidcClient, oidcSessionKey)) {

@@ -2,7 +2,11 @@ const { isEmpty } = require('lodash');
 
 const { saveDesiredReferenceInCookie } = require('./utils');
 
-const saveDesiredReferenceMiddleware = oidcClient => (req, res, next) => {
+const { serviceContext } = require('../../contexts');
+
+const saveDesiredReferenceMiddleware = () => (req, res, next) => {
+  const { oidcClient } = serviceContext.data;
+
   if (!isEmpty(oidcClient.callbackParams(req))) {
     return next();
   }

@@ -1,7 +1,9 @@
-const logoutMiddleware = (oidcClient, { postLogoutRedirectUri }) => async (
-  req,
-  res,
-) => {
+const { serviceContext, oidcContext } = require('../../contexts');
+
+const logoutMiddleware = () => async (req, res) => {
+  const { oidcClient } = serviceContext.data;
+  const { postLogoutRedirectUri } = oidcContext.data;
+
   const idToken = req.user.tokenSet.id_token;
 
   req.logout();
