@@ -7,6 +7,7 @@ const {
   getProfile,
 } = require('./middlewares');
 
+const { connectStore } = require('./services/store');
 const {
   authStrategyService,
   registerOidcAuthStrategy,
@@ -23,7 +24,10 @@ const initializeOidcProvider = async entryParams => {
   // выдаст ошибку и завершит процесс, если какие-либо из входных параметров заданы неверно
   validateInitializeEntryParam(entryParams);
 
-  const { app, store, oidcParams, sessionParams } = entryParams;
+  const { app, storeConnectUrl, oidcParams, sessionParams } = entryParams;
+
+  const { store, client: storeClient } = connectStore(storeConnectUrl);
+
   const oidcSessionKey = generateOidcSessionKey(oidcParams.clientId);
   const oidcClientConfig = getOidcClientConfig(oidcParams);
   const successAuthRedirectRoute = new URL(oidcParams.redirectUri).pathname;
@@ -34,7 +38,7 @@ const initializeOidcProvider = async entryParams => {
   );
 
   // инициализация контекстов. За счет использования контекстов отпадает необходимость передавать общие данные через параметры вложенных цепочек функций
-  serviceContext.updateData({ store, oidcClient });
+  serviceContext.updateData({ store, storeClient, oidcClient });
   oidcContext.updateData({
     ...oidcParams,
     oidcSessionKey,

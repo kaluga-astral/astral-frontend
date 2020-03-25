@@ -43,7 +43,7 @@ const validateSessionEntryParams = sessionParams =>
 
 const validateInitializeEntryParam = ({
   app,
-  store,
+  storeConnectUrl,
   oidcParams,
   sessionParams,
 }) => {
@@ -51,8 +51,10 @@ const validateInitializeEntryParam = ({
     throwValidationError('Во входных параметрах отсутсвует app (express)');
   }
 
-  if (!store) {
-    throwValidationError('Во входных параметрах отсутсвует store (Redis)');
+  if (!storeConnectUrl) {
+    throwValidationError(
+      'Во входных параметрах отсутсвует storeConnectUrl (ссылка на Redis)',
+    );
   }
 
   validateOidcEntryParams(oidcParams);
