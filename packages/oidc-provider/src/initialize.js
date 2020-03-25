@@ -24,7 +24,7 @@ const initializeOidcProvider = async entryParams => {
   const { app, store, oidcParams, sessionParams } = entryParams;
   const oidcSessionKey = generateOidcSessionKey(oidcParams.clientId);
   const oidcClientConfig = getOidcClientConfig(oidcParams);
-  const successAuthRedirectRoute = new URL(oidcParams.redirectUri).pathname;
+  // const successAuthRedirectRoute = new URL(oidcParams.redirectUri).pathname;
 
   const { client: oidcClient } = await connectIdentity(
     oidcParams,
@@ -51,7 +51,7 @@ const initializeOidcProvider = async entryParams => {
   app.use(authStrategyService.session());
 
   // url, на который Identity произведет редирект после успешной авторизации, должен быть защищен
-  app.use(successAuthRedirectRoute, oidcProtected);
+  // app.use(successAuthRedirectRoute, oidcProtected);
 
   return {
     oidcProtected,
