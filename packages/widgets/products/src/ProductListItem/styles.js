@@ -21,6 +21,7 @@ export default makeStyles(theme => ({
     height: 18,
     backgroundColor: ({ backgroundHexColor }) => backgroundHexColor,
     borderRadius: '50%',
+    color: 'transparent',
   },
   name: {
     margin: 0,
