@@ -11,6 +11,14 @@ import {
 import { Form, Field } from '@astral-frontend/forms';
 import { FormLabel } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
+import {
+  subWeeks,
+  startOfWeek,
+  startOfToday,
+  subMonths,
+  startOfMonth,
+  startOfYesterday,
+} from '@astraledo-web/common/utils/date-fns';
 import CalendarIcon from './CalendarIcon';
 import NavBarCounter from '../../NavBarCounter';
 
@@ -52,58 +60,61 @@ const UploadDateFilter = () => {
     {
       label: 'Сегодня',
       value: 'today',
-      getDateRange: () => {
-        const date = new Date();
-
-        return {
-          startDate: new Date(
-            date.getTime() -
-              date.getHours() * 3600 * 1000 -
-              date.getMinutes() * 60 * 1000 -
-              date.getSeconds() * 1000 -
-              date.getMilliseconds(),
-          ).toISOString(),
-          endDate: date.toISOString(),
-        };
-      },
+      getDateRange: () => ({
+        startDate: startOfToday().toISOString(),
+        endDate: new Date().toISOString(),
+      }),
     },
     {
       label: 'Вчера',
       value: 'tommorow',
+      getDateRange: () => ({
+        startDate: startOfYesterday().toISOString(),
+        endDate: new Date(startOfToday().getTime() - 1).toISOString(),
+      }),
+    },
+    {
+      label: 'Прошлая неделя',
+      value: 'last-week',
       getDateRange: () => {
         const date = new Date();
 
         return {
-          startDate: new Date(
-            date.getTime() -
-              date.getHours() * 3600 * 1000 -
-              date.getMinutes() * 60 * 1000 -
-              date.getSeconds() * 1000 -
-              date.getMilliseconds() -
-              24 * 3600 * 1000,
+          startDate: subWeeks(
+            startOfWeek(date, {
+              weekStartsOn: 1,
+            }),
+            1,
           ).toISOString(),
           endDate: new Date(
-            date.getTime() -
-              date.getHours() * 3600 * 1000 -
-              date.getMinutes() * 60 * 1000 -
-              date.getSeconds() * 1000 -
-              date.getMilliseconds() -
-              1000,
+            startOfWeek(date).setHours(23, 59, 59),
           ).toISOString(),
         };
       },
     },
     {
-      label: 'Последняя неделя',
-      value: 'last-week',
-    },
-    {
-      label: 'Последний месяц',
+      label: 'Прошлый месяц',
       value: 'last-month',
+      getDateRange: () => {
+        const date = new Date();
+
+        return {
+          startDate: subMonths(startOfMonth(date), 1).toISOString(),
+          endDate: new Date(startOfMonth(date).getTime() - 1).toISOString(),
+        };
+      },
     },
     {
       label: 'Этот месяц',
       value: 'this-month',
+      getDateRange: () => {
+        const date = new Date();
+
+        return {
+          startDate: startOfMonth(date).toISOString(),
+          endDate: date.toISOString(),
+        };
+      },
     },
     // {
     //   label: 'Выбрать другой период',
