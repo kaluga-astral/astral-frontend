@@ -44,35 +44,31 @@ const useStyles = makeStyles(
 const DocumentsFilter = () => {
   const classes = useStyles();
   const [
-    {
-      recipientFilterOption,
-      documentTypeFilterOptions = [],
-      ...restQueryParams
-    },
+    { recipientOption, documentTypes = [], ...restQueryParams },
     setQueryParams,
   ] = useQueryParams();
 
-  const [recipientType, setRecipientType] = React.useState(
-    recipientFilterOption || 'allDocuments',
+  const [recipientTypeOption, setRecipientTypeOption] = React.useState(
+    recipientOption || 'allDocuments',
   );
-  const handleRecipientTypeChange = event => {
-    setRecipientType(event.target.value);
+  const handleRecipientTypeOptionChange = event => {
+    setRecipientTypeOption(event.target.value);
   };
   React.useEffect(() => {
     setQueryParams(
-      recipientType === 'allDocuments'
+      recipientTypeOption === 'allDocuments'
         ? {
-            documentTypeFilterOptions,
+            documentTypes,
             ...restQueryParams,
           }
         : {
-            recipientFilterOption: recipientType,
-            documentTypeFilterOptions,
+            recipientOption: recipientTypeOption,
+            documentTypes,
             ...restQueryParams,
           },
     );
-  }, [recipientType]);
-  const recipientTypeButtons = [
+  }, [recipientTypeOption]);
+  const recipientTypeOptionButtons = [
     {
       label: 'Все документы',
       value: 'allDocuments',
@@ -83,41 +79,41 @@ const DocumentsFilter = () => {
     },
     {
       label: 'Не назначен',
-      value: 'notAssigned',
+      value: 'noRecipient',
     },
   ];
-  const [documentTypes, setDocumentTypes] = React.useState({
+  const [documentTypesOption, setDocumentTypesOption] = React.useState({
     utd: false,
     ucd: false,
     informal: false,
-    ...Object.fromEntries(
-      [...documentTypeFilterOptions].map(item => [item, true]),
-    ),
+    ...Object.fromEntries([...documentTypes].map(item => [item, true])),
   });
-  const handleDocumentsTypesChange = name => event => {
+  const handleDocumentTypesOptionChange = name => event => {
     event.persist();
-    setDocumentTypes(prevValue => ({
+    setDocumentTypesOption(prevValue => ({
       ...prevValue,
       [name]: event.target.checked,
     }));
   };
   React.useEffect(() => {
     setQueryParams({
-      recipientFilterOption,
-      documentTypeFilterOptions: Object.keys(documentTypes).filter(
-        key => documentTypes[key],
+      recipientOption,
+      documentTypes: Object.keys(documentTypesOption).filter(
+        key => documentTypesOption[key],
       ),
       ...restQueryParams,
     });
-  }, [documentTypes]);
-  const documentsTypesButtons = Object.entries(documentTypes).map(
+  }, [documentTypesOption]);
+  const documentsTypesButtons = Object.entries(documentTypesOption).map(
     ([key, value]) => ({
       checked: value,
       value: key,
-      onChange: handleDocumentsTypesChange(key),
+      onChange: handleDocumentTypesOptionChange(key),
     }),
   );
   const documentsTypesButtonsLabels = {
+    act: 'Акт',
+    torg12: 'Торг12',
     utd: 'УПД',
     ucd: 'УКД',
     informal: 'Неформализованный',
@@ -143,10 +139,10 @@ const DocumentsFilter = () => {
                 <RadioGroup
                   aria-label="Получатель"
                   name="Получатель"
-                  value={recipientType}
-                  onChange={handleRecipientTypeChange}
+                  value={recipientTypeOption}
+                  onChange={handleRecipientTypeOptionChange}
                 >
-                  {recipientTypeButtons.map(buttonOoptions => (
+                  {recipientTypeOptionButtons.map(buttonOoptions => (
                     <FlexContainer
                       justifyContent="space-between"
                       key={buttonOoptions.value}
@@ -156,7 +152,9 @@ const DocumentsFilter = () => {
                         value={buttonOoptions.value}
                         control={
                           <Radio
-                            checked={recipientType === buttonOoptions.value}
+                            checked={
+                              recipientTypeOption === buttonOoptions.value
+                            }
                           />
                         }
                       />
