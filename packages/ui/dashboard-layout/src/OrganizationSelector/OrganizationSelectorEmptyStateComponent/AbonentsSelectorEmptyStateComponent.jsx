@@ -38,15 +38,10 @@ const useStyles = makeStyles(
   { name: 'AbonentsSelectorEmptyStateComponent' },
 );
 
-const AbonentsSelectorEmptyStateComponent = ({
-  className,
-  name,
-  addLinkHref,
-  ...props
-}) => {
+const AbonentsSelectorEmptyStateComponent = ({ className, addLinkHref }) => {
   const classes = useStyles();
   return (
-    <div className={cn(classes.root, className)} {...props}>
+    <div className={cn(classes.root, className)}>
       <OrganizationNotFoundIcon className={classes.icon} />
       <div className={classes.text}>
         <p>
@@ -63,12 +58,10 @@ const AbonentsSelectorEmptyStateComponent = ({
 
 AbonentsSelectorEmptyStateComponent.defaultProps = {
   className: null,
-  name: null,
 };
 
 AbonentsSelectorEmptyStateComponent.propTypes = {
   className: PropTypes.string,
-  name: PropTypes.string,
   addLinkHref: PropTypes.string.isRequired,
 };
 
