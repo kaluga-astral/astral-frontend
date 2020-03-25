@@ -42,7 +42,7 @@ describe('customizationRequestMiddleware', () => {
 
   oidcContext.updateData({ refreshTokenMaxAge });
 
-  customizationRequestMiddleware()(request, response, next);
+  customizationRequestMiddleware(request, response, next);
 
   it('устанавливает expires для сессии', () => {
     expect(request.session.cookie.maxAge).toBe(
