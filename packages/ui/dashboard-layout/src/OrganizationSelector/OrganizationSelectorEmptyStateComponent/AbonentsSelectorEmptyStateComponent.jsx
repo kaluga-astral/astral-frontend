@@ -67,7 +67,6 @@ AbonentsSelectorEmptyStateComponent.defaultProps = {
 };
 
 AbonentsSelectorEmptyStateComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   name: PropTypes.string,
   addLinkHref: PropTypes.string.isRequired,
