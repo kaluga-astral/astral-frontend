@@ -7,7 +7,7 @@ const { isActsTokenId } = require('./utils');
 
 const { REFRESH_TOKEN_STRATEGY_NAME } = require('../../config/authStrategies');
 
-const refreshTokenMiddleware = () => (req, res, next) => {
+const refreshTokenMiddleware = (req, res, next) => {
   if (!req.isAuthenticated()) return next();
 
   const setTokenInfo = req.user.tokenSet;

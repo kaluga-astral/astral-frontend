@@ -4,6 +4,8 @@ const {
 } = require('../../utils/cookie');
 const { setTokenHeader } = require('./utils');
 
+const { oidcContext } = require('../../contexts');
+
 const {
   SESSION_COOKIE_KEY,
   DESIRED_REFERENCE_KEY,
@@ -11,9 +13,9 @@ const {
 
 const SESSION_INFO_FIELDS = [SESSION_COOKIE_KEY, DESIRED_REFERENCE_KEY];
 
-const customizationRequestMiddleware = oidcParams => (req, res, next) => {
+const customizationRequestMiddleware = (req, res, next) => {
   if (!req.session.cookie.expires) {
-    const { refreshTokenMaxAge } = oidcParams;
+    const { refreshTokenMaxAge } = oidcContext.data;
 
     // устанавливаем expires, если его нет
     updateSessionExpires(req, refreshTokenMaxAge);

@@ -4,6 +4,8 @@ const { Strategy: OidcStrategy } = require('openid-client');
 
 const { updateSessionExpires } = require('../utils/cookie');
 
+const { serviceContext, oidcContext } = require('../contexts');
+
 const {
   AUTH_STRATEGY_NAME,
   REFRESH_TOKEN_STRATEGY_NAME,
@@ -17,15 +19,14 @@ authStrategyService.deserializeUser((user, done) => {
   done(null, user);
 });
 
-const registerOidcAuthStrategy = (
-  oidcClient,
-  oidcClientConfig,
-  oidcSessionKey,
-) => {
+const registerOidcAuthStrategy = () => {
+  const { oidcClient } = serviceContext.data;
+  const { clientConfig, oidcSessionKey } = oidcContext.data;
+
   const oidcStrategy = new OidcStrategy(
     {
       client: oidcClient,
-      params: oidcClientConfig,
+      params: clientConfig,
       sessionKey: oidcSessionKey,
     },
     (tokenSet, userInfo, done) => {
@@ -41,7 +42,10 @@ const registerOidcAuthStrategy = (
   authStrategyService.use(AUTH_STRATEGY_NAME, oidcStrategy);
 };
 
-const registerRefreshTokenStrategy = (oidcClient, { refreshTokenMaxAge }) => {
+const registerRefreshTokenStrategy = () => {
+  const { oidcClient } = serviceContext.data;
+  const { refreshTokenMaxAge } = oidcContext.data;
+
   const refreshTokenStrategy = new CustomStrategy(async (req, done) => {
     const setTokenInfo = req.user.tokenSet;
 

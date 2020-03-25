@@ -2,9 +2,9 @@ const { compose } = require('compose-middleware');
 
 const {
   createSession,
-  oidcProtected: createOidcProtectedMiddleware,
-  logout: createLogoutMiddleware,
-  getProfile: createGetProfileMiddleware,
+  oidcProtected,
+  logout,
+  getProfile,
 } = require('./middlewares');
 
 const {
@@ -16,6 +16,8 @@ const { connectIdentity } = require('./services/oidc');
 
 const { validateInitializeEntryParam } = require('./utils/validation');
 const { generateOidcSessionKey, getOidcClientConfig } = require('./utils/oidc');
+
+const { serviceContext, oidcContext, sessionContext } = require('./contexts');
 
 const initializeOidcProvider = async entryParams => {
   // выдаст ошибку и завершит процесс, если какие-либо из входных параметров заданы неверно
@@ -31,20 +33,20 @@ const initializeOidcProvider = async entryParams => {
     oidcClientConfig,
   );
 
-  const oidcProtected = createOidcProtectedMiddleware({
-    oidcClient,
-    oidcParams,
+  // инициализация контекстов. За счет использования контекстов отпадает необходимость передавать общие данные через параметры вложенных цепочек функций
+  serviceContext.updateData({ store, oidcClient });
+  oidcContext.updateData({
+    ...oidcParams,
     oidcSessionKey,
-    sessionParams,
+    clientConfig: oidcClientConfig,
   });
-  const logout = createLogoutMiddleware(oidcClient, oidcParams);
-  const getProfile = createGetProfileMiddleware(oidcClient);
+  sessionContext.updateData(sessionParams);
 
   // регистрация passport стратегий
-  registerOidcAuthStrategy(oidcClient, oidcClientConfig, oidcSessionKey);
-  registerRefreshTokenStrategy(oidcClient, oidcParams);
+  registerOidcAuthStrategy();
+  registerRefreshTokenStrategy();
 
-  app.use(createSession({ store, ...sessionParams }));
+  app.use(createSession());
 
   // Initialize Passport
   app.use(authStrategyService.initialize());

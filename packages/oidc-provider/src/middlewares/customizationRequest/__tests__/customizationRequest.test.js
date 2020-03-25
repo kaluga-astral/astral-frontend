@@ -2,6 +2,8 @@ const httpMock = require('node-mocks-http');
 
 const { secondsToMilliseconds } = require('../../../utils/dateTime');
 
+const { oidcContext } = require('../../../contexts');
+
 const {
   SESSION_COOKIE_KEY,
   DESIRED_REFERENCE_KEY,
@@ -37,9 +39,10 @@ describe('customizationRequestMiddleware', () => {
   });
   const response = {};
   const next = () => null;
-  const oidcParams = { refreshTokenMaxAge };
 
-  customizationRequestMiddleware(oidcParams)(request, response, next);
+  oidcContext.updateData({ refreshTokenMaxAge });
+
+  customizationRequestMiddleware(request, response, next);
 
   it('устанавливает expires для сессии', () => {
     expect(request.session.cookie.maxAge).toBe(

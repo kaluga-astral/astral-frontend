@@ -13,8 +13,8 @@ const PROXY_MOCK_PORT = 3001;
 const SERVER_PORT = 3000;
 
 const OIDC_PARAMS = {
-  identityUrl: 'https://identity.astral-dev.ru',
-  clientId: 'local_code_flow',
+  identityUrl: 'https://identity.demo.astral-dev.ru',
+  clientId: 'example_code_flow',
   clientSecret: 'secret',
   redirectUri: 'http://localhost:3000',
   postLogoutRedirectUri: 'http://localhost:3000',
