@@ -13,7 +13,7 @@ const {
 
 const SESSION_INFO_FIELDS = [SESSION_COOKIE_KEY, DESIRED_REFERENCE_KEY];
 
-const customizationRequestMiddleware = () => (req, res, next) => {
+const customizationRequestMiddleware = (req, res, next) => {
   if (!req.session.cookie.expires) {
     const { refreshTokenMaxAge } = oidcContext.data;
 

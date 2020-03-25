@@ -10,28 +10,28 @@ const redirectToDesiredReference = require('../redirectToDesiredReference');
 
 const { skipIfAuthorized } = require('../../utils/auth');
 
-const oidcProtectedMiddleware = () => (req, res, next) =>
+const oidcProtectedMiddleware = (req, res, next) =>
   compose([
     // сразу пропускает OPTIONS запросы
     skipAuth(next),
 
     // если пришел GET запрос на получение html, то выполняется все, что ниже, в противном случае в ответ возвращается 401
-    skipIfAuthorized(checkForAuthRedirect()),
+    skipIfAuthorized(checkForAuthRedirect),
 
     // сохраняем в cookie desiredReference для того, чтобы после авторизации редиректнуть пользователя на тот route, на который он хотел попасть
     // без этого пользователь после авторизации будет всегда попадать на redirect_uri
-    skipIfAuthorized(saveDesiredReference()),
+    skipIfAuthorized(saveDesiredReference),
 
-    refreshToken(),
+    refreshToken,
 
     // если пользователь не авторизован, то происходит oidc аутентификация с редиректами
-    skipIfAuthorized(oidcAuth()),
+    skipIfAuthorized(oidcAuth),
     // все, что ниже будет выполняться, если пользователь авторизован
 
     // устанавливает expires для cookie и добавляет токен в заголовок
-    customizationRequest(),
+    customizationRequest,
 
-    redirectToDesiredReference(),
+    redirectToDesiredReference,
   ])(req, res, next);
 
 module.exports = oidcProtectedMiddleware;

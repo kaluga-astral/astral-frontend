@@ -3,7 +3,7 @@ const { addCorsHeaders } = require('./utils');
 
 const { serviceContext, sessionContext } = require('../../contexts');
 
-const checkForAuthRedirectMiddleware = () => (req, res, next) => {
+const checkForAuthRedirectMiddleware = (req, res, next) => {
   const { oidcClient } = serviceContext.data;
   const { allowSubdomains, allowOrigin } = sessionContext.data;
 

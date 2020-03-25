@@ -1,6 +1,6 @@
 const { serviceContext, oidcContext } = require('../../contexts');
 
-const logoutMiddleware = () => async (req, res) => {
+const logoutMiddleware = async (req, res) => {
   const { oidcClient } = serviceContext.data;
   const { postLogoutRedirectUri } = oidcContext.data;
 

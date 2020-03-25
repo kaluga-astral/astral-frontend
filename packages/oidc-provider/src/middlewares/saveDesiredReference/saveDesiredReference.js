@@ -4,7 +4,7 @@ const { saveDesiredReferenceInCookie } = require('./utils');
 
 const { serviceContext } = require('../../contexts');
 
-const saveDesiredReferenceMiddleware = () => (req, res, next) => {
+const saveDesiredReferenceMiddleware = (req, res, next) => {
   const { oidcClient } = serviceContext.data;
 
   if (!isEmpty(oidcClient.callbackParams(req))) {

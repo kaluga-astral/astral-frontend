@@ -1,6 +1,6 @@
 const { DESIRED_REFERENCE_KEY } = require('../../config/session');
 
-const redirectToDesiredReferenceMiddleware = () => (req, res, next) => {
+const redirectToDesiredReferenceMiddleware = (req, res, next) => {
   if (!req.cookies[DESIRED_REFERENCE_KEY]) return next();
 
   // удаляем desiredReference

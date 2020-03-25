@@ -1,6 +1,6 @@
 const { serviceContext } = require('../../contexts');
 
-const getProfileMiddleware = () => async (req, res) => {
+const getProfileMiddleware = async (req, res) => {
   const { oidcClient } = serviceContext.data;
 
   // второй параметр - token_type_hint помогает серверу быстрее найти токен

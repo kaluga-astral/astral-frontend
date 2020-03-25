@@ -6,7 +6,7 @@ const { serviceContext, oidcContext } = require('../../contexts');
 
 const { AUTH_STRATEGY_NAME } = require('../../config/authStrategies');
 
-const oidcAuthMiddleware = () => (req, res, next) => {
+const oidcAuthMiddleware = (req, res, next) => {
   const { oidcClient } = serviceContext.data;
   const { oidcSessionKey } = oidcContext.data;
 

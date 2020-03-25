@@ -2,9 +2,9 @@ const { compose } = require('compose-middleware');
 
 const {
   createSession,
-  oidcProtected: createOidcProtectedMiddleware,
-  logout: createLogoutMiddleware,
-  getProfile: createGetProfileMiddleware,
+  oidcProtected,
+  logout,
+  getProfile,
 } = require('./middlewares');
 
 const {
@@ -41,10 +41,6 @@ const initializeOidcProvider = async entryParams => {
     clientConfig: oidcClientConfig,
   });
   sessionContext.updateData(sessionParams);
-
-  const oidcProtected = createOidcProtectedMiddleware();
-  const logout = createLogoutMiddleware();
-  const getProfile = createGetProfileMiddleware(oidcClient);
 
   // регистрация passport стратегий
   registerOidcAuthStrategy();
