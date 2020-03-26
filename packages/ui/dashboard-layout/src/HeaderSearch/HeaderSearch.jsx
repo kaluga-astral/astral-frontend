@@ -1,12 +1,9 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 
 import { SearchInput } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
-import DocumentsFilter from './DocumentsFilter';
-import UploadDateFilter from './UploadDateFilter';
 
 const useStyles = makeStyles(
   theme => ({
@@ -29,10 +26,9 @@ const DashboardLayoutHeaderSearch = ({
   inputValue,
   defaultInputValue,
   onInputChange,
+  renderFilters,
 }) => {
   const classes = useStyles();
-  const { pathname } = useLocation();
-  const renderFilters = pathname.match(/\/drafts/);
 
   return (
     <SearchInput
@@ -41,14 +37,7 @@ const DashboardLayoutHeaderSearch = ({
       value={inputValue}
       defaultValue={defaultInputValue}
       onChange={onInputChange}
-      renderFilters={() =>
-        renderFilters && (
-          <>
-            <UploadDateFilter />
-            <DocumentsFilter />
-          </>
-        )
-      }
+      renderFilters={renderFilters}
     />
   );
 };
@@ -58,6 +47,7 @@ DashboardLayoutHeaderSearch.defaultProps = {
   placeholder: 'Поиск',
   inputValue: undefined,
   defaultInputValue: undefined,
+  renderFilters: null,
 };
 
 DashboardLayoutHeaderSearch.propTypes = {
@@ -66,6 +56,7 @@ DashboardLayoutHeaderSearch.propTypes = {
   inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   defaultInputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onInputChange: PropTypes.func.isRequired,
+  renderFilters: PropTypes.func,
 };
 
 export default DashboardLayoutHeaderSearch;
