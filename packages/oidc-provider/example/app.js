@@ -7,14 +7,13 @@ const { createMockApi } = require('./__mocks__/api');
 
 const { httpProxy, httpLogger, errorLogger } = require('./middlewares');
 
-const { connectStore } = require('./services/store');
-
 const PROXY_MOCK_PORT = 3001;
 const SERVER_PORT = 3000;
+const STORE_CONNECT_URL = 'http://10.0.3.9:5703';
 
 const OIDC_PARAMS = {
-  identityUrl: 'https://identity.astral-dev.ru',
-  clientId: 'local_code_flow',
+  identityUrl: 'https://identity.demo.astral-dev.ru',
+  clientId: 'example_code_flow',
   clientSecret: 'secret',
   redirectUri: 'http://localhost:3000',
   postLogoutRedirectUri: 'http://localhost:3000',
@@ -31,7 +30,6 @@ createMockApi(PROXY_MOCK_PORT);
 
 const initializeServer = async () => {
   const app = express();
-  const store = connectStore();
 
   app.use(httpLogger);
 
@@ -40,7 +38,7 @@ const initializeServer = async () => {
 
   const { oidcProtected, logout, getProfile } = await initializeOidcProvider({
     app,
-    store,
+    storeConnectUrl: STORE_CONNECT_URL,
     oidcParams: OIDC_PARAMS,
     sessionParams: SESSION_PARAMS,
   });

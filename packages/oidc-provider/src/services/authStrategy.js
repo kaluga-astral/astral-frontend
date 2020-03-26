@@ -4,6 +4,8 @@ const { Strategy: OidcStrategy } = require('openid-client');
 
 const { updateSessionExpires } = require('../utils/cookie');
 
+const { serviceContext, oidcContext } = require('../contexts');
+
 const {
   AUTH_STRATEGY_NAME,
   REFRESH_TOKEN_STRATEGY_NAME,
@@ -17,15 +19,14 @@ authStrategyService.deserializeUser((user, done) => {
   done(null, user);
 });
 
-const registerOidcAuthStrategy = (
-  oidcClient,
-  oidcClientConfig,
-  oidcSessionKey,
-) => {
+const registerOidcAuthStrategy = () => {
+  const { oidcClient } = serviceContext.data;
+  const { clientConfig, oidcSessionKey } = oidcContext.data;
+
   const oidcStrategy = new OidcStrategy(
     {
       client: oidcClient,
-      params: oidcClientConfig,
+      params: clientConfig,
       sessionKey: oidcSessionKey,
     },
     (tokenSet, userInfo, done) => {
@@ -41,18 +42,28 @@ const registerOidcAuthStrategy = (
   authStrategyService.use(AUTH_STRATEGY_NAME, oidcStrategy);
 };
 
-const registerRefreshTokenStrategy = (oidcClient, { refreshTokenMaxAge }) => {
+const registerRefreshTokenStrategy = () => {
+  const { oidcClient } = serviceContext.data;
+  const { refreshTokenMaxAge } = oidcContext.data;
+
   const refreshTokenStrategy = new CustomStrategy(async (req, done) => {
     const setTokenInfo = req.user.tokenSet;
 
     try {
       const newTokenSet = await oidcClient.refresh(setTokenInfo.refresh_token);
 
-      req.session.regenerate(() => {
-        done(null, { ...req.user, tokenSet: newTokenSet });
-      });
-
+      // TODO: возможно это можно заменить на req.session.touch()
       updateSessionExpires(req, refreshTokenMaxAge);
+
+      // странное поведение CustomStrategy: если вызвать про done(null, user), то эти данные не сохраняются ни локально, ни в store
+      // поэтому изменяю информацию о юзере в памяти и по завершению запроса express-session сама вызовет req.session.save и синхронизирует данные с store (Redis)
+      req.user.tokenSet = {
+        ...newTokenSet,
+        expires_in: newTokenSet.expires_in,
+      };
+
+      // TODO: для улучшения безопапсности необходимо добавить регенерацию сессии (обновление sessionID)
+      done(null, req.user);
     } catch (err) {
       done(err);
     }

@@ -2,11 +2,12 @@ const { compose } = require('compose-middleware');
 
 const {
   createSession,
-  oidcProtected: createOidcProtectedMiddleware,
-  logout: createLogoutMiddleware,
-  getProfile: createGetProfileMiddleware,
+  oidcProtected,
+  logout,
+  getProfile,
 } = require('./middlewares');
 
+const { connectStore } = require('./services/store');
 const {
   authStrategyService,
   registerOidcAuthStrategy,
@@ -17,11 +18,16 @@ const { connectIdentity } = require('./services/oidc');
 const { validateInitializeEntryParam } = require('./utils/validation');
 const { generateOidcSessionKey, getOidcClientConfig } = require('./utils/oidc');
 
+const { serviceContext, oidcContext, sessionContext } = require('./contexts');
+
 const initializeOidcProvider = async entryParams => {
   // выдаст ошибку и завершит процесс, если какие-либо из входных параметров заданы неверно
   validateInitializeEntryParam(entryParams);
 
-  const { app, store, oidcParams, sessionParams } = entryParams;
+  const { app, storeConnectUrl, oidcParams, sessionParams } = entryParams;
+
+  const { store, client: storeClient } = connectStore(storeConnectUrl);
+
   const oidcSessionKey = generateOidcSessionKey(oidcParams.clientId);
   const oidcClientConfig = getOidcClientConfig(oidcParams);
   // const successAuthRedirectRoute = new URL(oidcParams.redirectUri).pathname;
@@ -31,20 +37,20 @@ const initializeOidcProvider = async entryParams => {
     oidcClientConfig,
   );
 
-  const oidcProtected = createOidcProtectedMiddleware({
-    oidcClient,
-    oidcParams,
+  // инициализация контекстов. За счет использования контекстов отпадает необходимость передавать общие данные через параметры вложенных цепочек функций
+  serviceContext.updateData({ store, storeClient, oidcClient });
+  oidcContext.updateData({
+    ...oidcParams,
     oidcSessionKey,
-    sessionParams,
+    clientConfig: oidcClientConfig,
   });
-  const logout = createLogoutMiddleware(oidcClient, oidcParams);
-  const getProfile = createGetProfileMiddleware(oidcClient);
+  sessionContext.updateData(sessionParams);
 
   // регистрация passport стратегий
-  registerOidcAuthStrategy(oidcClient, oidcClientConfig, oidcSessionKey);
-  registerRefreshTokenStrategy(oidcClient, oidcParams);
+  registerOidcAuthStrategy();
+  registerRefreshTokenStrategy();
 
-  app.use(createSession({ store, ...sessionParams }));
+  app.use(createSession());
 
   // Initialize Passport
   app.use(authStrategyService.initialize());
@@ -59,6 +65,7 @@ const initializeOidcProvider = async entryParams => {
     logout: compose([oidcProtected, logout]),
     // получения пользовательских данных должно работать только для авторизованного пользователя
     getProfile: compose([oidcProtected, getProfile]),
+    storeClient,
   };
 };
 
