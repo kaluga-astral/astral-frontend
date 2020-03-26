@@ -13,7 +13,7 @@
 const { initializeOidcProvider } = require('@astral-frontend/oidc-provider');
 
 const main = async () => {
- const {  } = await initializeOidcProvider(params);
+ const { oidcProtected, logout, getProfile, storeClient } = await initializeOidcProvider(params);
 }
 ```
 
