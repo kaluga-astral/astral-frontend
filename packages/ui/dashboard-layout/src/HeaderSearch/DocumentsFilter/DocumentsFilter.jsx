@@ -47,7 +47,6 @@ const DocumentsFilter = () => {
     { recipientOption, documentTypes = [], ...restQueryParams },
     setQueryParams,
   ] = useQueryParams();
-
   const [recipientTypeOption, setRecipientTypeOption] = React.useState(
     recipientOption || 'allDocuments',
   );

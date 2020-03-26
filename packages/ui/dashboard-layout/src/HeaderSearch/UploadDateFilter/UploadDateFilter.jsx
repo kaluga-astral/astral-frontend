@@ -19,6 +19,7 @@ import {
   startOfMonth,
   startOfYesterday,
 } from '@astraledo-web/common/utils/date-fns';
+import { useQueryParams } from '@astraledo-web/common/hooks';
 import CalendarIcon from './CalendarIcon';
 import NavBarCounter from '../../NavBarCounter';
 
@@ -48,79 +49,88 @@ const useStyles = makeStyles(
 
 const UploadDateFilter = () => {
   const classes = useStyles();
-  const [dateRange, setDateRange] = React.useState('all');
-  const handleDateRangeChange = event => {
-    setDateRange(event.target.value);
-  };
-  const dateRangeButtons = [
-    // {
-    //   label: 'За все время',
-    //   value: 'all',
-    // },
-    {
+  const [
+    { uploadDateFrom, uploadDateTo, ...restQueryParams },
+    setQueryParams,
+  ] = useQueryParams();
+  const [dateRange, setDateRange] = React.useState({
+    uploadDateFrom,
+    uploadDateTo,
+  });
+  const [checkedCheckbox, setCheckedCheckbox] = React.useState('all');
+  const dateRangeButtons = {
+    all: {
+      label: 'За все время',
+      getDateRange: () => ({}),
+    },
+    today: {
       label: 'Сегодня',
-      value: 'today',
       getDateRange: () => ({
-        startDate: startOfToday().toISOString(),
-        endDate: new Date().toISOString(),
+        uploadDateFrom: startOfToday().toISOString(),
+        uploadDateTo: new Date().toISOString(),
       }),
     },
-    {
+    tommorow: {
       label: 'Вчера',
-      value: 'tommorow',
       getDateRange: () => ({
-        startDate: startOfYesterday().toISOString(),
-        endDate: new Date(startOfToday().getTime() - 1).toISOString(),
+        uploadDateFrom: startOfYesterday().toISOString(),
+        uploadDateTo: new Date(startOfToday().getTime() - 1).toISOString(),
       }),
     },
-    {
+    lastWeek: {
       label: 'Прошлая неделя',
-      value: 'last-week',
       getDateRange: () => {
         const date = new Date();
 
         return {
-          startDate: subWeeks(
+          uploadDateFrom: subWeeks(
             startOfWeek(date, {
               weekStartsOn: 1,
             }),
             1,
           ).toISOString(),
-          endDate: new Date(
+          uploadDateTo: new Date(
             startOfWeek(date).setHours(23, 59, 59),
           ).toISOString(),
         };
       },
     },
-    {
+    lastMonth: {
       label: 'Прошлый месяц',
-      value: 'last-month',
       getDateRange: () => {
         const date = new Date();
 
         return {
-          startDate: subMonths(startOfMonth(date), 1).toISOString(),
-          endDate: new Date(startOfMonth(date).getTime() - 1).toISOString(),
+          uploadDateFrom: subMonths(startOfMonth(date), 1).toISOString(),
+          uploadDateTo: new Date(
+            startOfMonth(date).getTime() - 1,
+          ).toISOString(),
         };
       },
     },
-    {
+    thisMonth: {
       label: 'Этот месяц',
-      value: 'this-month',
       getDateRange: () => {
         const date = new Date();
 
         return {
-          startDate: startOfMonth(date).toISOString(),
-          endDate: date.toISOString(),
+          uploadDateFrom: startOfMonth(date).toISOString(),
+          uploadDateTo: date.toISOString(),
         };
       },
     },
-    // {
-    //   label: 'Выбрать другой период',
-    //   value: 'custom-range',
-    // },
-  ];
+  };
+  const handleDateRangeChange = event => {
+    setCheckedCheckbox(event.target.value);
+    setDateRange(dateRangeButtons[event.target.value].getDateRange());
+    console.log(dateRangeButtons[event.target.value].getDateRange());
+  };
+  React.useEffect(() => {
+    setQueryParams({
+      ...dateRange,
+      ...restQueryParams,
+    });
+  }, [JSON.stringify(dateRange)]);
 
   return (
     <SearchInputFilter disabled={false} Icon={CalendarIcon}>
@@ -142,39 +152,28 @@ const UploadDateFilter = () => {
                 <RadioGroup
                   aria-label="Период"
                   name="Период"
-                  value={dateRange}
                   onChange={handleDateRangeChange}
                 >
-                  <FlexContainer justifyContent="space-between" key="all">
-                    <FormControlLabel
-                      label="За все время"
-                      value="all"
-                      control={<Radio checked={dateRange === 'all'} />}
-                    />
-                  </FlexContainer>
-                  {dateRangeButtons.map(buttonOoptions => (
-                    <FlexContainer
-                      justifyContent="space-between"
-                      key={buttonOoptions.value}
-                    >
-                      <FormControlLabel
-                        label={buttonOoptions.label}
-                        value={buttonOoptions.value}
-                        control={
-                          <Radio checked={dateRange === buttonOoptions.value} />
-                        }
-                      />
-                      <NavBarCounter count={123} />
-                    </FlexContainer>
-                  ))}
+                  {Object.entries(dateRangeButtons).map(
+                    ([key, buttonOptions]) => (
+                      <FlexContainer justifyContent="space-between" key={key}>
+                        <FormControlLabel
+                          label={buttonOptions.label}
+                          value={key}
+                          control={<Radio checked={key === checkedCheckbox} />}
+                        />
+                        <NavBarCounter count={123} />
+                      </FlexContainer>
+                    ),
+                  )}
                   <FlexContainer
                     justifyContent="space-between"
                     key="custom-range"
                   >
                     <FormControlLabel
                       label="Выбрать другой период"
-                      value="custom-range"
-                      control={<Radio checked={dateRange === 'custom-range'} />}
+                      value="customRange"
+                      control={<Radio checked={false} />}
                     />
                   </FlexContainer>
                 </RadioGroup>
