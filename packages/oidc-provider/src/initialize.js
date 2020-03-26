@@ -65,6 +65,7 @@ const initializeOidcProvider = async entryParams => {
     logout: compose([oidcProtected, logout]),
     // получения пользовательских данных должно работать только для авторизованного пользователя
     getProfile: compose([oidcProtected, getProfile]),
+    storeClient,
   };
 };
 
