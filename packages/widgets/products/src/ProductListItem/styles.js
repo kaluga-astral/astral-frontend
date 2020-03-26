@@ -6,13 +6,15 @@ export default makeStyles(theme => ({
   container: {
     display: 'flex',
     alignItems: 'center',
-    overflow: 'hidden',
     padding: '22px 20px',
     textDecoration: 'none',
     transition: 'background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
     '&:hover': {
       backgroundColor: LIST_ITEM_HOVER_BG_COLOR,
     },
+  },
+  textWrapper: {
+    overflow: 'hidden',
   },
   icon: {
     flexShrink: 0,
