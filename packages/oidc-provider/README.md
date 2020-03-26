@@ -26,7 +26,7 @@ initializeOidcProvider возвращает Promise, необходимо дож
 
 ```params```: ```required <Object>```
 * ```app```: ```required <Object>```. Express app;
-* ```store```: ```required <Object>```. Хранилище для сессии (Redis);
+* ```storeConnectUrl```: ```required <String>```. Путь для подключения к хранилищу (Redis);
 
 * ```oidcParams```: ```required <Object>```
     * ```identityUrl```: ```required <String>```. Путь до instance identity ('https://identity.astral-dev.ru');
@@ -47,6 +47,7 @@ initializeOidcProvider возвращает Promise, необходимо дож
 - oidcProtected. Middleware, который необходимо добавлять к роутам, для которых необходима авторизация;
 - logout. Middleware для выхода из текущего клиента;
 - getProfile. Middleware для получения информации о пользователе;
+- storeClient - redis client
 
 ## Принцип работы
 В процессе обработки запроса middleware проверит наличие в coockie SessionID и если его там нет, то произведет редирект на Identity.
