@@ -6,6 +6,7 @@ export default makeStyles(theme => ({
   container: {
     display: 'flex',
     alignItems: 'center',
+    overflow: 'hidden',
     padding: '22px 20px',
     textDecoration: 'none',
     transition: 'background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -14,6 +15,7 @@ export default makeStyles(theme => ({
     },
   },
   icon: {
+    flexShrink: 0,
     boxSizing: 'content-box',
     padding: 7,
     marginRight: 20,
@@ -25,12 +27,16 @@ export default makeStyles(theme => ({
   },
   name: {
     margin: 0,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
     fontSize: 14,
     lineHeight: '19px',
     color: theme.palette.text.primary,
   },
   description: {
     margin: 0,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
     fontSize: 12,
     color: theme.palette.grey[600],
   },
