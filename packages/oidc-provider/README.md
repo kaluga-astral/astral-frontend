@@ -32,7 +32,7 @@ initializeOidcProvider возвращает Promise, необходимо дож
     * ```identityUrl```: ```required <String>```. Путь до instance identity ('https://identity.astral-dev.ru');
     * ```clientId```: ```required <String>```. client_id для oidc;
     * ```clientSecret```: ```required <String>```. client_secret для oidc;
-    * ```redirectUri```: ```required <String>```. Указывается один uri, на него пользователь будет возвращен после успешной авторизации для получения токенов. После успешного получения токенов пользователь будет возвращен на тот route, на который он хотел попасть перед редиректом на Identity;
+    * ```redirectUri```: ```required <String>```. Pathname должен быть отличным от '/', так как данный pathname будет автоматически защищен авторизацией. Указывается один uri, на него пользователь будет возвращен после успешной авторизации для получения токенов. После успешного получения токенов пользователь будет возвращен на тот route, на который он хотел попасть перед редиректом на Identity;
     * ```postLogoutRedirectUri```: ```required <String>```. Указывается один uri, на который пользователь будет перенаправлен после выхода;
     * ```scope```: ```required <String>```. scope для oidc (переданное значение будет приклеяно к 'openid offline_access') - определяет границы доступа к пользовательской информации.Значения отделяются друг от друга пробелом (пример, ```email profile```);
     * ```refreshTokenMaxAge```: ```required <Number>```. время жизни refresh токена в секундах;
