@@ -13,7 +13,7 @@
 const { initializeOidcProvider } = require('@astral-frontend/oidc-provider');
 
 const main = async () => {
- const {  } = await initializeOidcProvider(params);
+ const { oidcProtected, logout, getProfile, storeClient } = await initializeOidcProvider(params);
 }
 ```
 
@@ -26,13 +26,13 @@ initializeOidcProvider возвращает Promise, необходимо дож
 
 ```params```: ```required <Object>```
 * ```app```: ```required <Object>```. Express app;
-* ```store```: ```required <Object>```. Хранилище для сессии (Redis);
+* ```storeConnectUrl```: ```required <String>```. Путь для подключения к хранилищу (Redis);
 
 * ```oidcParams```: ```required <Object>```
     * ```identityUrl```: ```required <String>```. Путь до instance identity ('https://identity.astral-dev.ru');
     * ```clientId```: ```required <String>```. client_id для oidc;
     * ```clientSecret```: ```required <String>```. client_secret для oidc;
-    * ```redirectUri```: ```required <String>```. Указывается один uri, на него пользователь будет возвращен после успешной авторизации для получения токенов. После успешного получения токенов пользователь будет возвращен на тот route, на который он хотел попасть перед редиректом на Identity;
+    * ```redirectUri```: ```required <String>```. Pathname должен быть отличным от '/', так как данный pathname будет автоматически защищен авторизацией. Указывается один uri, на него пользователь будет возвращен после успешной авторизации для получения токенов. После успешного получения токенов пользователь будет возвращен на тот route, на который он хотел попасть перед редиректом на Identity;
     * ```postLogoutRedirectUri```: ```required <String>```. Указывается один uri, на который пользователь будет перенаправлен после выхода;
     * ```scope```: ```required <String>```. scope для oidc (переданное значение будет приклеяно к 'openid offline_access') - определяет границы доступа к пользовательской информации.Значения отделяются друг от друга пробелом (пример, ```email profile```);
     * ```refreshTokenMaxAge```: ```required <Number>```. время жизни refresh токена в секундах;
@@ -47,6 +47,7 @@ initializeOidcProvider возвращает Promise, необходимо дож
 - oidcProtected. Middleware, который необходимо добавлять к роутам, для которых необходима авторизация;
 - logout. Middleware для выхода из текущего клиента;
 - getProfile. Middleware для получения информации о пользователе;
+- storeClient - redis client
 
 ## Принцип работы
 В процессе обработки запроса middleware проверит наличие в coockie SessionID и если его там нет, то произведет редирект на Identity.

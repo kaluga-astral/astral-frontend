@@ -1,12 +1,11 @@
 const { isFirstHtmlRequest } = require('../../utils/httpMethods');
 const { addCorsHeaders } = require('./utils');
 
-const checkForAuthRedirect = ({ oidcClient, sessionParams }) => (
-  req,
-  res,
-  next,
-) => {
-  const { allowSubdomains, allowOrigin } = sessionParams;
+const { serviceContext, sessionContext } = require('../../contexts');
+
+const checkForAuthRedirectMiddleware = (req, res, next) => {
+  const { oidcClient } = serviceContext.data;
+  const { allowSubdomains, allowOrigin } = sessionContext.data;
 
   if (isFirstHtmlRequest(req)) return next();
 
@@ -16,4 +15,4 @@ const checkForAuthRedirect = ({ oidcClient, sessionParams }) => (
   res.status(401).send({ redirectUrl: oidcClient.authorizationUrl() });
 };
 
-module.exports = checkForAuthRedirect;
+module.exports = checkForAuthRedirectMiddleware;

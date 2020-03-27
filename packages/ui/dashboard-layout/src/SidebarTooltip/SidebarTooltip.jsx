@@ -5,17 +5,26 @@ import { Tooltip } from '@astral-frontend/components';
 import SidebarContext from '../Sidebar/SidebarContext';
 
 const SidebarTooltip = ({ children, ...props }) => {
-  const { expanded } = React.useContext(SidebarContext);
+  const { expanded } = React.useContext(SidebarContext) || { expanded: true };
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(!expanded);
+  };
 
-  if (expanded) {
-    return (
-      <Tooltip placement="right" {...props}>
-        {children}
-      </Tooltip>
-    );
-  }
-
-  return children;
+  return (
+    <Tooltip
+      placement="right"
+      open={open}
+      onClose={handleClose}
+      onOpen={handleOpen}
+      {...props}
+    >
+      {children}
+    </Tooltip>
+  );
 };
 
 SidebarTooltip.propTypes = {

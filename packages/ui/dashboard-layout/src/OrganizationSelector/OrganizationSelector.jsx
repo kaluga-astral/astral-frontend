@@ -88,9 +88,12 @@ const OrganizationSelector = ({
                   <FlatTemplatedDataList
                     {...DataListProps}
                     ListItemComponent={ListItemComponent}
-                    EmptyStateComponent={
-                      OrganizationSelectorEmptyStateComponent
-                    }
+                    EmptyStateComponent={EmptyStateComponentProps => (
+                      <OrganizationSelectorEmptyStateComponent
+                        {...EmptyStateComponentProps}
+                        addLinkHref={addLinkHref}
+                      />
+                    )}
                   />
                   {showAddButton && (
                     <MenuItem
