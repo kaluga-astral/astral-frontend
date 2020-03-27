@@ -13,7 +13,11 @@ export default makeStyles(theme => ({
       backgroundColor: LIST_ITEM_HOVER_BG_COLOR,
     },
   },
+  textWrapper: {
+    overflow: 'hidden',
+  },
   icon: {
+    flexShrink: 0,
     boxSizing: 'content-box',
     padding: 7,
     marginRight: 20,
@@ -25,12 +29,16 @@ export default makeStyles(theme => ({
   },
   name: {
     margin: 0,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
     fontSize: 14,
     lineHeight: '19px',
     color: theme.palette.text.primary,
   },
   description: {
     margin: 0,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
     fontSize: 12,
     color: theme.palette.grey[600],
   },
