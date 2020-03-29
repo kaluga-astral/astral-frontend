@@ -60,10 +60,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: [
-          'file-loader',
-          'image-webpack-loader',
-        ],
+        use: ['file-loader', 'image-webpack-loader'],
       },
       {
         test: /\.(jpe?g|png|gif)$/,
@@ -108,6 +105,7 @@ module.exports = {
   },
 
   optimization: {
+    namedModules: true,
     minimizer: [
       new TerserPlugin({
         parallel: true,

@@ -5,7 +5,6 @@
   "main": "./src/index.js",
   "dependencies": {
     "@babel/core": "^7.8.6",
-    "assets-webpack-plugin": "^3.9.10",
     "babel-loader": "^8.0.5",
     "brotli-webpack-plugin": "^1.1.0",
     "compression-webpack-plugin": "^3.1.0",
@@ -26,7 +25,6 @@
     "url-loader": "^3.0.0",
     "webpack": "^4.41.6",
     "webpack-bundle-analyzer": "^3.6.0",
-    "webpack-deep-scope-plugin": "^1.6.0",
     "webpack-manifest-plugin": "^2.2.0",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
