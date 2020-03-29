@@ -105,7 +105,6 @@ module.exports = {
   },
 
   optimization: {
-    namedModules: true,
     minimizer: [
       new TerserPlugin({
         parallel: true,
