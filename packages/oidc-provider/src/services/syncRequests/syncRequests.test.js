@@ -1,7 +1,7 @@
 const {
   generateLockStoreKey,
   createUnlockResourceMessage,
-  resourceIsUnlocked,
+  isUnlockedResource,
 } = require('./syncRequests');
 
 describe('generateLockStoreKey', () => {
@@ -26,7 +26,7 @@ describe('createUnlockResourceMessage', () => {
   });
 });
 
-describe('resourceIsUnlocked', () => {
+describe('isUnlockedResource', () => {
   it('если в канал пришло сообщение о разблокировке наблюдаемого ресурса и сессии вернет true', () => {
     const observableResourceName = 'refresh';
     const observableSessionID = 'sdase32fdas';
@@ -34,7 +34,7 @@ describe('resourceIsUnlocked', () => {
       '{"resourceName":"refresh","sessionID":"sdase32fdas","unlock":true}';
 
     expect(
-      resourceIsUnlocked({
+      isUnlockedResource({
         channelMessage: unlockObservableResourceMessage,
         observableSessionID,
         observableResourceName,
@@ -42,7 +42,7 @@ describe('resourceIsUnlocked', () => {
     ).toBe(true);
 
     expect(
-      resourceIsUnlocked({
+      isUnlockedResource({
         channelMessage:
           '{"resourceName":"no_observe","sessionID":"sdase32fdas","unlock":true}',
         observableSessionID,
@@ -50,7 +50,7 @@ describe('resourceIsUnlocked', () => {
       }),
     ).toBe(false);
     expect(
-      resourceIsUnlocked({
+      isUnlockedResource({
         channelMessage:
           '{"resourceName":"refresh","sessionID":"_","unlock":true}',
         observableSessionID,

@@ -3,22 +3,16 @@ const { SYNC_REQUESTS_CHANNEL_NAME } = require('../../config/syncRequests');
 const createUnlockResourceMessage = (resourceName, sessionID) =>
   JSON.stringify({ resourceName, sessionID, unlock: true });
 
-const resourceIsUnlocked = ({
+const isUnlockedResource = ({
   channelMessage,
   observableSessionID,
   observableResourceName,
 }) => {
   const { resourceName, sessionID, unlock } = JSON.parse(channelMessage);
+  const isObservableResource = resourceName === observableResourceName;
+  const isObservableSession = sessionID === observableSessionID;
 
-  if (
-    unlock &&
-    resourceName === observableResourceName &&
-    sessionID === observableSessionID
-  ) {
-    return unlock;
-  }
-
-  return false;
+  return unlock && isObservableResource && isObservableSession ? unlock : false;
 };
 
 const generateLockStoreKey = (resourceName, sessionID) =>
@@ -29,15 +23,13 @@ const waitForUnlockResource = (storeSubscriber, resourceName, req) =>
     storeSubscriber.on('message', (channelName, message) => {
       const { sessionID } = req;
       const isSyncReqChannel = channelName === SYNC_REQUESTS_CHANNEL_NAME;
+      const resourceIsUnlocked = isUnlockedResource({
+        channelMessage: message,
+        observableResourceName: resourceName,
+        observableSessionID: sessionID,
+      });
 
-      if (
-        isSyncReqChannel &&
-        resourceIsUnlocked({
-          channelMessage: message,
-          observableResourceName: resourceName,
-          observableSessionID: sessionID,
-        })
-      ) {
+      if (isSyncReqChannel && resourceIsUnlocked) {
         resolve();
       }
     });
@@ -91,20 +83,16 @@ const pauseReqLockedResource = async (
   syncResourceName,
   req,
 ) => {
-  try {
-    // проверяем заблокирован ли ресурс
-    const resourceIsLocked = await checkLockResource(
-      storeClient,
-      syncResourceName,
-      req,
-    );
+  // проверяем заблокирован ли ресурс
+  const resourceIsLocked = await checkLockResource(
+    storeClient,
+    syncResourceName,
+    req,
+  );
 
-    if (resourceIsLocked) {
-      // если ресурс заблокирован - ждем его разблокировки
-      await waitForUnlockResource(storeSubscriber, syncResourceName, req);
-    }
-  } catch (err) {
-    throw err;
+  if (resourceIsLocked) {
+    // если ресурс заблокирован - ждем его разблокировки
+    await waitForUnlockResource(storeSubscriber, syncResourceName, req);
   }
 };
 
@@ -117,5 +105,5 @@ module.exports = {
   checkLockResource,
   pauseReqLockedResource,
   createUnlockResourceMessage,
-  resourceIsUnlocked,
+  isUnlockedResource,
 };
