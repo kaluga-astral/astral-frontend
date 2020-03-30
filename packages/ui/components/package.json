@@ -16,6 +16,7 @@
     "@material-ui/lab": "^4.0.0-alpha.44",
     "@researchgate/react-intersection-list": "^3.0.8",
     "classnames": "^2.2.6",
+    "date-fns": "^2.11.1",
     "downshift": "^5.0.3",
     "intro.js": "2.9.3",
     "intro.js-react": "0.2.0",
