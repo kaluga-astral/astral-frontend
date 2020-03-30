@@ -1,4 +1,5 @@
 const { authStrategyService } = require('../../services/authStrategy');
+const { subscribeToSyncReqChannel } = require('../../services/syncRequests');
 
 const { isActingUrlOidcParams, clearQueryParams } = require('./utils');
 
