@@ -27,12 +27,23 @@ const validateObject = (
   return envVars;
 };
 
-const validateOidcEntryParams = oidcParams =>
+const validateOidcRedirectUri = redirectUri => {
+  if (new URL(redirectUri).pathname === '/') {
+    throwValidationError(
+      'Pathname переданного параметра oidcParams.redirectUri должен отличаться от "/"',
+    );
+  }
+};
+
+const validateOidcEntryParams = oidcParams => {
   validateObject(
     oidcParams,
     OIDC_ENTRY_PARAMS_VALIDATION_SCHEME,
     'Ошибка в переданных oidcParams',
   );
+
+  validateOidcRedirectUri(oidcParams.redirectUri);
+};
 
 const validateSessionEntryParams = sessionParams =>
   validateObject(
@@ -43,7 +54,7 @@ const validateSessionEntryParams = sessionParams =>
 
 const validateInitializeEntryParam = ({
   app,
-  store,
+  storeConnectUrl,
   oidcParams,
   sessionParams,
 }) => {
@@ -51,8 +62,10 @@ const validateInitializeEntryParam = ({
     throwValidationError('Во входных параметрах отсутсвует app (express)');
   }
 
-  if (!store) {
-    throwValidationError('Во входных параметрах отсутсвует store (Redis)');
+  if (!storeConnectUrl) {
+    throwValidationError(
+      'Во входных параметрах отсутсвует storeConnectUrl (ссылка на Redis)',
+    );
   }
 
   validateOidcEntryParams(oidcParams);

@@ -7,6 +7,8 @@ const {
   getProfile,
 } = require('./middlewares');
 
+const { connectStore } = require('./services/store');
+const { subscribeToSyncReqChannel } = require('./services/syncRequests');
 const {
   authStrategyService,
   registerOidcAuthStrategy,
@@ -23,7 +25,17 @@ const initializeOidcProvider = async entryParams => {
   // выдаст ошибку и завершит процесс, если какие-либо из входных параметров заданы неверно
   validateInitializeEntryParam(entryParams);
 
-  const { app, store, oidcParams, sessionParams } = entryParams;
+  const { app, storeConnectUrl, oidcParams, sessionParams } = entryParams;
+
+  const {
+    store,
+    client: storeClient,
+    subscriber: storeSubscriber,
+    publisher: storePublisher,
+  } = connectStore(storeConnectUrl);
+  // создаем канал для синхронизации запросов. Необходимость синхронизации описана в README
+  await subscribeToSyncReqChannel(storeSubscriber);
+
   const oidcSessionKey = generateOidcSessionKey(oidcParams.clientId);
   const oidcClientConfig = getOidcClientConfig(oidcParams);
   const successAuthRedirectRoute = new URL(oidcParams.redirectUri).pathname;
@@ -34,7 +46,13 @@ const initializeOidcProvider = async entryParams => {
   );
 
   // инициализация контекстов. За счет использования контекстов отпадает необходимость передавать общие данные через параметры вложенных цепочек функций
-  serviceContext.updateData({ store, oidcClient });
+  serviceContext.updateData({
+    store,
+    storeClient,
+    storeSubscriber,
+    storePublisher,
+    oidcClient,
+  });
   oidcContext.updateData({
     ...oidcParams,
     oidcSessionKey,
@@ -61,6 +79,7 @@ const initializeOidcProvider = async entryParams => {
     logout: compose([oidcProtected, logout]),
     // получения пользовательских данных должно работать только для авторизованного пользователя
     getProfile: compose([oidcProtected, getProfile]),
+    storeClient,
   };
 };
 
