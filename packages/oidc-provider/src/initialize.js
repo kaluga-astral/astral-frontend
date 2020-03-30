@@ -8,6 +8,7 @@ const {
 } = require('./middlewares');
 
 const { connectStore } = require('./services/store');
+const { subscribeToSyncReqChannel } = require('./services/syncRequests');
 const {
   authStrategyService,
   registerOidcAuthStrategy,
@@ -26,7 +27,14 @@ const initializeOidcProvider = async entryParams => {
 
   const { app, storeConnectUrl, oidcParams, sessionParams } = entryParams;
 
-  const { store, client: storeClient } = connectStore(storeConnectUrl);
+  const {
+    store,
+    client: storeClient,
+    subscriber: storeSubscriber,
+    publisher: storePublisher,
+  } = connectStore(storeConnectUrl);
+  // создаем канал для синхронизации запросов. Необходимость синхронизации описана в README
+  await subscribeToSyncReqChannel(storeSubscriber);
 
   const oidcSessionKey = generateOidcSessionKey(oidcParams.clientId);
   const oidcClientConfig = getOidcClientConfig(oidcParams);
@@ -38,7 +46,13 @@ const initializeOidcProvider = async entryParams => {
   );
 
   // инициализация контекстов. За счет использования контекстов отпадает необходимость передавать общие данные через параметры вложенных цепочек функций
-  serviceContext.updateData({ store, storeClient, oidcClient });
+  serviceContext.updateData({
+    store,
+    storeClient,
+    storeSubscriber,
+    storePublisher,
+    oidcClient,
+  });
   oidcContext.updateData({
     ...oidcParams,
     oidcSessionKey,

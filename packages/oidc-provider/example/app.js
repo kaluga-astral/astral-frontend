@@ -15,7 +15,7 @@ const OIDC_PARAMS = {
   identityUrl: 'https://identity.demo.astral-dev.ru',
   clientId: 'example_code_flow',
   clientSecret: 'secret',
-  redirectUri: 'http://localhost:3000',
+  redirectUri: 'http://localhost:3000/auth/cb',
   postLogoutRedirectUri: 'http://localhost:3000',
   scope: 'profile email',
   refreshTokenMaxAge: 2592000,

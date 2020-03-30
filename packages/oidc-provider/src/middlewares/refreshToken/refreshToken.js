@@ -1,14 +1,28 @@
 const { authStrategyService } = require('../../services/authStrategy');
+const { pauseReqLockedResource } = require('../../services/syncRequests');
 
 const {
   saveDesiredReferenceInCookie,
 } = require('../saveDesiredReference/utils');
 const { isActsTokenId } = require('./utils');
 
-const { REFRESH_TOKEN_STRATEGY_NAME } = require('../../config/authStrategies');
+const { serviceContext } = require('../../contexts');
 
-const refreshTokenMiddleware = (req, res, next) => {
+const { REFRESH_TOKEN_STRATEGY_NAME } = require('../../config/authStrategies');
+const { REFRESH_TOKEN_RESOURCE_NAME } = require('../../config/syncRequests');
+
+const refreshTokenMiddleware = async (req, res, next) => {
   if (!req.isAuthenticated()) return next();
+
+  const { storeClient, storeSubscriber } = serviceContext.data;
+
+  // если сейчас с текущей сессии выполняется какой либо запрос на рефреш, то ждет его выполнения
+  await pauseReqLockedResource(
+    storeClient,
+    storeSubscriber,
+    REFRESH_TOKEN_RESOURCE_NAME,
+    req,
+  );
 
   const setTokenInfo = req.user.tokenSet;
 
@@ -20,6 +34,7 @@ const refreshTokenMiddleware = (req, res, next) => {
     // если произошла ошибка, значит refresh_token недействителен
     // после logout - request попадет в oidcAuthStrategy
     if (err) {
+      // TODO: сделать логирование ошибки при рефреше
       await req.logout();
 
       // также будет необходимо вернуться на текущий route
