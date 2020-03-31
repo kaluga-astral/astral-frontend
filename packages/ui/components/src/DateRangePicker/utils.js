@@ -9,22 +9,34 @@ import {
   isWithinInterval,
   toDate,
   isValid,
+  max,
+  min,
+  isSameMonth,
+  addMonths,
 } from 'date-fns';
 
-export const identity = x => x;
+export const getValidatedMonths = (range, minDate, maxDate) => {
+  const { startDate, endDate } = range;
+  if (startDate && endDate) {
+    const newStart = max([startDate, minDate]);
+    const newEnd = min([endDate, maxDate]);
+    return [
+      newStart,
+      isSameMonth(newStart, newEnd) ? addMonths(newStart, 1) : newEnd,
+    ];
+  }
+  return [startDate, endDate];
+};
 
 export const chunks = (array, size) => {
   return Array.from({ length: Math.ceil(array.length / size) }, (_, i) =>
     array.slice(i * size, i * size + size),
   );
 };
-
-export const combine = (...args) => args.filter(identity).join(' ');
-
 // Date
-export const getDaysInMonth = date => {
-  const startWeek = startOfWeek(startOfMonth(date));
-  const endWeek = endOfWeek(endOfMonth(date));
+export const getDaysInMonth = (date, options) => {
+  const startWeek = startOfWeek(startOfMonth(date), options);
+  const endWeek = endOfWeek(endOfMonth(date), options);
   const days = [];
   for (let curr = startWeek; isBefore(curr, endWeek); ) {
     days.push(curr);

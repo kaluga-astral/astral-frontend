@@ -3,9 +3,9 @@ import React from 'react';
 import { Paper, Grid, Typography, Divider } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
 import { format, differenceInCalendarMonths } from 'date-fns';
+import { ru } from 'date-fns/locale';
 import { ArrowRightIcon } from '@astral-frontend/icons';
 import Month from './Month';
-import DefinedRanges from './DefinedRanges';
 import { MARKERS } from '../markers';
 
 const useStyles = makeStyles(theme => ({
@@ -23,7 +23,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Menu = ({
-  ranges,
   dateRange,
   minDate,
   maxDate,
@@ -31,7 +30,6 @@ const Menu = ({
   setFirstMonth,
   secondMonth,
   setSecondMonth,
-  setDateRange,
   helpers,
   handlers,
   translation,
@@ -53,11 +51,14 @@ const Menu = ({
           <Grid container className={classes.header} alignItems="center">
             <Grid item className={classes.headerItem}>
               <Typography variant="subtitle1">
-                {startDate
-                  ? format(startDate, 'MMMM dd, yyyy', {
-                      locale: translation?.locale,
-                    })
-                  : translationText?.startDate}
+                {startDate && [
+                  <span key="prefix">от </span>,
+                  <span key="date">
+                    {format(startDate, 'dd.MM.yyyy', {
+                      locale: translation?.locale ?? ru,
+                    })}
+                  </span>,
+                ]}
               </Typography>
             </Grid>
             <Grid item className={classes.headerItem}>
@@ -65,11 +66,14 @@ const Menu = ({
             </Grid>
             <Grid item className={classes.headerItem}>
               <Typography variant="subtitle1">
-                {endDate
-                  ? format(endDate, 'MMMM dd, yyyy', {
-                      locale: translation?.locale,
-                    })
-                  : translationText?.endDate}
+                {endDate && [
+                  <span key="prefix">до </span>,
+                  <span key="date">
+                    {format(endDate, 'dd.MM.yyyy', {
+                      locale: translation?.locale ?? ru,
+                    })}
+                  </span>,
+                ]}
               </Typography>
             </Grid>
           </Grid>
@@ -97,13 +101,6 @@ const Menu = ({
           </Grid>
         </Grid>
         <div className={classes.divider} />
-        <Grid>
-          <DefinedRanges
-            selectedRange={dateRange}
-            ranges={ranges}
-            setRange={setDateRange}
-          />
-        </Grid>
       </Grid>
     </Paper>
   );

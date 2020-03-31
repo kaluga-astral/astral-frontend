@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Paper, Grid, Typography } from '@astral-frontend/core';
+import { Paper, Grid, Typography, ThemeProvider } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
 import {
   getDate,
@@ -20,22 +20,27 @@ import {
 import Header from './Header';
 import Day from './Day';
 
-const WEEK_DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+const WEEK_DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: 290,
   },
   weekDaysContainer: {
-    marginTop: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(1),
+  },
+  weekDay: {
+    width: 32,
+    color: theme.palette.gray[600],
   },
   daysContainer: {
-    paddingLeft: 15,
-    paddingRight: 15,
-    marginTop: 15,
-    marginBottom: 20,
+    marginBottom: theme.spacing(3),
+  },
+  week: {
+    '&:nth-last-child(n + 2)': {
+      marginBottom: theme.spacing(2),
+    },
   },
 }));
 
@@ -72,11 +77,16 @@ const Month = ({
           item
           container
           direction="row"
-          justify="space-between"
+          justify="center"
           className={classes.weekDaysContainer}
         >
           {weekDays.map(day => (
-            <Typography color="textSecondary" key={day} variant="caption">
+            <Typography
+              align="center"
+              key={day}
+              variant="subtitle2"
+              className={classes.weekDay}
+            >
               {day}
             </Typography>
           ))}
@@ -89,35 +99,43 @@ const Month = ({
           justify="space-between"
           className={classes.daysContainer}
         >
-          {chunks(getDaysInMonth(date), 7).map((week, idx) => (
-            <Grid key={idx} container direction="row" justify="center">
-              {week.map(day => {
-                const isStart = isStartOfRange(dateRange, day);
-                const isEnd = isEndOfRange(dateRange, day);
-                const isRangeOneDay = isRangeSameDay(dateRange);
-                const highlighted =
-                  inDateRange(dateRange, day) || helpers.inHoverRange(day);
+          {chunks(getDaysInMonth(date, { weekStartsOn: 1 }), 7).map(
+            (week, idx) => (
+              <Grid
+                key={idx}
+                container
+                direction="row"
+                justify="center"
+                className={classes.week}
+              >
+                {week.map(day => {
+                  const isStart = isStartOfRange(dateRange, day);
+                  const isEnd = isEndOfRange(dateRange, day);
+                  const isRangeOneDay = isRangeSameDay(dateRange);
+                  const highlighted =
+                    inDateRange(dateRange, day) || helpers.inHoverRange(day);
 
-                return (
-                  <Day
-                    key={format(day, 'MM-dd-yyyy')}
-                    filled={isStart || isEnd}
-                    outlined={isToday(day)}
-                    highlighted={highlighted && !isRangeOneDay}
-                    disabled={
-                      !isSameMonth(date, day) ||
-                      !isWithinInterval(day, { start: minDate, end: maxDate })
-                    }
-                    startOfRange={isStart && !isRangeOneDay}
-                    endOfRange={isEnd && !isRangeOneDay}
-                    onClick={() => handlers.onDayClick(day)}
-                    onHover={() => handlers.onDayHover(day)}
-                    value={getDate(day)}
-                  />
-                );
-              })}
-            </Grid>
-          ))}
+                  return (
+                    <Day
+                      key={format(day, 'MM-dd-yyyy')}
+                      filled={isStart || isEnd}
+                      outlined={isToday(day)}
+                      highlighted={highlighted && !isRangeOneDay}
+                      disabled={
+                        !isSameMonth(date, day) ||
+                        !isWithinInterval(day, { start: minDate, end: maxDate })
+                      }
+                      startOfRange={isStart && !isRangeOneDay}
+                      endOfRange={isEnd && !isRangeOneDay}
+                      onClick={() => handlers.onDayClick(day)}
+                      onHover={() => handlers.onDayHover(day)}
+                      value={getDate(day)}
+                    />
+                  );
+                })}
+              </Grid>
+            ),
+          )}
         </Grid>
       </Grid>
     </Paper>

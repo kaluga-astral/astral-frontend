@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types';
 import cn from 'classNames';
 import React from 'react';
-import { IconButton, Typography } from '@astral-frontend/core';
+import { Button } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    // '&:hover': {
+    //   borderTopRightRadius: '50%',
+    //   borderBottomRightRadius: '50%',
+    // },
+  },
   leftBorderRadius: {
     borderTopLeftRadius: '50%',
     borderBottomLeftRadius: '50%',
@@ -12,26 +18,6 @@ const useStyles = makeStyles(theme => ({
   rightBorderRadius: {
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
-  },
-  buttonContainer: {
-    display: 'flex',
-  },
-  button: {
-    height: 32,
-    width: 32,
-    padding: 0,
-  },
-  buttonText: {
-    lineHeight: 1.6,
-  },
-  outlined: {
-    border: `1px solid ${theme.palette.primary.dark}`,
-  },
-  filled: {
-    '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
-    },
-    backgroundColor: theme.palette.primary.dark,
   },
   highlighted: {
     backgroundColor: theme.palette.action.hover,
@@ -43,13 +29,28 @@ const useStyles = makeStyles(theme => ({
       borderTopRightRadius: '50%',
       borderBottomRightRadius: '50%',
     },
-    '&:hover': {
-      borderTopRightRadius: '50%',
-      borderBottomRightRadius: '50%',
-    },
+    // '&:hover': {
+    //   borderTopRightRadius: '0',
+    //   borderBottomRightRadius: '0',
+    // },
   },
-  contrast: {
+  button: {
+    minWidth: 32,
+    width: 32,
+    height: 32,
+    padding: 0,
+    borderRadius: '50%',
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+  outlined: {
+    border: `1px solid ${theme.palette.primary.dark}`,
+  },
+  filled: {
+    backgroundColor: theme.palette.primary.dark,
     color: theme.palette.primary.contrastText,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+    },
   },
 }));
 
@@ -67,13 +68,13 @@ const Day = ({
   const classes = useStyles();
   return (
     <div
-      className={cn(classes.buttonContainer, {
+      className={cn(classes.root, {
         [classes.leftBorderRadius]: startOfRange,
         [classes.rightBorderRadius]: endOfRange,
         [classes.highlighted]: !disabled && highlighted,
       })}
     >
-      <IconButton
+      <Button
         className={cn(classes.button, {
           [classes.outlined]: !disabled && outlined,
           [classes.filled]: !disabled && filled,
@@ -82,15 +83,8 @@ const Day = ({
         onClick={onClick}
         onMouseOver={onHover}
       >
-        <Typography
-          className={cn(classes.buttonText, {
-            [classes.contrast]: !disabled && filled,
-          })}
-          variant="body2"
-        >
-          {value}
-        </Typography>
-      </IconButton>
+        {value}
+      </Button>
     </div>
   );
 };
