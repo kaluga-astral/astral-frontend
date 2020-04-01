@@ -72,3 +72,10 @@ export const parseOptionalDate = (date, defaultValue) => {
   }
   return defaultValue;
 };
+
+export const generateYears = (relativeTo, count) => {
+  const half = Math.floor(count / 2);
+  return Array(count)
+    .fill(0)
+    .map((_, i) => relativeTo.getFullYear() - half + i); // TODO: make part of the state
+};
