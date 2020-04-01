@@ -1,21 +1,24 @@
 import PropTypes from 'prop-types';
-import { Grid, IconButton, Select, MenuItem } from '@astral-frontend/core';
-import { makeStyles } from '@astral-frontend/styles';
 import React from 'react';
-import { ArrowIcon, ArrowRightIcon } from '@astral-frontend/icons';
-import { setMonth, getMonth, setYear, getYear } from 'date-fns';
+import { setMonth, setYear } from 'date-fns';
 
-const useStyles = makeStyles({
-  iconContainer: {
-    padding: 5,
+import { makeStyles } from '@astral-frontend/styles';
+import { ArrowIcon, ArrowRightIcon } from '@astral-frontend/icons';
+import FlexContainer from '../../FlexContainer';
+import FlexItem from '../../FlexItem';
+import IconButton from '../../IconButton';
+import MonthSelector from './MonthSelector';
+import YearSelector from './YearSelector';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%',
   },
-  icon: {
-    padding: 10,
-    '&:hover': {
-      background: 'none',
-    },
+  selectorsContainer: {
+    flexBasis: 150,
+    margin: theme.spacing(0, 8),
   },
-});
+}));
 
 const MONTHS = [
   'Январь',
@@ -31,13 +34,6 @@ const MONTHS = [
   'Ноябрь',
   'Декабрь',
 ];
-
-const generateYears = (relativeTo, count) => {
-  const half = Math.floor(count / 2);
-  return Array(count)
-    .fill(0)
-    .map((_, i) => relativeTo.getFullYear() - half + i); // TODO: make part of the state
-};
 
 const Header = ({
   date,
@@ -58,55 +54,47 @@ const Header = ({
   };
 
   return (
-    <Grid container justify="space-between" alignItems="center">
-      <Grid item className={classes.iconContainer}>
-        <IconButton
-          className={classes.icon}
-          disabled={prevDisabled}
-          onClick={onClickPrevious}
-        >
-          <ArrowIcon color={prevDisabled ? 'disabled' : 'action'} />
-        </IconButton>
-      </Grid>
-      <Grid item>
-        <Select
-          value={getMonth(date)}
+    <FlexContainer
+      className={classes.root}
+      justifyContent="center"
+      alignItems="center"
+    >
+      <FlexItem
+        component={IconButton}
+        className={classes.icon}
+        size="small"
+        disabled={prevDisabled}
+        onClick={onClickPrevious}
+      >
+        <ArrowIcon color={prevDisabled ? 'disabled' : 'action'} />
+      </FlexItem>
+      <FlexItem
+        className={classes.selectorsContainer}
+        component={FlexContainer}
+        justifyContent="center"
+      >
+        <FlexItem
+          component={MonthSelector}
+          date={date}
+          months={months}
           onChange={handleMonthChange}
-          MenuProps={{ disablePortal: true }}
-        >
-          {months.map((month, idx) => (
-            <MenuItem key={month} value={idx}>
-              {month}
-            </MenuItem>
-          ))}
-        </Select>
-      </Grid>
-
-      <Grid item>
-        <Select
-          value={getYear(date)}
+        />
+        <FlexItem
+          component={YearSelector}
+          date={date}
           onChange={handleYearChange}
-          MenuProps={{ disablePortal: true }}
-        >
-          {generateYears(date, 30).map(year => (
-            <MenuItem key={year} value={year}>
-              {year}
-            </MenuItem>
-          ))}
-        </Select>
-
-        {/* <Typography>{format(date, "MMMM YYYY")}</Typography> */}
-      </Grid>
-      <Grid item className={classes.iconContainer}>
-        <IconButton
-          className={classes.icon}
-          disabled={nextDisabled}
-          onClick={onClickNext}
-        >
-          <ArrowRightIcon color={nextDisabled ? 'disabled' : 'action'} />
-        </IconButton>
-      </Grid>
-    </Grid>
+        />
+      </FlexItem>
+      <FlexItem
+        component={IconButton}
+        className={classes.icon}
+        size="small"
+        disabled={prevDisabled}
+        onClick={onClickNext}
+      >
+        <ArrowRightIcon color={nextDisabled ? 'disabled' : 'action'} />
+      </FlexItem>
+    </FlexContainer>
   );
 };
 
