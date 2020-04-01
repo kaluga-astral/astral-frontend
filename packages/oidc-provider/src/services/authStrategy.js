@@ -68,19 +68,20 @@ const registerRefreshTokenStrategy = () => {
       };
 
       req.session.save(async err => {
-        await unlockResource({
-          storeClient,
-          storePublisher,
-          req,
-          resourceName: REFRESH_TOKEN_RESOURCE_NAME,
-        });
-
         if (err) return done(err);
 
         done(null, req.user);
       });
     } catch (err) {
       done(err);
+    } finally {
+      // не зависимо от исхода рефреша необходимо открыть доступ к ресурсу для других запросов
+      await unlockResource({
+        storeClient,
+        storePublisher,
+        req,
+        resourceName: REFRESH_TOKEN_RESOURCE_NAME,
+      });
     }
   });
 
