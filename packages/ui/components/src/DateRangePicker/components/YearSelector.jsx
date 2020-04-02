@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { getYear } from 'date-fns';
 import { MenuItem, Select } from '@astral-frontend/core';
@@ -17,6 +18,11 @@ const YearSelector = ({ date, onChange }) => {
       ))}
     </Select>
   );
+};
+
+YearSelector.propTypes = {
+  date: PropTypes.instanceOf(Date).isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default YearSelector;
