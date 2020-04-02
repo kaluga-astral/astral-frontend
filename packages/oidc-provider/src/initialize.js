@@ -33,6 +33,7 @@ const initializeOidcProvider = async entryParams => {
     subscriber: storeSubscriber,
     publisher: storePublisher,
   } = connectStore(storeConnectUrl);
+
   // создаем канал для синхронизации запросов. Необходимость синхронизации описана в README
   await subscribeToSyncReqChannel(storeSubscriber);
 
@@ -64,7 +65,9 @@ const initializeOidcProvider = async entryParams => {
   registerOidcAuthStrategy();
   registerRefreshTokenStrategy();
 
-  app.use(createSession());
+  const session = createSession();
+
+  app.use(session);
 
   // Initialize Passport
   app.use(authStrategyService.initialize());
@@ -75,6 +78,7 @@ const initializeOidcProvider = async entryParams => {
 
   return {
     oidcProtected,
+    session,
     // logout должен работать только для авторизованного пользователя
     logout: compose([oidcProtected, logout]),
     // получения пользовательских данных должно работать только для авторизованного пользователя
