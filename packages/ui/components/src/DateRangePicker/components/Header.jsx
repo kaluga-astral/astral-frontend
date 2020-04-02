@@ -3,47 +3,36 @@ import React from 'react';
 import { setMonth, setYear } from 'date-fns';
 
 import { makeStyles } from '@astral-frontend/styles';
-import { ArrowIcon, ArrowRightIcon } from '@astral-frontend/icons';
+
 import FlexContainer from '../../FlexContainer';
 import FlexItem from '../../FlexItem';
 import IconButton from '../../IconButton';
+import ArrowLeftThinIcon from './ArrowLeftThinIcon';
+import ArrowRightThinIcon from './ArrowRightThinIcon';
 import MonthSelector from './MonthSelector';
 import YearSelector from './YearSelector';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-  },
   selectorsContainer: {
     flexBasis: 150,
-    margin: theme.spacing(0, 8),
+    margin: theme.spacing(0, 5),
+  },
+  arrowIcon: {
+    width: 16,
+    height: 16,
   },
 }));
 
-const MONTHS = [
-  'Январь',
-  'Февраль',
-  'Март',
-  'Апрель',
-  'Май',
-  'Июнь',
-  'Июль',
-  'Август',
-  'Сентябрь',
-  'Октябрь',
-  'Ноябрь',
-  'Декабрь',
-];
-
 const Header = ({
   date,
-  setDate,
   nextDisabled,
-  prevDisabled,
   onClickNext,
   onClickPrevious,
-  months = MONTHS,
+  prevDisabled,
+  setDate,
+  translation,
 }) => {
+  console.log('biba', date);
   const classes = useStyles();
   const handleMonthChange = event => {
     setDate(setMonth(date, parseInt(event.target.value, 10)));
@@ -54,11 +43,7 @@ const Header = ({
   };
 
   return (
-    <FlexContainer
-      className={classes.root}
-      justifyContent="center"
-      alignItems="center"
-    >
+    <FlexContainer justifyContent="center" alignItems="center">
       <FlexItem
         component={IconButton}
         className={classes.icon}
@@ -66,7 +51,7 @@ const Header = ({
         disabled={prevDisabled}
         onClick={onClickPrevious}
       >
-        <ArrowIcon color={prevDisabled ? 'disabled' : 'action'} />
+        <ArrowLeftThinIcon className={classes.arrowIcon} />
       </FlexItem>
       <FlexItem
         className={classes.selectorsContainer}
@@ -76,7 +61,7 @@ const Header = ({
         <FlexItem
           component={MonthSelector}
           date={date}
-          months={months}
+          translation={translation}
           onChange={handleMonthChange}
         />
         <FlexItem
@@ -89,23 +74,54 @@ const Header = ({
         component={IconButton}
         className={classes.icon}
         size="small"
-        disabled={prevDisabled}
+        disabled={nextDisabled}
         onClick={onClickNext}
       >
-        <ArrowRightIcon color={nextDisabled ? 'disabled' : 'action'} />
+        <ArrowRightThinIcon className={classes.arrowIcon} />
       </FlexItem>
     </FlexContainer>
   );
 };
 
-// Header.propTypes = {
-//   date: PropTypes.instanceOf(Date).isRequired,
-//   months: PropTypes.arrayOf(PropTypes.string),
-//   nextDisabled: PropTypes.bool.isRequired,
-//   onClickNext: PropTypes.func.isRequired,
-//   onClickPrevious: PropTypes.func.isRequired,
-//   prevDisabled: PropTypes.bool.isRequired,
-//   setDate: PropTypes.func.isRequired,
-// };
+Header.defaultProps = {
+  translation: null,
+};
+
+Header.propTypes = {
+  date: PropTypes.instanceOf(Date).isRequired,
+  nextDisabled: PropTypes.bool.isRequired,
+  onClickNext: PropTypes.func.isRequired,
+  onClickPrevious: PropTypes.func.isRequired,
+  prevDisabled: PropTypes.bool.isRequired,
+  setDate: PropTypes.func.isRequired,
+  translation: PropTypes.shape({
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
+    months: PropTypes.arrayOf(
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+    ).isRequired,
+    weekDays: PropTypes.arrayOf(
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+    ).isRequired,
+    locale: PropTypes.shape({}),
+  }),
+};
 
 export default Header;

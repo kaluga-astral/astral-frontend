@@ -1,147 +1,105 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Paper, Grid, Typography, Divider } from '@astral-frontend/core';
+import { Paper } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
-import { format, differenceInCalendarMonths } from 'date-fns';
-import { ru } from 'date-fns/locale';
-import { ArrowRightIcon } from '@astral-frontend/icons';
+import { differenceInCalendarMonths } from 'date-fns';
+import FlexContainer from '../../FlexContainer';
+import Head from './Head';
 import Month from './Month';
-import { MARKERS } from '../markers';
 
-const useStyles = makeStyles(theme => ({
-  header: {
-    padding: '20px 70px',
-  },
-  headerItem: {
-    flex: 1,
-    textAlign: 'center',
-  },
-  divider: {
-    borderLeft: `1px solid ${theme.palette.action.hover}`,
-    marginBottom: 20,
-  },
-}));
+const useStyles = makeStyles(() => ({ root: { width: 290 } }), {
+  name: 'Menu',
+});
 
 const Menu = ({
   dateRange,
-  minDate,
-  maxDate,
   firstMonth,
-  setFirstMonth,
-  secondMonth,
-  setSecondMonth,
-  helpers,
   handlers,
+  helpers,
+  maxDate,
+  minDate,
+  secondMonth,
+  setFirstMonth,
   translation,
 }) => {
   const classes = useStyles();
-  const translationText = {
-    startDate: 'Start Date',
-    endDate: 'End Date',
-    ...translation,
-  };
   const { startDate, endDate } = dateRange;
   const canNavigateCloser =
     differenceInCalendarMonths(secondMonth, firstMonth) >= 2;
   const commonProps = { dateRange, minDate, maxDate, helpers, handlers };
   return (
-    <Paper elevation={5} square>
-      <Grid container direction="row" wrap="nowrap">
-        <Grid>
-          <Grid container className={classes.header} alignItems="center">
-            <Grid item className={classes.headerItem}>
-              <Typography variant="subtitle1">
-                {startDate && [
-                  <span key="prefix">от </span>,
-                  <span key="date">
-                    {format(startDate, 'dd.MM.yyyy', {
-                      locale: translation?.locale ?? ru,
-                    })}
-                  </span>,
-                ]}
-              </Typography>
-            </Grid>
-            <Grid item className={classes.headerItem}>
-              <ArrowRightIcon color="action" />
-            </Grid>
-            <Grid item className={classes.headerItem}>
-              <Typography variant="subtitle1">
-                {endDate && [
-                  <span key="prefix">до </span>,
-                  <span key="date">
-                    {format(endDate, 'dd.MM.yyyy', {
-                      locale: translation?.locale ?? ru,
-                    })}
-                  </span>,
-                ]}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Divider />
-          <Grid container direction="row" justify="center" wrap="nowrap">
-            <Month
-              {...commonProps}
-              value={firstMonth}
-              setValue={setFirstMonth}
-              navState={[true, canNavigateCloser]}
-              marker={MARKERS.FIRST_MONTH}
-              weekDays={translationText?.weekDays}
-              months={translationText?.months}
-            />
-            <div className={classes.divider} />
-            <Month
-              {...commonProps}
-              value={secondMonth}
-              setValue={setSecondMonth}
-              navState={[canNavigateCloser, true]}
-              marker={MARKERS.SECOND_MONTH}
-              weekDays={translationText?.weekDays}
-              months={translationText?.months}
-            />
-          </Grid>
-        </Grid>
-        <div className={classes.divider} />
-      </Grid>
+    <Paper className={classes.root}>
+      <FlexContainer direction="column" wrap="nowrap">
+        <Head
+          startDate={startDate}
+          endDate={endDate}
+          translation={translation}
+        />
+        <Month
+          {...commonProps}
+          value={firstMonth}
+          setValue={setFirstMonth}
+          navState={[true, canNavigateCloser]}
+          translation={translation}
+          weekDays={translation?.weekDays}
+          months={translation?.months}
+        />
+      </FlexContainer>
     </Paper>
   );
 };
 
-{
-  /* Menu.propTypes = {
+Menu.defaultProps = {
+  secondMonth: null,
+  translation: null,
+};
+
+Menu.propTypes = {
   dateRange: PropTypes.shape({
     startDate: PropTypes.instanceOf(Date),
     endDate: PropTypes.instanceOf(Date),
   }).isRequired,
-  ranges: arrayOf(
-    PropTypes.shape({
-      startDate: PropTypes.instanceOf(Date),
-      endDate: PropTypes.instanceOf(Date),
-      label: PropTypes.string,
-    }),
-  ).isRequired,
-  minDate: PropTypes.instanceOf(Date).isRequired,
-  maxDate: PropTypes.instanceOf(Date).isRequired,
   firstMonth: PropTypes.instanceOf(Date).isRequired,
-  secondMonth: PropTypes.instanceOf(Date).isRequired,
-  setFirstMonth: PropTypes.func,
-  setSecondMonth: PropTypes.func,
-  setDateRange: PropTypes.func,
-  helpers: {
-    inHoverRange: PropTypes.func,
-  },
-  handlers: {
+  handlers: PropTypes.shape({
     onDayClick: PropTypes.func,
     onDayHover: PropTypes.func,
     onMonthNavigate: PropTypes.func,
-  }.isRequired,
+  }).isRequired,
+  helpers: PropTypes.shape({
+    inHoverRange: PropTypes.func,
+  }).isRequired,
+  maxDate: PropTypes.instanceOf(Date).isRequired,
+  minDate: PropTypes.instanceOf(Date).isRequired,
+  secondMonth: PropTypes.instanceOf(Date),
+  setFirstMonth: PropTypes.func.isRequired,
   translation: PropTypes.shape({
     startDate: PropTypes.string,
     endDate: PropTypes.string,
-    months: arrayOf(PropTypes.string),
-    weekDays: arrayOf(PropTypes.string),
+    months: PropTypes.arrayOf(
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+    ).isRequired,
+    weekDays: PropTypes.arrayOf(
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+    ).isRequired,
     locale: PropTypes.shape({}),
   }),
-}; */
-}
+};
 
 export default Menu;

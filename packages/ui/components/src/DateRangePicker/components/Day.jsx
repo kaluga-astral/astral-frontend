@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
-import cn from 'classNames';
+import cn from 'classnames';
 import React from 'react';
 import { Button } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    width: 32,
+    height: 32,
     // '&:hover': {
     //   borderTopRightRadius: '50%',
     //   borderBottomRightRadius: '50%',
@@ -28,6 +30,9 @@ const useStyles = makeStyles(theme => ({
     '&:last-child': {
       borderTopRightRadius: '50%',
       borderBottomRightRadius: '50%',
+    },
+    '&:only-of-type': {
+      borderRadius: '50%',
     },
     // '&:hover': {
     //   borderTopRightRadius: '0',
@@ -55,14 +60,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Day = ({
-  startOfRange,
-  endOfRange,
   disabled,
-  highlighted,
-  outlined,
+  endOfRange,
   filled,
+  highlighted,
   onClick,
   onHover,
+  outlined,
+  startOfRange,
   value,
 }) => {
   const classes = useStyles();
@@ -82,6 +87,7 @@ const Day = ({
         disabled={disabled}
         onClick={onClick}
         onMouseOver={onHover}
+        onFocus={onHover}
       >
         {value}
       </Button>
@@ -89,15 +95,32 @@ const Day = ({
   );
 };
 
+Day.defaultProps = {
+  disabled: false,
+  endOfRange: false,
+  filled: false,
+  highlighted: false,
+  // onClick: () => {},
+  // onHover: () => {},
+  outlined: false,
+  startOfRange: false,
+};
+
+Day.propTypes = {
+  disabled: PropTypes.bool,
+  endOfRange: PropTypes.bool,
+  filled: PropTypes.bool,
+  highlighted: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
+  onHover: PropTypes.func.isRequired,
+  outlined: PropTypes.bool,
+  startOfRange: PropTypes.bool,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
+
 // Day.propTypes = {
-//   disabled: PropTypes.bool,
-//   endOfRange: PropTypes.bool,
-//   filled: PropTypes.bool,
-//   highlighted: PropTypes.bool,
 //   onClick: PropTypes.any,
 //   onHover: PropTypes.any,
-//   outlined: PropTypes.bool,
-//   startOfRange: PropTypes.bool,
 //   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 // };
 

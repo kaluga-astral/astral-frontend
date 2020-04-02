@@ -18,27 +18,28 @@ import Day from './Day';
 
 const WEEK_DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: 290,
-  },
-  weekDaysContainer: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(1),
-  },
-  weekDay: {
-    width: 32,
-    color: theme.palette.gray[600],
-  },
-  daysContainer: {
-    marginBottom: theme.spacing(3),
-  },
-  week: {
-    '&:nth-last-child(n + 2)': {
-      marginBottom: theme.spacing(2),
+const useStyles = makeStyles(
+  theme => ({
+    root: {},
+    weekDaysContainer: {
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(1),
     },
-  },
-}));
+    weekDay: {
+      width: 32,
+      color: theme.palette.gray[600],
+    },
+    daysContainer: {
+      marginBottom: theme.spacing(3),
+    },
+    week: {
+      '&:nth-last-child(n + 2)': {
+        marginBottom: theme.spacing(2),
+      },
+    },
+  }),
+  { name: 'Month' },
+);
 
 const Month = ({
   dateRange,
