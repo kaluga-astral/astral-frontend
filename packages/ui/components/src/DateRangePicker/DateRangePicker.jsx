@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import * as React from 'react';
 import {
   addMonths,
@@ -5,21 +6,17 @@ import {
   isWithinInterval,
   isAfter,
   isBefore,
-  isSameMonth,
   addYears,
-  max,
-  min,
 } from 'date-fns';
 import Menu from './components/Menu';
 import { getValidatedMonths, parseOptionalDate } from './utils';
-import { MARKERS } from './markers';
 
 const DateRangePicker = ({
-  open,
-  onChange,
   initialDateRange,
-  minDate,
   maxDate,
+  minDate,
+  onChange,
+  open,
   translation,
 }) => {
   const today = new Date();
@@ -48,37 +45,23 @@ const DateRangePicker = ({
       setSecondMonth(date);
     }
   };
-  const setDateRangeValidated = range => {
-    let { startDate: newStart, endDate: newEnd } = range;
-    if (newStart && newEnd) {
-      range.startDate = newStart = max([newStart, minDateValid]);
-      range.endDate = newEnd = min([newEnd, maxDateValid]);
-      setDateRange(range);
-      onChange(range);
-      setFirstMonth(newStart);
-      setSecondMonth(
-        isSameMonth(newStart, newEnd) ? addMonths(newStart, 1) : newEnd,
-      );
-    }
-  };
   const onDayClick = day => {
     if (startDate && !endDate && !isBefore(day, startDate)) {
-      const newRange = { startDate, endDate: day };
-      onChange(newRange);
-      setDateRange(newRange);
+      setDateRange({ startDate, endDate: day });
+      setHoverDay(day);
+      onChange({ startDate, endDate: day });
+    } else if (startDate && !endDate && isBefore(day, startDate)) {
+      setDateRange({ startDate: day, endDate: startDate });
+      setHoverDay(day);
+      onChange({ startDate: day, endDate: startDate });
     } else {
       setDateRange({ startDate: day, endDate: undefined });
+      setHoverDay(day);
     }
-    setHoverDay(day);
   };
-  const onMonthNavigate = (marker, action) => {
-    if (marker === MARKERS.FIRST_MONTH) {
-      const firstNew = addMonths(firstMonth, action);
-      if (isBefore(firstNew, secondMonth)) setFirstMonth(firstNew);
-    } else {
-      const secondNew = addMonths(secondMonth, action);
-      if (isBefore(firstMonth, secondNew)) setSecondMonth(secondNew);
-    }
+  const onMonthNavigate = action => {
+    const firstNew = addMonths(firstMonth, action);
+    setFirstMonth(firstNew);
   };
   const onDayHover = date => {
     if (startDate && !endDate) {
@@ -119,5 +102,52 @@ const DateRangePicker = ({
       translation={translation}
     />
   ) : null;
+};
+
+DateRangePicker.defaultProps = {
+  initialDateRange: null,
+  maxDate: null,
+  minDate: null,
+  onChange: () => {},
+  translation: null,
+};
+
+DateRangePicker.propTypes = {
+  initialDateRange: PropTypes.shape({
+    startDate: PropTypes.instanceOf(Date),
+    endDate: PropTypes.instanceOf(Date),
+  }),
+  maxDate: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+  minDate: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+  onChange: PropTypes.func,
+  open: PropTypes.bool.isRequired,
+  translation: PropTypes.shape({
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
+    months: PropTypes.arrayOf(
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+    ).isRequired,
+    weekDays: PropTypes.arrayOf(
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+    ).isRequired,
+    locale: PropTypes.shape({}),
+  }),
 };
 export default DateRangePicker;
