@@ -1,14 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Grid, Typography } from '@astral-frontend/core';
+import { Typography } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
-import {
-  getDate,
-  isSameMonth,
-  isToday,
-  format,
-  isWithinInterval,
-} from 'date-fns';
+import { getDate, isSameMonth, isToday, isWithinInterval } from 'date-fns';
 import FlexContainer from '../../FlexContainer';
 import FlexItem from '../../FlexItem';
 import {
@@ -47,32 +41,30 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Month = ({
-  helpers,
-  handlers,
-  value: date,
   dateRange,
-  marker,
-  setValue: setDate,
-  minDate,
+  handlers,
+  helpers,
   maxDate,
-  weekDays = WEEK_DAYS,
-  months,
+  minDate,
   navState,
+  setValue: setDate,
+  translation,
+  value: date,
 }) => {
   const classes = useStyles();
   const [back, forward] = navState;
 
   return (
     <FlexContainer direction="column" className={classes.root}>
-      <FlexItem
+      <Header
         component={Header}
         date={date}
         setDate={setDate}
         nextDisabled={!forward}
         prevDisabled={!back}
-        onClickPrevious={() => handlers.onMonthNavigate(marker, -1)}
-        onClickNext={() => handlers.onMonthNavigate(marker, 1)}
-        months={months}
+        onClickPrevious={() => handlers.onMonthNavigate(-1)}
+        onClickNext={() => handlers.onMonthNavigate(1)}
+        translation={translation}
       />
 
       <FlexItem
@@ -81,7 +73,7 @@ const Month = ({
         justifyContent="center"
         className={classes.weekDaysContainer}
       >
-        {weekDays.map(day => (
+        {(translation?.weekDays ?? WEEK_DAYS).map(day => (
           <FlexItem
             component={Typography}
             align="center"
@@ -100,70 +92,96 @@ const Month = ({
         justify="space-between"
         className={classes.daysContainer}
       >
-        {chunks(getDaysInMonth(date, { weekStartsOn: 1 }), 7).map(
-          (week, idx) => (
-            <FlexItem
-              component={FlexContainer}
-              key={idx}
-              direction="row"
-              justifyContent="center"
-              className={classes.week}
-            >
-              {week.map(day => {
-                const isStart = isStartOfRange(dateRange, day);
-                const isEnd = isEndOfRange(dateRange, day);
-                const isRangeOneDay = isRangeSameDay(dateRange);
-                const highlighted =
-                  inDateRange(dateRange, day) || helpers.inHoverRange(day);
+        {chunks(getDaysInMonth(date, { weekStartsOn: 1 }), 7).map(week => (
+          <FlexItem
+            component={FlexContainer}
+            key={week}
+            direction="row"
+            justifyContent="center"
+            className={classes.week}
+          >
+            {week.map(day => {
+              const isStart = isStartOfRange(dateRange, day);
+              const isEnd = isEndOfRange(dateRange, day);
+              const isRangeOneDay = isRangeSameDay(dateRange);
+              const highlighted =
+                inDateRange(dateRange, day) || helpers.inHoverRange(day);
 
-                return (
-                  <FlexItem
-                    component={Day}
-                    key={format(day, 'MM-dd-yyyy')}
-                    filled={isStart || isEnd}
-                    outlined={isToday(day)}
-                    highlighted={highlighted && !isRangeOneDay}
-                    disabled={
-                      !isSameMonth(date, day) ||
-                      !isWithinInterval(day, { start: minDate, end: maxDate })
-                    }
-                    startOfRange={isStart && !isRangeOneDay}
-                    endOfRange={isEnd && !isRangeOneDay}
-                    onClick={() => handlers.onDayClick(day)}
-                    onHover={() => handlers.onDayHover(day)}
-                    value={getDate(day)}
-                  />
-                );
-              })}
-            </FlexItem>
-          ),
-        )}
+              return (
+                <Day
+                  key={day}
+                  filled={isStart || isEnd}
+                  outlined={isToday(day)}
+                  highlighted={highlighted && !isRangeOneDay}
+                  disabled={
+                    !isSameMonth(date, day) ||
+                    !isWithinInterval(day, { start: minDate, end: maxDate })
+                  }
+                  startOfRange={isStart && !isRangeOneDay}
+                  endOfRange={isEnd && !isRangeOneDay}
+                  onClick={() => handlers.onDayClick(day)}
+                  onHover={() => handlers.onDayHover(day)}
+                  value={getDate(day)}
+                />
+              );
+            })}
+          </FlexItem>
+        ))}
       </FlexItem>
     </FlexContainer>
   );
 };
 
-// Month.propTypes = {
-//   value: PropTypes.instanceOf(Date).isRequired,
-//   marker: PropTypes.symbol.isRequired,
-//   dateRange: PropTypes.shape({
-//     startDate: PropTypes.instanceOf(Date),
-//     endDate: PropTypes.instanceOf(Date),
-//   }).isRequired,
-//   minDate: PropTypes.instanceOf(Date).isRequired,
-//   maxDate: PropTypes.instanceOf(Date).isRequired,
-//   navState: PropTypes.arrayOf(PropTypes.bool).isRequired,
-//   setValue: PropTypes.func.isRequired,
-//   helpers: {
-//     inHoverRange: PropTypes.func,
-//   }.isRequired,
-//   handlers: {
-//     onDayClick: PropTypes.func,
-//     onDayHover: PropTypes.func,
-//     onMonthNavigate: PropTypes.func,
-//   }.isRequired,
-//   weekDays: PropTypes.arrayOf(PropTypes.string),
-//   months: PropTypes.arrayOf(PropTypes.string),
-// };
+Month.defaultProps = {
+  translation: null,
+};
+
+Month.propTypes = {
+  dateRange: PropTypes.shape({
+    startDate: PropTypes.instanceOf(Date),
+    endDate: PropTypes.instanceOf(Date),
+  }).isRequired,
+  handlers: PropTypes.shape({
+    onDayClick: PropTypes.func,
+    onDayHover: PropTypes.func,
+    onMonthNavigate: PropTypes.func,
+  }).isRequired,
+  helpers: PropTypes.shape({
+    inHoverRange: PropTypes.func,
+  }).isRequired,
+  maxDate: PropTypes.instanceOf(Date).isRequired,
+  minDate: PropTypes.instanceOf(Date).isRequired,
+  navState: PropTypes.arrayOf(PropTypes.bool).isRequired,
+  setValue: PropTypes.func.isRequired,
+  value: PropTypes.instanceOf(Date).isRequired,
+  translation: PropTypes.shape({
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
+    months: PropTypes.arrayOf(
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+    ).isRequired,
+    weekDays: PropTypes.arrayOf(
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.string.isRequired,
+    ).isRequired,
+    locale: PropTypes.shape({}),
+  }),
+};
 
 export default Month;
