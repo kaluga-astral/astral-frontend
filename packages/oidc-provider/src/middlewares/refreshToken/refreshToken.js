@@ -11,7 +11,14 @@ const { serviceContext } = require('../../contexts');
 const { REFRESH_TOKEN_STRATEGY_NAME } = require('../../config/authStrategies');
 const { REFRESH_TOKEN_RESOURCE_NAME } = require('../../config/syncRequests');
 
-const refreshTokenMiddleware = async (req, res, next) => {
+const defaultRefreshErrorHandler = (req, res) => {
+  // если рефреш завершился неудачей, необходимо запомнить текущий path пользователя, чтобы вернуть его сюда после авторизации
+  saveDesiredReferenceInCookie(req, res);
+};
+
+const createRefreshTokenMiddleware = (
+  refreshErrorHandler = defaultRefreshErrorHandler,
+) => async (req, res, next) => {
   if (!req.isAuthenticated()) return next();
 
   const { storeClient, storeSubscriber } = serviceContext.data;
@@ -37,8 +44,7 @@ const refreshTokenMiddleware = async (req, res, next) => {
       // TODO: сделать логирование ошибки при рефреше
       await req.logout();
 
-      // также будет необходимо вернуться на текущий route
-      saveDesiredReferenceInCookie(req, res);
+      refreshErrorHandler(req, res);
     }
 
     next();
@@ -51,4 +57,4 @@ const refreshTokenMiddleware = async (req, res, next) => {
   );
 };
 
-module.exports = refreshTokenMiddleware;
+module.exports = createRefreshTokenMiddleware;
