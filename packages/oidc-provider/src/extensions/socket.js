@@ -1,3 +1,4 @@
+const cookieParser = require('cookie-parser');
 const { compose } = require('compose-middleware');
 
 const { refreshToken, customizationRequest } = require('../middlewares');
@@ -31,6 +32,8 @@ const createSocketConnectOidcProtected = sessionHttpMiddleware => done => (
   };
 
   const socketProtectedPipeline = compose([
+    cookieParser(),
+
     sessionHttpMiddleware,
 
     authStrategyService.initialize(),
