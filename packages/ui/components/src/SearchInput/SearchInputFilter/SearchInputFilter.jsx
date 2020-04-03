@@ -62,8 +62,8 @@ const SearchInputFilter = ({ disabled, Icon, children, ...props }) => {
           container={ref.current}
           className={classes.popper}
         >
-          {({ TransitionProps }) => (
-            <Fade {...TransitionProps}>
+          {() => (
+            <Fade>
               <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
                 <Paper className={classes.paper}>{children}</Paper>
               </ClickAwayListener>

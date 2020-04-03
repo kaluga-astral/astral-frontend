@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { setMonth, setYear } from 'date-fns';
+import { format } from 'date-fns';
+import { ru } from 'date-fns/locale';
 
 import { makeStyles } from '@astral-frontend/styles';
 
@@ -9,8 +10,6 @@ import FlexItem from '../../FlexItem';
 import IconButton from '../../IconButton';
 import ArrowLeftThinIcon from './ArrowLeftThinIcon';
 import ArrowRightThinIcon from './ArrowRightThinIcon';
-import MonthSelector from './MonthSelector';
-import YearSelector from './YearSelector';
 
 const useStyles = makeStyles(theme => ({
   selectorsContainer: {
@@ -29,18 +28,8 @@ const Header = ({
   onClickNext,
   onClickPrevious,
   prevDisabled,
-  setDate,
-  translation,
 }) => {
-  console.log('biba', date);
   const classes = useStyles();
-  const handleMonthChange = event => {
-    setDate(setMonth(date, parseInt(event.target.value, 10)));
-  };
-
-  const handleYearChange = event => {
-    setDate(setYear(date, parseInt(event.target.value, 10)));
-  };
 
   return (
     <FlexContainer justifyContent="center" alignItems="center">
@@ -53,22 +42,8 @@ const Header = ({
       >
         <ArrowLeftThinIcon className={classes.arrowIcon} />
       </FlexItem>
-      <FlexItem
-        className={classes.selectorsContainer}
-        component={FlexContainer}
-        justifyContent="center"
-      >
-        <FlexItem
-          component={MonthSelector}
-          date={date}
-          translation={translation}
-          onChange={handleMonthChange}
-        />
-        <FlexItem
-          component={YearSelector}
-          date={date}
-          onChange={handleYearChange}
-        />
+      <FlexItem className={classes.selectorsContainer}>
+        {format(date, 'LLLL yyyy', { locale: ru })}
       </FlexItem>
       <FlexItem
         component={IconButton}
@@ -83,45 +58,12 @@ const Header = ({
   );
 };
 
-Header.defaultProps = {
-  translation: null,
-};
-
 Header.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
   nextDisabled: PropTypes.bool.isRequired,
   onClickNext: PropTypes.func.isRequired,
   onClickPrevious: PropTypes.func.isRequired,
   prevDisabled: PropTypes.bool.isRequired,
-  setDate: PropTypes.func.isRequired,
-  translation: PropTypes.shape({
-    startDate: PropTypes.string,
-    endDate: PropTypes.string,
-    months: PropTypes.arrayOf(
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-    ).isRequired,
-    weekDays: PropTypes.arrayOf(
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-    ).isRequired,
-    locale: PropTypes.shape({}),
-  }),
 };
 
 export default Header;

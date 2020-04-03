@@ -65,9 +65,7 @@ const Month = ({
         prevDisabled={!back}
         onClickPrevious={() => handlers.onMonthNavigate(-1)}
         onClickNext={() => handlers.onMonthNavigate(1)}
-        translation={translation}
       />
-
       <FlexItem
         component={FlexContainer}
         direction="row"
@@ -86,7 +84,6 @@ const Month = ({
           </FlexItem>
         ))}
       </FlexItem>
-
       <FlexItem
         component={FlexContainer}
         direction="column"
@@ -156,22 +153,6 @@ Month.propTypes = {
   setValue: PropTypes.func.isRequired,
   value: PropTypes.instanceOf(Date).isRequired,
   translation: PropTypes.shape({
-    startDate: PropTypes.string,
-    endDate: PropTypes.string,
-    months: PropTypes.arrayOf(
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-    ).isRequired,
     weekDays: PropTypes.arrayOf(
       PropTypes.string.isRequired,
       PropTypes.string.isRequired,
@@ -181,7 +162,37 @@ Month.propTypes = {
       PropTypes.string.isRequired,
       PropTypes.string.isRequired,
     ).isRequired,
-    locale: PropTypes.shape({}),
+    // date-fns locale https://date-fns.org/v2.11.1/docs/format
+    locale: PropTypes.shape({
+      code: PropTypes.string,
+      formatDistance: PropTypes.func,
+      formatRelative: PropTypes.func,
+      localize: {
+        ordinalNumber: PropTypes.func.isRequired,
+        era: PropTypes.func.isRequired,
+        quarter: PropTypes.func.isRequired,
+        month: PropTypes.func.isRequired,
+        day: PropTypes.func.isRequired,
+        dayPeriod: PropTypes.func.isRequired,
+      },
+      formatLong: {
+        date: PropTypes.func.isRequired,
+        time: PropTypes.func.isRequired,
+        dateTime: PropTypes.func.isRequired,
+      },
+      match: {
+        ordinalNumber: PropTypes.func.isRequired,
+        era: PropTypes.func.isRequired,
+        quarter: PropTypes.func.isRequired,
+        month: PropTypes.func.isRequired,
+        day: PropTypes.func.isRequired,
+        dayPeriod: PropTypes.func.isRequired,
+      },
+      options: {
+        weekStartsOn: PropTypes.oneOf(0, 1, 2, 3, 4, 5, 6),
+        firstWeekContainsDate: PropTypes.oneOf(1, 2, 3, 4, 5, 6, 7),
+      },
+    }),
   }),
 };
 

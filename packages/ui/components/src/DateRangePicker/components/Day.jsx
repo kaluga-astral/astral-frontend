@@ -100,8 +100,6 @@ Day.defaultProps = {
   endOfRange: false,
   filled: false,
   highlighted: false,
-  // onClick: () => {},
-  // onHover: () => {},
   outlined: false,
   startOfRange: false,
 };
@@ -117,11 +115,5 @@ Day.propTypes = {
   startOfRange: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
-
-// Day.propTypes = {
-//   onClick: PropTypes.any,
-//   onHover: PropTypes.any,
-//   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-// };
 
 export default Day;

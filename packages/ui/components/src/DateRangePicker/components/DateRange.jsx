@@ -71,22 +71,6 @@ DateRange.propTypes = {
   endDate: PropTypes.instanceOf(Date),
   startDate: PropTypes.instanceOf(Date),
   translation: PropTypes.shape({
-    startDate: PropTypes.string,
-    endDate: PropTypes.string,
-    months: PropTypes.arrayOf(
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-    ).isRequired,
     weekDays: PropTypes.arrayOf(
       PropTypes.string.isRequired,
       PropTypes.string.isRequired,
@@ -96,7 +80,37 @@ DateRange.propTypes = {
       PropTypes.string.isRequired,
       PropTypes.string.isRequired,
     ).isRequired,
-    locale: PropTypes.shape({}),
+    // date-fns locale https://date-fns.org/v2.11.1/docs/format
+    locale: PropTypes.shape({
+      code: PropTypes.string,
+      formatDistance: PropTypes.func,
+      formatRelative: PropTypes.func,
+      localize: {
+        ordinalNumber: PropTypes.func.isRequired,
+        era: PropTypes.func.isRequired,
+        quarter: PropTypes.func.isRequired,
+        month: PropTypes.func.isRequired,
+        day: PropTypes.func.isRequired,
+        dayPeriod: PropTypes.func.isRequired,
+      },
+      formatLong: {
+        date: PropTypes.func.isRequired,
+        time: PropTypes.func.isRequired,
+        dateTime: PropTypes.func.isRequired,
+      },
+      match: {
+        ordinalNumber: PropTypes.func.isRequired,
+        era: PropTypes.func.isRequired,
+        quarter: PropTypes.func.isRequired,
+        month: PropTypes.func.isRequired,
+        day: PropTypes.func.isRequired,
+        dayPeriod: PropTypes.func.isRequired,
+      },
+      options: {
+        weekStartsOn: PropTypes.oneOf(0, 1, 2, 3, 4, 5, 6),
+        firstWeekContainsDate: PropTypes.oneOf(1, 2, 3, 4, 5, 6, 7),
+      },
+    }),
   }),
 };
 
