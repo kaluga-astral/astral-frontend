@@ -15,6 +15,7 @@ const {
   registerRefreshTokenStrategy,
 } = require('./services/authStrategy');
 const { connectIdentity } = require('./services/oidc');
+const { createSocketConnectOidcProtected } = require('./extensions/socket');
 
 const { validateInitializeEntryParam } = require('./utils/validation');
 const { generateOidcSessionKey, getOidcClientConfig } = require('./utils/oidc');
@@ -64,7 +65,9 @@ const initializeOidcProvider = async entryParams => {
   registerOidcAuthStrategy();
   registerRefreshTokenStrategy();
 
-  app.use(createSession());
+  const sessionMiddleware = createSession();
+
+  app.use(sessionMiddleware);
 
   // Initialize Passport
   app.use(authStrategyService.initialize());
@@ -75,6 +78,9 @@ const initializeOidcProvider = async entryParams => {
 
   return {
     oidcProtected,
+    socketConnectOidcProtected: createSocketConnectOidcProtected(
+      sessionMiddleware,
+    ),
     // logout должен работать только для авторизованного пользователя
     logout: compose([oidcProtected, logout]),
     // получения пользовательских данных должно работать только для авторизованного пользователя
