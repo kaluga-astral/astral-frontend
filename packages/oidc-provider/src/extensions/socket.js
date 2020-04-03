@@ -1,6 +1,6 @@
 const { compose } = require('compose-middleware');
 
-const { refreshToken } = require('../middlewares');
+const { refreshToken, customizationRequest } = require('../middlewares');
 
 const { authStrategyService } = require('../services/authStrategy');
 
@@ -42,6 +42,9 @@ const createSocketConnectOidcProtected = sessionHttpMiddleware => done => (
     // если не удалось рефрешнуть токен, то необходимо закрыть socket соединение - destroySocket
     // TODO: может возникнуть ситуация, когда по случайности в refreshToken добавятся какие-то операции с res, тогда все обвалится
     refreshToken(destroySocket),
+
+    // добавляет в хедеры токен
+    customizationRequest,
   ]);
 
   const handleEndingProtectedPipeline = () => {
