@@ -1,7 +1,6 @@
 const express = require('express');
 const http = require('http');
 const compression = require('compression');
-const cookieParser = require('cookie-parser');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { initializeOidcProvider } = require('@astral-frontend/oidc-provider');
 
@@ -36,7 +35,6 @@ const initializeServer = async () => {
   app.use(httpLogger);
 
   app.use(compression());
-  app.use(cookieParser());
 
   const {
     oidcProtected,

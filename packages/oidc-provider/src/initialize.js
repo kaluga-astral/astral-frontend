@@ -1,3 +1,4 @@
+const cookieParser = require('cookie-parser');
 const { compose } = require('compose-middleware');
 
 const {
@@ -67,6 +68,8 @@ const initializeOidcProvider = async entryParams => {
   registerRefreshTokenStrategy();
 
   const sessionMiddleware = createSession();
+
+  app.use(cookieParser());
 
   app.use(sessionMiddleware);
 
