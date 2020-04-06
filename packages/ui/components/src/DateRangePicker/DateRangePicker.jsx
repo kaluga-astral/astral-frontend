@@ -32,15 +32,13 @@ const DateRangePicker = ({
   const { startDate, endDate } = dateRange;
   const onDayClick = day => {
     if (startDate && !endDate) {
-      if (isBefore(day, startDate)) {
-        setDateRange({ startDate: day, endDate: startDate });
-        setHoverDay(day);
-        onChange({ startDate: day, endDate: startDate });
-      } else {
-        setDateRange({ startDate, endDate: day });
-        setHoverDay(day);
-        onChange({ startDate, endDate: day });
-      }
+      setDateRange({ startDate, endDate: day });
+      setHoverDay(day);
+      onChange({ startDate, endDate: day });
+    } else if (!startDate && endDate) {
+      setDateRange({ startDate: day, endDate });
+      setHoverDay(day);
+      onChange({ startDate: day, endDate });
     } else {
       setDateRange({ startDate: day, endDate: null });
       setHoverDay(day);
@@ -51,21 +49,28 @@ const DateRangePicker = ({
     setMonth(firstNew);
   };
   const onDayHover = day => {
-    if (startDate && !endDate && (!hoverDay || !isSameDay(day, hoverDay))) {
-      setHoverDay(day);
+    if (!hoverDay || !isSameDay(day, hoverDay)) {
+      if (startDate && !endDate && isBefore(day, startDate)) {
+        setDateRange({ startDate: null, endDate: startDate });
+      }
+      if (!startDate && endDate && isAfter(day, endDate)) {
+        setDateRange({ startDate: endDate, endDate: null });
+      }
+      if ((startDate && !endDate) || (!startDate && endDate)) {
+        setHoverDay(day);
+      }
     }
   };
-  // helpers
   const inHoverRange = day => {
-    return isAfter(hoverDay, startDate)
-      ? startDate &&
-          !endDate &&
-          hoverDay &&
-          isWithinInterval(day, { start: startDate, end: hoverDay })
-      : startDate &&
-          !endDate &&
-          hoverDay &&
-          isWithinInterval(day, { start: hoverDay, end: startDate });
+    if (startDate && endDate) {
+      return isWithinInterval(day, { start: startDate, end: endDate });
+    }
+    if (startDate && !endDate) {
+      return isWithinInterval(day, { start: startDate, end: hoverDay });
+    }
+    if (!startDate && endDate) {
+      return isWithinInterval(day, { start: hoverDay, end: endDate });
+    }
   };
   const handlers = {
     onDayClick,

@@ -61,18 +61,11 @@ const DateRange = ({ dateRange: { endDate, startDate } }) => {
   );
 };
 
-DateRange.defaultProps = {
-  dateRange: {
-    endDate: null,
-    startDate: null,
-  },
-};
-
 DateRange.propTypes = {
-  dateRange: {
+  dateRange: PropTypes.shape({
     endDate: PropTypes.instanceOf(Date),
     startDate: PropTypes.instanceOf(Date),
-  },
+  }).isRequired,
 };
 
 export default DateRange;
