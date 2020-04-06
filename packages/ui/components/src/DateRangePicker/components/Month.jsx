@@ -20,13 +20,15 @@ const WEEK_DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
 const useStyles = makeStyles(
   theme => ({
-    root: {},
+    root: {
+      margin: theme.spacing(0, 6),
+    },
     weekDaysContainer: {
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(1),
     },
     weekDay: {
-      width: 32,
+      width: 48,
       color: theme.palette.gray[600],
     },
     daysContainer: {
@@ -44,25 +46,20 @@ const useStyles = makeStyles(
 const Month = ({
   dateRange,
   handlers,
-  helpers,
+  inHoverRange,
   maxDate,
   minDate,
-  navState,
-  setValue: setDate,
-  translation,
+  setMonth,
   value: date,
 }) => {
   const classes = useStyles();
-  const [back, forward] = navState;
 
   return (
     <FlexContainer direction="column" className={classes.root}>
       <Header
         component={Header}
         date={date}
-        setDate={setDate}
-        nextDisabled={!forward}
-        prevDisabled={!back}
+        setMonth={setMonth}
         onClickPrevious={() => handlers.onMonthNavigate(-1)}
         onClickNext={() => handlers.onMonthNavigate(1)}
       />
@@ -72,7 +69,7 @@ const Month = ({
         justifyContent="center"
         className={classes.weekDaysContainer}
       >
-        {(translation?.weekDays ?? WEEK_DAYS).map(day => (
+        {WEEK_DAYS.map(day => (
           <FlexItem
             component={Typography}
             align="center"
@@ -103,7 +100,7 @@ const Month = ({
               const isEnd = isEndOfRange(dateRange, day);
               const isRangeOneDay = isRangeSameDay(dateRange);
               const highlighted =
-                inDateRange(dateRange, day) || helpers.inHoverRange(day);
+                inDateRange(dateRange, day) || inHoverRange(day);
 
               return (
                 <Day
@@ -130,10 +127,6 @@ const Month = ({
   );
 };
 
-Month.defaultProps = {
-  translation: null,
-};
-
 Month.propTypes = {
   dateRange: PropTypes.shape({
     startDate: PropTypes.instanceOf(Date),
@@ -144,56 +137,11 @@ Month.propTypes = {
     onDayHover: PropTypes.func,
     onMonthNavigate: PropTypes.func,
   }).isRequired,
-  helpers: PropTypes.shape({
-    inHoverRange: PropTypes.func,
-  }).isRequired,
+  inHoverRange: PropTypes.func.isRequired,
   maxDate: PropTypes.instanceOf(Date).isRequired,
   minDate: PropTypes.instanceOf(Date).isRequired,
-  navState: PropTypes.arrayOf(PropTypes.bool).isRequired,
-  setValue: PropTypes.func.isRequired,
+  setMonth: PropTypes.func.isRequired,
   value: PropTypes.instanceOf(Date).isRequired,
-  translation: PropTypes.shape({
-    weekDays: PropTypes.arrayOf(
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-      PropTypes.string.isRequired,
-    ).isRequired,
-    // date-fns locale https://date-fns.org/v2.11.1/docs/format
-    locale: PropTypes.shape({
-      code: PropTypes.string,
-      formatDistance: PropTypes.func,
-      formatRelative: PropTypes.func,
-      localize: {
-        ordinalNumber: PropTypes.func.isRequired,
-        era: PropTypes.func.isRequired,
-        quarter: PropTypes.func.isRequired,
-        month: PropTypes.func.isRequired,
-        day: PropTypes.func.isRequired,
-        dayPeriod: PropTypes.func.isRequired,
-      },
-      formatLong: {
-        date: PropTypes.func.isRequired,
-        time: PropTypes.func.isRequired,
-        dateTime: PropTypes.func.isRequired,
-      },
-      match: {
-        ordinalNumber: PropTypes.func.isRequired,
-        era: PropTypes.func.isRequired,
-        quarter: PropTypes.func.isRequired,
-        month: PropTypes.func.isRequired,
-        day: PropTypes.func.isRequired,
-        dayPeriod: PropTypes.func.isRequired,
-      },
-      options: {
-        weekStartsOn: PropTypes.oneOf(0, 1, 2, 3, 4, 5, 6),
-        firstWeekContainsDate: PropTypes.oneOf(1, 2, 3, 4, 5, 6, 7),
-      },
-    }),
-  }),
 };
 
 export default Month;

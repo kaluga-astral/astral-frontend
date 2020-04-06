@@ -3,6 +3,7 @@ import React from 'react';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
+import { Typography } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
 
 import FlexContainer from '../../FlexContainer';
@@ -22,13 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Header = ({
-  date,
-  nextDisabled,
-  onClickNext,
-  onClickPrevious,
-  prevDisabled,
-}) => {
+const Header = ({ date, onClickNext, onClickPrevious }) => {
   const classes = useStyles();
 
   return (
@@ -37,19 +32,21 @@ const Header = ({
         component={IconButton}
         className={classes.icon}
         size="small"
-        disabled={prevDisabled}
         onClick={onClickPrevious}
       >
         <ArrowLeftThinIcon className={classes.arrowIcon} />
       </FlexItem>
-      <FlexItem className={classes.selectorsContainer}>
+      <Typography
+        variant="subtitle2"
+        align="center"
+        className={classes.selectorsContainer}
+      >
         {format(date, 'LLLL yyyy', { locale: ru })}
-      </FlexItem>
+      </Typography>
       <FlexItem
         component={IconButton}
         className={classes.icon}
         size="small"
-        disabled={nextDisabled}
         onClick={onClickNext}
       >
         <ArrowRightThinIcon className={classes.arrowIcon} />
@@ -60,10 +57,8 @@ const Header = ({
 
 Header.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
-  nextDisabled: PropTypes.bool.isRequired,
   onClickNext: PropTypes.func.isRequired,
   onClickPrevious: PropTypes.func.isRequired,
-  prevDisabled: PropTypes.bool.isRequired,
 };
 
 export default Header;

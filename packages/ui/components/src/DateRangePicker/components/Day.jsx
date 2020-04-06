@@ -3,41 +3,64 @@ import cn from 'classnames';
 import React from 'react';
 import { Button } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
+import FlexContainer from '../../FlexContainer';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: 32,
+    width: 48,
     height: 32,
-    // '&:hover': {
-    //   borderTopRightRadius: '50%',
-    //   borderBottomRightRadius: '50%',
-    // },
+    '&:first-child': {
+      width: 40,
+      paddingRight: theme.spacing(2),
+    },
+    '&:last-child': {
+      width: 40,
+      paddingLeft: theme.spacing(2),
+    },
   },
   leftBorderRadius: {
-    borderTopLeftRadius: '50%',
-    borderBottomLeftRadius: '50%',
+    width: 40,
+    marginLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    borderTopLeftRadius: 16,
+    borderBottomLeftRadius: 16,
+    '&:first-child': {
+      marginLeft: 0,
+      paddingRight: theme.spacing(2),
+      paddingLeft: 0,
+    },
+    '&:last-child': {
+      width: 32,
+      paddingRight: 0,
+      paddingLeft: 0,
+    },
   },
   rightBorderRadius: {
-    borderTopRightRadius: '50%',
-    borderBottomRightRadius: '50%',
+    width: 40,
+    marginRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    borderTopRightRadius: 16,
+    borderBottomRightRadius: 16,
+    '&:first-child': {
+      width: 32,
+      paddingRight: 0,
+      paddingLeft: 0,
+    },
+    '&:last-child': {
+      marginRight: 0,
+      paddingRight: 0,
+    },
   },
   highlighted: {
     backgroundColor: theme.palette.action.hover,
     '&:first-child': {
-      borderTopLeftRadius: '50%',
-      borderBottomLeftRadius: '50%',
+      borderTopLeftRadius: 16,
+      borderBottomLeftRadius: 16,
     },
     '&:last-child': {
-      borderTopRightRadius: '50%',
-      borderBottomRightRadius: '50%',
+      borderTopRightRadius: 16,
+      borderBottomRightRadius: 16,
     },
-    '&:only-of-type': {
-      borderRadius: '50%',
-    },
-    // '&:hover': {
-    //   borderTopRightRadius: '0',
-    //   borderBottomRightRadius: '0',
-    // },
   },
   button: {
     minWidth: 32,
@@ -72,7 +95,8 @@ const Day = ({
 }) => {
   const classes = useStyles();
   return (
-    <div
+    <FlexContainer
+      justifyContent="center"
       className={cn(classes.root, {
         [classes.leftBorderRadius]: startOfRange,
         [classes.rightBorderRadius]: endOfRange,
@@ -91,7 +115,7 @@ const Day = ({
       >
         {value}
       </Button>
-    </div>
+    </FlexContainer>
   );
 };
 

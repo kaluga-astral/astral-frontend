@@ -33,7 +33,7 @@ export const chunks = (array, size) => {
     array.slice(i * size, i * size + size),
   );
 };
-// Date
+
 export const getDaysInMonth = (date, options) => {
   const startWeek = startOfWeek(startOfMonth(date), options);
   const endWeek = endOfWeek(endOfMonth(date), options);
