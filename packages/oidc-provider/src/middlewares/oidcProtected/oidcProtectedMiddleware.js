@@ -22,7 +22,7 @@ const oidcProtectedMiddleware = (req, res, next) =>
     // без этого пользователь после авторизации будет всегда попадать на redirect_uri
     skipIfAuthorized(saveDesiredReference),
 
-    refreshToken,
+    refreshToken(),
 
     // если пользователь не авторизован, то происходит oidc аутентификация с редиректами
     skipIfAuthorized(oidcAuth),

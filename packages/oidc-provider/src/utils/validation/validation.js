@@ -27,12 +27,23 @@ const validateObject = (
   return envVars;
 };
 
-const validateOidcEntryParams = oidcParams =>
+const validateOidcRedirectUri = redirectUri => {
+  if (new URL(redirectUri).pathname === '/') {
+    throwValidationError(
+      'Pathname переданного параметра oidcParams.redirectUri должен отличаться от "/"',
+    );
+  }
+};
+
+const validateOidcEntryParams = oidcParams => {
   validateObject(
     oidcParams,
     OIDC_ENTRY_PARAMS_VALIDATION_SCHEME,
     'Ошибка в переданных oidcParams',
   );
+
+  validateOidcRedirectUri(oidcParams.redirectUri);
+};
 
 const validateSessionEntryParams = sessionParams =>
   validateObject(

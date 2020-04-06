@@ -1,6 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import cn from 'classnames';
-import { isEmpty } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';

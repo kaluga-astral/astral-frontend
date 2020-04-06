@@ -2,7 +2,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Form as FinalForm } from 'react-final-form';
 
-const Form = ({ children, className, mutators, ...props }) => (
+const Form = ({
+  children,
+  component: Component,
+  mutators,
+  decorators,
+  form,
+  subscription,
+  initialValuesEqual,
+  onSubmit,
+  ...props
+}) => (
   <FinalForm
     {...props}
     mutators={{
@@ -11,27 +21,42 @@ const Form = ({ children, className, mutators, ...props }) => (
         changeValue(state, field, () => value);
       },
     }}
+    decorators={decorators}
+    form={form}
+    subscription={subscription}
+    initialValuesEqual={initialValuesEqual}
+    onSubmit={onSubmit}
   >
     {formRenderProps => (
-      <form
-        noValidate
-        className={className}
-        onSubmit={formRenderProps.handleSubmit}
-      >
+      <Component {...props} noValidate onSubmit={formRenderProps.handleSubmit}>
         {children(formRenderProps)}
-      </form>
+      </Component>
     )}
   </FinalForm>
 );
 
 Form.defaultProps = {
   className: null,
-  mutators: null,
+  mutators: undefined,
+  decorators: undefined,
+  form: undefined,
+  subscription: undefined,
+  initialValuesEqual: undefined,
+  component: 'form',
 };
 
 Form.propTypes = {
   className: PropTypes.string,
   mutators: PropTypes.shape({}),
+  decorators: PropTypes.shape({}),
+  form: PropTypes.shape({}),
+  subscription: PropTypes.shape({}),
+  initialValuesEqual: PropTypes.func,
+  component: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+    PropTypes.shape(),
+  ]),
   children: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

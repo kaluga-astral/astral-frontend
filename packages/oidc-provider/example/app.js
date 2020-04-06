@@ -1,11 +1,12 @@
 const express = require('express');
+const http = require('http');
 const compression = require('compression');
-const cookieParser = require('cookie-parser');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const { initializeOidcProvider } = require('@astral-frontend/oidc-provider');
 
 const { createMockApi } = require('./__mocks__/api');
 
-const { httpProxy, httpLogger, errorLogger } = require('./middlewares');
+const { httpLogger, errorLogger } = require('./middlewares');
 
 const PROXY_MOCK_PORT = 3001;
 const SERVER_PORT = 3000;
@@ -15,7 +16,7 @@ const OIDC_PARAMS = {
   identityUrl: 'https://identity.demo.astral-dev.ru',
   clientId: 'example_code_flow',
   clientSecret: 'secret',
-  redirectUri: 'http://localhost:3000',
+  redirectUri: 'http://localhost:3000/auth/cb',
   postLogoutRedirectUri: 'http://localhost:3000',
   scope: 'profile email',
   refreshTokenMaxAge: 2592000,
@@ -34,18 +35,29 @@ const initializeServer = async () => {
   app.use(httpLogger);
 
   app.use(compression());
-  app.use(cookieParser());
 
-  const { oidcProtected, logout, getProfile } = await initializeOidcProvider({
+  const {
+    oidcProtected,
+    logout,
+    getProfile,
+    socketConnectOidcProtected,
+  } = await initializeOidcProvider({
     app,
     storeConnectUrl: STORE_CONNECT_URL,
     oidcParams: OIDC_PARAMS,
     sessionParams: SESSION_PARAMS,
   });
-
-  app.use('/main', oidcProtected, (req, res, next) => {
-    httpProxy(req, res, next);
+  const wsProxy = createProxyMiddleware({
+    target: 'http://localhost:3001',
+    ws: true,
+    level: 'debug',
   });
+
+  app.use(
+    '/main',
+    oidcProtected,
+    createProxyMiddleware({ target: 'http://localhost:3001', level: 'debug' }),
+  );
 
   app.post('/account/logout', logout);
 
@@ -53,7 +65,11 @@ const initializeServer = async () => {
 
   app.use(errorLogger);
 
-  app.listen(SERVER_PORT, err => {
+  const server = http.createServer(app);
+
+  server.on('upgrade', socketConnectOidcProtected(wsProxy.upgrade));
+
+  server.listen(SERVER_PORT, err => {
     if (err) {
       console.error(err);
 

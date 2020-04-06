@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import cn from 'classnames';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(
@@ -11,14 +12,19 @@ const useStyles = makeStyles(
   { name: 'ButtonIcon' },
 );
 
-const ButtonIcon = ({ Icon }) => {
+const ButtonIcon = ({ Icon, className }) => {
   const classes = useStyles();
 
-  return <Icon className={classes.root} />;
+  return <Icon className={cn(classes.root, className)} />;
+};
+
+ButtonIcon.defaultProps = {
+  className: null,
 };
 
 ButtonIcon.propTypes = {
   Icon: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 
 export default ButtonIcon;

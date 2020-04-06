@@ -24,7 +24,7 @@ const ProductListItem = ({
         src={`${getFileServiceUrl(apiUrl)}/${iconFileId}`}
         alt={`Иконка продукта ${name}`}
       />
-      <div>
+      <div className={classes.textWrapper}>
         <h3 className={classes.name}>{name}</h3>
         <p className={classes.description}>{shortDescription}</p>
       </div>

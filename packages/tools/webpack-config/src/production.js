@@ -5,8 +5,6 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
-const WebpackDeepScopeAnalysisPlugin = require('webpack-deep-scope-plugin')
-  .default;
 
 const getPaths = require('./utils/getPaths');
 const commonConfig = require('./common');
@@ -14,7 +12,7 @@ const commonConfig = require('./common');
 const { appSrc } = getPaths();
 
 module.exports = merge(commonConfig, {
-  mode: 'development',
+  mode: 'production',
 
   devtool: 'hidden-source-map',
 
@@ -57,7 +55,6 @@ module.exports = merge(commonConfig, {
       cache: true,
     }),
     new BrotliPlugin(),
-    new WebpackDeepScopeAnalysisPlugin(),
     new OptimizeCSSAssetsPlugin({}),
   ],
 });
