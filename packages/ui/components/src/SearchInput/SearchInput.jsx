@@ -6,12 +6,15 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import FlexContainer from '../FlexContainer';
 import InputBase from '../InputBase';
+import SearchInputContext from './SearchInputContext';
 
 const useStyles = makeStyles(
   theme => ({
     root: {
+      position: 'relative',
       height: theme.spacing(12),
       margin: theme.spacing(4, 0),
+      paddingRight: prop => (prop ? theme.spacing(2) : 0),
       borderRadius: theme.shape.borderRadius,
       backgroundColor: theme.palette.background.default,
       color: theme.palette.gray[500],
@@ -36,24 +39,32 @@ const useStyles = makeStyles(
   { name: 'SearchInput' },
 );
 
-const SearchInput = ({ className, ...props }) => {
-  const classes = useStyles();
+const SearchInput = ({ className, renderFilters, ...props }) => {
+  const classes = useStyles(Boolean(renderFilters));
+  const ref = React.useRef();
 
   return (
-    <FlexContainer className={cn(classes.root, className)} alignItems="center">
-      <SearchIcon className={classes.icon} />
-      <InputBase
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput,
-        }}
-        inputProps={{
-          'aria-label': 'Поиск',
-        }}
-        type="search"
-        {...props}
-      />
-    </FlexContainer>
+    <SearchInputContext.Provider value={{ ref }}>
+      <FlexContainer
+        ref={ref}
+        className={cn(classes.root, className)}
+        alignItems="center"
+      >
+        <SearchIcon className={classes.icon} />
+        <InputBase
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
+          inputProps={{
+            'aria-label': 'Поиск',
+          }}
+          type="search"
+          {...props}
+        />
+        {renderFilters && renderFilters()}
+      </FlexContainer>
+    </SearchInputContext.Provider>
   );
 };
 
@@ -61,6 +72,7 @@ SearchInput.defaultProps = {
   className: null,
   placeholder: 'Поиск',
   value: undefined,
+  renderFilters: null,
 };
 
 SearchInput.propTypes = {
@@ -68,6 +80,7 @@ SearchInput.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
+  renderFilters: PropTypes.func,
 };
 
 export default SearchInput;

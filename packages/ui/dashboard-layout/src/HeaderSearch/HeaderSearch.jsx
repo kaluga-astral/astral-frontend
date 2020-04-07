@@ -26,6 +26,7 @@ const DashboardLayoutHeaderSearch = ({
   inputValue,
   defaultInputValue,
   onInputChange,
+  renderFilters,
 }) => {
   const classes = useStyles();
 
@@ -36,6 +37,7 @@ const DashboardLayoutHeaderSearch = ({
       value={inputValue}
       defaultValue={defaultInputValue}
       onChange={onInputChange}
+      renderFilters={renderFilters}
     />
   );
 };
@@ -45,6 +47,7 @@ DashboardLayoutHeaderSearch.defaultProps = {
   placeholder: 'Поиск',
   inputValue: undefined,
   defaultInputValue: undefined,
+  renderFilters: null,
 };
 
 DashboardLayoutHeaderSearch.propTypes = {
@@ -53,6 +56,7 @@ DashboardLayoutHeaderSearch.propTypes = {
   inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   defaultInputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onInputChange: PropTypes.func.isRequired,
+  renderFilters: PropTypes.func,
 };
 
 export default DashboardLayoutHeaderSearch;

@@ -1,5 +1,6 @@
 export default {
   htmlFontSize: 14,
+  fontWeightRegular: 400,
   fontWeightBold: 600,
   fontWeightExtraBold: 800,
   fontFamily: '"Manrope", sans-serif, system-ui',

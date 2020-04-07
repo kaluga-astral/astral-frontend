@@ -8,6 +8,9 @@ import { CheckedRectIcon, UncheckedRectIcon } from '@astral-frontend/icons';
 
 const useStyles = makeStyles(
   () => ({
+    root: {
+      display: 'inline-flex',
+    },
     uncheckedIcon: {
       width: 20,
       height: 20,

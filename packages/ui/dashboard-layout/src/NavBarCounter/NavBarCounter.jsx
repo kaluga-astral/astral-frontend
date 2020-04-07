@@ -17,6 +17,9 @@ const useStyles = makeStyles(
         marginRight: theme.spacing(4),
       },
     },
+    count: {
+      fontWeight: theme.typography.fontWeightBold,
+    },
     active: {
       backgroundColor: theme.palette.primary.light,
     },
@@ -40,8 +43,13 @@ const DashboardLayoutNavCounter = ({
       className={cn(classes.root, { [classes.active]: active }, className)}
       {...props}
     >
-      <span className={classes.text}>{text}</span>
-      <NavBarCounterCount active={active} count={count} loading={loading} />
+      {text && <span className={classes.text}>{text}</span>}
+      <NavBarCounterCount
+        active={active}
+        count={count}
+        loading={loading}
+        className={classes.count}
+      />
     </Component>
   );
 };
@@ -49,6 +57,7 @@ const DashboardLayoutNavCounter = ({
 DashboardLayoutNavCounter.defaultProps = {
   loading: false,
   active: false,
+  text: null,
   count: null,
   className: null,
   component: 'div',
@@ -57,7 +66,7 @@ DashboardLayoutNavCounter.defaultProps = {
 DashboardLayoutNavCounter.propTypes = {
   loading: PropTypes.bool,
   active: PropTypes.bool,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   count: PropTypes.number,
   component: PropTypes.oneOfType([
     PropTypes.func,
