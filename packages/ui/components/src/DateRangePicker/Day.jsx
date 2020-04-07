@@ -3,7 +3,7 @@ import cn from 'classnames';
 import React from 'react';
 import { Button } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
-import FlexContainer from '../../FlexContainer';
+import FlexContainer from '../FlexContainer';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -94,6 +94,7 @@ const Day = ({
   value,
 }) => {
   const classes = useStyles();
+
   return (
     <FlexContainer
       justifyContent="center"

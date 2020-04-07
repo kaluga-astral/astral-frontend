@@ -6,9 +6,9 @@ import { ru } from 'date-fns/locale';
 import { Typography } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
 
-import FlexContainer from '../../FlexContainer';
-import FlexItem from '../../FlexItem';
-import IconButton from '../../IconButton';
+import FlexContainer from '../FlexContainer';
+import FlexItem from '../FlexItem';
+import IconButton from '../IconButton';
 import ArrowLeftThinIcon from './ArrowLeftThinIcon';
 import ArrowRightThinIcon from './ArrowRightThinIcon';
 

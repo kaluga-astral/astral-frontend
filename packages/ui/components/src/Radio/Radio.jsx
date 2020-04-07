@@ -20,7 +20,7 @@ const useStyles = makeStyles(
       height: 20,
     },
   }),
-  { name: 'Checkbox' },
+  { name: 'Radio' },
 );
 
 const Radio = ({

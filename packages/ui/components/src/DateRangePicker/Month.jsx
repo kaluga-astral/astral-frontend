@@ -3,8 +3,8 @@ import React from 'react';
 import { Typography } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
 import { getDate, isSameMonth, isToday, isWithinInterval } from 'date-fns';
-import FlexContainer from '../../FlexContainer';
-import FlexItem from '../../FlexItem';
+import FlexContainer from '../FlexContainer';
+import FlexItem from '../FlexItem';
 import {
   chunks,
   getDaysInMonth,
@@ -12,7 +12,7 @@ import {
   isEndOfRange,
   inDateRange,
   isRangeSameDay,
-} from '../utils';
+} from './utils';
 import Header from './Header';
 import Day from './Day';
 
@@ -45,7 +45,9 @@ const useStyles = makeStyles(
 
 const Month = ({
   dateRange,
-  handlers,
+  handleDayClick,
+  handleDayHover,
+  handleMonthNavigate,
   inHoverRange,
   maxDate,
   minDate,
@@ -60,8 +62,8 @@ const Month = ({
         component={Header}
         date={date}
         setMonth={setMonth}
-        onClickPrevious={() => handlers.onMonthNavigate(-1)}
-        onClickNext={() => handlers.onMonthNavigate(1)}
+        onClickPrevious={() => handleMonthNavigate(-1)}
+        onClickNext={() => handleMonthNavigate(1)}
       />
       <FlexItem
         component={FlexContainer}
@@ -114,8 +116,8 @@ const Month = ({
                   }
                   startOfRange={isStart && !isRangeOneDay}
                   endOfRange={isEnd && !isRangeOneDay}
-                  onClick={() => handlers.onDayClick(day)}
-                  onHover={() => handlers.onDayHover(day)}
+                  onClick={() => handleDayClick(day)}
+                  onHover={() => handleDayHover(day)}
                   value={getDate(day)}
                 />
               );
@@ -132,11 +134,9 @@ Month.propTypes = {
     startDate: PropTypes.instanceOf(Date),
     endDate: PropTypes.instanceOf(Date),
   }).isRequired,
-  handlers: PropTypes.shape({
-    onDayClick: PropTypes.func,
-    onDayHover: PropTypes.func,
-    onMonthNavigate: PropTypes.func,
-  }).isRequired,
+  handleDayClick: PropTypes.func.isRequired,
+  handleDayHover: PropTypes.func.isRequired,
+  handleMonthNavigate: PropTypes.func.isRequired,
   inHoverRange: PropTypes.func.isRequired,
   maxDate: PropTypes.instanceOf(Date).isRequired,
   minDate: PropTypes.instanceOf(Date).isRequired,

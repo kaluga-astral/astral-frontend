@@ -8,7 +8,7 @@ import {
   isBefore,
   addYears,
 } from 'date-fns';
-import Menu from './components/Menu';
+import Menu from './Menu';
 import { getValidatedMonths, parseOptionalDate } from './utils';
 
 const DateRangePicker = ({
@@ -30,7 +30,7 @@ const DateRangePicker = ({
   const [hoverDay, setHoverDay] = React.useState();
   const [month, setMonth] = React.useState(intialtMonth || today);
   const { startDate, endDate } = dateRange;
-  const onDayClick = day => {
+  const handleDayClick = day => {
     if (startDate && !endDate) {
       setDateRange({ startDate, endDate: day });
       setHoverDay(day);
@@ -44,11 +44,11 @@ const DateRangePicker = ({
       setHoverDay(day);
     }
   };
-  const onMonthNavigate = action => {
+  const handleMonthNavigate = action => {
     const firstNew = addMonths(month, action);
     setMonth(firstNew);
   };
-  const onDayHover = day => {
+  const handleDayHover = day => {
     if (!hoverDay || !isSameDay(day, hoverDay)) {
       if (startDate && !endDate && isBefore(day, startDate)) {
         setDateRange({ startDate: null, endDate: startDate });
@@ -72,11 +72,7 @@ const DateRangePicker = ({
       return isWithinInterval(day, { start: hoverDay, end: endDate });
     }
   };
-  const handlers = {
-    onDayClick,
-    onDayHover,
-    onMonthNavigate,
-  };
+
   return open ? (
     <Menu
       dateRange={dateRange}
@@ -85,7 +81,9 @@ const DateRangePicker = ({
       month={month}
       setMonth={date => setMonth(date)}
       inHoverRange={inHoverRange}
-      handlers={handlers}
+      handleDayClick={handleDayClick}
+      handleDayHover={handleDayHover}
+      handleMonthNavigate={handleMonthNavigate}
     />
   ) : null;
 };

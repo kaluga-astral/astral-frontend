@@ -1,5 +1,5 @@
 import React from 'react';
-import SvgIcon from '../../SvgIcon';
+import SvgIcon from '../SvgIcon';
 
 const ArrowLeftThinIcon = props => (
   <SvgIcon width="16" height="16" viewBox="0 0 16 16" {...props}>
