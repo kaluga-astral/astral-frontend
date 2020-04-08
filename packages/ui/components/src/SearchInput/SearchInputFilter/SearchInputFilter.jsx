@@ -47,25 +47,24 @@ const SearchInputFilter = ({ disabled, Icon, children, ...props }) => {
     <FlexContainer direction="column" className={classes.root} {...props}>
       <IconButton
         disabled={disabled}
-        className={cn(classes.iconButton, { [classes.iconButtonActive]: open })}
+        className={cn(classes.iconButton, {
+          [classes.iconButtonActive]: open,
+        })}
         onClick={handleTogglerButtonClick}
       >
         <Icon />
       </IconButton>
-      {open && (
-        <Popper
-          transition
-          placement="bottom-end"
-          open={open}
-          anchorEl={ref.current}
-          container={ref.current}
-          className={classes.popper}
-        >
-          <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-            <Paper className={classes.paper}>{children}</Paper>
-          </ClickAwayListener>
-        </Popper>
-      )}
+      <Popper
+        placement="bottom-end"
+        open={open}
+        anchorEl={ref.current}
+        container={ref.current}
+        className={classes.popper}
+      >
+        <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
+          <Paper className={classes.paper}>{children}</Paper>
+        </ClickAwayListener>
+      </Popper>
     </FlexContainer>
   );
 };
