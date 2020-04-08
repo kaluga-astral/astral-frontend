@@ -3,7 +3,6 @@ import cn from 'classnames';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 import IconButton from '../../IconButton';
-import Fade from '../../Fade';
 import Paper from '../../Paper';
 import FlexContainer from '../../FlexContainer';
 import ClickAwayListener from '../../ClickAwayListener';
@@ -62,13 +61,9 @@ const SearchInputFilter = ({ disabled, Icon, children, ...props }) => {
           container={ref.current}
           className={classes.popper}
         >
-          {() => (
-            <Fade>
-              <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-                <Paper className={classes.paper}>{children}</Paper>
-              </ClickAwayListener>
-            </Fade>
-          )}
+          <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
+            <Paper className={classes.paper}>{children}</Paper>
+          </ClickAwayListener>
         </Popper>
       )}
     </FlexContainer>
