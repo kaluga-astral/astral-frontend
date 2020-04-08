@@ -3,7 +3,6 @@ import cn from 'classnames';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 import IconButton from '../../IconButton';
-import Fade from '../../Fade';
 import Paper from '../../Paper';
 import FlexContainer from '../../FlexContainer';
 import ClickAwayListener from '../../ClickAwayListener';
@@ -48,29 +47,24 @@ const SearchInputFilter = ({ disabled, Icon, children, ...props }) => {
     <FlexContainer direction="column" className={classes.root} {...props}>
       <IconButton
         disabled={disabled}
-        className={cn(classes.iconButton, { [classes.iconButtonActive]: open })}
+        className={cn(classes.iconButton, {
+          [classes.iconButtonActive]: open,
+        })}
         onClick={handleTogglerButtonClick}
       >
         <Icon />
       </IconButton>
-      {open && (
-        <Popper
-          transition
-          placement="bottom-end"
-          open={open}
-          anchorEl={ref.current}
-          container={ref.current}
-          className={classes.popper}
-        >
-          {() => (
-            <Fade>
-              <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-                <Paper className={classes.paper}>{children}</Paper>
-              </ClickAwayListener>
-            </Fade>
-          )}
-        </Popper>
-      )}
+      <Popper
+        placement="bottom-end"
+        open={open}
+        anchorEl={ref.current}
+        container={ref.current}
+        className={classes.popper}
+      >
+        <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
+          <Paper className={classes.paper}>{children}</Paper>
+        </ClickAwayListener>
+      </Popper>
     </FlexContainer>
   );
 };

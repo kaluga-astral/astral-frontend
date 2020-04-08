@@ -71,6 +71,8 @@ const DateRangePicker = ({
     if (!startDate && endDate) {
       return isWithinInterval(day, { start: hoverDay, end: endDate });
     }
+
+    return false;
   };
 
   return open ? (

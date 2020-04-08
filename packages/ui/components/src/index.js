@@ -44,6 +44,7 @@ export { default as FormGridField } from './FormGridField';
 export { default as FormGridRow } from './FormGridRow';
 export { default as FormGridSection } from './FormGridSection';
 export { default as FormGroup } from './FormGroup';
+export { default as FormLabel } from './FormLabel';
 export { default as Grid } from './Grid';
 export { default as Grow } from './Grow';
 export { default as IconButton } from './IconButton';
