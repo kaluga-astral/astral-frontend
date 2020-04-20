@@ -76,6 +76,7 @@ export { default as RootRef } from './RootRef';
 export { default as SearchInput, SearchInputFilter } from './SearchInput';
 export { default as Filter } from './SearchInput/SearchInputFilter';
 export { default as Select } from './Select';
+export { default as Skeleton } from './Skeleton';
 export { default as Slide } from './Slide';
 export { default as SlideModal } from './SlideModal';
 export { default as Step } from './Step';
