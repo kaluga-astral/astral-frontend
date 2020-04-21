@@ -39,6 +39,7 @@ export const ORGANIZATION_VALIDATIONS_PARAMS = {
   },
   null: {
     labelINN: 'ИНН',
+    labelOGRN: 'ОГРН',
     maxLengthINN: 12,
     maxLengthOGRN: 15,
     validateINN(args) {

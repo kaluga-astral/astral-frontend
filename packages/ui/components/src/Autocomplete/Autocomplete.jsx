@@ -45,10 +45,10 @@ const Autocomplete = ({
           ...params.InputProps,
           ...MuiTextFieldProps.InputProps,
           endAdornment: (
-            <React.Fragment>
+            <>
               {loading ? <CircularProgress color="inherit" size={20} /> : null}
               {params.InputProps.endAdornment}
-            </React.Fragment>
+            </>
           ),
         };
 
@@ -56,7 +56,7 @@ const Autocomplete = ({
           <TextField
             {...params}
             fullWidth
-            margin="normal"
+            margin="dense"
             {...MuiTextFieldProps}
             InputProps={InputProps}
           />
