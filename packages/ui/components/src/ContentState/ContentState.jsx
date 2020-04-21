@@ -46,7 +46,6 @@ ContentState.defaultProps = {
 
 ContentState.propTypes = {
   loading: PropTypes.bool.isRequired,
-  PlaceholderProps: PropTypes.shape({}),
   error: PropTypes.instanceOf(Error),
   children: PropTypes.oneOfType([
     PropTypes.string,
@@ -55,6 +54,7 @@ ContentState.propTypes = {
   ]).isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   component: PropTypes.any,
+  PlaceholderProps: PropTypes.shape({}),
   LoadingStateComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   FailureStateComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };

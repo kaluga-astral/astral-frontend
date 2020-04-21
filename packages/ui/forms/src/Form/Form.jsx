@@ -9,6 +9,7 @@ const Form = ({
   decorators,
   form,
   subscription,
+  initialValues,
   initialValuesEqual,
   onSubmit,
   ...props
@@ -24,6 +25,7 @@ const Form = ({
     decorators={decorators}
     form={form}
     subscription={subscription}
+    initialValues={initialValues}
     initialValuesEqual={initialValuesEqual}
     onSubmit={onSubmit}
   >
@@ -41,6 +43,7 @@ Form.defaultProps = {
   decorators: undefined,
   form: undefined,
   subscription: undefined,
+  initialValues: undefined,
   initialValuesEqual: undefined,
   component: 'form',
 };
@@ -51,6 +54,7 @@ Form.propTypes = {
   decorators: PropTypes.shape({}),
   form: PropTypes.shape({}),
   subscription: PropTypes.shape({}),
+  initialValues: PropTypes.shape({}),
   initialValuesEqual: PropTypes.func,
   component: PropTypes.oneOfType([
     PropTypes.string,
