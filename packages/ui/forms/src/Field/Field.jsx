@@ -104,7 +104,7 @@ FormField.defaultProps = {
   select: false,
   variant: 'standard',
   fullWidth: true,
-  margin: 'dense',
+  margin: 'normal',
   type: undefined,
 };
 
