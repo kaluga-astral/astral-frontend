@@ -1,6 +1,6 @@
 const path = require('path');
 
-const { isFirstHtmlRequest } = require('../../utils/httpMethods');
+const { isFirstHtmlRequest } = require('../utils/httpMethods');
 
 const ERROR_TEMPLATE_PATH = path.resolve(
   __dirname,
@@ -11,6 +11,7 @@ const ERROR_TEMPLATE_PATH = path.resolve(
   'error.html',
 );
 
+// eslint-disable-next-line no-unused-vars
 const mainErrorHandleMiddleware = (err, req, res, next) => {
   if (isFirstHtmlRequest(req)) {
     res.sendFile(ERROR_TEMPLATE_PATH);

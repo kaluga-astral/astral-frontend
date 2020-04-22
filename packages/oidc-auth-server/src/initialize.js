@@ -3,15 +3,11 @@ const http = require('http');
 const compression = require('compression');
 const { initializeOidcProvider } = require('@astral-frontend/oidc-provider');
 
-const {
-  httpLogger,
-  errorLogger,
-  mainErrorHandle,
-  createOidcProtectedHttpProxy,
-} = require('./middlewares');
+const { httpLogger, createOidcProtectedHttpProxy } = require('./middlewares');
 const oidcProtectedSocketProxyCreator = require('./extensions/socket');
 
 const { validateInitializeEntryParam } = require('./utils/validation');
+const { prepareForStartServer } = require('./utils/httpServer');
 
 const initializeServer = async entryParams => {
   // выдаст ошибку и завершит процесс, если какие-либо из входных параметров заданы неверно
@@ -48,6 +44,7 @@ const initializeServer = async entryParams => {
   app.use(logoutRoutePath, logout);
   app.use(getProfileRoutePath, getProfile);
 
+  // отдельно создается http server для того, чтобы слушать событие сокета upgrade (для express app событие upgrade работает не так, как ожидается)
   const server = http.createServer(app);
 
   const oidcProtectedHttpProxy = createOidcProtectedHttpProxy(oidcProtected);
@@ -58,7 +55,9 @@ const initializeServer = async entryParams => {
   );
 
   return {
-    server,
+    app,
+    // при вызове startServer будут добавлены обработчики ошибок и запущен сервер на указанном порту
+    startServer: prepareForStartServer(app, server),
     oidcProtectedHttpProxy,
     createOidcProtectedSocketProxy,
   };
