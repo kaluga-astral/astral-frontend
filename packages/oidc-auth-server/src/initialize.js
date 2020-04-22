@@ -5,10 +5,11 @@ const { initializeOidcProvider } = require('@astral-frontend/oidc-provider');
 
 const {
   httpLogger,
-  createHttpProxy,
   errorLogger,
   mainErrorHandle,
+  createOidcProtectedHttpProxy,
 } = require('./middlewares');
+const oidcProtectedSocketProxyCreator = require('./extensions/socket');
 
 const { validateInitializeEntryParam } = require('./utils/validation');
 
@@ -46,6 +47,21 @@ const initializeServer = async entryParams => {
 
   app.use(logoutRoutePath, logout);
   app.use(getProfileRoutePath, getProfile);
+
+  const server = http.createServer(app);
+
+  const oidcProtectedHttpProxy = createOidcProtectedHttpProxy(oidcProtected);
+  // создает и сразу подключает (в upgrade) socket proxy
+  const createOidcProtectedSocketProxy = oidcProtectedSocketProxyCreator(
+    server,
+    socketConnectOidcProtected,
+  );
+
+  return {
+    server,
+    oidcProtectedHttpProxy,
+    createOidcProtectedSocketProxy,
+  };
 };
 
 module.exports = { initializeServer };

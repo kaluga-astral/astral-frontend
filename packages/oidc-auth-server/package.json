@@ -11,6 +11,7 @@
   "dependencies": {
     "@astral-frontend/oidc-provider": "^1.1.0",
     "@hapi/joi": "17.1.1",
+    "compose-middleware": "5.0.1",
     "compression": "1.7.4",
     "express": "^4.16.4",
     "express-winston": "^4.0.1",
