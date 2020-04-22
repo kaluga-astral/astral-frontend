@@ -8,8 +8,7 @@ const fetchAddressSuggestions = query => {
     key: unrestricted_value,
     label: unrestricted_value,
     value: {
-      unrestrictedValue: unrestricted_value,
-      postIndex: data.postal_code,
+      postalIndex: data.postal_code,
       regionCode:
         (
           data.kladr_id ||
@@ -26,7 +25,6 @@ const fetchAddressSuggestions = query => {
       regionName: data.region,
       area: data.area,
       city: data.city || data.settlement,
-      locality: data.city || data.settlement,
       street: data.street,
       house: data.house,
       housing: data.block,

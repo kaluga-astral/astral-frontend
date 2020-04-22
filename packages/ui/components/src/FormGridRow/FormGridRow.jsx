@@ -6,9 +6,7 @@ import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(
   theme => ({
-    root: {
-      marginTop: '20px',
-    },
+    root: {},
     content: {
       display: 'flex',
     },
@@ -21,11 +19,11 @@ const useStyles = makeStyles(
   { name: 'FormGridRow' },
 );
 
-const FormGridRow = ({ children, title, className, ...props }) => {
+const FormGridRow = ({ children, title, className }) => {
   const classes = useStyles();
 
   return (
-    <div {...props} className={cn(classes.root, className)}>
+    <div className={cn(classes.root, className)}>
       {title && <h4 className={classes.title}>{title}</h4>}
       <div className={classes.content}>{children}</div>
     </div>
