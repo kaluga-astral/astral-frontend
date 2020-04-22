@@ -7,6 +7,8 @@ import Autocomplete from '../Autocomplete';
 const INPUT_VALUE_THROTTLE_TIMEOUT = 300;
 
 const AsyncAutocomplete = ({
+  prefetch,
+  prefetchSearchString,
   fetchOptions,
   inputValueThrottleTimeout,
   ...props
@@ -14,11 +16,12 @@ const AsyncAutocomplete = ({
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [options, setOptions] = React.useState({});
-  const handleInputChange = React.useCallback(
-    throttle(async (event, inputValue) => {
+
+  const handleFetchOptions = React.useCallback(
+    throttle(async searchString => {
       setLoading(true);
 
-      const newOptions = await fetchOptions(inputValue);
+      const newOptions = await fetchOptions(searchString);
 
       setLoading(false);
       // TODO: #28808
@@ -34,6 +37,13 @@ const AsyncAutocomplete = ({
     }, inputValueThrottleTimeout),
     [open],
   );
+
+  const handleInputChange = (event, inputValue) =>
+    handleFetchOptions(inputValue);
+
+  React.useEffect(() => {
+    if (prefetch) handleFetchOptions(prefetchSearchString);
+  }, []);
 
   return (
     <Autocomplete
@@ -53,10 +63,14 @@ const AsyncAutocomplete = ({
 };
 
 AsyncAutocomplete.defaultProps = {
+  prefetch: false,
+  prefetchSearchString: '',
   inputValueThrottleTimeout: INPUT_VALUE_THROTTLE_TIMEOUT,
 };
 
 AsyncAutocomplete.propTypes = {
+  prefetch: PropTypes.bool,
+  prefetchSearchString: PropTypes.string,
   inputValueThrottleTimeout: PropTypes.number,
   /**
    * Функция получения новых данных
