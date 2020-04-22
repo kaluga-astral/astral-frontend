@@ -74,11 +74,13 @@ AsyncAutocomplete.defaultProps = {
 AsyncAutocomplete.propTypes = {
   loading: PropTypes.bool,
   inputValueThrottleTimeout: PropTypes.number,
-  defaultOptions: PropTypes.shape({
-    key: PropTypes.string,
-    label: PropTypes.string,
-    value: PropTypes.any,
-  }),
+  defaultOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      value: PropTypes.any,
+    }),
+  ),
   /**
    * Функция получения новых данных
    *
