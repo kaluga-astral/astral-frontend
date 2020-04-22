@@ -7,8 +7,8 @@ import Autocomplete from '../Autocomplete';
 const INPUT_VALUE_THROTTLE_TIMEOUT = 300;
 
 const AsyncAutocomplete = ({
-  prefetch,
-  prefetchSearchString,
+  loading: isLoadingDefaultOptions,
+  defaultOptions,
   fetchOptions,
   inputValueThrottleTimeout,
   ...props
@@ -17,39 +17,42 @@ const AsyncAutocomplete = ({
   const [loading, setLoading] = React.useState(false);
   const [options, setOptions] = React.useState({});
 
-  const handleFetchOptions = React.useCallback(
-    throttle(async searchString => {
+  const setFormattingOptions = newOptions => {
+    // TODO: #28808
+    setOptions(prevOptions =>
+      newOptions.reduce(
+        (acc, newOption) => ({
+          ...acc,
+          [newOption.key]: newOption,
+        }),
+        prevOptions,
+      ),
+    );
+  };
+
+  const handleInputChange = React.useCallback(
+    throttle(async (event, searchString) => {
       setLoading(true);
 
       const newOptions = await fetchOptions(searchString);
 
       setLoading(false);
-      // TODO: #28808
-      setOptions(prevOptions => {
-        return newOptions.reduce(
-          (acc, newOption) => ({
-            ...acc,
-            [newOption.key]: newOption,
-          }),
-          prevOptions,
-        );
-      });
+      setFormattingOptions(newOptions);
     }, inputValueThrottleTimeout),
     [open],
   );
 
-  const handleInputChange = (event, inputValue) =>
-    handleFetchOptions(inputValue);
-
   React.useEffect(() => {
-    if (prefetch) handleFetchOptions(prefetchSearchString);
-  }, []);
+    if (!isLoadingDefaultOptions && defaultOptions) {
+      setFormattingOptions(defaultOptions);
+    }
+  }, [isLoadingDefaultOptions]);
 
   return (
     <Autocomplete
       {...props}
       options={Object.values(options)}
-      loading={open && loading}
+      loading={open && (isLoadingDefaultOptions || loading)}
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -63,15 +66,19 @@ const AsyncAutocomplete = ({
 };
 
 AsyncAutocomplete.defaultProps = {
-  prefetch: false,
-  prefetchSearchString: '',
+  loading: false,
+  defaultOptions: null,
   inputValueThrottleTimeout: INPUT_VALUE_THROTTLE_TIMEOUT,
 };
 
 AsyncAutocomplete.propTypes = {
-  prefetch: PropTypes.bool,
-  prefetchSearchString: PropTypes.string,
+  loading: PropTypes.bool,
   inputValueThrottleTimeout: PropTypes.number,
+  defaultOptions: PropTypes.shape({
+    key: PropTypes.string,
+    label: PropTypes.string,
+    value: PropTypes.any,
+  }),
   /**
    * Функция получения новых данных
    *
