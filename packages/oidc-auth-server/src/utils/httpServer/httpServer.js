@@ -14,4 +14,13 @@ const prepareForStartServer = (app, server) => port => {
   });
 };
 
-module.exports = { prepareForStartServer };
+const createHttpProxyPipelines = (
+  app,
+  oidcProtectedHttpProxyMiddleware,
+  httpProxyConfigs,
+) =>
+  httpProxyConfigs.forEach(({ entry, target, changeOrigin }) => {
+    app.use(entry, oidcProtectedHttpProxyMiddleware({ target, changeOrigin }));
+  });
+
+module.exports = { prepareForStartServer, createHttpProxyPipelines };

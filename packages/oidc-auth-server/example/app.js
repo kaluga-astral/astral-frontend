@@ -4,7 +4,7 @@ const { initializeServer } = require('@astral-frontend/oidc-auth-server');
 const { createMockApi } = require('./__mocks__/api');
 
 const PROXY_MOCK_PORT = 3001;
-const PROXY_URL = `localhost:${PROXY_MOCK_PORT}`;
+const PROXY_URL = `http://localhost:${PROXY_MOCK_PORT}`;
 
 const OIDC_PARAMS = {
   identityUrl: 'https://identity.demo.astral-dev.ru',
@@ -24,25 +24,24 @@ const SESSION_PARAMS = {
 createMockApi(PROXY_MOCK_PORT);
 
 const createServer = async () => {
-  const {
-    app,
-    startServer,
-    createOidcProtectedSocketProxy,
-    oidcProtectedHttpProxy,
-  } = await initializeServer({
+  const { app, startServer, oidcProtectedHttpProxy } = await initializeServer({
     oidcParams: OIDC_PARAMS,
     sessionParams: SESSION_PARAMS,
     storeConnectUrl: 'http://10.0.3.9:5703',
     logoutRoutePath: '/account/logout',
     getProfileRoutePath: '/account/profile',
+    // будет создан защищенный прокси для сокета
+    socketProtectedProxyTarget: PROXY_URL,
+    httpProtectedProxyConfigs: [
+      { entry: '/main', target: PROXY_URL },
+      { entry: '/contacts', target: PROXY_URL, changeOrigin: true },
+    ],
     internalErrorTemplatePath: path.resolve(__dirname, 'static', 'error.html'),
   });
 
-  // будет создан proxy с авторизацей для сокетов на PROXY_URL
-  createOidcProtectedSocketProxy({ target: PROXY_URL });
-
   // будет создан http прокси с авторзацией
-  app.use('/main', oidcProtectedHttpProxy({ target: PROXY_URL }));
+  // oidcProtectedHttpProxy необходимо использовать, если необходимо сделать что то до или после этого middleware, в противном случае лучше воспользоваться декларативным методом httpProtectedProxyConfigs
+  app.use('/fallback', oidcProtectedHttpProxy({ target: PROXY_URL }));
 
   app.use('/noAuth', (req, res) => {
     res.send({ ok: true });

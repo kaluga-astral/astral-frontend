@@ -10,6 +10,19 @@ const INITIALIZE_ENTRY_PARAMS_VALIDATION_SCHEME = {
     .required(),
   oidcParams: validator.object().required(),
   sessionParams: validator.object().required(),
+  socketProtectedProxyTarget: validator.string().uri(),
+  httpProtectedProxyConfigs: validator.array().items(
+    validator
+      .object({
+        entry: validator.string().required(),
+        target: validator
+          .string()
+          .uri()
+          .required(),
+        changeOrigin: validator.boolean(),
+      })
+      .unknown(false),
+  ),
 };
 
 module.exports = { INITIALIZE_ENTRY_PARAMS_VALIDATION_SCHEME };
