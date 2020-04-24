@@ -25,8 +25,8 @@ export const ORGANIZATION_VALIDATIONS_PARAMS = {
     },
   },
   ul: {
-    labelINN: 'ИНН ЮЛ',
-    labelOGRN: 'ОГРН ЮЛ',
+    labelINN: 'ИНН',
+    labelOGRN: 'ОГРН',
     maxLengthINN: 10,
     maxLengthOGRN: 13,
     weightsForCheckNumINN: [2, 4, 10, 3, 5, 9, 4, 6, 8, 0],
