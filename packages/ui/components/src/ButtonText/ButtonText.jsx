@@ -6,13 +6,17 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       margin: theme.spacing(0, 1),
+      color: props => {
+        return props.color ? props.color(theme) : null;
+      },
     },
   }),
   { name: 'ButtonText' },
 );
 
-const ButtonText = ({ text }) => {
-  const classes = useStyles();
+const ButtonText = props => {
+  const { text } = props;
+  const classes = useStyles(props);
 
   return <div className={classes.root}>{text}</div>;
 };
