@@ -36,6 +36,7 @@ const Autocomplete = ({
       options={options}
       filterOptions={filterOptions}
       getOptionLabel={getOptionLabel}
+      getOptionSelected={option => options.find(v => v.key === option.key)}
       onOpen={onOpen}
       onClose={onClose}
       onChange={onChange}

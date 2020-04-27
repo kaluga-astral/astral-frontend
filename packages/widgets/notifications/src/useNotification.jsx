@@ -67,6 +67,7 @@ export const useNotification = () => {
         message = '',
         duration = null,
         progressLine = true,
+        ...options
       }) {
         enqueueSnackbar('', {
           variant: 'info',
@@ -85,6 +86,7 @@ export const useNotification = () => {
               progressLine={progressLine}
             />
           ),
+          ...options,
         });
       },
       enqueueSuccessTimerNotification({
