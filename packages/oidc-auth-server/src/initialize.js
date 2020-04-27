@@ -40,6 +40,7 @@ const initializeServer = async entryParams => {
     logout,
     getProfile,
     socketConnectOidcProtected,
+    storeClient,
   } = await initializeOidcProvider({
     app,
     storeConnectUrl,
@@ -82,6 +83,7 @@ const initializeServer = async entryParams => {
     oidcProtectedHttpProxy,
     oidcProtected,
     createProxyMiddleware,
+    storeClient,
   };
 };
 
