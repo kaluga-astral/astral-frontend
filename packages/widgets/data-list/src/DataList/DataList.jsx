@@ -63,11 +63,12 @@ const InfiniteList = ({
       <ReactIntersectionList
         itemCount={items.length}
         itemsRenderer={(children, ref) => listRenderer({ children, ref })}
-        renderItem={(index, key) => {
+        renderItem={index => {
           const data = items[index];
+          const key = data.id;
 
           return (
-            <DataListItemContext.Provider key={key} value={{ data, key }}>
+            <DataListItemContext.Provider key={data.id} value={{ data, key }}>
               {renderItem({ data, key })}
             </DataListItemContext.Provider>
           );
