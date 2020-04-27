@@ -7,6 +7,8 @@ import Autocomplete from '../Autocomplete';
 const INPUT_VALUE_THROTTLE_TIMEOUT = 300;
 
 const AsyncAutocomplete = ({
+  loading: isLoadingDefaultOptions,
+  defaultOptions,
   fetchOptions,
   inputValueThrottleTimeout,
   ...props
@@ -14,32 +16,43 @@ const AsyncAutocomplete = ({
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [options, setOptions] = React.useState({});
+
+  const setFormattingOptions = newOptions => {
+    // TODO: #28808
+    setOptions(prevOptions =>
+      newOptions.reduce(
+        (acc, newOption) => ({
+          ...acc,
+          [newOption.key]: newOption,
+        }),
+        prevOptions,
+      ),
+    );
+  };
+
   const handleInputChange = React.useCallback(
-    throttle(async (event, inputValue) => {
+    throttle(async (event, searchString) => {
       setLoading(true);
 
-      const newOptions = await fetchOptions(inputValue);
+      const newOptions = await fetchOptions(searchString);
 
       setLoading(false);
-      // TODO: #28808
-      setOptions(prevOptions => {
-        return newOptions.reduce(
-          (acc, newOption) => ({
-            ...acc,
-            [newOption.key]: newOption,
-          }),
-          prevOptions,
-        );
-      });
+      setFormattingOptions(newOptions);
     }, inputValueThrottleTimeout),
     [open],
   );
+
+  React.useEffect(() => {
+    if (!isLoadingDefaultOptions && defaultOptions) {
+      setFormattingOptions(defaultOptions);
+    }
+  }, [isLoadingDefaultOptions]);
 
   return (
     <Autocomplete
       {...props}
       options={Object.values(options)}
-      loading={open && loading}
+      loading={open && (isLoadingDefaultOptions || loading)}
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -53,11 +66,21 @@ const AsyncAutocomplete = ({
 };
 
 AsyncAutocomplete.defaultProps = {
+  loading: false,
+  defaultOptions: null,
   inputValueThrottleTimeout: INPUT_VALUE_THROTTLE_TIMEOUT,
 };
 
 AsyncAutocomplete.propTypes = {
+  loading: PropTypes.bool,
   inputValueThrottleTimeout: PropTypes.number,
+  defaultOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      value: PropTypes.any,
+    }),
+  ),
   /**
    * Функция получения новых данных
    *
