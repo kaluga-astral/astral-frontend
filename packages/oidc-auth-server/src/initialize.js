@@ -57,7 +57,7 @@ const initializeServer = async entryParams => {
   const oidcProtectedHttpProxy = createOidcProtectedHttpProxy(oidcProtected);
 
   // добавляет в app.use готовые цепочки middlewares для осуществления защищенного проксирования по http
-  if (httpProtectedProxyConfigs.length > 0) {
+  if (httpProtectedProxyConfigs && httpProtectedProxyConfigs.length > 0) {
     createHttpProxyPipelines(
       app,
       oidcProtectedHttpProxy,
