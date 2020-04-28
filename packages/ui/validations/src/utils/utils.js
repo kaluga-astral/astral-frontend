@@ -18,3 +18,38 @@ export const calcCheckSumForSNILS = digitsOfValue =>
     .split('')
     .map(Number)
     .reduce((sum, currentValue, index) => sum + currentValue * (9 - index), 0);
+
+export const calcCheckSumForBankAccount = account => {
+  const weights = [
+    7,
+    1,
+    3,
+    7,
+    1,
+    3,
+    7,
+    1,
+    3,
+    7,
+    1,
+    3,
+    7,
+    1,
+    3,
+    7,
+    1,
+    3,
+    7,
+    1,
+    3,
+    7,
+    1,
+  ];
+  const checkSum = getArrayDigitsOfValue(account)
+    .map((item, index) => {
+      return item * weights[index];
+    })
+    .reduce((acc, item) => acc + item);
+
+  return checkSum % 10 === 0;
+};
