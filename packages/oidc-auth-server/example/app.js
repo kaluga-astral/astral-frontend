@@ -33,8 +33,8 @@ const createServer = async () => {
     // будет создан защищенный прокси для сокета
     socketProtectedProxyTarget: PROXY_URL,
     httpProtectedProxyConfigs: [
-      { entry: '/main', target: PROXY_URL },
-      { entry: '/contacts', target: PROXY_URL, changeOrigin: true },
+      { entry: ['/main'], target: PROXY_URL },
+      { entry: ['/contacts'], target: PROXY_URL, changeOrigin: true },
     ],
     internalErrorTemplatePath: path.resolve(__dirname, 'static', 'error.html'),
   });

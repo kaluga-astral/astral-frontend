@@ -37,8 +37,8 @@
     getProfileRoutePath: '/account/profile',
     socketProtectedProxyTarget: PROXY_URL,
     httpProtectedProxyConfigs: [
-      { entry: '/main', target: PROXY_URL },
-      { entry: '/contacts', target: PROXY_URL, changeOrigin: true },
+      { entry: ['/main'], target: PROXY_URL },
+      { entry: ['/contacts'], target: PROXY_URL, changeOrigin: true },
     ],
     internalErrorTemplatePath: path.resolve(__dirname, 'static', 'error.html'),
   });
@@ -70,7 +70,7 @@
 * ```socketProtectedProxyTarget```: ```<String>```. Url, на который будут проксироваться (с авторизацией) все socket запросы.
 
 * ```httpProtectedProxyConfigs```: ```<Array<{ entry: String, target: String, changeOrigin: Boolean }>>```. Список конфигураций для защищенных routes.
-  * ```entry```: ```required <String>```. Входной route. На этот route будет утсановлена защита авторизацией.
+  * ```entry```: ```required <Array<String>>```. Входные routes. На список переданных routes будет утсановлена защита авторизацией.
   * ```target```: ```required <String>```. Url, на который будут проксироваться все запросы с entry.
   * ```changeOrigin```: ```<Boolean>```
 
