@@ -3,6 +3,7 @@ import {
   removeSpecialCharacters,
   calcCheckNumForINN,
   calcCheckSumForSNILS,
+  calcCheckSumForBankAccount,
 } from './utils';
 
 describe('Convert string to numbers array', () => {
@@ -36,5 +37,29 @@ describe('Calculate checknum from string', () => {
 describe('Calculate checksum from string', () => {
   it('должна возвращать корректную контрольную сумму для СНИЛС', () => {
     expect(calcCheckSumForSNILS('15657325992')).toEqual(193);
+  });
+});
+describe('Calculate checksum from string', () => {
+  it('должна возвращать true для корректного расчетного счета (строка сформирована с БИК)', () => {
+    expect(calcCheckSumForBankAccount('74540702810125000001191')).toEqual(true);
+  });
+});
+describe('Calculate checksum from string', () => {
+  it('должна возвращать false для некорректного расчетного счета (строка сформирована с БИК)', () => {
+    expect(calcCheckSumForBankAccount('74540702810125919101191')).toEqual(
+      false,
+    );
+  });
+});
+describe('Calculate checksum from string', () => {
+  it('должна возвращать true для корректного корреспондентского счета (строка сформирована с БИК)', () => {
+    expect(calcCheckSumForBankAccount('00230101810600000000673')).toEqual(true);
+  });
+});
+describe('Calculate checksum from string', () => {
+  it('должна возвращать false для некорректного корреспондентского счета (строка сформирована с БИК)', () => {
+    expect(calcCheckSumForBankAccount('00230101810600011000673')).toEqual(
+      false,
+    );
   });
 });
