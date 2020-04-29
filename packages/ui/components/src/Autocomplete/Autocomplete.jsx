@@ -57,7 +57,7 @@ const Autocomplete = ({
           <TextField
             {...params}
             fullWidth
-            margin="normal"
+            margin="none"
             {...MuiTextFieldProps}
             InputProps={InputProps}
           />

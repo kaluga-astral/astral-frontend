@@ -6,7 +6,11 @@ import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(
   theme => ({
-    root: {},
+    root: {
+      '&:not(:last-child)': {
+        marginBottom: theme.spacing(5),
+      },
+    },
     content: {
       display: 'flex',
     },
