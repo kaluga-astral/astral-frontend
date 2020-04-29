@@ -15,7 +15,7 @@ const { REFRESH_TOKEN_RESOURCE_NAME } = require('../../config/syncRequests');
 const defaultRefreshErrorHandler = (req, res) => {
   // если рефреш завершился неудачей, необходимо запомнить текущий path пользователя, чтобы вернуть его сюда после авторизации
   // но это должно работать только для первых html запросов
-  if (isFirstHtmlRequest) {
+  if (isFirstHtmlRequest(req)) {
     saveDesiredReferenceInCookie(req, res);
   }
 };
