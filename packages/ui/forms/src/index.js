@@ -9,6 +9,7 @@ export {
 } from 'react-final-form';
 export { default as AddressField } from './AddressField';
 export { default as AsyncAutocompleteField } from './AsyncAutocompleteField';
+export { default as BankField } from './BankField';
 export { default as BIKField } from './BIKField';
 export { default as CheckboxField } from './CheckboxField';
 export { default as CheckingAccountField } from './CheckingAccountField';

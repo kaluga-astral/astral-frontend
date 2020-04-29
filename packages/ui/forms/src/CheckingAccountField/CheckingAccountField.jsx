@@ -27,9 +27,9 @@ const CHECKING_ACCOUNT_MASK = [
   /\d/,
 ];
 
-const СheckingAccountField = ({ bik, ...props }) => (
+const СheckingAccountField = ({ bic, ...props }) => (
   <MaskField
-    validate={mustBeCheckingAccount(bik)}
+    validate={bic ? mustBeCheckingAccount(bic) : undefined}
     mask={CHECKING_ACCOUNT_MASK}
     {...props}
   />
@@ -38,12 +38,13 @@ const СheckingAccountField = ({ bik, ...props }) => (
 СheckingAccountField.defaultProps = {
   name: 'сheckingAccount',
   label: 'Расчётный счёт',
+  bic: null,
 };
 
 СheckingAccountField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
-  bik: PropTypes.string.isRequired,
+  bic: PropTypes.string,
 };
 
 export default СheckingAccountField;
