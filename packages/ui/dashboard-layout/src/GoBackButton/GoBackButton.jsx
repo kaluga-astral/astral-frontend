@@ -10,6 +10,7 @@ import {
 
 const GoBackButton = ({ children, className, ...props }) => {
   const history = useHistory();
+  const handleIconButtonClick = React.useCallback(() => history.goBack());
 
   return (
     <FlexItem
@@ -18,7 +19,7 @@ const GoBackButton = ({ children, className, ...props }) => {
       className={className}
       {...props}
     >
-      <IconButton onClick={() => history.goBack()} type="button">
+      <IconButton onClick={handleIconButtonClick}>
         <svg
           width="24"
           height="24"
