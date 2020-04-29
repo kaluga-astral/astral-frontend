@@ -20,12 +20,7 @@ const createHttpProxyPipelines = (
   httpProxyConfigs,
 ) =>
   httpProxyConfigs.forEach(({ entry, target, changeOrigin }) => {
-    entry.forEach(entryRoute => {
-      app.use(
-        entryRoute,
-        oidcProtectedHttpProxyMiddleware({ target, changeOrigin }),
-      );
-    });
+    app.use(entry, oidcProtectedHttpProxyMiddleware({ target, changeOrigin }));
   });
 
 module.exports = { prepareForStartServer, createHttpProxyPipelines };

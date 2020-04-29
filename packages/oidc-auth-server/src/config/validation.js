@@ -14,10 +14,7 @@ const INITIALIZE_ENTRY_PARAMS_VALIDATION_SCHEME = {
   httpProtectedProxyConfigs: validator.array().items(
     validator
       .object({
-        entry: validator
-          .array()
-          .items(validator.string().required())
-          .required(),
+        entry: validator.string().required(),
         target: validator
           .string()
           .uri()
