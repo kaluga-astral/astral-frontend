@@ -5,6 +5,7 @@ const {
   saveDesiredReferenceInCookie,
 } = require('../saveDesiredReference/utils');
 const { isActsTokenId } = require('./utils');
+const { isFirstHtmlRequest } = require('../../utils/httpMethods');
 
 const { serviceContext } = require('../../contexts');
 
@@ -13,7 +14,10 @@ const { REFRESH_TOKEN_RESOURCE_NAME } = require('../../config/syncRequests');
 
 const defaultRefreshErrorHandler = (req, res) => {
   // если рефреш завершился неудачей, необходимо запомнить текущий path пользователя, чтобы вернуть его сюда после авторизации
-  saveDesiredReferenceInCookie(req, res);
+  // но это должно работать только для первых html запросов
+  if (isFirstHtmlRequest(req)) {
+    saveDesiredReferenceInCookie(req, res);
+  }
 };
 
 const createRefreshTokenMiddleware = (
