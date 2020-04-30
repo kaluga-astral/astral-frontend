@@ -13,6 +13,7 @@ const FormGridField = ({
 
 FormGridField.defaultProps = {
   className: null,
+  component: 'div',
 };
 
 FormGridField.propTypes = {
@@ -21,7 +22,7 @@ FormGridField.propTypes = {
     PropTypes.shape(),
     PropTypes.string,
     PropTypes.func,
-  ]).isRequired,
+  ]),
   classes: PropTypes.shape().isRequired,
 };
 
