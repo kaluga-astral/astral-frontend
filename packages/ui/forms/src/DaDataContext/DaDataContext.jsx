@@ -63,8 +63,7 @@ const fetchBankSuggestions = query => {
     key: unrestricted_value,
     label: unrestricted_value,
     value: {
-      correspondentAccount: data.correspondent_account,
-      bic: data.bic,
+      ...data,
       address: {
         key: data.address.unrestricted_value,
         label: data.address.unrestricted_value,
