@@ -28,6 +28,7 @@ export { default as MaskField } from './MaskField';
 export { default as NumberField } from './NumberField';
 export { default as OGRNField } from './OGRNField';
 export { default as OKPOField } from './OKPOField';
+export { default as OKATOField } from './OKATOField';
 export { default as OKVEDField } from './OKVEDField';
 export { default as OKPDField } from './OKPDField';
 export { default as OKOPFField } from './OKOPFField';
