@@ -72,7 +72,7 @@ FormGridSection.defaultProps = {
 FormGridSection.propTypes = {
   collapsable: PropTypes.bool,
   Icon: PropTypes.func,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
