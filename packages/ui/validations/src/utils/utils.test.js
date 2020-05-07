@@ -4,6 +4,7 @@ import {
   calcCheckNumForINN,
   calcCheckSumForSNILS,
   calcCheckSumForBankAccount,
+  calcCheckSumForOKPO,
 } from './utils';
 
 describe('Convert string to numbers array', () => {
@@ -61,5 +62,10 @@ describe('Calculate checksum from string', () => {
     expect(calcCheckSumForBankAccount('00230101810600011000673')).toEqual(
       false,
     );
+  });
+});
+describe('Calculate checksum from string', () => {
+  it('должна возвращать корректную контрольную цифру на основе контрольной суммы для ОКПО', () => {
+    expect(calcCheckSumForOKPO('47296611')).toEqual(1);
   });
 });

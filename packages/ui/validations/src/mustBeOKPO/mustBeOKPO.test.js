@@ -23,9 +23,19 @@ describe('mustBeOKPO', () => {
     );
   });
   it('должна возвращать null если value является валидным ОКПО ЮЛ', () => {
-    expect(mustBeOKPO('48357148')).toEqual(null);
+    expect(mustBeOKPO('45000121')).toEqual(null);
   });
   it('должна возвращать null если value является валидным ОКПО ИП', () => {
-    expect(mustBeOKPO('0191592889')).toEqual(null);
+    expect(mustBeOKPO('0171360524')).toEqual(null);
+  });
+  it('должна возвращать null если value является невалидным ОКПО ЮЛ', () => {
+    expect(mustBeOKPO('48997199')).toEqual(
+      'Неверный ОКПО. Введите корректный ОКПО.',
+    );
+  });
+  it('должна возвращать null если value является невалидным ОКПО ИП', () => {
+    expect(mustBeOKPO('0202099888')).toEqual(
+      'Неверный ОКПО. Введите корректный ОКПО.',
+    );
   });
 });
