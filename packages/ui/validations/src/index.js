@@ -17,6 +17,7 @@ export { default as mustBeOGRNIP } from './mustBeOGRNIP';
 export { default as mustBeOGRNUL } from './mustBeOGRNUL';
 export { default as mustBePresent } from './mustBePresent';
 export { default as mustBeOKPO } from './mustBeOKPO';
+export { default as mustBeOKTMO } from './mustBeOKTMO';
 export { default as mustBePassportIssuerId } from './mustBePassportIssuerId';
 export { default as mustBePassportNumber } from './mustBePassportNumber';
 export { default as mustBePassportSeries } from './mustBePassportSeries';
