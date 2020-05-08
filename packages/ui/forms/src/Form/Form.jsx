@@ -51,7 +51,7 @@ Form.defaultProps = {
 Form.propTypes = {
   className: PropTypes.string,
   mutators: PropTypes.shape({}),
-  decorators: PropTypes.shape({}),
+  decorators: PropTypes.arrayOf(PropTypes.func),
   form: PropTypes.shape({}),
   subscription: PropTypes.shape({}),
   initialValues: PropTypes.shape({}),
