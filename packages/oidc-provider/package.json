@@ -1,7 +1,7 @@
 {
   "name": "@astral-frontend/oidc-provider",
   "description": "Middleware для работы с OIDC авторизацией и токенами Identity",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "src/index.js",
   "engines": {
     "node": ">=10.0.0"

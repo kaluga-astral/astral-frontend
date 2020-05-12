@@ -9,7 +9,7 @@ const { createMockApi } = require('./__mocks__/api');
 const { httpLogger, errorLogger } = require('./middlewares');
 
 const PROXY_MOCK_PORT = 3001;
-const SERVER_PORT = 3000;
+const SERVER_PORT = 3002;
 const STORE_CONNECT_URL = 'http://10.0.3.9:5703';
 
 const OIDC_PARAMS = {
@@ -20,6 +20,8 @@ const OIDC_PARAMS = {
   postLogoutRedirectUri: 'http://localhost:3000',
   scope: 'profile email',
   refreshTokenMaxAge: 2592000,
+  // путь, на который пользователь будет перенаправлен после авторизации в случае, если не удалось заранее сохранить путь, на который он хотел попасть перед редиректом
+  fallbackDesiredReference: '/main',
 };
 
 const SESSION_PARAMS = {
@@ -51,6 +53,11 @@ const initializeServer = async () => {
     target: 'http://localhost:3001',
     ws: true,
     level: 'debug',
+  });
+
+  app.use((req, res, next) => {
+    console.log(req);
+    next();
   });
 
   app.use(

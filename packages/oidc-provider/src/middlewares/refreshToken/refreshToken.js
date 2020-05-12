@@ -5,19 +5,17 @@ const {
   saveDesiredReferenceInCookie,
 } = require('../saveDesiredReference/utils');
 const { isActsTokenId } = require('./utils');
-const { isFirstHtmlRequest } = require('../../utils/httpMethods');
 
-const { serviceContext } = require('../../contexts');
+const { serviceContext, oidcContext } = require('../../contexts');
 
 const { REFRESH_TOKEN_STRATEGY_NAME } = require('../../config/authStrategies');
 const { REFRESH_TOKEN_RESOURCE_NAME } = require('../../config/syncRequests');
 
 const defaultRefreshErrorHandler = (req, res) => {
+  const { fallbackDesiredReference } = oidcContext.data;
+
   // если рефреш завершился неудачей, необходимо запомнить текущий path пользователя, чтобы вернуть его сюда после авторизации
-  // но это должно работать только для первых html запросов
-  if (isFirstHtmlRequest(req)) {
-    saveDesiredReferenceInCookie(req, res);
-  }
+  saveDesiredReferenceInCookie(req, res, fallbackDesiredReference);
 };
 
 const createRefreshTokenMiddleware = (
