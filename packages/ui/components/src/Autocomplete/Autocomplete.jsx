@@ -76,7 +76,7 @@ Autocomplete.defaultProps = {
   noOptionsText: 'Ничего не найдено',
   getOptionLabel: option => option.label || '',
   filterOptions: (options, { inputValue }) => {
-    return matchSorter(options, inputValue, { keys: [item => item.label] });
+    return matchSorter(options, inputValue, { keys: ['label'] });
   },
   onChange: null,
   onClose: null,

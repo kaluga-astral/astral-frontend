@@ -2,35 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { mustBeCheckingAccount } from '@astral-frontend/validations';
 
-import MaskField from '../MaskField';
-
-const CHECKING_ACCOUNT_MASK = [
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-];
+import TextField from '../TextField';
 
 const СheckingAccountField = ({ bic, ...props }) => (
-  <MaskField
+  <TextField
+    inputProps={{ maxLength: 20 }}
+    parse={value => value.replace(/[^\d]/g, '')}
     validate={bic ? mustBeCheckingAccount(bic) : undefined}
-    mask={CHECKING_ACCOUNT_MASK}
     {...props}
   />
 );
