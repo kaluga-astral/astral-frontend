@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/oidc-auth-server",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "src/index.js",
   "engines": {
     "node": ">=10.0.0"
@@ -9,7 +9,7 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "@astral-frontend/oidc-provider": "^1.1.1",
+    "@astral-frontend/oidc-provider": "^1.1.2",
     "@hapi/joi": "17.1.1",
     "compose-middleware": "5.0.1",
     "compression": "1.7.4",

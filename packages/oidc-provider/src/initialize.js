@@ -23,6 +23,8 @@ const { generateOidcSessionKey, getOidcClientConfig } = require('./utils/oidc');
 
 const { serviceContext, oidcContext, sessionContext } = require('./contexts');
 
+const { DEFAULT_FALLBACK_DESIRED_REFERENCE } = require('./config/oidc');
+
 const initializeOidcProvider = async entryParams => {
   // выдаст ошибку и завершит процесс, если какие-либо из входных параметров заданы неверно
   validateInitializeEntryParam(entryParams);
@@ -56,6 +58,7 @@ const initializeOidcProvider = async entryParams => {
     oidcClient,
   });
   oidcContext.updateData({
+    fallbackDesiredReference: DEFAULT_FALLBACK_DESIRED_REFERENCE,
     ...oidcParams,
     oidcSessionKey,
     clientConfig: oidcClientConfig,
