@@ -4,6 +4,7 @@ import { Form as FinalForm } from 'react-final-form';
 
 const Form = ({
   children,
+  keepDirtyOnReinitialize,
   component: Component,
   mutators,
   decorators,
@@ -16,6 +17,7 @@ const Form = ({
 }) => (
   <FinalForm
     {...props}
+    keepDirtyOnReinitialize={keepDirtyOnReinitialize}
     mutators={{
       ...mutators,
       setValue: ([field, value], state, { changeValue }) => {
@@ -45,11 +47,13 @@ Form.defaultProps = {
   subscription: undefined,
   initialValues: undefined,
   initialValuesEqual: undefined,
+  keepDirtyOnReinitialize: undefined,
   component: 'form',
 };
 
 Form.propTypes = {
   className: PropTypes.string,
+  keepDirtyOnReinitialize: PropTypes.bool,
   mutators: PropTypes.shape({}),
   decorators: PropTypes.arrayOf(PropTypes.func),
   form: PropTypes.shape({}),
