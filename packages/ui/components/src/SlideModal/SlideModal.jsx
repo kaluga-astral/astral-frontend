@@ -1,12 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
-import SlideModalDrawer from './SlideModalDrawer';
-import SlideModalContext from './SlideModalContext';
+import { SlideModalTitle } from './SlideModalTitle';
+import { SlideModalDrawer } from './SlideModalDrawer';
+import { SlideModalContext } from './SlideModalContext';
 
 const ESCAPE_KEY_CODE = 'Escape';
 
-const SlideModal = ({ open, onClose, children, SlideProps, ...props }) => {
+const SlideModal = ({ open, title, children, onClose, ...props }) => {
   const handleKeyDown = React.useCallback(event => {
     if (event.key === ESCAPE_KEY_CODE) {
       onClose();
@@ -22,13 +23,9 @@ const SlideModal = ({ open, onClose, children, SlideProps, ...props }) => {
   }, [open]);
 
   return (
-    <SlideModalContext.Provider value={{ open, onClose }}>
-      <SlideModalDrawer
-        open={open}
-        onClose={onClose}
-        SlideProps={SlideProps}
-        {...props}
-      >
+    <SlideModalContext.Provider value={{ open, close: onClose }}>
+      <SlideModalDrawer open={open} onClose={onClose} {...props}>
+        {title && <SlideModalTitle title={title} />}
         {children}
       </SlideModalDrawer>
     </SlideModalContext.Provider>
@@ -36,22 +33,18 @@ const SlideModal = ({ open, onClose, children, SlideProps, ...props }) => {
 };
 
 SlideModal.defaultProps = {
-  children: null,
-  SlideProps: {
-    appear: true,
-    mountOnEnter: true,
-    unmountOnExit: true,
-  },
+  title: null,
 };
 
 SlideModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  title: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
-  ]),
-  open: PropTypes.bool.isRequired,
+  ]).isRequired,
+
   onClose: PropTypes.func.isRequired,
-  SlideProps: PropTypes.shape(),
 };
 
 export default SlideModal;

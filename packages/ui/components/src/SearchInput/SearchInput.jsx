@@ -1,6 +1,7 @@
-import React from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
+import React from 'react';
+
 import { SearchIcon } from '@astral-frontend/icons';
 import { makeStyles } from '@astral-frontend/styles';
 
@@ -13,7 +14,6 @@ const useStyles = makeStyles(
     root: {
       position: 'relative',
       height: theme.spacing(12),
-      margin: theme.spacing(4, 0),
       paddingRight: prop => (prop ? theme.spacing(2) : 0),
       borderRadius: theme.shape.borderRadius,
       backgroundColor: theme.palette.background.default,

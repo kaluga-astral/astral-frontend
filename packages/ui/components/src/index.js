@@ -27,7 +27,6 @@ export { default as DialogActions } from './DialogActions';
 export { default as DialogContent } from './DialogContent';
 export { default as DialogTitle } from './DialogTitle';
 export { default as Document } from './Document';
-export { default as Drawer } from './Drawer';
 export { default as ErrorBoundry } from './ErrorBoundry';
 export { default as ExpansionPanel } from './ExpansionPanel';
 export { default as ExpansionPanelActions } from './ExpansionPanelActions';

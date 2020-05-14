@@ -9,7 +9,7 @@ import {
 import DataListContext from './DataListContext';
 import DataListItemContext from './DataListItemContext';
 
-const InfiniteList = ({
+const DataList = ({
   selectedItems,
   setSelectedItems,
   listRenderer,
@@ -18,7 +18,7 @@ const InfiniteList = ({
     data: { items },
     ...dataQueryResult
   },
-  totalCountQueryResult,
+  // totalCountQueryResult,
   EmptyStateComponent,
   onLoadMoreItems,
   disableSelect,
@@ -39,13 +39,8 @@ const InfiniteList = ({
     );
   }, [items.length]);
 
-  if (dataQueryResult.error || totalCountQueryResult.error) {
-    return (
-      <Placeholder
-        state="failure"
-        error={dataQueryResult.error || totalCountQueryResult.error}
-      />
-    );
+  if (dataQueryResult.error) {
+    return <Placeholder state="failure" error={dataQueryResult.error} />;
   }
 
   if (dataQueryResult.loading) {
@@ -80,14 +75,14 @@ const InfiniteList = ({
   );
 };
 
-InfiniteList.defaultProps = {
+DataList.defaultProps = {
   selectedItems: null,
   setSelectedItems: null,
   onLoadMoreItems: null,
   disableSelect: false,
 };
 
-InfiniteList.propTypes = {
+DataList.propTypes = {
   selectedItems: PropTypes.arrayOf(PropTypes.any),
   setSelectedItems: PropTypes.func,
   listRenderer: PropTypes.func.isRequired,
@@ -100,18 +95,18 @@ InfiniteList.propTypes = {
       items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     }).isRequired,
   }).isRequired,
-  totalCountQueryResult: PropTypes.shape({
-    loading: PropTypes.bool.isRequired,
-    called: PropTypes.bool.isRequired,
-    error: PropTypes.instanceOf(Error),
-    data: PropTypes.shape({
-      totalCount: PropTypes.number,
-    }).isRequired,
-  }).isRequired,
+  // totalCountQueryResult: PropTypes.shape({
+  //   loading: PropTypes.bool.isRequired,
+  //   called: PropTypes.bool.isRequired,
+  //   error: PropTypes.instanceOf(Error),
+  //   data: PropTypes.shape({
+  //     totalCount: PropTypes.number,
+  //   }).isRequired,
+  // }).isRequired,
   EmptyStateComponent: PropTypes.func.isRequired,
   pageSize: PropTypes.number.isRequired,
   onLoadMoreItems: PropTypes.func,
   disableSelect: PropTypes.bool,
 };
 
-export default InfiniteList;
+export default DataList;

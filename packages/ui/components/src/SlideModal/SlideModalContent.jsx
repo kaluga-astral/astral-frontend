@@ -4,13 +4,13 @@ import React from 'react';
 
 import { makeStyles } from '@astral-frontend/styles';
 
+import FlexContainer from '../FlexContainer';
+
 const useStyles = makeStyles(
   theme => ({
     root: {
       flexGrow: 1,
-      padding: theme.spacing(6, 12),
-      overflowY: 'auto',
-      overflowX: 'hidden',
+      padding: theme.spacing(4),
     },
   }),
   { name: 'SlideModalContent' },
@@ -25,7 +25,11 @@ const SlideModalContent = ({
   const classes = useStyles();
 
   return (
-    <Component className={cn(classes.root, className)} {...props}>
+    <Component
+      className={cn(classes.root, className)}
+      direction="column"
+      {...props}
+    >
       {children}
     </Component>
   );
@@ -33,7 +37,7 @@ const SlideModalContent = ({
 
 SlideModalContent.defaultProps = {
   className: null,
-  component: 'div',
+  component: FlexContainer,
 };
 
 SlideModalContent.propTypes = {

@@ -1,50 +1,53 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React from 'react';
 import { ArrowRightIcon } from '@astral-frontend/icons';
 import { makeStyles } from '@astral-frontend/styles';
 
+import Box from '../Box';
+import FlexContainer from '../FlexContainer';
+import Typography from '../Typography';
 import IconButton from '../IconButton';
+import { useSlideModalContext } from './SlideModalContext';
 
-import SlideModalContext from './SlideModalContext';
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      borderBottom: `1px solid ${theme.palette.primary.light}`,
+      wordBreak: 'break-all',
+      userSelect: 'none',
+    },
+    title: {
+      marginLeft: theme.spacing(3),
+      fontSize: theme.typography.pxToRem(18),
+      fontWeight: theme.typography.fontWeightBold,
+    },
+  }),
+  { name: 'SlideModalTitle' },
+);
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    marginTop: theme.spacing(6),
-    paddingRight: theme.spacing(12),
-    paddingLeft: theme.spacing(3),
-    wordBreak: 'break-all',
-    borderBottom: `1px solid ${theme.palette.primary.light}`,
-    userSelect: 'none',
-  },
-  backButton: {
-    marginRight: theme.spacing(1),
-  },
-  title: {
-    margin: 0,
-    paddingBottom: theme.spacing(6),
-    flexGrow: 1,
-    fontStyle: 'bold',
-    color: theme.palette.gray[900],
-  },
-  backIcon: {
-    fill: theme.palette.gray[500],
-  },
-}));
-
-const SlideModalTitle = ({ className, children }) => {
+export const SlideModalTitle = ({ className, title }) => {
   const classes = useStyles();
-  const { onClose } = useContext(SlideModalContext);
+  const { close } = useSlideModalContext();
+
+  const handleIconButtonClick = () => {
+    close();
+  };
 
   return (
-    <div className={cn(classes.root, className)}>
-      <IconButton className={classes.backButton} onClick={onClose}>
-        <ArrowRightIcon className={classes.backIcon} />
+    <Box
+      p={[4, 3]}
+      className={cn(classes.root, className)}
+      component={FlexContainer}
+      alignItems="center"
+    >
+      <IconButton onClick={handleIconButtonClick}>
+        <ArrowRightIcon />
       </IconButton>
-      <h2 className={classes.title}>{children}</h2>
-    </div>
+      <Typography variant="subtitle1" className={classes.title}>
+        {title}
+      </Typography>
+    </Box>
   );
 };
 
@@ -54,7 +57,7 @@ SlideModalTitle.defaultProps = {
 
 SlideModalTitle.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default SlideModalTitle;
