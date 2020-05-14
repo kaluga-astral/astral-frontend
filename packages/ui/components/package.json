@@ -12,7 +12,6 @@
     "@astral-frontend/fonts": "^0.4.0",
     "@astral-frontend/icons": "^0.4.0",
     "@astral-frontend/styles": "^0.4.0",
-    "@bugsnag/plugin-react": "^6.5.0",
     "@material-ui/lab": "^4.0.0-alpha.44",
     "@researchgate/react-intersection-list": "3.0.8",
     "classnames": "^2.2.6",
@@ -32,6 +31,7 @@
     "@astral-frontend/assembly-scripts": "^0.4.0"
   },
   "peerDependencies": {
+    "@sentry/browser": "^5.15.5",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   },

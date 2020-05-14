@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
+import * as Sentry from '@sentry/browser';
 
 import Typography from '../Typography';
 import Button from '../Button';
 
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-
+class ErrorBoundary extends Component {
+  constructor() {
+    super();
     this.state = { hasError: false };
   }
 
@@ -15,13 +15,12 @@ class ErrorBoundary extends React.Component {
     return { hasError: true };
   }
 
-  // componentDidCatch(error, errorInfo) {
-  //   logErrorToMyService(error, errorInfo);
-  // }
-
-  handleReloadButtonClick = () => {
-    window.location.reload();
-  };
+  componentDidCatch(error, errorInfo) {
+    Sentry.withScope(scope => {
+      scope.setExtras(errorInfo);
+      Sentry.captureException(error);
+    });
+  }
 
   render() {
     const { hasError } = this.state;
