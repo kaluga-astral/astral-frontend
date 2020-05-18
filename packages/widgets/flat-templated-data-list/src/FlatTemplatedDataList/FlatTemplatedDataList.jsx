@@ -61,6 +61,7 @@ const FlatTemplatedDataList = ({
 
 FlatTemplatedDataList.defaultProps = {
   className: null,
+  EmptyStateComponent: () => null,
 };
 
 FlatTemplatedDataList.propTypes = {
@@ -74,7 +75,7 @@ FlatTemplatedDataList.propTypes = {
     }).isRequired,
   }).isRequired,
   ListItemComponent: PropTypes.func.isRequired,
-  EmptyStateComponent: PropTypes.func.isRequired,
+  EmptyStateComponent: PropTypes.func,
 };
 
 export default FlatTemplatedDataList;

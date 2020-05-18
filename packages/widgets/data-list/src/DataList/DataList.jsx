@@ -18,7 +18,6 @@ const DataList = ({
     data: { items },
     ...dataQueryResult
   },
-  // totalCountQueryResult,
   EmptyStateComponent,
   onLoadMoreItems,
   disableSelect,
