@@ -9,7 +9,7 @@ const IconButton = React.forwardRef(
   ({ loading, success, disabled, children, ...props }, ref) => {
     const renderChildren = React.useCallback(() => {
       if (loading) {
-        return <CircularProgress size="100%" />;
+        return <CircularProgress size={24} />;
       }
 
       if (success) {

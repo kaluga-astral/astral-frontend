@@ -42,8 +42,10 @@ export const useNotification = () => {
         message = '',
         duration = null,
         progressLine = true,
+        ...options
       }) {
         enqueueSnackbar('', {
+          ...options,
           variant: 'error',
           content: key => (
             <NotificationsMessage
