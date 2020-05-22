@@ -24,8 +24,8 @@ const FlatTemplatedDataList = ({
   ...props
 }) => {
   const classes = useStyles();
-  const listRenderer = React.useCallback(
-    ({ children, ref }) => (
+  const listRenderer = React.useCallback(({ children, ref }) => {
+    return (
       <List
         key="list"
         disablePadding
@@ -35,9 +35,8 @@ const FlatTemplatedDataList = ({
         {children}
         {AfterItemsComponent && <AfterItemsComponent />}
       </List>
-    ),
-    [],
-  );
+    );
+  }, []);
   const renderItem = React.useCallback(
     ({ data, key }) => (
       <ListItemComponent

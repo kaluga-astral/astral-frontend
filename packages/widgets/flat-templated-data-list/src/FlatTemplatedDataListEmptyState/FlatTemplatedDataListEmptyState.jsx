@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FlexContainer } from '@astral-frontend/components';
@@ -25,12 +26,16 @@ const useStyles = makeStyles(
   { name: 'FlatTemplatedDataListEmptyState' },
 );
 
-const FlatTemplatedDataListEmptyState = ({ text, IllustrationComponent }) => {
+const FlatTemplatedDataListEmptyState = ({
+  className,
+  text,
+  IllustrationComponent,
+}) => {
   const classes = useStyles();
 
   return (
     <FlexContainer
-      className={classes.root}
+      className={cn(className, classes.root)}
       alignItems="center"
       justifyContent="center"
     >
@@ -50,11 +55,13 @@ const FlatTemplatedDataListEmptyState = ({ text, IllustrationComponent }) => {
 };
 
 FlatTemplatedDataListEmptyState.defaultProps = {
+  className: null,
   text: 'Список пуст',
   IllustrationComponent: null,
 };
 
 FlatTemplatedDataListEmptyState.propTypes = {
+  className: PropTypes.string,
   text: PropTypes.string,
   IllustrationComponent: PropTypes.func,
 };
