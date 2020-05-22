@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  Placeholder,
-  InfiniteList as ReactIntersectionList,
-} from '@astral-frontend/components';
+import { Placeholder, InfiniteList } from '@astral-frontend/components';
 
 import DataListContext from './DataListContext';
 import DataListItemContext from './DataListItemContext';
@@ -23,21 +20,6 @@ const DataList = ({
   disableSelect,
   ...props
 }) => {
-  React.useEffect(
-    () => () => {
-      setSelectedItems([]);
-    },
-    [],
-  );
-
-  React.useEffect(() => {
-    setSelectedItems(
-      selectedItems.filter(selectedItem =>
-        items.find(item => item.id === selectedItem.id),
-      ),
-    );
-  }, [items.length]);
-
   if (dataQueryResult.error) {
     return <Placeholder state="failure" error={dataQueryResult.error} />;
   }
@@ -50,11 +32,26 @@ const DataList = ({
     return <EmptyStateComponent />;
   }
 
+  React.useEffect(() => {
+    setSelectedItems(
+      selectedItems.filter(selectedItem =>
+        items.find(item => item.id === selectedItem.id),
+      ),
+    );
+  }, [items.length]);
+
+  React.useEffect(
+    () => () => {
+      setSelectedItems([]);
+    },
+    [],
+  );
+
   return (
     <DataListContext.Provider
       value={{ items, selectedItems, setSelectedItems, disableSelect }}
     >
-      <ReactIntersectionList
+      <InfiniteList
         itemCount={items.length}
         itemsRenderer={(children, ref) => listRenderer({ children, ref })}
         renderItem={index => {
@@ -94,14 +91,6 @@ DataList.propTypes = {
       items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     }).isRequired,
   }).isRequired,
-  // totalCountQueryResult: PropTypes.shape({
-  //   loading: PropTypes.bool.isRequired,
-  //   called: PropTypes.bool.isRequired,
-  //   error: PropTypes.instanceOf(Error),
-  //   data: PropTypes.shape({
-  //     totalCount: PropTypes.number,
-  //   }).isRequired,
-  // }).isRequired,
   EmptyStateComponent: PropTypes.func.isRequired,
   pageSize: PropTypes.number.isRequired,
   onLoadMoreItems: PropTypes.func,

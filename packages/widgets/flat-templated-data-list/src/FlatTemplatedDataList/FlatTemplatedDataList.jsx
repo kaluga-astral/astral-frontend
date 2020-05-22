@@ -20,6 +20,7 @@ const FlatTemplatedDataList = ({
   dataQueryResult,
   ListItemComponent,
   EmptyStateComponent,
+  AfterItemsComponent,
   ...props
 }) => {
   const classes = useStyles();
@@ -32,6 +33,7 @@ const FlatTemplatedDataList = ({
         ref={ref}
       >
         {children}
+        {AfterItemsComponent && <AfterItemsComponent />}
       </List>
     ),
     [],
@@ -62,6 +64,7 @@ const FlatTemplatedDataList = ({
 FlatTemplatedDataList.defaultProps = {
   className: null,
   EmptyStateComponent: () => null,
+  AfterItemsComponent: null,
 };
 
 FlatTemplatedDataList.propTypes = {
@@ -76,6 +79,7 @@ FlatTemplatedDataList.propTypes = {
   }).isRequired,
   ListItemComponent: PropTypes.func.isRequired,
   EmptyStateComponent: PropTypes.func,
+  AfterItemsComponent: PropTypes.func,
 };
 
 export default FlatTemplatedDataList;
