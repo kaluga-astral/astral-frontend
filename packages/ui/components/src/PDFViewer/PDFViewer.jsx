@@ -4,6 +4,7 @@ import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
 import ContentState from '../ContentState';
+import Box from '../Box';
 import PDFViewerFailureState from './PDFViewerFailureState';
 
 const useStyles = makeStyles(
@@ -85,7 +86,7 @@ PDFViewer.defaultProps = {
   className: null,
   error: null,
   loading: false,
-  component: 'div',
+  component: Box,
   data: undefined,
 };
 
