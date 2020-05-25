@@ -9,7 +9,7 @@ const useStyles = makeStyles(
       position: 'relative',
       flexGrow: 1,
       overflow: 'hidden',
-      margin: theme.spacing(0, 4, 4),
+      margin: theme.spacing(4),
     },
   }),
   { name: 'DashboardLayoutMain' },

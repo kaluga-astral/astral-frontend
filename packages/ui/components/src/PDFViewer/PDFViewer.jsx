@@ -25,7 +25,6 @@ const PDFViewer = ({
   error: externalError,
   data,
   className,
-  component: Component,
   ...props
 }) => {
   const classes = useStyles();
@@ -53,24 +52,27 @@ const PDFViewer = ({
       });
     }
   }, [data]);
-  const Children = () => {
-    if (!data) {
-      return null;
-    }
+  const Children = React.useMemo(
+    () => () => {
+      if (!data) {
+        return null;
+      }
 
-    return (
-      <object
-        className={classes.object}
-        type="application/pdf"
-        aria-label="Просмотр PDF"
-        data={data}
-        onLoad={handleLoad}
-      />
-    );
-  };
+      return (
+        <object
+          className={classes.object}
+          type="application/pdf"
+          aria-label="Просмотр PDF"
+          data={data}
+          onLoad={handleLoad}
+        />
+      );
+    },
+    [data],
+  );
 
   return (
-    <Component className={cn(classes.root, className)} {...props}>
+    <Box className={cn(classes.root, className)} {...props}>
       <ContentState
         loading={loading}
         error={error}
@@ -78,7 +80,7 @@ const PDFViewer = ({
       >
         <Children />
       </ContentState>
-    </Component>
+    </Box>
   );
 };
 
@@ -86,12 +88,10 @@ PDFViewer.defaultProps = {
   className: null,
   error: null,
   loading: false,
-  component: Box,
   data: undefined,
 };
 
 PDFViewer.propTypes = {
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   error: PropTypes.instanceOf(Error),
   className: PropTypes.string,
   data: PropTypes.string,
