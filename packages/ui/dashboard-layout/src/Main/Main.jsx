@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Box } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(
@@ -15,10 +16,14 @@ const useStyles = makeStyles(
   { name: 'DashboardLayoutMain' },
 );
 
-const DashboardLayoutMain = ({ className, children }) => {
+const DashboardLayoutMain = ({ className, children, ...props }) => {
   const classes = useStyles();
 
-  return <main className={cn(classes.root, className)}>{children}</main>;
+  return (
+    <Box {...props} component="main" className={cn(classes.root, className)}>
+      {children}
+    </Box>
+  );
 };
 
 DashboardLayoutMain.defaultProps = {
