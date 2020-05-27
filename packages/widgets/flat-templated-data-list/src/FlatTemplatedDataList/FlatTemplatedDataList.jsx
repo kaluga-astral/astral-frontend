@@ -6,10 +6,19 @@ import DataList from '@astral-frontend/data-list';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(
-  () => ({
+  theme => ({
     root: {
       height: '100%',
       flexGrow: 1,
+    },
+    listItem: {
+      '&:hover $rowActions': {
+        opacity: 1,
+      },
+    },
+    rowActions: {
+      opacity: 0,
+      transition: theme.transitions.create(['opacity']),
     },
   }),
   { name: 'FlatTemplatedDataList' },
@@ -18,6 +27,7 @@ const useStyles = makeStyles(
 const FlatTemplatedDataList = ({
   className,
   dataQueryResult,
+  RowActionsComponent,
   ListItemComponent,
   EmptyStateComponent,
   AfterItemsComponent,
@@ -39,12 +49,11 @@ const FlatTemplatedDataList = ({
   }, []);
   const renderItem = React.useCallback(
     ({ data, key }) => (
-      <ListItemComponent
-        key={key}
-        className={cn(classes.row)}
-        loading={dataQueryResult.loading}
-        data={data}
-      />
+      <ListItemComponent key={key} className={classes.listItem} data={data}>
+        {RowActionsComponent && (
+          <RowActionsComponent className={classes.rowActions} data={data} />
+        )}
+      </ListItemComponent>
     ),
     [dataQueryResult.loading],
   );
@@ -63,6 +72,7 @@ const FlatTemplatedDataList = ({
 FlatTemplatedDataList.defaultProps = {
   className: null,
   EmptyStateComponent: () => null,
+  RowActionsComponent: null,
   AfterItemsComponent: null,
 };
 
@@ -77,6 +87,7 @@ FlatTemplatedDataList.propTypes = {
     }).isRequired,
   }).isRequired,
   ListItemComponent: PropTypes.func.isRequired,
+  RowActionsComponent: PropTypes.func,
   EmptyStateComponent: PropTypes.func,
   AfterItemsComponent: PropTypes.func,
 };
