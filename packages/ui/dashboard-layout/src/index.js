@@ -21,4 +21,3 @@ export { default as PageTitle } from './PageTitle';
 export { default as Product } from './Product';
 export { default as Sidebar } from './Sidebar';
 export { default as SidebarActionButton } from './SidebarActionButton';
-export { default as GoBackButton } from './GoBackButton';
