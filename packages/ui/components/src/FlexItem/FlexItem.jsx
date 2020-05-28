@@ -4,6 +4,8 @@ import React from 'react';
 
 import { makeStyles } from '@astral-frontend/styles';
 
+import Box from '../Box';
+
 const useStyles = makeStyles(
   {
     root: {
@@ -35,7 +37,7 @@ const FlexItem = props => {
 
 FlexItem.defaultProps = {
   className: null,
-  component: 'div',
+  component: Box,
   grow: 0,
   shrink: 1,
   basis: 'auto',

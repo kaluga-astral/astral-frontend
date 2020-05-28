@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { Drawer } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
-
-import Drawer from '../Drawer';
 
 const useStyles = makeStyles(
   theme => {
@@ -31,7 +30,7 @@ const useStyles = makeStyles(
   { name: 'SlideModalDrawer' },
 );
 
-const SlideModalDrawer = props => {
+export const SlideModalDrawer = props => {
   const { size, children, ...restProps } = props;
   const classes = useStyles({ size });
 

@@ -1,5 +1,6 @@
 import palette from './palette';
 import shadows from './shadows';
+import typography from './typography';
 
 export default {
   MuiStepper: {
@@ -33,6 +34,12 @@ export default {
     },
     tooltipPlacementTop: {
       top: '6px',
+    },
+  },
+  MuiTypography: {
+    subtitle1: {
+      fontSize: '18px',
+      fontWeight: typography.fontWeightBold,
     },
   },
 };
