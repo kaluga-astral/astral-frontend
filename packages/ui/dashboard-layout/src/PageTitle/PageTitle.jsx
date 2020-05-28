@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { makeStyles } from '@astral-frontend/styles';
 import {
@@ -25,8 +25,14 @@ const useStyles = makeStyles(
   { name: 'DashboardLayoutPageTitle' },
 );
 
-const DashboardLayoutPageTitle = ({ title, goBackURL, ...props }) => {
+const DashboardLayoutPageTitle = ({
+  title,
+  withHistoryGoBack,
+  goBackURL,
+  ...props
+}) => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <Box display="flex" alignSelf="center" flexGrow={1} {...props}>
@@ -44,6 +50,19 @@ const DashboardLayoutPageTitle = ({ title, goBackURL, ...props }) => {
           </SvgIcon>
         </IconButton>
       )}
+      {withHistoryGoBack && (
+        <IconButton
+          className={classes.goBackButton}
+          onClick={() => history.goBack()}
+        >
+          <SvgIcon width="24" height="24" viewBox="0 0 24 24">
+            <path
+              d="M3.43936 12.0001L9.96973 5.46973L11.0304 6.53039L6.31073 11.2501L21 11.2501L21 12.7501L6.31073 12.7501L11.0304 17.4697L9.96972 18.5304L3.43936 12.0001Z"
+              fill="#B7C2CE"
+            />
+          </SvgIcon>
+        </IconButton>
+      )}
       <Typography className={classes.title} component="h1">
         {title}
       </Typography>
@@ -52,11 +71,13 @@ const DashboardLayoutPageTitle = ({ title, goBackURL, ...props }) => {
 };
 
 DashboardLayoutPageTitle.defaultProps = {
+  withHistoryGoBack: false,
   goBackURL: null,
 };
 
 DashboardLayoutPageTitle.propTypes = {
   title: PropTypes.string.isRequired,
+  withHistoryGoBack: PropTypes.bool,
   goBackURL: PropTypes.string,
 };
 
