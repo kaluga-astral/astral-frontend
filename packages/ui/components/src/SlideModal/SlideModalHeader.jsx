@@ -22,7 +22,7 @@ export const SlideModalHeader = ({ className, children }) => {
   return (
     <Box
       className={cn(classes.root, className)}
-      p={[4, 3]}
+      p={4}
       display="flex"
       alignItems="center"
     >

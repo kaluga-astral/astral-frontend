@@ -18,10 +18,21 @@ const useStyles = makeStyles(
           return null;
       }
     };
+    const getMaxWidth = ({ size }) => {
+      switch (size) {
+        case 'small':
+          return '560px';
+        case 'medium':
+        case 'large':
+        default:
+          return null;
+      }
+    };
 
     return {
       paper: {
         width: getWidth,
+        maxWidth: getMaxWidth,
         boxShadow: theme.shadows[2],
         borderLeft: 'none',
       },

@@ -9,7 +9,6 @@ const useStyles = makeStyles(
   theme => ({
     root: {},
     text: {
-      marginLeft: theme.spacing(3),
       fontSize: theme.typography.pxToRem(18),
       fontWeight: theme.typography.fontWeightBold,
     },
