@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
 
+import { Box } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import FilesUploaderOverlayContext from '../FilesUploaderOverlayContext';
@@ -74,7 +75,7 @@ const FilesUploaderOverlay = ({ className, Icon, children, ...config }) => {
       key="overlay"
       value={{ openFileDialog }}
     >
-      <div {...rootProps}>
+      <Box {...rootProps} css={{ outline: 'none' }}>
         {isDragActive && (
           <div className={cn(classes.root, className)}>
             <div className={classes.iconWrapper}>
@@ -83,7 +84,7 @@ const FilesUploaderOverlay = ({ className, Icon, children, ...config }) => {
           </div>
         )}
         {children}
-      </div>
+      </Box>
     </FilesUploaderOverlayContext.Provider>,
     <input key="input" {...inputProps} />,
   ];
