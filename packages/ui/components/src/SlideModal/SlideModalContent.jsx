@@ -16,7 +16,7 @@ const useStyles = makeStyles(
   { name: 'SlideModalContent' },
 );
 
-const SlideModalContent = ({
+export const SlideModalContent = ({
   className,
   children,
   component: Component,

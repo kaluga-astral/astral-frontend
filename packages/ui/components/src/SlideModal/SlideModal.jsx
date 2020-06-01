@@ -1,13 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { SlideModalTitle } from './SlideModalTitle';
 import { SlideModalDrawer } from './SlideModalDrawer';
 import { SlideModalContext } from './SlideModalContext';
 
 const ESCAPE_KEY_CODE = 'Escape';
 
-const SlideModal = ({ open, title, children, onClose, ...props }) => {
+export const SlideModal = ({
+  open,
+  title,
+  children,
+  goBackURL,
+  onClose,
+  ...props
+}) => {
   const handleKeyDown = React.useCallback(event => {
     if (event.key === ESCAPE_KEY_CODE) {
       onClose();
@@ -23,9 +29,8 @@ const SlideModal = ({ open, title, children, onClose, ...props }) => {
   }, [open]);
 
   return (
-    <SlideModalContext.Provider value={{ open, close: onClose }}>
+    <SlideModalContext.Provider value={{ open, close: onClose, goBackURL }}>
       <SlideModalDrawer open={open} onClose={onClose} {...props}>
-        {title && <SlideModalTitle title={title} />}
         {children}
       </SlideModalDrawer>
     </SlideModalContext.Provider>
@@ -34,11 +39,13 @@ const SlideModal = ({ open, title, children, onClose, ...props }) => {
 
 SlideModal.defaultProps = {
   title: null,
+  goBackURL: null,
 };
 
 SlideModal.propTypes = {
   open: PropTypes.bool.isRequired,
   title: PropTypes.string,
+  goBackURL: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

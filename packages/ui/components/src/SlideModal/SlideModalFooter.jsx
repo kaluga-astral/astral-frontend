@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SlideModalFooter = ({
+export const SlideModalFooter = ({
   className,
   children,
   disablePadding,
