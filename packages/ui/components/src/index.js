@@ -55,6 +55,7 @@ export { default as InputBase } from './InputBase';
 export { default as InputLabel } from './InputLabel';
 export { default as Intro } from './Intro';
 export { default as LinearProgress } from './LinearProgress';
+export { default as Link } from './Link';
 export { default as List } from './List';
 export { default as ListItem } from './ListItem';
 export { default as ListItemIcon } from './ListItemIcon';

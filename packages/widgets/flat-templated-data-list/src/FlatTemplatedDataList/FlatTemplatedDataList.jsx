@@ -9,7 +9,8 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       height: '100%',
-      flexGrow: 1,
+      width: '100%',
+      overflowY: 'scroll',
     },
     listItem: {
       '&:hover $rowActions': {

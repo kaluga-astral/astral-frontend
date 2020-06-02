@@ -16,11 +16,12 @@ export default {
     900: '#072d57',
   },
   error: {
-    light: '#FF8A5B',
-    main: '#F93028',
-    dark: '#C00000',
+    light: '#ff8a5b',
+    main: '#f93028',
+    dark: '#c00000',
   },
   text: {
     primary: '#1d3f66',
+    secondary: '#99a9ba',
   },
 };

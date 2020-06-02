@@ -21,7 +21,6 @@ const useStyles = makeStyles(
     const getMaxWidth = ({ size }) => {
       switch (size) {
         case 'small':
-          return '560px';
         case 'medium':
         case 'large':
         default:
