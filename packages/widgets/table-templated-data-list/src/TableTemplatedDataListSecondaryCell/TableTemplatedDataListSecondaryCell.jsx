@@ -21,8 +21,12 @@ const TableTemplatedDataListSecondaryCell = ({ title }) => {
   );
 };
 
+TableTemplatedDataListSecondaryCell.defaultProps = {
+  title: null,
+};
+
 TableTemplatedDataListSecondaryCell.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
 
 export default TableTemplatedDataListSecondaryCell;
