@@ -24,9 +24,6 @@ export default withStyles(
           backgroundColor: theme.palette.common.white,
         },
       },
-      button: {
-        fontFamily: 'inherit',
-      },
       '*, *::before, *::after': {
         boxSizing: 'inherit',
       },

@@ -34,6 +34,16 @@ const useStyles = makeStyles(
         opacity: 1,
         color: theme.palette.gray[500],
       },
+      // '::-webkit-search-cancel-button': {
+      //   '-webkit-appearance': 'none',
+      //   height: '14px',
+      //   width: '14px',
+      //   display: 'block',
+      //   backgroundImage:
+      //     'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAn0lEQVR42u3UMQrDMBBEUZ9WfQqDmm22EaTyjRMHAlM5K+Y7lb0wnUZPIKHlnutOa+25Z4D++MRBX98MD1V/trSppLKHqj9TTBWKcoUqffbUcbBBEhTjBOV4ja4l4OIAZThEOV6jHO8ARXD+gPPvKMABinGOrnu6gTNUawrcQKNCAQ7QeTxORzle3+sDfjJpPCqhJh7GixZq4rHcc9l5A9qZ+WeBhgEuAAAAAElFTkSuQmCC)',
+      //   backgroundRepeat: 'no-repeat',
+      //   backgroundSize: '14px',
+      // },
     },
   }),
   { name: 'SearchInput' },
