@@ -22,6 +22,7 @@ export default {
   MuiButtonBase: {
     root: {
       display: 'flex',
+      fontFamily: 'inherit',
     },
   },
   MuiTooltip: {
