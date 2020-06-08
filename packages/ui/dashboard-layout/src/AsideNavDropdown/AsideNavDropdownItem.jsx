@@ -39,19 +39,19 @@ const DashboardLayoutAsideNavDropdownItem = ({ className, text, ...props }) => {
   const classes = useStyles();
 
   return (
-    <ButtonBase
-      {...props}
-      className={cn(classes.root, className)}
-      component={NavLink}
-      activeClassName={classes.active}
-    >
-      <SidebarTooltip title={text}>
+    <SidebarTooltip title={text}>
+      <ButtonBase
+        {...props}
+        className={cn(classes.root, className)}
+        component={NavLink}
+        activeClassName={classes.active}
+      >
         <SvgIcon className={classes.icon}>
           <circle cx="12" cy="12" r="2" fill="currentColor" />
         </SvgIcon>
-      </SidebarTooltip>
-      <div className={classes.text}>{text}</div>
-    </ButtonBase>
+        <div className={classes.text}>{text}</div>
+      </ButtonBase>
+    </SidebarTooltip>
   );
 };
 
