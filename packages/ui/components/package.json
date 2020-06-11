@@ -24,6 +24,7 @@
     "material-ui-popup-state": "^1.5.1",
     "prop-types": "^15.7.2",
     "react-content-loader": "^5.0.2",
+    "react-dropzone": "^11.0.1",
     "react-js-pagination": "^3.0.3",
     "react-text-mask": "^5.4.3"
   },

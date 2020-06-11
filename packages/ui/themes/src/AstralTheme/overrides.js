@@ -42,5 +42,8 @@ export default {
       fontSize: '18px',
       fontWeight: typography.fontWeightBold,
     },
+    gutterBottom: {
+      marginBottom: '0.75em',
+    },
   },
 };

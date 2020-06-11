@@ -12,8 +12,7 @@
     "@astral-frontend/styles": "^0.4.0",
     "classnames": "^2.2.6",
     "notistack": "^0.9.5",
-    "prop-types": "^15.7.2",
-    "react-dropzone": "^10.2.1"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "^0.4.0"

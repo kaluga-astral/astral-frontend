@@ -101,4 +101,5 @@ export { default as TextField } from './TextField';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as Tooltip } from './Tooltip';
 export { default as Typography } from './Typography';
+export { default as useDropzone } from './useDropzone';
 export { default as usePopupStateManager } from './usePopupStateManager';
