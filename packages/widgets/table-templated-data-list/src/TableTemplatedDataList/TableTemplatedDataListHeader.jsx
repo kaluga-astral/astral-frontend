@@ -48,7 +48,7 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
     } else {
       setSelectedItems(
         items.filter(item =>
-          item.percentCompleted ? item.percentCompleted === 100 : true,
+          item.percentCompleted != null ? item.percentCompleted === 100 : true,
         ),
       );
     }
