@@ -7,6 +7,8 @@ import { Checkbox } from '@astral-frontend/components';
 
 import { DataListContext } from '@astral-frontend/data-list';
 
+import TableTemplatedDataListHeaderItem from './TableTemplatedDataListHeaderItem';
+
 const useStyles = makeStyles(
   theme => ({
     root: {
@@ -22,12 +24,10 @@ const useStyles = makeStyles(
       zIndex: 2,
       userSelect: 'none',
     },
-    item: {
+    select: {
       display: 'flex',
       alignItems: 'center',
-      '&:first-child': {
-        justifyContent: 'center',
-      },
+      justifyContent: 'center',
     },
   }),
   { name: 'TableTemplatedDataListHeader' },
@@ -52,7 +52,7 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
 
   return (
     <div className={cn(classes.root, className)}>
-      <div className={classes.item}>
+      <div className={classes.select}>
         {!disableSelect ? (
           <Checkbox checked={checked} onChange={handleCheckboxChange} />
         ) : (
@@ -61,9 +61,11 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
       </div>
 
       {columns.map(column => (
-        <div key={column.title} className={classes.item}>
-          {column.title}
-        </div>
+        <TableTemplatedDataListHeaderItem
+          key={column.title}
+          title={column.title}
+          align={column.align}
+        />
       ))}
     </div>
   );
@@ -79,6 +81,7 @@ TableTemplatedDataListHeader.propTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       component: PropTypes.func.isRequired,
+      align: PropTypes.oneOf(['left', 'center', 'right']),
     }),
   ).isRequired,
 };

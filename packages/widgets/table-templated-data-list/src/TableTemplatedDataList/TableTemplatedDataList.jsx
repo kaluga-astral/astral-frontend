@@ -85,6 +85,7 @@ const TableTemplatedDataList = ({
           {columns.map(column => {
             return React.cloneElement(column.component(data), {
               key: uniqueId(),
+              align: column.align,
             });
           })}
         </ListItemComponent>
@@ -117,6 +118,7 @@ TableTemplatedDataList.propTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       component: PropTypes.func.isRequired,
+      align: PropTypes.oneOf(['left', 'center', 'right']),
     }),
   ).isRequired,
   dataQueryResult: PropTypes.shape({
