@@ -13,19 +13,21 @@ const useStyles = makeStyles(
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
+      textAlign: ({ align }) => align,
     },
     subTitle: {
       color: theme.palette.gray[600],
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
+      textAlign: ({ align }) => align,
     },
   }),
   { name: 'TableTemplatedDataListPrimaryCell' },
 );
 
-const TableTemplatedDataListPrimaryCell = ({ title, subTitle }) => {
-  const classes = useStyles();
+const TableTemplatedDataListPrimaryCell = ({ title, subTitle, align }) => {
+  const classes = useStyles({ align });
   const { loading } = React.useContext(DataListItemContext);
   const Children = () => {
     if (loading) {
@@ -53,11 +55,13 @@ const TableTemplatedDataListPrimaryCell = ({ title, subTitle }) => {
 
 TableTemplatedDataListPrimaryCell.defaultProps = {
   subTitle: null,
+  align: 'left',
 };
 
 TableTemplatedDataListPrimaryCell.propTypes = {
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string,
+  align: PropTypes.oneOf(['left', 'center', 'right']),
 };
 
 export default TableTemplatedDataListPrimaryCell;
