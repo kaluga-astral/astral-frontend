@@ -10,7 +10,7 @@ const useStyles = makeStyles(
     root: {
       height: '100%',
       marginLeft: 'auto',
-      paddingLeft: theme.spacing(4),
+      paddingLeft: theme.spacing(3),
       borderLeft: `1px solid ${theme.palette.primary.light}`,
     },
   }),
