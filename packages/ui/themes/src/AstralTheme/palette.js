@@ -8,8 +8,9 @@ export default {
     white: '#ffffff',
   },
   gray: {
-    100: 'rgba(29, 63, 102, 0.09)',
-    300: 'rgba(29, 63, 102, 0.24)',
+    50: '#f0f4f7',
+    100: '#ebeef1',
+    300: '#dde2e8',
     500: '#b7c2ce',
     600: '#99a9ba',
     800: '#1d3f66',
@@ -17,7 +18,7 @@ export default {
   },
   error: {
     light: '#ff8a5b',
-    main: '#f93028',
+    main: '#f24646',
     dark: '#c00000',
   },
   text: {
