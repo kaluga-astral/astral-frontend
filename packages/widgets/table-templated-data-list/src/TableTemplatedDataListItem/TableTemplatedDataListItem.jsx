@@ -62,7 +62,10 @@ const TableTemplatedDataListItem = ({
     selectedItems.find(selectedItem => selectedItem.id === data.id),
   );
   const selectorVisible = (!disableSelect && hovered) || checked;
-  const handleSelectorChange = () => {
+  const handleSelectorClick = e => {
+    e.stopPropagation();
+    e.preventDefault();
+
     setSelectedItems(prevSelectedItems => {
       return xorBy(prevSelectedItems, [data], 'id');
     });
@@ -95,7 +98,7 @@ const TableTemplatedDataListItem = ({
           <Selector
             className={classes.selector}
             checked={checked}
-            onChange={handleSelectorChange}
+            onClick={handleSelectorClick}
           />
         ) : (
           <Icon />
