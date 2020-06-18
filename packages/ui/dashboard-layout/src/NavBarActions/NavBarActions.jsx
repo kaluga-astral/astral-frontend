@@ -17,7 +17,7 @@ const useStyles = makeStyles(
   { name: 'NavBarActions' },
 );
 
-const NavBarActions = ({ className, children }) => {
+export const NavBarActions = ({ className, children }) => {
   const classes = useStyles();
 
   return (

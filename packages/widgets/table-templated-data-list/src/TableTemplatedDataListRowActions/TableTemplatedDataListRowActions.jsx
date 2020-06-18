@@ -21,7 +21,7 @@ const useStyles = makeStyles(
   { name: 'TableTemplatedDataListRowActions' },
 );
 
-const TableTemplatedDataListRowActions = ({
+export const TableTemplatedDataListRowActions = ({
   className,
   children,
   ...props
