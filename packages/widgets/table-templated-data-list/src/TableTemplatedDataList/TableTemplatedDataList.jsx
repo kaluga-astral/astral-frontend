@@ -94,7 +94,7 @@ const TableTemplatedDataList = ({
               key: uniqueId(),
               align: column.align,
               className:
-                Boolean(RowActionsComponent) && index === columns.length - 1
+                RowActionsComponent && index === columns.length - 1
                   ? classes.hiddenCell
                   : null,
             });
