@@ -7,8 +7,6 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import DataList from '@astral-frontend/data-list';
 import TableTemplatedDataListHeader from './TableTemplatedDataListHeader';
-import TableTemplatedDataListItemContextProvider from './TableTemplatedDataListItemContextProvider';
-import TableTemplatedDataListContext from './TableTemplatedDataListContext';
 
 const useStyles = makeStyles(
   theme => ({
@@ -39,6 +37,9 @@ const useStyles = makeStyles(
       '&:hover $rowActions': {
         opacity: 1,
       },
+      '&:hover $hiddenCell': {
+        opacity: 0,
+      },
     },
     dataItem: {
       borderStyle: 'solid',
@@ -51,6 +52,10 @@ const useStyles = makeStyles(
     },
     rowActions: {
       opacity: 0,
+      transition: theme.transitions.create(['opacity']),
+    },
+    hiddenCell: {
+      opacity: 1,
       transition: theme.transitions.create(['opacity']),
     },
   }),
@@ -83,36 +88,34 @@ const TableTemplatedDataList = ({
   const renderItem = React.useCallback(
     ({ data, key }) => (
       <li key={key} className={classes.bodyRow}>
-        <TableTemplatedDataListItemContextProvider>
-          <ListItemComponent data={data} className={cn(classes.row)}>
-            {columns.map(column => {
-              return React.cloneElement(column.component(data), {
-                key: uniqueId(),
-                align: column.align,
-              });
-            })}
-          </ListItemComponent>
+        <ListItemComponent data={data} className={cn(classes.row)}>
+          {columns.map((column, index) => {
+            return React.cloneElement(column.component(data), {
+              key: uniqueId(),
+              align: column.align,
+              className:
+                Boolean(RowActionsComponent) && index === columns.length - 1
+                  ? classes.hiddenCell
+                  : null,
+            });
+          })}
           {RowActionsComponent && (
             <RowActionsComponent className={classes.rowActions} data={data} />
           )}
-        </TableTemplatedDataListItemContextProvider>
+        </ListItemComponent>
       </li>
     ),
     [columns, dataQueryResult.loading],
   );
 
   return (
-    <TableTemplatedDataListContext.Provider
-      value={{ rowActionsProvided: Boolean(RowActionsComponent) }}
-    >
-      <DataList
-        {...props}
-        dataQueryResult={dataQueryResult}
-        listRenderer={listRenderer}
-        renderItem={renderItem}
-        disableSelect={disableSelect}
-      />
-    </TableTemplatedDataListContext.Provider>
+    <DataList
+      {...props}
+      dataQueryResult={dataQueryResult}
+      listRenderer={listRenderer}
+      renderItem={renderItem}
+      disableSelect={disableSelect}
+    />
   );
 };
 

@@ -15,8 +15,6 @@ import {
   DataListItemContext,
 } from '@astral-frontend/data-list';
 
-import TableTemplatedDataListContext from '../TableTemplatedDataList/TableTemplatedDataListContext';
-import TableTemplatedDataListItemContext from '../TableTemplatedDataList/TableTemplatedDataListItemContext';
 import TableTemplatedDataListItemDefaultSelector from './TableTemplatedDataListItemDefaultSelector';
 
 const useStyles = makeStyles(
@@ -60,12 +58,6 @@ const TableTemplatedDataListItem = ({
     DataListContext,
   );
   const { data } = React.useContext(DataListItemContext);
-  const { rowActionsProvided } = React.useContext(
-    TableTemplatedDataListContext,
-  );
-  const { rowActionsVisible, setRowActionsVisible } = React.useContext(
-    TableTemplatedDataListItemContext,
-  );
   const [hovered, setHovered] = React.useState(false);
   const checked = Boolean(
     selectedItems.find(selectedItem => selectedItem.id === data.id),
@@ -81,16 +73,10 @@ const TableTemplatedDataListItem = ({
   };
   const handleListItemMouseEnter = () => {
     setHovered(true);
-    if (rowActionsProvided) {
-      setRowActionsVisible(true);
-    }
   };
 
   const handleListItemMouseLeave = () => {
     setHovered(false);
-    if (rowActionsProvided) {
-      setRowActionsVisible(false);
-    }
   };
 
   return (
@@ -119,13 +105,7 @@ const TableTemplatedDataListItem = ({
           <Icon />
         )}
       </FlexContainer>
-      {React.Children.map(children, (child, index) => {
-        if (rowActionsVisible && index === React.Children.count(children) - 1) {
-          return null;
-        }
-
-        return child;
-      })}
+      {children}
     </ListItem>
   );
 };

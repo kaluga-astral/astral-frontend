@@ -4,8 +4,6 @@ import React from 'react';
 
 import { FlexContainer } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
-import TableTemplatedDataListContext from '../TableTemplatedDataList/TableTemplatedDataListContext';
-import TableTemplatedDataListItemContext from '../TableTemplatedDataList/TableTemplatedDataListItemContext';
 
 const useStyles = makeStyles(
   theme => ({
@@ -29,29 +27,16 @@ const TableTemplatedDataListRowActions = ({
   ...props
 }) => {
   const classes = useStyles();
-  const { rowActionsProvided } = React.useContext(
-    TableTemplatedDataListContext,
-  );
-  const { setRowActionsVisible } = React.useContext(
-    TableTemplatedDataListItemContext,
-  );
-  const handleRowActionsMouseEnter = () => {
-    if (rowActionsProvided) {
-      setRowActionsVisible(true);
-    }
-  };
-  const handleRowActionsMouseLeave = () => {
-    if (rowActionsProvided) {
-      setRowActionsVisible(false);
-    }
+  const handleRowActionsContainerClick = e => {
+    e.stopPropagation();
+    e.preventDefault();
   };
 
   return (
     <FlexContainer
       alignItems="center"
       className={cn(className, classes.root)}
-      onMouseEnter={handleRowActionsMouseEnter}
-      onMouseLeave={handleRowActionsMouseLeave}
+      onClick={handleRowActionsContainerClick}
       {...props}
     >
       {children}
