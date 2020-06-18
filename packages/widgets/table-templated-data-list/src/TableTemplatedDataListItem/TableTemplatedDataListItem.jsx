@@ -53,15 +53,19 @@ const TableTemplatedDataListItem = ({
   ...props
 }) => {
   const classes = useStyles();
-  const { selectedItems, setSelectedItems, disableSelect } = React.useContext(
-    DataListContext,
-  );
+  const {
+    selectedItems,
+    setSelectedItems,
+    disableSelect,
+    withRowActions,
+  } = React.useContext(DataListContext);
   const { data } = React.useContext(DataListItemContext);
   const [hovered, setHovered] = React.useState(false);
   const checked = Boolean(
     selectedItems.find(selectedItem => selectedItem.id === data.id),
   );
   const selectorVisible = (!disableSelect && hovered) || checked;
+  const rowActionsVisible = withRowActions && hovered;
   const handleSelectorClick = e => {
     e.stopPropagation();
     e.preventDefault();
@@ -104,7 +108,16 @@ const TableTemplatedDataListItem = ({
           <Icon />
         )}
       </FlexContainer>
-      {children}
+      {React.Children.map(children, (child, index) => {
+        if (
+          rowActionsVisible &&
+          index === React.Children.toArray(children).length - 1
+        ) {
+          return null;
+        }
+
+        return child;
+      })}
     </ListItem>
   );
 };

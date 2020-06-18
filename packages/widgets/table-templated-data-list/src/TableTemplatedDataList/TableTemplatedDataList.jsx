@@ -104,6 +104,7 @@ const TableTemplatedDataList = ({
       listRenderer={listRenderer}
       renderItem={renderItem}
       disableSelect={disableSelect}
+      withRowActions={Boolean(RowActionsComponent)}
     />
   );
 };

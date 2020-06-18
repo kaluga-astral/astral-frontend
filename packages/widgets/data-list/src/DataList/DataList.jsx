@@ -18,6 +18,7 @@ const DataList = ({
   EmptyStateComponent,
   onLoadMoreItems,
   disableSelect,
+  withRowActions,
   ...props
 }) => {
   if (dataQueryResult.error) {
@@ -49,7 +50,13 @@ const DataList = ({
 
   return (
     <DataListContext.Provider
-      value={{ items, selectedItems, setSelectedItems, disableSelect }}
+      value={{
+        items,
+        selectedItems,
+        setSelectedItems,
+        disableSelect,
+        withRowActions,
+      }}
     >
       <InfiniteList
         itemCount={items.length}
@@ -76,6 +83,7 @@ DataList.defaultProps = {
   setSelectedItems: null,
   onLoadMoreItems: null,
   disableSelect: false,
+  withRowActions: false,
 };
 
 DataList.propTypes = {
@@ -95,6 +103,7 @@ DataList.propTypes = {
   pageSize: PropTypes.number.isRequired,
   onLoadMoreItems: PropTypes.func,
   disableSelect: PropTypes.bool,
+  withRowActions: PropTypes.bool,
 };
 
 export default DataList;
