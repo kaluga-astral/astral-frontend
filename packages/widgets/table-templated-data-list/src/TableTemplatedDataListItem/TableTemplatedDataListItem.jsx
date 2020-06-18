@@ -60,7 +60,9 @@ const TableTemplatedDataListItem = ({
     DataListContext,
   );
   const { data } = React.useContext(DataListItemContext);
-  const { rowActionsProvided } = React.useContext(TableTemplatedDataListContext);
+  const { rowActionsProvided } = React.useContext(
+    TableTemplatedDataListContext,
+  );
   const { rowActionsVisible, setRowActionsVisible } = React.useContext(
     TableTemplatedDataListItemContext,
   );
@@ -118,10 +120,7 @@ const TableTemplatedDataListItem = ({
         )}
       </FlexContainer>
       {React.Children.map(children, (child, index) => {
-        if (
-          rowActionsVisible &&
-          index === React.Children.toArray(children).length - 1
-        ) {
+        if (rowActionsVisible && index === React.Children.count(children) - 1) {
           return null;
         }
 
