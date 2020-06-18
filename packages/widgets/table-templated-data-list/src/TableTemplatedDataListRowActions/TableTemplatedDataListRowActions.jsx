@@ -29,7 +29,9 @@ const TableTemplatedDataListRowActions = ({
   ...props
 }) => {
   const classes = useStyles();
-  const { rowActionsProvided } = React.useContext(TableTemplatedDataListContext);
+  const { rowActionsProvided } = React.useContext(
+    TableTemplatedDataListContext,
+  );
   const { setRowActionsVisible } = React.useContext(
     TableTemplatedDataListItemContext,
   );
