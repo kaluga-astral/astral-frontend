@@ -8,7 +8,7 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       height: '100%',
-      padding: theme.spacing(3, 4),
+      padding: theme.spacing(3, 3, 3, 2),
       backgroundColor: theme.palette.common.white,
       borderRadius: theme.shape.borderRadius,
       overflow: 'hidden',
