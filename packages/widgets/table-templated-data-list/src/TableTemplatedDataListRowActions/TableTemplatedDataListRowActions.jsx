@@ -40,7 +40,6 @@ const TableTemplatedDataListRowActions = ({
       setRowActionsVisible(true);
     }
   };
-
   const handleRowActionsMouseLeave = () => {
     if (rowActionsProvided) {
       setRowActionsVisible(false);
