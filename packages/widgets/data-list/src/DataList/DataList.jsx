@@ -49,7 +49,12 @@ const DataList = ({
 
   return (
     <DataListContext.Provider
-      value={{ items, selectedItems, setSelectedItems, disableSelect }}
+      value={{
+        items,
+        selectedItems,
+        setSelectedItems,
+        disableSelect,
+      }}
     >
       <InfiniteList
         itemCount={items.length}

@@ -37,6 +37,9 @@ const useStyles = makeStyles(
       '&:hover $rowActions': {
         opacity: 1,
       },
+      '&:hover $hiddenCell': {
+        opacity: 0,
+      },
     },
     dataItem: {
       borderStyle: 'solid',
@@ -49,6 +52,10 @@ const useStyles = makeStyles(
     },
     rowActions: {
       opacity: 0,
+      transition: theme.transitions.create(['opacity']),
+    },
+    hiddenCell: {
+      opacity: 1,
       transition: theme.transitions.create(['opacity']),
     },
   }),
@@ -82,16 +89,20 @@ const TableTemplatedDataList = ({
     ({ data, key }) => (
       <li key={key} className={classes.bodyRow}>
         <ListItemComponent data={data} className={cn(classes.row)}>
-          {columns.map(column => {
+          {columns.map((column, index) => {
             return React.cloneElement(column.component(data), {
               key: uniqueId(),
               align: column.align,
+              className:
+                RowActionsComponent && index === columns.length - 1
+                  ? classes.hiddenCell
+                  : null,
             });
           })}
+          {RowActionsComponent && (
+            <RowActionsComponent className={classes.rowActions} data={data} />
+          )}
         </ListItemComponent>
-        {RowActionsComponent && (
-          <RowActionsComponent className={classes.rowActions} data={data} />
-        )}
       </li>
     ),
     [columns, dataQueryResult.loading],
