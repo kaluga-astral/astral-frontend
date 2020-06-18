@@ -7,6 +7,8 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import DataList from '@astral-frontend/data-list';
 import TableTemplatedDataListHeader from './TableTemplatedDataListHeader';
+import TableTemplatedDataListItemContextProvider from './TableTemplatedDataListItemContextProvider';
+import TableTemplatedDataListContext from './TableTemplatedDataListContext';
 
 const useStyles = makeStyles(
   theme => ({
@@ -81,31 +83,36 @@ const TableTemplatedDataList = ({
   const renderItem = React.useCallback(
     ({ data, key }) => (
       <li key={key} className={classes.bodyRow}>
-        <ListItemComponent data={data} className={cn(classes.row)}>
-          {columns.map(column => {
-            return React.cloneElement(column.component(data), {
-              key: uniqueId(),
-              align: column.align,
-            });
-          })}
-        </ListItemComponent>
-        {RowActionsComponent && (
-          <RowActionsComponent className={classes.rowActions} data={data} />
-        )}
+        <TableTemplatedDataListItemContextProvider>
+          <ListItemComponent data={data} className={cn(classes.row)}>
+            {columns.map(column => {
+              return React.cloneElement(column.component(data), {
+                key: uniqueId(),
+                align: column.align,
+              });
+            })}
+          </ListItemComponent>
+          {RowActionsComponent && (
+            <RowActionsComponent className={classes.rowActions} data={data} />
+          )}
+        </TableTemplatedDataListItemContextProvider>
       </li>
     ),
     [columns, dataQueryResult.loading],
   );
 
   return (
-    <DataList
-      {...props}
-      dataQueryResult={dataQueryResult}
-      listRenderer={listRenderer}
-      renderItem={renderItem}
-      disableSelect={disableSelect}
-      withRowActions={Boolean(RowActionsComponent)}
-    />
+    <TableTemplatedDataListContext.Provider
+      value={{ rowActionsProvided: Boolean(RowActionsComponent) }}
+    >
+      <DataList
+        {...props}
+        dataQueryResult={dataQueryResult}
+        listRenderer={listRenderer}
+        renderItem={renderItem}
+        disableSelect={disableSelect}
+      />
+    </TableTemplatedDataListContext.Provider>
   );
 };
 
