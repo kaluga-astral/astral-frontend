@@ -8,6 +8,7 @@ const Form = ({
   component: Component,
   mutators,
   decorators,
+  validate,
   form,
   subscription,
   initialValues,
@@ -24,6 +25,7 @@ const Form = ({
         changeValue(state, field, () => value);
       },
     }}
+    validate={validate}
     decorators={decorators}
     form={form}
     subscription={subscription}
@@ -44,6 +46,7 @@ Form.defaultProps = {
   mutators: undefined,
   decorators: undefined,
   form: undefined,
+  validate: undefined,
   subscription: undefined,
   initialValues: undefined,
   initialValuesEqual: undefined,
@@ -65,6 +68,7 @@ Form.propTypes = {
     PropTypes.func,
     PropTypes.shape(),
   ]),
+  validate: PropTypes.func,
   children: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
