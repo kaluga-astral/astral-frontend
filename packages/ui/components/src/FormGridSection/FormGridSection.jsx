@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -53,9 +54,11 @@ const FormGridSection = ({
       <section className={cn(classes.root, className)} {...props}>
         <Icon className={classes.icon} />
         <div className={classes.main}>
-          <FormGridSectionTitle className={classes.title}>
-            {title}
-          </FormGridSectionTitle>
+          {title && (
+            <FormGridSectionTitle className={classes.title}>
+              {title}
+            </FormGridSectionTitle>
+          )}
           <div className={classes.content}>{renderChildren()}</div>
         </div>
       </section>
@@ -66,13 +69,14 @@ const FormGridSection = ({
 FormGridSection.defaultProps = {
   collapsable: false,
   className: null,
+  title: null,
   Icon: () => null,
 };
 
 FormGridSection.propTypes = {
   collapsable: PropTypes.bool,
   Icon: PropTypes.func,
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };

@@ -4,9 +4,7 @@ import { mustBeEmail } from '@astral-frontend/validations';
 
 import TextField from '../TextField';
 
-const EmailField = props => (
-  <TextField type="email" validate={mustBeEmail} {...props} />
-);
+const EmailField = props => <TextField validate={mustBeEmail} {...props} />;
 
 EmailField.defaultProps = {
   name: 'email',
