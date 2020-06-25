@@ -1,6 +1,6 @@
 import { omit } from 'lodash-es';
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { useField, useFormState } from 'react-final-form';
 
 import { AsyncAutocomplete } from '@astral-frontend/components';
@@ -13,6 +13,7 @@ const AsyncAutocompleteField = ({
   validate,
   required,
   InputProps,
+  onChange,
   ...props
 }) => {
   const { initialValues } = useFormState();
@@ -35,6 +36,7 @@ const AsyncAutocompleteField = ({
       setValue(null);
       input.onChange(null);
     }
+    onChange(event, newValue);
   };
 
   React.useEffect(() => {
@@ -63,6 +65,7 @@ const AsyncAutocompleteField = ({
 
 AsyncAutocompleteField.defaultProps = {
   validate: null,
+  onChange: null,
   required: false,
   InputProps: {},
 };
@@ -83,6 +86,7 @@ AsyncAutocompleteField.propTypes = {
    *
    */
   validate: PropTypes.func,
+  onChange: PropTypes.func,
   /**
    * Обязательность поля
    */
