@@ -4,6 +4,8 @@ import React from 'react';
 
 import { makeStyles } from '@astral-frontend/styles';
 
+import Box from '../Box';
+
 const useStyles = makeStyles(
   theme => ({
     root: {
@@ -24,14 +26,14 @@ const useStyles = makeStyles(
   { name: 'FormGridRow' },
 );
 
-const FormGridRow = ({ children, title, className }) => {
+const FormGridRow = ({ children, title, className, ...props }) => {
   const classes = useStyles();
 
   return (
-    <div className={cn(classes.root, className)}>
+    <Box className={cn(classes.root, className)} {...props}>
       {title && <h4 className={classes.title}>{title}</h4>}
       <div className={classes.content}>{children}</div>
-    </div>
+    </Box>
   );
 };
 
