@@ -10,6 +10,7 @@ const AsyncAutocomplete = ({
   loading: isLoadingDefaultOptions,
   defaultOptions,
   fetchOptions,
+  prefetch,
   inputValueThrottleTimeout,
   ...props
 }) => {
@@ -48,6 +49,14 @@ const AsyncAutocomplete = ({
     }
   }, [isLoadingDefaultOptions]);
 
+  React.useEffect(() => {
+    (async () => {
+      if (prefetch) {
+        setFormattingOptions(await fetchOptions());
+      }
+    })();
+  }, []);
+
   return (
     <Autocomplete
       {...props}
@@ -67,12 +76,14 @@ const AsyncAutocomplete = ({
 
 AsyncAutocomplete.defaultProps = {
   loading: false,
+  prefetch: true,
   defaultOptions: null,
   inputValueThrottleTimeout: INPUT_VALUE_THROTTLE_TIMEOUT,
 };
 
 AsyncAutocomplete.propTypes = {
   loading: PropTypes.bool,
+  prefetch: PropTypes.bool,
   inputValueThrottleTimeout: PropTypes.number,
   defaultOptions: PropTypes.arrayOf(
     PropTypes.shape({
