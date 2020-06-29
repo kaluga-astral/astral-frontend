@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Form as FinalForm } from 'react-final-form';
 
+import { Box } from '@astral-frontend/components';
+
 const Form = ({
   children,
   keepDirtyOnReinitialize,
-  component: Component,
   mutators,
   decorators,
   validate,
@@ -34,9 +35,14 @@ const Form = ({
     onSubmit={onSubmit}
   >
     {formRenderProps => (
-      <Component {...props} noValidate onSubmit={formRenderProps.handleSubmit}>
+      <Box
+        {...props}
+        component="form"
+        noValidate
+        onSubmit={formRenderProps.handleSubmit}
+      >
         {children(formRenderProps)}
-      </Component>
+      </Box>
     )}
   </FinalForm>
 );
@@ -51,7 +57,6 @@ Form.defaultProps = {
   initialValues: undefined,
   initialValuesEqual: undefined,
   keepDirtyOnReinitialize: undefined,
-  component: 'form',
 };
 
 Form.propTypes = {
@@ -63,11 +68,6 @@ Form.propTypes = {
   subscription: PropTypes.shape({}),
   initialValues: PropTypes.shape({}),
   initialValuesEqual: PropTypes.func,
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-    PropTypes.shape(),
-  ]),
   validate: PropTypes.func,
   children: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
