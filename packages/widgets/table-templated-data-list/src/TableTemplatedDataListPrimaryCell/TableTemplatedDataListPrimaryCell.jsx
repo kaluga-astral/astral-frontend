@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -26,7 +27,12 @@ const useStyles = makeStyles(
   { name: 'TableTemplatedDataListPrimaryCell' },
 );
 
-const TableTemplatedDataListPrimaryCell = ({ title, subTitle, align }) => {
+const TableTemplatedDataListPrimaryCell = ({
+  title,
+  subTitle,
+  align,
+  className,
+}) => {
   const classes = useStyles({ align });
   const { loading } = React.useContext(DataListItemContext);
   const Children = () => {
@@ -35,7 +41,7 @@ const TableTemplatedDataListPrimaryCell = ({ title, subTitle, align }) => {
     }
 
     return [
-      <div key="title" className={classes.title}>
+      <div key="title" className={cn(classes.title, className)}>
         {title}
       </div>,
       subTitle && (
@@ -56,12 +62,14 @@ const TableTemplatedDataListPrimaryCell = ({ title, subTitle, align }) => {
 TableTemplatedDataListPrimaryCell.defaultProps = {
   subTitle: null,
   align: 'left',
+  className: null,
 };
 
 TableTemplatedDataListPrimaryCell.propTypes = {
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string,
   align: PropTypes.oneOf(['left', 'center', 'right']),
+  className: PropTypes.string,
 };
 
 export default TableTemplatedDataListPrimaryCell;

@@ -40,6 +40,9 @@ const useStyles = makeStyles(
       '&:hover $hiddenCell': {
         opacity: 0,
       },
+      '&:hover $coloredCell': {
+        color: theme.palette.primary.main,
+      },
     },
     dataItem: {
       borderStyle: 'solid',
@@ -58,6 +61,7 @@ const useStyles = makeStyles(
       opacity: 1,
       transition: theme.transitions.create(['opacity']),
     },
+    coloredCell: {},
   }),
   { name: 'TableTemplatedDataList' },
 );
@@ -89,16 +93,31 @@ const TableTemplatedDataList = ({
     ({ data, key }) => (
       <li key={key} className={classes.bodyRow}>
         <ListItemComponent data={data} className={cn(classes.row)}>
-          {columns.map((column, index) => {
-            return React.cloneElement(column.component(data), {
-              key: uniqueId(),
-              align: column.align,
-              className:
-                RowActionsComponent && index === columns.length - 1
-                  ? classes.hiddenCell
-                  : null,
-            });
-          })}
+          {React.Children.map(
+            columns.map((column, index) => {
+              return React.cloneElement(column.component(data), {
+                key: uniqueId(),
+                align: column.align,
+                className: cn({
+                  [classes.hiddenCell]:
+                    RowActionsComponent && index === columns.length - 1,
+                }),
+              });
+            }),
+            child => {
+              return child.type.name === 'TableTemplatedDataListPrimaryCell'
+                ? {
+                    ...child,
+                    props: {
+                      ...child.props,
+                      className: cn(child.props.className, [
+                        classes.coloredCell,
+                      ]),
+                    },
+                  }
+                : child;
+            },
+          )}
           {RowActionsComponent && (
             <RowActionsComponent className={classes.rowActions} data={data} />
           )}
