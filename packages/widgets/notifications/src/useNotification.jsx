@@ -1,7 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 import { useSnackbar } from 'notistack';
 import React from 'react';
+
 import NotificationsMessage from './NotificationsMessage';
+import NotificationsSystemNotification from './NotificationsSystemNotification';
 
 export const useNotification = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -11,6 +13,22 @@ export const useNotification = () => {
       closeNotification: closeSnackbar,
       enqueueCustomNotification(options) {
         return enqueueSnackbar('', options);
+      },
+      enqueueSystemNotification({ options, Component, ...props }) {
+        return enqueueSnackbar('', {
+          persist: true,
+          content: key => {
+            return (
+              <NotificationsSystemNotification
+                onClose={() => closeSnackbar(key)}
+                {...props}
+              >
+                <Component />
+              </NotificationsSystemNotification>
+            );
+          },
+          ...options,
+        });
       },
       enqueueSuccessNotification({
         title = 'Успешно',
