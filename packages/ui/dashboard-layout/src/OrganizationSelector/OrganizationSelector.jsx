@@ -119,6 +119,7 @@ OrganizationSelector.defaultProps = {
   addLinkHref: null,
   addLinkText: null,
   error: null,
+  currentOrganizationName: null,
   disabled: false,
 };
 
@@ -134,7 +135,7 @@ OrganizationSelector.propTypes = {
   addLinkHref: PropTypes.string,
   addLinkText: PropTypes.string,
   className: PropTypes.string,
-  currentOrganizationName: PropTypes.string.isRequired,
+  currentOrganizationName: PropTypes.string,
   error: PropTypes.instanceOf(Error),
   loading: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
