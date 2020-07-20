@@ -24,7 +24,7 @@ const useStyles = makeStyles(
 );
 
 const GridTemplatedDataList = ({
-  dataQueryResult,
+  queryResult,
   ListItemComponent,
   ...props
 }) => {
@@ -44,17 +44,17 @@ const GridTemplatedDataList = ({
       <ListItemComponent
         key={key}
         className={cn(classes.row)}
-        loading={dataQueryResult.loading}
+        loading={queryResult.loading}
         data={data}
       />
     ),
-    [dataQueryResult.loading],
+    [queryResult.loading],
   );
 
   return (
     <DataList
       {...props}
-      dataQueryResult={dataQueryResult}
+      queryResult={queryResult}
       listRenderer={listRenderer}
       renderItem={renderItem}
     />
@@ -62,7 +62,7 @@ const GridTemplatedDataList = ({
 };
 
 GridTemplatedDataList.propTypes = {
-  dataQueryResult: PropTypes.shape({
+  queryResult: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
     called: PropTypes.bool.isRequired,
     error: PropTypes.instanceOf(Error),

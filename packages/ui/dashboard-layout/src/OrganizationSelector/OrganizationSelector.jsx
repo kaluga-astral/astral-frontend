@@ -125,7 +125,7 @@ OrganizationSelector.defaultProps = {
 
 OrganizationSelector.propTypes = {
   DataListProps: PropTypes.shape({
-    dataQueryResult: PropTypes.shape({
+    queryResult: PropTypes.shape({
       loading: PropTypes.bool,
       error: PropTypes.instanceOf(Error),
       items: PropTypes.array,

@@ -11,24 +11,24 @@ const DataList = ({
   setSelectedItems,
   listRenderer,
   renderItem,
-  dataQueryResult: {
+  queryResult: {
     data: { items },
-    ...dataQueryResult
+    ...queryResult
   },
   EmptyStateComponent,
   onLoadMoreItems,
   disableSelect,
   ...props
 }) => {
-  if (dataQueryResult.error) {
-    return <Placeholder state="failure" error={dataQueryResult.error} />;
+  if (queryResult.error) {
+    return <Placeholder state="failure" error={queryResult.error} />;
   }
 
-  if (dataQueryResult.loading) {
+  if (queryResult.loading) {
     return <Placeholder state="loading" />;
   }
 
-  if (!dataQueryResult.loading && items.length === 0) {
+  if (!queryResult.loading && items.length === 0) {
     return <EmptyStateComponent />;
   }
 
@@ -88,7 +88,7 @@ DataList.propTypes = {
   setSelectedItems: PropTypes.func,
   listRenderer: PropTypes.func.isRequired,
   renderItem: PropTypes.func.isRequired,
-  dataQueryResult: PropTypes.shape({
+  queryResult: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
     called: PropTypes.bool.isRequired,
     error: PropTypes.instanceOf(Error),

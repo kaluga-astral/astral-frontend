@@ -68,7 +68,7 @@ const useStyles = makeStyles(
 
 const TableTemplatedDataList = ({
   columns,
-  dataQueryResult,
+  queryResult,
   ListItemComponent,
   RowActionsComponent,
   disableSelect,
@@ -124,13 +124,13 @@ const TableTemplatedDataList = ({
         </ListItemComponent>
       </li>
     ),
-    [columns, dataQueryResult.loading],
+    [columns, queryResult.loading],
   );
 
   return (
     <DataList
       {...props}
-      dataQueryResult={dataQueryResult}
+      queryResult={queryResult}
       listRenderer={listRenderer}
       renderItem={renderItem}
       disableSelect={disableSelect}
@@ -151,7 +151,7 @@ TableTemplatedDataList.propTypes = {
       align: PropTypes.oneOf(['left', 'center', 'right']),
     }),
   ).isRequired,
-  dataQueryResult: PropTypes.shape({
+  queryResult: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
     called: PropTypes.bool.isRequired,
     error: PropTypes.instanceOf(Error),

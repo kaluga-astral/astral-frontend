@@ -14,17 +14,13 @@ const useStyles = makeStyles(
       flexGrow: 1,
       overflowY: 'auto',
     },
-    list: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-      gridGap: theme.spacing(4),
-    },
+    list: {},
   }),
   { name: 'TransferTemplatedDataList' },
 );
 
 const TransferTemplatedDataList = ({
-  dataQueryResult,
+  queryResult,
   ListItemComponent,
   ...props
 }) => {
@@ -44,17 +40,17 @@ const TransferTemplatedDataList = ({
       <ListItemComponent
         key={key}
         className={cn(classes.row)}
-        loading={dataQueryResult.loading}
+        loading={queryResult.loading}
         data={data}
       />
     ),
-    [dataQueryResult.loading],
+    [queryResult.loading],
   );
 
   return (
     <DataList
       {...props}
-      dataQueryResult={dataQueryResult}
+      queryResult={queryResult}
       listRenderer={listRenderer}
       renderItem={renderItem}
     />
@@ -62,7 +58,7 @@ const TransferTemplatedDataList = ({
 };
 
 TransferTemplatedDataList.propTypes = {
-  dataQueryResult: PropTypes.shape({
+  queryResult: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
     called: PropTypes.bool.isRequired,
     error: PropTypes.instanceOf(Error),

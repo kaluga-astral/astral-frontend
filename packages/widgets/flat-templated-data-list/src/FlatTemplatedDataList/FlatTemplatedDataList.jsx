@@ -26,7 +26,7 @@ const useStyles = makeStyles(
 
 const FlatTemplatedDataList = ({
   className,
-  dataQueryResult,
+  queryResult,
   RowActionsComponent,
   ListItemComponent,
   EmptyStateComponent,
@@ -55,14 +55,14 @@ const FlatTemplatedDataList = ({
         )}
       </ListItemComponent>
     ),
-    [dataQueryResult.loading],
+    [queryResult.loading],
   );
 
   return (
     <DataList
       {...props}
       EmptyStateComponent={EmptyStateComponent}
-      dataQueryResult={dataQueryResult}
+      queryResult={queryResult}
       listRenderer={listRenderer}
       renderItem={renderItem}
     />
@@ -78,7 +78,7 @@ FlatTemplatedDataList.defaultProps = {
 
 FlatTemplatedDataList.propTypes = {
   className: PropTypes.string,
-  dataQueryResult: PropTypes.shape({
+  queryResult: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
     called: PropTypes.bool.isRequired,
     error: PropTypes.instanceOf(Error),
