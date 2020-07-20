@@ -23,7 +23,6 @@ const useStyles = makeStyles(
       root: {
         marginRight: theme.spacing(3),
         marginLeft: theme.spacing(3),
-
         '& button, & a': {
           color: getColor,
           '&:disabled': {

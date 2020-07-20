@@ -63,6 +63,7 @@ const TableTemplatedDataListItem = ({
     selectedItems.find(selectedItem => selectedItem.id === data.id),
   );
   const selectorVisible = (!disableSelect && hovered) || checked;
+
   const handleSelectorClick = e => {
     e.stopPropagation();
     e.preventDefault();
@@ -71,6 +72,7 @@ const TableTemplatedDataListItem = ({
       return xorBy(prevSelectedItems, [data], 'id');
     });
   };
+
   const handleListItemMouseEnter = () => {
     setHovered(true);
   };

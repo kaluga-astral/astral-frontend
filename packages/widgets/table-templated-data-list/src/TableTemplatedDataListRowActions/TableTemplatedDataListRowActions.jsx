@@ -27,6 +27,7 @@ export const TableTemplatedDataListRowActions = ({
   ...props
 }) => {
   const classes = useStyles();
+
   const handleRowActionsContainerClick = e => {
     e.stopPropagation();
     e.preventDefault();

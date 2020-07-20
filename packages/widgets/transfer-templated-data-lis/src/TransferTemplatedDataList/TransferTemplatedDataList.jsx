@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { List } from '@astral-frontend/components';
+import { List, Typography } from '@astral-frontend/components';
 
 import { makeStyles } from '@astral-frontend/styles';
 
@@ -48,12 +48,27 @@ const TransferTemplatedDataList = ({
   );
 
   return (
-    <DataList
-      {...props}
-      queryResult={queryResult}
-      listRenderer={listRenderer}
-      renderItem={renderItem}
-    />
+    <div className={classes.root}>
+      <div>
+        <Typography gutterBottom color="primary">
+          Отсканированные
+        </Typography>
+        <ul>
+          <li>80718933020979)0>9Z?</li>
+        </ul>
+      </div>
+      <div>
+        <Typography gutterBottom color="primary">
+          Код маркировки
+        </Typography>
+        <DataList
+          {...props}
+          queryResult={queryResult}
+          listRenderer={listRenderer}
+          renderItem={renderItem}
+        />
+      </div>
+    </div>
   );
 };
 

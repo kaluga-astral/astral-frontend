@@ -13,39 +13,25 @@ const DataList = ({
   renderItem,
   queryResult: {
     data: { items },
-    ...queryResult
+    error,
+    loading,
   },
   EmptyStateComponent,
   onLoadMoreItems,
   disableSelect,
   ...props
 }) => {
-  if (queryResult.error) {
-    return <Placeholder state="failure" error={queryResult.error} />;
+  if (error) {
+    return <Placeholder state="failure" error={error} />;
   }
 
-  if (queryResult.loading) {
+  if (loading) {
     return <Placeholder state="loading" />;
   }
 
-  if (!queryResult.loading && items.length === 0) {
+  if (!loading && items.length === 0) {
     return <EmptyStateComponent />;
   }
-
-  React.useEffect(() => {
-    setSelectedItems(
-      selectedItems.filter(selectedItem =>
-        items.find(item => item.id === selectedItem.id),
-      ),
-    );
-  }, [items.length]);
-
-  React.useEffect(
-    () => () => {
-      setSelectedItems([]);
-    },
-    [],
-  );
 
   return (
     <DataListContext.Provider
