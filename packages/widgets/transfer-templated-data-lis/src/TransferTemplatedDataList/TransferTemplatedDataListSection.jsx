@@ -65,9 +65,9 @@ export const TransferTemplatedDataListSection = ({
           <Typography gutterBottom color="primary">
             {title}
           </Typography>
-          <Box className={classes.counter}>{count}</Box>
+          <Box className={classes.counter}>{String(count)}</Box>
         </Box>
-        <IconButton onClick={handleExpanderButtonClick}>
+        <IconButton disabled={count === 0} onClick={handleExpanderButtonClick}>
           <SvgIcon className={classes.expanderIcon}>
             <path
               d="M6.09448 14.7368L6.28545 14.9127C6.41187 15.0291 6.61629 15.0291 6.74271 14.9127L11.9985 10.0706L17.257 14.9127C17.3834 15.0291 17.5878 15.0291 17.7142 14.9127L17.9052 14.7368C18.0316 14.6204 18.0316 14.4322 17.9052 14.3158L12.2298 9.08731C12.1034 8.9709 11.899 8.9709 11.7725 9.08731L6.09717 14.3158C5.96806 14.4322 5.96806 14.6204 6.09448 14.7368Z"

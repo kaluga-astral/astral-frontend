@@ -102,7 +102,7 @@ const TransferTemplatedDataList = ({
       <TransferTemplatedDataListSection
         mb={4}
         title="Отсканированные"
-        count={queryResult.loading ? null : String(selectedItems.length)}
+        count={queryResult.loading ? null : selectedItems.length}
       >
         <DataList
           pageSize={15}
@@ -124,7 +124,7 @@ const TransferTemplatedDataList = ({
         count={
           queryResult.loading
             ? null
-            : String(queryResult.data.totalCount - selectedItems.length)
+            : Number(queryResult.data.totalCount - selectedItems.length)
         }
       >
         <DataList
