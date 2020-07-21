@@ -30,7 +30,11 @@ const DataList = ({
   }
 
   if (!loading && items.length === 0) {
-    return <EmptyStateComponent />;
+    if (EmptyStateComponent) {
+      return <EmptyStateComponent />;
+    }
+
+    return null;
   }
 
   return (
@@ -66,6 +70,7 @@ DataList.defaultProps = {
   selectedItems: null,
   setSelectedItems: null,
   onLoadMoreItems: null,
+  EmptyStateComponent: null,
   disableSelect: false,
 };
 
@@ -82,7 +87,7 @@ DataList.propTypes = {
       items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     }).isRequired,
   }).isRequired,
-  EmptyStateComponent: PropTypes.func.isRequired,
+  EmptyStateComponent: PropTypes.func,
   pageSize: PropTypes.number.isRequired,
   onLoadMoreItems: PropTypes.func,
   disableSelect: PropTypes.bool,
