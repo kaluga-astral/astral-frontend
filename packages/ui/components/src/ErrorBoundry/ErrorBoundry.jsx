@@ -22,6 +22,10 @@ class ErrorBoundary extends Component {
     });
   }
 
+  handleReloadButtonClick() {
+    window.location.reload();
+  }
+
   render() {
     const { hasError } = this.state;
     const { children } = this.props;
