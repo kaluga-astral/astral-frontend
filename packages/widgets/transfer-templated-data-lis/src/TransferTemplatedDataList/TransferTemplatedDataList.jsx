@@ -131,7 +131,15 @@ const TransferTemplatedDataList = ({
           {...props}
           selectedItems={selectedItems}
           setSelectedItems={setSelectedItems}
-          queryResult={queryResult}
+          queryResult={{
+            ...queryResult,
+            data: {
+              items: queryResult.data.items.filter(item =>
+                selectedItems.find(selectedItem => selectedItem.id === item.id),
+              ),
+              ...queryResult.data,
+            },
+          }}
           listRenderer={listRenderer}
           renderItem={renderSourceListItem}
         />

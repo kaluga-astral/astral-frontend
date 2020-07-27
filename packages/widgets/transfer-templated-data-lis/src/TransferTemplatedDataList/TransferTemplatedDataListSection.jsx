@@ -65,7 +65,7 @@ export const TransferTemplatedDataListSection = ({
           <Typography gutterBottom color="primary">
             {title}
           </Typography>
-          <Box className={classes.counter}>{String(count)}</Box>
+          <Box className={classes.counter}>{count}</Box>
         </Box>
         <IconButton disabled={count === 0} onClick={handleExpanderButtonClick}>
           <SvgIcon className={classes.expanderIcon}>

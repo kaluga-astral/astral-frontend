@@ -6,36 +6,31 @@ import { SlideModalContext } from './SlideModalContext';
 
 const ESCAPE_KEY_CODE = 'Escape';
 
-export const SlideModal = ({
-  open,
-  title,
-  children,
-  goBackURL,
-  onClose,
-  ...props
-}) => {
-  const handleKeyDown = React.useCallback(event => {
-    if (event.key === ESCAPE_KEY_CODE) {
-      onClose();
-    }
-  }, []);
+export const SlideModal = React.forwardRef(
+  ({ open, title, children, goBackURL, onClose, ...props }, ref) => {
+    const handleKeyDown = React.useCallback(event => {
+      if (event.key === ESCAPE_KEY_CODE) {
+        onClose();
+      }
+    }, []);
 
-  React.useEffect(() => {
-    if (open) {
-      document.addEventListener('keydown', handleKeyDown);
-    } else {
-      document.removeEventListener('keydown', handleKeyDown);
-    }
-  }, [open]);
+    React.useEffect(() => {
+      if (open) {
+        document.addEventListener('keydown', handleKeyDown);
+      } else {
+        document.removeEventListener('keydown', handleKeyDown);
+      }
+    }, [open]);
 
-  return (
-    <SlideModalContext.Provider value={{ open, close: onClose, goBackURL }}>
-      <SlideModalDrawer open={open} onClose={onClose} {...props}>
-        {children}
-      </SlideModalDrawer>
-    </SlideModalContext.Provider>
-  );
-};
+    return (
+      <SlideModalContext.Provider value={{ open, close: onClose, goBackURL }}>
+        <SlideModalDrawer open={open} onClose={onClose} {...props} ref={ref}>
+          {children}
+        </SlideModalDrawer>
+      </SlideModalContext.Provider>
+    );
+  },
+);
 
 SlideModal.defaultProps = {
   title: null,

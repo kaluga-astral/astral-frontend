@@ -40,16 +40,16 @@ const useStyles = makeStyles(
   { name: 'SlideModalDrawer' },
 );
 
-export const SlideModalDrawer = props => {
+export const SlideModalDrawer = React.forwardRef((props, ref) => {
   const { size, children, ...restProps } = props;
   const classes = useStyles({ size });
 
   return (
-    <Drawer {...restProps} classes={classes}>
+    <Drawer {...restProps} classes={classes} ref={ref}>
       {children}
     </Drawer>
   );
-};
+});
 
 SlideModalDrawer.defaultProps = {
   size: 'medium',
