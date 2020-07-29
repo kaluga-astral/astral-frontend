@@ -118,10 +118,10 @@ const TableTemplatedDataList = ({
                 : child;
             },
           )}
-          {RowActionsComponent && (
-            <RowActionsComponent className={classes.rowActions} data={data} />
-          )}
         </ListItemComponent>
+        {RowActionsComponent && (
+          <RowActionsComponent className={classes.rowActions} data={data} />
+        )}
       </li>
     ),
     [columns, queryResult.loading],

@@ -28,16 +28,10 @@ export const TableTemplatedDataListRowActions = ({
 }) => {
   const classes = useStyles();
 
-  const handleRowActionsContainerClick = e => {
-    e.stopPropagation();
-    e.preventDefault();
-  };
-
   return (
     <FlexContainer
       alignItems="center"
       className={cn(className, classes.root)}
-      onClick={handleRowActionsContainerClick}
       {...props}
     >
       {children}
