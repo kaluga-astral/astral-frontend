@@ -59,27 +59,32 @@ const TableTemplatedDataListItem = ({
   );
   const { data } = React.useContext(DataListItemContext);
   const [hovered, setHovered] = React.useState(false);
-  const checked = Boolean(
-    selectedItems.find(selectedItem => selectedItem.id === data.id),
-  );
+  const checked = React.useMemo(() => {
+    return Boolean(
+      selectedItems.find(selectedItem => selectedItem.id === data.id),
+    );
+  }, [selectedItems]);
   const selectorVisible = (!disableSelect && hovered) || checked;
 
-  const handleSelectorClick = e => {
-    e.stopPropagation();
-    e.preventDefault();
+  const handleSelectorClick = React.useCallback(
+    event => {
+      event.stopPropagation();
+      event.preventDefault();
 
-    setSelectedItems(prevSelectedItems => {
-      return xorBy(prevSelectedItems, [data], 'id');
-    });
-  };
+      setSelectedItems(prevSelectedItems => {
+        return xorBy(prevSelectedItems, [data], 'id');
+      });
+    },
+    [setSelectedItems],
+  );
 
-  const handleListItemMouseEnter = () => {
+  const handleListItemMouseEnter = React.useCallback(() => {
     setHovered(true);
-  };
+  }, [setHovered]);
 
-  const handleListItemMouseLeave = () => {
+  const handleListItemMouseLeave = React.useCallback(() => {
     setHovered(false);
-  };
+  }, [setHovered]);
 
   return (
     <ListItem
@@ -123,7 +128,11 @@ TableTemplatedDataListItem.defaultProps = {
 };
 
 TableTemplatedDataListItem.propTypes = {
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})]),
+  component: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.string,
+    PropTypes.shape({}),
+  ]),
   className: PropTypes.string,
   disableGutters: PropTypes.bool,
   button: PropTypes.bool,
@@ -131,7 +140,7 @@ TableTemplatedDataListItem.propTypes = {
     PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   ).isRequired,
   Icon: PropTypes.func,
-  Selector: PropTypes.func,
+  Selector: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   percentCompleted: PropTypes.number,
 };
 
