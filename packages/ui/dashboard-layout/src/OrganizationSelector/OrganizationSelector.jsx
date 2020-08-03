@@ -11,6 +11,7 @@ import {
   ClickAwayListener,
   FlexContainer,
   ContentState,
+  Tooltip,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 import FlatTemplatedDataList from '../../../../widgets/flat-templated-data-list';
@@ -76,12 +77,17 @@ const OrganizationSelector = ({
     >
       <ContentState loading={loading} error={error}>
         <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-          <FlexContainer direction="column" style={{ position: 'relative' }}>
-            <OrganizationSelectorCurrentOrganization
-              name={currentOrganizationName}
-              disabled={disabled}
-              onClick={handleTogglerButtonClick}
-            />
+          <FlexContainer>
+            <Tooltip
+              placement="left"
+              title={currentOrganizationName || 'Выберите организацию'}
+            >
+              <OrganizationSelectorCurrentOrganization
+                name={currentOrganizationName}
+                disabled={disabled}
+                onClick={handleTogglerButtonClick}
+              />
+            </Tooltip>
             <ButtonBase disabled={disabled} onClick={handleTogglerButtonClick}>
               <Collapse in={open} className={classes.collapse}>
                 <Paper className={classes.popperPaper}>
