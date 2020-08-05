@@ -95,10 +95,10 @@ const TableTemplatedDataListItem = ({
       onMouseLeave={handleListItemMouseLeave}
       {...props}
     >
-      {Boolean(percentCompleted && percentCompleted < 100) && (
+      {Boolean(percentCompleted < 100) && (
         <CircularProgress
           className={classes.circularProgress}
-          variant="static"
+          variant={percentCompleted === 0 ? 'indeterminate' : 'static'}
           value={percentCompleted}
         />
       )}
