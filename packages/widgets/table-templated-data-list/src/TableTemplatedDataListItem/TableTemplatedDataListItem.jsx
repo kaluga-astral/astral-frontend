@@ -123,7 +123,7 @@ TableTemplatedDataListItem.defaultProps = {
   component: 'div',
   className: null,
   disableGutters: true,
-  selectionDisabled: true,
+  selectionDisabled: false,
   button: false,
   Icon: () => <div />,
   Selector: TableTemplatedDataListItemDefaultSelector,
