@@ -55,7 +55,6 @@ const useStyles = makeStyles(theme => {
       maxWidth: '600px',
       color: theme.palette.gray[600],
     },
-
     progressLine: {
       position: 'absolute',
       bottom: 0,
@@ -170,7 +169,7 @@ NotificationsMessage.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   variant: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired,
+  message: PropTypes.node.isRequired,
   progressLine: PropTypes.bool,
   duration: PropTypes.number,
   timer: PropTypes.bool,

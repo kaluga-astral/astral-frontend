@@ -51,6 +51,7 @@ const TableTemplatedDataListItem = ({
   children,
   component,
   percentCompleted,
+  selectionDisabled,
   ...props
 }) => {
   const classes = useStyles();
@@ -106,6 +107,7 @@ const TableTemplatedDataListItem = ({
           <Selector
             className={classes.selector}
             checked={checked}
+            disabled={selectionDisabled}
             onClick={handleSelectorClick}
           />
         ) : (
@@ -121,6 +123,7 @@ TableTemplatedDataListItem.defaultProps = {
   component: 'div',
   className: null,
   disableGutters: true,
+  selectionDisabled: true,
   button: false,
   Icon: () => <div />,
   Selector: TableTemplatedDataListItemDefaultSelector,
@@ -134,6 +137,7 @@ TableTemplatedDataListItem.propTypes = {
     PropTypes.shape({}),
   ]),
   className: PropTypes.string,
+  selectionDisabled: PropTypes.bool,
   disableGutters: PropTypes.bool,
   button: PropTypes.bool,
   children: PropTypes.arrayOf(
