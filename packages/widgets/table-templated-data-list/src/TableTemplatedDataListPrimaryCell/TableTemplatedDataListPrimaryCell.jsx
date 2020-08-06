@@ -66,8 +66,8 @@ TableTemplatedDataListPrimaryCell.defaultProps = {
 };
 
 TableTemplatedDataListPrimaryCell.propTypes = {
-  title: PropTypes.string.isRequired,
-  subTitle: PropTypes.string,
+  title: PropTypes.node.isRequired,
+  subTitle: PropTypes.node,
   align: PropTypes.oneOf(['left', 'center', 'right']),
   className: PropTypes.string,
 };
