@@ -1,5 +1,5 @@
 function mustBePresent(value) {
-  if (!value.trim()) {
+  if (!value?.trim()) {
     return 'Обязательно для заполнения';
   }
   return null;
