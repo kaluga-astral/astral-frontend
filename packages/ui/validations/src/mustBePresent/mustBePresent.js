@@ -1,5 +1,7 @@
+import { isString } from 'lodash-es';
+
 function mustBePresent(value) {
-  if (!value?.trim()) {
+  if (isString(value) && !value?.trim()) {
     return 'Обязательно для заполнения';
   }
   return null;
