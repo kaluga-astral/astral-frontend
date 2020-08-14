@@ -3,7 +3,7 @@ export default function maxLength(length) {
     throw new Error('Значение параметра `length` должно быть >= 0');
   }
 
-  return (value) => {
+  return value => {
     if (value && value.length > length) {
       return `Максимальная длина поля ${length} символов.`;
     }

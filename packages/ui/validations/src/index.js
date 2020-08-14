@@ -1,6 +1,9 @@
 export { default as composeValidations } from './composeValidations';
 export { default as maxLength } from './maxLength';
 export { default as minLength } from './minLength';
+export { default as mustBeBIK } from './mustBeBIK';
+export { default as mustBeCheckingAccount } from './mustBeCheckingAccount';
+export { default as mustBeCorrespondentAccount } from './mustBeCorrespondentAccount';
 export { default as mustBeDatePeriod } from './mustBeDatePeriod';
 export { default as mustBeEmail } from './mustBeEmail';
 export { default as mustBeIGK } from './mustBeIGK';
@@ -14,6 +17,7 @@ export { default as mustBeOGRNIP } from './mustBeOGRNIP';
 export { default as mustBeOGRNUL } from './mustBeOGRNUL';
 export { default as mustBePresent } from './mustBePresent';
 export { default as mustBeOKPO } from './mustBeOKPO';
+export { default as mustBeOKTMO } from './mustBeOKTMO';
 export { default as mustBePassportIssuerId } from './mustBePassportIssuerId';
 export { default as mustBePassportNumber } from './mustBePassportNumber';
 export { default as mustBePassportSeries } from './mustBePassportSeries';

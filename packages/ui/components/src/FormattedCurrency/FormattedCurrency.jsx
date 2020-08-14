@@ -5,7 +5,9 @@ import Typography from '../Typography';
 
 const FormattedCurrency = ({ value, currency, ...props }) => (
   <Typography display="inline" {...props}>
-    {new Intl.NumberFormat('ru-RU', { style: 'currency', currency }).format(value)}
+    {new Intl.NumberFormat('ru-RU', { style: 'currency', currency }).format(
+      value,
+    )}
   </Typography>
 );
 

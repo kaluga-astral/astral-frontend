@@ -8,24 +8,27 @@ import { CrossIcon } from '@astral-frontend/icons';
 import IconButton from '../IconButton';
 import { __Context } from '../Dialog';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: theme.spacing(6),
-    paddingBottom: theme.spacing(3),
-  },
-  title: {
-    margin: 0,
-    fontWeight: 600,
-    fontSize: theme.typography.pxToRem(14),
-    marginRight: theme.spacing(5),
-  },
-  icon: {
-    fontSize: theme.typography.pxToRem(16),
-  },
-}));
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      paddingTop: theme.spacing(6),
+      paddingBottom: theme.spacing(3),
+    },
+    title: {
+      margin: 0,
+      fontWeight: 600,
+      fontSize: theme.typography.pxToRem(14),
+      marginRight: theme.spacing(5),
+    },
+    icon: {
+      fontSize: theme.typography.pxToRem(16),
+    },
+  }),
+  { name: 'DialogTitle' },
+);
 
 const DialogTitle = props => {
   const { showCloseButton, className, children, ...rootProps } = props;

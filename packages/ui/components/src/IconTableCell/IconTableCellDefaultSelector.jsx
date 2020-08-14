@@ -6,7 +6,7 @@ import Checkbox from '../Checkbox';
 const IconTableCellDefaultSelector = ({ selected, onChange }) => (
   <Checkbox
     checked={selected}
-    onClick={(e) => {
+    onClick={e => {
       e.stopPropagation();
     }}
     onChange={onChange}

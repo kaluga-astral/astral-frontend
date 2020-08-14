@@ -1,9 +1,15 @@
-import SlideModal from './SlideModal';
-import SlideModalTitle from './SlideModalTitle';
-import SlideModalContent from './SlideModalContent';
-import SlideModalFooter from './SlideModalFooter';
+import { SlideModal } from './SlideModal';
+import { SlideModalHeaderCloseButton } from './SlideModalHeaderCloseButton';
+import { SlideModalContent } from './SlideModalContent';
+import { SlideModalFooter } from './SlideModalFooter';
+import { SlideModalHeader } from './SlideModalHeader';
+import { SlideModalHeaderBackButton } from './SlideModalHeaderBackButton';
+import { SlideModalHeaderTitle } from './SlideModalHeaderTitle';
 
-SlideModal.Title = SlideModalTitle;
+SlideModal.Header = SlideModalHeader;
+SlideModal.HeaderCloseButton = SlideModalHeaderCloseButton;
+SlideModal.HeaderBackButton = SlideModalHeaderBackButton;
+SlideModal.HeaderTitle = SlideModalHeaderTitle;
 SlideModal.Content = SlideModalContent;
 SlideModal.Footer = SlideModalFooter;
 

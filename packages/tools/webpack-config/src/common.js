@@ -38,51 +38,48 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
         use: [
-          'thread-loader',
+          require.resolve('thread-loader'),
           {
             loader: require.resolve('babel-loader'),
             options: {
-              presets: ['@astral-frontend/babel-preset-react-app'],
+              cacheDirectory: true,
+              cacheCompression: false,
+              presets: [
+                require.resolve('@astral-frontend/babel-preset-react-app'),
+              ],
             },
           },
         ],
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
-          'thread-loader',
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10 * 1024,
-            },
-          },
+          require.resolve('file-loader'),
+          // {
+          //   loader: require.resolve('image-webpack-loader'),
+          // },
         ],
-      },
-      {
-        test: /\.svg$/,
-        use: [
-          'thread-loader',
-          {
-            loader: 'svg-inline-loader',
-            options: {
-              extract: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(jpe?g|png|gif)$/,
-        use: ['thread-loader', 'image-webpack-loader'],
-        enforce: 'pre',
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ['thread-loader', 'url-loader'], // хз почему file-loader не работает
       },
       {
         test: /\.(pdf)$/,
-        use: ['thread-loader', 'file-loader?minetype=application/pdf'],
+        use: ['file-loader?minetype=application/pdf'],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          {
+            loader: require.resolve('url-loader'),
+            options: {
+              limit: 2048,
+              name: 'fonts/[name].[hash].[ext]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: require.resolve('graphql-tag/loader'),
       },
     ],
   },

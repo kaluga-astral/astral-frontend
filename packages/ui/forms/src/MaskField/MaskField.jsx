@@ -18,7 +18,9 @@ InputTextMask.defaultProps = {
 
 InputTextMask.propTypes = {
   mask: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp)])),
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp)]),
+    ),
     PropTypes.func,
   ]).isRequired,
   label: PropTypes.string,

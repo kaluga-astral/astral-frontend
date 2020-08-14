@@ -1,2 +1,2 @@
 export { default } from './Sidebar';
-export { default as __Context } from './Context';
+export { default as __Context } from './SidebarContext';

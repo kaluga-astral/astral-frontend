@@ -1,7 +1,14 @@
 import { ERROR_MESSAGE } from '../mustBeOGRN';
-import mustBeOGRNIP from './mustBeOGRNIP';
+import mustBeOGRNIPValidation from './mustBeOGRNIP';
+import { ORGANIZATION_VALIDATIONS_PARAMS } from '../constants';
 
 describe('mustBeOGRNIP', () => {
+  let mustBeOGRNIP;
+  beforeEach(() => {
+    mustBeOGRNIP = mustBeOGRNIPValidation.bind(
+      ORGANIZATION_VALIDATIONS_PARAMS.ip,
+    );
+  });
   it('должна возвращать сообщение об ошибке если value < 15 символов.', () => {
     const value = new Array(14).fill('1').join('');
 

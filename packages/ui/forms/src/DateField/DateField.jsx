@@ -4,7 +4,10 @@ import React from 'react';
 import { mustBeDatePeriod } from '@astral-frontend/validations';
 import Field from '../Field';
 
-const FormDateField = ({ inputProps: { min, max, ...restInputProps }, ...props }) => (
+const FormDateField = ({
+  inputProps: { min, max, ...restInputProps },
+  ...props
+}) => (
   <Field
     type="date"
     InputLabelProps={{

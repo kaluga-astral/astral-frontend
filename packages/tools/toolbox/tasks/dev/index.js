@@ -7,7 +7,9 @@ module.exports = () => {
   process.env.BABEL_ENV = 'development';
   process.env.NODE_ENV = 'development';
 
-  printEnvironmentInfo({ getBuildModeType: BUILD_MODE_TYPES => BUILD_MODE_TYPES.development });
+  printEnvironmentInfo({
+    getBuildModeType: BUILD_MODE_TYPES => BUILD_MODE_TYPES.development,
+  });
 
   // node ./src/server.js
 };

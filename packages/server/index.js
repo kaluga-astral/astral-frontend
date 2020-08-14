@@ -26,26 +26,26 @@ const makeServer = () => {
   server.use('/', staticFilesMiddleware);
 
   if (process.env.NODE_ENV === 'development') {
-    const httpProxyMiddleware = require('http-proxy-middleware');
     const webpack = require('webpack');
-    const webpackDevMiddleware = require('webpack-dev-middleware');
+    const { createProxyMiddleware } = require('http-proxy-middleware');
     const {
       development: webpackConfig,
       // devServer: webpackDevServerConfig,
     } = require('@astral-frontend/webpack-config');
     const compiler = webpack(webpackConfig);
+    const webpackDevMiddleware = require('webpack-dev-middleware');
 
     // TODO: вынести в аппликейшон
     server.use(
       '/api',
-      httpProxyMiddleware({
+      createProxyMiddleware({
         ws: true,
         target: 'http://localhost:32777/',
       }),
     );
     server.use(
       '/graphql',
-      httpProxyMiddleware({
+      createProxyMiddleware({
         // ws: true,
         logLevel: 'debug',
         target: 'http://localhost:8080/',

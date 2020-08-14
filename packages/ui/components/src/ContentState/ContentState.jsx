@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
+import ErrorBoundry from '../ErrorBoundry';
 import Placeholder from '../Placeholder';
 
 const ContentState = ({
@@ -11,6 +12,7 @@ const ContentState = ({
   component: Component,
   LoadingStateComponent,
   FailureStateComponent,
+  ...props
 }) => {
   const renderChildren = () => {
     if (loading) {
@@ -24,7 +26,11 @@ const ContentState = ({
     return children;
   };
 
-  return <Component>{renderChildren()}</Component>;
+  return (
+    <ErrorBoundry>
+      <Component {...props}>{renderChildren()}</Component>
+    </ErrorBoundry>
+  );
 };
 
 ContentState.defaultProps = {
@@ -40,7 +46,6 @@ ContentState.defaultProps = {
 
 ContentState.propTypes = {
   loading: PropTypes.bool.isRequired,
-  PlaceholderProps: PropTypes.shape({}),
   error: PropTypes.instanceOf(Error),
   children: PropTypes.oneOfType([
     PropTypes.string,
@@ -49,6 +54,7 @@ ContentState.propTypes = {
   ]).isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   component: PropTypes.any,
+  PlaceholderProps: PropTypes.shape({}),
   LoadingStateComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   FailureStateComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };

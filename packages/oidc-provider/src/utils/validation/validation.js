@@ -59,12 +59,12 @@ const validateInitializeEntryParam = ({
   sessionParams,
 }) => {
   if (!app) {
-    throwValidationError('Во входных параметрах отсутсвует app (express)');
+    throwValidationError('Во входных параметрах отсутствует app (express)');
   }
 
   if (!storeConnectUrl) {
     throwValidationError(
-      'Во входных параметрах отсутсвует storeConnectUrl (ссылка на Redis)',
+      'Во входных параметрах отсутствует storeConnectUrl (ссылка на Redis)',
     );
   }
 

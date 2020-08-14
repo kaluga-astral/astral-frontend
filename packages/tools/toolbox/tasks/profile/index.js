@@ -13,7 +13,9 @@ module.exports = () => {
 
   const compiler = webpack(webpackConfig);
 
-  printEnvironmentInfo({ getBuildModeType: BUILD_MODE_TYPES => BUILD_MODE_TYPES.production });
+  printEnvironmentInfo({
+    getBuildModeType: BUILD_MODE_TYPES => BUILD_MODE_TYPES.production,
+  });
   compiler.run((err, stats) => {
     const buildResult = getBuildResult(err, stats);
 

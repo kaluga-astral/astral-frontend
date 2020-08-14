@@ -9,10 +9,12 @@ const ProductsListEmptyPlaceholder = () => {
 
   return (
     <div className={classes.container}>
-      <img src={emptyPlaceholderImg} className={classes.image} alt="Нет результатов" />
-      <p className={classes.message}>
-        Нет подключенных продуктов
-      </p>
+      <img
+        src={emptyPlaceholderImg}
+        className={classes.image}
+        alt="Нет результатов"
+      />
+      <p className={classes.message}>Нет подключенных продуктов</p>
     </div>
   );
 };

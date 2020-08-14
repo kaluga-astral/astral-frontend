@@ -1,14 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { Drawer } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
 
-import Drawer from '../Drawer';
-
 const useStyles = makeStyles(
-  () => {
-    const getContainerPosition = ({ contain }) => (contain ? 'absolute' : null);
-
+  theme => {
     const getWidth = ({ size }) => {
       switch (size) {
         case 'small':
@@ -21,12 +18,21 @@ const useStyles = makeStyles(
           return null;
       }
     };
+    const getMaxWidth = ({ size }) => {
+      switch (size) {
+        case 'small':
+        case 'medium':
+        case 'large':
+        default:
+          return null;
+      }
+    };
 
     return {
       paper: {
-        position: getContainerPosition,
         width: getWidth,
-        boxShadow: '0 5px 20px rgba(0, 0, 0, 0.1)',
+        maxWidth: getMaxWidth,
+        boxShadow: theme.shadows[2],
         borderLeft: 'none',
       },
     };
@@ -34,18 +40,16 @@ const useStyles = makeStyles(
   { name: 'SlideModalDrawer' },
 );
 
-const SlideModalDrawer = (props) => {
-  const {
-    size, contain, children, ...restProps
-  } = props;
-  const classes = useStyles({ size, contain });
+export const SlideModalDrawer = React.forwardRef((props, ref) => {
+  const { size, children, ...restProps } = props;
+  const classes = useStyles({ size });
 
   return (
-    <Drawer {...restProps} classes={classes} variant="persistent">
+    <Drawer {...restProps} classes={classes} ref={ref}>
       {children}
     </Drawer>
   );
-};
+});
 
 SlideModalDrawer.defaultProps = {
   size: 'medium',
@@ -56,7 +60,6 @@ SlideModalDrawer.defaultProps = {
 SlideModalDrawer.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
-  contain: PropTypes.bool.isRequired,
   transitionDuration: PropTypes.shape({}),
   children: PropTypes.node.isRequired,
 };

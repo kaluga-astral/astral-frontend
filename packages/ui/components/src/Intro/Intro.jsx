@@ -14,12 +14,12 @@ import './theme.css';
 const CONTENT_CLASS_NAME = 'introjs-tooltipcontent';
 const TOOLTIP_CLASS_NAME = 'introjs-tooltip';
 
-const Intro = ({
-  initialStep, steps, open, onChange, onComplete, options,
-}) => {
+const Intro = ({ initialStep, steps, open, onChange, onComplete, options }) => {
   const theme = useTheme();
   const stepsRef = React.useRef({});
-  const contentRef = React.useRef(document.getElementsByClassName(CONTENT_CLASS_NAME));
+  const contentRef = React.useRef(
+    document.getElementsByClassName(CONTENT_CLASS_NAME),
+  );
   const [currentStep, setCurrentStep] = React.useState(initialStep);
   const handlePrevStepIconClick = () => {
     setCurrentStep(prevCurrentStep => prevCurrentStep - 1);
@@ -52,6 +52,7 @@ const Intro = ({
           <TooltipContent
             title={steps[currentStep].title}
             text={steps[currentStep].intro}
+            Picture={steps[currentStep].Picture}
             currentStep={currentStep}
             stepsLength={steps.length}
             onPrevStepIconClick={handlePrevStepIconClick}
@@ -100,6 +101,7 @@ Intro.propTypes = {
       element: PropTypes.string,
       intro: PropTypes.string.isRequired,
       title: PropTypes.string,
+      Picture: PropTypes.func,
       position: PropTypes.oneOf([
         'top',
         'right',

@@ -1,54 +1,63 @@
-import cn from 'classnames';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import {
-  Popper,
-  Grow,
+  Collapse,
+  ButtonBase,
+  MenuItem,
   Paper,
   ClickAwayListener,
-  MenuList,
-  MenuItem,
   FlexContainer,
+  ContentState,
+  Tooltip,
 } from '@astral-frontend/components';
-
 import { makeStyles } from '@astral-frontend/styles';
+import FlatTemplatedDataList from '../../../../widgets/flat-templated-data-list';
 
-import CurrentOrganization from './OrganizationSelectorCurrentOrganization';
-import OrganizationSelectorItem from './OrganizationSelectorItem';
-import OrganizationSelectorNotFoundPlaceholder from './OrganizationSelectorNotFoundPlaceholder';
-
-const rootRef = React.createRef();
+import OrganizationSelectorCurrentOrganization from './OrganizationSelectorCurrentOrganization';
+import OrganizationSelectorEmptyStateComponent from './OrganizationSelectorEmptyStateComponent';
 
 const useStyles = makeStyles(
-  () => ({
+  theme => ({
     root: {
-      margin: '0 0 0 15px',
       height: '100%',
+      flexShrink: 0,
     },
     popperPaper: {
       maxHeight: '325px',
       maxWidth: '300px',
       overflowY: 'auto',
-      boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.09)',
+      boxShadow: theme.shadows[2],
+    },
+    collapse: {
+      position: 'absolute',
+      top: '100%',
+      right: 0,
+      zIndex: theme.zIndex.appBar,
     },
     addButton: {
       width: '100%',
       position: 'sticky',
       bottom: 0,
-      zIndex: 1000,
-      backgroundColor: 'white',
+      backgroundColor: theme.palette.common.white,
     },
   }),
-  { name: 'DashboardLayoutOrganizationSelector' },
+  { name: 'OrganizationSelector' },
 );
 
-const DashboardLayoutOrganizationSelector = ({
+const OrganizationSelector = ({
   className,
-  children,
+  DataListProps,
+  ListItemComponent,
+  showAddButton,
+  error,
+  loading,
+  disabled,
+  currentOrganizationName,
   addLinkHref,
-  currentOrganization,
-  NotFoundPlaceholder,
+  addLinkText,
   ...props
 }) => {
   const classes = useStyles();
@@ -59,70 +68,84 @@ const DashboardLayoutOrganizationSelector = ({
   const handleClickAwayListenerClickAway = () => {
     setOpen(false);
   };
-  const renderChildren = () => {
-    if (children.length > 0) {
-      return (
-        <MenuList
-          disablePadding
-          // TODO: #25542
-          onClick={() => {
-            setOpen(false);
-          }}
-        >
-          {children}
-          <MenuItem className={classes.addButton} component={Link} to={addLinkHref}>
-            + Добавить организацию
-          </MenuItem>
-        </MenuList>
-      );
-    }
-
-    return <NotFoundPlaceholder />;
-  };
 
   return (
     <FlexContainer
       {...props}
-      ref={rootRef}
       justifyContent="flex-end"
       className={cn(classes.root, className)}
     >
-      <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
-        <CurrentOrganization
-          name={currentOrganization && currentOrganization.name}
-          onClick={handleTogglerButtonClick}
-        />
-      </ClickAwayListener>
-      <Popper transition open={open} anchorEl={rootRef.current} style={{ zIndex: 1300 }}>
-        {({ TransitionProps }) => (
-          <Grow {...TransitionProps}>
-            <Paper className={classes.popperPaper}>{renderChildren()}</Paper>
-          </Grow>
-        )}
-      </Popper>
+      <ContentState loading={loading} error={error}>
+        <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
+          <FlexContainer>
+            <Tooltip
+              placement="left"
+              title={currentOrganizationName || 'Выберите организацию'}
+            >
+              <OrganizationSelectorCurrentOrganization
+                name={currentOrganizationName}
+                disabled={disabled}
+                onClick={handleTogglerButtonClick}
+              />
+            </Tooltip>
+            <ButtonBase disabled={disabled} onClick={handleTogglerButtonClick}>
+              <Collapse in={open} className={classes.collapse}>
+                <Paper className={classes.popperPaper}>
+                  <FlatTemplatedDataList
+                    {...DataListProps}
+                    ListItemComponent={ListItemComponent}
+                    EmptyStateComponent={EmptyStateComponentProps => (
+                      <OrganizationSelectorEmptyStateComponent
+                        {...EmptyStateComponentProps}
+                        addLinkHref={addLinkHref}
+                      />
+                    )}
+                  />
+                  {showAddButton && (
+                    <MenuItem
+                      className={classes.addButton}
+                      component={Link}
+                      to={addLinkHref}
+                    >
+                      {addLinkText}
+                    </MenuItem>
+                  )}
+                </Paper>
+              </Collapse>
+            </ButtonBase>
+          </FlexContainer>
+        </ClickAwayListener>
+      </ContentState>
     </FlexContainer>
   );
 };
 
-DashboardLayoutOrganizationSelector.defaultProps = {
+OrganizationSelector.defaultProps = {
   className: null,
+  addLinkHref: null,
+  addLinkText: null,
+  error: null,
+  currentOrganizationName: null,
+  disabled: false,
 };
 
-DashboardLayoutOrganizationSelector.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  addLinkHref: PropTypes.string.isRequired,
-  currentOrganization: PropTypes.shape({
-    name: PropTypes.string,
+OrganizationSelector.propTypes = {
+  DataListProps: PropTypes.shape({
+    queryResult: PropTypes.shape({
+      loading: PropTypes.bool,
+      error: PropTypes.instanceOf(Error),
+      items: PropTypes.array,
+    }).isRequired,
   }).isRequired,
-  NotFoundPlaceholder: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    PropTypes.object.isRequired,
-    PropTypes.func.isRequired,
-  ]).isRequired,
+  ListItemComponent: PropTypes.func.isRequired,
+  addLinkHref: PropTypes.string,
+  addLinkText: PropTypes.string,
+  className: PropTypes.string,
+  currentOrganizationName: PropTypes.string,
+  error: PropTypes.instanceOf(Error),
+  loading: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
+  showAddButton: PropTypes.bool.isRequired,
 };
 
-DashboardLayoutOrganizationSelector.Item = OrganizationSelectorItem;
-DashboardLayoutOrganizationSelector.NotFoundPlaceholder = OrganizationSelectorNotFoundPlaceholder;
-
-export default DashboardLayoutOrganizationSelector;
+export default OrganizationSelector;

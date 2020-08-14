@@ -10,7 +10,8 @@ const useStyles = makeStyles(
     root: {
       flexShrink: 0,
       height: '75px',
-      backgroundColor: theme.palette.background.paper,
+      margin: `0 ${theme.spacing(4)}px`,
+      userSelect: 'none',
     },
   }),
   { name: 'DashboardLayoutHeader' },
@@ -20,10 +21,7 @@ const DashboardLayoutHeader = ({ className, children }) => {
   const classes = useStyles();
 
   return (
-    <FlexContainer
-      component="header"
-      className={cn(classes.root, className)}
-    >
+    <FlexContainer component="header" className={cn(classes.root, className)}>
       {children}
     </FlexContainer>
   );

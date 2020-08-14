@@ -15,21 +15,18 @@ const RadioBaseExample = () => {
 
   return (
     <>
-      <Radio
-        checked={currentValue === 'a'}
-        value="a"
-        onChange={handleChange}
-      />
-      <Radio
-        checked={currentValue === 'b'}
-        value="b"
-        onChange={handleChange}
-      />
+      <Radio checked={currentValue === 'a'} value="a" onChange={handleChange} />
+      <Radio checked={currentValue === 'b'} value="b" onChange={handleChange} />
     </>
   );
 };
 
-const RadioExtendedExample = ({ checked = true, disabled, label, labelPlacement }) => {
+const RadioExtendedExample = ({
+  checked = true,
+  disabled,
+  label,
+  labelPlacement,
+}) => {
   return (
     <Radio
       checked={checked}

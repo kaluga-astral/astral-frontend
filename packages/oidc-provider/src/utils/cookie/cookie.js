@@ -2,8 +2,6 @@ const { fromPairs } = require('lodash');
 
 const { secondsToMilliseconds } = require('../../utils/dateTime');
 
-const { REFRESH_TOKEN_MAX_AGE } = require('../../config/oidc');
-
 const generateCookieValue = (key, value) => `${key}=${value}`;
 
 const stringifyCookie = values => {

@@ -15,10 +15,7 @@ const VisibilityButton = ({ isVisible, onClick }) => {
   const classes = useStyles();
 
   return (
-    <IconButton
-      size="small"
-      onClick={onClick}
-    >
+    <IconButton size="small" onClick={onClick}>
       {isVisible ? (
         <VisibilityIcon className={classes.icon} />
       ) : (
@@ -33,4 +30,4 @@ VisibilityButton.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default (VisibilityButton);
+export default VisibilityButton;

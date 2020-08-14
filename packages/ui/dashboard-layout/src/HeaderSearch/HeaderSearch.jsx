@@ -2,54 +2,61 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { SearchIcon } from '@astral-frontend/icons';
+import { SearchInput } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
-
-import Input from './HeaderSearchInput';
 
 const useStyles = makeStyles(
   theme => ({
     root: {
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      flexGrow: 1,
-      margin: '0 0 0 15px',
-      color: theme.palette.grey[500],
-    },
-    icon: {
-      position: 'absolute',
-      fontSize: theme.typography.pxToRem(20),
-      margin: '0 20px',
+      width: '300px',
+      margin: theme.spacing(4, 0, 4, 2),
+      backgroundColor: '#ebeef1', // TODO: в тему
+      // transition: theme.transitions.create('width'),
+      // '&:focus-within': {
+      //   width: '100%',
+      // },
     },
   }),
   { name: 'DashboardLayoutHeaderSearch' },
 );
 
 const DashboardLayoutHeaderSearch = ({
-  className, inputValue, onInputChange, ...props
+  className,
+  placeholder,
+  inputValue,
+  defaultInputValue,
+  onInputChange,
+  renderFilters,
 }) => {
   const classes = useStyles();
 
   return (
-    <div className={cn(classes.root, className)}>
-      <SearchIcon className={classes.icon} />
-      <Input value={inputValue} onChange={onInputChange} {...props} />
-    </div>
+    <SearchInput
+      className={cn(classes.root, className)}
+      placeholder={placeholder}
+      value={inputValue}
+      defaultValue={defaultInputValue}
+      onChange={onInputChange}
+      renderFilters={renderFilters}
+    />
   );
 };
 
 DashboardLayoutHeaderSearch.defaultProps = {
   className: null,
   placeholder: 'Поиск',
-  inputValue: '',
+  inputValue: undefined,
+  defaultInputValue: undefined,
+  renderFilters: null,
 };
 
 DashboardLayoutHeaderSearch.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  defaultInputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onInputChange: PropTypes.func.isRequired,
+  renderFilters: PropTypes.func,
 };
 
 export default DashboardLayoutHeaderSearch;

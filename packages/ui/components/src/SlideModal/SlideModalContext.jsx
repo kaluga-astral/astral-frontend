@@ -1,5 +1,9 @@
 import React from 'react';
 
-const SlideModalContext = React.createContext({ onClose: null });
+export const SlideModalContext = React.createContext();
+
+export const useSlideModalContext = () => {
+  return React.useContext(SlideModalContext);
+};
 
 export default SlideModalContext;

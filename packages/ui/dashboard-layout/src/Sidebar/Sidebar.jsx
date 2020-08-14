@@ -4,54 +4,55 @@ import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 import { FlexContainer } from '@astral-frontend/components';
 
-import { __Context as LayoutContext } from '../Layout';
-import SidebarContext from './Context';
+import Aside from '../Aside';
+import SidebarContext from './SidebarContext';
 
 const useStyles = makeStyles(
   theme => ({
     root: {
-      width: '260px',
+      width: '70px',
       height: '100%',
       backgroundColor: theme.palette.background.paper,
+      userSelect: 'none',
       transition: theme.transitions.create(['width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      '&$collapsed': {
-        width: '70px',
-        transition: theme.transitions.create(['width'], {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        }),
-      },
     },
-    collapsed: {},
+    expanded: {
+      width: '260px',
+    },
   }),
   { name: 'DashboardLayoutSidebar' },
 );
 
-const asideRef = React.createRef();
+const LOCALSTORAGE_KEY = '__DASHBOARD_LAYOUT_SIDEBAR__';
 
 const DashboardLayoutSidebar = ({ className, children }) => {
   const classes = useStyles();
-  const { isSidebarOpen } = React.useContext(LayoutContext);
-  const [isTransitioning, setIsTransitioning] = React.useState(false);
-
-  React.useEffect(() => {
-    asideRef.current.addEventListener('transitionend', event => {
-      event.stopPropagation();
-      setIsTransitioning(false);
-    });
+  const initialExpanded = React.useMemo(() => {
+    return (
+      JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) ?? {
+        expanded: true,
+      }
+    ).expanded;
+  }, []);
+  const [expanded, setExpanded] = React.useState(initialExpanded);
+  const toggleExpanded = React.useCallback(() => {
+    setExpanded(prevValue => !prevValue);
   }, []);
 
+  React.useEffect(() => {
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify({ expanded }));
+  }, [expanded]);
+
   return (
-    <SidebarContext.Provider value={{ isTransitioning }}>
+    <SidebarContext.Provider value={{ expanded, toggleExpanded }}>
       <FlexContainer
-        ref={asideRef}
-        component="aside"
+        component={Aside}
         direction="column"
-        className={cn(classes.root, className, {
-          [classes.collapsed]: !isSidebarOpen,
+        className={cn(className, classes.root, {
+          [classes.expanded]: expanded,
         })}
       >
         {children}
@@ -65,7 +66,6 @@ DashboardLayoutSidebar.defaultProps = {
 };
 
 DashboardLayoutSidebar.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };

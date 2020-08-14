@@ -7,16 +7,17 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import DialogContext from './DialogContext';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    borderRadius: theme.spacing(1),
-  },
-}));
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      borderRadius: theme.spacing(1),
+    },
+  }),
+  { name: 'Dialog' },
+);
 
-const Dialog = (props) => {
-  const {
-    open, className, onClose, ...rootProps
-  } = props;
+const Dialog = props => {
+  const { open, className, onClose, ...rootProps } = props;
   const classes = useStyles(props);
 
   return (

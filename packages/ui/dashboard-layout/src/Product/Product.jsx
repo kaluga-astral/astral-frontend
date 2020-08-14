@@ -28,6 +28,7 @@ const useStyles = makeStyles(
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
+      fontWeight: theme.typography.fontWeightBold,
     },
     endContentWrapper: {
       opacity: ({ hideEndContent }) => (hideEndContent ? 0 : 1),
@@ -49,12 +50,11 @@ const DashboardLayoutProduct = ({
   Logo,
   EndContent,
   title,
-  ...props
 }) => {
   const classes = useStyles({ hideEndContent });
 
   return (
-    <div className={cn(classes.root, className)} {...props}>
+    <div className={cn(classes.root, className)}>
       <Logo className={classes.logo} />
       <div className={classes.title}>{title}</div>
       <div

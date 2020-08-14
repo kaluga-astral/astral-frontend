@@ -1,3 +1,7 @@
+import palette from './palette';
+import shadows from './shadows';
+import typography from './typography';
+
 export default {
   MuiStepper: {
     root: {
@@ -6,7 +10,7 @@ export default {
   },
   MuiPaper: {
     root: {
-      boxShadow: 'none',
+      boxShadow: shadows[0],
     },
   },
   MuiTableCell: {
@@ -18,6 +22,28 @@ export default {
   MuiButtonBase: {
     root: {
       display: 'flex',
+      fontFamily: 'inherit',
+    },
+  },
+  MuiTooltip: {
+    arrow: {
+      color: palette.gray[900],
+    },
+    tooltip: {
+      backgroundColor: palette.gray[900],
+      color: 'white',
+    },
+    tooltipPlacementTop: {
+      top: '6px',
+    },
+  },
+  MuiTypography: {
+    subtitle1: {
+      fontSize: '18px',
+      fontWeight: typography.fontWeightBold,
+    },
+    gutterBottom: {
+      marginBottom: '0.75em',
     },
   },
 };

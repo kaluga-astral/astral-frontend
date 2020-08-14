@@ -24,7 +24,11 @@ const getPopperMod = arrowRef => ({
 });
 
 const ProductsPopover = ({
-  open, id, anchorEl, fetchProductsInfo, onClose,
+  open,
+  id,
+  anchorEl,
+  fetchProductsInfo,
+  onClose,
 }) => {
   const arrowRef = useRef(null);
   const { status, error, products } = fetchProductsInfo;
@@ -52,7 +56,11 @@ const ProductsPopover = ({
                   error={error}
                   FailureStateComponent={ErrorPlaceholder}
                 >
-                  {noResult ? <EmptyPlaceholder /> : <ProductsList products={products} />}
+                  {noResult ? (
+                    <EmptyPlaceholder />
+                  ) : (
+                    <ProductsList products={products} />
+                  )}
                 </ContentState>
               </Paper>
             </div>

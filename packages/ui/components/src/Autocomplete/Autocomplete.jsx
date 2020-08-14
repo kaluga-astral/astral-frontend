@@ -36,6 +36,7 @@ const Autocomplete = ({
       options={options}
       filterOptions={filterOptions}
       getOptionLabel={getOptionLabel}
+      getOptionSelected={option => options.find(v => v.key === option.key)}
       onOpen={onOpen}
       onClose={onClose}
       onChange={onChange}
@@ -45,10 +46,10 @@ const Autocomplete = ({
           ...params.InputProps,
           ...MuiTextFieldProps.InputProps,
           endAdornment: (
-            <React.Fragment>
+            <>
               {loading ? <CircularProgress color="inherit" size={20} /> : null}
               {params.InputProps.endAdornment}
-            </React.Fragment>
+            </>
           ),
         };
 
@@ -56,7 +57,7 @@ const Autocomplete = ({
           <TextField
             {...params}
             fullWidth
-            margin="normal"
+            margin="none"
             {...MuiTextFieldProps}
             InputProps={InputProps}
           />
@@ -75,12 +76,12 @@ Autocomplete.defaultProps = {
   noOptionsText: 'Ничего не найдено',
   getOptionLabel: option => option.label || '',
   filterOptions: (options, { inputValue }) => {
-    return matchSorter(options, inputValue, { keys: [item => item.label] });
+    return matchSorter(options, inputValue, { keys: ['label'] });
   },
-  onChange: () => {},
-  onClose: () => {},
-  onInputChange: () => {},
-  onOpen: () => {},
+  onChange: null,
+  onClose: null,
+  onInputChange: null,
+  onOpen: null,
   value: null,
   options: [],
 };

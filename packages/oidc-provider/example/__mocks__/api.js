@@ -18,6 +18,7 @@ const createMockApi = port => {
   return app.listen(port, err => {
     if (err) throw err;
 
+    // eslint-disable-next-line no-console
     console.log(`Mock api listening on port ${port}`);
   });
 };

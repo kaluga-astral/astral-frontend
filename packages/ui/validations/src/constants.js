@@ -9,7 +9,8 @@ import mustBeOGRN from './mustBeOGRN';
 // TODO: оставить в @astral-frontend/validations только константы и их экспортировать
 export const ORGANIZATION_VALIDATIONS_PARAMS = {
   ip: {
-    labelINN: 'ИНН ИП',
+    labelINN: 'ИНН',
+    labelOGRN: 'ОГРНИП',
     maxLengthINN: 12,
     maxLengthOGRN: 15,
     weightsForCheckNumINN: {
@@ -24,7 +25,8 @@ export const ORGANIZATION_VALIDATIONS_PARAMS = {
     },
   },
   ul: {
-    labelINN: 'ИНН ЮЛ',
+    labelINN: 'ИНН',
+    labelOGRN: 'ОГРН',
     maxLengthINN: 10,
     maxLengthOGRN: 13,
     weightsForCheckNumINN: [2, 4, 10, 3, 5, 9, 4, 6, 8, 0],
@@ -37,6 +39,7 @@ export const ORGANIZATION_VALIDATIONS_PARAMS = {
   },
   null: {
     labelINN: 'ИНН',
+    labelOGRN: 'ОГРН',
     maxLengthINN: 12,
     maxLengthOGRN: 15,
     validateINN(args) {

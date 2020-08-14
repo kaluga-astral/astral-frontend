@@ -14,15 +14,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SlideModalFooter = ({
-  className, children, disablePadding, ...props
+export const SlideModalFooter = ({
+  className,
+  children,
+  disablePadding,
+  ...props
 }) => {
   const classes = useStyles();
 
   return (
     <FlexContainer
       component="footer"
-      className={cn(classes.root, className, { [classes.padding]: !disablePadding })}
+      className={cn(classes.root, className, {
+        [classes.padding]: !disablePadding,
+      })}
       {...props}
     >
       {children}

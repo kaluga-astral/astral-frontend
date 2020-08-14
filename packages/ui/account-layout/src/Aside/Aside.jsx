@@ -15,7 +15,9 @@ const AccountAside = ({
       <ProductLogo className={classes.productLogo} />
       <div>
         <h1 className={classes.productName}>{productName}</h1>
-        {productDescription && <p className={classes.productDescription}>{productDescription}</p>}
+        {productDescription && (
+          <p className={classes.productDescription}>{productDescription}</p>
+        )}
       </div>
     </div>
   </aside>

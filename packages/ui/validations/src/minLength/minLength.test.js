@@ -2,7 +2,9 @@ import minLength from './minLength';
 
 describe('`minLength` validation rule', () => {
   test('should return an error object if value is invalid', () => {
-    expect(minLength(10)('0123')).toEqual('Минимальная длина поля 10 символов.');
+    expect(minLength(10)('0123')).toEqual(
+      'Минимальная длина поля 10 символов.',
+    );
   });
 
   test('should return empty object if value is valid', () => {

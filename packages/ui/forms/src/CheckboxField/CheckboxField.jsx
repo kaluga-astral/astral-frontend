@@ -5,9 +5,7 @@ import { FormHelperText } from '@astral-frontend/core';
 
 import Field from '../Field';
 
-const CheckboxField = ({
-  label, labelPlacement, className, ...props
-}) => (
+const CheckboxField = ({ label, labelPlacement, className, ...props }) => (
   <Field
     {...props}
     type="checkbox"

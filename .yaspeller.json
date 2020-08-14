@@ -1,0 +1,24 @@
+{
+  "excludeFiles": [
+    ".git",
+    "yaspeller",
+    "build/",
+    "node_modules",
+    "./**/node_modules",
+    "./**/*.test",
+    "./**/*.test.*",
+    "./**/*.stories.*",
+    "./**/*.docz.*"
+  ],
+  "format": "html",
+  "lang": "ru",
+  "fileExtensions": [".js", ".jsx", "ts"],
+  "findRepeatWords": true,
+  "ignoreCapitalization": true,
+  "ignoreDigits": true,
+  "ignoreUppercase": true,
+  "ignoreUrls": true,
+  "maxRequests": 2,
+  "ignoreText": [["\/\/ .*\n", "g"], ["\/\\*([^*]|[\\r\\n]|(\\*+([^*\/]|[\\r\\n])))*\\*\/", "g"], ["[a-zA-Z]"], ["[А-Я]+[а-я]*.*[А-Я]+.*[а-я]*", "g"]],
+  "dictionary": ["астрал", "промо", "валидир*", "криптопровайдер", "неавторизован*", "невалид*"]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@astral-frontend/assembly-scripts",
+  "version": "0.4.0",
+  "private": true,
+  "bin": {
+    "assembly-scripts": "./index.js"
+  },
+  "scripts": {},
+  "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.6",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/npm": "^7.0.3",
+    "@semantic-release/release-notes-generator": "^9.0.1",
+    "recursive-copy": "^2.0.10",
+    "semantic-release": "^17.0.4",
+    "shelljs": "^0.8.3"
+  },
+  "devDependencies": {},
+  "peerDependencies": {}
+}

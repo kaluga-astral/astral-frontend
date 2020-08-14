@@ -37,6 +37,7 @@ const initializeOidcProvider = async entryParams => {
     subscriber: storeSubscriber,
     publisher: storePublisher,
   } = connectStore(storeConnectUrl);
+
   // создаем канал для синхронизации запросов. Необходимость синхронизации описана в README
   await subscribeToSyncReqChannel(storeSubscriber);
 

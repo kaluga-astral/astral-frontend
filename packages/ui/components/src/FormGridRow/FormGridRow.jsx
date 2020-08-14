@@ -4,33 +4,36 @@ import React from 'react';
 
 import { makeStyles } from '@astral-frontend/styles';
 
+import Box from '../Box';
+
 const useStyles = makeStyles(
   theme => ({
     root: {
-      marginTop: '20px',
+      '&:not(:last-child)': {
+        marginBottom: theme.spacing(5),
+      },
     },
     content: {
       display: 'flex',
     },
     title: {
-      margin: '0 0 5px 0',
+      margin: theme.spacing(0, 0, 4, 0),
       fontSize: theme.typography.pxToRem(14),
-      color: theme.palette.text.primary,
+      fontWeight: theme.typography.fontWeightRegular,
+      color: theme.palette.grey[600],
     },
   }),
   { name: 'FormGridRow' },
 );
 
-const FormGridRow = ({
-  children, title, className, ...props
-}) => {
+const FormGridRow = ({ children, title, className, ...props }) => {
   const classes = useStyles();
 
   return (
-    <div {...props} className={cn(classes.root, className)}>
+    <Box className={cn(classes.root, className)} {...props}>
       {title && <h4 className={classes.title}>{title}</h4>}
       <div className={classes.content}>{children}</div>
-    </div>
+    </Box>
   );
 };
 

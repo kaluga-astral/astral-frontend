@@ -5,7 +5,7 @@ import { StaticRouter } from 'react-router-dom';
 import { ArrowIcon } from '../../../icons/src';
 import Sidebar from '../Sidebar';
 import Layout from '../Layout';
-import SidebarNav from '../SidebarNav';
+import AsideNav from '../AsideNav';
 import CurrentUserInfo from './CurrentUserInfo';
 
 storiesOf('packages/dashboard-layout/CurrentUserInfo', module).add(
@@ -14,7 +14,7 @@ storiesOf('packages/dashboard-layout/CurrentUserInfo', module).add(
     <Layout>
       <Sidebar>
         <StaticRouter location="/">
-          <SidebarNav />
+          <AsideNav />
           <CurrentUserInfo avatarAlt="UN" userName="template@mail.com">
             <CurrentUserInfo.Item
               Icon={ArrowIcon}

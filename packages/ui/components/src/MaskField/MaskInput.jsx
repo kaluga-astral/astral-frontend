@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-text-mask';
 
-const MaskInput = ({
-  inputRef, ...props
-}) => (
+const MaskInput = ({ inputRef, ...props }) => (
   <MaskedInput
     {...props}
-    ref={(ref) => {
+    ref={ref => {
       inputRef(ref ? ref.inputElement : null);
     }}
   />

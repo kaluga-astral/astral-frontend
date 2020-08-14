@@ -3,46 +3,58 @@ import { makeStyles } from '@astral-frontend/styles';
 import { FONTS_CONFIGS, LOCAL_FALLBACK_FONTS } from '@astral-frontend/fonts';
 import { flatten } from 'lodash-es';
 
-const getDownloadableFontsFamily = fontFamilyString => fontFamilyString
-  .split(', ')
-  .map(fontName => fontName.replace(/"/g, ''))
-  .filter(font => !LOCAL_FALLBACK_FONTS.includes(font));
+const getDownloadableFontsFamily = fontFamilyString =>
+  fontFamilyString
+    .split(', ')
+    .map(fontName => fontName.replace(/"/g, ''))
+    .filter(font => !LOCAL_FALLBACK_FONTS.includes(font));
 
-const getSrc = srcList => srcList
-  .map(({ url, format }) => `url('${url}') format('${format}')`)
-  .join(', ');
+const getSrc = srcList =>
+  srcList
+    .map(({ url, format }) => `url('${url}') format('${format}')`)
+    .join(', ');
 
-const generateFontsFace = (fontsConfig, fontFamily, fontDisplay) => fontsConfig.map((fontFace) => {
-  const { srcList, ...fontFaceProps } = fontFace;
+const generateFontsFace = (fontsConfig, fontFamily, fontDisplay) =>
+  fontsConfig.map(fontFace => {
+    const { srcList, ...fontFaceProps } = fontFace;
 
-  return {
-    ...fontFaceProps,
-    fontFamily,
-    fontDisplay,
-    src: getSrc(srcList),
-  };
-});
+    return {
+      ...fontFaceProps,
+      fontFamily,
+      fontDisplay,
+      src: getSrc(srcList),
+    };
+  });
 
-const getFontsFace = ({ typography }) => ({ fontDisplay, customFontsConfig }) => {
+const getFontsFace = ({ typography }) => ({
+  fontDisplay,
+  customFontsConfig,
+}) => {
   const fontsConfigs = { ...FONTS_CONFIGS, ...customFontsConfig };
   const { fontFamily: themeFontFamily } = typography;
   const downloadableFontsFamily = getDownloadableFontsFamily(themeFontFamily);
 
   return flatten(
-    downloadableFontsFamily.map((fontFamily) => {
+    downloadableFontsFamily.map(fontFamily => {
       const fontsConfig = fontsConfigs[fontFamily];
 
-      return fontsConfig ? generateFontsFace(fontsConfig, fontFamily, fontDisplay) : [];
+      return fontsConfig
+        ? generateFontsFace(fontsConfig, fontFamily, fontDisplay)
+        : [];
     }),
   );
 };
 
 // при попытке получения props нормальным способом из свойсв стили просто не генерятся
-const useFont = props => makeStyles(theme => ({
-  '@global': {
-    '@font-face': getFontsFace(theme)(props),
-  },
-}), { name: 'fonts' })();
+const useFont = props =>
+  makeStyles(
+    theme => ({
+      '@global': {
+        '@font-face': getFontsFace(theme)(props),
+      },
+    }),
+    { name: 'fonts' },
+  )();
 
 const FontsConnector = ({ children, ...props }) => {
   useFont(props);

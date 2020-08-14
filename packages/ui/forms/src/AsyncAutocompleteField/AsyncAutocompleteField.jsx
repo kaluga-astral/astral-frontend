@@ -1,7 +1,7 @@
 import { omit } from 'lodash-es';
-import React from 'react';
 import PropTypes from 'prop-types';
-import { useField, useFormState, useForm } from 'react-final-form';
+import React from 'react';
+import { useField, useFormState } from 'react-final-form';
 
 import { AsyncAutocomplete } from '@astral-frontend/components';
 
@@ -13,10 +13,10 @@ const AsyncAutocompleteField = ({
   validate,
   required,
   InputProps,
+  onChange,
   ...props
 }) => {
   const { initialValues } = useFormState();
-  const { mutators } = useForm();
   const initialFieldValue = (initialValues || {})[name] || {};
   const validationFunction = React.useCallback(
     createValidationFunction(required, validate),
@@ -25,7 +25,7 @@ const AsyncAutocompleteField = ({
   const { input, meta } = useField(name, {
     validate: validationFunction,
   });
-  const [value, setValue] = React.useState(initialFieldValue);
+  const [value, setValue] = React.useState(null);
   const error = required && meta.touched && !meta.valid;
   const helperText = meta.error && meta.touched ? meta.error : null;
   const handleChange = (event, newValue) => {
@@ -36,17 +36,20 @@ const AsyncAutocompleteField = ({
       setValue(null);
       input.onChange(null);
     }
+    onChange(event, newValue);
   };
 
   React.useEffect(() => {
     if (initialFieldValue) {
-      mutators.setValue(name, initialFieldValue.value);
+      setValue(initialFieldValue);
+      input.onChange((initialFieldValue || {}).value);
     }
-  }, []);
+  }, [JSON.stringify(initialFieldValue)]);
 
   return (
     <AsyncAutocomplete
       {...props}
+      name={name}
       error={error}
       required={required}
       helperText={helperText}
@@ -62,6 +65,7 @@ const AsyncAutocompleteField = ({
 
 AsyncAutocompleteField.defaultProps = {
   validate: null,
+  onChange: null,
   required: false,
   InputProps: {},
 };
@@ -82,6 +86,7 @@ AsyncAutocompleteField.propTypes = {
    *
    */
   validate: PropTypes.func,
+  onChange: PropTypes.func,
   /**
    * Обязательность поля
    */

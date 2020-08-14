@@ -6,10 +6,10 @@ import { OrganizationNotFoundIcon, ArrowIcon } from '../../../icons/src';
 
 import Sidebar from './Sidebar';
 import Layout from '../Layout';
-import SidebarNavLink from '../SidebarNavLink';
-import SidebarNav from '../SidebarNav';
-import SidebarNavItemToggleButton from '../SidebarNavItemToggleButton';
-import SidebarNavDropdown from '../SidebarNavDropdown';
+import AsideNavLink from '../AsideNavLink';
+import AsideNav from '../AsideNav';
+import AsideNavItemToggleButton from '../AsideNavItemToggleButton';
+import AsideNavDropdown from '../AsideNavDropdown';
 import CurrentUserInfo from '../CurrentUserInfo';
 
 storiesOf('packages/dashboard-layout/Sidebar', module).add('default', () => (
@@ -24,32 +24,32 @@ storiesOf('packages/dashboard-layout/Sidebar', module).add(
     <Layout>
       <Sidebar>
         <StaticRouter location="/">
-          <SidebarNav>
-            <SidebarNavLink
+          <AsideNav>
+            <AsideNavLink
               key="home"
               to="/"
               exact
               Icon={OrganizationNotFoundIcon}
               text="Главная"
             />
-            <SidebarNavLink
+            <AsideNavLink
               key="home"
               to="/products"
               exact
               Icon={OrganizationNotFoundIcon}
               text="Продукты"
             />
-            <SidebarNavDropdown
+            <AsideNavDropdown
               key="documents"
               text="Документы"
               Icon={OrganizationNotFoundIcon}
             >
-              <SidebarNavDropdown.Item text="Входящие" to="/incoming" />
-              <SidebarNavDropdown.Item text="Исходящие" to="outgoing" />
-              <SidebarNavDropdown.Item text="Черновики" to="/drafts" />
-            </SidebarNavDropdown>
-          </SidebarNav>
-          <SidebarNavItemToggleButton />
+              <AsideNavDropdown.Item text="Входящие" to="/incoming" />
+              <AsideNavDropdown.Item text="Исходящие" to="outgoing" />
+              <AsideNavDropdown.Item text="Черновики" to="/drafts" />
+            </AsideNavDropdown>
+          </AsideNav>
+          <AsideNavItemToggleButton />
           <CurrentUserInfo avatarAlt="UN" userName="template@mail.com">
             <CurrentUserInfo.Item Icon={ArrowIcon} text="Выйти" />
           </CurrentUserInfo>

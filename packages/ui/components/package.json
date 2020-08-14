@@ -1,36 +1,41 @@
 {
   "name": "@astral-frontend/components",
-  "version": "0.3.17",
+  "version": "0.4.0",
   "main": "./src/index.js",
   "scripts": {
-    "percy": "react-percy",
     "build": "assembly-scripts build",
     "postbuild": "assembly-scripts postbuild",
     "release": "assembly-scripts release"
   },
   "dependencies": {
-    "@astral-frontend/core": "^0.1.0",
-    "@astral-frontend/fonts": "^0.2.0",
-    "@astral-frontend/icons": "^0.1.0",
-    "@astral-frontend/styles": "^0.1.5",
-    "@bugsnag/plugin-react": "^6.0.0",
-    "@material-ui/lab": "^4.0.0-alpha.32",
+    "@astral-frontend/core": "^0.4.0",
+    "@astral-frontend/fonts": "^0.4.0",
+    "@astral-frontend/icons": "^0.4.0",
+    "@astral-frontend/styles": "^0.4.0",
+    "@material-ui/lab": "^4.0.0-alpha.44",
+    "@researchgate/react-intersection-list": "3.0.8",
     "classnames": "^2.2.6",
-    "downshift": "^3.3.5",
+    "date-fns": "^2.11.1",
+    "downshift": "^5.0.3",
     "intro.js": "2.9.3",
     "intro.js-react": "0.2.0",
     "lodash-es": "^4.17.11",
     "match-sorter": "^4.0.2",
+    "material-ui-popup-state": "^1.5.1",
     "prop-types": "^15.7.2",
-    "react-js-pagination": "^3.0.2",
+    "react-content-loader": "^5.0.2",
+    "react-dropzone": "^11.0.1",
+    "react-js-pagination": "^3.0.3",
     "react-text-mask": "^5.4.3"
   },
   "devDependencies": {
-    "@astral-frontend/assembly-scripts": "^0.1.0"
+    "@astral-frontend/assembly-scripts": "^0.4.0"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "@sentry/browser": "^5.15.5",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-router-dom": "^5.1.2"
   },
   "sideEffects": [
     "*.css"
