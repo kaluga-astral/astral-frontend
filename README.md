@@ -1,10 +1,5 @@
-v0.1 
-- personArea @perevecencev
+UI-Kit v1.0
 
-v0.2 
-- celsus @alexandrplugar
-- hr @perevecencev
-- edo @perevecencev
-- okk @jonikwk
-- chiefPersonArea @jonikwk
-- etp @julderen
+# Styles
+- для изменения размера шрифта в проекте достаточно переопределить htmlFontSize в теме.
+- для всех компонентов указывается величина шрифта для десктопа, для остальных разрешений менять надо только fontSize для html.

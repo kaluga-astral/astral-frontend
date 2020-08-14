@@ -1,0 +1,34 @@
+---
+menu: components
+name: ContentState
+---
+
+import { Props, Playground } from 'docz';
+import ContentState from './ContentState';
+import CircularProgress from '../CircularProgress';
+
+# ContentState
+
+<Props of={ContentState} />
+
+## Basic code
+
+```
+  <ContentState component="div" loading LoadingStateComponent={CircularProgress}>
+    Children
+  </ContentState>
+  <ContentState component="div" loading={false} error={new Error()} FailureStateComponent={() => (<div>ошибка</div>)}>
+    Children
+  </ContentState>
+```
+
+## Basic usage
+
+<Playground>
+  <ContentState component="div" loading LoadingStateComponent={CircularProgress}>
+    Children
+  </ContentState>
+  <ContentState component="div" loading={false} error={new Error()} FailureStateComponent={() => (<div>ошибка</div>)}>
+    Children
+  </ContentState>
+</Playground>

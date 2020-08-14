@@ -1,0 +1,4 @@
+const AUTH_STRATEGY_NAME = 'oidcAuth';
+const REFRESH_TOKEN_STRATEGY_NAME = 'refreshToken';
+
+module.exports = { AUTH_STRATEGY_NAME, REFRESH_TOKEN_STRATEGY_NAME };

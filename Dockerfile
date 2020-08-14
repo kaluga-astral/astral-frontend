@@ -1,15 +1,17 @@
 # build
-FROM node:9 AS build-env
-WORKDIR /usr/src/app
+FROM node:10.15.1 AS build
 
-COPY package.json /usr/src/app/
-COPY yarn.lock /usr/src/app/
-RUN yarn install
+WORKDIR /usr/src/app/astral-frontend
 
-COPY . /usr/src/app/
-RUN yarn build-storybook
+COPY ./ ./
+
+RUN yarn
+
+RUN yarn run docz:build
 
 # run
 FROM nginx
+COPY --from=build /usr/src/app/astral-frontend/.docz/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY --from=build-env /usr/src/app/storybook-static /usr/share/nginx/html
+EXPOSE 80

@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "@astral-frontend/eslint-config-ui",
+    "plugin:prettier/recommended"
+  ]
+}

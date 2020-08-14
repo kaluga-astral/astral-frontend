@@ -1,26 +1,20 @@
 import React from 'react';
-import { configure, addDecorator } from '@storybook/react';
-import { checkA11y } from '@storybook/addon-a11y';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withInfo } from '@storybook/addon-info';
+import {
+  configure,
+  getStorybook,
+  setAddon,
+  addDecorator,
+} from '@storybook/react';
+import { ThemeProvider } from '@astral-frontend/components';
+import { AstralEDOTheme } from '@astral-frontend/themes';
 
-import ThemeProvider from '../components/ThemeProvider';
-
-addDecorator(checkA11y);
-
-addDecorator(withKnobs);
-
-// addDecorator(withInfo);
-
-addDecorator(story => (
-  <ThemeProvider>
-    <div style={{ padding: '10px', height: '100vh', fontFamily: 'Helvetica' }}>{story()}</div>
-  </ThemeProvider>
-));
-
-const req = require.context('../components', true, /.stories.jsx?$/);
-const loadStories = () => {
+const theme = new AstralEDOTheme();
+const req = require.context('../packages', true, /\.stories\.(jsx|mdx)$/);
+function loadStories() {
   req.keys().forEach(filename => req(filename));
-};
+}
 
+addDecorator(storyFn => (
+  <ThemeProvider theme={theme}>{storyFn()}</ThemeProvider>
+));
 configure(loadStories, module);

@@ -1,0 +1,29 @@
+{
+  "name": "@astral-frontend/forms",
+  "version": "0.4.0",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "assembly-scripts build",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
+  "dependencies": {
+    "@astral-frontend/constants": "^0.4.0",
+    "@astral-frontend/styles": "^0.4.0",
+    "@astral-frontend/validations": "^0.4.0",
+    "final-form": "^4.18.7",
+    "lodash-es": "^4.17.11",
+    "match-sorter": "^4.1.0",
+    "prop-types": "^15.7.2",
+    "react-final-form": "^6.3.5",
+    "react-final-form-listeners": "^1.0.2"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "@astral-frontend/components": "^0.4.0",
+    "@astral-frontend/core": "^0.4.0",
+    "@astral-frontend/icons": "^0.4.0",
+    "react": ">=16.6.0"
+  },
+  "sideEffects": false
+}

@@ -1,0 +1,38 @@
+---
+menu: components
+name: MaskInput
+---
+
+import { Props, Playground } from 'docz';
+import MaskInput from './index';
+
+# MaskInput
+
+<Props of={MaskInput} />
+
+## Basic code
+
+```
+<MaskInput
+ name="maskField" mask={[
+   '+',
+   /\d/,
+   /\d/,
+  ]}
+/>
+```
+
+## Basic usage
+
+<Playground>
+  <a href="https://text-mask.github.io/text-mask/" target="_blank">text-mask</a><br/>
+    <MaskInput 
+    label="mask"
+        placeholder="placeholder"
+                mask={[
+                 '+',
+                 /\d/,
+                 /\d/,
+              ]}
+              />
+</Playground>

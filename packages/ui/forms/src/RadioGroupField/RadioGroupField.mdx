@@ -1,0 +1,62 @@
+---
+menu: forms
+name: RadioGroupField
+---
+
+import Form from '../Form';
+import RadioGroupField from './RadioGroupField';
+import { Playground, Props } from 'docz';
+
+# RadioGroupField
+
+<Props of={RadioGroupField} />
+
+## Base Example
+
+```
+<RadioGroupField
+  name="group"
+  options={[
+    { label: 'radio 1', value="1" },
+    { label: 'radio 1', value="1" }
+  ]}
+/>
+```
+
+## Base usage
+
+<Playground>
+  <Form onSubmit={(values) => console.log('onSubmit', values)}>
+    {() => (
+      <RadioGroupField
+        name="group"
+        options={[
+          { label: 'radio 1', value: '1' },
+          { label: 'radio 2', value: '2' }
+        ]}
+      />
+    )}
+  </Form>
+</Playground>
+
+## Group label with validation
+
+<Playground>
+  <Form onSubmit={(values) => console.log('onSubmit', values)}>
+    {() => (
+      <>
+        <RadioGroupField
+          row
+          name="group"
+          groupLabel="Label radio"
+          options={[
+            { label: 'radio 1', value: '1' },
+            { label: 'radio 2', value: '2' },
+            { disabled: true, label: 'radio disabled', value: '3' },
+          ]}
+          validate={() => 'error'}
+        />
+      </>
+    )}
+  </Form>
+</Playground>

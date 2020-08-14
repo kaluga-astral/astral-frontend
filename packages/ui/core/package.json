@@ -1,0 +1,20 @@
+{
+  "name": "@astral-frontend/core",
+  "version": "0.4.0",
+  "main": "./index.js",
+  "scripts": {
+    "build": "babel . --out-dir ./lib ",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.9.4"
+  },
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "^0.4.0"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0"
+  },
+  "sideEffects": false
+}

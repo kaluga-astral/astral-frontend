@@ -1,0 +1,31 @@
+---
+menu: dashboard-layout
+name: HeaderSearch
+---
+
+import { Playground, Props } from "docz";
+import { MemoryRouter } from "react-router-dom";
+import { SaveIcon } from "@astral-frontend/icons";
+
+import Header from "../Header";
+import HeaderSearch from "./HeaderSearch";
+
+# HeaderSearch
+
+<Props of={HeaderSearch} />
+
+## Basic code
+
+```
+  <Header>
+    <HeaderSearch onInputChange={(event) => console.log('HeaderSearch', event.target.value)} />
+  </Header>
+```
+
+## Basic usage
+
+<Playground>
+  <Header>
+    <HeaderSearch onInputChange={(event) => console.log('HeaderSearch', event.target.value)} />
+  </Header>
+</Playground>

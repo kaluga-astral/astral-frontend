@@ -1,0 +1,24 @@
+{
+  "name": "@astral-frontend/products-widget",
+  "description": "Виджет для отображения списка продуктов, доступных пользователю сервисов Астрала.",
+  "version": "1.0.2",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "assembly-scripts build",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
+  "dependencies": {
+    "@astral-frontend/styles": "^0.4.0",
+    "@astral-frontend/components": "0.4.0",
+    "@astral-frontend/core": "^0.4.0",
+    "@astral-frontend/icons": "^0.4.0",
+    "classnames": "^2.2.6",
+    "unfetch": "^4.1.0",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.6.0"
+  },
+  "sideEffects": false
+}

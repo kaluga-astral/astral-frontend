@@ -1,0 +1,58 @@
+---
+menu: components
+name: Checkbox
+---
+
+import { Props, Playground } from 'docz';
+import Checkbox from './Checkbox';
+import { CheckboxBaseExample, CheckboxExtendedExample } from './Checkbox.docz';
+
+# Checkbox
+
+<Props of={Checkbox} />
+
+## Example with label
+
+```
+const CheckboxBaseExample = () => {
+  const checkboxValue = 'check A value';
+  const [currentValue, setCurrentValue] = useState(null);
+
+  return (
+    <Checkbox
+      checked={currentValue === checkboxValue}
+      label="label"
+      value={checkboxValue}
+      onChange={(event) => {
+        const { target } = event;
+        const { checked, value } = target;
+
+        if (checked) setCurrentValue(value);
+        if (!checked) setCurrentValue(null);
+      }}
+    />
+  );
+};
+```
+
+## Without label
+
+<Playground>
+  <CheckboxBaseExample />
+</Playground>
+
+## With label
+
+<Playground>
+  <CheckboxExtendedExample checkboxValue="checkbox B value" label="end label checkbox" />
+  <CheckboxExtendedExample checkboxValue="checkbox C value" label="start label checkbox" labelPlacement="start" />
+  <CheckboxExtendedExample checkboxValue="checkbox D value" label="top label checkbox" labelPlacement="top" />
+  <CheckboxExtendedExample checkboxValue="checkbox E value" label="top label checkbox" labelPlacement="bottom" />
+</Playground>
+
+## Disabled
+
+<Playground>
+  <CheckboxExtendedExample disabled label="disabled checkbox" />
+  <CheckboxExtendedExample disabled checked label="disabled checkbox" />
+</Playground>

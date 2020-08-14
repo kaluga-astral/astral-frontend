@@ -1,0 +1,22 @@
+{
+  "name": "oidc-provider-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon --inspect ./app.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.16.4",
+    "express-session": "^1.17.0",
+    "express-winston": "^4.0.1",
+    "http-proxy-middleware": "1.0.3",
+    "pretty-error": "^2.1.1",
+    "winston": "^3.2.1",
+    "@astral-frontend/oidc-provider": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
