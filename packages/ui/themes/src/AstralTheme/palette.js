@@ -21,6 +21,12 @@ export default {
     main: '#f24646',
     dark: '#c00000',
   },
+  warning: {
+    main: '#f98700',
+  },
+  success: {
+    main: '#00b54e',
+  },
   text: {
     primary: '#1d3f66',
     secondary: '#99a9ba',

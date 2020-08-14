@@ -19,7 +19,7 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       borderRadius: theme.shape.borderRadius,
-      color: theme.palette.grey[600],
+      color: theme.palette.gray[600],
       marginBottom: theme.spacing(1),
     },
     expanded: {
@@ -31,6 +31,7 @@ const useStyles = makeStyles(
       width: '100%',
     },
     icon: {
+      color: theme.palette.gray[500],
       flexShrink: 0,
       margin: theme.spacing(3, 4),
     },
@@ -59,6 +60,14 @@ const useStyles = makeStyles(
     },
     expanderIcon: {
       margin: theme.spacing(3, 4),
+    },
+    activeButton: {
+      color: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.light,
+
+      '& $icon': {
+        color: theme.palette.primary.main,
+      },
     },
   }),
   {
@@ -115,6 +124,7 @@ const DashboardLayoutAsideNavItem = ({
         <ButtonBase
           {...props}
           className={classes.button}
+          activeClassName={classes.activeButton}
           onClick={handleSidebarNavItemClick}
         >
           <Icon className={classes.icon} />
