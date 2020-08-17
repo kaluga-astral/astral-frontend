@@ -2,11 +2,12 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { ButtonBase, SvgIcon } from '@astral-frontend/components';
+import { ButtonBase } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import { __Context as SidebarContext } from '../Sidebar';
 import SidebarTooltip from '../SidebarTooltip';
+import SidebarTogglerIcon from './SidebarTogglerIcon';
 
 const useStyles = makeStyles(
   theme => ({
@@ -17,7 +18,7 @@ const useStyles = makeStyles(
     button: {
       width: '100%',
       justifyContent: 'left',
-      color: theme.palette.grey[600],
+      color: theme.palette.gray[600],
       borderRadius: theme.shape.borderRadius,
     },
     icon: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles(
       margin: theme.spacing(3, 4),
       transition: theme.transitions.create(['transform']),
       transform: ({ expanded }) => {
-        return expanded ? 'rotateZ(180deg)' : 'rotateZ(0deg)';
+        return expanded ? 'rotateZ(0deg)' : ' rotateZ(180deg)';
       },
     },
     text: {
@@ -36,6 +37,11 @@ const useStyles = makeStyles(
       textAlign: 'left',
       fontSize: theme.typography.pxToRem(14),
       fontWeight: theme.typography.fontWeightBold,
+    },
+    tooltip: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   }),
   {
@@ -59,18 +65,8 @@ const SidebarToggler = ({ className, ...props }) => {
         className={classes.button}
         onClick={handleButtonClick}
       >
-        <SidebarTooltip title={TEXT}>
-          <SvgIcon className={classes.icon}>
-            <g>
-              <rect fill="none" height="24" width="24" />
-            </g>
-            <g>
-              <g>
-                <polygon points="15.5,5 11,5 16,12 11,19 15.5,19 20.5,12" />
-                <polygon points="8.5,5 4,5 9,12 4,19 8.5,19 13.5,12" />
-              </g>
-            </g>
-          </SvgIcon>
+        <SidebarTooltip className={classes.tooltip} title={TEXT}>
+          <SidebarTogglerIcon className={classes.icon} />
         </SidebarTooltip>
         <div className={classes.text}>{TEXT}</div>
       </ButtonBase>
