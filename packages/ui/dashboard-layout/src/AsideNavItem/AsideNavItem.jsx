@@ -64,7 +64,6 @@ const useStyles = makeStyles(
     activeButton: {
       color: theme.palette.primary.main,
       backgroundColor: theme.palette.primary.light,
-
       '& $icon': {
         color: theme.palette.primary.main,
       },
@@ -124,7 +123,6 @@ const DashboardLayoutAsideNavItem = ({
         <ButtonBase
           {...props}
           className={classes.button}
-          activeClassName={classes.activeButton}
           onClick={handleSidebarNavItemClick}
         >
           <Icon className={classes.icon} />
