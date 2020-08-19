@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/webpack-config",
-  "version": "0.4.0",
+  "version": "1.1.2",
   "scripts": {},
   "main": "./src/index.js",
   "dependencies": {

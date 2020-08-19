@@ -4,7 +4,7 @@ import { Tooltip } from '@astral-frontend/components';
 
 import SidebarContext from '../Sidebar/SidebarContext';
 
-const SidebarTooltip = ({ children, ...props }) => {
+const SidebarTooltip = ({ children, className, ...props }) => {
   const { expanded } = React.useContext(SidebarContext) || { expanded: true };
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
@@ -16,6 +16,7 @@ const SidebarTooltip = ({ children, ...props }) => {
 
   return (
     <Tooltip
+      className={className}
       placement="right"
       open={open}
       onClose={handleClose}
@@ -27,7 +28,12 @@ const SidebarTooltip = ({ children, ...props }) => {
   );
 };
 
+SidebarTooltip.defaultProps = {
+  className: null,
+};
+
 SidebarTooltip.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 

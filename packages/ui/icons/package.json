@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/icons",
-  "version": "0.4.0",
+  "version": "1.1.2",
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
@@ -8,12 +8,12 @@
     "release": "assembly-scripts release"
   },
   "dependencies": {
-    "@astral-frontend/core": "^0.4.0"
+    "@astral-frontend/core": "*"
   },
   "devDependencies": {},
   "peerDependencies": {
     "react": ">=16.6.0",
-    "@astral-frontend/core": "^0.4.0"
+    "@astral-frontend/core": "*"
   },
   "sideEffects": false
 }
