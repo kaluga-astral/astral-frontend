@@ -17,14 +17,15 @@ export default {
     900: '#072d57',
   },
   error: {
-    light: '#ff8a5b',
+    light: '#fcd9d9',
     main: '#f24646',
-    dark: '#c00000',
+    dark: '#f3d0d0',
   },
   warning: {
     main: '#f98700',
   },
   success: {
+    light: '#e5f8ed',
     main: '#00b54e',
   },
   text: {
