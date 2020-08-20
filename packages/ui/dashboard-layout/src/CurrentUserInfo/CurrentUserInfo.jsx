@@ -19,7 +19,7 @@ const useStyles = makeStyles(
     divider: {
       margin: theme.spacing(0, 2),
       height: '1px',
-      backgroundColor: 'rgba(29, 63, 102, 0.45)',
+      backgroundColor: theme.palette.gray[600],
     },
     button: {
       width: '100%',

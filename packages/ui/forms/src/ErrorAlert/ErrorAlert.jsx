@@ -19,6 +19,6 @@ export default withStyles(theme => ({
   root: {
     margin: '12.5px 0',
     fontWeight: 300,
-    color: theme.palette.error.dark,
+    color: theme.palette.error.main,
   },
 }))(FormErrorAlert);

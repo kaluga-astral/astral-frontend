@@ -6,8 +6,7 @@ import { makeStyles } from '@astral-frontend/styles';
 const useStyles = makeStyles(
   theme => ({
     root: {
-      // FIXME
-      color: 'rgba(29, 63, 102, 0.62)',
+      color: theme.palette.gray[700],
     },
     head: {
       padding: '20px 20px 20px 16px',
