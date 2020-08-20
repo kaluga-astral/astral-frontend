@@ -1,4 +1,4 @@
-const OGANIZATION_TYPES = {
+const ORGANIZATION_TYPES = {
   ip: {
     id: 'ip',
     length: 12,
@@ -8,4 +8,4 @@ const OGANIZATION_TYPES = {
   },
 };
 
-export default OGANIZATION_TYPES;
+export default ORGANIZATION_TYPES;
