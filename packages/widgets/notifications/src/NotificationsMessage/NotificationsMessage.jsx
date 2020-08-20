@@ -18,50 +18,53 @@ import NotificationsTimer from '../NotificationsTimer';
 import NotificationsContext from '../NotificationsContext';
 import NotificationsDeleteIcon from '../NotificationsDeleteIcon';
 
-const useStyles = makeStyles(theme => {
-  const getTitleColor = ({ variant }) => {
-    switch (variant) {
-      case 'error':
-        return theme.palette.error.main;
-      case 'delete':
-        return theme.palette.error.main;
-      case 'info':
-        return theme.palette.primary.main;
-      case 'success':
-        return theme.palette.primary.main;
-      default:
-        throw new Error('unexpected NotificationMessage variant');
-    }
-  };
+const useStyles = makeStyles(
+  theme => {
+    const getTitleColor = ({ variant }) => {
+      switch (variant) {
+        case 'error':
+          return theme.palette.error.main;
+        case 'delete':
+          return theme.palette.error.main;
+        case 'info':
+          return theme.palette.primary.main;
+        case 'success':
+          return theme.palette.primary.main;
+        default:
+          throw new Error('unexpected NotificationMessage variant');
+      }
+    };
 
-  return {
-    root: {
-      position: 'relative',
-      padding: theme.spacing(3, 4, 8),
-      overflow: 'hidden',
-    },
-    header: {
-      marginBottom: '10px',
-    },
-    icon: {
-      marginRight: '10px',
-    },
-    title: {
-      fontSize: '14px',
-      marginRight: '10px',
-      color: getTitleColor,
-    },
-    message: {
-      maxWidth: '600px',
-      color: theme.palette.gray[600],
-    },
-    progressLine: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-    },
-  };
-});
+    return {
+      root: {
+        position: 'relative',
+        padding: theme.spacing(4),
+        overflow: 'hidden',
+      },
+      header: {
+        marginBottom: '10px',
+      },
+      icon: {
+        marginRight: '10px',
+      },
+      title: {
+        fontSize: '14px',
+        marginRight: '10px',
+        color: getTitleColor,
+      },
+      message: {
+        maxWidth: '600px',
+        color: theme.palette.gray[600],
+      },
+      progressLine: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+      },
+    };
+  },
+  { name: 'NotificationsMessage' },
+);
 
 const NotificationsMessage = React.forwardRef((props, ref) => {
   const {
@@ -95,8 +98,9 @@ const NotificationsMessage = React.forwardRef((props, ref) => {
     }
   };
   const [renderProgressLine, setRenderProgressLine] = React.useState(true);
-  const setTimer = () =>
+  const setTimer = () => {
     setTimeout(closeSnackbar, duration || notificationDuration, id);
+  };
   const handleMouseEnter = () => {
     clearTimeout(timerRef.current);
     setRenderProgressLine(false);
