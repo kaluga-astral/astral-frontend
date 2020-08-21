@@ -30,7 +30,7 @@ const useStyles = makeStyles(
       right: 0,
       bottom: 0,
       left: 0,
-      backgroundColor: '#1D3F6655',
+      backgroundColor: theme.palette.gray[800],
       outlineColor: theme.palette.common.white,
       outlineOffset: '-20px',
       outlineStyle: 'dashed',

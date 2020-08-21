@@ -13,18 +13,21 @@ export default {
     300: '#dde2e8',
     500: '#b7c2ce',
     600: '#99a9ba',
+    700: '#7388a0',
+    750: '#535659',
     800: '#1d3f66',
     900: '#072d57',
   },
   error: {
-    light: '#ff8a5b',
+    light: '#fcd9d9',
     main: '#f24646',
-    dark: '#c00000',
+    dark: '#f3d0d0',
   },
   warning: {
     main: '#f98700',
   },
   success: {
+    light: '#e5f8ed',
     main: '#00b54e',
   },
   text: {

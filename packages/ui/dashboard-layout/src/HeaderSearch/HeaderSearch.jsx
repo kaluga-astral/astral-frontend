@@ -10,7 +10,7 @@ const useStyles = makeStyles(
     root: {
       width: '300px',
       margin: theme.spacing(4, 0, 4, 2),
-      backgroundColor: '#ebeef1', // TODO: в тему
+      backgroundColor: theme.palette.gray[100],
       // transition: theme.transitions.create('width'),
       // '&:focus-within': {
       //   width: '100%',

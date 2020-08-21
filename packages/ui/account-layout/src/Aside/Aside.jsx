@@ -42,7 +42,7 @@ export default withStyles(theme => ({
     display: 'flex',
     alignItems: 'flex-end',
     flex: 1,
-    backgroundColor: '#CCC',
+    backgroundColor: theme.palette.gray[500],
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     zIndex: 0,

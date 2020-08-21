@@ -15,10 +15,10 @@ FormErrorAlert.propTypes = {
   classes: PropTypes.shape().isRequired,
 };
 
-export default withStyles({
+export default withStyles(theme => ({
   root: {
     margin: '12.5px 0',
     fontWeight: 300,
-    color: '#c00000',
+    color: theme.palette.error.main,
   },
-})(FormErrorAlert);
+}))(FormErrorAlert);
