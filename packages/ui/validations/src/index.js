@@ -24,3 +24,4 @@ export { default as mustBePassportSeries } from './mustBePassportSeries';
 export { default as mustBeRegNumberFSS } from './mustBeRegNumberFSS';
 export { default as mustBeRegNumberPFR } from './mustBeRegNumberPFR';
 export { default as mustBeSNILS } from './mustBeSNILS';
+export * from './constants';
