@@ -2,6 +2,7 @@ export default {
   divider: 'rgba(103, 70, 235, 0.1)',
   background: {
     default: '#f2f5fa',
+    white: 'rgba(255, 255, 255, 0.1)',
   },
   common: {
     black: '#000000',
