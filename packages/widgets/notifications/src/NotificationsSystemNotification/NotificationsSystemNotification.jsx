@@ -20,7 +20,7 @@ const useStyles = makeStyles(
     },
     systemNotifitionWrapper: {
       padding: theme.spacing(1, 2),
-      backgroundColor: theme.palette.background.white,
+      backgroundColor: `${theme.palette.common.white}10`,
       borderRadius: theme.shape.borderRadius,
     },
     systemNotificationIcon: {
