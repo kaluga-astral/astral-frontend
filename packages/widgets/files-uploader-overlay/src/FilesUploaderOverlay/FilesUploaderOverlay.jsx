@@ -5,6 +5,7 @@ import React from 'react';
 
 import { useDropzone, Box } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
+import { fade } from '@astral-frontend/core';
 
 import FilesUploaderOverlayContext from '../FilesUploaderOverlayContext';
 import FilesUploaderOverlayIcon from './FilesUploaderOverlayIcon';
@@ -30,7 +31,7 @@ const useStyles = makeStyles(
       right: 0,
       bottom: 0,
       left: 0,
-      backgroundColor: `${theme.palette.gray[800]}55`,
+      backgroundColor: fade(theme.palette.gray[800], 0.55),
       outlineColor: theme.palette.common.white,
       outlineOffset: '-20px',
       outlineStyle: 'dashed',
