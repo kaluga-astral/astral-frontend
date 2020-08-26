@@ -4,6 +4,7 @@ import React from 'react';
 
 import { IconButton, Box, Grid } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
+import { fade } from '@astral-frontend/core';
 
 import NotificationsSystemNotificationBellIcon from './NotificationsSystemNotificationBellIcon';
 import NotificationsSystemNotificationCrossIcon from './NotificationsSystemNotificationCrossIcon';
@@ -20,7 +21,7 @@ const useStyles = makeStyles(
     },
     systemNotifitionWrapper: {
       padding: theme.spacing(1, 2),
-      backgroundColor: theme.palette.background.white,
+      backgroundColor: fade(theme.palette.common.white, 0.1),
       borderRadius: theme.shape.borderRadius,
     },
     systemNotificationIcon: {
