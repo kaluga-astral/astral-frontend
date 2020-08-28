@@ -2,7 +2,7 @@ const authStrategyService = require('passport');
 const { Strategy: CustomStrategy } = require('passport-custom');
 const { Strategy: OidcStrategy } = require('openid-client');
 
-const { lockResource, unlockResource } = require('../services/syncRequests');
+const { lockResource, unlockResource } = require('./syncRequests');
 
 const { updateSessionExpires } = require('../utils/cookie');
 

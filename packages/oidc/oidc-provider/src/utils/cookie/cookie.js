@@ -1,22 +1,7 @@
 const { fromPairs } = require('lodash');
+const { setReqCookies } = require('@astral-frontend/oidc-server-utils');
 
 const { secondsToMilliseconds } = require('../dateTime');
-
-const generateCookieValue = (key, value) => `${key}=${value}`;
-
-const stringifyCookie = values => {
-  const valuesEntries = Object.entries(values);
-
-  return valuesEntries.reduce((cookieString, currentEntry, index) => {
-    const [key, value] = currentEntry;
-
-    if (index === valuesEntries.length - 1) {
-      return `${cookieString}${generateCookieValue(key, value)}`;
-    }
-
-    return `${cookieString}${generateCookieValue(key, value)}; `;
-  }, '');
-};
 
 const updateSessionExpires = (req, refreshTokenMaxAgeInSec) => {
   const refreshTokenMaxAge = secondsToMilliseconds(refreshTokenMaxAgeInSec);
@@ -33,11 +18,6 @@ const getFilteredCookieEntries = (cookies, deleteFields) =>
     return !deleteFields.includes(key);
   });
 
-const setReqCookies = (req, newCookies) => {
-  req.cookies = newCookies;
-  req.headers.cookie = stringifyCookie(newCookies);
-};
-
 const deleteReqHeadersCookie = (req, deleteFields) => {
   // cookies появляется благодаря cookie-parser
   const newCookies = fromPairs(
@@ -48,7 +28,6 @@ const deleteReqHeadersCookie = (req, deleteFields) => {
 };
 
 module.exports = {
-  stringifyCookie,
   updateSessionExpires,
   deleteReqHeadersCookie,
 };

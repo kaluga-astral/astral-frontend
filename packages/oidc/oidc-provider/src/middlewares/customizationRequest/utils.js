@@ -3,7 +3,7 @@ const setTokenHeader = req => {
   const { id_token, token_type } = req.user.tokenSet;
 
   // eslint-disable-next-line camelcase
-  req.headers['Authorization'] = `${token_type} ${id_token}`;
+  req.headers.Authorization = `${token_type} ${id_token}`;
 };
 
 module.exports = {

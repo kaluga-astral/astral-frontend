@@ -1,8 +1,8 @@
-// Данный mock принимает запрос и его же отсылает назад
-// eslint-disable-next-line import/no-extraneous-dependencies
 const express = require('express');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const bodyParser = require('body-parser');
 
+// Данный mock принимает запрос и его же отсылает назад
 const createMockApi = port => {
   const app = express();
 
@@ -19,6 +19,7 @@ const createMockApi = port => {
   return app.listen(port, err => {
     if (err) throw err;
 
+    // eslint-disable-next-line no-console
     console.log(`Mock api listening on port ${port}`);
   });
 };
