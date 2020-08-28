@@ -1,20 +1,14 @@
-const path = require('path');
-
 const { isFirstHtmlRequest } = require('../utils/httpMethods');
 
-const ERROR_TEMPLATE_PATH = path.resolve(
-  __dirname,
-  '..',
-  '..',
-  '..',
-  'static',
-  'error.html',
-);
-
-// eslint-disable-next-line no-unused-vars
-const mainErrorHandleMiddleware = (err, req, res, next) => {
+const createMainErrorHandleMiddleware = ({ internalErrorTemplatePath }) => (
+  err,
+  req,
+  res,
+  // eslint-disable-next-line no-unused-vars
+  next,
+) => {
   if (isFirstHtmlRequest(req)) {
-    res.sendFile(ERROR_TEMPLATE_PATH);
+    res.sendFile(internalErrorTemplatePath);
 
     return;
   }
@@ -24,4 +18,4 @@ const mainErrorHandleMiddleware = (err, req, res, next) => {
   res.status(err.statusCode).send(err.message);
 };
 
-module.exports = mainErrorHandleMiddleware;
+module.exports = createMainErrorHandleMiddleware;

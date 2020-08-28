@@ -25,6 +25,7 @@ const initializeServer = async entryParams => {
     getProfileRoutePath,
     socketProtectedProxyTarget,
     httpProtectedProxyConfigs,
+    internalErrorTemplatePath,
   } = entryParams;
 
   const app = express();
@@ -79,7 +80,9 @@ const initializeServer = async entryParams => {
   return {
     app,
     // при вызове startServer будут добавлены обработчики ошибок и запущен сервер на указанном порту
-    startServer: prepareForStartServer(app, server),
+    startServer: prepareForStartServer(app, server, {
+      internalErrorTemplatePath,
+    }),
     oidcProtectedHttpProxy,
     oidcProtected,
     createProxyMiddleware,

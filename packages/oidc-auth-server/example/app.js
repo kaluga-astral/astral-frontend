@@ -36,7 +36,11 @@ const createServer = async () => {
       { entry: '/main', target: PROXY_URL },
       { entry: '/contacts', target: PROXY_URL, changeOrigin: true },
     ],
-    internalErrorTemplatePath: path.resolve(__dirname, 'static', 'error.html'),
+    internalErrorTemplatePath: path.resolve(
+      process.cwd(),
+      'static',
+      'error.html',
+    ),
   });
 
   // будет создан http прокси с авторзацией

@@ -17,6 +17,7 @@
     "express-winston": "^4.0.1",
     "http-proxy-middleware": "1.0.3",
     "pretty-error": "^2.1.1",
+    "tough-cookie": "4.0.0",
     "winston": "^3.2.1"
   }
 }

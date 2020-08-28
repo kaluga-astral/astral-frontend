@@ -1,13 +1,15 @@
-const { errorLogger, mainErrorHandle } = require('../../middlewares');
+const { errorLogger, createMainErrorHandle } = require('../../middlewares');
 
-const addErrorsHandlers = app => {
+const addErrorsHandlers = (app, params) => {
+  const { internalErrorTemplatePath } = params;
+
   app.use(errorLogger);
-  app.use(mainErrorHandle);
+  app.use(createMainErrorHandle({ internalErrorTemplatePath }));
 };
 
-const prepareForStartServer = (app, server) => port => {
+const prepareForStartServer = (app, server, errorHandlersParams) => port => {
   // в самом конце должны быть обработчки ошибок, поэтому добавляем их перед запуском сервера
-  addErrorsHandlers(app);
+  addErrorsHandlers(app, errorHandlersParams);
 
   server.listen(port, () => {
     console.info(`Server listening on localhost:${port}`);
