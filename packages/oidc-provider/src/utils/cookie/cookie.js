@@ -1,6 +1,6 @@
 const { fromPairs } = require('lodash');
 
-const { secondsToMilliseconds } = require('../../utils/dateTime');
+const { secondsToMilliseconds } = require('../dateTime');
 
 const generateCookieValue = (key, value) => `${key}=${value}`;
 
@@ -33,13 +33,18 @@ const getFilteredCookieEntries = (cookies, deleteFields) =>
     return !deleteFields.includes(key);
   });
 
+const setReqCookies = (req, newCookies) => {
+  req.cookies = newCookies;
+  req.headers.cookie = stringifyCookie(newCookies);
+};
+
 const deleteReqHeadersCookie = (req, deleteFields) => {
   // cookies появляется благодаря cookie-parser
-  const { cookies } = req;
-
-  req.headers.cookie = stringifyCookie(
-    fromPairs(getFilteredCookieEntries(cookies, deleteFields)),
+  const newCookies = fromPairs(
+    getFilteredCookieEntries(req.cookies, deleteFields),
   );
+
+  setReqCookies(req, newCookies);
 };
 
 module.exports = {
