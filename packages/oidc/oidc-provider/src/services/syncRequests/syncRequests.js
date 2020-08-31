@@ -1,3 +1,5 @@
+const logger = require('../logger');
+
 const { SYNC_REQUESTS_CHANNEL_NAME } = require('../../config/syncRequests');
 
 const createUnlockResourceMessage = (resourceName, sessionID) =>
@@ -91,8 +93,15 @@ const pauseReqLockedResource = async (
   );
 
   if (resourceIsLocked) {
+    logger.info(
+      req,
+      `Ресурс "${syncResourceName}" заблокирован, ожидание разблокировки`,
+    );
+
     // если ресурс заблокирован - ждем его разблокировки
     await waitForUnlockResource(storeSubscriber, syncResourceName, req);
+
+    logger.info(req, `Ресурс "${syncResourceName}" разблокирован`);
   }
 };
 

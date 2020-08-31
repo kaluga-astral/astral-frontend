@@ -5,14 +5,18 @@ const {
   DESIRED_REFERENCE_KEY,
 } = require('../../config/session');
 
-const desiredReferenceWriter = res => desiredReference => {
+const logger = require('../../services/logger');
+
+const desiredReferenceWriter = (req, res) => desiredReference => {
+  logger.info(req, `В cookie записан desiredReference: "${desiredReference}"`);
+
   res.cookie(DESIRED_REFERENCE_KEY, desiredReference, {
     maxAge: DESIRED_REFERENCE_MAX_AGE,
   });
 };
 
 const saveDesiredReferenceInCookie = (req, res, fallbackReference) => {
-  const writeDesiredReferenceToCookie = desiredReferenceWriter(res);
+  const writeDesiredReferenceToCookie = desiredReferenceWriter(req, res);
 
   // если запрашивается html, то в desiredReference записываем путь, на который шел запрос
   if (isFirstHtmlRequest(req)) {

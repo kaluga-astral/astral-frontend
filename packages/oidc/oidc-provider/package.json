@@ -1,7 +1,7 @@
 {
   "name": "@astral-frontend/oidc-provider",
   "description": "Middleware для работы с OIDC авторизацией и токенами Identity",
-  "version": "1.1.3",
+  "version": "1.2.3",
   "main": "src/index.js",
   "engines": {
     "node": ">=10.0.0"
@@ -20,7 +20,8 @@
     "openid-client": "3.8.1",
     "passport": "0.4.0",
     "passport-custom": "1.1.0",
-    "redis": "3.0.2"
+    "redis": "3.0.2",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "node-mocks-http": "^1.8.0"
