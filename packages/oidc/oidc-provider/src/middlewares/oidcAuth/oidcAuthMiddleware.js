@@ -1,4 +1,5 @@
 const { authStrategyService } = require('../../services/authStrategy');
+const logger = require('../../services/logger');
 
 const { isActingUrlOidcParams, clearQueryParams } = require('./utils');
 
@@ -23,6 +24,8 @@ const oidcAuthMiddleware = (req, res, next) => {
 
     req.logIn(user, logInErr => {
       if (logInErr) return next(logInErr);
+
+      logger.info(req, 'Авторизация прошла успешно');
 
       next();
     });

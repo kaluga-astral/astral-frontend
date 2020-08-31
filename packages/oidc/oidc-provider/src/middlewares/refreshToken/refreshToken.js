@@ -6,6 +6,8 @@ const {
 } = require('../saveDesiredReference/utils');
 const { isActsTokenId } = require('./utils');
 
+const logger = require('../../services/logger');
+
 const { serviceContext, oidcContext } = require('../../contexts');
 
 const { REFRESH_TOKEN_STRATEGY_NAME } = require('../../config/authStrategies');
@@ -39,15 +41,23 @@ const createRefreshTokenMiddleware = (
     return next();
   }
 
+  logger.info(req, 'Выполняется refresh');
+
   const refreshTokenCb = async err => {
     // если произошла ошибка, значит refresh_token недействителен
     // после logout - request попадет в oidcAuthStrategy
     if (err) {
-      // TODO: сделать логирование ошибки при рефреше
+      logger.error(
+        req,
+        `При выполнении refresh произошла ошибка ${err.message}`,
+      );
+
       await req.logout();
 
       refreshErrorHandler(req, res);
     }
+
+    logger.info(req, 'Refresh успешно завершен');
 
     next();
   };

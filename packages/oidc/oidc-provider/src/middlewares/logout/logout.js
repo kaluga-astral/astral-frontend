@@ -1,3 +1,5 @@
+const logger = require('../../services/logger');
+
 const { serviceContext, oidcContext } = require('../../contexts');
 
 const logoutMiddleware = async (req, res) => {
@@ -8,14 +10,18 @@ const logoutMiddleware = async (req, res) => {
 
   req.logout();
 
-  // id_type_hint помогает серверу быстрее найти токен
-  // ошибка запроса обработается error middleware
-  res.status(200).send({
-    redirectUrl: oidcClient.endSessionUrl({
-      id_token_hint: idToken,
-      post_logout_redirect_uri: postLogoutRedirectUri,
-    }),
+  const endSessionUrl = oidcClient.endSessionUrl({
+    // id_type_hint помогает серверу быстрее найти токен
+    id_token_hint: idToken,
+    post_logout_redirect_uri: postLogoutRedirectUri,
   });
+
+  logger.info(
+    req,
+    `В ответ на logout был отправлен redirectUrl: "${endSessionUrl}"`,
+  );
+
+  res.status(200).send({ redirectUrl: endSessionUrl });
 };
 
 module.exports = logoutMiddleware;
