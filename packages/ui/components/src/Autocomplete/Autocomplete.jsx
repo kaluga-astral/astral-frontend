@@ -45,12 +45,6 @@ const Autocomplete = ({
         const InputProps = {
           ...params.InputProps,
           ...MuiTextFieldProps.InputProps,
-          endAdornment: (
-            <>
-              {loading ? <CircularProgress color="inherit" size={20} /> : null}
-              {params.InputProps.endAdornment}
-            </>
-          ),
         };
 
         return (
@@ -59,7 +53,17 @@ const Autocomplete = ({
             fullWidth
             margin="none"
             {...MuiTextFieldProps}
-            InputProps={InputProps}
+            InputProps={{
+              ...InputProps,
+              endAdornment: (
+                <>
+                  {loading ? (
+                    <CircularProgress color="inherit" size={20} />
+                  ) : null}
+                  {InputProps.endAdornment}
+                </>
+              ),
+            }}
           />
         );
       }}
