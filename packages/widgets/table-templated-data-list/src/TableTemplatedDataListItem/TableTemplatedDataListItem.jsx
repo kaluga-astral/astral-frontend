@@ -76,7 +76,7 @@ const TableTemplatedDataListItem = ({
         return xorBy(prevSelectedItems, [data], 'id');
       });
     },
-    [setSelectedItems],
+    [setSelectedItems, JSON.stringify(data)],
   );
 
   const handleListItemMouseEnter = React.useCallback(() => {
