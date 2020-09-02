@@ -14,8 +14,10 @@ const useStyles = makeStyles(
       justifyContent: 'left',
     },
     icon: {
+      height: '48px',
+      width: '28px',
       flexShrink: 0,
-      margin: theme.spacing(3, 4),
+      margin: theme.spacing(0, 2, 0, 5),
     },
     text: {
       marginRight: theme.spacing(4),
@@ -46,8 +48,9 @@ const DashboardLayoutAsideNavDropdownItem = ({ className, text, ...props }) => {
         component={NavLink}
         activeClassName={classes.active}
       >
-        <SvgIcon className={classes.icon}>
-          <circle cx="12" cy="12" r="2" fill="currentColor" />
+        <SvgIcon viewBox="0 0 28 48" className={classes.icon}>
+          <rect width="2" height="48" fill="currentColor" />
+          <circle cx="16" cy="24" r="2" fill="currentColor" />
         </SvgIcon>
         <div className={classes.text}>{text}</div>
       </ButtonBase>

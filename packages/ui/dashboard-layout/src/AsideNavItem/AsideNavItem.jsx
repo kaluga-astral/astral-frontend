@@ -60,6 +60,10 @@ const useStyles = makeStyles(
     },
     expanderIcon: {
       margin: theme.spacing(3, 4),
+      transition: theme.transitions.create(['transform']),
+      transform: ({ expanded }) => {
+        return expanded ? 'rotateZ(0deg)' : ' rotateZ(180deg)';
+      },
     },
     activeButton: {
       color: theme.palette.primary.main,
@@ -124,6 +128,7 @@ const DashboardLayoutAsideNavItem = ({
           {...props}
           className={classes.button}
           onClick={handleSidebarNavItemClick}
+          activeClassName={classes.activeButton}
         >
           <Icon className={classes.icon} />
           <div className={classes.text}>{text}</div>
