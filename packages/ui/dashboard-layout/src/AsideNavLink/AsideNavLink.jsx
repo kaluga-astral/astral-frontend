@@ -17,7 +17,7 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'DashboardLayoutAsideNavItem',
+    name: 'DashboardLayoutAsideNavLink',
   },
 );
 
