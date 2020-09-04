@@ -7,12 +7,13 @@ import AsideNavItem from '../AsideNavItem';
 
 const useStyles = makeStyles(
   theme => ({
+    root: {},
     active: {
       color: theme.palette.primary.main,
       backgroundColor: theme.palette.primary.light,
     },
     icon: {
-      margin: '12px 16px',
+      margin: theme.spacing(3, 4),
       flexShrink: 0,
     },
   }),
@@ -26,11 +27,11 @@ const DashboardLayoutAsideNavLink = ({ className, Icon, text, ...props }) => {
 
   return (
     <AsideNavItem
-      {...props}
-      activeClassName={classes.active}
+      component={NavLink}
       text={text}
       Icon={() => <Icon className={classes.icon} />}
-      component={NavLink}
+      activeClassName={classes.active}
+      {...props}
     />
   );
 };
