@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@astral-frontend/styles';
 
 import AsideNavItem from '../AsideNavItem';
+import AsideNavLinkIcon from './AsideNavLinkIcon';
 
 const useStyles = makeStyles(
   theme => ({
@@ -11,10 +12,6 @@ const useStyles = makeStyles(
     active: {
       color: theme.palette.primary.main,
       backgroundColor: theme.palette.primary.light,
-    },
-    icon: {
-      margin: theme.spacing(3, 4),
-      flexShrink: 0,
     },
   }),
   {
@@ -24,12 +21,17 @@ const useStyles = makeStyles(
 
 const DashboardLayoutAsideNavLink = ({ className, Icon, text, ...props }) => {
   const classes = useStyles();
+  const memoizedIcon = React.useMemo(() => {
+    return () => {
+      return <AsideNavLinkIcon component={Icon} />;
+    };
+  }, []);
 
   return (
     <AsideNavItem
       component={NavLink}
       text={text}
-      Icon={() => <Icon className={classes.icon} />}
+      Icon={memoizedIcon}
       activeClassName={classes.active}
       {...props}
     />

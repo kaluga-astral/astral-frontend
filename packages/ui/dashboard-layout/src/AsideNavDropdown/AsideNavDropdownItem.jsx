@@ -7,6 +7,7 @@ import { ButtonBase, SvgIcon } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarTooltip from '../SidebarTooltip';
+import { __Context as SidebarContext } from '../Sidebar';
 
 const useStyles = makeStyles(
   theme => ({
@@ -39,6 +40,7 @@ const useStyles = makeStyles(
 
 const DashboardLayoutAsideNavDropdownItem = ({ className, text, ...props }) => {
   const classes = useStyles();
+  const { expanded } = React.useContext(SidebarContext);
 
   return (
     <SidebarTooltip title={text}>
@@ -50,7 +52,7 @@ const DashboardLayoutAsideNavDropdownItem = ({ className, text, ...props }) => {
       >
         <SvgIcon viewBox="0 0 28 48" className={classes.icon}>
           <rect width="2" height="48" fill="currentColor" />
-          <circle cx="16" cy="24" r="2" fill="currentColor" />
+          {!expanded && <circle cx="16" cy="24" r="2" fill="currentColor" />}
         </SvgIcon>
         <div className={classes.text}>{text}</div>
       </ButtonBase>
