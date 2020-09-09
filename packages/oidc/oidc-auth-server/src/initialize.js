@@ -2,9 +2,12 @@ const express = require('express');
 const http = require('http');
 const compression = require('compression');
 const { initializeOidcProvider } = require('@astral-frontend/oidc-provider');
-const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const { httpLogger, createOidcProtectedHttpProxy } = require('./middlewares');
+const {
+  httpLogger,
+  createOidcProtectedHttpProxy,
+  createHttpProxy,
+} = require('./middlewares');
 const oidcProtectedSocketProxyCreator = require('./extensions/socket');
 
 const { validateInitializeEntryParam } = require('./utils/validation');
@@ -85,7 +88,7 @@ const initializeServer = async entryParams => {
     }),
     oidcProtectedHttpProxy,
     oidcProtected,
-    createProxyMiddleware,
+    createProxyMiddleware: createHttpProxy,
     storeClient,
   };
 };
