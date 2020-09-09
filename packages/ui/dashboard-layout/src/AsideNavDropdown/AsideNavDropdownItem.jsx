@@ -7,7 +7,6 @@ import { ButtonBase, SvgIcon } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarTooltip from '../SidebarTooltip';
-import { __Context as SidebarContext } from '../Sidebar';
 
 const useStyles = makeStyles(
   theme => ({
@@ -38,9 +37,13 @@ const useStyles = makeStyles(
   },
 );
 
-const DashboardLayoutAsideNavDropdownItem = ({ className, text, ...props }) => {
+const DashboardLayoutAsideNavDropdownItem = ({
+  className,
+  text,
+  expanded,
+  ...props
+}) => {
   const classes = useStyles();
-  const { expanded } = React.useContext(SidebarContext);
 
   return (
     <SidebarTooltip title={text}>
@@ -62,11 +65,13 @@ const DashboardLayoutAsideNavDropdownItem = ({ className, text, ...props }) => {
 
 DashboardLayoutAsideNavDropdownItem.defaultProps = {
   className: null,
+  expanded: true,
 };
 
 DashboardLayoutAsideNavDropdownItem.propTypes = {
   className: PropTypes.string,
   text: PropTypes.string.isRequired,
+  expanded: PropTypes.bool,
 };
 
 export default DashboardLayoutAsideNavDropdownItem;
