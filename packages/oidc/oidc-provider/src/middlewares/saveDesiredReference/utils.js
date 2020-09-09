@@ -12,6 +12,7 @@ const desiredReferenceWriter = (req, res) => desiredReference => {
 
   res.cookie(DESIRED_REFERENCE_KEY, desiredReference, {
     maxAge: DESIRED_REFERENCE_MAX_AGE,
+    httpOnly: true,
   });
 };
 

@@ -21,7 +21,7 @@ const customizationRequestMiddleware = (req, res, next) => {
     updateSessionExpires(req, refreshTokenMaxAge);
   }
 
-  // данные о сессии нужны только для этого proxy
+  // данные о сессии нужны только в этом middleware
   deleteReqHeadersCookie(req, SESSION_INFO_FIELDS);
 
   // добавляем в headers id_token

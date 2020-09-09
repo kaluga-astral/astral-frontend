@@ -55,6 +55,8 @@ const createRefreshTokenMiddleware = (
       await req.logout();
 
       refreshErrorHandler(req, res);
+
+      return next();
     }
 
     logger.info(req, 'Refresh успешно завершен');

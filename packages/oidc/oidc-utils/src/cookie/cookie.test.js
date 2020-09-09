@@ -1,4 +1,4 @@
-const { stringifyCookie } = require('./cookie');
+const { stringifyCookie, setReqCookies } = require('./cookie');
 
 describe('stringifyCookie', () => {
   it('преобразует объект в валидную строку cookie', () => {
@@ -25,5 +25,25 @@ describe('stringifyCookie', () => {
     const expectString = '';
 
     expect(stringifyCookie(cookieValues)).toBe(expectString);
+  });
+});
+
+describe('setReqCookies', () => {
+  it('устанавливает новое значение как в cookies, так и в headers.cookie', () => {
+    const newCookies = { test: 'test' };
+    const req = {
+      headers: {},
+    };
+
+    const expectedReq = {
+      cookies: newCookies,
+      headers: {
+        cookie: stringifyCookie(newCookies),
+      },
+    };
+
+    setReqCookies(req, newCookies);
+
+    expect(req).toEqual(expectedReq);
   });
 });

@@ -2,12 +2,14 @@ const logger = require('../../services/logger');
 
 const { DESIRED_REFERENCE_KEY } = require('../../config/session');
 
-const redirectToDesiredReferenceMiddleware = (req, res, next) => {
-  if (!req.cookies[DESIRED_REFERENCE_KEY]) return next();
+const redirectToDesiredReferenceMiddleware = desiredReference => (
+  req,
+  res,
+  next,
+) => {
+  if (!desiredReference) return next();
 
-  const desiredReference = req.cookies[DESIRED_REFERENCE_KEY];
-
-  // удаляем desiredReference
+  // удаляем desiredReference из браузера
   res.clearCookie(DESIRED_REFERENCE_KEY);
 
   logger.info(

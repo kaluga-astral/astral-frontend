@@ -10,6 +10,19 @@ const redirectToDesiredReference = require('../redirectToDesiredReference');
 
 const { skipIfAuthorized } = require('../../utils/auth');
 
+const { DESIRED_REFERENCE_KEY } = require('../../config/session');
+
+const finalProtectedStage = (req, res, next) => {
+  // customizationRequest удаляет из req.cookies desiredReference, поэтому его необходимо сохранить в памяти
+  const desiredReference = req.cookies[DESIRED_REFERENCE_KEY];
+
+  compose([
+    // устанавливает expires для cookie и добавляет токен в заголовок
+    customizationRequest,
+    redirectToDesiredReference(desiredReference),
+  ])(req, res, next);
+};
+
 const oidcProtectedMiddleware = (req, res, next) =>
   compose([
     // сразу пропускает OPTIONS запросы
@@ -28,10 +41,7 @@ const oidcProtectedMiddleware = (req, res, next) =>
     skipIfAuthorized(oidcAuth),
     // все, что ниже будет выполняться, если пользователь авторизован
 
-    // устанавливает expires для cookie и добавляет токен в заголовок
-    customizationRequest,
-
-    redirectToDesiredReference,
+    finalProtectedStage,
   ])(req, res, next);
 
 module.exports = oidcProtectedMiddleware;

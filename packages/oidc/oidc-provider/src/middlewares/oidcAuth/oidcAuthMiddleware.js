@@ -18,9 +18,20 @@ const oidcAuthMiddleware = (req, res, next) => {
   }
 
   const authCb = (err, user, info) => {
-    if (err) return next(err);
+    if (err) {
+      logger.error(req, `При авторизации произошла ошибка ${err.message}`);
 
-    if (info.error) return next(new Error(info.error));
+      return next(err);
+    }
+
+    if (info.error) {
+      logger.error(
+        req,
+        `При авторизации произошла ошибка ${info.error.message}`,
+      );
+
+      return next(new Error(info.error));
+    }
 
     req.logIn(user, logInErr => {
       if (logInErr) return next(logInErr);
