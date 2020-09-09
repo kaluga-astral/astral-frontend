@@ -60,12 +60,9 @@ const useStyles = makeStyles(
     },
     expanderIcon: {
       margin: theme.spacing(3, 4),
-    },
-    activeButton: {
-      color: theme.palette.primary.main,
-      backgroundColor: theme.palette.primary.light,
-      '& $icon': {
-        color: theme.palette.primary.main,
+      transition: theme.transitions.create(['transform']),
+      transform: ({ expanded }) => {
+        return expanded ? 'rotateZ(0deg)' : ' rotateZ(180deg)';
       },
     },
   }),
