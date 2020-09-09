@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/oidc-auth-server",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": "src/index.js",
   "engines": {
     "node": ">=10.0.0"
@@ -14,12 +14,10 @@
     "@hapi/joi": "17.1.1",
     "compose-middleware": "5.0.1",
     "compression": "1.7.4",
-    "cookie": "^0.4.1",
     "express": "^4.16.4",
     "express-winston": "^4.0.1",
     "http-proxy-middleware": "1.0.3",
     "pretty-error": "^2.1.1",
-    "tough-cookie": "4.0.0",
     "winston": "^3.2.1"
   }
 }
