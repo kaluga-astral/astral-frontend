@@ -1,82 +1,63 @@
-import ManropesemiboldWoff2 from './binary/Manropesemibold.woff2';
-import ManropesemiboldWoff from './binary/Manropesemibold.woff';
-import ManropesemiboldTtf from './binary/Manropesemibold.ttf';
+import ManropeVarialeFont from './binary/Manrope-VariableFont.ttf';
 
-import ManropemediumWoff2 from './binary/Manropemedium.woff2';
-import ManropemediumWoff from './binary/Manropemedium.woff';
-import ManropemediumTtf from './binary/Manropemedium.ttf';
+import ManropeSemiboldTtf from './binary/Manrope-SemiBold.ttf';
 
-import ManropethinWoff2 from './binary/Manropethin.woff2';
-import ManropethinWoff from './binary/Manropethin.woff';
-import ManropethinTtf from './binary/Manropethin.ttf';
+import ManropeMediumTtf from './binary/Manrope-Medium.ttf';
 
-import ManropelightWoff2 from './binary/Manropelight.woff2';
-import ManropelightWoff from './binary/Manropelight.woff';
-import ManropelightTtf from './binary/Manropelight.ttf';
+import ManropeExtraLightTtf from './binary/Manrope-ExtraLight.ttf';
 
-import ManroperegularWoff2 from './binary/Manroperegular.woff2';
-import ManroperegularWoff from './binary/Manroperegular.woff';
-import ManroperegularTtf from './binary/Manroperegular.ttf';
+import ManropeLightTtf from './binary/Manrope-Light.ttf';
 
-import ManropeboldWoff2 from './binary/Manropebold.woff2';
-import ManropeboldWoff from './binary/Manropebold.woff';
-import ManropeboldTtf from './binary/Manropebold.ttf';
+import ManropeRegularTtf from './binary/Manrope-Regular.ttf';
+
+import ManropeBoldTtf from './binary/Manrope-Bold.ttf';
+
+import ManropeExtraBoldTtf from './binary/Manrope-ExtraBold.ttf';
 
 const MANROPE_FONT_NAME = 'Manrope';
 
 const MANROPE_FONTS_CONNECT_INFO = [
   {
-    srcList: [
-      { url: ManropesemiboldWoff2, format: 'woff2' },
-      { url: ManropesemiboldWoff, format: 'woff' },
-      { url: ManropesemiboldTtf, format: 'ttf' },
-    ],
-    fontWeight: 600,
-    fontStyle: 'normal',
+    srcList: [{ url: ManropeVarialeFont, format: 'ttf' }],
   },
   {
-    srcList: [
-      { url: ManropemediumWoff2, format: 'woff2' },
-      { url: ManropemediumWoff, format: 'woff' },
-      { url: ManropemediumTtf, format: 'ttf' },
-    ],
-    fontWeight: 500,
-    fontStyle: 'normal',
-  },
-  {
-    srcList: [
-      { url: ManropethinWoff2, format: 'woff2' },
-      { url: ManropethinWoff, format: 'woff' },
-      { url: ManropethinTtf, format: 'ttf' },
-    ],
+    srcList: [{ url: ManropeExtraLightTtf, format: 'ttf' }],
     fontWeight: 100,
     fontStyle: 'normal',
   },
   {
-    srcList: [
-      { url: ManropelightWoff2, format: 'woff2' },
-      { url: ManropelightWoff, format: 'woff' },
-      { url: ManropelightTtf, format: 'ttf' },
-    ],
+    srcList: [{ url: ManropeExtraLightTtf, format: 'ttf' }],
+    fontWeight: 200,
+    fontStyle: 'normal',
+  },
+  {
+    srcList: [{ url: ManropeLightTtf, format: 'ttf' }],
     fontWeight: 300,
     fontStyle: 'normal',
   },
   {
-    srcList: [
-      { url: ManroperegularWoff2, format: 'woff2' },
-      { url: ManroperegularWoff, format: 'woff' },
-      { url: ManroperegularTtf, format: 'ttf' },
-    ],
+    srcList: [{ url: ManropeRegularTtf, format: 'ttf' }],
     fontWeight: 400,
     fontStyle: 'normal',
   },
   {
-    srcList: [
-      { url: ManropeboldWoff2, format: 'woff2' },
-      { url: ManropeboldWoff, format: 'woff' },
-      { url: ManropeboldTtf, format: 'ttf' },
-    ],
+    srcList: [{ url: ManropeMediumTtf, format: 'ttf' }],
+    fontWeight: 500,
+    fontStyle: 'normal',
+  },
+  {
+    srcList: [{ url: ManropeSemiboldTtf, format: 'ttf' }],
+    fontWeight: 600,
+    fontStyle: 'normal',
+  },
+  {
+    srcList: [{ url: ManropeBoldTtf, format: 'ttf' }],
     fontWeight: 700,
+    fontStyle: 'normal',
+  },
+  {
+    srcList: [{ url: ManropeExtraBoldTtf, format: 'ttf' }],
+    fontWeight: 800,
     fontStyle: 'normal',
   },
 ];
