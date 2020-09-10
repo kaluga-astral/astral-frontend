@@ -18,45 +18,66 @@ const MANROPE_FONT_NAME = 'Manrope';
 
 const MANROPE_FONTS_CONNECT_INFO = [
   {
-    srcList: [{ url: ManropeVarialeFont, format: 'ttf' }],
-  },
-  {
-    srcList: [{ url: ManropeExtraLightTtf, format: 'ttf' }],
+    srcList: [
+      { url: ManropeVarialeFont, format: 'truetype-variations' },
+      { url: ManropeExtraLightTtf, format: 'truetype' },
+    ],
     fontWeight: 100,
     fontStyle: 'normal',
   },
   {
-    srcList: [{ url: ManropeExtraLightTtf, format: 'ttf' }],
+    srcList: [
+      { url: ManropeVarialeFont, format: 'truetype-variations' },
+      { url: ManropeExtraLightTtf, format: 'truetype' },
+    ],
     fontWeight: 200,
     fontStyle: 'normal',
   },
   {
-    srcList: [{ url: ManropeLightTtf, format: 'ttf' }],
+    srcList: [
+      { url: ManropeVarialeFont, format: 'truetype-variations' },
+      { url: ManropeLightTtf, format: 'truetype' },
+    ],
     fontWeight: 300,
     fontStyle: 'normal',
   },
   {
-    srcList: [{ url: ManropeRegularTtf, format: 'ttf' }],
+    srcList: [
+      { url: ManropeVarialeFont, format: 'truetype-variations' },
+      { url: ManropeRegularTtf, format: 'truetype' },
+    ],
     fontWeight: 400,
     fontStyle: 'normal',
   },
   {
-    srcList: [{ url: ManropeMediumTtf, format: 'ttf' }],
+    srcList: [
+      { url: ManropeVarialeFont, format: 'truetype-variations' },
+      { url: ManropeMediumTtf, format: 'truetype' },
+    ],
     fontWeight: 500,
     fontStyle: 'normal',
   },
   {
-    srcList: [{ url: ManropeSemiboldTtf, format: 'ttf' }],
+    srcList: [
+      { url: ManropeVarialeFont, format: 'truetype-variations' },
+      { url: ManropeSemiboldTtf, format: 'truetype' },
+    ],
     fontWeight: 600,
     fontStyle: 'normal',
   },
   {
-    srcList: [{ url: ManropeBoldTtf, format: 'ttf' }],
+    srcList: [
+      { url: ManropeVarialeFont, format: 'truetype-variations' },
+      { url: ManropeBoldTtf, format: 'truetype' },
+    ],
     fontWeight: 700,
     fontStyle: 'normal',
   },
   {
-    srcList: [{ url: ManropeExtraBoldTtf, format: 'ttf' }],
+    srcList: [
+      { url: ManropeVarialeFont, format: 'truetype-variations' },
+      { url: ManropeExtraBoldTtf, format: 'truetype' },
+    ],
     fontWeight: 800,
     fontStyle: 'normal',
   },
