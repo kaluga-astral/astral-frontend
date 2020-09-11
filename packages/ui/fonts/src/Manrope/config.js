@@ -18,6 +18,9 @@ const MANROPE_FONT_NAME = 'Manrope';
 
 const MANROPE_FONTS_CONNECT_INFO = [
   {
+    srcList: [{ url: ManropeVarialeFont, format: 'truetype-variations' }],
+  },
+  {
     srcList: [
       { url: ManropeVarialeFont, format: 'truetype-variations' },
       { url: ManropeExtraLightTtf, format: 'truetype' },
