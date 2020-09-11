@@ -62,7 +62,7 @@ const useStyles = makeStyles(
       margin: theme.spacing(3, 4),
       transition: theme.transitions.create(['transform']),
       transform: ({ expanded }) => {
-        return expanded ? 'rotateZ(0deg)' : ' rotateZ(180deg)';
+        return expanded ? 'rotateZ(180deg)' : ' rotateZ(0deg)';
       },
     },
   }),
