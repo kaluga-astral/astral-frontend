@@ -77,6 +77,7 @@ const DashboardLayoutAsideNavItem = ({
   Icon,
   counterValue,
   children,
+  additionalExpandedPath,
   ...props
 }) => {
   const location = useLocation();
@@ -111,6 +112,17 @@ const DashboardLayoutAsideNavItem = ({
       setExpandedNavDropdownId(null);
     }
   }, [location.pathname]);
+
+  React.useEffect(() => {
+    if (additionalExpandedPath) {
+      const expandedByPath = additionalExpandedPath.some(path =>
+        location.pathname.includes(path),
+      );
+      if (expandedByPath) {
+        setExpandedNavDropdownId(id);
+      }
+    }
+  }, [additionalExpandedPath]);
 
   return (
     <li
@@ -148,6 +160,7 @@ DashboardLayoutAsideNavItem.defaultProps = {
   className: null,
   counterValue: null,
   children: null,
+  additionalExpandedPath: null,
 };
 
 DashboardLayoutAsideNavItem.propTypes = {
@@ -156,6 +169,7 @@ DashboardLayoutAsideNavItem.propTypes = {
   text: PropTypes.string.isRequired,
   counterValue: PropTypes.number,
   children: PropTypes.node,
+  additionalExpandedPath: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default DashboardLayoutAsideNavItem;
