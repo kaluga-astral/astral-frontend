@@ -1,9 +1,9 @@
 import { makeStyles } from '@astral-frontend/styles';
 
-export default makeStyles(() => ({
+export default makeStyles(theme => ({
   button: {
     padding: '10px !important',
-    color: 'white !important',
+    color: theme.palette.common.white,
   },
   icon: {
     width: '11px !important',
