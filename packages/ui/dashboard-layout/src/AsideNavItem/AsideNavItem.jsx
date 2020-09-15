@@ -96,6 +96,9 @@ const DashboardLayoutAsideNavItem = ({
   }, [expandedNavDropdownId]);
   const classes = useStyles({ expanded });
   const handleSidebarNavItemClick = () => {
+    if (alwaysExpanded) {
+      return null;
+    }
     if (expanded) {
       setExpandedNavDropdownId(null);
     } else {
@@ -138,7 +141,7 @@ const DashboardLayoutAsideNavItem = ({
           className={cn(classes.button, {
             [classes.alwaysExpandedButton]: alwaysExpanded,
           })}
-          onClick={alwaysExpanded ? null : handleSidebarNavItemClick}
+          onClick={handleSidebarNavItemClick}
         >
           <Icon className={classes.icon} />
           <div className={classes.text}>{text}</div>
