@@ -4,7 +4,7 @@ const astralEDOThemeOptions = {
   overrides: {
     MuiCssBaseline: {
       '@global': {
-        'div, table, nav, aside, ul, span, li': {
+        'div, table, nav, aside, form, ul, span, li': {
           '&::-webkit-scrollbar': {
             width: '5px',
             height: '5px',
