@@ -37,7 +37,7 @@ export const TransferTemplatedDataList = ({
   );
 
   return (
-    <Box flexGrow={1} css={{ overflowY: 'auto' }}>
+    <Box flexGrow={1} css={{ overflowY: 'hidden' }}>
       <TransferTemplatedDataListDestinationSection
         {...props}
         title={destinationListTitle}
