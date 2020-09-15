@@ -19,10 +19,14 @@ const getNormalizedAddress = data => {
           data.fias_code ||
           ''
         ).slice(0, 2) || null,
-      regionName: data.region,
-      area: data.area,
-      city: data.city || data.settlement,
-      street: data.street,
+      regionName: data.region_with_type || data.region,
+      area: data.area_with_type || data.area,
+      city:
+        data.city_with_type ||
+        data.city ||
+        data.settlement_with_type ||
+        data.settlement,
+      street: data.street_with_type || data.street,
       house: data.house,
       housing: data.block,
       apartment: data.flat,

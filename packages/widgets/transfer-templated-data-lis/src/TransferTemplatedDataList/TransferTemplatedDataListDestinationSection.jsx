@@ -16,6 +16,7 @@ export const TransferTemplatedDataListDestinationSection = ({
       title={title}
       count={selectedItems.length ?? null}
       mb={4}
+      overflow="hidden"
     >
       <DataList
         {...props}
