@@ -27,20 +27,33 @@ export default withStyles(
       '*, *::before, *::after': {
         boxSizing: 'inherit',
       },
-      'div, table, nav, aside, form, ul, span, li': {
-        '&::-webkit-scrollbar': {
-          width: '5px',
-          height: '5px',
-          background: 'transparent',
-        },
-        '&::-webkit-scrollbar-track': {
-          borderRadius: '3px',
-          background: 'rgba(0, 0, 0, 0.1)',
-        },
-        '&::-webkit-scrollbar-thumb': {
-          background: '#aaa',
-          borderRadius: '2px',
-        },
+      // '::-webkit-scrollbar': {
+      //   width: '5px',
+      //   height: '5px',
+      //   background: 'transparent',
+      // },
+      // '::-webkit-scrollbar-track': {
+      //   borderRadius: '3px',
+      //   background: 'rgba(0, 0, 0, 0.1)',
+      // },
+      // '::-webkit-scrollbar-thumb': {
+      //   background: '#aaa',
+      //   borderRadius: '2px',
+      // },
+      '::-webkit-scrollbar': {
+        backgroundColor: '#fff',
+        width: '16px',
+      },
+      '::-webkit-scrollbar-track': {
+        backgroundColor: '#fff',
+      },
+      '::-webkit-scrollbar-thumb': {
+        backgroundColor: '#babac0',
+        borderRadius: '16px',
+        border: '4px solid #fff',
+      },
+      '::-webkit-scrollbar-button ': {
+        display: 'none',
       },
     },
   }),

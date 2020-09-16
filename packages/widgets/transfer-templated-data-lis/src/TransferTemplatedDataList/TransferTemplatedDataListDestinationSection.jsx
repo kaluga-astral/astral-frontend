@@ -15,6 +15,8 @@ export const TransferTemplatedDataListDestinationSection = ({
     <TransferTemplatedDataListSection
       title={title}
       count={selectedItems.length ?? null}
+      flexShrink={0}
+      maxHeight="50%"
       mb={4}
       overflow="hidden"
     >
