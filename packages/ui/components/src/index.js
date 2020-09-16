@@ -21,7 +21,6 @@ export { default as ClickAwayListener } from './ClickAwayListener';
 export { default as Collapse } from './Collapse';
 export { default as ContentLoader } from './ContentLoader';
 export { default as ContentState } from './ContentState';
-export { default as CssBaseline } from './CssBaseline';
 export { default as DateRangePicker } from './DateRangePicker';
 export { default as DetailsListItem } from './DetailsListItem';
 export { default as Dialog } from './Dialog';
