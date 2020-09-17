@@ -59,7 +59,7 @@ export const TransferTemplatedDataListSection = ({
   }, []);
 
   return (
-    <Box {...props} display="flex" flexDirection="column" maxHeight="50%">
+    <Box {...props} display="flex" flexDirection="column">
       <Box display="flex">
         <Box display="inline-flex" flexGrow={1}>
           <Typography gutterBottom color="primary">

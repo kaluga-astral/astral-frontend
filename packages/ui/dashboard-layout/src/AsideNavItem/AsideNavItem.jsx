@@ -25,6 +25,9 @@ const useStyles = makeStyles(
     expanded: {
       backgroundColor: theme.palette.primary.light,
     },
+    alwaysExpandedButton: {
+      pointerEvents: 'none',
+    },
     button: {
       justifyContent: 'left',
       borderRadius: theme.shape.borderRadius,
@@ -78,6 +81,7 @@ const DashboardLayoutAsideNavItem = ({
   counterValue,
   children,
   additionalExpandedPath,
+  alwaysExpanded,
   ...props
 }) => {
   const location = useLocation();
@@ -92,6 +96,9 @@ const DashboardLayoutAsideNavItem = ({
   }, [expandedNavDropdownId]);
   const classes = useStyles({ expanded });
   const handleSidebarNavItemClick = () => {
+    if (alwaysExpanded) {
+      return null;
+    }
     if (expanded) {
       setExpandedNavDropdownId(null);
     } else {
@@ -131,7 +138,9 @@ const DashboardLayoutAsideNavItem = ({
       <SidebarTooltip title={text}>
         <ButtonBase
           {...props}
-          className={classes.button}
+          className={cn(classes.button, {
+            [classes.alwaysExpandedButton]: alwaysExpanded,
+          })}
           onClick={handleSidebarNavItemClick}
         >
           <Icon className={classes.icon} />
@@ -139,7 +148,7 @@ const DashboardLayoutAsideNavItem = ({
           {counterValue && (
             <div className={classes.counter}>{counterValue}</div>
           )}
-          {children && (
+          {children && !alwaysExpanded && (
             <SvgIcon className={classes.expanderIcon}>
               <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
               <path d="M0 0h24v24H0V0z" fill="none" />
@@ -148,7 +157,11 @@ const DashboardLayoutAsideNavItem = ({
         </ButtonBase>
       </SidebarTooltip>
       {children && (
-        <Collapse unmountOnExit in={expanded} component={List}>
+        <Collapse
+          unmountOnExit
+          in={expanded || alwaysExpanded}
+          component={List}
+        >
           {children}
         </Collapse>
       )}
@@ -161,6 +174,7 @@ DashboardLayoutAsideNavItem.defaultProps = {
   counterValue: null,
   children: null,
   additionalExpandedPath: null,
+  alwaysExpanded: false,
 };
 
 DashboardLayoutAsideNavItem.propTypes = {
@@ -170,6 +184,7 @@ DashboardLayoutAsideNavItem.propTypes = {
   counterValue: PropTypes.number,
   children: PropTypes.node,
   additionalExpandedPath: PropTypes.arrayOf(PropTypes.string),
+  alwaysExpanded: PropTypes.bool,
 };
 
 export default DashboardLayoutAsideNavItem;

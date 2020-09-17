@@ -26,6 +26,8 @@ export const TransferTemplatedDataListSourceSection = ({
     <TransferTemplatedDataListSection
       title={title}
       count={items.length ?? null}
+      flexGrow={1}
+      css={{ overflowY: 'auto' }}
     >
       <DataList
         {...props}
