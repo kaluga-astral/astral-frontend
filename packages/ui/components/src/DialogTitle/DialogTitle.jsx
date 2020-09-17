@@ -6,6 +6,7 @@ import { makeStyles } from '@astral-frontend/styles';
 import { CrossIcon } from '@astral-frontend/icons';
 
 import IconButton from '../IconButton';
+import Box from '../Box';
 import { __Context } from '../Dialog';
 
 const useStyles = makeStyles(
@@ -24,6 +25,9 @@ const useStyles = makeStyles(
       marginRight: theme.spacing(5),
     },
     icon: {
+      marginRight: theme.spacing(3),
+    },
+    closeIcon: {
       fontSize: theme.typography.pxToRem(16),
     },
   }),
@@ -31,7 +35,7 @@ const useStyles = makeStyles(
 );
 
 const DialogTitle = props => {
-  const { showCloseButton, className, children, ...rootProps } = props;
+  const { showCloseButton, className, children, Icon, ...rootProps } = props;
   const classes = useStyles(props);
   const { onClose } = useContext(__Context);
 
@@ -41,10 +45,13 @@ const DialogTitle = props => {
       {...rootProps}
       disableTypography
     >
-      <h1 className={classes.title}>{children}</h1>
+      <Box display="inline-flex" alignItems="center">
+        {Icon && <Icon className={classes.icon} />}
+        <h1 className={classes.title}>{children}</h1>
+      </Box>
       {showCloseButton && (
         <IconButton onClick={onClose}>
-          <CrossIcon className={classes.icon} />
+          <CrossIcon className={classes.closeIcon} />
         </IconButton>
       )}
     </MuiDialogTitle>
@@ -54,11 +61,13 @@ const DialogTitle = props => {
 DialogTitle.defaultProps = {
   showCloseButton: true,
   className: null,
+  Icon: null,
 };
 
 DialogTitle.propTypes = {
   showCloseButton: PropTypes.bool,
   className: PropTypes.string,
+  Icon: PropTypes.func,
   children: PropTypes.node.isRequired,
 };
 
