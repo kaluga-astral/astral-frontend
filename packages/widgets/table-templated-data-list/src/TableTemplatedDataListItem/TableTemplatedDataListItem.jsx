@@ -103,7 +103,7 @@ const TableTemplatedDataListItem = ({
         />
       )}
       <FlexContainer justifyContent="center">
-        {selectorVisible ? (
+        {Boolean(percentCompleted >= 100) && selectorVisible ? (
           <Selector
             className={classes.selector}
             checked={checked}
