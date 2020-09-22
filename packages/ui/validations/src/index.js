@@ -4,6 +4,7 @@ export { default as minLength } from './minLength';
 export { default as mustBeBIK } from './mustBeBIK';
 export { default as mustBeCheckingAccount } from './mustBeCheckingAccount';
 export { default as mustBeCorrespondentAccount } from './mustBeCorrespondentAccount';
+export { default as mustBeCounterpartyId } from './mustBeCounterpartyId';
 export { default as mustBeDatePeriod } from './mustBeDatePeriod';
 export { default as mustBeEmail } from './mustBeEmail';
 export { default as mustBeIGK } from './mustBeIGK';

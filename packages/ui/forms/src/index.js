@@ -14,6 +14,7 @@ export { default as BIKField } from './BIKField';
 export { default as CheckboxField } from './CheckboxField';
 export { default as CheckingAccountField } from './CheckingAccountField';
 export { default as CorrespondentAccountField } from './CorrespondentAccountField';
+export { default as CounterpartyIdField } from './CounterpartyIdField';
 export { default as DateField } from './DateField';
 export { default as EmailField } from './EmailField';
 export { default as ErrorAlert } from './ErrorAlert';
