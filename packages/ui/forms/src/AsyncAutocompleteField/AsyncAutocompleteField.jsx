@@ -54,7 +54,7 @@ const AsyncAutocompleteField = ({
       setValue(initialFieldValue);
       input.onChange((initialFieldValue || {}).value);
     }
-  }, [JSON.stringify(fieldValue)]);
+  }, [JSON.stringify(initialFieldValue), JSON.stringify(fieldValue)]);
 
   return (
     <AsyncAutocomplete
