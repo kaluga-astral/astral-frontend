@@ -36,6 +36,7 @@ export { default as OKOPFField } from './OKOPFField';
 export { default as OKFSField } from './OKFSField';
 export { default as OKTMOField } from './OKTMOField';
 export { default as OnChange } from './OnChange';
+export { default as PartnerIdField } from './PartnerIdField';
 export { default as PassportIssueDateField } from './PassportIssueDateField';
 export { default as PassportIssuerIdField } from './PassportIssuerIdField';
 export { default as PassportNumberField } from './PassportNumberField';
