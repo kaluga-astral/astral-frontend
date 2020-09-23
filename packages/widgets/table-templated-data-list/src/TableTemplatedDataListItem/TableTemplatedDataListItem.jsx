@@ -65,7 +65,10 @@ const TableTemplatedDataListItem = ({
       selectedItems.find(selectedItem => selectedItem.id === data.id),
     );
   }, [selectedItems]);
-  const selectorVisible = (!disableSelect && hovered) || checked;
+  const selectorVisible =
+    (!disableSelect && hovered) ||
+    checked ||
+    (percentCompleted && Boolean(percentCompleted >= 100));
 
   const handleSelectorClick = React.useCallback(
     event => {
@@ -103,7 +106,7 @@ const TableTemplatedDataListItem = ({
         />
       )}
       <FlexContainer justifyContent="center">
-        {Boolean(percentCompleted >= 100) && selectorVisible ? (
+        {selectorVisible ? (
           <Selector
             className={classes.selector}
             checked={checked}
