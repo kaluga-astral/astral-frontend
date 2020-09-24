@@ -16,9 +16,10 @@ const AsyncAutocompleteField = ({
   onChange,
   ...props
 }) => {
-  const { initialValues, values } = useFormState();
+  const { initialValues, values, active } = useFormState();
   const initialFieldValue = initialValues?.[name];
   const fieldValue = values?.[name];
+  const editing = active === name;
   const validationFunction = React.useCallback(
     createValidationFunction(required, validate),
     [required, validate],
@@ -43,14 +44,14 @@ const AsyncAutocompleteField = ({
   }, []);
 
   React.useEffect(() => {
-    if (initialFieldValue) {
+    if (!editing && initialFieldValue) {
       setValue(initialFieldValue);
       input.onChange(initialFieldValue.value);
     }
   }, [JSON.stringify(initialFieldValue)]);
 
   React.useEffect(() => {
-    if (isEqual(initialFieldValue, fieldValue)) {
+    if (!editing && isEqual(initialFieldValue, fieldValue)) {
       setValue(initialFieldValue);
       input.onChange(initialFieldValue?.value);
     }
