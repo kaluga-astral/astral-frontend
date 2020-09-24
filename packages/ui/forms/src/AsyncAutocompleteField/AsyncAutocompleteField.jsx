@@ -1,4 +1,4 @@
-import { omit } from 'lodash-es';
+import { isEqual, omit } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useField, useFormState } from 'react-final-form';
@@ -16,8 +16,10 @@ const AsyncAutocompleteField = ({
   onChange,
   ...props
 }) => {
-  const { initialValues } = useFormState();
+  const { initialValues, values, active } = useFormState();
   const initialFieldValue = initialValues?.[name];
+  const fieldValue = values?.[name];
+  const editing = active === name;
   const validationFunction = React.useCallback(
     createValidationFunction(required, validate),
     [required, validate],
@@ -42,11 +44,18 @@ const AsyncAutocompleteField = ({
   }, []);
 
   React.useEffect(() => {
-    if (initialFieldValue) {
+    if (!editing && initialFieldValue) {
       setValue(initialFieldValue);
       input.onChange(initialFieldValue.value);
     }
   }, [JSON.stringify(initialFieldValue)]);
+
+  React.useEffect(() => {
+    if (!editing && isEqual(initialFieldValue, fieldValue)) {
+      setValue(initialFieldValue);
+      input.onChange(initialFieldValue?.value);
+    }
+  }, [JSON.stringify(fieldValue)]);
 
   return (
     <AsyncAutocomplete
