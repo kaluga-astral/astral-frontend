@@ -1,5 +1,5 @@
-export default (...validators) => value => {
+export default (...validators) => (...args) => {
   return validators
     .filter(validator => validator)
-    .reduce((error, validator) => error || validator(value), null);
+    .reduce((error, validator) => error || validator(...args), null);
 };

@@ -4,10 +4,18 @@ import PropTypes from 'prop-types';
 import MaskInput from './MaskInput';
 import TextField from '../TextField';
 
-const MaskField = ({ placeholder, placeholderChar, mask, pipe, ...props }) => (
+const MaskField = ({
+  placeholder,
+  placeholderChar,
+  mask,
+  pipe,
+  InputProps,
+  ...props
+}) => (
   <TextField
     InputProps={{
       inputComponent: MaskInput,
+      ...InputProps,
     }}
     // eslint-disable-next-line
     inputProps={{

@@ -14,10 +14,12 @@ export const createValidationFunction = (required, validate) => {
   }
 
   if (!required && validate) {
-    return composeValidations(value => {
+    return composeValidations((value, ...args) => {
       if (value) {
-        return validate(value);
+        return validate(value, ...args);
       }
+
+      return null;
     });
   }
 
