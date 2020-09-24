@@ -1,4 +1,4 @@
-import { omit, isEqual } from 'lodash-es';
+import { omit } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useField, useFormState } from 'react-final-form';
@@ -16,9 +16,8 @@ const AsyncAutocompleteField = ({
   onChange,
   ...props
 }) => {
-  const { initialValues, values } = useFormState();
-  const initialFieldValue = (initialValues || {})[name] || {};
-  const fieldValue = (values || {})[name] || {};
+  const { initialValues } = useFormState();
+  const initialFieldValue = initialValues?.[name];
   const validationFunction = React.useCallback(
     createValidationFunction(required, validate),
     [required, validate],
@@ -29,7 +28,7 @@ const AsyncAutocompleteField = ({
   const [value, setValue] = React.useState(null);
   const error = required && meta.touched && !meta.valid;
   const helperText = meta.error && meta.touched ? meta.error : null;
-  const handleChange = (event, newValue) => {
+  const handleChange = React.useCallback((event, newValue) => {
     if (newValue) {
       setValue(newValue);
       input.onChange(newValue.value);
@@ -40,21 +39,14 @@ const AsyncAutocompleteField = ({
     if (onChange) {
       onChange(event, newValue);
     }
-  };
+  }, []);
 
   React.useEffect(() => {
     if (initialFieldValue) {
       setValue(initialFieldValue);
-      input.onChange((initialFieldValue || {}).value);
+      input.onChange(initialFieldValue.value);
     }
   }, [JSON.stringify(initialFieldValue)]);
-
-  React.useEffect(() => {
-    if (isEqual(initialFieldValue, fieldValue)) {
-      setValue(initialFieldValue);
-      input.onChange((initialFieldValue || {}).value);
-    }
-  }, [JSON.stringify(initialFieldValue), JSON.stringify(fieldValue)]);
 
   return (
     <AsyncAutocomplete
