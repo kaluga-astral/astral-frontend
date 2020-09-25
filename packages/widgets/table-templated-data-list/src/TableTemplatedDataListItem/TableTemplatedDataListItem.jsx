@@ -1,8 +1,9 @@
-import { xorBy } from 'lodash-es';
+import { xorBy, isFunction } from 'lodash-es';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { fade } from '@astral-frontend/core';
 import {
   ListItem,
   FlexContainer,
@@ -19,6 +20,14 @@ import TableTemplatedDataListItemDefaultSelector from './TableTemplatedDataListI
 
 const useStyles = makeStyles(
   theme => ({
+    '@keyframes highlight': {
+      '0%': {
+        backgroundColor: fade(theme.palette.primary.light, 0.5),
+      },
+      '100%': {
+        backgroundColor: theme.palette.common.white,
+      },
+    },
     root: {
       position: 'relative',
       display: 'grid',
@@ -35,6 +44,9 @@ const useStyles = makeStyles(
         backgroundColor: theme.palette.common.white,
         boxShadow: theme.shadows[1],
       },
+    },
+    highlighted: {
+      animation: `$highlight 1500ms ${theme.transitions.easing.easeInOut}`,
     },
     circularProgress: {
       position: 'absolute',
@@ -55,9 +67,13 @@ const TableTemplatedDataListItem = ({
   ...props
 }) => {
   const classes = useStyles();
-  const { selectedItems, setSelectedItems, disableSelect } = React.useContext(
-    DataListContext,
-  );
+  const {
+    selectedItems,
+    setSelectedItems,
+    disableSelect,
+    lastViewedItem,
+    setLastViewedItem,
+  } = React.useContext(DataListContext);
   const { data } = React.useContext(DataListItemContext);
   const [hovered, setHovered] = React.useState(false);
   const checked = React.useMemo(() => {
@@ -65,10 +81,21 @@ const TableTemplatedDataListItem = ({
       selectedItems.find(selectedItem => selectedItem.id === data.id),
     );
   }, [selectedItems]);
-  const selectorVisible =
-    (!disableSelect && hovered) ||
-    checked ||
-    (percentCompleted && Boolean(percentCompleted >= 100));
+  const loading = React.useMemo(() => {
+    return Boolean(percentCompleted < 100);
+  }, [percentCompleted]);
+  const selectorVisible = React.useMemo(() => {
+    return !loading && ((!disableSelect && hovered) || checked);
+  }, [loading, disableSelect, hovered, checked]);
+  const highlighted = React.useMemo(() => {
+    return data.id === lastViewedItem?.id;
+  }, [data.id, lastViewedItem?.id]);
+
+  const handleClick = React.useCallback(() => {
+    if (isFunction(setLastViewedItem)) {
+      setLastViewedItem(data);
+    }
+  }, [data]);
 
   const handleSelectorClick = React.useCallback(
     event => {
@@ -79,7 +106,7 @@ const TableTemplatedDataListItem = ({
         return xorBy(prevSelectedItems, [data], 'id');
       });
     },
-    [setSelectedItems, JSON.stringify(data)],
+    [setSelectedItems, data],
   );
 
   const handleListItemMouseEnter = React.useCallback(() => {
@@ -90,15 +117,27 @@ const TableTemplatedDataListItem = ({
     setHovered(false);
   }, [setHovered]);
 
+  const handleAnimationEnd = React.useCallback(event => {
+    const [, animationName] = event.animationName.split('-');
+
+    if (animationName === 'highlight' && isFunction(setLastViewedItem)) {
+      setLastViewedItem(null);
+    }
+  }, []);
+
   return (
     <ListItem
-      className={cn(classes.root, className)}
+      className={cn(classes.root, className, {
+        [classes.highlighted]: highlighted,
+      })}
       component={component}
       onMouseEnter={handleListItemMouseEnter}
       onMouseLeave={handleListItemMouseLeave}
+      onAnimationEnd={handleAnimationEnd}
+      onClick={handleClick}
       {...props}
     >
-      {Boolean(percentCompleted < 100) && (
+      {loading && (
         <CircularProgress
           className={classes.circularProgress}
           variant={percentCompleted === 0 ? 'indeterminate' : 'static'}
@@ -130,7 +169,7 @@ TableTemplatedDataListItem.defaultProps = {
   button: false,
   Icon: () => <div />,
   Selector: TableTemplatedDataListItemDefaultSelector,
-  percentCompleted: null,
+  percentCompleted: 100,
 };
 
 TableTemplatedDataListItem.propTypes = {

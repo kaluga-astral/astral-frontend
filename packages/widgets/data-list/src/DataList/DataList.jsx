@@ -7,6 +7,8 @@ import DataListContext from './DataListContext';
 import DataListItemContext from './DataListItemContext';
 
 const DataList = ({
+  lastViewedItem,
+  setLastViewedItem,
   selectedItems,
   setSelectedItems,
   listRenderer,
@@ -43,6 +45,8 @@ const DataList = ({
         items,
         selectedItems,
         setSelectedItems,
+        lastViewedItem,
+        setLastViewedItem,
         disableSelect,
       }}
     >
@@ -69,6 +73,8 @@ const DataList = ({
 DataList.defaultProps = {
   selectedItems: null,
   setSelectedItems: null,
+  lastViewedItem: null,
+  setLastViewedItem: null,
   onLoadMoreItems: null,
   EmptyStateComponent: null,
   disableSelect: false,
@@ -77,6 +83,8 @@ DataList.defaultProps = {
 DataList.propTypes = {
   selectedItems: PropTypes.arrayOf(PropTypes.any),
   setSelectedItems: PropTypes.func,
+  lastViewedItem: PropTypes.shape(),
+  setLastViewedItem: PropTypes.func,
   listRenderer: PropTypes.func.isRequired,
   renderItem: PropTypes.func.isRequired,
   queryResult: PropTypes.shape({
