@@ -62,7 +62,6 @@ ProductsWidget.propTypes = {
   identityUrl: PropTypes.string.isRequired,
   buttonProps: PropTypes.shape({
     className: PropTypes.string,
-    color: PropTypes.oneOf(['primary', 'secondary']),
   }),
 };
 

@@ -3,7 +3,7 @@ import { makeStyles } from '@astral-frontend/styles';
 import { getPopoverArrowStyles } from '../utils';
 
 export default makeStyles(theme => ({
-  arrow: getPopoverArrowStyles('#ffffff'),
+  arrow: getPopoverArrowStyles(theme.palette.common.white),
   popoverContainer: {
     display: 'flex',
     alignItems: 'center',

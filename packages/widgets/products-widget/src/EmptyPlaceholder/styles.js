@@ -7,6 +7,7 @@ export default makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: '142px 68px',
+    boxSizing: 'border-box',
   },
   image: {
     marginBottom: 12,
