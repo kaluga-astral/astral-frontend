@@ -5,14 +5,17 @@ import {
   mustBePartnerId,
 } from '@astral-frontend/validations';
 
-import NumberField from '../NumberField';
+import TextField from '../TextField';
 
 const PartnerIdField = ({ validate: validateProp, ...props }) => {
   const validate = React.useMemo(() => {
     return composeValidations(validateProp, mustBePartnerId);
   }, [validateProp]);
+  const parse = React.useCallback(value => {
+    return value.replace(/[^\d]/g, '');
+  }, []);
 
-  return <NumberField {...props} validate={validate} />;
+  return <TextField {...props} parse={parse} validate={validate} />;
 };
 
 PartnerIdField.defaultProps = {
