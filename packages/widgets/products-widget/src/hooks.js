@@ -27,7 +27,7 @@ const useProductsFetch = identityApiUrl => {
     }));
   };
 
-  const fetchSource = async () => {
+  const fetchSource = () => {
     setFetchInfo(prevInfo => ({
       ...prevInfo,
       status: {
@@ -36,27 +36,27 @@ const useProductsFetch = identityApiUrl => {
       },
     }));
 
-    try {
-      const sourceResponse = await fetch(getProductsUrl(identityApiUrl));
+    fetch(getProductsUrl(identityApiUrl))
+      .then(sourceResponse => {
+        if (sourceResponse.ok) {
+          sourceResponse.json().then(jsonResponse => {
+            setFetchInfo(prevInfo => ({
+              ...prevInfo,
+              status: {
+                ...prevInfo.status,
+                loading: false,
+                success: true,
+              },
+              products: productsToClientAdapter(jsonResponse.data),
+            }));
+          });
+        }
 
-      if (sourceResponse.ok) {
-        const jsonResponse = await sourceResponse.json();
-
-        setFetchInfo(prevInfo => ({
-          ...prevInfo,
-          status: {
-            ...prevInfo.status,
-            loading: false,
-            success: true,
-          },
-          products: productsToClientAdapter(jsonResponse.data),
-        }));
-      }
-
-      if (!sourceResponse.ok) setError();
-    } catch (error) {
-      setError();
-    }
+        if (!sourceResponse.ok) setError();
+      })
+      .catch(() => {
+        setError();
+      });
   };
 
   return [fetchSource, fetchInfo];
