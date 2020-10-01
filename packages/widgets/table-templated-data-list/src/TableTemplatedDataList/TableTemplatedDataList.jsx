@@ -14,7 +14,7 @@ const useStyles = makeStyles(
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
-      overflowY: 'scroll',
+      overflowY: 'auto',
     },
     list: {
       margin: 0,
