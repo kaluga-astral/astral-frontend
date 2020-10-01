@@ -9,7 +9,10 @@ import TextField from '../TextField';
 
 const CounterpartyIdField = ({ validate: validateProp, ...props }) => {
   const parse = React.useCallback(value => {
-    return value.trim().toUpperCase();
+    return value
+      .trim()
+      .replace(/[а-яА-Я]/, '')
+      .toUpperCase();
   }, []);
   const validate = React.useMemo(() => {
     return composeValidations(validateProp, mustBeCounterpartyId);
