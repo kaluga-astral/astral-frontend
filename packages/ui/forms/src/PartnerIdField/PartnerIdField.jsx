@@ -15,7 +15,14 @@ const PartnerIdField = ({ validate: validateProp, ...props }) => {
     return value.replace(/[^\d]/g, '');
   }, []);
 
-  return <TextField {...props} parse={parse} validate={validate} />;
+  return (
+    <TextField
+      {...props}
+      parse={parse}
+      validate={validate}
+      inputProps={{ maxLength: 10 }}
+    />
+  );
 };
 
 PartnerIdField.defaultProps = {
