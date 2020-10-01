@@ -7,7 +7,11 @@ const FormAddressField = props => {
   const { fetchAddressSuggestions } = React.useContext(DaDataContext);
 
   return (
-    <AsyncAutocompleteField {...props} fetchOptions={fetchAddressSuggestions} />
+    <AsyncAutocompleteField
+      {...props}
+      inputProps={{ maxLength: 200 }}
+      fetchOptions={fetchAddressSuggestions}
+    />
   );
 };
 

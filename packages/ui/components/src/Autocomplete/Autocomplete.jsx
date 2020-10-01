@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import PropTypes from 'prop-types';
 import matchSorter from 'match-sorter';
 import React from 'react';
@@ -46,6 +47,10 @@ const Autocomplete = ({
           ...params.InputProps,
           ...MuiTextFieldProps.InputProps,
         };
+        const inputProps = {
+          ...params.inputProps,
+          ...MuiTextFieldProps.inputProps,
+        };
 
         return (
           <TextField
@@ -53,6 +58,7 @@ const Autocomplete = ({
             fullWidth
             margin="none"
             {...MuiTextFieldProps}
+            inputProps={inputProps}
             InputProps={{
               ...InputProps,
               endAdornment: (
