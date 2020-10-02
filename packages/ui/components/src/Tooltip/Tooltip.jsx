@@ -5,7 +5,7 @@ import { Tooltip as MuiTooltip } from '@astral-frontend/core';
 
 const Tooltip = ({ children, ...props }) => {
   return (
-    <MuiTooltip arrow enterDelay={1000} {...props}>
+    <MuiTooltip arrow enterDelay={500} {...props}>
       <div>{children}</div>
     </MuiTooltip>
   );
