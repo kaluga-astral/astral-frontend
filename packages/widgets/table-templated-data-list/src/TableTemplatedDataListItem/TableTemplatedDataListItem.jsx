@@ -46,7 +46,7 @@ const useStyles = makeStyles(
       },
     },
     highlighted: {
-      animation: `$highlight 1500ms ${theme.transitions.easing.easeInOut}`,
+      animation: `$highlight 3500ms ${theme.transitions.easing.easeInOut}`,
     },
     circularProgress: {
       position: 'absolute',
