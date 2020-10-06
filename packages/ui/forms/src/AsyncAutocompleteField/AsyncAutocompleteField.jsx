@@ -44,9 +44,9 @@ const AsyncAutocompleteField = ({
   }, []);
 
   React.useEffect(() => {
-    if (!editing && initialFieldValue) {
+    if (!editing) {
       setValue(initialFieldValue);
-      input.onChange(initialFieldValue.value);
+      input.onChange(initialFieldValue?.value);
     }
   }, [JSON.stringify(initialFieldValue)]);
 
