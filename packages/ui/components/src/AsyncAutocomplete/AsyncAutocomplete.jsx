@@ -20,13 +20,13 @@ const AsyncAutocomplete = ({
 
   const setFormattingOptions = newOptions => {
     // TODO: #28808
-    setOptions(prevOptions =>
+    setOptions(
       newOptions.reduce(
         (acc, newOption) => ({
           ...acc,
           [newOption.key]: newOption,
         }),
-        prevOptions,
+        [],
       ),
     );
   };
