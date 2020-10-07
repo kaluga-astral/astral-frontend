@@ -20,7 +20,6 @@
     "intro.js": "2.9.3",
     "intro.js-react": "0.2.0",
     "lodash-es": "^4.17.11",
-    "match-sorter": "^4.0.2",
     "material-ui-popup-state": "^1.5.1",
     "prop-types": "^15.7.2",
     "react-content-loader": "^5.0.2",

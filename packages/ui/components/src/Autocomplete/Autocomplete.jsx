@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import PropTypes from 'prop-types';
-import matchSorter from 'match-sorter';
 import React from 'react';
 import { TextField, CircularProgress } from '@astral-frontend/core';
 import MuiAutocomplete from '@material-ui/lab/Autocomplete';
@@ -85,8 +84,8 @@ Autocomplete.defaultProps = {
   loadingText: 'Загрузка...',
   noOptionsText: 'Ничего не найдено',
   getOptionLabel: option => option.label || '',
-  filterOptions: (options, { inputValue }) => {
-    return matchSorter(options, inputValue, { keys: ['label'] });
+  filterOptions: options => {
+    return options;
   },
   onChange: null,
   onClose: null,
