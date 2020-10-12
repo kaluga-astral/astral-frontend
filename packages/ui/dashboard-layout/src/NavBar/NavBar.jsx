@@ -1,6 +1,8 @@
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { Box } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import { NavBarSelectedItems } from './NavBarSelectedItems';
@@ -24,16 +26,18 @@ const useStyles = makeStyles(
 export const NavBarContext = React.createContext();
 
 export const DashboardLayoutNavBar = ({
+  className,
   children,
   component: Component,
   selectedItemsLength,
   onSelectedItemsClear,
+  ...props
 }) => {
   const classes = useStyles();
 
   return (
     <NavBarContext.Provider value={{ selectedItemsLength }}>
-      <Component className={classes.root}>
+      <Component className={cn(classes.root, className)} {...props}>
         <NavBarSelectedItems
           data={{ selectedItemsLength }}
           onSelectedItemsClear={onSelectedItemsClear}
@@ -47,13 +51,15 @@ export const DashboardLayoutNavBar = ({
 DashboardLayoutNavBar.defaultProps = {
   selectedItemsLength: 0,
   onSelectedItemsClear: null,
-  component: 'div',
+  component: Box,
+  className: null,
 };
 
 DashboardLayoutNavBar.propTypes = {
   children: PropTypes.node.isRequired,
   selectedItemsLength: PropTypes.number,
   onSelectedItemsClear: PropTypes.func,
+  className: PropTypes.string,
   component: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
