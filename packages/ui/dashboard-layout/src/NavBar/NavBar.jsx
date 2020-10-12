@@ -25,6 +25,7 @@ export const NavBarContext = React.createContext();
 
 export const DashboardLayoutNavBar = ({
   children,
+  component: Component,
   selectedItemsLength,
   onSelectedItemsClear,
 }) => {
@@ -32,13 +33,13 @@ export const DashboardLayoutNavBar = ({
 
   return (
     <NavBarContext.Provider value={{ selectedItemsLength }}>
-      <div className={classes.root}>
+      <Component className={classes.root}>
         <NavBarSelectedItems
           data={{ selectedItemsLength }}
           onSelectedItemsClear={onSelectedItemsClear}
         />
         {children}
-      </div>
+      </Component>
     </NavBarContext.Provider>
   );
 };
@@ -46,12 +47,18 @@ export const DashboardLayoutNavBar = ({
 DashboardLayoutNavBar.defaultProps = {
   selectedItemsLength: 0,
   onSelectedItemsClear: null,
+  component: 'div',
 };
 
 DashboardLayoutNavBar.propTypes = {
   children: PropTypes.node.isRequired,
   selectedItemsLength: PropTypes.number,
   onSelectedItemsClear: PropTypes.func,
+  component: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+    PropTypes.shape(),
+  ]),
 };
 
 export default DashboardLayoutNavBar;
