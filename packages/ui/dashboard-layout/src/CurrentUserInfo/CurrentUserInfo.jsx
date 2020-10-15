@@ -42,6 +42,12 @@ const useStyles = makeStyles(
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
+      opacity: ({ expanded }) => (expanded ? 1 : 0),
+      pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
+      transition: theme.transitions.create('opacity', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     },
     popperPaper: {
       minWidth: '175px',
@@ -56,9 +62,10 @@ const DashboardLayoutCurrentUserInfo = ({
   avatarSrc,
   avatarAlt,
   userName,
+  expanded,
   ...props
 }) => {
-  const classes = useStyles();
+  const classes = useStyles({ expanded });
   const buttonRef = React.createRef();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -116,6 +123,7 @@ DashboardLayoutCurrentUserInfo.propTypes = {
   avatarSrc: PropTypes.string,
   avatarAlt: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
+  expanded: PropTypes.bool.isRequired,
 };
 
 export default DashboardLayoutCurrentUserInfo;

@@ -56,7 +56,9 @@ const DashboardLayoutProduct = ({
   return (
     <div className={cn(classes.root, className)}>
       <Logo className={classes.logo} />
-      <div className={classes.title}>{title}</div>
+      <div className={cn(classes.title, classes.endContentWrapper)}>
+        {title}
+      </div>
       <div
         className={classes.endContentWrapper}
         tabIndex={hideEndContent ? -1 : undefined}

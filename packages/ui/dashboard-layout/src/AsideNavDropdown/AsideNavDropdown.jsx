@@ -14,7 +14,7 @@ const DashboardLayoutAsideNavDropdown = ({ className, children, ...props }) => {
 DashboardLayoutAsideNavDropdown.defaultProps = {
   className: null,
   counterValue: null,
-  alwaysExpanded: null,
+  alwaysExpandedDropdown: null,
 };
 
 DashboardLayoutAsideNavDropdown.propTypes = {
@@ -23,7 +23,7 @@ DashboardLayoutAsideNavDropdown.propTypes = {
   text: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   counterValue: PropTypes.string,
-  alwaysExpanded: PropTypes.bool,
+  alwaysExpandedDropdown: PropTypes.bool,
 };
 
 export default DashboardLayoutAsideNavDropdown;

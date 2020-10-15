@@ -10,19 +10,26 @@ const useStyles = makeStyles(
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       fontWeight: theme.typography.fontWeightBold,
+      opacity: ({ expanded }) => (expanded ? 1 : 0),
+      pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
+      transition: theme.transitions.create('opacity', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     },
   }),
   { name: 'DashboardLayoutActionButtonText' },
 );
 
-const DashboardLayoutActionButtonText = ({ text }) => {
-  const classes = useStyles();
+const DashboardLayoutActionButtonText = ({ text, expanded }) => {
+  const classes = useStyles({ expanded });
 
   return <div className={classes.root}>{text}</div>;
 };
 
 DashboardLayoutActionButtonText.propTypes = {
   text: PropTypes.string.isRequired,
+  expanded: PropTypes.bool.isRequired,
 };
 
 export default DashboardLayoutActionButtonText;

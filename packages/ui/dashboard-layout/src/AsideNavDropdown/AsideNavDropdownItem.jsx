@@ -19,6 +19,14 @@ const useStyles = makeStyles(
       flexShrink: 0,
       margin: theme.spacing(0, 2, 0, 5),
     },
+    collapsedIcon: {
+      opacity: ({ expanded }) => (expanded ? 0 : 1),
+      pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
+      transition: theme.transitions.create('opacity', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
     text: {
       marginRight: theme.spacing(4),
       flexGrow: 1,
@@ -27,6 +35,12 @@ const useStyles = makeStyles(
       whiteSpace: 'nowrap',
       fontSize: theme.typography.pxToRem(14),
       fontWeight: theme.typography.fontWeightBold,
+      opacity: ({ expanded }) => (expanded ? 1 : 0),
+      pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
+      transition: theme.transitions.create('opacity', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     },
     active: {
       color: theme.palette.primary.main,
@@ -43,7 +57,7 @@ const DashboardLayoutAsideNavDropdownItem = ({
   expanded,
   ...props
 }) => {
-  const classes = useStyles();
+  const classes = useStyles({ expanded });
 
   return (
     <SidebarTooltip title={text}>
@@ -55,7 +69,15 @@ const DashboardLayoutAsideNavDropdownItem = ({
       >
         <SvgIcon viewBox="0 0 28 48" className={classes.icon}>
           <rect width="2" height="48" fill="currentColor" />
-          {!expanded && <circle cx="16" cy="24" r="2" fill="currentColor" />}
+          {!expanded && (
+            <circle
+              className={classes.collapsedIcon}
+              cx="16"
+              cy="24"
+              r="2"
+              fill="currentColor"
+            />
+          )}
         </SvgIcon>
         <div className={classes.text}>{text}</div>
       </ButtonBase>
