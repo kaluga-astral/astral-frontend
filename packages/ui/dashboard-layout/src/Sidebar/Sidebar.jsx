@@ -26,38 +26,20 @@ const useStyles = makeStyles(
   { name: 'DashboardLayoutSidebar' },
 );
 
-const LOCALSTORAGE_KEY = '__DASHBOARD_LAYOUT_SIDEBAR__';
-
 const DashboardLayoutSidebar = ({ className, children }) => {
   const classes = useStyles();
-  const initialExpanded = React.useMemo(() => {
-    return (
-      JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) ?? {
-        expanded: true,
-      }
-    ).expanded;
-  }, []);
-  const [expanded, setExpanded] = React.useState(initialExpanded);
-  const toggleExpanded = React.useCallback(() => {
-    setExpanded(prevValue => !prevValue);
-  }, []);
-
-  React.useEffect(() => {
-    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify({ expanded }));
-  }, [expanded]);
+  const { expanded } = React.useContext(SidebarContext);
 
   return (
-    <SidebarContext.Provider value={{ expanded, toggleExpanded }}>
-      <FlexContainer
-        component={Aside}
-        direction="column"
-        className={cn(className, classes.root, {
-          [classes.expanded]: expanded,
-        })}
-      >
-        {children}
-      </FlexContainer>
-    </SidebarContext.Provider>
+    <FlexContainer
+      component={Aside}
+      direction="column"
+      className={cn(className, classes.root, {
+        [classes.expanded]: expanded,
+      })}
+    >
+      {children}
+    </FlexContainer>
   );
 };
 
