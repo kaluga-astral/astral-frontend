@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
-import { NavBarContext } from '../NavBar';
 import NavBarCounterCount from './NavBarCounterCount';
 
 const useStyles = makeStyles(
@@ -38,11 +37,6 @@ const DashboardLayoutNavCounter = ({
   ...props
 }) => {
   const classes = useStyles();
-  const { selectedItemsLength } = React.useContext(NavBarContext);
-
-  if (selectedItemsLength > 0) {
-    return null;
-  }
 
   return (
     <Component
