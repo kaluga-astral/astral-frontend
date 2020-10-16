@@ -41,6 +41,10 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
     setSelectedItems,
     disableSelect,
   } = React.useContext(DataListContext);
+  const uploadingInProgress = React.useMemo(
+    () => items.some(item => Number(item.percentCompleted) !== 100),
+    [items],
+  );
   const checked = items.length === selectedItems.length;
   const handleCheckboxChange = () => {
     if (checked) {
@@ -59,7 +63,11 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
     <div className={cn(classes.root, className)}>
       <div className={classes.select}>
         {!disableSelect ? (
-          <Checkbox checked={checked} onChange={handleCheckboxChange} />
+          <Checkbox
+            checked={checked}
+            disabled={uploadingInProgress}
+            onChange={handleCheckboxChange}
+          />
         ) : (
           <div />
         )}
