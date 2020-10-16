@@ -20,4 +20,5 @@ export { default as OrganizationSelector } from './OrganizationSelector';
 export { default as PageTitle } from './PageTitle';
 export { default as Product } from './Product';
 export { default as Sidebar } from './Sidebar';
+export { default as SidebarCounter } from './SidebarCounter';
 export { default as SidebarActionButton } from './SidebarActionButton';

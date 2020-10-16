@@ -22,7 +22,7 @@ DashboardLayoutAsideNavDropdown.propTypes = {
   Icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  counterValue: PropTypes.string,
+  counterValue: PropTypes.number,
   alwaysExpandedDropdown: PropTypes.bool,
 };
 

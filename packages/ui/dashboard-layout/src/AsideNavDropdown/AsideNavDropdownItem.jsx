@@ -7,6 +7,7 @@ import { ButtonBase, SvgIcon } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarTooltip from '../SidebarTooltip';
+import SidebarCounter from '../SidebarCounter';
 
 const useStyles = makeStyles(
   theme => ({
@@ -28,7 +29,9 @@ const useStyles = makeStyles(
       }),
     },
     text: {
-      marginRight: theme.spacing(4),
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginRight: theme.spacing(14),
       flexGrow: 1,
       overflow: 'hidden',
       textOverflow: 'ellipsis',
@@ -54,6 +57,7 @@ const useStyles = makeStyles(
 const DashboardLayoutAsideNavDropdownItem = ({
   className,
   text,
+  counterValue,
   expanded,
   ...props
 }) => {
@@ -79,7 +83,10 @@ const DashboardLayoutAsideNavDropdownItem = ({
             />
           )}
         </SvgIcon>
-        <div className={classes.text}>{text}</div>
+        <div className={classes.text}>
+          {text}
+          {expanded && <SidebarCounter counterValue={counterValue} />}
+        </div>
       </ButtonBase>
     </SidebarTooltip>
   );
@@ -88,12 +95,14 @@ const DashboardLayoutAsideNavDropdownItem = ({
 DashboardLayoutAsideNavDropdownItem.defaultProps = {
   className: null,
   expanded: true,
+  counterValue: null,
 };
 
 DashboardLayoutAsideNavDropdownItem.propTypes = {
   className: PropTypes.string,
   text: PropTypes.string.isRequired,
   expanded: PropTypes.bool,
+  counterValue: PropTypes.number,
 };
 
 export default DashboardLayoutAsideNavDropdownItem;

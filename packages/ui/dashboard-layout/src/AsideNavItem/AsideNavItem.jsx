@@ -15,6 +15,7 @@ import { makeStyles } from '@astral-frontend/styles';
 import { __Context as AsideContext } from '../Aside';
 import { __Context as SidebarContext } from '../Sidebar';
 import SidebarTooltip from '../SidebarTooltip';
+import SidebarCounter from '../SidebarCounter';
 
 const useStyles = makeStyles(
   theme => ({
@@ -55,20 +56,6 @@ const useStyles = makeStyles(
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
-    counter: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      color: theme.palette.common.white,
-      flexShrink: 0,
-      marginRight: `${theme.spacing(1)}px`,
-      width: '20px',
-      height: '20px',
-      fontSize: '75%',
-      fontWeight: 'bold',
-      borderRadius: '50%',
-      backgroundColor: theme.palette.error.main,
-    },
     expandedIcon: {
       margin: theme.spacing(3, 4),
       transform: ({ expandedDropdown }) => {
@@ -81,6 +68,9 @@ const useStyles = makeStyles(
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
+    },
+    expandedCounter: {
+      backgroundColor: theme.palette.error.light,
     },
   }),
   {
@@ -162,8 +152,13 @@ const DashboardLayoutAsideNavItem = ({
         >
           <Icon className={classes.icon} />
           <div className={classes.text}>{text}</div>
-          {counterValue && (
-            <div className={classes.counter}>{counterValue}</div>
+          {expandedSidebar && (
+            <SidebarCounter
+              className={{
+                [classes.expandedCounter]: expandedDropdown,
+              }}
+              counterValue={counterValue}
+            />
           )}
           {children && !alwaysExpandedDropdown && (
             <SvgIcon className={classes.expandedIcon}>
