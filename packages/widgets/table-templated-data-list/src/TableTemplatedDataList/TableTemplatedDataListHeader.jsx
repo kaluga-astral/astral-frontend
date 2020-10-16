@@ -42,7 +42,10 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
     disableSelect,
   } = React.useContext(DataListContext);
   const uploadingInProgress = React.useMemo(
-    () => items.some(item => Number(item.percentCompleted) !== 100),
+    () =>
+      items.some(
+        item => item.percentCompleted && item.percentCompleted !== 100,
+      ),
     [items],
   );
   const checked = items.length === selectedItems.length;
