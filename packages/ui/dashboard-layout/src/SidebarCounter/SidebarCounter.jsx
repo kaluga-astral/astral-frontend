@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes, { shape } from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
 
@@ -44,7 +44,7 @@ SidebarCounter.defaultProps = {
 };
 
 SidebarCounter.propTypes = {
-  className: PropTypes.string,
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})]),
   counterValue: PropTypes.number,
 };
 
