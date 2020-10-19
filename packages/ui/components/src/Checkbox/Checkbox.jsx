@@ -22,10 +22,6 @@ const useStyles = makeStyles(
       width: 20,
       height: 20,
       fill: theme.palette.primary.main,
-
-      '& :hover': {
-        fill: theme.palette.primary.dark,
-      },
     },
   }),
   { name: 'Checkbox' },
@@ -60,6 +56,7 @@ const Checkbox = ({
   return (
     <FormControlLabel
       {...props}
+      component="div"
       checked={checked}
       disabled={disabled}
       label={label}
