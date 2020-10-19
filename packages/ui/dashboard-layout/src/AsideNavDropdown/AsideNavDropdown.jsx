@@ -13,7 +13,7 @@ const DashboardLayoutAsideNavDropdown = ({ className, children, ...props }) => {
 
 DashboardLayoutAsideNavDropdown.defaultProps = {
   className: null,
-  counterValue: null,
+  counterValue: 0,
   alwaysExpandedDropdown: null,
 };
 

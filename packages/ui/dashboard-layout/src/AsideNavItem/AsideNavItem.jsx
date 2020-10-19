@@ -183,7 +183,7 @@ const DashboardLayoutAsideNavItem = ({
 
 DashboardLayoutAsideNavItem.defaultProps = {
   className: null,
-  counterValue: null,
+  counterValue: 0,
   children: null,
   additionalExpandedPath: null,
   alwaysExpandedDropdown: false,

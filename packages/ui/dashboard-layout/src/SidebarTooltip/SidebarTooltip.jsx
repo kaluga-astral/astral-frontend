@@ -31,7 +31,9 @@ const SidebarTooltip = ({
       title={
         <Box display="flex" alignContent="center" justifyContent="center">
           {title}
-          {!expanded && <SidebarCounter counterValue={counterValue} />}
+          {!expanded && Boolean(counterValue) && (
+            <SidebarCounter counterValue={counterValue} />
+          )}
         </Box>
       }
       {...props}
@@ -43,7 +45,7 @@ const SidebarTooltip = ({
 
 SidebarTooltip.defaultProps = {
   className: null,
-  counterValue: null,
+  counterValue: 0,
 };
 
 SidebarTooltip.propTypes = {

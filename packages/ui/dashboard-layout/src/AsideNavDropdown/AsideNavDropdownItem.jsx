@@ -95,7 +95,7 @@ const DashboardLayoutAsideNavDropdownItem = ({
 DashboardLayoutAsideNavDropdownItem.defaultProps = {
   className: null,
   expanded: true,
-  counterValue: null,
+  counterValue: 0,
 };
 
 DashboardLayoutAsideNavDropdownItem.propTypes = {

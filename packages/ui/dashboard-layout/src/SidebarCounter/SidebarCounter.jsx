@@ -10,6 +10,11 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       display: 'flex',
+      opacity: ({ counterValue }) => (counterValue === 0 ? 0 : 1),
+      transition: theme.transitions.create(['opacity'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
       justifyContent: 'center',
       alignItems: 'center',
       color: theme.palette.common.white,
@@ -30,18 +35,14 @@ const useStyles = makeStyles(
 
 const SidebarCounter = ({ className, counterValue }) => {
   const { expanded } = React.useContext(SidebarContext) || { expanded: true };
-  const classes = useStyles({ expanded });
+  const classes = useStyles({ expanded, counterValue });
 
-  return (
-    Boolean(counterValue) && (
-      <div className={cn(classes.root, className)}>{counterValue}</div>
-    )
-  );
+  return <div className={cn(classes.root, className)}>{counterValue}</div>;
 };
 
 SidebarCounter.defaultProps = {
   className: null,
-  counterValue: null,
+  counterValue: 0,
 };
 
 SidebarCounter.propTypes = {
