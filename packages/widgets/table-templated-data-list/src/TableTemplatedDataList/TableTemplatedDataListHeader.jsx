@@ -44,7 +44,7 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
   const uploadingInProgress = React.useMemo(
     () =>
       items.some(
-        item => item.percentCompleted && item.percentCompleted !== 100,
+        item => item.percentCompleted != null && item.percentCompleted !== 100,
       ),
     [items],
   );
