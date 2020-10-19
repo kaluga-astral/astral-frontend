@@ -1,4 +1,4 @@
-import PropTypes, { shape } from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
 
@@ -15,8 +15,9 @@ const useStyles = makeStyles(
       color: theme.palette.common.white,
       backgroundColor: theme.palette.error.main,
       flexShrink: 0,
-      width: '20px',
-      height: '20px',
+      width: ({ expanded }) => (expanded ? '20px' : '14px'),
+      height: ({ expanded }) => (expanded ? '20px' : '14px'),
+      marginLeft: ({ expanded }) => (expanded ? 0 : theme.spacing(1)),
       fontSize: '75%',
       fontWeight: 'bold',
       borderRadius: '50%',

@@ -142,7 +142,7 @@ const DashboardLayoutAsideNavItem = ({
         [classes.expandedDropdown]: expandedDropdown,
       })}
     >
-      <SidebarTooltip title={text}>
+      <SidebarTooltip counterValue={counterValue} title={text}>
         <ButtonBase
           {...props}
           className={cn(classes.button, {

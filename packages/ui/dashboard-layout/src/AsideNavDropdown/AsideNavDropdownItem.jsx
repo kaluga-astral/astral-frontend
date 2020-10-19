@@ -64,7 +64,7 @@ const DashboardLayoutAsideNavDropdownItem = ({
   const classes = useStyles({ expanded });
 
   return (
-    <SidebarTooltip title={text}>
+    <SidebarTooltip counterValue={counterValue} title={text}>
       <ButtonBase
         {...props}
         className={cn(classes.root, className)}

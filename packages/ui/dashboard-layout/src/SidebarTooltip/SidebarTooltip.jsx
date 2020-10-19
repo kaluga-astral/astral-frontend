@@ -1,10 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Tooltip } from '@astral-frontend/components';
+import { Tooltip, Box } from '@astral-frontend/components';
 
 import SidebarContext from '../Sidebar/SidebarContext';
+import SidebarCounter from '../SidebarCounter';
 
-const SidebarTooltip = ({ children, className, ...props }) => {
+const SidebarTooltip = ({
+  children,
+  className,
+  counterValue,
+  title,
+  ...props
+}) => {
   const { expanded } = React.useContext(SidebarContext) || { expanded: true };
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
@@ -21,6 +28,12 @@ const SidebarTooltip = ({ children, className, ...props }) => {
       open={open}
       onClose={handleClose}
       onOpen={handleOpen}
+      title={
+        <Box display="flex" alignContent="center" justifyContent="center">
+          {title}
+          {!expanded && <SidebarCounter counterValue={counterValue} />}
+        </Box>
+      }
       {...props}
     >
       {children}
@@ -30,11 +43,14 @@ const SidebarTooltip = ({ children, className, ...props }) => {
 
 SidebarTooltip.defaultProps = {
   className: null,
+  counterValue: null,
 };
 
 SidebarTooltip.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  counterValue: PropTypes.number,
+  title: PropTypes.string.isRequired,
 };
 
 export default SidebarTooltip;
