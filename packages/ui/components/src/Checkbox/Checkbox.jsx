@@ -27,27 +27,13 @@ const useStyles = makeStyles(
   { name: 'Checkbox' },
 );
 
-const Checkbox = ({
-  disabled,
-  checked,
-  label,
-  labelPlacement,
-  className,
-  helperText,
-  error,
-  value,
-  onChange,
-  onBlur,
-  onFocus,
-  ...props
-}) => {
+const Checkbox = ({ className, value, ...props }) => {
   const classes = useStyles();
 
   const ControlCheckbox = (
     <MuiCheckbox
       value={String(value)}
       color="primary"
-      className={classes.checkbox}
       icon={<UncheckedRectIcon className={classes.uncheckedIcon} />}
       checkedIcon={<CheckedRectIcon className={classes.checkedIcon} />}
     />
@@ -55,23 +41,12 @@ const Checkbox = ({
 
   return (
     <FormControlLabel
-      {...props}
       component="div"
-      checked={checked}
-      disabled={disabled}
-      label={label}
-      labelPlacement={labelPlacement}
+      {...props}
       className={cn(className, classes.root)}
       control={ControlCheckbox}
-      onChange={onChange}
-      onBlur={onBlur}
-      onFocus={onFocus}
     />
   );
-};
-
-Checkbox.defaultProps = {
-  className: null,
 };
 
 Checkbox.defaultProps = {
@@ -79,9 +54,7 @@ Checkbox.defaultProps = {
   checked: false,
   labelPlacement: 'end',
   className: null,
-  helperText: null,
   label: '',
-  error: null,
   onBlur: null,
   onFocus: null,
 };
@@ -90,9 +63,7 @@ Checkbox.propTypes = {
   disabled: PropTypes.bool,
   checked: PropTypes.bool,
   labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
-  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   className: PropTypes.string,
-  helperText: PropTypes.string,
   label: PropTypes.node,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
