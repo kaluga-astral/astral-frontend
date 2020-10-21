@@ -10,7 +10,7 @@ const useStyles = makeStyles(
     root: {
       height: '64px',
       alignItems: 'center',
-      margin: theme.spacing(0, 4),
+      margin: theme.spacing(0, 4, 4),
       userSelect: 'none',
     },
   }),
