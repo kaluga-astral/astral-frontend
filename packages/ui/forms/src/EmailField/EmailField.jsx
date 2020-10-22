@@ -7,7 +7,7 @@ import TextField from '../TextField';
 const EmailField = props => (
   <TextField
     validate={mustBeEmail}
-    inputProps={{ maxLength: 255 }}
+    inputProps={{ maxLength: 100 }}
     {...props}
   />
 );
