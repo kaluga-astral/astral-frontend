@@ -18,7 +18,7 @@ const useStyles = makeStyles(
   { name: 'TextOverflowTooltip' },
 );
 
-const TextOverflowTooltip = ({ className, placement, title }) => {
+const TextOverflowTooltip = ({ className, title, ...props }) => {
   const classes = useStyles();
   const ref = React.useRef(null);
   const [overflow, setOverflow] = React.useState(false);
@@ -42,7 +42,7 @@ const TextOverflowTooltip = ({ className, placement, title }) => {
   }, [ref.current]);
 
   return (
-    <Tooltip placement={placement} title={title} open={hover && overflow}>
+    <Tooltip {...props} title={title} open={hover && overflow}>
       <span
         ref={ref}
         className={cn(classes.text, className)}
