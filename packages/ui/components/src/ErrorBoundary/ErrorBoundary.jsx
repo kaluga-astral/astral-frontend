@@ -22,15 +22,20 @@ class ErrorBoundary extends Component {
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   handleReloadButtonClick() {
     window.location.reload();
   }
 
   render() {
     const { hasError } = this.state;
-    const { children } = this.props;
+    const { children, ErrorComponent } = this.props;
 
     if (hasError) {
+      if (ErrorComponent) {
+        return <ErrorComponent />;
+      }
+
       return (
         <div>
           <Typography>Что-то пошло не так.</Typography>
@@ -45,8 +50,13 @@ class ErrorBoundary extends Component {
   }
 }
 
+ErrorBoundary.defaultProps = {
+  ErrorComponent: null,
+};
+
 ErrorBoundary.propTypes = {
   children: PropTypes.element.isRequired,
+  ErrorComponent: PropTypes.func,
 };
 
 export default ErrorBoundary;

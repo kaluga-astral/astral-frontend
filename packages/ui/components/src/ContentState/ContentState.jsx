@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
-import ErrorBoundry from '../ErrorBoundry';
+import ErrorBoundary from '../ErrorBoundary';
 import Placeholder from '../Placeholder';
 
 const ContentState = ({
@@ -27,9 +27,9 @@ const ContentState = ({
   };
 
   return (
-    <ErrorBoundry>
+    <ErrorBoundary>
       <Component {...props}>{renderChildren()}</Component>
-    </ErrorBoundry>
+    </ErrorBoundary>
   );
 };
 

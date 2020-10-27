@@ -29,7 +29,7 @@ export { default as DialogContent } from './DialogContent';
 export { default as DialogTitle } from './DialogTitle';
 export { default as Divider } from './Divider';
 export { default as Document } from './Document';
-export { default as ErrorBoundry } from './ErrorBoundry';
+export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as ExpansionPanel } from './ExpansionPanel';
 export { default as ExpansionPanelActions } from './ExpansionPanelActions';
 export { default as ExpansionPanelDetails } from './ExpansionPanelDetails';
