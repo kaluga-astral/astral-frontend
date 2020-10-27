@@ -60,25 +60,10 @@ const TextOverflowTooltip = ({ className, title, ...props }) => {
 
 TextOverflowTooltip.defaultProps = {
   className: null,
-  placement: null,
 };
 
 TextOverflowTooltip.propTypes = {
   className: PropTypes.string,
-  placement: PropTypes.oneOf([
-    'bottom-end',
-    'bottom-start',
-    'bottom',
-    'left-end',
-    'left-start',
-    'left',
-    'right-end',
-    'right-start',
-    'right',
-    'top-end',
-    'top-start',
-    'top',
-  ]),
   title: PropTypes.string.isRequired,
 };
 
