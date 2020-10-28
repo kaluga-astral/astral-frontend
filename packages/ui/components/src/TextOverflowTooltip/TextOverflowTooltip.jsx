@@ -23,21 +23,29 @@ const TextOverflowTooltip = ({ className, title, ...props }) => {
   const ref = React.useRef(null);
   const [overflow, setOverflow] = React.useState(false);
   const [hover, setHover] = React.useState(false);
+
   const handleMouseEnter = React.useCallback(() => {
     setHover(true);
   });
+
   const handleMouseLeave = React.useCallback(() => {
     setHover(false);
   });
-  const resizeObserver = new ResizeObserver(([{ target }]) => {
-    if (target.offsetWidth < target.scrollWidth) {
-      setOverflow(true);
-    } else {
-      setOverflow(false);
-    }
-  });
+
+  const resizeObserver = React.useMemo(
+    () =>
+      new ResizeObserver(([{ target }]) => {
+        if (target.offsetWidth < target.scrollWidth) {
+          setOverflow(true);
+        } else {
+          setOverflow(false);
+        }
+      }),
+  );
+
   React.useEffect(() => {
     resizeObserver.observe(ref.current);
+
     return () => resizeObserver.unobserve(ref.current);
   }, [ref.current]);
 
