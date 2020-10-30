@@ -52,6 +52,9 @@ const useStyles = makeStyles(
       position: 'absolute',
       marginLeft: '5px',
     },
+    selector: {
+      marginRight: 0,
+    },
   }),
   { name: 'TableTemplatedDataListItem' },
 );
