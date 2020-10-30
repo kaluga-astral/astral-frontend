@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import * as Sentry from '@sentry/browser';
 
-import Typography from '../Typography';
-import Button from '../Button';
+import ErrorPlaceholder from './ErrorPlaceholder';
 
 class ErrorBoundary extends Component {
   constructor() {
     super();
+
     this.state = { hasError: false };
   }
 
@@ -22,31 +22,28 @@ class ErrorBoundary extends Component {
     });
   }
 
-  handleReloadButtonClick() {
-    window.location.reload();
-  }
-
   render() {
     const { hasError } = this.state;
-    const { children } = this.props;
+    const { children, ErrorPlaceholderComponent } = this.props;
 
     if (hasError) {
-      return (
-        <div>
-          <Typography>Что-то пошло не так.</Typography>
-          <Button onClick={this.handleReloadButtonClick}>
-            Обновить страницу
-          </Button>
-        </div>
-      );
+      return <ErrorPlaceholderComponent />;
     }
 
     return children;
   }
 }
 
+ErrorBoundary.defaultProps = {
+  ErrorPlaceholderComponent: ErrorPlaceholder,
+};
+
 ErrorBoundary.propTypes = {
   children: PropTypes.element.isRequired,
+  ErrorPlaceholderComponent: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
 };
 
 export default ErrorBoundary;
