@@ -28,9 +28,9 @@ const ContentState = ({
   };
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundaryComponent>
       <Component {...props}>{renderChildren()}</Component>
-    </ErrorBoundary>
+    </ErrorBoundaryComponent>
   );
 };
 
