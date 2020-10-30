@@ -1,1 +1,4 @@
-export { default } from './TransferTemplatedDataList';
+export {
+  default,
+  TransferTemplatedDataListItemContext,
+} from './TransferTemplatedDataList';

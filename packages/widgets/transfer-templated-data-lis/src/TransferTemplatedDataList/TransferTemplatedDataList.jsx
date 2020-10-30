@@ -5,6 +5,8 @@ import { List, Box } from '@astral-frontend/components';
 import { TransferTemplatedDataListDestinationSection } from './TransferTemplatedDataListDestinationSection';
 import { TransferTemplatedDataListSourceSection } from './TransferTemplatedDataListSourceSection';
 
+export const TransferTemplatedDataListItemContext = React.createContext();
+
 export const TransferTemplatedDataList = ({
   destinationListTitle,
   sourceListTitle,
@@ -26,11 +28,13 @@ export const TransferTemplatedDataList = ({
   const renderItem = React.useCallback(
     ({ data, key }) => {
       return (
-        <ListItemComponent
-          key={key}
-          loading={queryResult.loading}
-          data={data}
-        />
+        <TransferTemplatedDataListItemContext.Provider value={{ data }}>
+          <ListItemComponent
+            key={key}
+            loading={queryResult.loading}
+            data={data}
+          />
+        </TransferTemplatedDataListItemContext.Provider>
       );
     },
     [queryResult.loading],
