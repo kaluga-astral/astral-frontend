@@ -28,6 +28,7 @@ const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      marginRight: 0,
     },
   }),
   { name: 'TableTemplatedDataListHeader' },
@@ -64,17 +65,16 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
 
   return (
     <div className={cn(classes.root, className)}>
-      <div className={classes.select}>
-        {!disableSelect ? (
-          <Checkbox
-            checked={checked}
-            disabled={uploadingInProgress}
-            onChange={handleCheckboxChange}
-          />
-        ) : (
-          <div />
-        )}
-      </div>
+      {!disableSelect ? (
+        <Checkbox
+          checked={checked}
+          disabled={uploadingInProgress}
+          onChange={handleCheckboxChange}
+          className={classes.select}
+        />
+      ) : (
+        <div />
+      )}
 
       {columns.map(column => (
         <TableTemplatedDataListHeaderItem
