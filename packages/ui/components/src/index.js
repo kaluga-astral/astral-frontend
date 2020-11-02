@@ -99,6 +99,7 @@ export { default as TableRow } from './TableRow';
 export { default as TableRowActions } from './TableRowActions';
 export { default as Tabs } from './Tabs';
 export { default as TextField } from './TextField';
+export { default as TextOverflowTooltip } from './TextOverflowTooltip';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as Tooltip } from './Tooltip';
 export { default as Typography } from './Typography';

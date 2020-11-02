@@ -12,6 +12,7 @@ const ContentState = ({
   component: Component,
   LoadingStateComponent,
   FailureStateComponent,
+  ErrorBoundaryComponent,
   ...props
 }) => {
   const renderChildren = () => {
@@ -27,9 +28,9 @@ const ContentState = ({
   };
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundaryComponent>
       <Component {...props}>{renderChildren()}</Component>
-    </ErrorBoundary>
+    </ErrorBoundaryComponent>
   );
 };
 
@@ -37,6 +38,7 @@ ContentState.defaultProps = {
   error: null,
   PlaceholderProps: {},
   component: Fragment,
+  ErrorBoundaryComponent: ErrorBoundary,
   LoadingStateComponent: props => <Placeholder {...props} state="loading" />,
   // eslint-disable-next-line react/prop-types
   FailureStateComponent: ({ error, ...props }) => (
@@ -57,6 +59,7 @@ ContentState.propTypes = {
   PlaceholderProps: PropTypes.shape({}),
   LoadingStateComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   FailureStateComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  ErrorBoundaryComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };
 
 export default ContentState;

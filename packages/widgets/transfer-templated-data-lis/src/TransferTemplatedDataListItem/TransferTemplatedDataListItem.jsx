@@ -5,6 +5,8 @@ import React from 'react';
 import { ListItem, ListItemText } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
+import { TransferTemplatedDataListItemContext } from '../TransferTemplatedDataList';
+
 const useStyles = makeStyles(
   theme => ({
     root: {
@@ -28,9 +30,11 @@ export const TransferTemplatedDataListItem = ({
   className,
   loading,
   highlightOnHover,
+  ActionsComponent,
   ...props
 }) => {
   const classes = useStyles({ highlightOnHover });
+  const { data } = React.useContext(TransferTemplatedDataListItemContext);
 
   return (
     <ListItem
@@ -44,7 +48,7 @@ export const TransferTemplatedDataListItem = ({
       )}
     >
       <ListItemText className={classes.text}>{text}</ListItemText>
-      {children}
+      {ActionsComponent && <ActionsComponent data={data} />}
     </ListItem>
   );
 };
@@ -54,6 +58,7 @@ TransferTemplatedDataListItem.defaultProps = {
   children: null,
   highlightOnHover: false,
   loading: false,
+  ActionsComponent: null,
 };
 
 TransferTemplatedDataListItem.propTypes = {
@@ -62,6 +67,7 @@ TransferTemplatedDataListItem.propTypes = {
   className: PropTypes.string,
   loading: PropTypes.bool,
   highlightOnHover: PropTypes.bool,
+  ActionsComponent: PropTypes.func,
 };
 
 export default TransferTemplatedDataListItem;

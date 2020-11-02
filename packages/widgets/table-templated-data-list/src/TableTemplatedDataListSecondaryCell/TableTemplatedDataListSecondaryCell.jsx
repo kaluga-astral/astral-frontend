@@ -41,7 +41,11 @@ TableTemplatedDataListSecondaryCell.defaultProps = {
 };
 
 TableTemplatedDataListSecondaryCell.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.node,
+  ]),
   align: PropTypes.oneOf(['left', 'center', 'right']),
   className: PropTypes.string,
 };
