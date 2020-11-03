@@ -22,7 +22,7 @@ const useStyles = makeStyles(
       marginTop: theme.spacing(3),
     },
   }),
-  { name: 'TableTemplatedDataListEmptyStateEmptyState' },
+  { name: 'TableTemplatedDataListEmptyState' },
 );
 
 const TableTemplatedDataListEmptyState = ({
@@ -47,7 +47,7 @@ const TableTemplatedDataListEmptyState = ({
         {IllustrationComponent && (
           <IllustrationComponent className={classes.illustration} />
         )}
-        <h2>{title}</h2>
+        {title && <h2>{title}</h2>}
         <div className={classes.text}>{text}</div>
         {ActionComponent && <ActionComponent className={classes.action} />}
       </FlexContainer>
