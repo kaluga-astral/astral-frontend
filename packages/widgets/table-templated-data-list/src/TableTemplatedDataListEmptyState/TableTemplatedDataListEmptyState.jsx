@@ -9,9 +9,6 @@ const useStyles = makeStyles(
       height: '100%',
       userSelect: 'none',
     },
-    content: {
-      maxWidth: '300px',
-    },
     illustration: {
       height: '200px',
       marginBottom: theme.spacing(5),
@@ -21,11 +18,19 @@ const useStyles = makeStyles(
       textAlign: 'center',
       height: '2em',
     },
+    action: {
+      marginTop: theme.spacing(3),
+    },
   }),
-  { name: 'TableTemplatedDataList' },
+  { name: 'TableTemplatedDataListEmptyState' },
 );
 
-const TableTemplatedDataList = ({ text, IllustrationComponent }) => {
+const TableTemplatedDataListEmptyState = ({
+  title,
+  text,
+  IllustrationComponent,
+  ActionComponent,
+}) => {
   const classes = useStyles();
 
   return (
@@ -38,25 +43,30 @@ const TableTemplatedDataList = ({ text, IllustrationComponent }) => {
         direction="column"
         alignItems="center"
         justifyContent="center"
-        className={classes.content}
       >
         {IllustrationComponent && (
           <IllustrationComponent className={classes.illustration} />
         )}
+        {title && <h2>{title}</h2>}
         <div className={classes.text}>{text}</div>
+        {ActionComponent && <ActionComponent className={classes.action} />}
       </FlexContainer>
     </FlexContainer>
   );
 };
 
-TableTemplatedDataList.defaultProps = {
+TableTemplatedDataListEmptyState.defaultProps = {
   text: 'Список пуст',
+  title: null,
   IllustrationComponent: null,
+  ActionComponent: null,
 };
 
-TableTemplatedDataList.propTypes = {
+TableTemplatedDataListEmptyState.propTypes = {
   text: PropTypes.string,
+  title: PropTypes.string,
   IllustrationComponent: PropTypes.func,
+  ActionComponent: PropTypes.func,
 };
 
-export default TableTemplatedDataList;
+export default TableTemplatedDataListEmptyState;
