@@ -11,7 +11,7 @@ import FormControlLabel from '../FormControlLabel';
 const useStyles = makeStyles(
   theme => ({
     root: {
-      display: 'inline-flex',
+      margin: 0,
     },
     uncheckedIcon: {
       width: 20,
@@ -41,7 +41,6 @@ const Checkbox = ({ className, value, ...props }) => {
 
   return (
     <FormControlLabel
-      component="div"
       {...props}
       className={cn(className, classes.root)}
       control={ControlCheckbox}
