@@ -8,6 +8,7 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarTooltip from '../SidebarTooltip';
 import SidebarCounter from '../SidebarCounter';
+import { __Context as SidebarContext } from '../Sidebar';
 
 const useStyles = makeStyles(
   theme => ({
@@ -21,7 +22,7 @@ const useStyles = makeStyles(
       margin: theme.spacing(0, 2, 0, 5),
     },
     collapsedIcon: {
-      opacity: ({ expanded }) => (expanded ? 0 : 1),
+      opacity: ({ expanded }) => (expanded ? 1 : 0),
       pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
       transition: theme.transitions.create('opacity', {
         easing: theme.transitions.easing.sharp,
@@ -58,9 +59,9 @@ const DashboardLayoutAsideNavDropdownItem = ({
   className,
   text,
   counterValue,
-  expanded,
   ...props
 }) => {
+  const { expanded } = React.useContext(SidebarContext);
   const classes = useStyles({ expanded });
 
   return (
@@ -94,14 +95,12 @@ const DashboardLayoutAsideNavDropdownItem = ({
 
 DashboardLayoutAsideNavDropdownItem.defaultProps = {
   className: null,
-  expanded: true,
   counterValue: 0,
 };
 
 DashboardLayoutAsideNavDropdownItem.propTypes = {
   className: PropTypes.string,
   text: PropTypes.string.isRequired,
-  expanded: PropTypes.bool,
   counterValue: PropTypes.number,
 };
 

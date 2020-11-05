@@ -11,6 +11,7 @@ import {
   Popper,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
+import { __Context as SidebarContext } from '../Sidebar';
 
 import Item from './Item';
 
@@ -42,7 +43,7 @@ const useStyles = makeStyles(
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
-      opacity: ({ expanded }) => (expanded ? 0 : 1),
+      opacity: ({ expanded }) => (expanded ? 1 : 0),
       pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
       transition: theme.transitions.create('opacity', {
         easing: theme.transitions.easing.sharp,
@@ -62,9 +63,9 @@ const DashboardLayoutCurrentUserInfo = ({
   avatarSrc,
   avatarAlt,
   userName,
-  expanded,
   ...props
 }) => {
+  const { expanded } = React.useContext(SidebarContext);
   const classes = useStyles({ expanded });
   const buttonRef = React.createRef();
   const [open, setOpen] = React.useState(false);
@@ -123,7 +124,6 @@ DashboardLayoutCurrentUserInfo.propTypes = {
   avatarSrc: PropTypes.string,
   avatarAlt: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
-  expanded: PropTypes.bool.isRequired,
 };
 
 export default DashboardLayoutCurrentUserInfo;
