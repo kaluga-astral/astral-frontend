@@ -2,6 +2,7 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
+import { SidebarContextProvider } from '../Sidebar';
 
 const useStyles = makeStyles(
   () => ({
@@ -16,7 +17,11 @@ const useStyles = makeStyles(
 const DashboardLayout = ({ className, children }) => {
   const classes = useStyles();
 
-  return <div className={cn(classes.root, className)}>{children}</div>;
+  return (
+    <SidebarContextProvider>
+      <div className={cn(classes.root, className)}>{children}</div>
+    </SidebarContextProvider>
+  );
 };
 
 DashboardLayout.defaultProps = {
