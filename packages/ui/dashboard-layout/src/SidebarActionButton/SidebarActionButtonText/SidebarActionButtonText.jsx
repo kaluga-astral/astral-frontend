@@ -10,7 +10,7 @@ const useStyles = makeStyles(
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       fontWeight: theme.typography.fontWeightBold,
-      opacity: ({ expanded }) => (expanded ? 1 : 0),
+      opacity: ({ expanded }) => (expanded ? 0 : 1),
       pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
       transition: theme.transitions.create('opacity', {
         easing: theme.transitions.easing.sharp,
