@@ -37,6 +37,12 @@ const useStyles = makeStyles(
       textAlign: 'left',
       fontSize: theme.typography.pxToRem(14),
       fontWeight: theme.typography.fontWeightBold,
+      opacity: ({ expanded }) => (expanded ? 1 : 0),
+      pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
+      transition: theme.transitions.create('opacity', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     },
     tooltip: {
       display: 'flex',
