@@ -34,7 +34,7 @@ const useStyles = makeStyles(
 );
 
 const SidebarCounter = ({ className, counterValue }) => {
-  const { expanded } = React.useContext(SidebarContext) || { expanded: true };
+  const { expanded } = React.useContext(SidebarContext);
   const classes = useStyles({ expanded, counterValue });
 
   return <div className={cn(classes.root, className)}>{counterValue}</div>;

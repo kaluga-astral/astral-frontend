@@ -12,7 +12,7 @@ const SidebarTooltip = ({
   title,
   ...props
 }) => {
-  const { expanded } = React.useContext(SidebarContext) || { expanded: true };
+  const { expanded } = React.useContext(SidebarContext);
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);

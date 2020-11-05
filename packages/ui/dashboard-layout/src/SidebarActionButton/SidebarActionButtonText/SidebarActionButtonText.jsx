@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
+import { __Context as SidebarContext } from '../../Sidebar';
 
 const useStyles = makeStyles(
   theme => ({
@@ -10,7 +11,7 @@ const useStyles = makeStyles(
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       fontWeight: theme.typography.fontWeightBold,
-      opacity: ({ expanded }) => (expanded ? 0 : 1),
+      opacity: ({ expanded }) => (expanded ? 1 : 0),
       pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
       transition: theme.transitions.create('opacity', {
         easing: theme.transitions.easing.sharp,
@@ -21,7 +22,8 @@ const useStyles = makeStyles(
   { name: 'DashboardLayoutActionButtonText' },
 );
 
-const DashboardLayoutActionButtonText = ({ text, expanded }) => {
+const DashboardLayoutActionButtonText = ({ text }) => {
+  const { expanded } = React.useContext(SidebarContext);
   const classes = useStyles({ expanded });
 
   return <div className={classes.root}>{text}</div>;
@@ -29,7 +31,6 @@ const DashboardLayoutActionButtonText = ({ text, expanded }) => {
 
 DashboardLayoutActionButtonText.propTypes = {
   text: PropTypes.string.isRequired,
-  expanded: PropTypes.bool.isRequired,
 };
 
 export default DashboardLayoutActionButtonText;

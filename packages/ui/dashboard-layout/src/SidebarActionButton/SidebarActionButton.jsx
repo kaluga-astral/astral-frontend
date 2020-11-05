@@ -31,13 +31,13 @@ const useStyles = makeStyles(
 );
 
 const DashboardLayoutActionButton = React.forwardRef(
-  ({ className, Icon, text, expanded, ...props }, ref) => {
+  ({ className, Icon, text, ...props }, ref) => {
     const classes = useStyles();
 
     return (
       <ButtonBase ref={ref} className={cn(classes.root, className)} {...props}>
         <SidebarActionButtonIcon Icon={Icon} />
-        <SidebarActionButtonText expanded={expanded} text={text} />
+        <SidebarActionButtonText text={text} />
       </ButtonBase>
     );
   },
@@ -50,7 +50,6 @@ DashboardLayoutActionButton.defaultProps = {
 DashboardLayoutActionButton.propTypes = {
   Icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
-  expanded: PropTypes.bool.isRequired,
   className: PropTypes.string,
 };
 
