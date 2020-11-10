@@ -21,8 +21,10 @@ const CountdownTimer = ({ time, dangerTime, onTimesUp, color, ...props }) => {
     }
   }
 
-  const newColor =
-    deadline <= dangerTime ? 'error.main' : color ?? 'primary.main';
+  const newColor = React.useMemo(
+    () => (deadline <= dangerTime ? 'error.main' : color ?? 'primary.main'),
+    [deadline, dangerTime, color],
+  );
   const minutes = getMinutes(deadline);
   const seconds = getSeconds(deadline);
 
