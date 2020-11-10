@@ -25,8 +25,8 @@ const CountdownTimer = ({ time, dangerTime, onTimesUp, color, ...props }) => {
     () => (deadline <= dangerTime ? 'error.main' : color ?? 'primary.main'),
     [deadline, dangerTime, color],
   );
-  const minutes = getMinutes(deadline);
-  const seconds = getSeconds(deadline);
+  const minutes = React.useMemo(() => getMinutes(deadline), [deadline]);
+  const seconds = React.useMemo(() => getSeconds(deadline), [deadline]);
 
   return (
     <Box {...props} color={newColor}>
