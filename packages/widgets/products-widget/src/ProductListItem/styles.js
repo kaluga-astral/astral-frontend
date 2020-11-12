@@ -9,6 +9,7 @@ export default makeStyles(theme => ({
     padding: '22px 20px',
     textDecoration: 'none',
     transition: 'background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+
     '&:hover': {
       backgroundColor: LIST_ITEM_HOVER_BG_COLOR,
     },
@@ -19,12 +20,11 @@ export default makeStyles(theme => ({
   icon: {
     flexShrink: 0,
     boxSizing: 'content-box',
-    padding: 7,
     marginRight: 20,
-    width: 18,
-    height: 18,
+    width: 44,
+    height: 44,
     backgroundColor: ({ backgroundHexColor }) => backgroundHexColor,
-    borderRadius: '50%',
+    borderRadius: 12,
     color: 'transparent',
   },
   name: {
@@ -32,14 +32,8 @@ export default makeStyles(theme => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     fontSize: 14,
+    fontStyle: 'bold',
     lineHeight: '19px',
-    color: theme.palette.text.primary,
-  },
-  description: {
-    margin: 0,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    fontSize: 12,
-    color: theme.palette.grey[600],
+    color: theme.palette.grey[900],
   },
 }));
