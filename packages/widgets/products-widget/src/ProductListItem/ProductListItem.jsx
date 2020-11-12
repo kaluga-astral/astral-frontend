@@ -12,7 +12,6 @@ const ProductListItem = ({
   backgroundHexColor,
   name,
   productUrl,
-  shortDescription,
 }) => {
   const { apiUrl } = useContext(ApiUrlContext);
   const classes = useStyles({ backgroundHexColor });
@@ -24,10 +23,7 @@ const ProductListItem = ({
         src={`${getFileServiceUrl(apiUrl)}/${iconFileId}`}
         alt={`Иконка продукта ${name}`}
       />
-      <div className={classes.textWrapper}>
-        <h3 className={classes.name}>{name}</h3>
-        <p className={classes.description}>{shortDescription}</p>
-      </div>
+      <h3 className={classes.name}>{name}</h3>
     </a>
   );
 };
@@ -37,7 +33,6 @@ ProductListItem.propTypes = {
   backgroundHexColor: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   productUrl: PropTypes.string.isRequired,
-  shortDescription: PropTypes.string.isRequired,
 };
 
 export default ProductListItem;

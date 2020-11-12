@@ -14,8 +14,8 @@ export default makeStyles(() => ({
   listItem: {
     overflow: 'hidden',
     '&:first-child': {
-      borderTopLeftRadius: 2,
-      borderTopRightRadius: 2,
+      borderTopLeftRadius: 12,
+      borderTopRightRadius: 12,
 
       // стили для decorArrow
       '&:hover > span': {
@@ -24,8 +24,8 @@ export default makeStyles(() => ({
       },
     },
     '&:last-child': {
-      borderBottomLeftRadius: 2,
-      borderBottomRightRadius: 2,
+      borderBottomLeftRadius: 12,
+      borderBottomRightRadius: 12,
     },
   },
   // необходимо, чтобы при наведении на первый элемент списка стрелка поповера тоже окрашивалась

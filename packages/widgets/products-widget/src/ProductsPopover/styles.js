@@ -11,7 +11,7 @@ export default makeStyles(theme => ({
     // для того, чтобы стрелка поповера не заезжала на anchor
     marginLeft: 6,
     minHeight: 80,
-    borderRadius: 2,
+    borderRadius: 12,
     boxShadow: theme.shadows[2],
   },
 }));
