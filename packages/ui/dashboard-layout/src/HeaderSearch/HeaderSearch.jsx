@@ -23,20 +23,30 @@ const useStyles = makeStyles(
 const DashboardLayoutHeaderSearch = ({
   className,
   placeholder,
-  inputValue,
   defaultInputValue,
   onInputChange,
   renderFilters,
 }) => {
   const classes = useStyles();
+  const [inputValue, setValue] = React.useState(defaultInputValue);
+
+  const handleInputChange = React.useCallback(event => {
+    setValue(event.target.value);
+    onInputChange(event);
+  }, []);
+
+  React.useEffect(() => {
+    if (!defaultInputValue) {
+      setValue('');
+    }
+  }, [defaultInputValue]);
 
   return (
     <SearchInput
       className={cn(classes.root, className)}
       placeholder={placeholder}
       value={inputValue}
-      defaultValue={defaultInputValue}
-      onChange={onInputChange}
+      onChange={handleInputChange}
       renderFilters={renderFilters}
     />
   );
@@ -45,7 +55,6 @@ const DashboardLayoutHeaderSearch = ({
 DashboardLayoutHeaderSearch.defaultProps = {
   className: null,
   placeholder: 'Поиск',
-  inputValue: undefined,
   defaultInputValue: undefined,
   renderFilters: null,
 };
@@ -53,7 +62,6 @@ DashboardLayoutHeaderSearch.defaultProps = {
 DashboardLayoutHeaderSearch.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
-  inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   defaultInputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onInputChange: PropTypes.func.isRequired,
   renderFilters: PropTypes.func,
