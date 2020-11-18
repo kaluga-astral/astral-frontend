@@ -13,20 +13,7 @@ export default makeStyles(() => ({
   },
   listItem: {
     overflow: 'hidden',
-    '&:first-child': {
-      borderTopLeftRadius: 12,
-      borderTopRightRadius: 12,
-
-      // стили для decorArrow
-      '&:hover > span': {
-        opacity: 1,
-        zIndex: 1,
-      },
-    },
-    '&:last-child': {
-      borderBottomLeftRadius: 12,
-      borderBottomRightRadius: 12,
-    },
+    borderRadius: 12,
   },
   // необходимо, чтобы при наведении на первый элемент списка стрелка поповера тоже окрашивалась
   // здесь поверх основной стрелки появляется новая с нужным цветом

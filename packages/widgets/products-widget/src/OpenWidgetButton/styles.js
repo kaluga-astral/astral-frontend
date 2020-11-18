@@ -6,7 +6,7 @@ export default makeStyles(theme => ({
     color: theme.palette.common.white,
   },
   icon: {
-    width: '11px !important',
-    height: '11px !important',
+    width: '18px !important',
+    height: '18px !important',
   },
 }));
