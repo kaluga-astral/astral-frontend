@@ -25,7 +25,7 @@ export const TransferTemplatedDataListDestinationSection = ({
         selectedItems={selectedItems}
         queryResult={{
           called: true,
-          loading: false,
+          loading: queryResult.loading,
           error: null,
           data: {
             items: selectedItems,

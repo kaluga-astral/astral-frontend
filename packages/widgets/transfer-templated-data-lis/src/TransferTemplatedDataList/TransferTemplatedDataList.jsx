@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { List, Box } from '@astral-frontend/components';
+import { List, Box, Placeholder } from '@astral-frontend/components';
 
 import { TransferTemplatedDataListDestinationSection } from './TransferTemplatedDataListDestinationSection';
 import { TransferTemplatedDataListSourceSection } from './TransferTemplatedDataListSourceSection';
@@ -47,25 +47,30 @@ export const TransferTemplatedDataList = ({
       flexGrow={1}
       css={{ overflowY: 'hidden' }}
     >
-      <TransferTemplatedDataListDestinationSection
-        {...props}
-        title={destinationListTitle}
-        queryResult={queryResult}
-        selectedItems={selectedItems}
-        setSelectedItems={setSelectedItems}
-        listRenderer={listRenderer}
-        renderItem={renderItem}
-      />
-      <TransferTemplatedDataListSourceSection
-        {...props}
-        title={sourceListTitle}
-        queryResult={queryResult}
-        selectedItems={selectedItems}
-        setSelectedItems={setSelectedItems}
-        listRenderer={listRenderer}
-        renderItem={renderItem}
-        getDataIdFromObject={getDataIdFromObject}
-      />
+      {queryResult.loading && <Placeholder state="loading" />}
+      {!queryResult.loading && (
+        <TransferTemplatedDataListDestinationSection
+          {...props}
+          title={destinationListTitle}
+          queryResult={queryResult}
+          selectedItems={selectedItems}
+          setSelectedItems={setSelectedItems}
+          listRenderer={listRenderer}
+          renderItem={renderItem}
+        />
+      )}
+      {!queryResult.loading && (
+        <TransferTemplatedDataListSourceSection
+          {...props}
+          title={sourceListTitle}
+          queryResult={queryResult}
+          selectedItems={selectedItems}
+          setSelectedItems={setSelectedItems}
+          listRenderer={listRenderer}
+          renderItem={renderItem}
+          getDataIdFromObject={getDataIdFromObject}
+        />
+      )}
     </Box>
   );
 };
