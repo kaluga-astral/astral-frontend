@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { List, Box } from '@astral-frontend/components';
+import { List, Box, Placeholder } from '@astral-frontend/components';
 
 import { TransferTemplatedDataListDestinationSection } from './TransferTemplatedDataListDestinationSection';
 import { TransferTemplatedDataListSourceSection } from './TransferTemplatedDataListSourceSection';
@@ -39,15 +39,14 @@ export const TransferTemplatedDataList = ({
     },
     [queryResult.loading],
   );
+  const children = React.useMemo(() => {
+    if (queryResult.loading) {
+      return <Placeholder state="loading" />;
+    }
 
-  return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      flexGrow={1}
-      css={{ overflowY: 'hidden' }}
-    >
+    return [
       <TransferTemplatedDataListDestinationSection
+        key="destination"
         {...props}
         title={destinationListTitle}
         queryResult={queryResult}
@@ -55,8 +54,9 @@ export const TransferTemplatedDataList = ({
         setSelectedItems={setSelectedItems}
         listRenderer={listRenderer}
         renderItem={renderItem}
-      />
+      />,
       <TransferTemplatedDataListSourceSection
+        key="source"
         {...props}
         title={sourceListTitle}
         queryResult={queryResult}
@@ -65,7 +65,18 @@ export const TransferTemplatedDataList = ({
         listRenderer={listRenderer}
         renderItem={renderItem}
         getDataIdFromObject={getDataIdFromObject}
-      />
+      />,
+    ];
+  }, [queryResult.loading]);
+
+  return (
+    <Box
+      display="flex"
+      flexDirection="column"
+      flexGrow={1}
+      css={{ overflowY: 'hidden' }}
+    >
+      {children}
     </Box>
   );
 };
