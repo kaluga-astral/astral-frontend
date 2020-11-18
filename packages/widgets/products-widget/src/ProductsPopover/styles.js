@@ -8,6 +8,7 @@ export default makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     width: 300,
+    padding: 12,
     // для того, чтобы стрелка поповера не заезжала на anchor
     marginLeft: 6,
     minHeight: 80,

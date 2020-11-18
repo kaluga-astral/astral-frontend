@@ -18,7 +18,9 @@ const DataList = ({
     error,
     loading,
   },
+  isQueryParamsEmpty,
   EmptyStateComponent,
+  NotFoundStateComponent,
   onLoadMoreItems,
   disableSelect,
   ...props
@@ -32,8 +34,11 @@ const DataList = ({
   }
 
   if (!loading && items.length === 0) {
-    if (EmptyStateComponent) {
+    if (isQueryParamsEmpty && EmptyStateComponent) {
       return <EmptyStateComponent />;
+    }
+    if (NotFoundStateComponent) {
+      return <NotFoundStateComponent />;
     }
 
     return null;
@@ -76,7 +81,9 @@ DataList.defaultProps = {
   lastViewedItem: null,
   setLastViewedItem: null,
   onLoadMoreItems: null,
+  isQueryParamsEmpty: false,
   EmptyStateComponent: null,
+  NotFoundStateComponent: null,
   disableSelect: false,
 };
 
@@ -95,7 +102,9 @@ DataList.propTypes = {
       items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     }).isRequired,
   }).isRequired,
+  isQueryParamsEmpty: PropTypes.bool,
   EmptyStateComponent: PropTypes.func,
+  NotFoundStateComponent: PropTypes.func,
   pageSize: PropTypes.number.isRequired,
   onLoadMoreItems: PropTypes.func,
   disableSelect: PropTypes.bool,
