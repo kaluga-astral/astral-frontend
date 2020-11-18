@@ -39,35 +39,6 @@ export const TransferTemplatedDataList = ({
     },
     [queryResult.loading],
   );
-  const children = React.useMemo(() => {
-    if (queryResult.loading) {
-      return <Placeholder state="loading" />;
-    }
-
-    return [
-      <TransferTemplatedDataListDestinationSection
-        key="destination"
-        {...props}
-        title={destinationListTitle}
-        queryResult={queryResult}
-        selectedItems={selectedItems}
-        setSelectedItems={setSelectedItems}
-        listRenderer={listRenderer}
-        renderItem={renderItem}
-      />,
-      <TransferTemplatedDataListSourceSection
-        key="source"
-        {...props}
-        title={sourceListTitle}
-        queryResult={queryResult}
-        selectedItems={selectedItems}
-        setSelectedItems={setSelectedItems}
-        listRenderer={listRenderer}
-        renderItem={renderItem}
-        getDataIdFromObject={getDataIdFromObject}
-      />,
-    ];
-  }, [queryResult.loading]);
 
   return (
     <Box
@@ -76,7 +47,30 @@ export const TransferTemplatedDataList = ({
       flexGrow={1}
       css={{ overflowY: 'hidden' }}
     >
-      {children}
+      {queryResult.loading && <Placeholder state="loading" />}
+      {!queryResult.loading && (
+        <TransferTemplatedDataListDestinationSection
+          {...props}
+          title={destinationListTitle}
+          queryResult={queryResult}
+          selectedItems={selectedItems}
+          setSelectedItems={setSelectedItems}
+          listRenderer={listRenderer}
+          renderItem={renderItem}
+        />
+      )}
+      {!queryResult.loading && (
+        <TransferTemplatedDataListSourceSection
+          {...props}
+          title={sourceListTitle}
+          queryResult={queryResult}
+          selectedItems={selectedItems}
+          setSelectedItems={setSelectedItems}
+          listRenderer={listRenderer}
+          renderItem={renderItem}
+          getDataIdFromObject={getDataIdFromObject}
+        />
+      )}
     </Box>
   );
 };
