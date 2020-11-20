@@ -81,7 +81,7 @@ DataList.defaultProps = {
   lastViewedItem: null,
   setLastViewedItem: null,
   onLoadMoreItems: null,
-  isQueryParamsEmpty: false,
+  isQueryParamsEmpty: true,
   EmptyStateComponent: null,
   NotFoundStateComponent: null,
   disableSelect: false,
