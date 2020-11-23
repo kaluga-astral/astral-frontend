@@ -18,6 +18,8 @@ const useStyles = makeStyles(
       },
     },
     text: {
+      display: 'inline-flex',
+      alignItems: 'center',
       transition: theme.transitions.create(['color']),
     },
   }),
@@ -48,7 +50,7 @@ export const TransferTemplatedDataListItem = ({
         className,
       )}
     >
-      <ListItemText className={classes.text}>
+      <ListItemText className={classes.text} disableTypography>
         {text}
         {endAdornment}
       </ListItemText>
