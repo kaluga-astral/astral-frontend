@@ -8,6 +8,7 @@ export { default as CrossIcon } from './CrossIcon';
 export { default as DeleteIcon } from './DeleteIcon';
 export { default as DocumentIcon } from './DocumentIcon';
 export { default as DocumentIconError } from './DocumentIconError';
+export { default as DocumentWithMarkingCodesIcon } from './DocumentWithMarkingCodesIcon';
 export { default as EditIcon } from './EditIcon';
 export { default as ErrorIcon } from './ErrorIcon';
 export { default as MoreVert } from './MoreVert';
