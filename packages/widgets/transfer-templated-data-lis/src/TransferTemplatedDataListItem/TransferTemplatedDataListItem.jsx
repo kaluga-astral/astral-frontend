@@ -18,6 +18,8 @@ const useStyles = makeStyles(
       },
     },
     text: {
+      display: 'inline-flex',
+      alignItems: 'center',
       transition: theme.transitions.create(['color']),
     },
   }),
@@ -26,6 +28,7 @@ const useStyles = makeStyles(
 
 export const TransferTemplatedDataListItem = ({
   text,
+  endAdornment,
   children,
   className,
   loading,
@@ -47,7 +50,10 @@ export const TransferTemplatedDataListItem = ({
         className,
       )}
     >
-      <ListItemText className={classes.text}>{text}</ListItemText>
+      <ListItemText className={classes.text} disableTypography>
+        {text}
+        {endAdornment}
+      </ListItemText>
       {ActionsComponent && <ActionsComponent data={data} />}
     </ListItem>
   );
@@ -59,10 +65,12 @@ TransferTemplatedDataListItem.defaultProps = {
   highlightOnHover: false,
   loading: false,
   ActionsComponent: null,
+  endAdornment: null,
 };
 
 TransferTemplatedDataListItem.propTypes = {
   text: PropTypes.string.isRequired,
+  endAdornment: PropTypes.node,
   children: PropTypes.node,
   className: PropTypes.string,
   loading: PropTypes.bool,
