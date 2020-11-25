@@ -15,6 +15,7 @@ export { default as CardActions } from './CardActions';
 export { default as CardContent } from './CardContent';
 export { default as CardMedia } from './CardMedia';
 export { default as Checkbox } from './Checkbox';
+export { default as CheckboxBase } from './CheckboxBase';
 export { default as Chip } from './Chip';
 export { default as CircularProgress } from './CircularProgress';
 export { default as ClickAwayListener } from './ClickAwayListener';
