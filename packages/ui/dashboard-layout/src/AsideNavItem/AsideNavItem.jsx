@@ -152,7 +152,7 @@ const DashboardLayoutAsideNavItem = ({
         >
           <Icon className={classes.icon} />
           <div className={classes.text}>{text}</div>
-          {expandedSidebar && (
+          {expandedSidebar && Boolean(counterValue) && (
             <SidebarCounter
               className={{
                 [classes.expandedCounter]: expandedDropdown,

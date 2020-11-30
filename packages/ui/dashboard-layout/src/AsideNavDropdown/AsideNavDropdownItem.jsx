@@ -86,7 +86,9 @@ const DashboardLayoutAsideNavDropdownItem = ({
         </SvgIcon>
         <div className={classes.text}>
           {text}
-          {expanded && <SidebarCounter counterValue={counterValue} />}
+          {expanded && Boolean(counterValue) && (
+            <SidebarCounter counterValue={counterValue} />
+          )}
         </div>
       </ButtonBase>
     </SidebarTooltip>
