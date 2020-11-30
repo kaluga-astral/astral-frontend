@@ -139,7 +139,7 @@ const DashboardLayoutAsideNavItem = ({
   return (
     <li
       className={cn(className, classes.root, {
-        [classes.expandedDropdown]: expandedDropdown,
+        [classes.expandedDropdown]: expandedDropdown || alwaysExpandedDropdown,
       })}
     >
       <SidebarTooltip counterValue={counterValue} title={text}>
