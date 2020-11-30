@@ -5,8 +5,13 @@ import SidebarContext from './SidebarContext';
 
 const LOCALSTORAGE_KEY = '__DASHBOARD_LAYOUT_SIDEBAR__';
 
-const SidebarContextProvider = ({ children }) => {
+const SidebarContextProvider = ({ children, alwaysExpanded }) => {
   const initialExpanded = React.useMemo(() => {
+    if (alwaysExpanded) {
+      return {
+        expanded: true,
+      };
+    }
     return (
       JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) ?? {
         expanded: true,
@@ -29,8 +34,13 @@ const SidebarContextProvider = ({ children }) => {
   );
 };
 
+SidebarContextProvider.defaultProps = {
+  alwaysExpanded: false,
+};
+
 SidebarContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  alwaysExpanded: PropTypes.bool,
 };
 
 export default SidebarContextProvider;

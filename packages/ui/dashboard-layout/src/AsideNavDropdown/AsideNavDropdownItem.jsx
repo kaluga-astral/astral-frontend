@@ -22,7 +22,7 @@ const useStyles = makeStyles(
       margin: theme.spacing(0, 2, 0, 5),
     },
     collapsedIcon: {
-      opacity: ({ expanded }) => (expanded ? 1 : 0),
+      opacity: ({ expanded }) => (expanded ? 0 : 1),
       pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
       transition: theme.transitions.create('opacity', {
         easing: theme.transitions.easing.sharp,

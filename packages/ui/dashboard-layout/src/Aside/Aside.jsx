@@ -2,14 +2,17 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { FlexContainer } from '@astral-frontend/components';
+import { Box } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import AsideContext from './AsideContext';
+import { SidebarContextProvider } from '../Sidebar';
+import AsideContextProvider from './AsideContextProvider';
 
 const useStyles = makeStyles(
   {
     root: {
+      display: 'flex',
+      flexDirection: 'column',
       flexShrink: 0,
     },
   },
@@ -18,20 +21,15 @@ const useStyles = makeStyles(
 
 const Aside = React.forwardRef(({ children, className }, ref) => {
   const classes = useStyles();
-  const [expandedNavDropdownId, setExpandedNavDropdownId] = React.useState();
 
   return (
-    <AsideContext.Provider
-      value={{ expandedNavDropdownId, setExpandedNavDropdownId }}
-    >
-      <FlexContainer
-        ref={ref}
-        className={cn(className, classes.root)}
-        direction="column"
-      >
-        {children}
-      </FlexContainer>
-    </AsideContext.Provider>
+    <SidebarContextProvider alwaysExpanded>
+      <AsideContextProvider>
+        <Box ref={ref} className={cn(className, classes.root)}>
+          {children}
+        </Box>
+      </AsideContextProvider>
+    </SidebarContextProvider>
   );
 });
 
