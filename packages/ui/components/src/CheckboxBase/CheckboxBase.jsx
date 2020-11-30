@@ -23,6 +23,7 @@ const useStyles = makeStyles(
 
 const CheckboxBase = ({ className, value, ...props }) => {
   const classes = useStyles();
+
   return (
     <Checkbox
       className={className}

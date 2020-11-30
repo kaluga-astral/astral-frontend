@@ -45,7 +45,7 @@ const DashboardLayoutHeaderSearch = ({
     <SearchInput
       className={cn(classes.root, className)}
       placeholder={placeholder}
-      value={inputValue}
+      value={inputValue ?? ''}
       onChange={handleInputChange}
       renderFilters={renderFilters}
     />
