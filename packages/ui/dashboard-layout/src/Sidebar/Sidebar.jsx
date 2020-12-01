@@ -2,14 +2,16 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
-import { FlexContainer } from '@astral-frontend/components';
+import { Box } from '@astral-frontend/components';
 
-import Aside from '../Aside';
 import SidebarContext from './SidebarContext';
+import { AsideContextProvider } from '../Aside';
 
 const useStyles = makeStyles(
   theme => ({
     root: {
+      display: 'flex',
+      flexDirection: 'column',
       width: '70px',
       height: '100%',
       backgroundColor: theme.palette.background.paper,
@@ -31,15 +33,15 @@ const DashboardLayoutSidebar = ({ className, children }) => {
   const { expanded } = React.useContext(SidebarContext);
 
   return (
-    <FlexContainer
-      component={Aside}
-      direction="column"
-      className={cn(className, classes.root, {
-        [classes.expanded]: expanded,
-      })}
-    >
-      {children}
-    </FlexContainer>
+    <AsideContextProvider>
+      <Box
+        className={cn(className, classes.root, {
+          [classes.expanded]: expanded,
+        })}
+      >
+        {children}
+      </Box>
+    </AsideContextProvider>
   );
 };
 
