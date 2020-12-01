@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { AstralSquareLogo } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
-import { __Context as SidebarContext } from '../Sidebar';
 
 const useStyles = makeStyles(
   theme => ({
@@ -32,8 +31,8 @@ const useStyles = makeStyles(
       fontWeight: theme.typography.fontWeightBold,
     },
     endContentWrapper: {
-      opacity: ({ expanded }) => (!expanded ? 0 : 1),
-      pointerEvents: ({ expanded }) => (!expanded ? 'none' : 'auto'),
+      opacity: ({ hideEndContent }) => (hideEndContent ? 0 : 1),
+      pointerEvents: ({ hideEndContent }) => (hideEndContent ? 'none' : 'auto'),
       transition: theme.transitions.create('opacity', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -45,9 +44,14 @@ const useStyles = makeStyles(
 
 const DefaultLogo = props => <AstralSquareLogo color="monochrome" {...props} />;
 
-const DashboardLayoutProduct = ({ className, Logo, EndContent, title }) => {
-  const { expanded } = React.useContext(SidebarContext);
-  const classes = useStyles({ expanded });
+const DashboardLayoutProduct = ({
+  hideEndContent,
+  className,
+  Logo,
+  EndContent,
+  title,
+}) => {
+  const classes = useStyles({ hideEndContent });
 
   return (
     <div className={cn(classes.root, className)}>
@@ -57,7 +61,7 @@ const DashboardLayoutProduct = ({ className, Logo, EndContent, title }) => {
       </div>
       <div
         className={classes.endContentWrapper}
-        tabIndex={!expanded ? -1 : undefined}
+        tabIndex={hideEndContent ? -1 : undefined}
       >
         {EndContent && <EndContent />}
       </div>
@@ -66,12 +70,14 @@ const DashboardLayoutProduct = ({ className, Logo, EndContent, title }) => {
 };
 
 DashboardLayoutProduct.defaultProps = {
+  hideEndContent: false,
   className: null,
   EndContent: null,
   Logo: DefaultLogo,
 };
 
 DashboardLayoutProduct.propTypes = {
+  hideEndContent: PropTypes.bool,
   className: PropTypes.string,
   Logo: PropTypes.func,
   EndContent: PropTypes.func,
