@@ -8,9 +8,7 @@ const LOCALSTORAGE_KEY = '__DASHBOARD_LAYOUT_SIDEBAR__';
 const SidebarContextProvider = ({ children, alwaysExpanded }) => {
   const initialExpanded = React.useMemo(() => {
     if (alwaysExpanded) {
-      return {
-        expanded: true,
-      };
+      return true;
     }
     return (
       JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) ?? {
