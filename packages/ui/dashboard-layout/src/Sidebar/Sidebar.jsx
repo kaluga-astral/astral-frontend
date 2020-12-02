@@ -12,6 +12,7 @@ const useStyles = makeStyles(
     root: {
       display: 'flex',
       flexDirection: 'column',
+      flexShrink: 0,
       width: '70px',
       height: '100%',
       backgroundColor: theme.palette.background.paper,
