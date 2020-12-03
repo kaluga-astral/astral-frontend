@@ -86,6 +86,7 @@ const OrganizationSelector = ({
                 name={currentOrganizationName}
                 disabled={disabled}
                 onClick={handleTogglerButtonClick}
+                open={open}
               />
             </Tooltip>
             <ButtonBase disabled={disabled} onClick={handleTogglerButtonClick}>
