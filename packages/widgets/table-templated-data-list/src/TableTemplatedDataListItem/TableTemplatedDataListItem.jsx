@@ -100,7 +100,7 @@ const TableTemplatedDataListItem = ({
     }
   }, [data]);
 
-  const handleChangeClick = React.useCallback(
+  const handleSelectorClick = React.useCallback(
     event => {
       event.stopPropagation();
       event.preventDefault();
@@ -153,7 +153,7 @@ const TableTemplatedDataListItem = ({
             className={classes.selector}
             checked={checked}
             disabled={selectionDisabled}
-            onChange={handleChangeClick}
+            onClick={handleSelectorClick}
           />
         ) : (
           <Icon />
