@@ -20,6 +20,8 @@ const useStyles = makeStyles(
     text: {
       display: 'inline-flex',
       alignItems: 'center',
+      overflow: 'hidden',
+      wordBreak: 'break-all',
       transition: theme.transitions.create(['color']),
     },
   }),
