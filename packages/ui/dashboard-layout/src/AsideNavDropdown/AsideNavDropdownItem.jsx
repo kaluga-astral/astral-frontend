@@ -14,6 +14,7 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       justifyContent: 'left',
+      marginRight: theme.spacing(5),
     },
     icon: {
       height: '48px',
@@ -32,7 +33,6 @@ const useStyles = makeStyles(
     text: {
       display: 'flex',
       justifyContent: 'space-between',
-      marginRight: theme.spacing(14),
       flexGrow: 1,
       overflow: 'hidden',
       textOverflow: 'ellipsis',
@@ -48,6 +48,9 @@ const useStyles = makeStyles(
     },
     active: {
       color: theme.palette.primary.main,
+    },
+    sidebarCounter: {
+      marginRight: theme.spacing(9),
     },
   }),
   {
@@ -87,7 +90,10 @@ const DashboardLayoutAsideNavDropdownItem = ({
         <div className={classes.text}>
           {text}
           {expanded && Boolean(counterValue) && (
-            <SidebarCounter counterValue={counterValue} />
+            <SidebarCounter
+              counterValue={counterValue}
+              className={classes.sidebarCounter}
+            />
           )}
         </div>
       </ButtonBase>
