@@ -35,6 +35,7 @@ const Autocomplete = ({
       open={open}
       options={options}
       filterOptions={filterOptions}
+      forcePopupIcon={false}
       getOptionLabel={getOptionLabel}
       getOptionSelected={option => options.find(v => v.key === option.key)}
       onOpen={onOpen}
