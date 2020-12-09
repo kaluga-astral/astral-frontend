@@ -10,6 +10,7 @@
   "dependencies": {
     "@astral-frontend/data-list": "*",
     "@astral-frontend/components": "^1.0.0",
+    "@astral-frontend/core": "^1.0.0",
     "@astral-frontend/icons": "^1.0.0",
     "@astral-frontend/styles": "^1.0.0",
     "classnames": "^2.2.6",
