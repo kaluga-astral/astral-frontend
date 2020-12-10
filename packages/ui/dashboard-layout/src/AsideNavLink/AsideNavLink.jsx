@@ -5,6 +5,7 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import AsideNavItem from '../AsideNavItem';
 import AsideNavLinkIcon from './AsideNavLinkIcon';
+import { AsideContextProvider } from '../Aside';
 
 const useStyles = makeStyles(
   theme => ({
@@ -28,13 +29,15 @@ const DashboardLayoutAsideNavLink = ({ className, Icon, text, ...props }) => {
   }, []);
 
   return (
-    <AsideNavItem
-      component={NavLink}
-      text={text}
-      Icon={memoizedIcon}
-      activeClassName={classes.active}
-      {...props}
-    />
+    <AsideContextProvider>
+      <AsideNavItem
+        component={NavLink}
+        text={text}
+        Icon={memoizedIcon}
+        activeClassName={classes.active}
+        {...props}
+      />
+    </AsideContextProvider>
   );
 };
 
