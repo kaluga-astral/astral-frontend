@@ -2,12 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import AsideNavItem from '../AsideNavItem';
+import { AsideContextProvider } from '../Aside';
 
 const DashboardLayoutAsideNavDropdown = ({ className, children, ...props }) => {
   return (
-    <AsideNavItem className={className} {...props}>
-      {children}
-    </AsideNavItem>
+    <AsideContextProvider>
+      <AsideNavItem className={className} {...props}>
+        {children}
+      </AsideNavItem>
+    </AsideContextProvider>
   );
 };
 

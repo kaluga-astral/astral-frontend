@@ -5,7 +5,6 @@ import { makeStyles } from '@astral-frontend/styles';
 import { Box } from '@astral-frontend/components';
 
 import SidebarContext from './SidebarContext';
-import { AsideContextProvider } from '../Aside';
 
 const useStyles = makeStyles(
   theme => ({
@@ -34,15 +33,13 @@ const DashboardLayoutSidebar = ({ className, children }) => {
   const { expanded } = React.useContext(SidebarContext);
 
   return (
-    <AsideContextProvider>
-      <Box
-        className={cn(className, classes.root, {
-          [classes.expanded]: expanded,
-        })}
-      >
-        {children}
-      </Box>
-    </AsideContextProvider>
+    <Box
+      className={cn(className, classes.root, {
+        [classes.expanded]: expanded,
+      })}
+    >
+      {children}
+    </Box>
   );
 };
 
