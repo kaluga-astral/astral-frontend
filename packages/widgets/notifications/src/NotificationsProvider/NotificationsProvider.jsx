@@ -6,8 +6,8 @@ import NotificationsContext from '../NotificationsContext';
 
 const DEFAULT_NOTIFICATION_DURATION = 5000;
 
-const NotificationsProvider = ({ notificationDuration, children }) => (
-  <NotificationsContext.Provider value={{ notificationDuration }}>
+const NotificationsProvider = ({ autoHideDuration, children }) => (
+  <NotificationsContext.Provider value={{ autoHideDuration }}>
     <SnackbarProvider
       maxSnack={3}
       autoHideDuration={null}
@@ -19,12 +19,12 @@ const NotificationsProvider = ({ notificationDuration, children }) => (
 );
 
 NotificationsProvider.defaultProps = {
-  notificationDuration: DEFAULT_NOTIFICATION_DURATION,
+  autoHideDuration: DEFAULT_NOTIFICATION_DURATION,
 };
 
 NotificationsProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  notificationDuration: PropTypes.number,
+  autoHideDuration: PropTypes.number,
 };
 
 export default NotificationsProvider;
