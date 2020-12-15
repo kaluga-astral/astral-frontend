@@ -1,0 +1,34 @@
+import cn from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+import { Box } from '@astral-frontend/components';
+import { makeStyles } from '@astral-frontend/styles';
+
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      borderTopRightRadius: theme.spacing(2),
+      borderBottomRightRadius: theme.spacing(2),
+    },
+  }),
+  { name: 'NotificationMarker' },
+);
+
+const NotificationMarker = ({ color, className }) => {
+  const classes = useStyles();
+
+  return <Box bgcolor={color} className={cn(classes.root, className)} />;
+};
+
+NotificationMarker.defaultProps = {
+  className: null,
+};
+
+NotificationMarker.propTypes = {
+  color: PropTypes.oneOf(['primary.main', 'success.main', 'error.main'])
+    .isRequired,
+  className: PropTypes.string,
+};
+
+export default NotificationMarker;
