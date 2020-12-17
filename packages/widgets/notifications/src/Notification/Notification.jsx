@@ -36,6 +36,7 @@ function getPropValue(localProp, globalProp) {
 const Notification = React.forwardRef(
   (
     {
+      className,
       id,
       variant,
       title,
@@ -111,6 +112,7 @@ const Notification = React.forwardRef(
 
     return (
       <Box
+        className={className}
         ref={ref}
         position="relative"
         borderRadius={8}
@@ -140,6 +142,7 @@ const Notification = React.forwardRef(
 );
 
 Notification.defaultProps = {
+  className: null,
   darkMode: null,
   autoHideDuration: null,
   message: null,
@@ -152,6 +155,7 @@ Notification.defaultProps = {
 };
 
 Notification.propTypes = {
+  className: PropTypes.string,
   darkMode: PropTypes.bool,
   autoHideDuration: PropTypes.number,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
