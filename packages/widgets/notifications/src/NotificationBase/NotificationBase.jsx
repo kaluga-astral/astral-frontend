@@ -11,13 +11,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NotificationBase = ({
-  variant,
-  title,
-  message,
-  darkMode,
-  handleCLose,
-}) => {
+const NotificationBase = ({ variant, title, message, darkMode, onCLose }) => {
   const classes = useStyles();
   const color = React.useMemo(() => {
     if (variant === 'error') {
@@ -57,7 +51,7 @@ const NotificationBase = ({
           height={24}
           color={color}
           component={IconButton}
-          onClick={handleCLose}
+          onClick={onCLose}
         >
           <svg
             width="14"
@@ -84,7 +78,7 @@ NotificationBase.propTypes = {
   darkMode: PropTypes.bool.isRequired,
   message: PropTypes.node,
   title: PropTypes.node,
-  handleCLose: PropTypes.func.isRequired,
+  onCLose: PropTypes.func.isRequired,
   variant: PropTypes.oneOf(['info', 'success', 'error']).isRequired,
 };
 
