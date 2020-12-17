@@ -127,7 +127,7 @@ const Notification = React.forwardRef(
         {marker && (
           <NotificationMarker variant={variant} className={classes.marker} />
         )}
-        {renderProgressLine && (
+        {!persist && renderProgressLine && (
           <NotificationsProgressLine
             autoHideDuration={autoHideDuration}
             variant={variant}
