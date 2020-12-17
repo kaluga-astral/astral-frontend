@@ -11,15 +11,28 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NotificationBase = ({ title, message, darkMode, handleCLose }) => {
+const NotificationBase = ({
+  variant,
+  title,
+  message,
+  darkMode,
+  handleCLose,
+}) => {
   const classes = useStyles();
-
   const color = React.useMemo(() => {
+    if (variant === 'error') {
+      return 'common.white';
+    }
+
     return darkMode ? 'common.white' : 'common.black';
-  }, [darkMode]);
+  }, [darkMode, variant]);
   const backgroundColor = React.useMemo(() => {
+    if (variant === 'error') {
+      return 'error.main';
+    }
+
     return darkMode ? 'text.primary' : 'common.white';
-  }, [darkMode]);
+  }, [darkMode, variant]);
 
   return (
     <Box
@@ -30,7 +43,6 @@ const NotificationBase = ({ title, message, darkMode, handleCLose }) => {
       bgcolor={backgroundColor}
       borderRadius={8}
       color={color}
-      overflow="hidden"
     >
       <Box
         display="flex"
@@ -64,16 +76,16 @@ const NotificationBase = ({ title, message, darkMode, handleCLose }) => {
 };
 
 NotificationBase.defaultProps = {
-  darkMode: false,
   message: null,
   title: null,
 };
 
 NotificationBase.propTypes = {
-  darkMode: PropTypes.bool,
-  message: PropTypes.string,
-  title: PropTypes.string,
+  darkMode: PropTypes.bool.isRequired,
+  message: PropTypes.node,
+  title: PropTypes.node,
   handleCLose: PropTypes.func.isRequired,
+  variant: PropTypes.oneOf(['info', 'success', 'error']).isRequired,
 };
 
 export default NotificationBase;
