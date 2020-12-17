@@ -5,8 +5,7 @@ import { Box } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 const useStyles = makeStyles(theme => {
-  const getAnimationDuration = ({ autoHideDuration }) =>
-    `${autoHideDuration}ms`;
+  const getAnimationDuration = autoHideDuration => `${autoHideDuration}ms`;
 
   return {
     '@keyframes slideRight': {
@@ -25,9 +24,28 @@ const useStyles = makeStyles(theme => {
   };
 });
 
-const NotificationsProgressLine = props => {
-  const { className, color } = props;
-  const classes = useStyles(props);
+const NotificationsProgressLine = ({
+  autoHideDuration,
+  variant,
+  className,
+}) => {
+  const classes = useStyles(autoHideDuration);
+  const color = React.useMemo(() => {
+    switch (variant) {
+      case 'info': {
+        return 'primary.main';
+      }
+      case 'success': {
+        return 'success.main';
+      }
+      case 'error': {
+        return 'common.white';
+      }
+      default: {
+        throw new Error('Invalid NotificationsProgressLine variant');
+      }
+    }
+  });
 
   return <Box bgcolor={color} className={cn(className, classes.root)} />;
 };
@@ -37,9 +55,9 @@ NotificationsProgressLine.defaultProps = {
 };
 
 NotificationsProgressLine.propTypes = {
+  autoHideDuration: PropTypes.number.isRequired,
   className: PropTypes.string,
-  color: PropTypes.oneOf(['primary.main', 'success.main', 'error.main'])
-    .isRequired,
+  variant: PropTypes.oneOf(['info', 'success', 'error']).isRequired,
 };
 
 export default NotificationsProgressLine;
