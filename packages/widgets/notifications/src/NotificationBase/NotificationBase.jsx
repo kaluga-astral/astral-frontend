@@ -6,7 +6,7 @@ import { makeStyles } from '@astral-frontend/styles';
 const useStyles = makeStyles(theme => ({
   header: {
     '&:nth-last-child(n + 2)': {
-      marginBottom: theme.spacing(1),
+      marginBottom: theme.spacing(2),
     },
   },
 }));
