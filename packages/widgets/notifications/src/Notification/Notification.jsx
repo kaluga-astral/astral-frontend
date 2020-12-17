@@ -6,7 +6,7 @@ import { makeStyles } from '@astral-frontend/styles';
 import NotificationsContext from '../NotificationsContext';
 import NotificationsProgressLine from '../NotificationsProgressLine';
 import NotificationBase from '../NotificationBase';
-import NotificationMarker from '../NotificationMarker/NotificationMarker';
+import NotificationMarker from '../NotificationMarker';
 
 const useStyles = makeStyles(theme => ({
   marker: {
@@ -16,17 +16,22 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: 6,
   },
-  header: {
-    '&:nth-last-child(n + 2)': {
-      marginBottom: theme.spacing(1),
-    },
-  },
   progressLine: {
     position: 'absolute',
     bottom: 0,
     left: 0,
   },
 }));
+
+function getPropValue(localProp, globalProp) {
+  return () => {
+    if (localProp === null) {
+      return globalProp;
+    }
+
+    return localProp;
+  };
+}
 
 const Notification = React.forwardRef(
   (
@@ -35,43 +40,43 @@ const Notification = React.forwardRef(
       variant,
       title,
       message,
-      progressLine,
+      progressLine: localProgressLine,
       persist,
-      autoHideDuration,
-      darkMode,
+      autoHideDuration: localAutoHideDuration,
+      darkMode: localDarkMode,
       onClose,
-      marker,
+      marker: localMarker,
     },
     ref,
   ) => {
     const classes = useStyles();
     const { closeSnackbar } = useSnackbar();
+    const {
+      autoHideDuration: globalAutoHideDuration,
+      darkMode: globalDarkMode,
+      marker: globalMarker,
+      progressLine: globalProgressLine,
+    } = React.useContext(NotificationsContext);
+    const autoHideDuration = React.useMemo(
+      getPropValue(localAutoHideDuration, globalAutoHideDuration),
+      [localAutoHideDuration, globalAutoHideDuration],
+    );
+    const darkMode = React.useMemo(
+      getPropValue(localDarkMode, globalDarkMode),
+      [localDarkMode, globalDarkMode],
+    );
+    const marker = React.useMemo(getPropValue(localMarker, globalMarker), [
+      localMarker,
+      globalMarker,
+    ]);
+    const progressLine = React.useMemo(
+      getPropValue(localProgressLine, globalProgressLine),
+      [localProgressLine, globalProgressLine],
+    );
     const [renderProgressLine, setRenderProgressLine] = React.useState(
       progressLine,
     );
     const closeNotificationTimerRef = React.useRef();
-    const { autoHideDuration: defaultAutoHideDuration } = React.useContext(
-      NotificationsContext,
-    );
-    const notificationDuration = React.useMemo(
-      () => autoHideDuration || defaultAutoHideDuration,
-    );
-    const accentColor = React.useMemo(() => {
-      switch (variant) {
-        case 'info': {
-          return 'primary.main';
-        }
-        case 'success': {
-          return 'success.main';
-        }
-        case 'error': {
-          return 'error.main';
-        }
-        default: {
-          throw new Error('Invalid Notification variant');
-        }
-      }
-    }, [variant]);
 
     const handleClose = React.useCallback(() => {
       if (onClose) {
@@ -81,8 +86,8 @@ const Notification = React.forwardRef(
     });
 
     const setCloseNotificationTimer = React.useCallback(() => {
-      return setTimeout(handleClose, notificationDuration);
-    }, [handleClose, notificationDuration]);
+      return setTimeout(handleClose, autoHideDuration);
+    }, [handleClose, autoHideDuration]);
 
     React.useEffect(() => {
       if (!persist) {
@@ -116,16 +121,16 @@ const Notification = React.forwardRef(
         })}
       >
         <NotificationBase
-          {...{ title, message, darkMode }}
-          handleCLose={handleClose}
+          {...{ variant, title, message, darkMode }}
+          onCLose={handleClose}
         />
         {marker && (
-          <NotificationMarker color={accentColor} className={classes.marker} />
+          <NotificationMarker variant={variant} className={classes.marker} />
         )}
         {renderProgressLine && (
           <NotificationsProgressLine
-            autoHideDuration={notificationDuration}
-            color={accentColor}
+            autoHideDuration={autoHideDuration}
+            variant={variant}
             className={classes.progressLine}
           />
         )}
@@ -135,25 +140,25 @@ const Notification = React.forwardRef(
 );
 
 Notification.defaultProps = {
-  darkMode: false,
+  darkMode: null,
   autoHideDuration: null,
   message: null,
   persist: false,
-  progressLine: false,
+  progressLine: null,
   title: null,
   variant: 'info',
   onClose: null,
-  marker: true,
+  marker: null,
 };
 
 Notification.propTypes = {
   darkMode: PropTypes.bool,
   autoHideDuration: PropTypes.number,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  message: PropTypes.string,
+  message: PropTypes.node,
   persist: PropTypes.bool,
   progressLine: PropTypes.bool,
-  title: PropTypes.string,
+  title: PropTypes.node,
   variant: PropTypes.oneOf(['info', 'success', 'error']),
   onClose: PropTypes.func,
   marker: PropTypes.bool,
