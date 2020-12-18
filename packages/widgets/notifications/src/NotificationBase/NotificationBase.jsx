@@ -3,30 +3,19 @@ import React from 'react';
 import { Box, IconButton } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-const useStyles = makeStyles(theme => ({
-  header: {
-    '&:nth-last-child(n + 2)': {
-      marginBottom: theme.spacing(2),
+const useStyles = makeStyles(
+  theme => ({
+    header: {
+      '&:nth-last-child(n + 2)': {
+        marginBottom: theme.spacing(2),
+      },
     },
-  },
-}));
+  }),
+  { name: 'NotificationBase' },
+);
 
-const NotificationBase = ({ variant, title, message, darkMode, onCLose }) => {
-  const classes = useStyles();
-  const color = React.useMemo(() => {
-    if (variant === 'error') {
-      return 'common.white';
-    }
-
-    return darkMode ? 'common.white' : 'common.black';
-  }, [darkMode, variant]);
-  const backgroundColor = React.useMemo(() => {
-    if (variant === 'error') {
-      return 'error.main';
-    }
-
-    return darkMode ? 'text.primary' : 'common.white';
-  }, [darkMode, variant]);
+const NotificationBase = ({ background, color, title, message, onCLose }) => {
+  const classes = useStyles({ background, color });
 
   return (
     <Box
@@ -34,9 +23,9 @@ const NotificationBase = ({ variant, title, message, darkMode, onCLose }) => {
       maxWidth={450}
       px={5}
       py={4}
-      bgcolor={backgroundColor}
-      borderRadius={8}
+      bgcolor={background}
       color={color}
+      borderRadius={8}
     >
       <Box
         display="flex"
@@ -75,11 +64,11 @@ NotificationBase.defaultProps = {
 };
 
 NotificationBase.propTypes = {
-  darkMode: PropTypes.bool.isRequired,
+  background: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
   message: PropTypes.node,
   title: PropTypes.node,
   onCLose: PropTypes.func.isRequired,
-  variant: PropTypes.oneOf(['info', 'success', 'error']).isRequired,
 };
 
 export default NotificationBase;

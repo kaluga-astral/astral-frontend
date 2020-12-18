@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
+import { merge } from 'lodash-es';
 import React from 'react';
 import { SnackbarProvider } from 'notistack';
+import { useTheme } from '@astral-frontend/styles';
 
 import NotificationsContext from '../NotificationsContext';
 
@@ -14,19 +16,72 @@ const NotificationsProvider = ({
   marker,
   maxSnack,
   progressLine,
-}) => (
-  <NotificationsContext.Provider
-    value={{ autoHideDuration, darkMode, marker, progressLine }}
-  >
-    <SnackbarProvider
-      maxSnack={maxSnack}
-      anchorOrigin={anchorOrigin}
-      autoHideDuration={null}
+  palette,
+  darkModePalette,
+}) => {
+  const theme = useTheme();
+  const defaultPalette = {
+    info: {
+      background: theme.palette.common.white,
+      color: theme.palette.common.black,
+      markerColor: theme.palette.primary.main,
+      progressLineColor: theme.palette.primary.main,
+    },
+    success: {
+      background: theme.palette.common.white,
+      color: theme.palette.common.black,
+      markerColor: theme.palette.success.main,
+      progressLineColor: theme.palette.success.main,
+    },
+    error: {
+      background: theme.palette.common.white,
+      color: theme.palette.common.black,
+      markerColor: theme.palette.error.main,
+      progressLineColor: theme.palette.error.main,
+    },
+  };
+  const defaultDarkModePalette = {
+    info: {
+      background: theme.palette.text.primary,
+      color: theme.palette.common.white,
+      markerColor: theme.palette.primary.main,
+      progressLineColor: theme.palette.primary.main,
+    },
+    success: {
+      background: theme.palette.text.primary,
+      color: theme.palette.common.white,
+      markerColor: theme.palette.success.main,
+      progressLineColor: theme.palette.success.main,
+    },
+    error: {
+      background: theme.palette.text.primary,
+      color: theme.palette.common.white,
+      markerColor: theme.palette.error.main,
+      progressLineColor: theme.palette.error.main,
+    },
+  };
+
+  return (
+    <NotificationsContext.Provider
+      value={{
+        autoHideDuration,
+        darkMode,
+        marker,
+        progressLine,
+        palette: merge(defaultPalette, palette),
+        darkModePalette: merge(defaultDarkModePalette, darkModePalette),
+      }}
     >
-      {children}
-    </SnackbarProvider>
-  </NotificationsContext.Provider>
-);
+      <SnackbarProvider
+        maxSnack={maxSnack}
+        anchorOrigin={anchorOrigin}
+        autoHideDuration={null}
+      >
+        {children}
+      </SnackbarProvider>
+    </NotificationsContext.Provider>
+  );
+};
 
 NotificationsProvider.defaultProps = {
   anchorOrigin: { vertical: 'bottom', horizontal: 'right' },
@@ -35,6 +90,8 @@ NotificationsProvider.defaultProps = {
   marker: false,
   maxSnack: 12,
   progressLine: false,
+  palette: {},
+  darkModePalette: {},
 };
 
 NotificationsProvider.propTypes = {
@@ -48,6 +105,46 @@ NotificationsProvider.propTypes = {
   marker: PropTypes.bool,
   maxSnack: PropTypes.number,
   progressLine: PropTypes.bool,
+  palette: PropTypes.shape({
+    info: PropTypes.shape({
+      background: PropTypes.string,
+      color: PropTypes.string,
+      markerColor: PropTypes.string,
+      progressLineColor: PropTypes.string,
+    }),
+    success: PropTypes.shape({
+      background: PropTypes.string,
+      color: PropTypes.string,
+      markerColor: PropTypes.string,
+      progressLineColor: PropTypes.string,
+    }),
+    error: PropTypes.shape({
+      background: PropTypes.string,
+      color: PropTypes.string,
+      markerColor: PropTypes.string,
+      progressLineColor: PropTypes.string,
+    }),
+  }),
+  darkModePalette: PropTypes.shape({
+    info: PropTypes.shape({
+      background: PropTypes.string,
+      color: PropTypes.string,
+      markerColor: PropTypes.string,
+      progressLineColor: PropTypes.string,
+    }),
+    success: PropTypes.shape({
+      background: PropTypes.string,
+      color: PropTypes.string,
+      markerColor: PropTypes.string,
+      progressLineColor: PropTypes.string,
+    }),
+    error: PropTypes.shape({
+      background: PropTypes.string,
+      color: PropTypes.string,
+      markerColor: PropTypes.string,
+      progressLineColor: PropTypes.string,
+    }),
+  }),
 };
 
 export default NotificationsProvider;

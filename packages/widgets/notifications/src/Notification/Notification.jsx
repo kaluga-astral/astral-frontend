@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { merge } from 'lodash-es';
 import { useSnackbar } from 'notistack';
 import React from 'react';
 import { Box } from '@astral-frontend/components';
@@ -8,20 +9,23 @@ import NotificationsProgressLine from '../NotificationsProgressLine';
 import NotificationBase from '../NotificationBase';
 import NotificationMarker from '../NotificationMarker';
 
-const useStyles = makeStyles(theme => ({
-  marker: {
-    position: 'absolute',
-    top: theme.spacing(3),
-    bottom: theme.spacing(3),
-    left: 0,
-    width: 6,
-  },
-  progressLine: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-  },
-}));
+const useStyles = makeStyles(
+  theme => ({
+    marker: {
+      position: 'absolute',
+      top: theme.spacing(3),
+      bottom: theme.spacing(3),
+      left: 0,
+      width: 6,
+    },
+    progressLine: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+    },
+  }),
+  { name: 'Notification' },
+);
 
 function getPropValue(localProp, globalProp) {
   return () => {
@@ -47,17 +51,23 @@ const Notification = React.forwardRef(
       darkMode: localDarkMode,
       onClose,
       marker: localMarker,
+      palette: localPalette,
+      darkModePalette: localDarkModePalette,
     },
     ref,
   ) => {
     const classes = useStyles();
     const { closeSnackbar } = useSnackbar();
+
     const {
       autoHideDuration: globalAutoHideDuration,
       darkMode: globalDarkMode,
       marker: globalMarker,
       progressLine: globalProgressLine,
+      palette: globalPalette,
+      darkModePalette: globalDarkModePalette,
     } = React.useContext(NotificationsContext);
+
     const autoHideDuration = React.useMemo(
       getPropValue(localAutoHideDuration, globalAutoHideDuration),
       [localAutoHideDuration, globalAutoHideDuration],
@@ -74,6 +84,13 @@ const Notification = React.forwardRef(
       getPropValue(localProgressLine, globalProgressLine),
       [localProgressLine, globalProgressLine],
     );
+    const palette = React.useMemo(() => {
+      return merge(globalPalette, localPalette);
+    }, [localPalette, globalPalette]);
+    const darkModePalette = React.useMemo(() => {
+      return merge(globalDarkModePalette, localDarkModePalette);
+    }, [localDarkModePalette, globalDarkModePalette]);
+
     const [renderProgressLine, setRenderProgressLine] = React.useState(
       progressLine,
     );
@@ -110,6 +127,32 @@ const Notification = React.forwardRef(
       }
     }, [closeNotificationTimerRef.current]);
 
+    /// ///////////////////////////
+    /// ///////////////////////////
+    /// ///////////////////////////
+
+    const currentPalette = React.useMemo(() => {
+      return darkMode ? darkModePalette : palette;
+    }, [darkMode, darkModePalette, palette]);
+
+    const notificationBaseColorProps = React.useMemo(() => {
+      const { background, color } = currentPalette[variant];
+
+      return { background, color };
+    }, [currentPalette]);
+
+    const markerColor = React.useMemo(() => {
+      const { markerColor: color } = currentPalette[variant];
+
+      return color;
+    }, [currentPalette]);
+
+    const progressLineColor = React.useMemo(() => {
+      const { progressLineColor: color } = currentPalette[variant];
+
+      return color;
+    }, [currentPalette]);
+
     return (
       <Box
         className={className}
@@ -123,16 +166,18 @@ const Notification = React.forwardRef(
         })}
       >
         <NotificationBase
-          {...{ variant, title, message, darkMode }}
+          title={title}
+          message={message}
           onCLose={handleClose}
+          {...notificationBaseColorProps}
         />
         {marker && (
-          <NotificationMarker variant={variant} className={classes.marker} />
+          <NotificationMarker color={markerColor} className={classes.marker} />
         )}
         {!persist && renderProgressLine && (
           <NotificationsProgressLine
             autoHideDuration={autoHideDuration}
-            variant={variant}
+            color={progressLineColor}
             className={classes.progressLine}
           />
         )}
@@ -152,6 +197,8 @@ Notification.defaultProps = {
   variant: 'info',
   onClose: null,
   marker: null,
+  palette: {},
+  darkModePalette: {},
 };
 
 Notification.propTypes = {
@@ -166,6 +213,46 @@ Notification.propTypes = {
   variant: PropTypes.oneOf(['info', 'success', 'error']),
   onClose: PropTypes.func,
   marker: PropTypes.bool,
+  palette: PropTypes.shape({
+    info: PropTypes.shape({
+      background: PropTypes.string,
+      color: PropTypes.string,
+      markerColor: PropTypes.string,
+      progressLineColor: PropTypes.string,
+    }),
+    success: PropTypes.shape({
+      background: PropTypes.string,
+      color: PropTypes.string,
+      markerColor: PropTypes.string,
+      progressLineColor: PropTypes.string,
+    }),
+    error: PropTypes.shape({
+      background: PropTypes.string,
+      color: PropTypes.string,
+      markerColor: PropTypes.string,
+      progressLineColor: PropTypes.string,
+    }),
+  }),
+  darkModePalette: PropTypes.shape({
+    info: PropTypes.shape({
+      background: PropTypes.string,
+      color: PropTypes.string,
+      markerColor: PropTypes.string,
+      progressLineColor: PropTypes.string,
+    }),
+    success: PropTypes.shape({
+      background: PropTypes.string,
+      color: PropTypes.string,
+      markerColor: PropTypes.string,
+      progressLineColor: PropTypes.string,
+    }),
+    error: PropTypes.shape({
+      background: PropTypes.string,
+      color: PropTypes.string,
+      markerColor: PropTypes.string,
+      progressLineColor: PropTypes.string,
+    }),
+  }),
 };
 
 export default Notification;

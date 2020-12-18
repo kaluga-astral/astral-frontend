@@ -15,24 +15,8 @@ const useStyles = makeStyles(
   { name: 'NotificationMarker' },
 );
 
-const NotificationMarker = ({ variant, className }) => {
+const NotificationMarker = ({ color, className }) => {
   const classes = useStyles();
-  const color = React.useMemo(() => {
-    switch (variant) {
-      case 'info': {
-        return 'primary.main';
-      }
-      case 'success': {
-        return 'success.main';
-      }
-      case 'error': {
-        return 'error.main';
-      }
-      default: {
-        throw new Error('Invalid NotificationMarker variant');
-      }
-    }
-  }, [variant]);
 
   return <Box bgcolor={color} className={cn(classes.root, className)} />;
 };
@@ -42,7 +26,7 @@ NotificationMarker.defaultProps = {
 };
 
 NotificationMarker.propTypes = {
-  variant: PropTypes.oneOf(['info', 'success', 'error']).isRequired,
+  color: PropTypes.string.isRequired,
   className: PropTypes.string,
 };
 

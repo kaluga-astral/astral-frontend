@@ -4,48 +4,31 @@ import cn from 'classnames';
 import { Box } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-const useStyles = makeStyles(theme => {
-  const getAnimationDuration = autoHideDuration => `${autoHideDuration}ms`;
+const useStyles = makeStyles(
+  theme => {
+    const getAnimationDuration = autoHideDuration => `${autoHideDuration}ms`;
 
-  return {
-    '@keyframes slideRight': {
-      from: { transform: 'scale(0, 1)' },
-      to: { transform: 'scale(1, 1)' },
-    },
-    root: {
-      width: '100%',
-      height: theme.spacing(1),
-      animationName: '$slideRight',
-      animationDuration: getAnimationDuration,
-      animationTimingFunction: 'linear',
-      transformOrigin: '0 50%',
-      willСhange: 'transform',
-    },
-  };
-});
+    return {
+      '@keyframes slideRight': {
+        from: { transform: 'scale(0, 1)' },
+        to: { transform: 'scale(1, 1)' },
+      },
+      root: {
+        width: '100%',
+        height: theme.spacing(1),
+        animationName: '$slideRight',
+        animationDuration: getAnimationDuration,
+        animationTimingFunction: 'linear',
+        transformOrigin: '0 50%',
+        willСhange: 'transform',
+      },
+    };
+  },
+  { name: 'NotificationsProgressLine' },
+);
 
-const NotificationsProgressLine = ({
-  autoHideDuration,
-  variant,
-  className,
-}) => {
+const NotificationsProgressLine = ({ autoHideDuration, color, className }) => {
   const classes = useStyles(autoHideDuration);
-  const color = React.useMemo(() => {
-    switch (variant) {
-      case 'info': {
-        return 'primary.main';
-      }
-      case 'success': {
-        return 'success.main';
-      }
-      case 'error': {
-        return 'common.white';
-      }
-      default: {
-        throw new Error('Invalid NotificationsProgressLine variant');
-      }
-    }
-  });
 
   return <Box bgcolor={color} className={cn(className, classes.root)} />;
 };
@@ -57,7 +40,7 @@ NotificationsProgressLine.defaultProps = {
 NotificationsProgressLine.propTypes = {
   autoHideDuration: PropTypes.number.isRequired,
   className: PropTypes.string,
-  variant: PropTypes.oneOf(['info', 'success', 'error']).isRequired,
+  color: PropTypes.string.isRequired,
 };
 
 export default NotificationsProgressLine;
