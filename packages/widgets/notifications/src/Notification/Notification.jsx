@@ -45,11 +45,13 @@ const Notification = React.forwardRef(
       variant,
       title,
       message,
-      progressLine: localProgressLine,
       persist,
+      onClose,
+      // свойствами ниже имеют приставку local, потому что далее
+      // они будут сравниваться с глобальными свойствами из контекста
+      progressLine: localProgressLine,
       autoHideDuration: localAutoHideDuration,
       darkMode: localDarkMode,
-      onClose,
       marker: localMarker,
       palette: localPalette,
       darkModePalette: localDarkModePalette,
@@ -58,7 +60,7 @@ const Notification = React.forwardRef(
   ) => {
     const classes = useStyles();
     const { closeSnackbar } = useSnackbar();
-
+    // получение глобальных свойств уведомления из контекста
     const {
       autoHideDuration: globalAutoHideDuration,
       darkMode: globalDarkMode,
@@ -67,7 +69,8 @@ const Notification = React.forwardRef(
       palette: globalPalette,
       darkModePalette: globalDarkModePalette,
     } = React.useContext(NotificationsContext);
-
+    // если локальное свойство === null, то есть не задано,
+    // бери глобальное
     const autoHideDuration = React.useMemo(
       getPropValue(localAutoHideDuration, globalAutoHideDuration),
       [localAutoHideDuration, globalAutoHideDuration],
@@ -84,69 +87,73 @@ const Notification = React.forwardRef(
       getPropValue(localProgressLine, globalProgressLine),
       [localProgressLine, globalProgressLine],
     );
+    // здесь происходит слияние палитры цветов. Можно указать только часть
+    // цветов, а все остальные будут взяты из глобальной палитры
     const palette = React.useMemo(() => {
       return merge(globalPalette, localPalette);
     }, [localPalette, globalPalette]);
     const darkModePalette = React.useMemo(() => {
       return merge(globalDarkModePalette, localDarkModePalette);
     }, [localDarkModePalette, globalDarkModePalette]);
-
+    // состояние для того, чтобы убирать линию прогресса при наведении
+    // на уведомление. Линия прогресса - это бегущая полоса, которая
+    // показывает как скоро исчезнет уведомление.
     const [renderProgressLine, setRenderProgressLine] = React.useState(
       progressLine,
     );
+    // реф таймера, чтобы закрывать уведомление.
     const closeNotificationTimerRef = React.useRef();
-
+    // функция, которая будет выполнена при закрытии уведомления
+    // независимо от того было ли оно закрыто по нажатию кнопки закрыть
+    // или же само по себе.
     const handleClose = React.useCallback(() => {
       if (onClose) {
         onClose();
       }
       closeSnackbar(id);
     });
-
+    // функция, устанавливающая таймер закрытия
     const setCloseNotificationTimer = React.useCallback(() => {
       return setTimeout(handleClose, autoHideDuration);
     }, [handleClose, autoHideDuration]);
-
+    // запуск таймера закрытия
     React.useEffect(() => {
       if (!persist) {
         closeNotificationTimerRef.current = setCloseNotificationTimer();
       }
     }, []);
-
+    // обнуление таймера закрытия при наведении мыши на уведомление
     const handleMouseEnter = React.useCallback(() => {
       clearTimeout(closeNotificationTimerRef.current);
       if (progressLine) {
         setRenderProgressLine(false);
       }
     }, [closeNotificationTimerRef.current]);
-
+    // повторный запуск таймера закрытия при уходе мыши с уведомления
     const handleMouseLeave = React.useCallback(() => {
       closeNotificationTimerRef.current = setCloseNotificationTimer();
       if (progressLine) {
         setRenderProgressLine(true);
       }
     }, [closeNotificationTimerRef.current]);
-
-    /// ///////////////////////////
-    /// ///////////////////////////
-    /// ///////////////////////////
-
+    // определение текущего объекта palette
     const currentPalette = React.useMemo(() => {
       return darkMode ? darkModePalette : palette;
     }, [darkMode, darkModePalette, palette]);
-
+    // получение фонового цвета и цвета текста
+    // для компонента NotificationBase
     const notificationBaseColorProps = React.useMemo(() => {
       const { background, color } = currentPalette[variant];
 
       return { background, color };
     }, [currentPalette]);
-
+    // получение цвета для компонента NotificationMarker
     const markerColor = React.useMemo(() => {
       const { markerColor: color } = currentPalette[variant];
 
       return color;
     }, [currentPalette]);
-
+    // получение цвета для компонента NotificationProgressLine
     const progressLineColor = React.useMemo(() => {
       const { progressLineColor: color } = currentPalette[variant];
 
