@@ -90,10 +90,10 @@ const Notification = React.forwardRef(
     // здесь происходит слияние палитры цветов. Можно указать только часть
     // цветов, а все остальные будут взяты из глобальной палитры
     const palette = React.useMemo(() => {
-      return merge(globalPalette, localPalette);
+      return merge({}, globalPalette, localPalette);
     }, [localPalette, globalPalette]);
     const darkModePalette = React.useMemo(() => {
-      return merge(globalDarkModePalette, localDarkModePalette);
+      return merge({}, globalDarkModePalette, localDarkModePalette);
     }, [localDarkModePalette, globalDarkModePalette]);
     // состояние для того, чтобы убирать линию прогресса при наведении
     // на уведомление. Линия прогресса - это бегущая полоса, которая

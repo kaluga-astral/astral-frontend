@@ -68,8 +68,8 @@ const NotificationsProvider = ({
         darkMode,
         marker,
         progressLine,
-        palette: merge(defaultPalette, palette),
-        darkModePalette: merge(defaultDarkModePalette, darkModePalette),
+        palette: merge({}, defaultPalette, palette),
+        darkModePalette: merge({}, defaultDarkModePalette, darkModePalette),
       }}
     >
       <SnackbarProvider
