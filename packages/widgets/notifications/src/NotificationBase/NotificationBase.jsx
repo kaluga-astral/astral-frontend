@@ -14,7 +14,7 @@ const useStyles = makeStyles(
   { name: 'NotificationBase' },
 );
 
-const NotificationBase = ({ background, color, title, message, onCLose }) => {
+const NotificationBase = ({ background, color, title, message, onClose }) => {
   const classes = useStyles({ background, color });
 
   return (
@@ -40,7 +40,7 @@ const NotificationBase = ({ background, color, title, message, onCLose }) => {
           height={24}
           color={color}
           component={IconButton}
-          onClick={onCLose}
+          onClick={onClose}
         >
           <svg
             width="14"
@@ -68,7 +68,7 @@ NotificationBase.propTypes = {
   color: PropTypes.string.isRequired,
   message: PropTypes.node,
   title: PropTypes.node,
-  onCLose: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default NotificationBase;

@@ -175,7 +175,7 @@ const Notification = React.forwardRef(
         <NotificationBase
           title={title}
           message={message}
-          onCLose={handleClose}
+          onClose={handleClose}
           {...notificationBaseColorProps}
         />
         {marker && (
