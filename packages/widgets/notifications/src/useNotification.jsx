@@ -2,8 +2,6 @@
 import { useSnackbar } from 'notistack';
 import React from 'react';
 
-import NotificationsMessage from './NotificationsMessage';
-import NotificationsSystemNotification from './NotificationsSystemNotification';
 import Notification from './Notification';
 
 export const useNotification = () => {
@@ -75,53 +73,11 @@ export const useNotification = () => {
 
   return {
     closeNotification: closeSnackbar,
-    enqueueNotification,
     enqueueInfoNotification,
     enqueueSuccessNotification,
     enqueueErrorNotification,
     enqueueCustomNotification(options) {
       return enqueueSnackbar('', options);
-    },
-    enqueueSystemNotification({ options, Component, ...props }) {
-      return enqueueSnackbar('', {
-        persist: true,
-        content: key => {
-          return (
-            <NotificationsSystemNotification
-              onClose={() => closeSnackbar(key)}
-              {...props}
-            >
-              <Component />
-            </NotificationsSystemNotification>
-          );
-        },
-        ...options,
-      });
-    },
-    enqueueDeleteNotification({
-      title = 'Удаление',
-      message = '',
-      duration = null,
-      progressLine = true,
-    }) {
-      enqueueSnackbar('', {
-        variant: 'delete',
-        content: key => (
-          <NotificationsMessage
-            id={key}
-            variant="delete"
-            title={title}
-            // TODO 29354
-            message={
-              typeof message === 'string'
-                ? message.replace('GraphQL error: ', '')
-                : message
-            }
-            duration={duration}
-            progressLine={progressLine}
-          />
-        ),
-      });
     },
   };
 };
