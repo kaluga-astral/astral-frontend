@@ -11,10 +11,16 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'NotificationBase' },
+  { name: 'NotificationContainer' },
 );
 
-const NotificationBase = ({ background, color, title, message, onClose }) => {
+const NotificationContainer = ({
+  background,
+  color,
+  title,
+  message,
+  onClose,
+}) => {
   const classes = useStyles({ background, color });
 
   return (
@@ -58,12 +64,12 @@ const NotificationBase = ({ background, color, title, message, onClose }) => {
   );
 };
 
-NotificationBase.defaultProps = {
+NotificationContainer.defaultProps = {
   message: null,
   title: null,
 };
 
-NotificationBase.propTypes = {
+NotificationContainer.propTypes = {
   background: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   message: PropTypes.node,
@@ -71,4 +77,4 @@ NotificationBase.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default NotificationBase;
+export default NotificationContainer;

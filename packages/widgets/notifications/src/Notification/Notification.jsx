@@ -6,7 +6,7 @@ import { Box } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 import NotificationsContext from '../NotificationsContext';
 import NotificationsProgressLine from '../NotificationsProgressLine';
-import NotificationBase from '../NotificationBase';
+import NotificationContainer from '../NotificationContainer';
 import NotificationMarker from '../NotificationMarker';
 
 const useStyles = makeStyles(
@@ -172,7 +172,7 @@ const Notification = React.forwardRef(
           onMouseLeave: handleMouseLeave,
         })}
       >
-        <NotificationBase
+        <NotificationContainer
           title={title}
           message={message}
           onClose={handleClose}
