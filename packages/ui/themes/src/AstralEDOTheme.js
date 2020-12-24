@@ -10,6 +10,9 @@ const astralEDOThemeOptions = {
       main: '#6746eb',
       light: '#ebe8f8',
     },
+    error: {
+      notification: '#fe5555',
+    },
   },
 };
 
