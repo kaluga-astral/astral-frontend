@@ -20,46 +20,52 @@ const NotificationsProvider = ({
   darkModePalette,
 }) => {
   const theme = useTheme();
-  const defaultPalette = {
-    info: {
-      background: theme.palette.common.white,
-      color: theme.palette.common.black,
-      markerColor: theme.palette.primary.main,
-      progressLineColor: theme.palette.primary.main,
-    },
-    success: {
-      background: theme.palette.common.white,
-      color: theme.palette.common.black,
-      markerColor: theme.palette.success.main,
-      progressLineColor: theme.palette.success.main,
-    },
-    error: {
-      background: theme.palette.common.white,
-      color: theme.palette.common.black,
-      markerColor: theme.palette.error.main,
-      progressLineColor: theme.palette.error.main,
-    },
-  };
-  const defaultDarkModePalette = {
-    info: {
-      background: theme.palette.text.primary,
-      color: theme.palette.common.white,
-      markerColor: theme.palette.primary.main,
-      progressLineColor: theme.palette.primary.main,
-    },
-    success: {
-      background: theme.palette.text.primary,
-      color: theme.palette.common.white,
-      markerColor: theme.palette.success.main,
-      progressLineColor: theme.palette.success.main,
-    },
-    error: {
-      background: theme.palette.text.primary,
-      color: theme.palette.common.white,
-      markerColor: theme.palette.error.main,
-      progressLineColor: theme.palette.error.main,
-    },
-  };
+  const defaultPalette = React.useMemo(
+    () => ({
+      info: {
+        background: theme.palette.common.white,
+        color: theme.palette.common.black,
+        markerColor: theme.palette.primary.main,
+        progressLineColor: theme.palette.primary.main,
+      },
+      success: {
+        background: theme.palette.common.white,
+        color: theme.palette.common.black,
+        markerColor: theme.palette.success.main,
+        progressLineColor: theme.palette.success.main,
+      },
+      error: {
+        background: theme.palette.common.white,
+        color: theme.palette.common.black,
+        markerColor: theme.palette.error.main,
+        progressLineColor: theme.palette.error.main,
+      },
+    }),
+    [],
+  );
+  const defaultDarkModePalette = React.useMemo(
+    () => ({
+      info: {
+        background: theme.palette.text.primary,
+        color: theme.palette.common.white,
+        markerColor: theme.palette.primary.main,
+        progressLineColor: theme.palette.primary.main,
+      },
+      success: {
+        background: theme.palette.text.primary,
+        color: theme.palette.common.white,
+        markerColor: theme.palette.success.main,
+        progressLineColor: theme.palette.success.main,
+      },
+      error: {
+        background: theme.palette.text.primary,
+        color: theme.palette.common.white,
+        markerColor: theme.palette.error.main,
+        progressLineColor: theme.palette.error.main,
+      },
+    }),
+    [],
+  );
 
   return (
     <NotificationsContext.Provider
