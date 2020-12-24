@@ -27,6 +27,16 @@ const useStyles = makeStyles(
   { name: 'Notification' },
 );
 
+class TimerManager {
+  start(...args) {
+    this.id = setTimeout(...args);
+  }
+
+  stop() {
+    clearTimeout(this.id);
+  }
+}
+
 const Notification = React.forwardRef(
   (
     {
@@ -91,8 +101,8 @@ const Notification = React.forwardRef(
     const [renderProgressLine, setRenderProgressLine] = React.useState(
       progressLine,
     );
-    // реф таймера, чтобы закрывать уведомление.
-    const closeNotificationTimerRef = React.useRef();
+    // создание таймера, чтобы закрывать уведомление.
+    const closeNotificationTimer = React.useMemo(() => new TimerManager(), []);
     // функция, которая будет выполнена при закрытии уведомления
     // независимо от того было ли оно закрыто по нажатию кнопки закрыть
     // или же само по себе.
@@ -104,28 +114,28 @@ const Notification = React.forwardRef(
     });
     // функция, устанавливающая таймер закрытия
     const setCloseNotificationTimer = React.useCallback(() => {
-      return setTimeout(handleClose, autoHideDuration);
+      return closeNotificationTimer.start(handleClose, autoHideDuration);
     }, [handleClose, autoHideDuration]);
     // запуск таймера закрытия
     React.useEffect(() => {
       if (!persist) {
-        closeNotificationTimerRef.current = setCloseNotificationTimer();
+        setCloseNotificationTimer();
       }
     }, []);
     // обнуление таймера закрытия при наведении мыши на уведомление
     const handleMouseEnter = React.useCallback(() => {
-      clearTimeout(closeNotificationTimerRef.current);
+      closeNotificationTimer.stop();
       if (progressLine) {
         setRenderProgressLine(false);
       }
-    }, [closeNotificationTimerRef.current]);
+    }, [closeNotificationTimer.id]);
     // повторный запуск таймера закрытия при уходе мыши с уведомления
     const handleMouseLeave = React.useCallback(() => {
-      closeNotificationTimerRef.current = setCloseNotificationTimer();
+      setCloseNotificationTimer();
       if (progressLine) {
         setRenderProgressLine(true);
       }
-    }, [closeNotificationTimerRef.current]);
+    }, [closeNotificationTimer.id]);
     // определение текущего объекта palette
     const currentPalette = React.useMemo(() => {
       return darkMode ? darkModePalette : palette;
