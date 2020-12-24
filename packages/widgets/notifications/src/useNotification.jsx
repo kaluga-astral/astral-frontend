@@ -15,11 +15,9 @@ export const useNotification = () => {
     progressLine,
     persist,
     autoHideDuration,
-    darkMode,
     onClose,
     marker,
     palette,
-    darkModePalette,
     ...props
   }) => {
     return enqueueSnackbar('', {
@@ -34,11 +32,9 @@ export const useNotification = () => {
             progressLine,
             persist,
             autoHideDuration,
-            darkMode,
             onClose,
             marker,
             palette,
-            darkModePalette,
           }}
         />
       ),

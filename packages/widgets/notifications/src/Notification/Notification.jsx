@@ -53,10 +53,8 @@ const Notification = React.forwardRef(
       // они будут сравниваться с глобальными свойствами из контекста
       progressLine: localProgressLine,
       autoHideDuration: localAutoHideDuration,
-      darkMode: localDarkMode,
       marker: localMarker,
       palette: localPalette,
-      darkModePalette: localDarkModePalette,
     },
     ref,
   ) => {
@@ -65,11 +63,9 @@ const Notification = React.forwardRef(
     // получение глобальных свойств уведомления из контекста
     const {
       autoHideDuration: globalAutoHideDuration,
-      darkMode: globalDarkMode,
       marker: globalMarker,
       progressLine: globalProgressLine,
       palette: globalPalette,
-      darkModePalette: globalDarkModePalette,
     } = React.useContext(NotificationsContext);
     // если локальное свойство === null, то есть не задано,
     // бери глобальное
@@ -77,10 +73,6 @@ const Notification = React.forwardRef(
       () => localAutoHideDuration ?? globalAutoHideDuration,
       [localAutoHideDuration, globalAutoHideDuration],
     );
-    const darkMode = React.useMemo(() => localDarkMode ?? globalDarkMode, [
-      localDarkMode,
-      globalDarkMode,
-    ]);
     const marker = React.useMemo(() => localMarker ?? globalMarker, [
       localMarker,
       globalMarker,
@@ -94,9 +86,6 @@ const Notification = React.forwardRef(
     const palette = React.useMemo(() => {
       return merge({}, globalPalette, localPalette);
     }, [localPalette, globalPalette]);
-    const darkModePalette = React.useMemo(() => {
-      return merge({}, globalDarkModePalette, localDarkModePalette);
-    }, [localDarkModePalette, globalDarkModePalette]);
     // состояние для того, чтобы убирать линию прогресса при наведении
     // на уведомление. Линия прогресса - это бегущая полоса, которая
     // показывает как скоро исчезнет уведомление.
@@ -138,29 +127,25 @@ const Notification = React.forwardRef(
         setRenderProgressLine(true);
       }
     }, [closeNotificationTimer]);
-    // определение текущего объекта palette
-    const currentPalette = React.useMemo(() => {
-      return darkMode ? darkModePalette : palette;
-    }, [darkMode, darkModePalette, palette]);
     // получение фонового цвета и цвета текста
     // для компонента NotificationBase
     const notificationBaseColorProps = React.useMemo(() => {
-      const { background, color } = currentPalette[variant];
+      const { background, color } = palette[variant];
 
       return { background, color };
-    }, [currentPalette]);
+    }, [palette]);
     // получение цвета для компонента NotificationMarker
     const markerColor = React.useMemo(() => {
-      const { markerColor: color } = currentPalette[variant];
+      const { markerColor: color } = palette[variant];
 
       return color;
-    }, [currentPalette]);
+    }, [palette]);
     // получение цвета для компонента NotificationProgressLine
     const progressLineColor = React.useMemo(() => {
-      const { progressLineColor: color } = currentPalette[variant];
+      const { progressLineColor: color } = palette[variant];
 
       return color;
-    }, [currentPalette]);
+    }, [palette]);
 
     return (
       <Box

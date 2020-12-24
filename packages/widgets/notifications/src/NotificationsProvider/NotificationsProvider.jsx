@@ -12,12 +12,10 @@ const NotificationsProvider = ({
   anchorOrigin,
   autoHideDuration,
   children,
-  darkMode,
   marker,
   maxSnack,
   progressLine,
   palette,
-  darkModePalette,
 }) => {
   const theme = useTheme();
   const defaultPalette = React.useMemo(
@@ -43,39 +41,14 @@ const NotificationsProvider = ({
     }),
     [],
   );
-  const defaultDarkModePalette = React.useMemo(
-    () => ({
-      info: {
-        background: theme.palette.text.primary,
-        color: theme.palette.common.white,
-        markerColor: theme.palette.primary.main,
-        progressLineColor: theme.palette.primary.main,
-      },
-      success: {
-        background: theme.palette.text.primary,
-        color: theme.palette.common.white,
-        markerColor: theme.palette.success.main,
-        progressLineColor: theme.palette.success.main,
-      },
-      error: {
-        background: theme.palette.text.primary,
-        color: theme.palette.common.white,
-        markerColor: theme.palette.error.main,
-        progressLineColor: theme.palette.error.main,
-      },
-    }),
-    [],
-  );
 
   return (
     <NotificationsContext.Provider
       value={{
         autoHideDuration,
-        darkMode,
         marker,
         progressLine,
         palette: merge({}, defaultPalette, palette),
-        darkModePalette: merge({}, defaultDarkModePalette, darkModePalette),
       }}
     >
       <SnackbarProvider
@@ -92,12 +65,10 @@ const NotificationsProvider = ({
 NotificationsProvider.defaultProps = {
   anchorOrigin: { vertical: 'bottom', horizontal: 'right' },
   autoHideDuration: DEFAULT_NOTIFICATION_DURATION,
-  darkMode: false,
   marker: false,
   maxSnack: 12,
   progressLine: false,
   palette: {},
-  darkModePalette: {},
 };
 
 NotificationsProvider.propTypes = {
@@ -107,31 +78,10 @@ NotificationsProvider.propTypes = {
   }),
   autoHideDuration: PropTypes.number,
   children: PropTypes.node.isRequired,
-  darkMode: PropTypes.bool,
   marker: PropTypes.bool,
   maxSnack: PropTypes.number,
   progressLine: PropTypes.bool,
   palette: PropTypes.shape({
-    info: PropTypes.shape({
-      background: PropTypes.string,
-      color: PropTypes.string,
-      markerColor: PropTypes.string,
-      progressLineColor: PropTypes.string,
-    }),
-    success: PropTypes.shape({
-      background: PropTypes.string,
-      color: PropTypes.string,
-      markerColor: PropTypes.string,
-      progressLineColor: PropTypes.string,
-    }),
-    error: PropTypes.shape({
-      background: PropTypes.string,
-      color: PropTypes.string,
-      markerColor: PropTypes.string,
-      progressLineColor: PropTypes.string,
-    }),
-  }),
-  darkModePalette: PropTypes.shape({
     info: PropTypes.shape({
       background: PropTypes.string,
       color: PropTypes.string,
