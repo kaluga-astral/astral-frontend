@@ -182,7 +182,6 @@ const Notification = React.forwardRef(
 
 Notification.defaultProps = {
   className: null,
-  darkMode: null,
   autoHideDuration: null,
   message: null,
   persist: false,
@@ -192,12 +191,10 @@ Notification.defaultProps = {
   onClose: null,
   marker: null,
   palette: {},
-  darkModePalette: {},
 };
 
 Notification.propTypes = {
   className: PropTypes.string,
-  darkMode: PropTypes.bool,
   autoHideDuration: PropTypes.number,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   message: PropTypes.node,
@@ -208,26 +205,6 @@ Notification.propTypes = {
   onClose: PropTypes.func,
   marker: PropTypes.bool,
   palette: PropTypes.shape({
-    info: PropTypes.shape({
-      background: PropTypes.string,
-      color: PropTypes.string,
-      markerColor: PropTypes.string,
-      progressLineColor: PropTypes.string,
-    }),
-    success: PropTypes.shape({
-      background: PropTypes.string,
-      color: PropTypes.string,
-      markerColor: PropTypes.string,
-      progressLineColor: PropTypes.string,
-    }),
-    error: PropTypes.shape({
-      background: PropTypes.string,
-      color: PropTypes.string,
-      markerColor: PropTypes.string,
-      progressLineColor: PropTypes.string,
-    }),
-  }),
-  darkModePalette: PropTypes.shape({
     info: PropTypes.shape({
       background: PropTypes.string,
       color: PropTypes.string,
