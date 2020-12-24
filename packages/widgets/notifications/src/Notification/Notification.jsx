@@ -29,11 +29,13 @@ const useStyles = makeStyles(
 
 class TimerManager {
   start(...args) {
-    this.id = setTimeout(...args);
+    // eslint-disable-next-line no-underscore-dangle
+    this._id = setTimeout(...args);
   }
 
   stop() {
-    clearTimeout(this.id);
+    // eslint-disable-next-line no-underscore-dangle
+    clearTimeout(this._id);
   }
 }
 
@@ -128,14 +130,14 @@ const Notification = React.forwardRef(
       if (progressLine) {
         setRenderProgressLine(false);
       }
-    }, [closeNotificationTimer.id]);
+    }, [closeNotificationTimer]);
     // повторный запуск таймера закрытия при уходе мыши с уведомления
     const handleMouseLeave = React.useCallback(() => {
       setCloseNotificationTimer();
       if (progressLine) {
         setRenderProgressLine(true);
       }
-    }, [closeNotificationTimer.id]);
+    }, [closeNotificationTimer]);
     // определение текущего объекта palette
     const currentPalette = React.useMemo(() => {
       return darkMode ? darkModePalette : palette;
