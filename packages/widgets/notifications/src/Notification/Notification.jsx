@@ -27,16 +27,6 @@ const useStyles = makeStyles(
   { name: 'Notification' },
 );
 
-function getPropValue(localProp, globalProp) {
-  return () => {
-    if (localProp === null) {
-      return globalProp;
-    }
-
-    return localProp;
-  };
-}
-
 const Notification = React.forwardRef(
   (
     {
@@ -72,19 +62,19 @@ const Notification = React.forwardRef(
     // если локальное свойство === null, то есть не задано,
     // бери глобальное
     const autoHideDuration = React.useMemo(
-      getPropValue(localAutoHideDuration, globalAutoHideDuration),
+      () => localAutoHideDuration ?? globalAutoHideDuration,
       [localAutoHideDuration, globalAutoHideDuration],
     );
-    const darkMode = React.useMemo(
-      getPropValue(localDarkMode, globalDarkMode),
-      [localDarkMode, globalDarkMode],
-    );
-    const marker = React.useMemo(getPropValue(localMarker, globalMarker), [
+    const darkMode = React.useMemo(() => localDarkMode ?? globalDarkMode, [
+      localDarkMode,
+      globalDarkMode,
+    ]);
+    const marker = React.useMemo(() => localMarker ?? globalMarker, [
       localMarker,
       globalMarker,
     ]);
     const progressLine = React.useMemo(
-      getPropValue(localProgressLine, globalProgressLine),
+      () => localProgressLine ?? globalProgressLine,
       [localProgressLine, globalProgressLine],
     );
     // здесь происходит слияние палитры цветов. Можно указать только часть
