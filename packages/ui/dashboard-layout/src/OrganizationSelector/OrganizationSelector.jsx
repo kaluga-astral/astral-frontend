@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import {
   Collapse,
@@ -61,6 +61,7 @@ const OrganizationSelector = ({
   ...props
 }) => {
   const classes = useStyles();
+  const location = useLocation();
   const [open, setOpen] = React.useState(false);
   const handleTogglerButtonClick = () => {
     setOpen(prevValue => !prevValue);
@@ -68,6 +69,8 @@ const OrganizationSelector = ({
   const handleClickAwayListenerClickAway = () => {
     setOpen(false);
   };
+  const defaultTooltipState =
+    location.pathname === '/' ? 'Выберите организацию' : 'Загрузка организации';
 
   return (
     <FlexContainer
@@ -80,7 +83,7 @@ const OrganizationSelector = ({
           <FlexContainer>
             <Tooltip
               placement="left"
-              title={currentOrganizationName || 'Выберите организацию'}
+              title={currentOrganizationName ?? defaultTooltipState}
             >
               <OrganizationSelectorCurrentOrganization
                 name={currentOrganizationName}
