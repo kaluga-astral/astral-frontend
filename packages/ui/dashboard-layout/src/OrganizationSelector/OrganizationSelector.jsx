@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import {
   Collapse,
@@ -55,13 +55,13 @@ const OrganizationSelector = ({
   error,
   loading,
   disabled,
-  currentSelectorOrganizationName,
-  currentTooltipOrganizationName,
+  currentOrganizationName,
   addLinkHref,
   addLinkText,
   ...props
 }) => {
   const classes = useStyles();
+  const location = useLocation();
   const [open, setOpen] = React.useState(false);
   const handleTogglerButtonClick = () => {
     setOpen(prevValue => !prevValue);
@@ -69,6 +69,8 @@ const OrganizationSelector = ({
   const handleClickAwayListenerClickAway = () => {
     setOpen(false);
   };
+  const defaultTooltipState =
+    location.pathname === '/' ? 'Выберете организацию' : 'Загрузка организации';
 
   return (
     <FlexContainer
@@ -79,9 +81,12 @@ const OrganizationSelector = ({
       <ContentState loading={loading} error={error}>
         <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
           <FlexContainer>
-            <Tooltip placement="left" title={currentTooltipOrganizationName}>
+            <Tooltip
+              placement="left"
+              title={currentOrganizationName ?? defaultTooltipState}
+            >
               <OrganizationSelectorCurrentOrganization
-                name={currentSelectorOrganizationName}
+                name={currentOrganizationName}
                 disabled={disabled}
                 onClick={handleTogglerButtonClick}
                 open={open}
@@ -124,8 +129,7 @@ OrganizationSelector.defaultProps = {
   addLinkHref: null,
   addLinkText: null,
   error: null,
-  currentSelectorOrganizationName: null,
-  currentTooltipOrganizationName: null,
+  currentOrganizationName: null,
   disabled: false,
 };
 
@@ -141,8 +145,7 @@ OrganizationSelector.propTypes = {
   addLinkHref: PropTypes.string,
   addLinkText: PropTypes.string,
   className: PropTypes.string,
-  currentSelectorOrganizationName: PropTypes.node,
-  currentTooltipOrganizationName: PropTypes.string,
+  currentOrganizationName: PropTypes.string,
   error: PropTypes.instanceOf(Error),
   loading: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
