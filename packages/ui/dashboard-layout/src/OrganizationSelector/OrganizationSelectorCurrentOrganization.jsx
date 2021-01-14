@@ -51,7 +51,7 @@ const DashboardLayoutOrganizationSelectorCurrentOrganization = React.forwardRef(
         className={cn(classes.root, className)}
         {...rest}
       >
-        <Box className={classes.name}>{name ?? 'Выберите организацию'}</Box>
+        <Box className={classes.name}>{name}</Box>
         <ArrowIcon className={classes.arrow} />
       </Box>
     );
@@ -65,7 +65,7 @@ DashboardLayoutOrganizationSelectorCurrentOrganization.defaultProps = {
 
 DashboardLayoutOrganizationSelectorCurrentOrganization.propTypes = {
   className: PropTypes.string,
-  name: PropTypes.string,
+  name: PropTypes.node,
   open: PropTypes.bool.isRequired,
 };
 

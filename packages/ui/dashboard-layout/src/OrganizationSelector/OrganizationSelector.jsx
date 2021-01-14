@@ -55,7 +55,8 @@ const OrganizationSelector = ({
   error,
   loading,
   disabled,
-  currentOrganizationName,
+  currentSelectorOrganizationName,
+  currentTooltipOrganizationName,
   addLinkHref,
   addLinkText,
   ...props
@@ -78,12 +79,9 @@ const OrganizationSelector = ({
       <ContentState loading={loading} error={error}>
         <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
           <FlexContainer>
-            <Tooltip
-              placement="left"
-              title={currentOrganizationName || 'Выберите организацию'}
-            >
+            <Tooltip placement="left" title={currentTooltipOrganizationName}>
               <OrganizationSelectorCurrentOrganization
-                name={currentOrganizationName}
+                name={currentSelectorOrganizationName}
                 disabled={disabled}
                 onClick={handleTogglerButtonClick}
                 open={open}
@@ -126,7 +124,8 @@ OrganizationSelector.defaultProps = {
   addLinkHref: null,
   addLinkText: null,
   error: null,
-  currentOrganizationName: null,
+  currentSelectorOrganizationName: null,
+  currentTooltipOrganizationName: null,
   disabled: false,
 };
 
@@ -142,7 +141,8 @@ OrganizationSelector.propTypes = {
   addLinkHref: PropTypes.string,
   addLinkText: PropTypes.string,
   className: PropTypes.string,
-  currentOrganizationName: PropTypes.string,
+  currentSelectorOrganizationName: PropTypes.node,
+  currentTooltipOrganizationName: PropTypes.string,
   error: PropTypes.instanceOf(Error),
   loading: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
