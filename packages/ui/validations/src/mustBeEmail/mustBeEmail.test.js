@@ -32,7 +32,7 @@ describe('` mustBePresent` validation rule', () => {
     expect(mustBeEmail('test@fortis.online')).toEqual(null);
     expect(
       mustBeEmail(
-        `${baseString}${createFilledString(255 - baseString.length + 1)}`,
+        `${baseString}${createFilledString(256 - baseString.length + 1)}`,
       ),
     ).toEqual(INVALID_LENGTH_ERROR_MESSAGE);
   });
