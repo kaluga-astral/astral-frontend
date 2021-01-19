@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { mustBeEmail } from '@astral-frontend/validations';
+import { mustBeEmail, EMAIL_MAX_LENGTH } from '@astral-frontend/validations';
 
 import TextField from '../TextField';
 
 const EmailField = props => (
   <TextField
     validate={mustBeEmail}
-    inputProps={{ maxLength: 100 }}
+    inputProps={{ maxLength: EMAIL_MAX_LENGTH }}
     {...props}
   />
 );
