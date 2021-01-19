@@ -56,8 +56,13 @@ export const useNotification = () => {
     });
   };
 
-  const enqueueErrorNotification = ({ message, ...props }) => {
+  const enqueueErrorNotification = ({
+    title = 'Ошибка',
+    message,
+    ...props
+  }) => {
     return enqueueNotification({
+      title,
       ...props,
       message:
         typeof message === 'string'
