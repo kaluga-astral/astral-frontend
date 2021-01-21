@@ -70,7 +70,10 @@ const OrganizationSelector = ({
     setOpen(false);
   };
   const defaultTooltipState =
-    location.pathname === '/' ? 'Выберите организацию' : 'Загрузка организации';
+    location.pathname === '/' ||
+    location.pathname.includes('registration-requests')
+      ? 'Выберите организацию'
+      : 'Загрузка организации';
 
   return (
     <FlexContainer
