@@ -46,7 +46,8 @@ const DashboardLayoutOrganizationSelectorCurrentOrganization = React.forwardRef(
     const classes = useStyles({ name, open });
     const location = useLocation();
     const defaultSelectorState =
-      location.pathname === '/' ? (
+      location.pathname === '/' ||
+      location.pathname.includes('registration-requests') ? (
         'Выберите организацию'
       ) : (
         <Skeleton variant="text" width={160} />
