@@ -14,7 +14,7 @@ import {
   Tooltip,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
-import FlatTemplatedDataList from '../../../../widgets/flat-templated-data-list';
+import FlatTemplatedDataList from '@astral-frontend/flat-templated-data-list';
 
 import OrganizationSelectorCurrentOrganization from './OrganizationSelectorCurrentOrganization';
 import OrganizationSelectorEmptyStateComponent from './OrganizationSelectorEmptyStateComponent';
