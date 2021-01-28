@@ -137,11 +137,12 @@ const useStyles = makeStyles(
         '&:hover': {
           backgroundColor: getHoverBackgroundColor,
         },
-        '&:disabled': {
+        '&$disabled': {
           backgroundColor: getDisabledBackgroundColor,
           color: theme.palette.grey[400],
         },
       },
+      disabled: {},
       loaderContainer: {
         position: 'absolute',
         top: 0,
@@ -191,7 +192,7 @@ const Button = props => {
   return (
     <ButtonBase
       disabled={disabled || loading}
-      className={cn(classes.root, className)}
+      className={cn(classes.root, { [classes.disabled]: disabled }, className)}
       {...rootProps}
     >
       {children}
