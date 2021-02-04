@@ -82,7 +82,7 @@ const useStyles = makeStyles(
       }
 
       if (isRegularVariant) {
-        return theme.palette.grey[100];
+        return theme.palette.grey[300];
       }
 
       return null;
@@ -137,12 +137,11 @@ const useStyles = makeStyles(
         '&:hover': {
           backgroundColor: getHoverBackgroundColor,
         },
-        '&$disabled': {
-          backgroundColor: getDisabledBackgroundColor,
-          color: theme.palette.grey[400],
-        },
       },
-      disabled: {},
+      disabled: {
+        backgroundColor: getDisabledBackgroundColor,
+        color: theme.palette.grey[400],
+      },
       loaderContainer: {
         position: 'absolute',
         top: 0,
@@ -192,7 +191,11 @@ const Button = props => {
   return (
     <ButtonBase
       disabled={disabled || loading}
-      className={cn(classes.root, { [classes.disabled]: disabled }, className)}
+      className={className}
+      classes={{
+        root: classes.root,
+        disabled: classes.disabled,
+      }}
       {...rootProps}
     >
       {children}
