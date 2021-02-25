@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { mustBeEGRIPNumber } from '@astral-frontend/validations';
+import { mustBeEGRIPCertificateNumber } from '@astral-frontend/validations';
+import { removeSpecialSymbols } from '../utils';
 
 import MaskField from '../MaskField';
 
-const EGRIP_NUMBER_MASK = [
+const EGRIP_CERTIFICATE_NUMBER_MASK = [
   /\d/,
   /\d/,
   ' ',
@@ -17,30 +18,26 @@ const EGRIP_NUMBER_MASK = [
   /\d/,
   /\d/,
   /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
 ];
 
-const removeSpecialSymbols = value => value.replace(/[^\d\s]/g, '');
 // Поле для указания серии и номера выдачи сведетельства из ЕГРИП
-const EGRIPNumberField = props => (
+const EGRIPCertificateNumberField = props => (
   <MaskField
     parse={removeSpecialSymbols}
-    validate={mustBeEGRIPNumber}
-    mask={EGRIP_NUMBER_MASK}
+    validate={mustBeEGRIPCertificateNumber}
+    mask={EGRIP_CERTIFICATE_NUMBER_MASK}
     {...props}
   />
 );
 
-EGRIPNumberField.defaultProps = {
-  name: 'egripNumber',
+EGRIPCertificateNumberField.defaultProps = {
+  name: 'egripCertificateNumber',
   label: 'Серия и номер свидетельства',
 };
 
-EGRIPNumberField.propTypes = {
+EGRIPCertificateNumberField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
 };
 
-export default EGRIPNumberField;
+export default EGRIPCertificateNumberField;

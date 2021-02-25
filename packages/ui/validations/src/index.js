@@ -7,7 +7,7 @@ export { default as mustBeCheckingAccount } from './mustBeCheckingAccount';
 export { default as mustBeCorrespondentAccount } from './mustBeCorrespondentAccount';
 export { default as mustBeCounterpartyId } from './mustBeCounterpartyId';
 export { default as mustBeDatePeriod } from './mustBeDatePeriod';
-export { default as mustBeEGRIPNumber } from './mustBeEGRIPNumber';
+export { default as mustBeEGRIPCertificateNumber } from './mustBeEGRIPCertificateNumber';
 export { default as mustBeEmail } from './mustBeEmail';
 export { default as mustBeIGK } from './mustBeIGK';
 export { default as mustBeINN } from './mustBeINN';

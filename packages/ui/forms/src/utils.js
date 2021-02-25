@@ -25,3 +25,5 @@ export const createValidationFunction = (required, validate) => {
 
   return null;
 };
+
+export const removeSpecialSymbols = value => value.replace(/[^\d\s]/g, '');
