@@ -16,7 +16,7 @@ export { default as CheckingAccountField } from './CheckingAccountField';
 export { default as CorrespondentAccountField } from './CorrespondentAccountField';
 export { default as CounterpartyIdField } from './CounterpartyIdField';
 export { default as DateField } from './DateField';
-export { default as EGRIPNumberField } from './EGRIPNumberField';
+export { default as EGRIPCertificateNumberField } from './EGRIPCertificateNumberField';
 export { default as EmailField } from './EmailField';
 export { default as ErrorAlert } from './ErrorAlert';
 export { default as Field } from './Field';
