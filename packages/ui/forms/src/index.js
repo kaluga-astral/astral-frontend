@@ -1,4 +1,5 @@
 export { FORM_ERROR } from 'final-form';
+export { default as arrayMutators } from 'final-form-arrays';
 export {
   /**
    * @deprecated since version 1.1.x
@@ -7,6 +8,7 @@ export {
   useForm,
   useFormState,
 } from 'react-final-form';
+export { FieldArray } from 'react-final-form-arrays';
 export { default as AddressField } from './AddressField';
 export { default as AsyncAutocompleteField } from './AsyncAutocompleteField';
 export { default as BankField } from './BankField';
