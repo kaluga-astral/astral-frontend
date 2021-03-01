@@ -35,7 +35,7 @@ const CopyButton = ({ nodeRef, ...props }) => {
 
 CopyButton.propTypes = {
   nodeRef: PropTypes.shape({
-    current: PropTypes.node.isRequired,
+    current: PropTypes.instanceOf(Element),
   }).isRequired,
 };
 
