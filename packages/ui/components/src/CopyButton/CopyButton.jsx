@@ -33,12 +33,7 @@ const CopyButton = ({ nodeRef, tooltipProps, iconButtonProps }) => {
   }, [nodeRef]);
 
   return (
-    <Tooltip
-      title="Скопировано"
-      open={tooltipOpen}
-      placement="right"
-      {...tooltipProps}
-    >
+    <Tooltip open={tooltipOpen} {...tooltipProps}>
       <IconButton {...iconButtonProps} onClick={handleClick}>
         <CopyButtonCopyIcon />
       </IconButton>
@@ -47,7 +42,10 @@ const CopyButton = ({ nodeRef, tooltipProps, iconButtonProps }) => {
 };
 
 CopyButton.defaultProps = {
-  tooltipProps: null,
+  tooltipProps: {
+    title: 'Скопировано',
+    placement: 'right',
+  },
   iconButtonProps: null,
 };
 
@@ -55,7 +53,23 @@ CopyButton.propTypes = {
   nodeRef: PropTypes.shape({
     current: PropTypes.instanceOf(Element),
   }).isRequired,
-  tooltipProps: PropTypes.shape({}),
+  tooltipProps: PropTypes.shape({
+    title: PropTypes.string,
+    placement: PropTypes.oneOf([
+      'bottom-end',
+      'bottom-start',
+      'bottom',
+      'left-end',
+      'left-start',
+      'left',
+      'right-end',
+      'right-start',
+      'right',
+      'top-end',
+      'top-start',
+      'top',
+    ]),
+  }),
   iconButtonProps: PropTypes.shape({}),
 };
 
