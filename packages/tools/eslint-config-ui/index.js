@@ -11,9 +11,19 @@ module.exports = {
     // TODO: вынести на обсуждение по style guid
     'import/prefer-default-export': 'off',
     quotes: ['error', 'single'],
-    // есть неразрешимая ошибка, когда в jsx объявляется стрелочная функция без явного указания return
-    // TODO: вынести на обсуждение по style guid
-    'react/jsx-curly-newline': 'off',
+
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: ['**/*.stories.jsx', '**/*.test.jsx'] },
+    ],
+
+    'react/jsx-props-no-spreading': [
+      'error',
+      {
+        html: 'enforce',
+        custom: 'ignore',
+      },
+    ],
     // смотрим, чтобы в линки не прокидывали лишнего, например onClick
     'jsx-a11y/anchor-is-valid': [
       'error',
@@ -23,17 +33,7 @@ module.exports = {
         aspects: ['noHref', 'invalidHref', 'preferButton'],
       },
     ],
-    'import/no-extraneous-dependencies': [
-      'error',
-      { devDependencies: ['**/*.stories.jsx', '**/*.test.jsx'] },
-    ],
-    'react/jsx-props-no-spreading': [
-      'error',
-      {
-        html: 'enforce',
-        custom: 'ignore',
-      },
-    ],
+
     'import/order': [
       'error',
       {
