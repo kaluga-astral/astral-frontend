@@ -11,7 +11,7 @@ module.exports = {
     // TODO: вынести на обсуждение по style guid
     'import/prefer-default-export': 'off',
 
-    'prettier/prettier': ['error', { singleQuote: true }],
+    'prettier/prettier': ['error', { singleQuote: true, trailingComma: 'all' }],
 
     'import/no-extraneous-dependencies': [
       'error',
@@ -25,6 +25,7 @@ module.exports = {
         custom: 'ignore',
       },
     ],
+
     // смотрим, чтобы в линки не прокидывали лишнего, например onClick
     'jsx-a11y/anchor-is-valid': [
       'error',
@@ -51,6 +52,7 @@ module.exports = {
         ],
       },
     ],
+
     'sort-imports': [
       'error',
       {
