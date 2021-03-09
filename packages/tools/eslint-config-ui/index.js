@@ -63,5 +63,7 @@ module.exports = {
         allowSeparatedGroups: false,
       },
     ],
+
+    'comma-dangle': ['error', 'always-multiline'],
   },
 };
