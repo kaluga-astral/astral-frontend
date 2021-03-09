@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb', 'prettier'],
+  extends: ['airbnb', 'plugin:prettier/recommended'],
   parser: 'babel-eslint',
   plugins: ['prettier', 'jest'],
   env: {
@@ -10,7 +10,8 @@ module.exports = {
     // проблема при экспорте одиночной константы
     // TODO: вынести на обсуждение по style guid
     'import/prefer-default-export': 'off',
-    quotes: ['error', 'single'],
+
+    'prettier/prettier': ['error', { singleQuote: true }],
 
     'import/no-extraneous-dependencies': [
       'error',
