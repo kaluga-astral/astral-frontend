@@ -22,6 +22,7 @@ export { default as ClickAwayListener } from './ClickAwayListener';
 export { default as Collapse } from './Collapse';
 export { default as ContentLoader } from './ContentLoader';
 export { default as ContentState } from './ContentState';
+export { default as CopyToClipboardIconButton } from './CopyToClipboardIconButton';
 export { default as CountdownTimer } from './CountdownTimer';
 export { default as DateRangePicker } from './DateRangePicker';
 export { default as DetailsListItem } from './DetailsListItem';
