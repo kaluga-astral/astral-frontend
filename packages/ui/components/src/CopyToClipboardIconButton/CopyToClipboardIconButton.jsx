@@ -3,9 +3,13 @@ import React from 'react';
 
 import IconButton from '../IconButton';
 import Tooltip from '../Tooltip';
-import CopyButtonCopyIcon from './CopyButtonCopyIcon';
+import CopyToClipboardIconButtonIcon from './CopyToClipboardIconButtonIcon';
 
-const CopyButton = ({ nodeRef, tooltipProps, iconButtonProps }) => {
+const CopyToClipboardIconButton = ({
+  nodeRef,
+  tooltipProps,
+  iconButtonProps,
+}) => {
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const handleClick = React.useCallback(() => {
     const range = document.createRange();
@@ -35,13 +39,13 @@ const CopyButton = ({ nodeRef, tooltipProps, iconButtonProps }) => {
   return (
     <Tooltip open={tooltipOpen} {...tooltipProps}>
       <IconButton {...iconButtonProps} onClick={handleClick}>
-        <CopyButtonCopyIcon />
+        <CopyToClipboardIconButtonIcon />
       </IconButton>
     </Tooltip>
   );
 };
 
-CopyButton.defaultProps = {
+CopyToClipboardIconButton.defaultProps = {
   tooltipProps: {
     title: 'Скопировано',
     placement: 'right',
@@ -49,7 +53,7 @@ CopyButton.defaultProps = {
   iconButtonProps: null,
 };
 
-CopyButton.propTypes = {
+CopyToClipboardIconButton.propTypes = {
   nodeRef: PropTypes.shape({
     current: PropTypes.instanceOf(Element),
   }).isRequired,
@@ -73,4 +77,4 @@ CopyButton.propTypes = {
   iconButtonProps: PropTypes.shape({}),
 };
 
-export default CopyButton;
+export default CopyToClipboardIconButton;

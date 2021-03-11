@@ -2,7 +2,7 @@ import React from 'react';
 
 import SvgIcon from '../SvgIcon';
 
-const CopyButtonCopyIcon = props => {
+const CopyToClipboardIconButtonIcon = props => {
   return (
     <SvgIcon width="24" height="24" viewBox="0 0 24 24" {...props}>
       <path
@@ -17,4 +17,4 @@ const CopyButtonCopyIcon = props => {
   );
 };
 
-export default CopyButtonCopyIcon;
+export default CopyToClipboardIconButtonIcon;
