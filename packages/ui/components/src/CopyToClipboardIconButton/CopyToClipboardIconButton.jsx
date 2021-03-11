@@ -5,36 +5,21 @@ import IconButton from '../IconButton';
 import Tooltip from '../Tooltip';
 import CopyToClipboardIconButtonIcon from './CopyToClipboardIconButtonIcon';
 
-const CopyToClipboardIconButton = ({
-  nodeRef,
-  tooltipProps,
-  iconButtonProps,
-}) => {
+const CopyToClipboardIconButton = ({ text, tooltipProps, iconButtonProps }) => {
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const handleClick = React.useCallback(() => {
-    const range = document.createRange();
-    const selection = window.getSelection();
-    const currentRange =
-      selection.rangeCount === 0 ? null : selection.getRangeAt(0);
-
-    range.selectNodeContents(nodeRef.current);
-    selection.removeAllRanges();
-    selection.addRange(range);
-    try {
-      document.execCommand('copy');
-      setTooltipOpen(true);
-      setTimeout(() => {
-        setTooltipOpen(false);
-      }, 500);
-    } catch {
-      console.error('Unable to copy selection');
-    } finally {
-      selection.removeAllRanges();
-      if (currentRange) {
-        selection.addRange(currentRange);
-      }
-    }
-  }, [nodeRef]);
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setTooltipOpen(true);
+        setTimeout(() => {
+          setTooltipOpen(false);
+        }, 500);
+      })
+      .catch(() => {
+        console.error('Unable to copy selection');
+      });
+  }, [text]);
 
   return (
     <Tooltip open={tooltipOpen} {...tooltipProps}>
@@ -54,9 +39,7 @@ CopyToClipboardIconButton.defaultProps = {
 };
 
 CopyToClipboardIconButton.propTypes = {
-  nodeRef: PropTypes.shape({
-    current: PropTypes.instanceOf(Element),
-  }).isRequired,
+  text: PropTypes.string.isRequired,
   tooltipProps: PropTypes.shape({
     title: PropTypes.string,
     placement: PropTypes.oneOf([
