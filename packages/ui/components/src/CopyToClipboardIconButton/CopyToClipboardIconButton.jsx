@@ -8,17 +8,12 @@ import CopyToClipboardIconButtonIcon from './CopyToClipboardIconButtonIcon';
 const CopyToClipboardIconButton = ({ text, tooltipProps, iconButtonProps }) => {
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const handleClick = React.useCallback(() => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setTooltipOpen(true);
-        setTimeout(() => {
-          setTooltipOpen(false);
-        }, 500);
-      })
-      .catch(() => {
-        console.error('Unable to copy selection');
-      });
+    navigator.clipboard.writeText(text).then(() => {
+      setTooltipOpen(true);
+      setTimeout(() => {
+        setTooltipOpen(false);
+      }, 500);
+    });
   }, [text]);
 
   return (
