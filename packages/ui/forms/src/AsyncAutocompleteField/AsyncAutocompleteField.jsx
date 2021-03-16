@@ -2,7 +2,6 @@ import { isEqual, omit } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useField, useFormState } from 'react-final-form';
-
 import { AsyncAutocomplete } from '@astral-frontend/components';
 
 import { createValidationFunction } from '../utils';

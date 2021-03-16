@@ -1,32 +1,19 @@
 import React from 'react';
 
 const DA_DATA_TOKEN = '49c05cb58824f27604bc0106e0269c91a67ed5b7';
+const FEDERAL_CITIES = ['Москва', 'Санкт-Петербург', 'Севастополь'];
 
 const getNormalizedAddress = data => {
   if (data) {
     return {
       postalIndex: data.postal_code,
-      regionCode:
-        (
-          data.kladr_id ||
-          data.region_kladr_id ||
-          data.area_kladr_id ||
-          data.city_kladr_id ||
-          data.city_district_kladr_id ||
-          data.street_kladr_id ||
-          data.settlement_kladr_id ||
-          data.house_kladr_id ||
-          data.fias_code ||
-          ''
-        ).slice(0, 2) || null,
-      regionName: data.region_with_type || data.region,
-      area: data.area_with_type || data.area,
-      city:
-        data.city_with_type ||
-        data.city ||
-        data.settlement_with_type ||
-        data.settlement,
-      street: data.street_with_type || data.street,
+      regionCode: data.region_kladr_id?.slice(0, 2) || null,
+      regionName: FEDERAL_CITIES.includes(data.city)
+        ? null
+        : data.region_with_type,
+      area: data.area_with_type,
+      city: data.city_with_type || data.settlement_with_type,
+      street: data.street_with_type,
       house: data.house,
       housing: data.block,
       apartment: data.flat,
