@@ -8,7 +8,7 @@ describe('mustBeAddress', () => {
 
     expect(mustBeAddress(value)).toEqual(EMPTY_CITY_ERROR_MESSAGE);
   });
-  it('должна возвращать null если value является валидным ИНН ИП', () => {
+  it('должна возвращать null, если value является валидным адресом', () => {
     const value = {
       regionName: 'Калужская обл.',
       city: 'г. Калуга',
