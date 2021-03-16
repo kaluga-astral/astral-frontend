@@ -2,6 +2,7 @@ export { default as composeValidations } from './composeValidations';
 export * from './constants';
 export { default as maxLength } from './maxLength';
 export { default as minLength } from './minLength';
+export { default as mustBeAddress } from './mustBeAddress';
 export { default as mustBeBIK } from './mustBeBIK';
 export { default as mustBeCheckingAccount } from './mustBeCheckingAccount';
 export { default as mustBeCorrespondentAccount } from './mustBeCorrespondentAccount';
