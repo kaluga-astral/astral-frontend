@@ -56,6 +56,7 @@ const FormField = ({
           if (render) {
             return render({
               ...input,
+              ...meta,
               ...MuiTextFieldProps,
               error,
               helperText,
