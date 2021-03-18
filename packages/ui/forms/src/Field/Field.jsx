@@ -57,6 +57,7 @@ const FormField = ({
             return render({
               ...input,
               ...MuiTextFieldProps,
+              meta,
               error,
               helperText,
             });
