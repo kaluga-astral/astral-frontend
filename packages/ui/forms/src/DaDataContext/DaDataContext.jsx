@@ -12,7 +12,8 @@ const getNormalizedAddress = data => {
         ? null
         : data.region_with_type,
       area: data.area_with_type,
-      city: data.city_with_type || data.settlement_with_type,
+      city: data.city_with_type,
+      settlement: data.settlement_with_type,
       street: data.street_with_type,
       house: data.house ? `${data.house_type} ${data.house}` : null,
       housing: data.block ? `${data.block_type} ${data.block}` : null,
