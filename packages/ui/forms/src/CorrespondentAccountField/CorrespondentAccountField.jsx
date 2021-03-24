@@ -4,28 +4,7 @@ import { mustBeCorrespondentAccount } from '@astral-frontend/validations';
 
 import MaskField from '../MaskField';
 
-const CORRESPONDENT_ACCOUNT_MASK = [
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-];
+const CORRESPONDENT_ACCOUNT_MASK = new Array(20).fill('9').join('');
 
 const CorrespondentAccountField = ({ bik, ...props }) => (
   <MaskField

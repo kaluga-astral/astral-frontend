@@ -1,51 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InputMask from 'react-input-mask';
 
-import MaskInput from './MaskInput';
 import TextField from '../TextField';
 
 const MaskField = ({
   placeholder,
-  placeholderChar,
+  formatChars,
+  maskChar,
   mask,
-  pipe,
   InputProps,
   ...props
 }) => (
   <TextField
-    InputProps={{
-      inputComponent: MaskInput,
-      ...InputProps,
-    }}
-    // eslint-disable-next-line
-    inputProps={{
-      mask,
-      pipe,
-      placeholderChar,
-      placeholder,
-    }}
     {...props}
+    InputProps={{ inputComponent: InputMask, ...InputProps }}
+    /* eslint-disable-next-line react/jsx-no-duplicate-props */
+    inputProps={{
+      placeholder,
+      maskChar,
+      formatChars,
+      mask,
+    }}
   />
 );
 
 MaskField.defaultProps = {
-  pipe: undefined,
+  alwaysShowMask: false,
   placeholder: null,
-  placeholderChar: '\u2000',
+  maskChar: '\u2000',
   InputProps: {},
+  permanents: undefined,
+  formatChars: undefined,
 };
 
 MaskField.propTypes = {
-  mask: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp)]),
-    ),
-    PropTypes.func,
-  ]).isRequired,
+  mask: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  placeholderChar: PropTypes.string,
+  maskChar: PropTypes.string,
+  alwaysShowMask: PropTypes.bool,
+  formatChars: PropTypes.objectOf(PropTypes.string),
+  permanents: PropTypes.arrayOf(PropTypes.number),
   InputProps: PropTypes.objectOf(PropTypes.any),
-  pipe: PropTypes.func,
 };
 
 export default MaskField;

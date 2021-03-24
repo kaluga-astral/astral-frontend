@@ -3,7 +3,7 @@ import React from 'react';
 
 import MaskField from '../MaskField';
 
-const OKOPF_MASK = [/\d/, ' ', /\d/, /\d/, ' ', /\d/, /\d/];
+const OKOPF_MASK = '9 99 99';
 
 const OKOPFField = props => <MaskField mask={OKOPF_MASK} {...props} />;
 
