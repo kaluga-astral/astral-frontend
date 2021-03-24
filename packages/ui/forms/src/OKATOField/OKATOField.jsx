@@ -3,22 +3,7 @@ import React from 'react';
 
 import MaskField from '../MaskField';
 
-const OKATO_MASK = [
-  /\d/,
-  /\d/,
-  ' ',
-  /\d/,
-  /\d/,
-  /\d/,
-  ' ',
-  /\d/,
-  /\d/,
-  /\d/,
-  ' ',
-  /\d/,
-  /\d/,
-  /\d/,
-];
+const OKATO_MASK = '99 999 999 999';
 
 const OKATOField = props => <MaskField mask={OKATO_MASK} {...props} />;
 

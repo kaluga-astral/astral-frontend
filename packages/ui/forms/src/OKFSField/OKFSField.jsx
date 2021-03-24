@@ -3,7 +3,7 @@ import React from 'react';
 
 import MaskField from '../MaskField';
 
-const OKFS_MASK = [/\d/, /\d/];
+const OKFS_MASK = '99';
 
 const OKFSField = props => <MaskField mask={OKFS_MASK} {...props} />;
 

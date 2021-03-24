@@ -4,7 +4,7 @@ import { mustBeBIK } from '@astral-frontend/validations';
 
 import MaskField from '../MaskField';
 
-const BIK_MASK = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
+const BIK_MASK = new Array(9).fill('9').join('');
 
 const BIKField = props => (
   <MaskField {...props} mask={BIK_MASK} validate={mustBeBIK} />

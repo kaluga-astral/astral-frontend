@@ -4,19 +4,7 @@ import { mustBeOKTMO } from '@astral-frontend/validations';
 
 import MaskField from '../MaskField';
 
-const OKTMO_MASK = [
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-];
+const OKTMO_MASK = new Array(11).fill(9).join('');
 
 const OKTMOField = props => (
   <MaskField validate={mustBeOKTMO} mask={OKTMO_MASK} {...props} />
