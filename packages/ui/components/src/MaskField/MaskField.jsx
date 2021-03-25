@@ -5,7 +5,7 @@ import InputMask from 'react-input-mask';
 import TextField from '../TextField';
 
 const MaskField = ({
-  placeholder,
+  alwaysShowMask,
   formatChars,
   maskChar,
   mask,
@@ -17,7 +17,7 @@ const MaskField = ({
     InputProps={{ inputComponent: InputMask, ...InputProps }}
     /* eslint-disable-next-line react/jsx-no-duplicate-props */
     inputProps={{
-      placeholder,
+      alwaysShowMask,
       maskChar,
       formatChars,
       mask,
