@@ -4,22 +4,7 @@ import { mustBeRegNumberPFR } from '@astral-frontend/validations';
 
 import MaskField from '../MaskField';
 
-const REG_NUMBER_PFR_MASK = [
-  /\d/,
-  /\d/,
-  /\d/,
-  '-',
-  /\d/,
-  /\d/,
-  /\d/,
-  '-',
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-];
+const REG_NUMBER_PFR_MASK = '999-999-999999';
 const removeSpecialSymbols = value => value.replace(/-/g, '');
 
 const RegNumberPFRField = props => (
