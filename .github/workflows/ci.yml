@@ -1,10 +1,6 @@
 name: 'CI'
 
-on:
-  push:
-    branches: [$default-branch]
-  pull_request:
-    branches: [$default-branch]
+on: push
 
 jobs:
   test:
@@ -17,7 +13,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Run Jest
-        run: yarn jest
+        run: yarn jest --reporters=default --reporters=jest-github-actions-reporter
 
   lint:
     runs-on: ubuntu-latest
