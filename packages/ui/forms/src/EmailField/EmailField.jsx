@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { mustBeEmail, EMAIL_MAX_LENGTH } from '@astral-frontend/validations';
+import { EMAIL_MAX_LENGTH, mustBeEmail } from '@astral-frontend/validations';
 
 import TextField from '../TextField';
 

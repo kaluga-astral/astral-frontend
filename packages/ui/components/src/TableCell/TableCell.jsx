@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { TableCell as MuiTableCell } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
 

@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
-
 import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarContext from '../Sidebar/SidebarContext';

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-this-in-sfc */
 /* eslint-disable max-len */
 import { ERROR_MESSAGE } from '../mustBeINN';
-import { getArrayDigitsOfValue, calcCheckNumForINN } from '../utils/utils';
+import { calcCheckNumForINN, getArrayDigitsOfValue } from '../utils/utils';
 
 /**
  * Проверка валидации ИНН ЮЛ на корректность

@@ -4,6 +4,7 @@ import { useSnackbar } from 'notistack';
 import React from 'react';
 import { Box } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
+
 import NotificationsContext from '../NotificationsContext';
 import NotificationsProgressLine from '../NotificationsProgressLine';
 import NotificationContainer from '../NotificationContainer';

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import PropTypes from 'prop-types';
 import React from 'react';
-import { TextField, CircularProgress } from '@astral-frontend/core';
+import { CircularProgress, TextField } from '@astral-frontend/core';
 import MuiAutocomplete from '@material-ui/lab/Autocomplete';
 
 // import TextField from '../TextField';

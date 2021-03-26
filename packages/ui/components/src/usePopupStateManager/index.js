@@ -1,7 +1,7 @@
 import {
-  usePopupState,
-  bindTrigger,
   bindMenu,
+  bindTrigger,
+  usePopupState,
 } from 'material-ui-popup-state/hooks';
 
 const usePopupStateManager = (...args) => {

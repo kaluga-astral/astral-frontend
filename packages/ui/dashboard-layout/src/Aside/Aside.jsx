@@ -1,11 +1,11 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { Box } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import { SidebarContextProvider } from '../Sidebar';
+
 import AsideContextProvider from './AsideContextProvider';
 
 const useStyles = makeStyles(

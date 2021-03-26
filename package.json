@@ -6,9 +6,8 @@
     "scripts"
   ],
   "scripts": {
-    "test": "jest",
-    "docz:dev": "docz dev",
-    "docz:build": "docz build",
+    "jest": "jest",
+    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "yaspeller": "yaspeller . --only-errors",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -43,6 +42,7 @@
     "cross-env": "^7.0.0",
     "css-loader": "3.4.2",
     "eslint": "^7.21.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
     "jest-junit": "^10.0.0",

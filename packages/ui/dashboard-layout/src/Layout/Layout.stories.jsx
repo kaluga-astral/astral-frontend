@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+
 import Layout from './Layout';
 
 storiesOf('packages/dashboard-layout/Layout', module).add('default', () => (

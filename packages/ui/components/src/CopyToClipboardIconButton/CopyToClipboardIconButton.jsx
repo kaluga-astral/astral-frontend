@@ -3,6 +3,7 @@ import React from 'react';
 
 import IconButton from '../IconButton';
 import Tooltip from '../Tooltip';
+
 import CopyToClipboardIconButtonIcon from './CopyToClipboardIconButtonIcon';
 
 const CopyToClipboardIconButton = ({ text, tooltipProps, iconButtonProps }) => {

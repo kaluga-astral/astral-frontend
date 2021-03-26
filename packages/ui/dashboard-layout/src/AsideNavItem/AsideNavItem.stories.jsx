@@ -1,10 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { StaticRouter, NavLink } from 'react-router-dom';
+import { NavLink, StaticRouter } from 'react-router-dom';
 import { ButtonBase } from '@astral-frontend/components';
+
 import Sidebar from '../Sidebar';
 import Layout from '../Layout';
+
 import AsideNavItem from './AsideNavItem';
 
 storiesOf('packages/dashboard-layout/AsideNavItem', module).add(

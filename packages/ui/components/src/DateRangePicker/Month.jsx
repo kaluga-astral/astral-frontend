@@ -3,15 +3,17 @@ import React from 'react';
 import { Typography } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
 import { getDate, isSameMonth, isToday, isWithinInterval } from 'date-fns';
+
 import FlexContainer from '../FlexContainer';
 import FlexItem from '../FlexItem';
+
 import {
   chunks,
   getDaysInMonth,
-  isStartOfRange,
-  isEndOfRange,
   inDateRange,
+  isEndOfRange,
   isRangeSameDay,
+  isStartOfRange,
 } from './utils';
 import Header from './Header';
 import Day from './Day';

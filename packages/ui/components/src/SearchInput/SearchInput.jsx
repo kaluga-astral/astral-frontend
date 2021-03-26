@@ -1,12 +1,12 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { SearchIcon } from '@astral-frontend/icons';
 import { makeStyles } from '@astral-frontend/styles';
 
 import FlexContainer from '../FlexContainer';
 import InputBase from '../InputBase';
+
 import SearchInputContext from './SearchInputContext';
 
 const useStyles = makeStyles(

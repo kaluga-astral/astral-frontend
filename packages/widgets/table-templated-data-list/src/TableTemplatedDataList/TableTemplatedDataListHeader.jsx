@@ -1,10 +1,8 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { makeStyles } from '@astral-frontend/styles';
 import { Checkbox } from '@astral-frontend/components';
-
 import { DataListContext } from '@astral-frontend/data-list';
 
 import TableTemplatedDataListHeaderItem from './TableTemplatedDataListHeaderItem';

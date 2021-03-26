@@ -2,11 +2,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Dialog from './Dialog';
 import DialogTitle from '../DialogTitle';
 import DialogContent from '../DialogContent';
 import DialogActions from '../DialogActions';
 import Button from '../Button';
+
+import Dialog from './Dialog';
 
 storiesOf('Dialog', module)
   .add('default', () => (

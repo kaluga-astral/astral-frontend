@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { List, Box, Placeholder } from '@astral-frontend/components';
+import { Box, List, Placeholder } from '@astral-frontend/components';
 
 import { TransferTemplatedDataListDestinationSection } from './TransferTemplatedDataListDestinationSection';
 import { TransferTemplatedDataListSourceSection } from './TransferTemplatedDataListSourceSection';

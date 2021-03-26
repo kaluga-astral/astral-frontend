@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import VisibilityButton from './VisibilityButton';
 import Field from '../Field';
+
+import VisibilityButton from './VisibilityButton';
 
 const PasswordField = ({ InputProps, ...props }) => {
   const [isVisible, setIsVisible] = useState(false);

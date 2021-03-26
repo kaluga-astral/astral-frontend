@@ -1,4 +1,4 @@
-import { removeSpecialCharacters, calcCheckSumForSNILS } from '../utils/utils';
+import { calcCheckSumForSNILS, removeSpecialCharacters } from '../utils/utils';
 
 const ERROR_MESSAGE = 'Неверный СНИЛС. Введите корректный СНИЛС.';
 const RESTRICTED_VALUES = ['00000000000'];

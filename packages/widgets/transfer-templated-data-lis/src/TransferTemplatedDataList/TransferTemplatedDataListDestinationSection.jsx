@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import DataList from '@astral-frontend/data-list';
 
 import { TransferTemplatedDataListSection } from './TransferTemplatedDataListSection';

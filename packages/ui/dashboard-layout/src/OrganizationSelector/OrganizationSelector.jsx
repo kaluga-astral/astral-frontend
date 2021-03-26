@@ -2,15 +2,14 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
 import {
-  Collapse,
   ButtonBase,
+  ClickAwayListener,
+  Collapse,
+  ContentState,
+  FlexContainer,
   MenuItem,
   Paper,
-  ClickAwayListener,
-  FlexContainer,
-  ContentState,
   Tooltip,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';

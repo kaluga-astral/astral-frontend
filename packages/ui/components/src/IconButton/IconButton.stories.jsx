@@ -3,6 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import SvgIcon from '../SvgIcon';
+
 import IconButton from './IconButton';
 
 storiesOf('IconButton', module)

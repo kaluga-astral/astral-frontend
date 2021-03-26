@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { Drawer } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
 

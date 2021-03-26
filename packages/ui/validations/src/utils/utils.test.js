@@ -1,10 +1,10 @@
 import {
-  getArrayDigitsOfValue,
-  removeSpecialCharacters,
   calcCheckNumForINN,
-  calcCheckSumForSNILS,
   calcCheckSumForBankAccount,
   calcCheckSumForOKPO,
+  calcCheckSumForSNILS,
+  getArrayDigitsOfValue,
+  removeSpecialCharacters,
 } from './utils';
 
 describe('Convert string to numbers array', () => {

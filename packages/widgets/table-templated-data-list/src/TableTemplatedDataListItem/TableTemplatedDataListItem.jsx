@@ -1,16 +1,14 @@
-import { xorBy, isFunction } from 'lodash-es';
+import { isFunction, xorBy } from 'lodash-es';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { fade } from '@astral-frontend/core';
 import {
-  ListItem,
-  FlexContainer,
   CircularProgress,
+  FlexContainer,
+  ListItem,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
-
 import {
   DataListContext,
   DataListItemContext,

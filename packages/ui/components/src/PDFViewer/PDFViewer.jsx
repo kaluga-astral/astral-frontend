@@ -5,6 +5,7 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import ContentState from '../ContentState';
 import Box from '../Box';
+
 import PDFViewerFailureState from './PDFViewerFailureState';
 
 const useStyles = makeStyles(

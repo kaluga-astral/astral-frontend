@@ -2,10 +2,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { StaticRouter } from 'react-router-dom';
+
 import { ArrowIcon } from '../../../icons/src';
 import Sidebar from '../Sidebar';
 import Layout from '../Layout';
 import AsideNav from '../AsideNav';
+
 import CurrentUserInfo from './CurrentUserInfo';
 
 storiesOf('packages/dashboard-layout/CurrentUserInfo', module).add(

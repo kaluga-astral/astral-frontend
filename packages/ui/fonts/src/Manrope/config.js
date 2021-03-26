@@ -1,17 +1,10 @@
 import ManropeVarialeFont from './binary/Manrope-VariableFont.ttf';
-
 import ManropeSemiboldTtf from './binary/Manrope-SemiBold.ttf';
-
 import ManropeMediumTtf from './binary/Manrope-Medium.ttf';
-
 import ManropeExtraLightTtf from './binary/Manrope-ExtraLight.ttf';
-
 import ManropeLightTtf from './binary/Manrope-Light.ttf';
-
 import ManropeRegularTtf from './binary/Manrope-Regular.ttf';
-
 import ManropeBoldTtf from './binary/Manrope-Bold.ttf';
-
 import ManropeExtraBoldTtf from './binary/Manrope-ExtraBold.ttf';
 
 const MANROPE_FONT_NAME = 'Manrope';

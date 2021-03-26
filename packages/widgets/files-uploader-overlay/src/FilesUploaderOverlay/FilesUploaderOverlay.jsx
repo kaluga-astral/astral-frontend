@@ -2,12 +2,12 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import { useDropzone, Box } from '@astral-frontend/components';
+import { Box, useDropzone } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 import { fade } from '@astral-frontend/core';
 
 import FilesUploaderOverlayContext from '../FilesUploaderOverlayContext';
+
 import FilesUploaderOverlayIcon from './FilesUploaderOverlayIcon';
 
 const useStyles = makeStyles(

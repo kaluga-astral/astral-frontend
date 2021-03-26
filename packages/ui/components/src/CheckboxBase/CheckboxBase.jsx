@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { Checkbox } from '@astral-frontend/core';
 import { CheckedRectIcon, UncheckedRectIcon } from '@astral-frontend/icons';
 import { makeStyles } from '@astral-frontend/styles';

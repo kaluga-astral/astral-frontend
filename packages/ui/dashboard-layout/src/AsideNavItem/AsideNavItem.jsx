@@ -2,13 +2,12 @@ import nanoid from 'nanoid';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useLocation, matchPath } from 'react-router-dom';
-
+import { matchPath, useLocation } from 'react-router-dom';
 import {
   ButtonBase,
-  SvgIcon,
   Collapse,
   List,
+  SvgIcon,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 

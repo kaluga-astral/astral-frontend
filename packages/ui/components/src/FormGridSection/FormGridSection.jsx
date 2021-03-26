@@ -2,12 +2,12 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { makeStyles } from '@astral-frontend/styles';
+
+import Collapse from '../Collapse';
 
 import FormGridSectionContext from './FormGridSectionContext';
 import FormGridSectionTitle from './FormGridSectionTitle';
-import Collapse from '../Collapse';
 
 const useStyles = makeStyles(
   theme => ({

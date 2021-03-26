@@ -1,5 +1,6 @@
-import mustBeINNValidation, { ERROR_MESSAGE } from './mustBeINN';
 import { ORGANIZATION_VALIDATIONS_PARAMS } from '../constants';
+
+import mustBeINNValidation, { ERROR_MESSAGE } from './mustBeINN';
 
 describe('mustBeINN', () => {
   let mustBeINN;

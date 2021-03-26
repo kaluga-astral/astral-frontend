@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Tooltip, Box } from '@astral-frontend/components';
+import { Box, Tooltip } from '@astral-frontend/components';
 
 import SidebarContext from '../Sidebar/SidebarContext';
 import SidebarCounter from '../SidebarCounter';

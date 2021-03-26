@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import { Placeholder, InfiniteList } from '@astral-frontend/components';
+import { InfiniteList, Placeholder } from '@astral-frontend/components';
 
 import DataListContext from './DataListContext';
 import DataListItemContext from './DataListItemContext';

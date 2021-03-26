@@ -1,6 +1,7 @@
 import { merge } from 'lodash-es';
 
 import Theme from '../Theme';
+
 import palette from './palette';
 import typography from './typography';
 import shadows from './shadows';

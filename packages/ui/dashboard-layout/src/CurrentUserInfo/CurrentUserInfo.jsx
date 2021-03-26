@@ -2,15 +2,16 @@ import cn from 'classnames';
 import { PropTypes } from 'prop-types';
 import React from 'react';
 import {
-  ClickAwayListener,
-  ButtonBase,
-  Grow,
-  Paper,
-  MenuList,
   Avatar,
+  ButtonBase,
+  ClickAwayListener,
+  Grow,
+  MenuList,
+  Paper,
   Popper,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
+
 import { __Context as SidebarContext } from '../Sidebar';
 
 import Item from './Item';

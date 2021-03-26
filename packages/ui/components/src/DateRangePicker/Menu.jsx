@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Paper } from '@astral-frontend/core';
+
 import FlexContainer from '../FlexContainer';
+
 import DateRange from './DateRange';
 import Month from './Month';
 

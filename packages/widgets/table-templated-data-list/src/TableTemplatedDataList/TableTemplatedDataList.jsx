@@ -2,10 +2,9 @@ import { uniqueId } from 'lodash-es';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { makeStyles } from '@astral-frontend/styles';
-
 import DataList from '@astral-frontend/data-list';
+
 import TableTemplatedDataListHeader from './TableTemplatedDataListHeader';
 
 const useStyles = makeStyles(

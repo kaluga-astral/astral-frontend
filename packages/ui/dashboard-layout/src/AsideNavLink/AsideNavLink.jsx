@@ -4,8 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@astral-frontend/styles';
 
 import AsideNavItem from '../AsideNavItem';
-import AsideNavLinkIcon from './AsideNavLinkIcon';
 import { AsideContextProvider } from '../Aside';
+
+import AsideNavLinkIcon from './AsideNavLinkIcon';
 
 const useStyles = makeStyles(
   theme => ({

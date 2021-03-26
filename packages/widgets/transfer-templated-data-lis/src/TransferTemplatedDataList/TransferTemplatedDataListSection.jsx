@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  Typography,
   Box,
+  Collapse,
   IconButton,
   SvgIcon,
-  Collapse,
+  Typography,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 

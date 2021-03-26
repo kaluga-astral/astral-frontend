@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { mustBeDatePeriod } from '@astral-frontend/validations';
+
 import Field from '../Field';
 
 const FormDateField = ({
