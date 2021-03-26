@@ -2,6 +2,7 @@ import React from 'react';
 
 import SvgIcon from '../SvgIcon';
 import IconButton from '../IconButton';
+
 import { useSlideModalContext } from './SlideModalContext';
 
 export const SlideModalHeaderCloseButton = props => {

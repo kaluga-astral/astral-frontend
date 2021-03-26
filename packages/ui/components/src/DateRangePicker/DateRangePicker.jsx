@@ -2,12 +2,13 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import {
   addMonths,
-  isSameDay,
-  isWithinInterval,
+  addYears,
   isAfter,
   isBefore,
-  addYears,
+  isSameDay,
+  isWithinInterval,
 } from 'date-fns';
+
 import Menu from './Menu';
 import { getValidatedMonths, parseOptionalDate } from './utils';
 

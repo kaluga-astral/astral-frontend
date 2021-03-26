@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  Typography,
   Box,
+  Collapse,
   IconButton,
   SvgIcon,
-  Collapse,
+  Typography,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
@@ -59,7 +59,7 @@ export const TransferTemplatedDataListSection = ({
   }, []);
 
   return (
-    <Box {...props}>
+    <Box {...props} display="flex" flexDirection="column">
       <Box display="flex">
         <Box display="inline-flex" flexGrow={1}>
           <Typography gutterBottom color="primary">
@@ -76,7 +76,9 @@ export const TransferTemplatedDataListSection = ({
           </SvgIcon>
         </IconButton>
       </Box>
-      <Collapse in={expanded}>{children}</Collapse>
+      <Box overflow="auto">
+        <Collapse in={expanded}>{children}</Collapse>
+      </Box>
     </Box>
   );
 };

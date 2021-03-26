@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { IconButton as MuiIconButton } from '@astral-frontend/core';
+
 import SvgIcon from '../SvgIcon';
 import CircularProgress from '../CircularProgress';
 

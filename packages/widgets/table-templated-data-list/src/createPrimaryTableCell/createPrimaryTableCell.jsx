@@ -1,4 +1,5 @@
 import React from 'react';
+
 import TableTemplatedDataListPrimaryCell from '../TableTemplatedDataListPrimaryCell';
 
 const createPrimaryTableCell = getProps => data => {

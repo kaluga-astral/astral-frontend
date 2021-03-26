@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import { Placeholder, InfiniteList } from '@astral-frontend/components';
+import { InfiniteList, Placeholder } from '@astral-frontend/components';
 
 import DataListContext from './DataListContext';
 import DataListItemContext from './DataListItemContext';
 
 const DataList = ({
+  lastViewedItem,
+  setLastViewedItem,
   selectedItems,
   setSelectedItems,
   listRenderer,
@@ -16,7 +17,9 @@ const DataList = ({
     error,
     loading,
   },
+  isQueryParamsEmpty,
   EmptyStateComponent,
+  NotFoundStateComponent,
   onLoadMoreItems,
   disableSelect,
   ...props
@@ -30,8 +33,11 @@ const DataList = ({
   }
 
   if (!loading && items.length === 0) {
-    if (EmptyStateComponent) {
+    if (isQueryParamsEmpty && EmptyStateComponent) {
       return <EmptyStateComponent />;
+    }
+    if (NotFoundStateComponent) {
+      return <NotFoundStateComponent />;
     }
 
     return null;
@@ -43,6 +49,8 @@ const DataList = ({
         items,
         selectedItems,
         setSelectedItems,
+        lastViewedItem,
+        setLastViewedItem,
         disableSelect,
       }}
     >
@@ -69,14 +77,20 @@ const DataList = ({
 DataList.defaultProps = {
   selectedItems: null,
   setSelectedItems: null,
+  lastViewedItem: null,
+  setLastViewedItem: null,
   onLoadMoreItems: null,
+  isQueryParamsEmpty: true,
   EmptyStateComponent: null,
+  NotFoundStateComponent: null,
   disableSelect: false,
 };
 
 DataList.propTypes = {
   selectedItems: PropTypes.arrayOf(PropTypes.any),
   setSelectedItems: PropTypes.func,
+  lastViewedItem: PropTypes.shape(),
+  setLastViewedItem: PropTypes.func,
   listRenderer: PropTypes.func.isRequired,
   renderItem: PropTypes.func.isRequired,
   queryResult: PropTypes.shape({
@@ -87,7 +101,9 @@ DataList.propTypes = {
       items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     }).isRequired,
   }).isRequired,
+  isQueryParamsEmpty: PropTypes.bool,
   EmptyStateComponent: PropTypes.func,
+  NotFoundStateComponent: PropTypes.func,
   pageSize: PropTypes.number.isRequired,
   onLoadMoreItems: PropTypes.func,
   disableSelect: PropTypes.bool,

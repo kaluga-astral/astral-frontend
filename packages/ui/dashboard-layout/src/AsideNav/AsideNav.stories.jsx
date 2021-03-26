@@ -5,9 +5,10 @@ import { StaticRouter } from 'react-router-dom';
 import { OrganizationNotFoundIcon } from '@astral-frontend/icons';
 
 import Sidebar from '../Sidebar';
-import AsideNav from './AsideNav';
 import Layout from '../Layout';
 import AsideNavLink from '../AsideNavLink';
+
+import AsideNav from './AsideNav';
 
 storiesOf('packages/dashboard-layout/AsideNav', module).add('default', () => (
   <Layout>

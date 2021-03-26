@@ -1,11 +1,11 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { makeStyles } from '@astral-frontend/styles';
 
-import FormGridSectionContext from './FormGridSectionContext';
 import Button from '../Button';
+
+import FormGridSectionContext from './FormGridSectionContext';
 
 const FormGridSectionTitleCollapseToggler = () => {
   const { collapsed, setCollapsed } = React.useContext(FormGridSectionContext);

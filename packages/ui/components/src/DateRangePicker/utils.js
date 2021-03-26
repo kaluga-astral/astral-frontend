@@ -1,18 +1,18 @@
 import {
-  startOfWeek,
-  startOfMonth,
-  endOfWeek,
-  endOfMonth,
-  isBefore,
   addDays,
+  addMonths,
+  endOfMonth,
+  endOfWeek,
+  isBefore,
   isSameDay,
-  isWithinInterval,
-  toDate,
+  isSameMonth,
   isValid,
+  isWithinInterval,
   max,
   min,
-  isSameMonth,
-  addMonths,
+  startOfMonth,
+  startOfWeek,
+  toDate,
 } from 'date-fns';
 
 export const getValidatedMonths = (range, minDate, maxDate) => {

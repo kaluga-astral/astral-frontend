@@ -1,7 +1,6 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { FlexContainer } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
@@ -10,7 +9,7 @@ const useStyles = makeStyles(
     root: {
       height: '64px',
       alignItems: 'center',
-      margin: theme.spacing(0, 4),
+      margin: theme.spacing(0, 4, 4),
       userSelect: 'none',
     },
   }),

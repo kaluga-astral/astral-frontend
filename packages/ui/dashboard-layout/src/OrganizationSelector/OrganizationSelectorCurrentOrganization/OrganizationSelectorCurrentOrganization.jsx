@@ -2,11 +2,11 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  ButtonBase,
   Avatar,
-  SvgIcon,
+  ButtonBase,
   FlexContainer,
   FlexItem,
+  SvgIcon,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 import { ArrowIcon } from '@astral-frontend/icons';

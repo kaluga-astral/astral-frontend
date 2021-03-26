@@ -1,4 +1,0 @@
-const REFRESH_TOKEN_RESOURCE_NAME = 'refresh_token';
-const SYNC_REQUESTS_CHANNEL_NAME = 'sync_requests';
-
-module.exports = { REFRESH_TOKEN_RESOURCE_NAME, SYNC_REQUESTS_CHANNEL_NAME };

@@ -50,3 +50,5 @@ export const ORGANIZATION_VALIDATIONS_PARAMS = {
     },
   },
 };
+
+export const EMAIL_MAX_LENGTH = 256;

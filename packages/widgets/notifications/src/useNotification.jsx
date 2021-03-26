@@ -2,217 +2,83 @@
 import { useSnackbar } from 'notistack';
 import React from 'react';
 
-import NotificationsMessage from './NotificationsMessage';
-import NotificationsSystemNotification from './NotificationsSystemNotification';
+import Notification from './Notification';
 
 export const useNotification = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  return React.useMemo(
-    () => ({
-      closeNotification: closeSnackbar,
-      enqueueCustomNotification(options) {
-        return enqueueSnackbar('', options);
-      },
-      enqueueSystemNotification({ options, Component, ...props }) {
-        return enqueueSnackbar('', {
-          persist: true,
-          content: key => {
-            return (
-              <NotificationsSystemNotification
-                onClose={() => closeSnackbar(key)}
-                {...props}
-              >
-                <Component />
-              </NotificationsSystemNotification>
-            );
-          },
-          ...options,
-        });
-      },
-      enqueueSuccessNotification({
-        title = 'Успешно',
-        message = '',
-        duration = null,
-        progressLine = true,
-      }) {
-        enqueueSnackbar('', {
-          variant: 'success',
-          content: key => (
-            <NotificationsMessage
-              id={key}
-              variant="success"
-              title={title}
-              // TODO 29354
-              message={
-                typeof message === 'string'
-                  ? message.replace('GraphQL error: ', '')
-                  : message
-              }
-              duration={duration}
-              progressLine={progressLine}
-            />
-          ),
-        });
-      },
-      enqueueErrorNotification({
-        title = 'Ошибка',
-        message = '',
-        duration = null,
-        progressLine = true,
-        ...options
-      }) {
-        enqueueSnackbar('', {
-          ...options,
-          variant: 'error',
-          content: key => (
-            <NotificationsMessage
-              id={key}
-              variant="error"
-              title={title}
-              // TODO 29354
-              message={
-                typeof message === 'string'
-                  ? message.replace('GraphQL error: ', '')
-                  : message
-              }
-              duration={duration}
-              progressLine={progressLine}
-            />
-          ),
-        });
-      },
-      enqueueInfoNotification({
-        title = 'Успешно',
-        message = '',
-        duration = null,
-        progressLine = true,
-        ...options
-      }) {
-        enqueueSnackbar('', {
-          variant: 'info',
-          content: key => (
-            <NotificationsMessage
-              id={key}
-              variant="info"
-              title={title}
-              // TODO 29354
-              message={
-                typeof message === 'string'
-                  ? message.replace('GraphQL error: ', '')
-                  : message
-              }
-              duration={duration}
-              progressLine={progressLine}
-            />
-          ),
-          ...options,
-        });
-      },
-      enqueueSuccessTimerNotification({
-        title = 'Успешно',
-        message = '',
-        duration = null,
-        progressLine = false,
-      }) {
-        enqueueSnackbar('', {
-          variant: 'success',
-          content: key => (
-            <NotificationsMessage
-              id={key}
-              variant="success"
-              title={title}
-              // TODO 29354
-              message={
-                typeof message === 'string'
-                  ? message.replace('GraphQL error: ', '')
-                  : message
-              }
-              duration={duration}
-              progressLine={progressLine}
-              timer
-            />
-          ),
-        });
-      },
-      enqueueErrorTimerNotification({
-        title = 'Ошибка',
-        message = '',
-        duration = null,
-        progressLine = false,
-      }) {
-        enqueueSnackbar('', {
-          variant: 'error',
-          content: key => (
-            <NotificationsMessage
-              id={key}
-              variant="error"
-              title={title}
-              // TODO 29354
-              message={
-                typeof message === 'string'
-                  ? message.replace('GraphQL error: ', '')
-                  : message
-              }
-              duration={duration}
-              progressLine={progressLine}
-              timer
-            />
-          ),
-        });
-      },
-      enqueueInfoTimerNotification({
-        title = 'Успешно',
-        message = '',
-        duration = null,
-        progressLine = false,
-      }) {
-        enqueueSnackbar('', {
-          variant: 'info',
-          content: key => (
-            <NotificationsMessage
-              id={key}
-              variant="info"
-              title={title}
-              // TODO 29354
-              message={
-                typeof message === 'string'
-                  ? message.replace('GraphQL error: ', '')
-                  : message
-              }
-              duration={duration}
-              progressLine={progressLine}
-              timer
-            />
-          ),
-        });
-      },
-      enqueueDeleteNotification({
-        title = 'Удаление',
-        message = '',
-        duration = null,
-        progressLine = true,
-      }) {
-        enqueueSnackbar('', {
-          variant: 'delete',
-          content: key => (
-            <NotificationsMessage
-              id={key}
-              variant="delete"
-              title={title}
-              // TODO 29354
-              message={
-                typeof message === 'string'
-                  ? message.replace('GraphQL error: ', '')
-                  : message
-              }
-              duration={duration}
-              progressLine={progressLine}
-            />
-          ),
-        });
-      },
-    }),
-    [],
-  );
+  const enqueueNotification = ({
+    className,
+    variant,
+    title,
+    message,
+    progressLine,
+    persist,
+    autoHideDuration,
+    onClose,
+    marker,
+    palette,
+    ...props
+  }) => {
+    return enqueueSnackbar('', {
+      content: key => (
+        <Notification
+          id={key}
+          {...{
+            className,
+            variant,
+            title,
+            message,
+            progressLine,
+            persist,
+            autoHideDuration,
+            onClose,
+            marker,
+            palette,
+          }}
+        />
+      ),
+      ...props,
+    });
+  };
+
+  const enqueueInfoNotification = props => {
+    return enqueueNotification({
+      ...props,
+      variant: 'info',
+    });
+  };
+
+  const enqueueSuccessNotification = props => {
+    return enqueueNotification({
+      ...props,
+      variant: 'success',
+    });
+  };
+
+  const enqueueErrorNotification = ({
+    title = 'Ошибка',
+    message,
+    ...props
+  }) => {
+    return enqueueNotification({
+      title,
+      ...props,
+      message:
+        typeof message === 'string'
+          ? message.replace('GraphQL error: ', '')
+          : message,
+      variant: 'error',
+    });
+  };
+
+  return {
+    closeNotification: closeSnackbar,
+    enqueueInfoNotification,
+    enqueueSuccessNotification,
+    enqueueErrorNotification,
+    enqueueCustomNotification(options) {
+      return enqueueSnackbar('', options);
+    },
+  };
 };

@@ -1,8 +1,7 @@
-import { omit } from 'lodash-es';
+import { isEqual, omit } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useField, useFormState } from 'react-final-form';
-
 import { AsyncAutocomplete } from '@astral-frontend/components';
 
 import { createValidationFunction } from '../utils';
@@ -16,8 +15,10 @@ const AsyncAutocompleteField = ({
   onChange,
   ...props
 }) => {
-  const { initialValues } = useFormState();
-  const initialFieldValue = (initialValues || {})[name] || {};
+  const { initialValues, values, active } = useFormState();
+  const initialFieldValue = initialValues?.[name];
+  const fieldValue = values?.[name];
+  const editing = active === name;
   const validationFunction = React.useCallback(
     createValidationFunction(required, validate),
     [required, validate],
@@ -28,7 +29,7 @@ const AsyncAutocompleteField = ({
   const [value, setValue] = React.useState(null);
   const error = required && meta.touched && !meta.valid;
   const helperText = meta.error && meta.touched ? meta.error : null;
-  const handleChange = (event, newValue) => {
+  const handleChange = React.useCallback((event, newValue) => {
     if (newValue) {
       setValue(newValue);
       input.onChange(newValue.value);
@@ -36,15 +37,24 @@ const AsyncAutocompleteField = ({
       setValue(null);
       input.onChange(null);
     }
-    onChange(event, newValue);
-  };
+    if (onChange) {
+      onChange(event, newValue);
+    }
+  }, []);
 
   React.useEffect(() => {
-    if (initialFieldValue) {
+    if (!editing) {
       setValue(initialFieldValue);
-      input.onChange((initialFieldValue || {}).value);
+      input.onChange(initialFieldValue?.value);
     }
   }, [JSON.stringify(initialFieldValue)]);
+
+  React.useEffect(() => {
+    if (!editing && isEqual(initialFieldValue, fieldValue)) {
+      setValue(initialFieldValue);
+      input.onChange(initialFieldValue?.value);
+    }
+  }, [JSON.stringify(fieldValue)]);
 
   return (
     <AsyncAutocomplete

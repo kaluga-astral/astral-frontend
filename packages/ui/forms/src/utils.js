@@ -1,9 +1,8 @@
 import {
-  mustBePresent,
   composeValidations,
+  mustBePresent,
 } from '@astral-frontend/validations';
 
-// eslint-disable-next-line import/prefer-default-export
 export const createValidationFunction = (required, validate) => {
   if (required && validate) {
     return composeValidations(mustBePresent, validate);
@@ -25,3 +24,5 @@ export const createValidationFunction = (required, validate) => {
 
   return null;
 };
+
+export const removeSpecialSymbols = value => value.replace(/[^\d\s]/g, '');

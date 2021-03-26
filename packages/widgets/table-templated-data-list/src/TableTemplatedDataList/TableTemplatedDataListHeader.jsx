@@ -1,10 +1,8 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { makeStyles } from '@astral-frontend/styles';
 import { Checkbox } from '@astral-frontend/components';
-
 import { DataListContext } from '@astral-frontend/data-list';
 
 import TableTemplatedDataListHeaderItem from './TableTemplatedDataListHeaderItem';
@@ -28,6 +26,7 @@ const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      marginRight: 0,
     },
   }),
   { name: 'TableTemplatedDataListHeader' },
@@ -41,6 +40,13 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
     setSelectedItems,
     disableSelect,
   } = React.useContext(DataListContext);
+  const uploadingInProgress = React.useMemo(
+    () =>
+      items.some(
+        item => item.percentCompleted != null && item.percentCompleted !== 100,
+      ),
+    [items],
+  );
   const checked = items.length === selectedItems.length;
   const handleCheckboxChange = () => {
     if (checked) {
@@ -57,13 +63,16 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
 
   return (
     <div className={cn(classes.root, className)}>
-      <div className={classes.select}>
-        {!disableSelect ? (
-          <Checkbox checked={checked} onChange={handleCheckboxChange} />
-        ) : (
-          <div />
-        )}
-      </div>
+      {!disableSelect ? (
+        <Checkbox
+          checked={checked}
+          disabled={uploadingInProgress}
+          onChange={handleCheckboxChange}
+          className={classes.select}
+        />
+      ) : (
+        <div />
+      )}
 
       {columns.map(column => (
         <TableTemplatedDataListHeaderItem

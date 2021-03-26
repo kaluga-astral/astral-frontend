@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  RadioGroup,
-  Radio,
   FormControl,
   FormControlLabel,
+  Radio,
+  RadioGroup,
 } from '@astral-frontend/components';
-import { FormLabel, FormHelperText } from '@astral-frontend/core';
+import { FormHelperText, FormLabel } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
+
 import Field from '../Field';
 
 const useStyles = makeStyles(

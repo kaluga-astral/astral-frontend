@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
+
 import IconButton from '../../IconButton';
 import Paper from '../../Paper';
 import FlexContainer from '../../FlexContainer';

@@ -1,7 +1,7 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import PropTypes from 'prop-types';
-import matchSorter from 'match-sorter';
 import React from 'react';
-import { TextField, CircularProgress } from '@astral-frontend/core';
+import { CircularProgress, TextField } from '@astral-frontend/core';
 import MuiAutocomplete from '@material-ui/lab/Autocomplete';
 
 // import TextField from '../TextField';
@@ -35,6 +35,7 @@ const Autocomplete = ({
       open={open}
       options={options}
       filterOptions={filterOptions}
+      forcePopupIcon={false}
       getOptionLabel={getOptionLabel}
       getOptionSelected={option => options.find(v => v.key === option.key)}
       onOpen={onOpen}
@@ -45,12 +46,10 @@ const Autocomplete = ({
         const InputProps = {
           ...params.InputProps,
           ...MuiTextFieldProps.InputProps,
-          endAdornment: (
-            <>
-              {loading ? <CircularProgress color="inherit" size={20} /> : null}
-              {params.InputProps.endAdornment}
-            </>
-          ),
+        };
+        const inputProps = {
+          ...params.inputProps,
+          ...MuiTextFieldProps.inputProps,
         };
 
         return (
@@ -59,7 +58,18 @@ const Autocomplete = ({
             fullWidth
             margin="none"
             {...MuiTextFieldProps}
-            InputProps={InputProps}
+            inputProps={inputProps}
+            InputProps={{
+              ...InputProps,
+              endAdornment: (
+                <>
+                  {loading ? (
+                    <CircularProgress color="inherit" size={20} />
+                  ) : null}
+                  {InputProps.endAdornment}
+                </>
+              ),
+            }}
           />
         );
       }}
@@ -75,8 +85,8 @@ Autocomplete.defaultProps = {
   loadingText: 'Загрузка...',
   noOptionsText: 'Ничего не найдено',
   getOptionLabel: option => option.label || '',
-  filterOptions: (options, { inputValue }) => {
-    return matchSorter(options, inputValue, { keys: ['label'] });
+  filterOptions: options => {
+    return options;
   },
   onChange: null,
   onClose: null,

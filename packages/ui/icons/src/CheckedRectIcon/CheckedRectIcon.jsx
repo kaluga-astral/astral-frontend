@@ -4,14 +4,7 @@ import { SvgIcon } from '@astral-frontend/core';
 const CheckedRectIcon = props => (
   <SvgIcon viewBox="0 0 20 20" {...props}>
     <g filter="url(#filter0_i)">
-      <rect
-        x="1.667"
-        y="1.667"
-        width="16.667"
-        height="16.667"
-        rx="4"
-        fill="#6746EB"
-      />
+      <rect x="1.667" y="1.667" width="16.667" height="16.667" rx="4" />
     </g>
     <path
       d="M9.217 12.5a.356.356 0 0 1-.251-.103L6.76 10.171a.365.365 0 0 1 .01-.5.357.357 0 0 1 .497-.011l1.95 1.966 3.973-4.008a.357.357 0 0 1 .613.156.364.364 0 0 1-.106.355l-4.227 4.268a.356.356 0 0 1-.254.103z"

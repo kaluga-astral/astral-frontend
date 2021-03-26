@@ -11,9 +11,11 @@
     "@astral-frontend/components": "^1.0.0",
     "@astral-frontend/icons": "^1.0.0",
     "@astral-frontend/styles": "^1.0.0",
+    "@astral-frontend/core": "^1.0.0",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
-    "notistack": "^0.9.5"
+    "notistack": "^0.9.5",
+    "lodash-es": "^4.17.15"
   },
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "*"

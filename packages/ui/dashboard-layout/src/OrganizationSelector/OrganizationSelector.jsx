@@ -1,20 +1,19 @@
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import React from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, useLocation } from 'react-router-dom';
 import {
-  Collapse,
   ButtonBase,
+  ClickAwayListener,
+  Collapse,
+  ContentState,
+  FlexContainer,
   MenuItem,
   Paper,
-  ClickAwayListener,
-  FlexContainer,
-  ContentState,
   Tooltip,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
-import FlatTemplatedDataList from '../../../../widgets/flat-templated-data-list';
+import FlatTemplatedDataList from '@astral-frontend/flat-templated-data-list';
 
 import OrganizationSelectorCurrentOrganization from './OrganizationSelectorCurrentOrganization';
 import OrganizationSelectorEmptyStateComponent from './OrganizationSelectorEmptyStateComponent';
@@ -61,6 +60,7 @@ const OrganizationSelector = ({
   ...props
 }) => {
   const classes = useStyles();
+  const location = useLocation();
   const [open, setOpen] = React.useState(false);
   const handleTogglerButtonClick = () => {
     setOpen(prevValue => !prevValue);
@@ -68,6 +68,11 @@ const OrganizationSelector = ({
   const handleClickAwayListenerClickAway = () => {
     setOpen(false);
   };
+  const defaultTooltipState =
+    location.pathname === '/' ||
+    location.pathname.includes('registration-requests')
+      ? 'Выберите организацию'
+      : 'Загрузка организации';
 
   return (
     <FlexContainer
@@ -80,12 +85,13 @@ const OrganizationSelector = ({
           <FlexContainer>
             <Tooltip
               placement="left"
-              title={currentOrganizationName || 'Выберите организацию'}
+              title={currentOrganizationName ?? defaultTooltipState}
             >
               <OrganizationSelectorCurrentOrganization
                 name={currentOrganizationName}
                 disabled={disabled}
                 onClick={handleTogglerButtonClick}
+                open={open}
               />
             </Tooltip>
             <ButtonBase disabled={disabled} onClick={handleTogglerButtonClick}>

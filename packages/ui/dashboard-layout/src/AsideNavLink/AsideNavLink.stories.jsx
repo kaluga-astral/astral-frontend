@@ -6,8 +6,9 @@ import { OrganizationNotFoundIcon } from '@astral-frontend/icons';
 
 import Sidebar from '../Sidebar';
 import Layout from '../Layout';
-import AsideNavLink from './AsideNavLink';
 import AsideNav from '../AsideNav';
+
+import AsideNavLink from './AsideNavLink';
 
 storiesOf('packages/dashboard-layout/AsideNavLink', module).add(
   'default',

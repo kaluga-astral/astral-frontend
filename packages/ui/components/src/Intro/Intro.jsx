@@ -8,6 +8,7 @@ import 'intro.js/introjs.css';
 import { useTheme } from '@astral-frontend/styles';
 
 import ThemeProvider from '../ThemeProvider';
+
 import TooltipContent from './TooltipContent';
 import './theme.css';
 

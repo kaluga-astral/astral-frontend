@@ -1,9 +1,7 @@
 import RobotoLightWoff2 from './binary/roboto-v18-300.woff2';
 import RobotoLightWoff from './binary/roboto-v18-300.woff';
-
 import RobotoRegularWoff2 from './binary/roboto-v18-400.woff2';
 import RobotoRegularWoff from './binary/roboto-v18-400.woff';
-
 import RobotoMediumWoff2 from './binary/roboto-v18-500.woff2';
 import RobotoMediumWoff from './binary/roboto-v18-500.woff';
 

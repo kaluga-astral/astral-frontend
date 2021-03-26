@@ -2,18 +2,19 @@ import nanoid from 'nanoid';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useLocation, matchPath } from 'react-router-dom';
-
+import { matchPath, useLocation } from 'react-router-dom';
 import {
   ButtonBase,
-  SvgIcon,
   Collapse,
   List,
+  SvgIcon,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import { __Context as AsideContext } from '../Aside';
+import { __Context as SidebarContext } from '../Sidebar';
 import SidebarTooltip from '../SidebarTooltip';
+import SidebarCounter from '../SidebarCounter';
 
 const useStyles = makeStyles(
   theme => ({
@@ -22,8 +23,11 @@ const useStyles = makeStyles(
       color: theme.palette.gray[600],
       marginBottom: theme.spacing(1),
     },
-    expanded: {
+    expandedDropdown: {
       backgroundColor: theme.palette.primary.light,
+    },
+    alwaysExpandedButton: {
+      pointerEvents: 'none',
     },
     button: {
       justifyContent: 'left',
@@ -43,30 +47,29 @@ const useStyles = makeStyles(
       textAlign: 'left',
       fontSize: theme.typography.pxToRem(14),
       fontWeight: theme.typography.fontWeightBold,
+      opacity: ({ expandedSidebar }) => (expandedSidebar ? 1 : 0),
+      pointerEvents: ({ expandedSidebar }) =>
+        expandedSidebar ? 'auto' : 'none',
+      transition: theme.transitions.create('opacity', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     },
-    counter: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      color: theme.palette.common.white,
-      flexShrink: 0,
-      marginRight: `${theme.spacing(1)}px`,
-      width: '20px',
-      height: '20px',
-      fontSize: '75%',
-      fontWeight: 'bold',
-      borderRadius: '50%',
-      backgroundColor: theme.palette.error.main,
-    },
-    expanderIcon: {
+    expandedIcon: {
       margin: theme.spacing(3, 4),
-    },
-    activeButton: {
-      color: theme.palette.primary.main,
-      backgroundColor: theme.palette.primary.light,
-      '& $icon': {
-        color: theme.palette.primary.main,
+      transform: ({ expandedDropdown }) => {
+        return expandedDropdown ? 'rotateZ(180deg)' : ' rotateZ(0deg)';
       },
+      opacity: ({ expandedSidebar }) => (expandedSidebar ? 1 : 0),
+      pointerEvents: ({ expandedSidebar }) =>
+        expandedSidebar ? 'auto' : 'none',
+      transition: theme.transitions.create(['transform', 'opacity'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    expandedCounter: {
+      backgroundColor: theme.palette.error.light,
     },
   }),
   {
@@ -80,21 +83,27 @@ const DashboardLayoutAsideNavItem = ({
   Icon,
   counterValue,
   children,
+  additionalExpandedPath,
+  alwaysExpandedDropdown,
   ...props
 }) => {
   const location = useLocation();
   const { expandedNavDropdownId, setExpandedNavDropdownId } = React.useContext(
     AsideContext,
   );
+  const { expanded: expandedSidebar } = React.useContext(SidebarContext);
   const id = React.useMemo(() => {
     return nanoid();
   }, []);
-  const expanded = React.useMemo(() => {
+  const expandedDropdown = React.useMemo(() => {
     return id === expandedNavDropdownId;
   }, [expandedNavDropdownId]);
-  const classes = useStyles({ expanded });
+  const classes = useStyles({ expandedDropdown, expandedSidebar });
   const handleSidebarNavItemClick = () => {
-    if (expanded) {
+    if (alwaysExpandedDropdown) {
+      return null;
+    }
+    if (expandedDropdown) {
       setExpandedNavDropdownId(null);
     } else {
       setExpandedNavDropdownId(id);
@@ -110,28 +119,48 @@ const DashboardLayoutAsideNavItem = ({
 
     if (expandedByRouterReason) {
       setExpandedNavDropdownId(id);
-    } else if (expanded) {
+    } else if (expandedDropdown) {
       setExpandedNavDropdownId(null);
     }
   }, [location.pathname]);
 
+  React.useEffect(() => {
+    if (additionalExpandedPath) {
+      const expandedByPath = additionalExpandedPath.some(path =>
+        location.pathname.includes(path),
+      );
+      if (expandedByPath) {
+        setExpandedNavDropdownId(id);
+      }
+    }
+  }, [additionalExpandedPath]);
+
   return (
     <li
-      className={cn(className, classes.root, { [classes.expanded]: expanded })}
+      className={cn(className, classes.root, {
+        [classes.expandedDropdown]: expandedDropdown || alwaysExpandedDropdown,
+      })}
     >
-      <SidebarTooltip title={text}>
+      <SidebarTooltip counterValue={counterValue} title={text}>
         <ButtonBase
           {...props}
-          className={classes.button}
+          className={cn(classes.button, {
+            [classes.alwaysExpandedButton]: alwaysExpandedDropdown,
+          })}
           onClick={handleSidebarNavItemClick}
         >
           <Icon className={classes.icon} />
           <div className={classes.text}>{text}</div>
-          {counterValue && (
-            <div className={classes.counter}>{counterValue}</div>
+          {expandedSidebar && Boolean(counterValue) && (
+            <SidebarCounter
+              className={{
+                [classes.expandedCounter]: expandedDropdown,
+              }}
+              counterValue={counterValue}
+            />
           )}
-          {children && (
-            <SvgIcon className={classes.expanderIcon}>
+          {children && !alwaysExpandedDropdown && (
+            <SvgIcon className={classes.expandedIcon}>
               <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
               <path d="M0 0h24v24H0V0z" fill="none" />
             </SvgIcon>
@@ -139,7 +168,11 @@ const DashboardLayoutAsideNavItem = ({
         </ButtonBase>
       </SidebarTooltip>
       {children && (
-        <Collapse unmountOnExit in={expanded} component={List}>
+        <Collapse
+          unmountOnExit
+          in={expandedDropdown || alwaysExpandedDropdown}
+          component={List}
+        >
           {children}
         </Collapse>
       )}
@@ -149,8 +182,10 @@ const DashboardLayoutAsideNavItem = ({
 
 DashboardLayoutAsideNavItem.defaultProps = {
   className: null,
-  counterValue: null,
+  counterValue: 0,
   children: null,
+  additionalExpandedPath: null,
+  alwaysExpandedDropdown: false,
 };
 
 DashboardLayoutAsideNavItem.propTypes = {
@@ -159,6 +194,8 @@ DashboardLayoutAsideNavItem.propTypes = {
   text: PropTypes.string.isRequired,
   counterValue: PropTypes.number,
   children: PropTypes.node,
+  additionalExpandedPath: PropTypes.arrayOf(PropTypes.string),
+  alwaysExpandedDropdown: PropTypes.bool,
 };
 
 export default DashboardLayoutAsideNavItem;

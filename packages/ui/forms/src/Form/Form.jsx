@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Form as FinalForm } from 'react-final-form';
-
 import { Box } from '@astral-frontend/components';
 
 const Form = ({

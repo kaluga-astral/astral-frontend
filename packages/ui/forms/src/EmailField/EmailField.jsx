@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { mustBeEmail } from '@astral-frontend/validations';
+import { EMAIL_MAX_LENGTH, mustBeEmail } from '@astral-frontend/validations';
 
 import TextField from '../TextField';
 
-const EmailField = props => <TextField validate={mustBeEmail} {...props} />;
+const EmailField = props => (
+  <TextField
+    validate={mustBeEmail}
+    inputProps={{ maxLength: EMAIL_MAX_LENGTH }}
+    {...props}
+  />
+);
 
 EmailField.defaultProps = {
   name: 'email',

@@ -3,20 +3,20 @@ import React from 'react';
 
 import MaskField from '../MaskField';
 
-const OKVED_MASK = [/\d/, /\d/, '.', /\d/, /\d/, '.', /\d/, /\d/];
+const OKVED_MASK = '99.99.99';
 
-const OKVEDField = props => <MaskField mask={OKVED_MASK} {...props} />;
+const OKVEDField = props => (
+  <MaskField mask={OKVED_MASK} maskChar="X" {...props} />
+);
 
 OKVEDField.defaultProps = {
   name: 'okved',
   label: 'ОКВЭД',
-  placeholder: 'XX.XX.XX',
 };
 
 OKVEDField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
-  placeholder: PropTypes.string,
 };
 
 export default OKVEDField;

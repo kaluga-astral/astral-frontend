@@ -1,6 +1,5 @@
 import cn from 'classnames';
 import React from 'react';
-
 import { ListItem, ListItemText } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 

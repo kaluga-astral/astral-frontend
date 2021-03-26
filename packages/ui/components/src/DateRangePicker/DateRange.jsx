@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { Typography, Divider } from '@astral-frontend/core';
+import { Divider, Typography } from '@astral-frontend/core';
 import { makeStyles } from '@astral-frontend/styles';
 
 import FlexContainer from '../FlexContainer';

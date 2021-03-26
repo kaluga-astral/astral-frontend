@@ -1,6 +1,0 @@
-{
-  "extends": ["@astral-frontend/eslint-config-node"],
-  "rules": {
-    "consistent-return": ["warn"]
-  }
-}

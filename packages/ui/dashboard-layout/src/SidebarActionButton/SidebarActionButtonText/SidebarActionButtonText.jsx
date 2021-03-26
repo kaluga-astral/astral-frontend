@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
+import { __Context as SidebarContext } from '../../Sidebar';
+
 const useStyles = makeStyles(
   theme => ({
     root: {
@@ -10,13 +12,20 @@ const useStyles = makeStyles(
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       fontWeight: theme.typography.fontWeightBold,
+      opacity: ({ expanded }) => (expanded ? 1 : 0),
+      pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
+      transition: theme.transitions.create('opacity', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     },
   }),
   { name: 'DashboardLayoutActionButtonText' },
 );
 
 const DashboardLayoutActionButtonText = ({ text }) => {
-  const classes = useStyles();
+  const { expanded } = React.useContext(SidebarContext);
+  const classes = useStyles({ expanded });
 
   return <div className={classes.root}>{text}</div>;
 };

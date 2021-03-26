@@ -1,7 +1,6 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { makeStyles } from '@astral-frontend/styles';
 import { DataListItemContext } from '@astral-frontend/data-list';
 
@@ -66,8 +65,16 @@ TableTemplatedDataListPrimaryCell.defaultProps = {
 };
 
 TableTemplatedDataListPrimaryCell.propTypes = {
-  title: PropTypes.node.isRequired,
-  subTitle: PropTypes.node,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.node,
+  ]).isRequired,
+  subTitle: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.node,
+  ]),
   align: PropTypes.oneOf(['left', 'center', 'right']),
   className: PropTypes.string,
 };

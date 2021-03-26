@@ -5,12 +5,13 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import ContentState from '../ContentState';
 import Box from '../Box';
+
 import PDFViewerFailureState from './PDFViewerFailureState';
 
 const useStyles = makeStyles(
-  () => ({
+  theme => ({
     root: {
-      backgroundColor: 'rgba(83, 86, 89, 1)',
+      backgroundColor: theme.palette.gray[750],
     },
     object: {
       width: '100%',

@@ -2,15 +2,17 @@ import cn from 'classnames';
 import { PropTypes } from 'prop-types';
 import React from 'react';
 import {
-  ClickAwayListener,
-  ButtonBase,
-  Grow,
-  Paper,
-  MenuList,
   Avatar,
+  ButtonBase,
+  ClickAwayListener,
+  Grow,
+  MenuList,
+  Paper,
   Popper,
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
+
+import { __Context as SidebarContext } from '../Sidebar';
 
 import Item from './Item';
 
@@ -19,7 +21,7 @@ const useStyles = makeStyles(
     divider: {
       margin: theme.spacing(0, 2),
       height: '1px',
-      backgroundColor: 'rgba(29, 63, 102, 0.45)',
+      backgroundColor: theme.palette.gray[600],
     },
     button: {
       width: '100%',
@@ -42,6 +44,12 @@ const useStyles = makeStyles(
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
+      opacity: ({ expanded }) => (expanded ? 1 : 0),
+      pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
+      transition: theme.transitions.create('opacity', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     },
     popperPaper: {
       minWidth: '175px',
@@ -58,7 +66,8 @@ const DashboardLayoutCurrentUserInfo = ({
   userName,
   ...props
 }) => {
-  const classes = useStyles();
+  const { expanded } = React.useContext(SidebarContext);
+  const classes = useStyles({ expanded });
   const buttonRef = React.createRef();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);

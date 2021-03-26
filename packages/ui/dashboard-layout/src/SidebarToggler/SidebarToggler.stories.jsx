@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 
 import Sidebar from '../Sidebar';
 import Layout from '../Layout';
+
 import SidebarToggler from './SidebarToggler';
 
 storiesOf('packages/dashboard-layout/SidebarToggler', module).add(

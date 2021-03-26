@@ -29,7 +29,7 @@ export const SlideModalHeaderTitle = ({ text, ...props }) => {
 };
 
 SlideModalHeaderTitle.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
 };
 
 export default SlideModalHeaderTitle;

@@ -32,7 +32,7 @@ const useStyles = makeStyles(
       fontSize: theme.typography.pxToRem(12),
       lineHeight: theme.typography.pxToRem(16),
       textAlign: 'center',
-      color: 'rgba(29, 63, 102, 0.62)',
+      color: theme.palette.gray[700],
     },
   }),
   { name: 'AbonentsSelectorEmptyStateComponent' },

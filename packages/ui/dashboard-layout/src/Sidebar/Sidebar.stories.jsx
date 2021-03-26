@@ -2,15 +2,16 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { StaticRouter } from 'react-router-dom';
-import { OrganizationNotFoundIcon, ArrowIcon } from '../../../icons/src';
 
-import Sidebar from './Sidebar';
+import { ArrowIcon, OrganizationNotFoundIcon } from '../../../icons/src';
 import Layout from '../Layout';
 import AsideNavLink from '../AsideNavLink';
 import AsideNav from '../AsideNav';
 import AsideNavItemToggleButton from '../AsideNavItemToggleButton';
 import AsideNavDropdown from '../AsideNavDropdown';
 import CurrentUserInfo from '../CurrentUserInfo';
+
+import Sidebar from './Sidebar';
 
 storiesOf('packages/dashboard-layout/Sidebar', module).add('default', () => (
   <Layout>

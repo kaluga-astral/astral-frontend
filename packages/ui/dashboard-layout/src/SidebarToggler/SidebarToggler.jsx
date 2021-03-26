@@ -1,12 +1,12 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { ButtonBase } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
 import { __Context as SidebarContext } from '../Sidebar';
 import SidebarTooltip from '../SidebarTooltip';
+
 import SidebarTogglerIcon from './SidebarTogglerIcon';
 
 const useStyles = makeStyles(
@@ -37,6 +37,12 @@ const useStyles = makeStyles(
       textAlign: 'left',
       fontSize: theme.typography.pxToRem(14),
       fontWeight: theme.typography.fontWeightBold,
+      opacity: ({ expanded }) => (expanded ? 1 : 0),
+      pointerEvents: ({ expanded }) => (expanded ? 'auto' : 'none'),
+      transition: theme.transitions.create('opacity', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     },
     tooltip: {
       display: 'flex',

@@ -3,8 +3,10 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@astral-frontend/styles';
 import { CircularProgress } from '@astral-frontend/core';
+
 import TableCell from '../TableCell';
 import { __Context as TableRowContext } from '../TableRow';
+
 import IconTableCellDefaultSelector from './IconTableCellDefaultSelector';
 
 const useStyles = makeStyles(theme => ({

@@ -2,9 +2,7 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { List } from '@astral-frontend/components';
-
 import { makeStyles } from '@astral-frontend/styles';
-
 import DataList from '@astral-frontend/data-list';
 
 const useStyles = makeStyles(

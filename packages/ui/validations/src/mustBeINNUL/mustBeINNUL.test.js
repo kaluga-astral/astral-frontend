@@ -1,6 +1,7 @@
 import { ERROR_MESSAGE } from '../mustBeINN';
-import mustBeINNULValidation from './mustBeINNUL';
 import { ORGANIZATION_VALIDATIONS_PARAMS } from '../constants';
+
+import mustBeINNULValidation from './mustBeINNUL';
 
 describe('mustBeULINN', () => {
   let mustBeINNUL;

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Box } from '@astral-frontend/components';
 
 const FlatTemplatedDataListRowActions = ({ ...props }) => {

@@ -2,11 +2,12 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import { useDropzone, Box } from '@astral-frontend/components';
+import { Box, useDropzone } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
+import { fade } from '@astral-frontend/core';
 
 import FilesUploaderOverlayContext from '../FilesUploaderOverlayContext';
+
 import FilesUploaderOverlayIcon from './FilesUploaderOverlayIcon';
 
 const useStyles = makeStyles(
@@ -23,6 +24,7 @@ const useStyles = makeStyles(
     },
     root: {
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
       position: 'fixed',
@@ -30,12 +32,18 @@ const useStyles = makeStyles(
       right: 0,
       bottom: 0,
       left: 0,
-      backgroundColor: '#1D3F6655',
+      backgroundColor: fade(theme.palette.gray[800], 0.55),
       outlineColor: theme.palette.common.white,
       outlineOffset: '-20px',
       outlineStyle: 'dashed',
       outlineWidth: 2,
       zIndex: 10000,
+    },
+    restrictionsMessage: {
+      maxWidth: '320px',
+      marginBottom: theme.spacing(4),
+      color: theme.palette.common.white,
+      textAlign: 'center',
     },
     iconWrapper: {
       display: 'flex',
@@ -58,7 +66,13 @@ const useStyles = makeStyles(
   { name: 'FilesUploaderOverlay' },
 );
 
-const FilesUploaderOverlay = ({ className, Icon, children, ...config }) => {
+const FilesUploaderOverlay = ({
+  className,
+  Icon,
+  children,
+  restrictionsMessage,
+  ...config
+}) => {
   const classes = useStyles();
   const { isDragActive, getRootProps, getInputProps, open } = useDropzone(
     config,
@@ -77,6 +91,11 @@ const FilesUploaderOverlay = ({ className, Icon, children, ...config }) => {
       <Box {...rootProps} css={{ outline: 'none' }}>
         {isDragActive && (
           <div className={cn(classes.root, className)}>
+            {restrictionsMessage && (
+              <span className={classes.restrictionsMessage}>
+                {restrictionsMessage}
+              </span>
+            )}
             <div className={classes.iconWrapper}>
               <Icon className={classes.icon} />
             </div>
@@ -92,11 +111,14 @@ const FilesUploaderOverlay = ({ className, Icon, children, ...config }) => {
 FilesUploaderOverlay.defaultProps = {
   Icon: FilesUploaderOverlayIcon,
   className: null,
+  restrictionsMessage: null,
 };
 
 FilesUploaderOverlay.propTypes = {
   Icon: PropTypes.func,
   className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  restrictionsMessage: PropTypes.string,
 };
 
 export default FilesUploaderOverlay;

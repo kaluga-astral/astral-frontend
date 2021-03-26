@@ -1,4 +1,5 @@
 import React from 'react';
+
 import SvgIcon from '../SvgIcon';
 
 const ArrowRightThinIcon = props => (
