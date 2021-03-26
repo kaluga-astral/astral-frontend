@@ -1,7 +1,6 @@
 .DS_Store
 .idea
 .cache
-.docz
 node_modules/
 lib
 dist/
@@ -11,3 +10,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 storybook-static
+
+/.yarn/*
+!/.yarn/releases
+!/.yarn/plugins
+!/.yarn/sdks
+
+!/.yarn/cache

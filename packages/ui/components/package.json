@@ -24,8 +24,8 @@
     "prop-types": "^15.7.2",
     "react-content-loader": "^5.0.2",
     "react-dropzone": "^11.0.1",
-    "react-js-pagination": "^3.0.3",
-    "react-input-mask": "^2.0.4"
+    "react-input-mask": "^2.0.4",
+    "react-js-pagination": "^3.0.3"
   },
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "*"

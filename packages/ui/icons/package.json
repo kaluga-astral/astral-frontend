@@ -10,10 +10,9 @@
   "dependencies": {
     "@astral-frontend/core": "*"
   },
-  "devDependencies": {},
   "peerDependencies": {
-    "react": ">=16.6.0",
-    "@astral-frontend/core": "*"
+    "@astral-frontend/core": "*",
+    "react": ">=16.6.0"
   },
   "sideEffects": false
 }

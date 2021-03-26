@@ -7,7 +7,5 @@
     "postbuild": "assembly-scripts postbuild",
     "release": "assembly-scripts release"
   },
-  "dependencies": {},
-  "peerDependencies": {},
   "sideEffects": false
 }

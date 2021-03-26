@@ -9,13 +9,13 @@
   },
   "dependencies": {
     "@astral-frontend/components": "^1.0.0",
+    "@astral-frontend/core": "^1.0.0",
     "@astral-frontend/icons": "^1.0.0",
     "@astral-frontend/styles": "^1.0.0",
-    "@astral-frontend/core": "^1.0.0",
     "classnames": "^2.2.6",
-    "prop-types": "^15.7.2",
+    "lodash-es": "^4.17.15",
     "notistack": "^0.9.5",
-    "lodash-es": "^4.17.15"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "*"

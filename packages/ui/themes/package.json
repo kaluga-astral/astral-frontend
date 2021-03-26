@@ -11,7 +11,5 @@
     "@astral-frontend/core": "*",
     "lodash-es": "^4.17.11"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
   "sideEffects": false
 }

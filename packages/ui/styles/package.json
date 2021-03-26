@@ -10,7 +10,6 @@
   "dependencies": {
     "@material-ui/styles": "^4.11.2"
   },
-  "devDependencies": {},
   "peerDependencies": {
     "react": ">=16.6.0"
   },
