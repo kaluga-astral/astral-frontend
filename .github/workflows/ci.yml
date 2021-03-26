@@ -1,0 +1,32 @@
+name: 'CI'
+
+on:
+  push:
+    branches: [$default-branch]
+  pull_request:
+    branches: [$default-branch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Run Jest
+        run: yarn jest
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Run ESLint
+        run: yarn eslint
