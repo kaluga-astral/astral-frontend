@@ -10,20 +10,16 @@ import AsideNavItem from './AsideNavItem';
 storiesOf('packages/dashboard-layout/AsideNavItem', module).add(
   'default',
   () => (
-    <Layout>
-      <Sidebar>
-        <AsideNavItem
-          component={() => (
-            <ButtonBase
-              component={() => (
-                <StaticRouter location="/">
-                  <NavLink to="/">Ссылка</NavLink>
-                </StaticRouter>
-              )}
-            />
-          )}
-        />
-      </Sidebar>
-    </Layout>
+    <StaticRouter location="/">
+      <Layout>
+        <Sidebar>
+          <AsideNavItem
+            component={() => (
+              <ButtonBase component={() => <NavLink to="/">Ссылка</NavLink>} />
+            )}
+          />
+        </Sidebar>
+      </Layout>
+    </StaticRouter>
   ),
 );
