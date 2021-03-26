@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: yarn install
 
       - name: Run Jest
         run: yarn jest --reporters=default --reporters=jest-github-actions-reporter
@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: yarn install
 
       - name: Run ESLint
         run: yarn eslint
