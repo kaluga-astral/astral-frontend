@@ -1728,7 +1728,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-env@npm:^7.12.1, @babel/preset-env@npm:^7.8.6":
+"@babel/preset-env@npm:^7.12.1, @babel/preset-env@npm:^7.13.12, @babel/preset-env@npm:^7.8.6":
   version: 7.13.12
   resolution: "@babel/preset-env@npm:7.13.12"
   dependencies:
@@ -10308,7 +10308,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^7.21.0":
+"eslint@npm:^7.22.0":
   version: 7.22.0
   resolution: "eslint@npm:7.22.0"
   dependencies:
@@ -21483,8 +21483,10 @@ resolve@^2.0.0-next.3:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@astral-frontend/eslint-config-ui": "workspace:packages/tools/eslint-config-ui"
     "@babel/core": ^7.8.6
     "@babel/plugin-proposal-export-default-from": ^7.8.3
+    "@babel/preset-env": ^7.13.12
     "@sentry/browser": ^6.2.3
     "@storybook/addon-actions": ^6.1.21
     "@storybook/addon-essentials": ^6.1.21
@@ -21497,7 +21499,7 @@ resolve@^2.0.0-next.3:
     core-js: ^3.6.4
     cross-env: ^7.0.0
     css-loader: 3.4.2
-    eslint: ^7.21.0
+    eslint: ^7.22.0
     eslint-plugin-prettier: ^3.3.1
     husky: ^4.2.3
     jest: ^25.1.0
