@@ -1,7 +1,6 @@
 {
   "name": "@astral-frontend/babel-preset-react-app",
   "version": "1.1.2",
-  "private": true,
   "main": "./index.js",
   "scripts": {},
   "dependencies": {

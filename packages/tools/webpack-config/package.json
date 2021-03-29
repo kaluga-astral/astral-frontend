@@ -1,9 +1,10 @@
 {
   "name": "@astral-frontend/webpack-config",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "scripts": {},
   "main": "./src/index.js",
   "dependencies": {
+    "@astral-frontend/babel-preset-react-app": "^1.0.0",
     "@babel/core": "^7.8.6",
     "babel-loader": "^8.0.5",
     "brotli-webpack-plugin": "^1.1.0",
