@@ -1,7 +1,6 @@
 {
   "name": "@astral-frontend/toolbox",
   "version": "1.1.2",
-  "private": true,
   "bin": {
     "toolbox": "./index.js"
   },
