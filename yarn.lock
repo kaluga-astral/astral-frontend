@@ -33,22 +33,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astral-frontend/account-layout@workspace:packages/ui/account-layout":
-  version: 0.0.0-use.local
-  resolution: "@astral-frontend/account-layout@workspace:packages/ui/account-layout"
-  dependencies:
-    "@astral-frontend/icons": ^1.0.0
-    "@astral-frontend/styles": ^1.0.0
-    classnames: ^2.2.6
-    prop-types: ^15.7.2
-  peerDependencies:
-    "@astral-frontend/components": ^1.0.0
-    react: ^16.13.0
-    react-dom: ^16.13.0
-    react-router-dom: ^5.1.2
-  languageName: unknown
-  linkType: soft
-
 "@astral-frontend/assembly-scripts@*, @astral-frontend/assembly-scripts@workspace:packages/scripts":
   version: 0.0.0-use.local
   resolution: "@astral-frontend/assembly-scripts@workspace:packages/scripts"
@@ -17533,15 +17517,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"prettier@npm:^1.19.1":
-  version: 1.19.1
-  resolution: "prettier@npm:1.19.1"
-  bin:
-    prettier: ./bin-prettier.js
-  checksum: e5fcdfe5e159ef5c5480245353cf8fb5bbd1b8afff266f31f281641825238f8a645e58472f77cd75a09ccc45d44c335466e8d901ec138c2bda05e1bd6ea1077c
-  languageName: node
-  linkType: hard
-
 "prettier@npm:^2.2.1":
   version: 2.2.1
   resolution: "prettier@npm:2.2.1"
@@ -19175,7 +19150,6 @@ resolve@^2.0.0-next.3:
     jest: ^25.1.0
     jest-github-actions-reporter: ^1.0.3
     lint-staged: ">=10"
-    prettier: ^1.19.1
     react: ^16.13.0
     react-dom: ^16.13.0
     react-router-dom: ^5.1.2

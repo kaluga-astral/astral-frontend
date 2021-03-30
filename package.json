@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "jest": "jest",
-    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "eslint": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
     "yaspeller": "yaspeller . --only-errors",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -35,7 +35,6 @@
     "jest": "^25.1.0",
     "jest-github-actions-reporter": "^1.0.3",
     "lint-staged": ">=10",
-    "prettier": "^1.19.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",

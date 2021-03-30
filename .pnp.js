@@ -47,10 +47,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/tools/webpack-config"
       },
       {
-        "name": "@astral-frontend/account-layout",
-        "reference": "workspace:packages/ui/account-layout"
-      },
-      {
         "name": "@astral-frontend/components",
         "reference": "workspace:packages/ui/components"
       },
@@ -122,12 +118,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "enableTopLevelFallback": true,
     "ignorePatternData": "(^(?:\\.yarn\\/sdks(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$)",
     "fallbackExclusionList": [
-      ["@astral-frontend/account-layout", ["workspace:packages/ui/account-layout"]],
       ["@astral-frontend/assembly-scripts", ["workspace:packages/scripts"]],
       ["@astral-frontend/babel-preset-react-app", ["workspace:packages/tools/babel-preset-react-app"]],
       ["@astral-frontend/components", ["virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components", "workspace:packages/ui/components"]],
       ["@astral-frontend/constants", ["workspace:packages/ui/constants"]],
-      ["@astral-frontend/core", ["virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core", "workspace:packages/ui/core"]],
+      ["@astral-frontend/core", ["virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/core", "workspace:packages/ui/core"]],
       ["@astral-frontend/dashboard-layout", ["workspace:packages/ui/dashboard-layout"]],
       ["@astral-frontend/data-list", ["virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/widgets/data-list", "workspace:packages/widgets/data-list"]],
       ["@astral-frontend/eslint-config-node", ["workspace:packages/tools/eslint-config-node"]],
@@ -137,9 +132,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@astral-frontend/fonts", ["workspace:packages/ui/fonts"]],
       ["@astral-frontend/forms", ["workspace:packages/ui/forms"]],
       ["@astral-frontend/grid-templated-data-list", ["workspace:packages/widgets/grid-templated-data-list"]],
-      ["@astral-frontend/icons", ["virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons", "workspace:packages/ui/icons"]],
+      ["@astral-frontend/icons", ["virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons", "workspace:packages/ui/icons"]],
       ["@astral-frontend/notifications", ["workspace:packages/widgets/notifications"]],
-      ["@astral-frontend/styles", ["virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles", "workspace:packages/ui/styles"]],
+      ["@astral-frontend/styles", ["virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles", "workspace:packages/ui/styles"]],
       ["@astral-frontend/table-templated-data-list", ["workspace:packages/widgets/table-templated-data-list"]],
       ["@astral-frontend/themes", ["workspace:packages/ui/themes"]],
       ["@astral-frontend/toolbox", ["workspace:packages/tools/toolbox"]],
@@ -178,7 +173,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:25.5.4"],
             ["jest-github-actions-reporter", "npm:1.0.3"],
             ["lint-staged", "npm:10.5.4"],
-            ["prettier", "npm:1.19.1"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:16.14.0"],
             ["react-router-dom", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.2.0"],
@@ -222,19 +216,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["@astral-frontend/account-layout", [
-        ["workspace:packages/ui/account-layout", {
-          "packageLocation": "./packages/ui/account-layout/",
-          "packageDependencies": [
-            ["@astral-frontend/account-layout", "workspace:packages/ui/account-layout"],
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
-            ["classnames", "npm:2.2.6"],
-            ["prop-types", "npm:15.7.2"]
-          ],
-          "linkType": "SOFT",
-        }]
-      ]],
       ["@astral-frontend/assembly-scripts", [
         ["workspace:packages/scripts", {
           "packageLocation": "./packages/scripts/",
@@ -271,10 +252,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
-            ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"],
+            ["@astral-frontend/core", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/core"],
             ["@astral-frontend/fonts", "workspace:packages/ui/fonts"],
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/icons", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["@material-ui/lab", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#npm:4.0.0-alpha.57"],
             ["@researchgate/react-intersection-list", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#npm:3.0.8"],
             ["@sentry/browser", null],
@@ -316,10 +297,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/components", "workspace:packages/ui/components"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
-            ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"],
+            ["@astral-frontend/core", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/core"],
             ["@astral-frontend/fonts", "workspace:packages/ui/fonts"],
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/icons", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["@material-ui/lab", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#npm:4.0.0-alpha.57"],
             ["@researchgate/react-intersection-list", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#npm:3.0.8"],
             ["classnames", "npm:2.2.6"],
@@ -351,12 +332,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@astral-frontend/core", [
-        ["virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core", {
-          "packageLocation": "./.yarn/$$virtual/@astral-frontend-core-virtual-63a1d10f11/1/packages/ui/core/",
+        ["virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/core", {
+          "packageLocation": "./.yarn/$$virtual/@astral-frontend-core-virtual-c70393bfc3/1/packages/ui/core/",
           "packageDependencies": [
-            ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"],
+            ["@astral-frontend/core", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/core"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
-            ["@material-ui/core", "virtual:63a1d10f11ee9ee6cef3ae6e95a2a80b245e7920fd1951953235d9a18075418687252149da99475be704f6a3116ea93e9167f711ffc4bb922dd40340e36ccdd3#npm:4.11.3"],
+            ["@material-ui/core", "virtual:c70393bfc3d664a293ff47a0835161966bbbe394887ed3e7ee35e9202a48814555a734ee7f3eb1dd5b3c9bc0187f731dea8b8d61cba4acf2b2cb9b6ce4663a43#npm:4.11.3"],
             ["@types/react", null],
             ["react", null]
           ],
@@ -371,7 +352,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@astral-frontend/core", "workspace:packages/ui/core"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
-            ["@material-ui/core", "virtual:63a1d10f11ee9ee6cef3ae6e95a2a80b245e7920fd1951953235d9a18075418687252149da99475be704f6a3116ea93e9167f711ffc4bb922dd40340e36ccdd3#npm:4.11.3"]
+            ["@material-ui/core", "virtual:c70393bfc3d664a293ff47a0835161966bbbe394887ed3e7ee35e9202a48814555a734ee7f3eb1dd5b3c9bc0187f731dea8b8d61cba4acf2b2cb9b6ce4663a43#npm:4.11.3"]
           ],
           "linkType": "SOFT",
         }]
@@ -384,8 +365,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/flat-templated-data-list", "virtual:5de3a0b1d29b7779f19a8c773b02fb7986e7d7886752b60783fa7bdbce4d7834e9bbef0eb4eb13d3e1da656026bc89d0b5135ab53eb81a59ff6e29f28a6d4069#workspace:packages/widgets/flat-templated-data-list"],
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/icons", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["classnames", "npm:2.2.6"],
             ["nanoid", "npm:2.1.11"],
             ["prop-types", "npm:15.7.2"]
@@ -401,8 +382,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/icons", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["@types/react", null],
             ["@types/react-dom", null],
             ["classnames", "npm:2.2.6"],
@@ -426,8 +407,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/icons", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["classnames", "npm:2.2.6"],
             ["lodash-es", "npm:4.17.21"],
             ["prop-types", "npm:15.7.2"]
@@ -477,8 +458,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
-            ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/core", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/core"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["classnames", "npm:2.2.6"],
             ["prop-types", "npm:15.7.2"]
           ],
@@ -494,8 +475,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
             ["@astral-frontend/data-list", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/widgets/data-list"],
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/icons", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["@types/react", null],
             ["@types/react-dom", null],
             ["classnames", "npm:2.2.6"],
@@ -520,8 +501,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
             ["@astral-frontend/data-list", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/widgets/data-list"],
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/icons", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["classnames", "npm:2.2.6"],
             ["lodash-es", "npm:4.17.21"],
             ["prop-types", "npm:15.7.2"]
@@ -548,7 +529,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/constants", "workspace:packages/ui/constants"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["@astral-frontend/validations", "workspace:packages/ui/validations"],
             ["final-form", "npm:4.20.2"],
             ["final-form-arrays", "virtual:3825b598c21ab13b808d01cdf153669e5b9405b3c2131080f0da8d3ba9666c447b0a8bd78cb30ec677a7fbed2373b3226e236d74bfec8bb8eb86cc41232686e3#npm:3.0.2"],
@@ -572,8 +553,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
             ["@astral-frontend/data-list", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/widgets/data-list"],
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/icons", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["classnames", "npm:2.2.6"],
             ["lodash-es", "npm:4.17.21"],
             ["prop-types", "npm:15.7.2"]
@@ -582,13 +563,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@astral-frontend/icons", [
-        ["virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons", {
-          "packageLocation": "./.yarn/$$virtual/@astral-frontend-icons-virtual-2f3a0507d7/1/packages/ui/icons/",
+        ["virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons", {
+          "packageLocation": "./.yarn/$$virtual/@astral-frontend-icons-virtual-b114a0e9ac/1/packages/ui/icons/",
           "packageDependencies": [
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
+            ["@astral-frontend/icons", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
-            ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"],
+            ["@astral-frontend/core", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/core"],
             ["@types/react", null],
             ["react", null]
           ],
@@ -604,7 +585,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/icons", "workspace:packages/ui/icons"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
-            ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"]
+            ["@astral-frontend/core", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/core"]
           ],
           "linkType": "SOFT",
         }]
@@ -617,9 +598,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
-            ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"],
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/core", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/core"],
+            ["@astral-frontend/icons", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["classnames", "npm:2.2.6"],
             ["lodash-es", "npm:4.17.21"],
             ["notistack", "virtual:b4b43bd970296648fc253f4108a51498cd270a249dae0160a52921650d1b3d01094684d876d9b8936becae271d6a68c7848ddfd1180df8450fc5ae30956429d2#npm:0.9.17"],
@@ -629,13 +610,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@astral-frontend/styles", [
-        ["virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles", {
-          "packageLocation": "./.yarn/$$virtual/@astral-frontend-styles-virtual-c17797beb9/1/packages/ui/styles/",
+        ["virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles", {
+          "packageLocation": "./.yarn/$$virtual/@astral-frontend-styles-virtual-f04db25faf/1/packages/ui/styles/",
           "packageDependencies": [
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
-            ["@material-ui/styles", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.3"],
+            ["@material-ui/styles", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.3"],
             ["@types/react", null],
             ["react", null]
           ],
@@ -651,7 +632,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/styles", "workspace:packages/ui/styles"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
-            ["@material-ui/styles", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.3"]
+            ["@material-ui/styles", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.3"]
           ],
           "linkType": "SOFT",
         }]
@@ -664,10 +645,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
-            ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"],
+            ["@astral-frontend/core", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/core"],
             ["@astral-frontend/data-list", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/widgets/data-list"],
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/icons", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["classnames", "npm:2.2.6"],
             ["lodash-es", "npm:4.17.21"],
             ["prop-types", "npm:15.7.2"]
@@ -682,7 +663,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/themes", "workspace:packages/ui/themes"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
-            ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"],
+            ["@astral-frontend/core", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/core"],
             ["lodash-es", "npm:4.17.21"]
           ],
           "linkType": "SOFT",
@@ -712,8 +693,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
             ["@astral-frontend/data-list", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/widgets/data-list"],
-            ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
-            ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/icons", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/icons"],
+            ["@astral-frontend/styles", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#workspace:packages/ui/styles"],
             ["classnames", "npm:2.2.6"],
             ["lodash-es", "npm:4.17.21"],
             ["prop-types", "npm:15.7.2"]
@@ -6005,15 +5986,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:63a1d10f11ee9ee6cef3ae6e95a2a80b245e7920fd1951953235d9a18075418687252149da99475be704f6a3116ea93e9167f711ffc4bb922dd40340e36ccdd3#npm:4.11.3", {
-          "packageLocation": "./.yarn/$$virtual/@material-ui-core-virtual-caad8cfeda/0/cache/@material-ui-core-npm-4.11.3-1281c40e43-1bca52d08e.zip/node_modules/@material-ui/core/",
+        ["virtual:c70393bfc3d664a293ff47a0835161966bbbe394887ed3e7ee35e9202a48814555a734ee7f3eb1dd5b3c9bc0187f731dea8b8d61cba4acf2b2cb9b6ce4663a43#npm:4.11.3", {
+          "packageLocation": "./.yarn/$$virtual/@material-ui-core-virtual-f725f83c24/0/cache/@material-ui-core-npm-4.11.3-1281c40e43-1bca52d08e.zip/node_modules/@material-ui/core/",
           "packageDependencies": [
-            ["@material-ui/core", "virtual:63a1d10f11ee9ee6cef3ae6e95a2a80b245e7920fd1951953235d9a18075418687252149da99475be704f6a3116ea93e9167f711ffc4bb922dd40340e36ccdd3#npm:4.11.3"],
+            ["@material-ui/core", "virtual:c70393bfc3d664a293ff47a0835161966bbbe394887ed3e7ee35e9202a48814555a734ee7f3eb1dd5b3c9bc0187f731dea8b8d61cba4acf2b2cb9b6ce4663a43#npm:4.11.3"],
             ["@babel/runtime", "npm:7.13.10"],
-            ["@material-ui/styles", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.3"],
-            ["@material-ui/system", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.3"],
-            ["@material-ui/types", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:5.1.0"],
-            ["@material-ui/utils", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.2"],
+            ["@material-ui/styles", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.3"],
+            ["@material-ui/system", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.3"],
+            ["@material-ui/types", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:5.1.0"],
+            ["@material-ui/utils", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.2"],
             ["@types/react", null],
             ["@types/react-dom", null],
             ["@types/react-transition-group", "npm:4.4.1"],
@@ -6025,7 +6006,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", null],
             ["react-dom", null],
             ["react-is", "npm:17.0.2"],
-            ["react-transition-group", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.4.1"]
+            ["react-transition-group", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.4.1"]
           ],
           "packagePeers": [
             "@types/react-dom",
@@ -6051,7 +6032,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@material-ui/lab", "virtual:f094bbc1734834e9f90f69d8f243fc9ce3fce7c9633bb337a921a2844760a49365ea5a4d63105f5cc9d7bbf02914413921995cf6ca2ce314682bfc5c9293ba45#npm:4.0.0-alpha.57"],
             ["@babel/runtime", "npm:7.13.10"],
             ["@material-ui/core", null],
-            ["@material-ui/utils", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.2"],
+            ["@material-ui/utils", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.2"],
             ["@types/material-ui__core", null],
             ["@types/react", null],
             ["@types/react-dom", null],
@@ -6082,14 +6063,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.3", {
-          "packageLocation": "./.yarn/$$virtual/@material-ui-styles-virtual-ba6910f767/0/cache/@material-ui-styles-npm-4.11.3-b61bbe20c0-fed7007d49.zip/node_modules/@material-ui/styles/",
+        ["virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.3", {
+          "packageLocation": "./.yarn/$$virtual/@material-ui-styles-virtual-8f3e2a8ae2/0/cache/@material-ui-styles-npm-4.11.3-b61bbe20c0-fed7007d49.zip/node_modules/@material-ui/styles/",
           "packageDependencies": [
-            ["@material-ui/styles", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.3"],
+            ["@material-ui/styles", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.3"],
             ["@babel/runtime", "npm:7.13.10"],
             ["@emotion/hash", "npm:0.8.0"],
-            ["@material-ui/types", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:5.1.0"],
-            ["@material-ui/utils", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.2"],
+            ["@material-ui/types", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:5.1.0"],
+            ["@material-ui/utils", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.2"],
             ["@types/react", null],
             ["@types/react-dom", null],
             ["@types/types__react", null],
@@ -6126,12 +6107,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.3", {
-          "packageLocation": "./.yarn/$$virtual/@material-ui-system-virtual-5e422fb1bc/0/cache/@material-ui-system-npm-4.11.3-31c29e3a74-f00f641982.zip/node_modules/@material-ui/system/",
+        ["virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.3", {
+          "packageLocation": "./.yarn/$$virtual/@material-ui-system-virtual-5551e73364/0/cache/@material-ui-system-npm-4.11.3-31c29e3a74-f00f641982.zip/node_modules/@material-ui/system/",
           "packageDependencies": [
-            ["@material-ui/system", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.3"],
+            ["@material-ui/system", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.3"],
             ["@babel/runtime", "npm:7.13.10"],
-            ["@material-ui/utils", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.2"],
+            ["@material-ui/utils", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.2"],
             ["@types/react", null],
             ["@types/react-dom", null],
             ["@types/types__react", null],
@@ -6166,10 +6147,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:5.1.0", {
-          "packageLocation": "./.yarn/$$virtual/@material-ui-types-virtual-edd3a81b56/0/cache/@material-ui-types-npm-5.1.0-19cb52ee2a-0985676618.zip/node_modules/@material-ui/types/",
+        ["virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:5.1.0", {
+          "packageLocation": "./.yarn/$$virtual/@material-ui-types-virtual-0bd17ef21a/0/cache/@material-ui-types-npm-5.1.0-19cb52ee2a-0985676618.zip/node_modules/@material-ui/types/",
           "packageDependencies": [
-            ["@material-ui/types", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:5.1.0"],
+            ["@material-ui/types", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:5.1.0"],
             ["@types/react", null],
             ["@types/types__react", null]
           ],
@@ -6188,10 +6169,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.2", {
-          "packageLocation": "./.yarn/$$virtual/@material-ui-utils-virtual-9d669de62f/0/cache/@material-ui-utils-npm-4.11.2-cb079a0929-5bb7e1a27c.zip/node_modules/@material-ui/utils/",
+        ["virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.2", {
+          "packageLocation": "./.yarn/$$virtual/@material-ui-utils-virtual-4d189ce159/0/cache/@material-ui-utils-npm-4.11.2-cb079a0929-5bb7e1a27c.zip/node_modules/@material-ui/utils/",
           "packageDependencies": [
-            ["@material-ui/utils", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.2"],
+            ["@material-ui/utils", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.11.2"],
             ["@babel/runtime", "npm:7.13.10"],
             ["@types/react", null],
             ["@types/react-dom", null],
@@ -14288,7 +14269,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/prettier", null],
             ["eslint", "npm:7.22.0"],
             ["eslint-config-prettier", null],
-            ["prettier", "npm:1.19.1"],
+            ["prettier", null],
             ["prettier-linter-helpers", "npm:1.0.0"]
           ],
           "packagePeers": [
@@ -23246,13 +23227,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["prettier", [
-        ["npm:1.19.1", {
-          "packageLocation": "./.yarn/cache/prettier-npm-1.19.1-e56d246fd2-e5fcdfe5e1.zip/node_modules/prettier/",
-          "packageDependencies": [
-            ["prettier", "npm:1.19.1"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:2.0.5", {
           "packageLocation": "./.yarn/cache/prettier-npm-2.0.5-f0ee4e15ce-d249d89361.zip/node_modules/prettier/",
           "packageDependencies": [
@@ -24551,10 +24525,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.4.1", {
-          "packageLocation": "./.yarn/$$virtual/react-transition-group-virtual-616893f9db/0/cache/react-transition-group-npm-4.4.1-5b62a122ef-e14446123f.zip/node_modules/react-transition-group/",
+        ["virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.4.1", {
+          "packageLocation": "./.yarn/$$virtual/react-transition-group-virtual-f7aeaa7923/0/cache/react-transition-group-npm-4.4.1-5b62a122ef-e14446123f.zip/node_modules/react-transition-group/",
           "packageDependencies": [
-            ["react-transition-group", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.4.1"],
+            ["react-transition-group", "virtual:f725f83c249da60ad6ddd4f72b6232640b232865231d7205b2fcc4cf03f8fb387510207bd153218b2b88d6e1cf3400ad52bb7b299d79169e09fa8fac829c6bf6#npm:4.4.1"],
             ["@babel/runtime", "npm:7.13.10"],
             ["@types/react", null],
             ["@types/react-dom", null],
@@ -25387,7 +25361,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:25.5.4"],
             ["jest-github-actions-reporter", "npm:1.0.3"],
             ["lint-staged", "npm:10.5.4"],
-            ["prettier", "npm:1.19.1"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:16.14.0"],
             ["react-router-dom", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.2.0"],
