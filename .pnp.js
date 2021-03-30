@@ -667,6 +667,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/ui/themes/",
           "packageDependencies": [
             ["@astral-frontend/themes", "workspace:packages/ui/themes"],
+            ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
+            ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"],
             ["lodash-es", "npm:4.17.21"]
           ],
