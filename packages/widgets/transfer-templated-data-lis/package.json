@@ -1,11 +1,8 @@
 {
   "name": "@astral-frontend/transfer-templated-data-list",
   "version": "1.1.2",
-  "main": "./src/index.js",
   "scripts": {
-    "build": "assembly-scripts build",
-    "postbuild": "assembly-scripts postbuild",
-    "release": "assembly-scripts release"
+    "build": "assembly-scripts build"
   },
   "dependencies": {
     "@astral-frontend/components": "^1.0.0",
@@ -16,11 +13,12 @@
     "lodash-es": "^4.17.11",
     "prop-types": "^15.7.2"
   },
-  "devDependencies": {
-    "@astral-frontend/assembly-scripts": "*"
-  },
   "peerDependencies": {
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
+  },
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts",
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
   }
 }

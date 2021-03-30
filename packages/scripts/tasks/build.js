@@ -1,37 +1,31 @@
-const shell = require('shelljs');
-const copy = require('recursive-copy');
+const fs = require('fs');
+const rimraf = require("rimraf");
+const { default: babel } = require('@babel/cli/lib/babel/dir');
 
-const copyAssets = () => {
-  copy('./src', './lib', {
-    filter: [
-      '**/*.woff2',
-      '**/*.otf',
-      '**/*.ttf',
-      '**/*.woff',
-      '**/*.css',
-      '**/*.svg',
-      '**/*.png',
-      '**/*.jpg',
-    ],
-    overwrite: true,
-    expand: true,
-    dot: true,
-    junk: true,
-  }).catch(error => {
-    console.error(error);
-
-    process.exit(1);
+async function transform() {
+  await babel({
+    babelOptions: {},
+    cliOptions: {
+      filenames: ['./src'],
+      outDir: './lib',
+    },
   });
-};
+}
 
-module.exports = () => {
-  const { code } = shell.exec(
-    'babel ./src --out-dir ./lib --ignore "**/*.percy.jsx"',
+async function addPackageJSON() {
+  const { scripts, devDependencies, workspaces, ...packageData } = JSON.parse(
+    fs.readFileSync('./package.json'),
   );
 
-  if (code !== 0) {
-    shell.exit(code);
-  }
+  fs.writeFileSync(
+    './lib/package.json',
+    JSON.stringify({ ...packageData, main: './index.js' }, null, 2),
+  );
+}
 
-  copyAssets();
-};
+
+module.exports = async () => {
+  rimraf.sync("./lib");
+  await transform('./src', './lib')
+  addPackageJSON()
+}

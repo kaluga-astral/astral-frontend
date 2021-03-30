@@ -1,18 +1,18 @@
 {
   "name": "@astral-frontend/icons",
-  "version": "1.2.0",
-  "main": "./src/index.js",
+  "version": "1.2.2",
+  "sideEffects": false,
   "scripts": {
-    "build": "assembly-scripts build",
-    "postbuild": "assembly-scripts postbuild",
-    "release": "assembly-scripts release"
+    "build": "assembly-scripts build"
   },
   "dependencies": {
-    "@astral-frontend/core": "*"
+    "@astral-frontend/core": "^1.0.0"
   },
   "peerDependencies": {
-    "@astral-frontend/core": "*",
     "react": ">=16.6.0"
   },
-  "sideEffects": false
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts",
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
+  }
 }

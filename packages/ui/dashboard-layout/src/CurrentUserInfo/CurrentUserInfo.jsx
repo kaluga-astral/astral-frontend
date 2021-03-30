@@ -12,7 +12,7 @@ import {
 } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import { __Context as SidebarContext } from '../Sidebar';
+import { SidebarContext } from '../Sidebar';
 
 import Item from './Item';
 

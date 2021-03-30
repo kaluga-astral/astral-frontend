@@ -1,7 +1,6 @@
 {
   "name": "@astral-frontend/forms",
   "version": "1.2.1",
-  "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
     "postbuild": "assembly-scripts postbuild",

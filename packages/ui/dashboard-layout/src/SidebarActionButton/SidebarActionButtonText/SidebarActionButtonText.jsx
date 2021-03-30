@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
 
-import { __Context as SidebarContext } from '../../Sidebar';
+import { SidebarContext } from '../../Sidebar';
 
 const useStyles = makeStyles(
   theme => ({

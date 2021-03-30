@@ -4,7 +4,7 @@ import React from 'react';
 import { ButtonBase } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 
-import { __Context as SidebarContext } from '../Sidebar';
+import { SidebarContext } from '../Sidebar';
 import SidebarTooltip from '../SidebarTooltip';
 
 import SidebarTogglerIcon from './SidebarTogglerIcon';

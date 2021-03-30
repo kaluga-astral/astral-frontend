@@ -7,7 +7,7 @@ import { makeStyles } from '@astral-frontend/styles';
 
 import SidebarTooltip from '../SidebarTooltip';
 import SidebarCounter from '../SidebarCounter';
-import { __Context as SidebarContext } from '../Sidebar';
+import { SidebarContext } from '../Sidebar';
 
 const useStyles = makeStyles(
   theme => ({
