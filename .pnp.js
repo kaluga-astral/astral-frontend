@@ -270,6 +270,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
+            ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"],
             ["@astral-frontend/fonts", "workspace:packages/ui/fonts"],
             ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
@@ -314,6 +315,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@astral-frontend/components", "workspace:packages/ui/components"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
+            ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"],
             ["@astral-frontend/fonts", "workspace:packages/ui/fonts"],
             ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
@@ -397,6 +399,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@astral-frontend/data-list", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/widgets/data-list"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
+            ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
             ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
             ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
@@ -421,6 +424,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@astral-frontend/data-list", "workspace:packages/widgets/data-list"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
+            ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
             ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
             ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
@@ -471,11 +475,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@astral-frontend/files-uploader-overlay", "workspace:packages/widgets/files-uploader-overlay"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
+            ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
             ["@astral-frontend/core", "virtual:2f3a0507d702746ba9b95cadda9905e66e057ac59b88b562e8b9a64e5009c6ad4ddf354ed04bfb2963e8fb996ef7a34c242da0ffee7b322e22f6f16a3fc41276#workspace:packages/ui/core"],
             ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
             ["classnames", "npm:2.2.6"],
-            ["notistack", "virtual:f0c242431c81d11a6a0ff87328933174bef28d3cb6a438d5eb33f56b975d87527f89c79a4e147fc4e0568ff83c3bf0b9187513920dd9d62a10c5728da71b41f6#npm:0.9.17"],
             ["prop-types", "npm:15.7.2"]
           ],
           "linkType": "SOFT",
@@ -529,7 +533,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         ["workspace:packages/ui/fonts", {
           "packageLocation": "./packages/ui/fonts/",
           "packageDependencies": [
-            ["@astral-frontend/fonts", "workspace:packages/ui/fonts"]
+            ["@astral-frontend/fonts", "workspace:packages/ui/fonts"],
+            ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
+            ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"]
           ],
           "linkType": "SOFT",
         }]
@@ -539,6 +545,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/ui/forms/",
           "packageDependencies": [
             ["@astral-frontend/forms", "workspace:packages/ui/forms"],
+            ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
+            ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/constants", "workspace:packages/ui/constants"],
             ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
             ["@astral-frontend/validations", "workspace:packages/ui/validations"],
@@ -561,6 +569,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@astral-frontend/grid-templated-data-list", "workspace:packages/widgets/grid-templated-data-list"],
             ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
+            ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/components", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/ui/components"],
             ["@astral-frontend/data-list", "virtual:7c5b0d5711e9059df4f9c8ffe61121036bd2b7709bb7c729badb472595f7d6612985b2d4ece05f0942a6658f97e8a905346d5302deb2a368426bdacae729688e#workspace:packages/widgets/data-list"],
             ["@astral-frontend/icons", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/icons"],
@@ -613,7 +622,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
             ["classnames", "npm:2.2.6"],
             ["lodash-es", "npm:4.17.21"],
-            ["notistack", "virtual:f0c242431c81d11a6a0ff87328933174bef28d3cb6a438d5eb33f56b975d87527f89c79a4e147fc4e0568ff83c3bf0b9187513920dd9d62a10c5728da71b41f6#npm:0.9.17"],
+            ["notistack", "virtual:b4b43bd970296648fc253f4108a51498cd270a249dae0160a52921650d1b3d01094684d876d9b8936becae271d6a68c7848ddfd1180df8450fc5ae30956429d2#npm:0.9.17"],
             ["prop-types", "npm:15.7.2"]
           ],
           "linkType": "SOFT",
@@ -624,6 +633,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/@astral-frontend-styles-virtual-c17797beb9/1/packages/ui/styles/",
           "packageDependencies": [
             ["@astral-frontend/styles", "virtual:84e52b1a485bd6e4bda3d7c8b8374e20052d3995668d342406463402d3b66cf8adf822fcff4a24a0e9e33acf3f3d711d0578dd5afc100b721ab7022192bc7a27#workspace:packages/ui/styles"],
+            ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
+            ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@material-ui/styles", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.3"],
             ["@types/react", null],
             ["react", null]
@@ -638,6 +649,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/ui/styles/",
           "packageDependencies": [
             ["@astral-frontend/styles", "workspace:packages/ui/styles"],
+            ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
+            ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@material-ui/styles", "virtual:caad8cfedab96a0227f8fabd8be0331bfa81ede8771692f8809e7d15269dc2707a8fb5a671e1abcc0b7e8263a2199961f0a2bb3c46bf50dee4650d42525c7cb9#npm:4.11.3"]
           ],
           "linkType": "SOFT",
@@ -713,6 +726,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/ui/validations/",
           "packageDependencies": [
             ["@astral-frontend/validations", "workspace:packages/ui/validations"],
+            ["@astral-frontend/assembly-scripts", "workspace:packages/scripts"],
+            ["@astral-frontend/babel-preset-react-app", "workspace:packages/tools/babel-preset-react-app"],
             ["@astral-frontend/constants", "workspace:packages/ui/constants"],
             ["lodash-es", "npm:4.17.21"]
           ],
@@ -21378,10 +21393,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:f0c242431c81d11a6a0ff87328933174bef28d3cb6a438d5eb33f56b975d87527f89c79a4e147fc4e0568ff83c3bf0b9187513920dd9d62a10c5728da71b41f6#npm:0.9.17", {
-          "packageLocation": "./.yarn/$$virtual/notistack-virtual-82ac567407/0/cache/notistack-npm-0.9.17-473cf32908-6f37466bb9.zip/node_modules/notistack/",
+        ["virtual:b4b43bd970296648fc253f4108a51498cd270a249dae0160a52921650d1b3d01094684d876d9b8936becae271d6a68c7848ddfd1180df8450fc5ae30956429d2#npm:0.9.17", {
+          "packageLocation": "./.yarn/$$virtual/notistack-virtual-2893a04b22/0/cache/notistack-npm-0.9.17-473cf32908-6f37466bb9.zip/node_modules/notistack/",
           "packageDependencies": [
-            ["notistack", "virtual:f0c242431c81d11a6a0ff87328933174bef28d3cb6a438d5eb33f56b975d87527f89c79a4e147fc4e0568ff83c3bf0b9187513920dd9d62a10c5728da71b41f6#npm:0.9.17"],
+            ["notistack", "virtual:b4b43bd970296648fc253f4108a51498cd270a249dae0160a52921650d1b3d01094684d876d9b8936becae271d6a68c7848ddfd1180df8450fc5ae30956429d2#npm:0.9.17"],
             ["@material-ui/core", null],
             ["@types/material-ui__core", null],
             ["@types/react", null],

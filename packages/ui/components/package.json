@@ -1,10 +1,11 @@
 {
   "name": "@astral-frontend/components",
   "version": "1.4.0",
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
-    "build": "assembly-scripts build",
-    "postbuild": "assembly-scripts postbuild",
-    "release": "assembly-scripts release"
+    "build": "assembly-scripts build"
   },
   "dependencies": {
     "@astral-frontend/core": "*",
@@ -27,15 +28,13 @@
     "react-js-pagination": "^3.0.3"
   },
   "devDependencies": {
-    "@astral-frontend/assembly-scripts": "*"
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts",
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
   },
   "peerDependencies": {
     "@sentry/browser": "^5.15.5",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2"
-  },
-  "sideEffects": [
-    "*.css"
-  ]
+  }
 }

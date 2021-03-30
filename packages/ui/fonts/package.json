@@ -2,9 +2,10 @@
   "name": "@astral-frontend/fonts",
   "version": "2.0.0",
   "scripts": {
-    "build": "assembly-scripts build",
-    "postbuild": "assembly-scripts postbuild",
-    "release": "assembly-scripts release"
+    "build": "assembly-scripts build"
   },
-  "sideEffects": false
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts",
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
+  }
 }

@@ -80,7 +80,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@astral-frontend/components@workspace:packages/ui/components"
   dependencies:
-    "@astral-frontend/assembly-scripts": "*"
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts"
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
     "@astral-frontend/core": "*"
     "@astral-frontend/fonts": "*"
     "@astral-frontend/icons": ^1.2.0
@@ -151,7 +152,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@astral-frontend/data-list@workspace:packages/widgets/data-list"
   dependencies:
-    "@astral-frontend/assembly-scripts": "*"
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts"
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
     "@astral-frontend/components": ^1.0.0
     "@astral-frontend/icons": ^1.0.0
     "@astral-frontend/styles": ^1.0.0
@@ -198,12 +200,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@astral-frontend/files-uploader-overlay@workspace:packages/widgets/files-uploader-overlay"
   dependencies:
-    "@astral-frontend/assembly-scripts": "*"
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts"
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
     "@astral-frontend/components": ^1.0.0
     "@astral-frontend/core": ^1.0.0
     "@astral-frontend/styles": ^1.0.0
     classnames: ^2.2.6
-    notistack: ^0.9.5
     prop-types: ^15.7.2
   peerDependencies:
     react: ^16.13.0
@@ -233,6 +235,9 @@ __metadata:
 "@astral-frontend/fonts@*, @astral-frontend/fonts@workspace:packages/ui/fonts":
   version: 0.0.0-use.local
   resolution: "@astral-frontend/fonts@workspace:packages/ui/fonts"
+  dependencies:
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts"
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
   languageName: unknown
   linkType: soft
 
@@ -240,6 +245,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@astral-frontend/forms@workspace:packages/ui/forms"
   dependencies:
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts"
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
     "@astral-frontend/constants": "*"
     "@astral-frontend/styles": "*"
     "@astral-frontend/validations": "*"
@@ -253,9 +260,9 @@ __metadata:
     react-final-form-arrays: ^3.1.3
     react-final-form-listeners: ^1.0.2
   peerDependencies:
-    "@astral-frontend/components": "*"
-    "@astral-frontend/core": "*"
-    "@astral-frontend/icons": "*"
+    "@astral-frontend/components": ^1.0.0
+    "@astral-frontend/core": ^1.0.0
+    "@astral-frontend/icons": ^1.0.0
     react: ">=16.6.0"
   languageName: unknown
   linkType: soft
@@ -264,7 +271,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@astral-frontend/grid-templated-data-list@workspace:packages/widgets/grid-templated-data-list"
   dependencies:
-    "@astral-frontend/assembly-scripts": "*"
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts"
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
     "@astral-frontend/components": ^1.0.0
     "@astral-frontend/data-list": "*"
     "@astral-frontend/icons": ^1.0.0
@@ -314,6 +322,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@astral-frontend/styles@workspace:packages/ui/styles"
   dependencies:
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts"
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
     "@material-ui/styles": ^4.11.2
   peerDependencies:
     react: ">=16.6.0"
@@ -389,6 +399,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@astral-frontend/validations@workspace:packages/ui/validations"
   dependencies:
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts"
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
     "@astral-frontend/constants": ^1.0.0
     lodash-es: ^4.17.11
   languageName: unknown

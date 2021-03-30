@@ -1,24 +1,23 @@
 {
   "name": "@astral-frontend/files-uploader-overlay",
   "version": "1.1.2",
+  "sideEffects": false,
   "scripts": {
-    "build": "assembly-scripts build",
-    "postbuild": "assembly-scripts postbuild",
-    "release": "assembly-scripts release"
+    "build": "assembly-scripts build"
   },
   "dependencies": {
     "@astral-frontend/components": "^1.0.0",
     "@astral-frontend/core": "^1.0.0",
     "@astral-frontend/styles": "^1.0.0",
     "classnames": "^2.2.6",
-    "notistack": "^0.9.5",
     "prop-types": "^15.7.2"
-  },
-  "devDependencies": {
-    "@astral-frontend/assembly-scripts": "*"
   },
   "peerDependencies": {
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
+  },
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts",
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
   }
 }

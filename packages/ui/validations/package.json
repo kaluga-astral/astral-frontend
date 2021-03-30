@@ -1,14 +1,16 @@
 {
   "name": "@astral-frontend/validations",
   "version": "1.1.9",
+  "sideEffects": false,
   "scripts": {
-    "build": "assembly-scripts build",
-    "postbuild": "assembly-scripts postbuild",
-    "release": "assembly-scripts release"
+    "build": "assembly-scripts build"
   },
   "dependencies": {
     "@astral-frontend/constants": "^1.0.0",
     "lodash-es": "^4.17.11"
   },
-  "sideEffects": false
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "workspace:packages/scripts",
+    "@astral-frontend/babel-preset-react-app": "workspace:packages/tools/babel-preset-react-app"
+  }
 }
