@@ -4,7 +4,22 @@ import { mustBeSNILS } from '@astral-frontend/validations';
 
 import MaskField from '../MaskField';
 
-const SNILS_MASK = '999-999-999 99';
+const SNILS_MASK = [
+  /\d/,
+  /\d/,
+  /\d/,
+  '-',
+  /\d/,
+  /\d/,
+  /\d/,
+  '-',
+  /\d/,
+  /\d/,
+  /\d/,
+  ' ',
+  /\d/,
+  /\d/,
+];
 
 const SNILSField = props => (
   <MaskField
