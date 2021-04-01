@@ -6,7 +6,7 @@ import MaskField from '../MaskField';
 const OKVED_MASK = '99.99.99';
 
 const OKVEDField = props => (
-  <MaskField mask={OKVED_MASK} maskChar="X" {...props} />
+  <MaskField alwaysShowMask mask={OKVED_MASK} maskChar="X" {...props} />
 );
 
 OKVEDField.defaultProps = {

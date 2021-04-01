@@ -6,7 +6,7 @@ import MaskField from '../MaskField';
 const OKPD_MASK = '99.99.99.999';
 
 const OKPDField = props => (
-  <MaskField mask={OKPD_MASK} maskChar="X" {...props} />
+  <MaskField alwaysShowMask mask={OKPD_MASK} maskChar="X" {...props} />
 );
 
 OKPDField.defaultProps = {
