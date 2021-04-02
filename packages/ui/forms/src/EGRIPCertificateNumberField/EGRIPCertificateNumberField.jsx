@@ -6,9 +6,12 @@ import MaskField from '../MaskField';
 
 const EGRIP_CERTIFICATE_NUMBER_MASK = '99 999999999';
 
+const parse = v => v;
+
 // Поле для указания серии и номера выдачи свидетельства из ЕГРИП
 const EGRIPCertificateNumberField = props => (
   <MaskField
+    parse={parse}
     validate={mustBeEGRIPCertificateNumber}
     mask={EGRIP_CERTIFICATE_NUMBER_MASK}
     {...props}
