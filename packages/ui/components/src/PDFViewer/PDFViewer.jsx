@@ -31,11 +31,18 @@ const PDFViewer = ({
   const classes = useStyles();
   const [internalLoading, setInternalLoading] = React.useState(true);
   const [internalError, setInternalError] = React.useState(null);
+  const loading = React.useMemo(() => exteralLoading && internalLoading, [
+    exteralLoading,
+    internalLoading,
+  ]);
+  const error = React.useMemo(() => externalError || internalError, [
+    externalError,
+    internalError,
+  ]);
+
   const handleLoad = () => {
     setInternalLoading(false);
   };
-  const loading = exteralLoading && internalLoading;
-  const error = externalError || internalError;
 
   React.useEffect(() => {
     if (exteralLoading === false && externalError === null && !data) {
@@ -43,16 +50,20 @@ const PDFViewer = ({
     }
     if (exteralLoading === false && externalError === null && data) {
       setInternalLoading(true);
-      fetch(data).then(response => {
-        setInternalLoading(false);
-        if (response.ok) {
-          setInternalError(null);
-        } else {
-          setInternalError(new Error(response.statusText));
-        }
-      });
+
+      fetch(data)
+        .then(response => response.json())
+        .then(parsed => {
+          setInternalLoading(false);
+          if (parsed.error) {
+            setInternalError(new Error(parsed.message));
+          } else {
+            setInternalError(null);
+          }
+        });
     }
   }, [data]);
+
   const Children = React.useMemo(
     () => () => {
       if (!data) {
