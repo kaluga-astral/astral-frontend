@@ -4,10 +4,10 @@ import { storiesOf } from '@storybook/react';
 
 import Form from '../Form';
 
-import PhoneField from './PhoneField';
+import RegNumberPFRField from './RegNumberPFRField';
 
-storiesOf('packages/forms/PhoneField', module).add('default', () => (
+storiesOf('packages/forms/RegNumberPFRField', module).add('default', () => (
   <Form onSubmit={values => console.log('onSubmit', values)}>
-    {() => <PhoneField />}
+    {() => <RegNumberPFRField />}
   </Form>
 ));

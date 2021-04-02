@@ -4,10 +4,10 @@ import { storiesOf } from '@storybook/react';
 
 import Form from '../Form';
 
-import PhoneField from './PhoneField';
+import PassportSeriesField from './PassportSeriesField';
 
-storiesOf('packages/forms/PhoneField', module).add('default', () => (
+storiesOf('packages/forms/PassportSeriesField', module).add('default', () => (
   <Form onSubmit={values => console.log('onSubmit', values)}>
-    {() => <PhoneField />}
+    {() => <PassportSeriesField />}
   </Form>
 ));
