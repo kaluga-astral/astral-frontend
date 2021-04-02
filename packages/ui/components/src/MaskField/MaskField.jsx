@@ -5,29 +5,27 @@ import InputMask from 'react-input-mask';
 import TextField from '../TextField';
 
 const MaskField = ({
-  alwaysShowMask,
   placeholder,
+  alwaysShowMask,
   formatChars,
   maskChar,
   mask,
   InputProps,
   ...props
-}) => {
-  return (
-    <TextField
-      {...props}
-      InputProps={{ inputComponent: InputMask, ...InputProps }}
-      /* eslint-disable-next-line react/jsx-no-duplicate-props */
-      inputProps={{
-        alwaysShowMask,
-        placeholder,
-        maskChar,
-        formatChars,
-        mask,
-      }}
-    />
-  );
-};
+}) => (
+  <TextField
+    {...props}
+    InputProps={{ inputComponent: InputMask, ...InputProps }}
+    /* eslint-disable-next-line react/jsx-no-duplicate-props */
+    inputProps={{
+      placeholder,
+      alwaysShowMask,
+      maskChar,
+      formatChars,
+      mask,
+    }}
+  />
+);
 
 MaskField.defaultProps = {
   alwaysShowMask: false,
