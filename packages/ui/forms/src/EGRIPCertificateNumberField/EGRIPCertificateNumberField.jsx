@@ -19,10 +19,12 @@ const EGRIPCertificateNumberField = props => (
 
 EGRIPCertificateNumberField.defaultProps = {
   name: 'egripCertificateNumber',
-  label: 'Серия и номер свидетельства',
+  placeholder: '99 999999999',
+  label: 'Серия и номер свидетельства о регистрации ИП',
 };
 
 EGRIPCertificateNumberField.propTypes = {
+  placeholder: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
 };

@@ -23,7 +23,7 @@ InputTextMask.propTypes = {
     PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp)]),
     ),
-    PropTypes.func,
+    PropTypes.string,
   ]).isRequired,
   label: PropTypes.string,
   placeholder: PropTypes.string,
