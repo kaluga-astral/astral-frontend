@@ -8,6 +8,6 @@ import PhoneField from './PhoneField';
 
 storiesOf('packages/forms/PhoneField', module).add('default', () => (
   <Form onSubmit={values => console.log('onSubmit', values)}>
-    {() => <PhoneField />}
+    {() => <PhoneField alwaysShowMask />}
   </Form>
 ));

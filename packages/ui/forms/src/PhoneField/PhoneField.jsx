@@ -37,7 +37,7 @@ const PhoneField = props => (
 PhoneField.defaultProps = {
   name: 'phone',
   label: 'Номер телефона',
-  placeholder: '+7(   )   -  -  ',
+  placeholder: '+7(999) 999-99- 99',
 };
 
 PhoneField.propTypes = {
