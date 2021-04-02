@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@astral-frontend/styles';
 
 import Box from '../Box';
 
 const PDFViewerFailureState = ({ error }) => {
   return (
     <Box
-      color="common.white"
-      px="5vw"
       display="flex"
       alignItems="center"
       justifyContent="center"
+      height="100%"
+      px="5vw"
+      color="common.white"
     >
       {error.message || 'Невозможно отобразить документ'}
     </Box>
