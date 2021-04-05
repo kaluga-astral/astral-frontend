@@ -6,6 +6,7 @@ import TextField from '../TextField';
 
 const MaskField = ({
   placeholder,
+  alwaysShowMask,
   formatChars,
   maskChar,
   mask,
@@ -18,6 +19,7 @@ const MaskField = ({
     /* eslint-disable-next-line react/jsx-no-duplicate-props */
     inputProps={{
       placeholder,
+      alwaysShowMask,
       maskChar,
       formatChars,
       mask,

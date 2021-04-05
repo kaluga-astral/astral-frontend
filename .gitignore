@@ -3,7 +3,7 @@
 .cache
 .docz
 node_modules/
-lib/
+lib
 dist/
 logs
 *.log
