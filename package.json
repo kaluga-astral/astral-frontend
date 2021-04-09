@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "jest": "jest",
-    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "eslint": "eslint --fix .",
     "yaspeller": "yaspeller . --only-errors",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -15,8 +15,8 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint --fix",
-      "cross-env NODE_ENV=test jest --bail --findRelatedTests",
+      "yarn run eslint",
+      "jest --bail --findRelatedTests",
       "yaspeller",
       "git add"
     ]
@@ -41,9 +41,12 @@
     "core-js": "^3.6.4",
     "cross-env": "^7.0.0",
     "css-loader": "3.4.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.21.0",
     "eslint-plugin-prettier": "^3.3.1",
     "husky": "^4.2.3",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^25.1.0",
     "jest-github-actions-reporter": "^1.0.3",
     "jest-junit": "^10.0.0",

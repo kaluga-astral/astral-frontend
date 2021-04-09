@@ -1,11 +1,30 @@
-import mustBePresent from './mustBePresent';
+import { ERROR_MESSAGE, mustBePresent } from './mustBePresent';
 
-describe('` mustBePresent` validation rule', () => {
-  test('should return an error object if value is invalid', () => {
-    expect(mustBePresent('')).toEqual('Обязательно для заполнения');
+describe('mustBePresent validation rule', () => {
+  test.each`
+    value
+    ${''}
+    ${'     '}
+    ${false}
+    ${[]}
+    ${{}}
+    ${null}
+    ${undefined}
+  `('value $value is invalid, return error message', ({ value }) => {
+    expect(mustBePresent(value)).toBe(ERROR_MESSAGE);
   });
 
-  test('should return empty object if data is valid', () => {
-    expect(mustBePresent(11697338589)).toEqual(null);
+  it.each`
+    value
+    ${'a'}
+    ${0}
+    ${1}
+    ${true}
+    ${['v']}
+    ${{ a: 1 }}
+    ${[undefined]}
+    ${NaN}
+  `('value $value is valid, return null', () => {
+    expect(mustBePresent(1)).toBeNull();
   });
 });

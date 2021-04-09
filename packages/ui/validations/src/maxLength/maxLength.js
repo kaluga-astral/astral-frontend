@@ -4,6 +4,7 @@ export default function maxLength(length) {
   }
 
   return value => {
+    // eslint-disable-next-line react/destructuring-assignment
     if (value && value.length > length) {
       return `Максимальная длина поля ${length} символов.`;
     }

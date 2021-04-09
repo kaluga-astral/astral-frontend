@@ -1,1 +1,1 @@
-export { default } from './minLength';
+export { minLength as default } from './minLength';

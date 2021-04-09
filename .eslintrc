@@ -1,3 +1,4 @@
 {
-  "extends": ["@astral-frontend/eslint-config-ui"]
+  "extends": ["@astral-frontend/eslint-config-ui/index.js"],
+  "ignorePatterns": ["**/node_modules/**", "**/lib/**", "**/storybook-static/**"]
 }
