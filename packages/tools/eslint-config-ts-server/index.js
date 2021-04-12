@@ -18,28 +18,6 @@ module.exports = {
     'import/order': [
       'error',
       {
-        pathGroups: [
-          {
-            pattern: 'config/**',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: 'middlewares**',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: 'modules/**',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: 'utils/**',
-            group: 'internal',
-            position: 'after',
-          },
-        ],
         'newlines-between': 'always',
         pathGroupsExcludedImportTypes: ['internal'],
         groups: [
