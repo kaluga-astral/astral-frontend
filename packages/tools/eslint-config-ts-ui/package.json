@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/eslint-config-ts-ui",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "private": true,
   "main": "./index.js",
   "scripts": {},
