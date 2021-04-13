@@ -25,6 +25,7 @@ const useStyles = makeStyles(
 );
 
 const FlatTemplatedDataList = ({
+  id,
   className,
   queryResult,
   RowActionsComponent,
@@ -38,6 +39,7 @@ const FlatTemplatedDataList = ({
     return (
       <List
         key="list"
+        id={id}
         disablePadding
         className={cn(classes.root, className)}
         ref={ref}
@@ -70,6 +72,7 @@ const FlatTemplatedDataList = ({
 };
 
 FlatTemplatedDataList.defaultProps = {
+  id: null,
   className: null,
   EmptyStateComponent: () => null,
   RowActionsComponent: null,
@@ -77,6 +80,7 @@ FlatTemplatedDataList.defaultProps = {
 };
 
 FlatTemplatedDataList.propTypes = {
+  id: PropTypes.string,
   className: PropTypes.string,
   queryResult: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
