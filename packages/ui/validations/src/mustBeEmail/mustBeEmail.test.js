@@ -1,6 +1,7 @@
-import mustBeEmail, {
+import {
   DEFAULT_ERROR_MESSAGE,
   INVALID_LENGTH_ERROR_MESSAGE,
+  mustBeEmail,
 } from './mustBeEmail';
 
 const createFilledString = length => ''.padStart(length, 'a');

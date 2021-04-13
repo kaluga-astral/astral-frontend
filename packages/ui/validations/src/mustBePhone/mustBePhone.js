@@ -1,10 +1,14 @@
-const phoneRegExp = /^\+?7\d{10}$/;
+const phoneRegExp = /^\+?79\d{9}$/;
 
 function mustBePhone(value) {
+  if (!value) {
+    return null;
+  }
+
   if (phoneRegExp.test(value)) {
     return null;
   }
 
-  return 'Номер телефона имеет некорректный формат';
+  return 'Телефон должен начинаться с +7 (9**) *** ** - **';
 }
 export default mustBePhone;

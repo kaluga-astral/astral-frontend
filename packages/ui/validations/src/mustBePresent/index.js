@@ -1,1 +1,1 @@
-export { default } from './mustBePresent';
+export { mustBePresent as default } from './mustBePresent';

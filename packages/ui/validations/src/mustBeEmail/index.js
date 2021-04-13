@@ -1,1 +1,1 @@
-export { default } from './mustBeEmail';
+export { mustBeEmail as default } from './mustBeEmail';

@@ -5,7 +5,7 @@ const emailRegExp = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,}$/;
 export const DEFAULT_ERROR_MESSAGE = 'Email имеет некорректный формат';
 export const INVALID_LENGTH_ERROR_MESSAGE = 'Email слишком длинный';
 
-export default value => {
+export const mustBeEmail = value => {
   if (!emailRegExp.test(value)) {
     return DEFAULT_ERROR_MESSAGE;
   }
