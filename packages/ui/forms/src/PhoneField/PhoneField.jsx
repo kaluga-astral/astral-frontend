@@ -11,8 +11,6 @@ const formatValueAfterPaste = value => value?.replace(/\+7/, '');
 
 const PhoneField = props => (
   <MaskField
-    parse={removeSpecialSymbols}
-    format={formatValueAfterPaste}
     validate={mustBePhone}
     mask={PHONE_MASK}
     maskChar={null}
@@ -23,11 +21,15 @@ const PhoneField = props => (
 PhoneField.defaultProps = {
   name: 'phone',
   label: 'Номер телефона',
+  parse: removeSpecialSymbols,
+  format: formatValueAfterPaste,
 };
 
 PhoneField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
+  parse: PropTypes.func,
+  format: PropTypes.func,
 };
 
 export default PhoneField;
