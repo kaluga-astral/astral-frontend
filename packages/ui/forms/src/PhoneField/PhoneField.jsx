@@ -32,16 +32,20 @@ const beforeMaskedValueChange = (newValue, oldValue, typeSymbols) => {
 };
 
 const PhoneField = props => {
-  const { type, ...restProps } = props;
+  const { type, validate: validateProp, ...restProps } = props;
   const validate = React.useCallback(
     value => {
+      if (validateProp) {
+        return validateProp(value);
+      }
+
       if (type === 'mobile') {
         return mustBeMobilePhone(value);
       }
 
       return mustBePhone(value);
     },
-    [type],
+    [validateProp, type],
   );
 
   return (
@@ -60,6 +64,7 @@ PhoneField.defaultProps = {
   label: 'Номер телефона',
   parse: removeSpecialSymbols,
   type: 'mobile',
+  validate: undefined,
 };
 
 PhoneField.propTypes = {
@@ -67,6 +72,7 @@ PhoneField.propTypes = {
   label: PropTypes.string,
   parse: PropTypes.func,
   type: PropTypes.oneOf(['all', 'mobile']),
+  validate: PropTypes.func,
 };
 
 export default PhoneField;
