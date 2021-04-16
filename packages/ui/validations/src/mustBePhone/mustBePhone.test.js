@@ -45,4 +45,27 @@ describe('`mustBePhone` validation rule', () => {
       expect(mustBePhone(phone)).toBeNull();
     });
   });
+
+  describe('valid phone with allowAllNumbers=true', () => {
+    test.each`
+      phone
+      ${'+74842000000'}
+      ${'+79105934179'}
+    `('Phone length $phone equal 9 symbols and start from +7', ({ phone }) => {
+      expect(mustBePhone(phone, true)).toBeNull();
+    });
+  });
+
+  describe('invalid phone with allowAllNumbers=true', () => {
+    test.each`
+      phone
+      ${'989105934179'}
+      ${'+89105934179'}
+    `(
+      'Phone length $phone equal 10 symbols and not start from +7',
+      ({ phone }) => {
+        expect(mustBePhone(phone, true)).not.toBeNull();
+      },
+    );
+  });
 });
