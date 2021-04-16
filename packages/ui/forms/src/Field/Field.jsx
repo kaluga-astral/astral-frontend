@@ -14,7 +14,6 @@ const FormField = ({
   allowNull,
   // children,
   // component,
-  isVisibleError,
   defaultValue,
   format,
   formatOnBlur,
