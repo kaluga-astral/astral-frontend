@@ -25,6 +25,7 @@ export { default as mustBePassportIssuerId } from './mustBePassportIssuerId';
 export { default as mustBePassportNumber } from './mustBePassportNumber';
 export { default as mustBePassportSeries } from './mustBePassportSeries';
 export { default as mustBePhone } from './mustBePhone';
+export { default as mustBeMobilePhone } from './mustBeMobilePhone';
 export { default as mustBePresent } from './mustBePresent';
 export { default as mustBeRegNumberFSS } from './mustBeRegNumberFSS';
 export { default as mustBeRegNumberPFR } from './mustBeRegNumberPFR';

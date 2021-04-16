@@ -7,6 +7,7 @@ import TextField from '../TextField';
 const MaskField = ({
   placeholder,
   alwaysShowMask,
+  beforeMaskedValueChange,
   formatChars,
   maskChar,
   mask,
@@ -20,6 +21,7 @@ const MaskField = ({
     inputProps={{
       placeholder,
       alwaysShowMask,
+      beforeMaskedValueChange,
       maskChar,
       formatChars,
       mask,
@@ -34,6 +36,7 @@ MaskField.defaultProps = {
   InputProps: {},
   permanents: undefined,
   formatChars: undefined,
+  beforeMaskedValueChange: undefined,
 };
 
 MaskField.propTypes = {
@@ -44,6 +47,7 @@ MaskField.propTypes = {
   formatChars: PropTypes.objectOf(PropTypes.string),
   permanents: PropTypes.arrayOf(PropTypes.number),
   InputProps: PropTypes.objectOf(PropTypes.any),
+  beforeMaskedValueChange: PropTypes.func,
 };
 
 export default MaskField;
