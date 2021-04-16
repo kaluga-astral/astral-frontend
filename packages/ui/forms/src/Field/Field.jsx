@@ -50,8 +50,9 @@ const FormField = ({
         parse={parse}
         type={type}
         render={({ input, meta }) => {
-          const helperText = meta.touched && !meta.valid ? meta.error || !meta.modifiedSinceLastSubmit && meta.submitError : null;
-          const error = meta.touched && (meta.error || !meta.modifiedSinceLastSubmit && meta.submitError);
+          const errorSubmitMessage = meta.error || !meta.modifiedSinceLastSubmit && meta.submitError;
+          const helperText = meta.touched && !meta.valid ? errorSubmitMessage : null;
+          const error = meta.touched && errorSubmitMessage;
 
           if (render) {
             return render({
