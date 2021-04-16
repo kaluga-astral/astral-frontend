@@ -1,7 +1,7 @@
 import { startsWith } from 'lodash-es';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { mustBeMobilePhone } from '@astral-frontend/validations';
+import { mustBeMobilePhone, mustBePhone } from '@astral-frontend/validations';
 
 import MaskField from '../MaskField';
 
@@ -31,27 +31,42 @@ const beforeMaskedValueChange = (newValue, oldValue, typeSymbols) => {
   return { ...newValue, value: phone };
 };
 
-const PhoneField = props => (
-  <MaskField
-    mask={PHONE_MASK}
-    beforeMaskedValueChange={beforeMaskedValueChange}
-    maskChar={null}
-    {...props}
-  />
-);
+const PhoneField = props => {
+  const { type, ...restProps } = props;
+  const validate = React.useCallback(
+    value => {
+      if (type === 'mobile') {
+        return mustBeMobilePhone(value);
+      }
+
+      return mustBePhone(value);
+    },
+    [type],
+  );
+
+  return (
+    <MaskField
+      validate={validate}
+      mask={PHONE_MASK}
+      beforeMaskedValueChange={beforeMaskedValueChange}
+      maskChar={null}
+      {...restProps}
+    />
+  );
+};
 
 PhoneField.defaultProps = {
   name: 'phone',
   label: 'Номер телефона',
   parse: removeSpecialSymbols,
-  validate: mustBeMobilePhone,
+  type: 'mobile',
 };
 
 PhoneField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   parse: PropTypes.func,
-  validate: PropTypes.func,
+  type: PropTypes.oneOf(['all', 'mobile']),
 };
 
 export default PhoneField;
