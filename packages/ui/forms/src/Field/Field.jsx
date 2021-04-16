@@ -14,6 +14,7 @@ const FormField = ({
   allowNull,
   // children,
   // component,
+  isVisibleError,
   defaultValue,
   format,
   formatOnBlur,
@@ -50,8 +51,8 @@ const FormField = ({
         parse={parse}
         type={type}
         render={({ input, meta }) => {
-          const error = meta.touched && !meta.valid;
-          const helperText = error ? meta.error || meta.submitError : null;
+          const helperText = meta.touched && !meta.valid ? meta.error || !meta.modifiedSinceLastSubmit && meta.submitError : null;
+          const error = meta.touched && (meta.error || !meta.modifiedSinceLastSubmit && meta.submitError);
 
           if (render) {
             return render({
