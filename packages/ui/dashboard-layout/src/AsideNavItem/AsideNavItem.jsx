@@ -133,7 +133,7 @@ const DashboardLayoutAsideNavItem = ({
         setExpandedNavDropdownId(id);
       }
     }
-  }, [additionalExpandedPath]);
+  }, [additionalExpandedPath, location.pathname]);
 
   return (
     <li
