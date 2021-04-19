@@ -1,0 +1,1 @@
+export { declensionOfNumber } from './declensionOfNumber';
