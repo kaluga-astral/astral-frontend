@@ -11,7 +11,10 @@ const getNormalizedAddress = data => {
       regionName: FEDERAL_CITIES.includes(data.city)
         ? null
         : data.region_with_type,
-      area: data.area_with_type,
+      area:
+        data.area_with_type === data.city_with_type
+          ? null
+          : data.area_with_type,
       city: data.city_with_type,
       settlement: data.settlement_with_type,
       street: data.street_with_type,
