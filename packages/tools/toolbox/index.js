@@ -25,6 +25,7 @@ switch (task) {
   //   test();
   //   break;
   default:
+    // eslint-disable-next-line no-console
     console.log('Task not found');
     process.exit(1);
     break;

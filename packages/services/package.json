@@ -1,0 +1,18 @@
+{
+  "name": "@astral-frontend/services",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "assembly-scripts build",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {
+    "lodash-es": "4.17.21",
+    "humps": "2.0.1",
+    "uuid": "8.3.2"
+  },
+  "sideEffects": false
+}
