@@ -18,6 +18,7 @@ const copyAssets = () => {
     dot: true,
     junk: true,
   }).catch(error => {
+    // eslint-disable-next-line no-console
     console.error(error);
 
     process.exit(1);
@@ -26,7 +27,7 @@ const copyAssets = () => {
 
 module.exports = () => {
   const { code } = shell.exec(
-    'babel ./src --out-dir ./lib --ignore "**/*.percy.jsx"',
+    'babel ./src --out-dir ./lib --extensions ".ts,.tsx,.js,.jsx" --ignore "**/*.percy.jsx"',
   );
 
   if (code !== 0) {

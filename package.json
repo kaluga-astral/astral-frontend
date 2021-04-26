@@ -14,7 +14,7 @@
     "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
+    "*.{js,jsx,ts,tsx}": [
       "yarn run eslint",
       "jest --bail --findRelatedTests",
       "yaspeller",
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
+    "@babel/preset-typescript": "7.13.0",
     "@babel/plugin-proposal-export-default-from": "^7.8.3",
     "@sentry/browser": "^6.2.3",
     "@storybook/addon-actions": "^6.1.21",
@@ -57,7 +58,7 @@
     "react-router-dom": "^5.1.2",
     "style-loader": "1.1.3",
     "webpack": "^4.41.6",
-    "yaspeller": "^7.0.0"
-  },
-  "dependencies": {}
+    "yaspeller": "^7.0.0",
+    "typescript": "4.2.4"
+  }
 }
