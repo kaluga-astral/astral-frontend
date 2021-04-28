@@ -87,7 +87,7 @@ const useStyles = makeStyles(
 
       return null;
     };
-    const getDisabledColor = () => theme.palette.grey[400]
+    const getDisabledColor = () => theme.palette.grey[400];
     const getColor = ({ loading, variant }) => {
       const isTextVariant = getIsTextVariant(variant);
       const isRegularVariant = getIsRegularVariant(variant);
