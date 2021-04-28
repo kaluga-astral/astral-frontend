@@ -87,6 +87,7 @@ const useStyles = makeStyles(
 
       return null;
     };
+    const getDisabledColor = () => theme.palette.grey[400]
     const getColor = ({ loading, variant }) => {
       const isTextVariant = getIsTextVariant(variant);
       const isRegularVariant = getIsRegularVariant(variant);
@@ -125,22 +126,22 @@ const useStyles = makeStyles(
 
     return {
       root: {
-        position: () => 'relative',
+        position:'relative',
         minHeight: getMinHeight,
         padding: getPadding,
         borderRadius: getBorderRadius,
         fontSize: getFontSize,
-        fontWeight:() => theme.typography.fontWeightBold,
+        fontWeight:theme.typography.fontWeightBold,
         backgroundColor: getBackgroundColor,
         color: getColor,
-        transition: () => 'background .25s ease-out',
+        transition:'background .25s ease-out',
         '&:hover': {
           backgroundColor: getHoverBackgroundColor,
         },
       },
       disabled: {
         backgroundColor: getDisabledBackgroundColor,
-        color: () => theme.palette.grey[400],
+        color: getDisabledColor,
       },
       loaderContainer: {
         position: 'absolute',
