@@ -125,22 +125,22 @@ const useStyles = makeStyles(
 
     return {
       root: {
-        position: 'relative',
+        position: () => 'relative',
         minHeight: getMinHeight,
         padding: getPadding,
         borderRadius: getBorderRadius,
         fontSize: getFontSize,
-        fontWeight: theme.typography.fontWeightBold,
+        fontWeight:() => theme.typography.fontWeightBold,
         backgroundColor: getBackgroundColor,
         color: getColor,
-        transition: 'background .25s ease-out',
+        transition: () => 'background .25s ease-out',
         '&:hover': {
           backgroundColor: getHoverBackgroundColor,
         },
       },
       disabled: {
         backgroundColor: getDisabledBackgroundColor,
-        color: theme.palette.grey[400],
+        color: () => theme.palette.grey[400],
       },
       loaderContainer: {
         position: 'absolute',
