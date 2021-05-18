@@ -1,6 +1,8 @@
 const chalk = require('chalk');
-const log = require('./log');
+
 const BUILD_MODE_TYPES = require('../constants/buildModeTypes');
+
+const log = require('./log');
 
 module.exports = ({ getBuildModeType }) => {
   const { RELEASE_STAGE } = process.env;

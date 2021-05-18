@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/constants",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "main": "./src/index.js",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",

@@ -6,6 +6,9 @@ const ORGANIZATION_TYPES = {
   ul: {
     id: 'ul',
   },
+  fl: {
+    id: 'fl',
+  },
 };
 
 export default ORGANIZATION_TYPES;

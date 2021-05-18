@@ -87,6 +87,7 @@ const useStyles = makeStyles(
 
       return null;
     };
+    const getDisabledColor = () => theme.palette.grey[400];
     const getColor = ({ loading, variant }) => {
       const isTextVariant = getIsTextVariant(variant);
       const isRegularVariant = getIsRegularVariant(variant);
@@ -140,7 +141,7 @@ const useStyles = makeStyles(
       },
       disabled: {
         backgroundColor: getDisabledBackgroundColor,
-        color: theme.palette.grey[400],
+        color: getDisabledColor,
       },
       loaderContainer: {
         position: 'absolute',

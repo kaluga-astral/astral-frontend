@@ -1,8 +1,9 @@
 const path = require('path');
+
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const getPaths = require('./utils/getPaths');
 
+const getPaths = require('./utils/getPaths');
 const commonConfig = require('./common');
 
 const { appSrc } = getPaths();

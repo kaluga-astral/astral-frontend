@@ -1,17 +1,40 @@
 import mustBePhone from './mustBePhone';
 
 describe('`mustBePhone` validation rule', () => {
-  test('should return an error object if value is invalid', () => {
-    expect(mustBePhone(+712345678900)).toEqual(
-      'Номер телефона имеет некорректный формат',
-    );
-    expect(mustBePhone()).toEqual('Номер телефона имеет некорректный формат');
-    expect(mustBePhone(121)).toEqual(
-      'Номер телефона имеет некорректный формат',
-    );
+  describe('invalid phone', () => {
+    test.each`
+      phone
+      ${'+791'}
+      ${'+791111'}
+      ${'+7910593417'}
+      ${'+791059341791'}
+      ${'+7910593417912'}
+    `('Phone length $phone no equal 9 symbols without (+79)', ({ phone }) => {
+      expect(mustBePhone(phone)).not.toBeNull();
+    });
   });
 
-  test('should return empty object if data is valid', () => {
-    expect(mustBePhone(+71111111111)).toEqual(null);
+  describe('valid phone', () => {
+    test.each`
+      phone
+      ${'+79105934179'}
+      ${'79105934179'}
+      ${'+78105934179'}
+      ${'+73105934179'}
+    `(
+      'Phone length $phone equal 9 symbols and start from +79 | 79',
+      ({ phone }) => {
+        expect(mustBePhone(phone)).toBeNull();
+      },
+    );
+
+    test.each`
+      phone
+      ${null}
+      ${undefined}
+      ${''}
+    `('Phone is empty $phone', ({ phone }) => {
+      expect(mustBePhone(phone)).toBeNull();
+    });
   });
 });

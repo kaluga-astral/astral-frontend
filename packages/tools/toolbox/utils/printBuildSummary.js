@@ -1,4 +1,5 @@
 const printBuildError = require('react-dev-utils/printBuildError');
+
 const log = require('./log');
 
 module.exports = buildResult => {
