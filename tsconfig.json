@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "strict": true,
+    "allowJs": true,
     "strictPropertyInitialization": false,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
