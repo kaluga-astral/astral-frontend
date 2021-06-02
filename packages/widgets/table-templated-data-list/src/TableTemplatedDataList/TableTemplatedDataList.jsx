@@ -123,7 +123,7 @@ const TableTemplatedDataList = ({
         )}
       </li>
     ),
-    [columns, queryResult.loading],
+    [columns, queryResult.loading, ListItemComponent, RowActionsComponent],
   );
 
   return (
