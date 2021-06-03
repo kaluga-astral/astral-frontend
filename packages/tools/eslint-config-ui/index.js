@@ -31,6 +31,7 @@ module.exports = {
         custom: 'ignore',
       },
     ],
+    'react/require-default-props': 'off',
 
     // смотрим, чтобы в линки не прокидывали лишнего, например onClick
     'jsx-a11y/anchor-is-valid': [
