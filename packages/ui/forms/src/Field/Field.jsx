@@ -101,10 +101,8 @@ FormField.defaultProps = {
   validate: undefined,
   validateFields: undefined,
   value: undefined,
-  //
   required: false,
   select: false,
-  variant: 'standard',
   fullWidth: true,
   margin: 'none',
   type: undefined,
