@@ -9,14 +9,14 @@ import Button from './Button';
 
 storiesOf('packages/components/Button', module)
   .add('default', () => (
-    <Box display="grid" gridAutoFlow="column" gridGap="20px">
+    <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
       <Button>Text</Button>
       <Button variant="regular">Regular</Button>
       <Button variant="outlined">Outlined</Button>
     </Box>
   ))
   .add('Text', () => (
-    <Box display="grid" gridAutoFlow="column" gridGap="20px">
+    <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
       <Button>Text</Button>
       <Button variant="textBlock">TextBlock</Button>
       <Button disabled>Disabled</Button>
@@ -24,10 +24,11 @@ storiesOf('packages/components/Button', module)
       <Button disabled startIcon={<EditIcon />}>
         With Icon disabled
       </Button>
+      <Button loading>Loading</Button>
     </Box>
   ))
   .add('Regular', () => (
-    <Box display="grid" gridAutoFlow="column" gridGap="20px">
+    <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
       <Button variant="regular">Regular</Button>
       <Button variant="regularBlock">RegularBlock</Button>
       <Button disabled variant="regular">
@@ -39,10 +40,16 @@ storiesOf('packages/components/Button', module)
       <Button disabled startIcon={<EditIcon />} variant="regular">
         With Icon disabled
       </Button>
+      <Button loading variant="regular">
+        Loading
+      </Button>
+      <Button loading startIcon={<EditIcon />} variant="regular">
+        With Icon loading
+      </Button>
     </Box>
   ))
   .add('Outlined', () => (
-    <Box display="grid" gridAutoFlow="column" gridGap="20px">
+    <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
       <Button variant="outlined">Outlined</Button>
       <Button variant="outlinedBlock">OutlinedBlock</Button>
       <Button disabled variant="outlined">
@@ -53,6 +60,12 @@ storiesOf('packages/components/Button', module)
       </Button>
       <Button disabled startIcon={<EditIcon />} variant="outlined">
         With Icon disabled
+      </Button>
+      <Button loading variant="outlined">
+        Loading
+      </Button>
+      <Button loading startIcon={<EditIcon />} variant="outlined">
+        With Icon loading
       </Button>
     </Box>
   ));

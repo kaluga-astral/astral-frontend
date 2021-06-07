@@ -162,6 +162,7 @@ const useStyles = makeStyles(
         '&:hover': {
           backgroundColor: getHoverBackgroundColor,
         },
+        textTransform: 'none',
       },
       disabled: {
         backgroundColor: getDisabledBackgroundColor,
