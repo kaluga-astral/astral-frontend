@@ -8,6 +8,13 @@ import Box from '../Box';
 import Button from './Button';
 
 storiesOf('packages/components/Button', module)
+  .add('default', () => (
+    <Box display="grid" gridAutoFlow="column" gridGap="20px">
+      <Button>Text</Button>
+      <Button variant="regular">Regular</Button>
+      <Button variant="outlined">Outlined</Button>
+    </Box>
+  ))
   .add('Text', () => (
     <Box display="grid" gridAutoFlow="column" gridGap="20px">
       <Button>Text</Button>
