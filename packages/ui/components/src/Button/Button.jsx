@@ -260,6 +260,7 @@ Button.propTypes = {
     'regular',
     'regularBlock',
     'outlined',
+    'outlinedBlock',
   ]),
   /**
    * Размер
