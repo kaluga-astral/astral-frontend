@@ -16,6 +16,7 @@ const MaskField = ({
 }) => (
   <TextField
     {...props}
+    variant="outlined"
     InputProps={{ inputComponent: InputMask, ...InputProps }}
     /* eslint-disable-next-line react/jsx-no-duplicate-props */
     inputProps={{
@@ -36,6 +37,7 @@ MaskField.defaultProps = {
   InputProps: {},
   permanents: undefined,
   formatChars: undefined,
+  variant: 'outlined',
   beforeMaskedValueChange: undefined,
 };
 

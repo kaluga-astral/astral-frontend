@@ -1,13 +1,7 @@
-import React from 'react';
-import { TextField as MuiTextField } from '@astral-frontend/core';
-import PropTypes from 'prop-types';
+import { TextField } from '@astral-frontend/core';
 
-const TextField = ({ variant = 'outlined', ...props }) => (
-  <MuiTextField {...props} variant={variant} />
-);
-
-TextField.propTypes = {
-  variant: PropTypes.string,
+TextField.defaultProps = {
+  variant: 'outlined',
 };
 
 export default TextField;
