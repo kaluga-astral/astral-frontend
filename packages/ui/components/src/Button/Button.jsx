@@ -1,17 +1,20 @@
-import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
+import { Button as MuiButton } from '@astral-frontend/core';
 
-import ButtonBase from '../ButtonBase';
 import CircularProgress from '../CircularProgress';
 
 const getIsTextVariant = variant =>
   variant === 'text' || variant === 'textBlock';
 const getIsBlockVariant = variant =>
-  variant === 'textBlock' || variant === 'regularBlock';
+  variant === 'textBlock' ||
+  variant === 'regularBlock' ||
+  variant === 'outlinedBlock';
 const getIsRegularVariant = variant =>
   variant === 'regular' || variant === 'regularBlock';
+const getIsOutlinedVariant = variant =>
+  variant === 'outlined' || variant === 'outlinedBlock';
 
 const useStyles = makeStyles(
   theme => {
@@ -44,6 +47,15 @@ const useStyles = makeStyles(
       }
 
       return '4px';
+    };
+    const getBorder = ({ variant }) => {
+      const isOutlinedVariant = getIsOutlinedVariant(variant);
+
+      if (isOutlinedVariant) {
+        return `1px solid ${theme.palette.gray[500]}`;
+      }
+
+      return 'none';
     };
     const getFontSize = ({ size }) => {
       if (size === 'extraSmall') {
@@ -88,11 +100,21 @@ const useStyles = makeStyles(
       return null;
     };
     const getDisabledColor = () => theme.palette.grey[400];
+    const getDisabledBorderColor = ({ variant }) => {
+      const isOutlinedVariant = getIsOutlinedVariant(variant);
+
+      if (isOutlinedVariant) {
+        return theme.palette.grey[300];
+      }
+
+      return null;
+    };
     const getColor = ({ loading, variant }) => {
       const isTextVariant = getIsTextVariant(variant);
       const isRegularVariant = getIsRegularVariant(variant);
+      const isOutlinedVariant = getIsOutlinedVariant(variant);
 
-      if (isTextVariant) {
+      if (isTextVariant || isOutlinedVariant) {
         if (loading) {
           return 'transparent';
         }
@@ -112,12 +134,13 @@ const useStyles = makeStyles(
     };
     const getHoverBackgroundColor = ({ loading, variant }) => {
       const isTextVariant = getIsTextVariant(variant);
+      const isOutlinedVariant = getIsOutlinedVariant(variant);
 
       if (loading) {
         return null;
       }
 
-      if (isTextVariant) {
+      if (isTextVariant || isOutlinedVariant) {
         return theme.palette.grey[100];
       }
 
@@ -130,6 +153,7 @@ const useStyles = makeStyles(
         minHeight: getMinHeight,
         padding: getPadding,
         borderRadius: getBorderRadius,
+        border: getBorder,
         fontSize: getFontSize,
         fontWeight: theme.typography.fontWeightBold,
         backgroundColor: getBackgroundColor,
@@ -142,6 +166,7 @@ const useStyles = makeStyles(
       disabled: {
         backgroundColor: getDisabledBackgroundColor,
         color: getDisabledColor,
+        borderColor: getDisabledBorderColor,
       },
       loaderContainer: {
         position: 'absolute',
@@ -190,7 +215,7 @@ const Button = props => {
   const loaderSize = getLoaderSize(size);
 
   return (
-    <ButtonBase
+    <MuiButton
       disabled={disabled || loading}
       className={className}
       classes={{
@@ -205,7 +230,7 @@ const Button = props => {
           <CircularProgress className={classes.loader} size={loaderSize} />
         </div>
       )}
-    </ButtonBase>
+    </MuiButton>
   );
 };
 
@@ -228,7 +253,13 @@ Button.propTypes = {
   /**
    * Вариант использования
    */
-  variant: PropTypes.oneOf(['text', 'textBlock', 'regular', 'regularBlock']),
+  variant: PropTypes.oneOf([
+    'text',
+    'textBlock',
+    'regular',
+    'regularBlock',
+    'outlined',
+  ]),
   /**
    * Размер
    */
