@@ -1,22 +1,28 @@
 import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { storiesOf } from '@storybook/react';
 import { DocumentIcon } from '@astral-frontend/icons';
 
 import InputAdornment from '../InputAdornment';
+import Box from '../Box/Box';
 
 import TextField from './TextField';
 
-storiesOf('packages/components/TextField', module)
-  .add('Default', () => (
-    <TextField label="Email" helperText="enter valid email" />
-  ))
-  .add('With placeholder', () => (
-    <TextField label="Phone" placeholder="Enter phone" />
-  ))
-  .add('With Icon', () => (
+const args = {
+  label: 'Text',
+  helperText: 'Enter valid text',
+  disabled: false,
+  error: false,
+};
+
+export default {
+  title: 'components/TextField',
+  component: TextField,
+  args,
+};
+
+export const Default = props => (
+  <Box display="grid" gridGap="20px">
+    <TextField {...props} />
     <TextField
-      label="With icon"
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
@@ -24,5 +30,7 @@ storiesOf('packages/components/TextField', module)
           </InputAdornment>
         ),
       }}
+      {...props}
     />
-  ));
+  </Box>
+);

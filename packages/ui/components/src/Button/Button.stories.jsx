@@ -1,71 +1,72 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { EditIcon } from '@astral-frontend/icons';
 
 import Box from '../Box';
 
-import Button from './Button';
+import Button, { BUTTON_SIZES, BUTTON_VARIANTS } from './Button';
 
-storiesOf('packages/components/Button', module)
-  .add('default', () => (
-    <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
-      <Button>Text</Button>
-      <Button variant="regular">Regular</Button>
-      <Button variant="outlined">Outlined</Button>
-    </Box>
-  ))
-  .add('Text', () => (
-    <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
-      <Button>Text</Button>
-      <Button variant="textBlock">TextBlock</Button>
-      <Button disabled>Disabled</Button>
-      <Button startIcon={<EditIcon />}>With Icon</Button>
-      <Button disabled startIcon={<EditIcon />}>
-        With Icon disabled
-      </Button>
-      <Button loading>Loading</Button>
-    </Box>
-  ))
-  .add('Regular', () => (
-    <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
-      <Button variant="regular">Regular</Button>
-      <Button variant="regularBlock">RegularBlock</Button>
-      <Button disabled variant="regular">
-        Disabled
-      </Button>
-      <Button startIcon={<EditIcon />} variant="regular">
-        With Icon
-      </Button>
-      <Button disabled startIcon={<EditIcon />} variant="regular">
-        With Icon disabled
-      </Button>
-      <Button loading variant="regular">
-        Loading
-      </Button>
-      <Button loading startIcon={<EditIcon />} variant="regular">
-        With Icon loading
-      </Button>
-    </Box>
-  ))
-  .add('Outlined', () => (
-    <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
-      <Button variant="outlined">Outlined</Button>
-      <Button variant="outlinedBlock">OutlinedBlock</Button>
-      <Button disabled variant="outlined">
-        Disabled
-      </Button>
-      <Button startIcon={<EditIcon />} variant="outlined">
-        With Icon
-      </Button>
-      <Button disabled startIcon={<EditIcon />} variant="outlined">
-        With Icon disabled
-      </Button>
-      <Button loading variant="outlined">
-        Loading
-      </Button>
-      <Button loading startIcon={<EditIcon />} variant="outlined">
-        With Icon loading
-      </Button>
-    </Box>
-  ));
+const args = {
+  children: 'Click me!',
+  loading: false,
+  disabled: false,
+  variant: BUTTON_VARIANTS.text,
+  size: BUTTON_SIZES.medium,
+};
+
+export default {
+  title: 'components/Button',
+  component: Button,
+  args,
+  argTypes: {
+    variant: {
+      options: Object.values(BUTTON_VARIANTS),
+      control: { type: 'select' },
+    },
+    size: {
+      options: Object.values(BUTTON_SIZES),
+      control: { type: 'select' },
+    },
+  },
+};
+
+// eslint-disable-next-line react/prop-types
+const Template = ({ variant, ...props }) => (
+  <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
+    <Button {...props} variant={variant} />
+    <Button {...props} startIcon={<EditIcon />} variant={variant} />
+  </Box>
+);
+
+export const Default = Template.bind({});
+
+export const Variants = props => (
+  <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
+    {Object.values(BUTTON_VARIANTS).map(variant => (
+      <>
+        <Button {...props} variant={variant}>
+          {variant}
+        </Button>
+        <Button {...props} startIcon={<EditIcon />} variant={variant}>
+          {variant}
+        </Button>
+      </>
+    ))}
+  </Box>
+);
+
+export const Sizes = props => (
+  <Box display="grid" gridTemplateColumns="repeat(2, 1fr)" gridGap="20px">
+    {Object.values(BUTTON_SIZES).map(size => (
+      <>
+        <Button {...props} size={size}>
+          {size}
+        </Button>
+        <Button {...props} startIcon={<EditIcon />} size={size}>
+          {size}
+        </Button>
+      </>
+    ))}
+  </Box>
+);
+
+Sizes.args = { ...args, variant: 'regular' };
