@@ -36,7 +36,6 @@ MaskField.defaultProps = {
   InputProps: {},
   permanents: undefined,
   formatChars: undefined,
-  variant: 'outlined',
   beforeMaskedValueChange: undefined,
 };
 
