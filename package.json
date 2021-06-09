@@ -1,9 +1,7 @@
 {
   "private": true,
   "workspaces": [
-    "packages/*",
-    "packages/*/*",
-    "scripts"
+    "packages/*"
   ],
   "scripts": {
     "jest": "jest",

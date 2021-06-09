@@ -1,0 +1,25 @@
+{
+  "name": "@astral/files-uploader-overlay",
+  "version": "1.1.2",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "assembly-scripts build",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
+  "dependencies": {
+    "@astral/components": "^1.0.0",
+    "@astral/styles": "^1.0.0",
+    "@astral/core": "^1.0.0",
+    "classnames": "^2.2.6",
+    "notistack": "^0.9.5",
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
+    "@astral/assembly-scripts": "*"
+  },
+  "peerDependencies": {
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  }
+}

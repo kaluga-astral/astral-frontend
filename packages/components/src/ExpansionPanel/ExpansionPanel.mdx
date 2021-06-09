@@ -1,0 +1,47 @@
+---
+menu: components
+name: ExpansionPanel
+---
+
+import { Props, Playground } from 'docz';
+import ExpansionPanel from './ExpansionPanel';
+import ExpansionPanelDetails from '../ExpansionPanelDetails';
+import ExpansionPanelSummary from '../ExpansionPanelSummary';
+import { SaveIcon } from "@astral/icons";
+
+# ExpansionPanel
+
+<Props of={ExpansionPanel} />
+
+## Basic code
+
+```
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<SaveIcon />}></ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+```
+
+## Basic usage
+
+<Playground>
+  <a href="https://material-ui.com/components/expansion-panels/#expansion-panels" target="_blank">material-ui.com/components/expansion-panels</a>
+  <br/>
+      <ExpansionPanel expanded={false} onChange={() => console.log('expanded')}>
+        <ExpansionPanelSummary id="panel2bh-header" expandIcon={<SaveIcon />}> summary </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel expanded={true} onChange={() => console.log('expanded')}>
+        <ExpansionPanelSummary id="panel2bh-header" expandIcon={<SaveIcon />}> summary </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+</Playground>

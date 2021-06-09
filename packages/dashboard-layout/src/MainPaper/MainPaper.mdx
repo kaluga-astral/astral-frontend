@@ -1,0 +1,38 @@
+---
+menu: dashboard-layout
+name: MainPaper
+---
+
+import { Playground, Props } from "docz";
+import { MemoryRouter } from "react-router-dom";
+import { SaveIcon } from "@astral/icons";
+
+import MainPaper from "./MainPaper";
+
+# MainPaper
+
+<Props of={MainPaper} />
+
+## Basic code
+
+```
+  <MainPaper disablePadding={true}>
+    some MainPaper content
+  </MainPaper>
+```
+
+## Basic usage disablePadding={false}
+
+<Playground>
+  <MainPaper disablePadding={false}>
+    some MainPaper content
+  </MainPaper>
+</Playground>
+
+## Basic usage disablePadding={true}
+
+<Playground>
+  <MainPaper disablePadding={true}>
+    some MainPaper content
+  </MainPaper>
+</Playground>

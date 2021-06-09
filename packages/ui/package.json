@@ -1,0 +1,22 @@
+{
+  "name": "@astral/ui",
+  "version": "1.2.0",
+  "main": "./index.js",
+  "scripts": {
+    "build": "babel . --out-dir ./lib ",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
+  "dependencies": {
+    "@astral/components": "*",
+    "@astral/icons": "*",
+    "@astral/forms": "*",
+    "@astral/constants": "*",
+    "@astral/dashboard-layout": "*",
+    "@astral/validations": "*"
+  },
+  "devDependencies": {
+    "@astral/assembly-scripts": "*"
+  },
+  "sideEffects": false
+}

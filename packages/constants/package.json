@@ -1,0 +1,17 @@
+{
+  "name": "@astral/constants",
+  "version": "1.1.4",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "babel ./src --out-dir ./lib",
+    "postbuild": "assembly-scripts postbuild"
+  },
+  "dependencies": {
+    "@astral/validations": "^1.0.0"
+  },
+  "devDependencies": {
+    "@astral/assembly-scripts": "*"
+  },
+  "peerDependencies": {},
+  "sideEffects": false
+}

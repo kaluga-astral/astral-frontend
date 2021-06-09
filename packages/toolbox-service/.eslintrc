@@ -1,0 +1,6 @@
+{
+  "extends": ["@astral/eslint-config-ts-ui"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

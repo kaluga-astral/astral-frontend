@@ -1,0 +1,20 @@
+import React from 'react';
+import { mustBeAddress } from '@astral/validations';
+
+import AsyncAutocompleteField from '../AsyncAutocompleteField';
+import DaDataContext from '../DaDataContext/DaDataContext';
+
+const FormAddressField = props => {
+  const { fetchAddressSuggestions } = React.useContext(DaDataContext);
+
+  return (
+    <AsyncAutocompleteField
+      {...props}
+      validate={mustBeAddress}
+      inputProps={{ maxLength: 200 }}
+      fetchOptions={fetchAddressSuggestions}
+    />
+  );
+};
+
+export default FormAddressField;

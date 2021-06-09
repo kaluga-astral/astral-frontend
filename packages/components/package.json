@@ -1,0 +1,42 @@
+{
+  "name": "@astral/components",
+  "version": "1.4.3",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "assembly-scripts build",
+    "postbuild": "assembly-scripts postbuild",
+    "release": "assembly-scripts release"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.2",
+    "@astral/fonts": "*",
+    "@astral/icons": "^1.2.0",
+    "@astral/styles": "^1.0.0",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@researchgate/react-intersection-list": "3.0.8",
+    "classnames": "^2.2.6",
+    "date-fns": "^2.11.1",
+    "downshift": "^5.0.3",
+    "intro.js": "2.9.3",
+    "intro.js-react": "0.2.0",
+    "lodash-es": "^4.17.11",
+    "material-ui-popup-state": "^1.5.1",
+    "prop-types": "^15.7.2",
+    "react-content-loader": "^5.0.2",
+    "react-dropzone": "^11.0.1",
+    "react-js-pagination": "^3.0.3",
+    "react-input-mask": "^2.0.4"
+  },
+  "devDependencies": {
+    "@astral/assembly-scripts": "*"
+  },
+  "peerDependencies": {
+    "@sentry/browser": "^5.15.5",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-router-dom": "^5.1.2"
+  },
+  "sideEffects": [
+    "*.css"
+  ]
+}

@@ -1,5 +1,5 @@
-import { ThemeProvider } from '@astral-frontend/components';
-import { AstralEDOTheme } from '@astral-frontend/themes';
+import { ThemeProvider } from '@astral/components';
+import { AstralEDOTheme } from '@astral/themes';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
