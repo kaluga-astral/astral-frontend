@@ -27,21 +27,15 @@ export default withStyles(
       '*, *::before, *::after': {
         boxSizing: 'inherit',
       },
-      // '::-webkit-scrollbar': {
-      //   backgroundColor: '#fff',
-      //   width: '16px',
-      // },
-      // '::-webkit-scrollbar-track': {
-      //   backgroundColor: '#fff',
-      // },
-      // '::-webkit-scrollbar-thumb': {
-      //   backgroundColor: '#babac0',
-      //   borderRadius: '16px',
-      //   border: '4px solid #fff',
-      // },
-      // '::-webkit-scrollbar-button ': {
-      //   display: 'none',
-      // },
+
+      '*::-webkit-scrollbar': {
+        width: '4px',
+      },
+
+      '*::-webkit-scrollbar-thumb': {
+        borderRadius: '8px',
+        backgroundColor: theme.palette.gray[300],
+      },
     },
   }),
   { name: 'GlobalCSS' },
