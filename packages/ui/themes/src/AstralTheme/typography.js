@@ -10,4 +10,10 @@ export default {
   body2: {
     fontSize: '1rem',
   },
+  get subtitle1() {
+    return {
+      fontSize: `${18 / this.htmlFontSize}rem`,
+      fontWeight: this.fontWeightBold,
+    };
+  },
 };
