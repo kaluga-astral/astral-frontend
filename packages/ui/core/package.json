@@ -14,7 +14,7 @@
     "@astral-frontend/assembly-scripts": "*"
   },
   "peerDependencies": {
-    "react": "^16.12.0"
+    "react": ">= 16"
   },
   "sideEffects": false
 }
