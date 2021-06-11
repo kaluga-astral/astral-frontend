@@ -11,9 +11,11 @@
     "module": "commonjs",
     "target": "es6",
     "jsx": "preserve",
-    "removeComments": true
+    "removeComments": true,
+    "allowJs": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "lib"
   ]
 }

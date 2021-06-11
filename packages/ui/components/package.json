@@ -1,16 +1,18 @@
 {
   "name": "@astral-frontend/components",
-  "version": "2.0.0",
-  "main": "./src/index.js",
+  "version": "2.1.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "scripts": {
-    "build": "assembly-scripts build",
+    "build": "assembly-scripts build-ts",
+    "prebuild": "assembly-scripts prebuild",
     "postbuild": "assembly-scripts postbuild",
     "release": "assembly-scripts release"
   },
   "dependencies": {
     "@astral-frontend/core": "*",
     "@astral-frontend/fonts": "*",
-    "@astral-frontend/icons": "^1.2.0",
+    "@astral-frontend/icons": "^1.3.0",
     "@astral-frontend/styles": "^1.3.0",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@researchgate/react-intersection-list": "3.0.8",

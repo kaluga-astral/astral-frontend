@@ -1,7 +1,7 @@
 const copy = require('recursive-copy');
 
 const copyAssets = () => {
-  copy('./src', './lib', {
+  copy('./src', './lib/src', {
     filter: [
       '**/*.woff2',
       '**/*.otf',

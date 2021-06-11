@@ -3,14 +3,14 @@ import { EditIcon } from '@astral-frontend/icons';
 
 import Box from '../Box';
 
-import Button, { BUTTON_SIZES, BUTTON_VARIANTS } from './Button';
+import Button, { ButtonProps, ButtonSizes, ButtonVariants } from './Button';
 
 const args = {
   children: 'Click me!',
   loading: false,
   disabled: false,
-  variant: BUTTON_VARIANTS.text,
-  size: BUTTON_SIZES.medium,
+  variant: ButtonVariants.TEXT,
+  size: ButtonSizes.MEDIUM,
 };
 
 export default {
@@ -19,18 +19,17 @@ export default {
   args,
   argTypes: {
     variant: {
-      options: Object.values(BUTTON_VARIANTS),
+      options: Object.values(ButtonVariants),
       control: { type: 'select' },
     },
     size: {
-      options: Object.values(BUTTON_SIZES),
+      options: Object.values(ButtonSizes),
       control: { type: 'select' },
     },
   },
 };
 
-// eslint-disable-next-line react/prop-types
-const Template = ({ variant, ...props }) => (
+const Template = ({ variant, ...props }: ButtonProps) => (
   <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
     <Button {...props} variant={variant} />
     <Button {...props} startIcon={<EditIcon />} variant={variant} />
@@ -39,9 +38,9 @@ const Template = ({ variant, ...props }) => (
 
 export const Default = Template.bind({});
 
-export const Variants = props => (
+export const Variants = (props: ButtonProps) => (
   <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
-    {Object.values(BUTTON_VARIANTS).map(variant => (
+    {Object.values(ButtonVariants).map(variant => (
       <>
         <Button {...props} variant={variant}>
           {variant}
@@ -54,9 +53,9 @@ export const Variants = props => (
   </Box>
 );
 
-export const Sizes = props => (
+export const Sizes = (props: ButtonProps) => (
   <Box display="grid" gridTemplateColumns="repeat(2, 1fr)" gridGap="20px">
-    {Object.values(BUTTON_SIZES).map(size => (
+    {Object.values(ButtonSizes).map(size => (
       <>
         <Button {...props} size={size}>
           {size}

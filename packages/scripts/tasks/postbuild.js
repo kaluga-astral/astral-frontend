@@ -11,7 +11,11 @@ module.exports = () => {
 
   fs.writeFileSync(
     './lib/package.json',
-    JSON.stringify({ ...packageData, main: './src/index.js' }, null, 2),
+    JSON.stringify(
+      { ...packageData, main: './src/index.js', types: './src/index.d.ts' },
+      null,
+      2,
+    ),
   );
 
   // fs.createReadStream(npmrcPath).pipe(fs.createWriteStream('./lib/.npmrc'));

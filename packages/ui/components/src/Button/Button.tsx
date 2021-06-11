@@ -1,36 +1,44 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
-import { Button as MuiButton } from '@astral-frontend/core';
+import {
+  Button as MuiButton,
+  ButtonProps as MuiButtonProps,
+} from '@astral-frontend/core';
 import cn from 'classnames';
 
 import CircularProgress from '../CircularProgress';
 
-export const BUTTON_VARIANTS = {
-  text: 'text',
-  textBlock: 'textBlock',
-  regular: 'regular',
-  regularBlock: 'regularBlock',
-  outlined: 'outlined',
-  outlinedBlock: 'outlinedBlock',
-};
+export enum ButtonVariants {
+  TEXT = 'text',
+  TEXT_BLOCK = 'textBlock',
+  REGULAR = 'regular',
+  REGULAR_BLOCK = 'regularBlock',
+  OUTLINED = 'outlined',
+  OUTLINED_BLOCK = 'outlinedBlock',
+}
 
-export const BUTTON_SIZES = {
-  extraSmall: 'extraSmall',
-  small: 'small',
-  medium: 'medium',
-  large: 'large',
-};
+export enum ButtonSizes {
+  EXTRA_SMALL = 'extraSmall',
+  SMALL = 'small',
+  MEDIUM = 'medium',
+  LARGE = 'large',
+}
 
-const isBlockVariant = variant => variant.includes('Block');
-const isRegularVariant = variant => variant.includes(BUTTON_VARIANTS.regular);
-const isTextVariant = variant => variant.includes(BUTTON_VARIANTS.text);
-const isOutlinedVariant = variant => variant.includes(BUTTON_VARIANTS.outlined);
+const isBlockVariant = (variant: ButtonVariants): boolean =>
+  variant.includes('Block');
+const isRegularVariant = (variant: ButtonVariants): boolean =>
+  variant.includes(ButtonVariants.REGULAR);
+const isTextVariant = (variant: ButtonVariants): boolean =>
+  variant.includes(ButtonVariants.TEXT);
+const isOutlinedVariant = (variant: ButtonVariants): boolean =>
+  variant.includes(ButtonVariants.OUTLINED);
 
-const isExtraSmallSize = size => size === BUTTON_SIZES.extraSmall;
-const isSmallSize = size => size === BUTTON_SIZES.small;
-const isMediumSize = size => size === BUTTON_SIZES.medium;
-const isLargeSize = size => size === BUTTON_SIZES.large;
+const isExtraSmallSize = (size: ButtonSizes): boolean =>
+  size === ButtonSizes.EXTRA_SMALL;
+const isSmallSize = (size: ButtonSizes): boolean => size === ButtonSizes.SMALL;
+const isMediumSize = (size: ButtonSizes): boolean =>
+  size === ButtonSizes.MEDIUM;
+const isLargeSize = (size: ButtonSizes): boolean => size === ButtonSizes.LARGE;
 
 const useStyles = makeStyles(
   theme => ({
@@ -101,7 +109,7 @@ const useStyles = makeStyles(
     },
 
     rootOutlined: {
-      border: `1px solid ${theme.palette.gray[500]}`,
+      border: `1px solid ${theme.palette.grey[500]}`,
     },
 
     rootOutlinedDisabled: {
@@ -140,7 +148,7 @@ const useStyles = makeStyles(
   { name: 'Button' },
 );
 
-const getLoaderSize = size => {
+const getLoaderSize = (size: ButtonSizes) => {
   if (size === 'extraSmall') {
     return '10px';
   }
@@ -148,12 +156,18 @@ const getLoaderSize = size => {
   return '14px';
 };
 
-const Button = props => {
+export type ButtonProps = Omit<MuiButtonProps, 'size' | 'variant'> & {
+  loading?: boolean;
+  variant?: ButtonVariants;
+  size?: ButtonSizes;
+};
+
+const Button = (props: ButtonProps) => {
   const {
     disabled,
     loading,
-    variant,
-    size,
+    variant = ButtonVariants.TEXT,
+    size = ButtonSizes.MEDIUM,
     className,
     children,
     ...rootProps
@@ -196,29 +210,6 @@ const Button = props => {
       )}
     </MuiButton>
   );
-};
-
-Button.defaultProps = {
-  className: null,
-  disabled: false,
-  loading: false,
-  variant: 'text',
-  size: 'medium',
-};
-
-Button.propTypes = {
-  disabled: PropTypes.bool,
-  loading: PropTypes.bool,
-  /**
-   * Вариант использования
-   */
-  variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
-  /**
-   * Размер
-   */
-  size: PropTypes.oneOf(Object.values(BUTTON_SIZES)),
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
 };
 
 export default Button;
