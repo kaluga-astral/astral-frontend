@@ -32,6 +32,7 @@ module.exports = {
       },
     ],
     'react/require-default-props': 'off',
+    'react/state-in-constructor': 'off',
 
     // смотрим, чтобы в линки не прокидывали лишнего, например onClick
     'jsx-a11y/anchor-is-valid': [
