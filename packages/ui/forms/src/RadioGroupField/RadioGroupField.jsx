@@ -1,27 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-} from '@astral-frontend/components';
-import { FormHelperText, FormLabel } from '@astral-frontend/core';
-import { makeStyles } from '@astral-frontend/styles';
+import { RadioGroupField as BaseRadioGroupField } from '@astral-frontend/components';
 
 import Field from '../Field';
-
-const useStyles = makeStyles(
-  theme => ({
-    root: {},
-    formLabel: {
-      marginBottom: theme.spacing(2),
-      color: theme.palette.gray[800],
-      fontWeight: theme.typography.fontWeightBold,
-    },
-  }),
-  { name: 'RadioGroupField' },
-);
 
 const RadioGroupField = ({
   fullWidth,
@@ -30,50 +11,25 @@ const RadioGroupField = ({
   groupLabel,
   labelPlacement,
   options,
-  value,
-  onChange,
   ...props
 }) => {
-  const classes = useStyles();
-
   return (
     <Field
       {...props}
-      render={({ name, helperText, error }) => (
-        <FormControl
+      render={({ error, onChange, ...inputProps }) => (
+        <BaseRadioGroupField
+          {...inputProps}
           fullWidth={fullWidth}
-          error={Boolean(error)}
-          component="fieldset"
+          isError={Boolean(error)}
           className={className}
-        >
-          {groupLabel && (
-            <FormLabel component="legend" className={classes.formLabel}>
-              {groupLabel}
-            </FormLabel>
-          )}
-          <RadioGroup
-            aria-label={name}
-            name={name}
-            value={value}
-            onChange={onChange}
-          >
-            {options.map(option => (
-              <FormControlLabel
-                labelPlacement={labelPlacement}
-                control={
-                  option.renderControl ? (
-                    option.renderControl(option)
-                  ) : (
-                    <Radio checked={value === option.value} />
-                  )
-                }
-                key={option.key || option.value}
-                {...option}
-              />
-            ))}
-          </RadioGroup>
-          {helperText && <FormHelperText>{helperText}</FormHelperText>}
-        </FormControl>
+          groupLabel={groupLabel}
+          labelPlacement={labelPlacement}
+          row={row}
+          options={options}
+          onChange={event => {
+            onChange(event.target.value);
+          }}
+        />
       )}
     />
   );
@@ -85,7 +41,6 @@ RadioGroupField.defaultProps = {
   labelPlacement: 'end',
   className: null,
   groupLabel: null,
-  value: '',
 };
 
 RadioGroupField.propTypes = {
@@ -100,12 +55,9 @@ RadioGroupField.propTypes = {
     PropTypes.shape({
       disabled: PropTypes.bool,
       label: PropTypes.string.isRequired,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
+      value: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default RadioGroupField;
