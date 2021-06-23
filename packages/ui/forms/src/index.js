@@ -47,6 +47,7 @@ export { default as PassportSeriesField } from './PassportSeriesField';
 export { default as PasswordField } from './PasswordField';
 export { default as PhoneField } from './PhoneField';
 export { default as RadioGroupField } from './RadioGroupField';
+export { default as GenderRadioField } from './GenderRadioField';
 export { default as RegNumberFSSField } from './RegNumberFSSField';
 export { default as RegNumberPFRField } from './RegNumberPFRField';
 export { default as SelectField } from './SelectField';

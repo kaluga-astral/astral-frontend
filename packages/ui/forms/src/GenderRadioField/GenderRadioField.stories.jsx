@@ -3,14 +3,10 @@ import React from 'react';
 import Form from '../Form';
 import SubmitButton from '../SubmitButton';
 
-import RadioGroupField from './RadioGroupField';
+import GenderRadioField from './GenderRadioField';
 
 const args = {
-  groupLabel: 'Тариф',
-  options: [
-    { label: 'Базовый', value: 'base' },
-    { label: 'Расширенный', value: 'extend' },
-  ],
+  groupLabel: 'Пол',
   row: true,
 };
 
@@ -21,7 +17,7 @@ const Template = props => (
   >
     {({ values }) => (
       <>
-        <RadioGroupField required name="radio" {...props} />
+        <GenderRadioField name="gender" {...props} />
         <p>Value: {values.radio}</p>
         <SubmitButton>Submit</SubmitButton>
       </>
@@ -30,7 +26,7 @@ const Template = props => (
 );
 
 export default {
-  title: 'forms/RadioGroupField',
+  title: 'forms/GenderRadioField',
   component: Template,
   args,
 };

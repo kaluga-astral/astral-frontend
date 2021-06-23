@@ -5,9 +5,11 @@ import RadioGroupField from './RadioGroupField';
 const args = {
   groupLabel: 'Пол',
   options: [
-    { label: 'Мужской', value: 'male' },
-    { label: 'Женский', value: 'female' },
+    { label: 'Базовый', value: 'base' },
+    { label: 'Расширенный', value: 'extend' },
   ],
+  helperText: 'Выберите тариф',
+  isError: false,
   row: true,
 };
 
