@@ -15,7 +15,7 @@ describe('getGenderLabelByValue', () => {
   it.each([
     [FEMALE_GENDER.value, FEMALE_GENDER.label],
     [MALE_GENDER.value, MALE_GENDER.label],
-  ])('По значению: %s находит объект label: %o', (value, result) => {
+  ])('По значению: %s находит label: %s', (value, result) => {
     expect(getGenderLabelByValue(value)).toEqual(result);
   });
 });
