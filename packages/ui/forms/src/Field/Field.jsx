@@ -7,7 +7,6 @@ import { OnChange } from 'react-final-form-listeners';
 import { TextField as MuiTextField } from '@astral-frontend/components';
 
 import { createValidationFunction } from '../utils';
-import {injectReportDialog} from "@sentry/browser";
 
 // TODO: #28099
 const FormField = ({

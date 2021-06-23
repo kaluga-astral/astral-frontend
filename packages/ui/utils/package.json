@@ -1,13 +1,13 @@
 {
-  "name": "@astral-frontend/constants",
-  "version": "1.2.0",
+  "name": "@astral-frontend/utils",
+  "version": "1.0.0",
   "main": "./src/index.js",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
     "postbuild": "assembly-scripts postbuild"
   },
   "dependencies": {
-    "@astral-frontend/validations": "^1.0.0"
+    "@astral-frontend/constants": "^1.2.0"
   },
   "devDependencies": {
     "@astral-frontend/assembly-scripts": "*"

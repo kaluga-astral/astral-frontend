@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FEMALE_GENDER, MALE_GENDER } from '@astral-frontend/constants';
 
 import RadioGroupField from '../RadioGroupField';
 
-const GENDER_OPTIONS = [
-  { label: 'Мужской', value: 'male' },
-  { label: 'Женский', value: 'female' },
-];
+const GENDER_OPTIONS = [MALE_GENDER, FEMALE_GENDER];
 
 const GenderRadioField = ({ groupLabel = 'Пол', ...props }) => {
   return (
