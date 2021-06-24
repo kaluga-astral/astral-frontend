@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/validations",
-  "version": "1.1.11",
+  "version": "1.2.0",
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "lodash-es": "^4.17.11",
+    "date-fns": "^2.22.1",
     "@astral-frontend/constants": "^1.0.0"
   },
   "devDependencies": {},

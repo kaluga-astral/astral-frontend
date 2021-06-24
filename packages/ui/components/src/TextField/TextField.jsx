@@ -1,7 +1,1 @@
-import { TextField } from '@astral-frontend/core';
-
-TextField.defaultProps = {
-  variant: 'outlined',
-};
-
-export default TextField;
+export { TextField as default } from '@astral-frontend/core';

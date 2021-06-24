@@ -16,4 +16,7 @@ export default {
       body2: 'p',
     },
   },
+  MuiTextField: {
+    variant: 'outlined',
+  },
 };
