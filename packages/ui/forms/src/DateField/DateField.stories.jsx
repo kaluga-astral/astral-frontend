@@ -7,6 +7,7 @@ import DateField from './DateField';
 
 const args = {
   autoOk: true,
+  viewVariant: 'inline',
 };
 
 export default {
@@ -14,7 +15,7 @@ export default {
   component: DateField,
   args,
   argTypes: {
-    variant: {
+    viewVariant: {
       options: ['dialog', 'inline', 'static'],
       control: { type: 'radio' },
     },
