@@ -16,7 +16,7 @@ const RadioGroupField = ({
   return (
     <Field
       {...props}
-      render={({ error, onChange, ...inputProps }) => (
+      render={({ error, onChange, select, ...inputProps }) => (
         <BaseRadioGroupField
           {...inputProps}
           fullWidth={fullWidth}
