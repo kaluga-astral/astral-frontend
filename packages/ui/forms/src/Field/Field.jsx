@@ -68,7 +68,7 @@ const FormField = ({
             <MuiTextField
               {...input}
               {...MuiTextFieldProps}
-              error={error}
+              error={Boolean(error)}
               helperText={helperText}
             />
           );
