@@ -30,3 +30,4 @@ export { default as mustBePresent } from './mustBePresent';
 export { default as mustBeRegNumberFSS } from './mustBeRegNumberFSS';
 export { default as mustBeRegNumberPFR } from './mustBeRegNumberPFR';
 export { default as mustBeSNILS } from './mustBeSNILS';
+export { default as mustBeDate } from './mustBeDate';
