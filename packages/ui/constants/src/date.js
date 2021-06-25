@@ -1,1 +1,1 @@
-export const DEFAULT_CLIENT_DATE_FORMAT = 'dd.MM.yyyy';
+export const DEFAULT_VIEW_DATE_FORMAT = 'dd.MM.yyyy';

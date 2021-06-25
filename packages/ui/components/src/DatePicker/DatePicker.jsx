@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { KeyboardDatePicker } from '@material-ui/pickers';
-import { DEFAULT_CLIENT_DATE_FORMAT } from '@astral-frontend/constants';
+import { DEFAULT_VIEW_DATE_FORMAT } from '@astral-frontend/constants';
 import { formatISO, isValid } from 'date-fns';
 
 const DatePicker = ({
@@ -9,7 +9,7 @@ const DatePicker = ({
   pickerVariant = 'inline',
   minDate = new Date('1000-01-01'),
   maxDate = new Date('9999-12-31'),
-  viewFormat = DEFAULT_CLIENT_DATE_FORMAT,
+  viewFormat = DEFAULT_VIEW_DATE_FORMAT,
   invalidDateMessage = 'Неверный формат даты',
   onChange,
   value,
