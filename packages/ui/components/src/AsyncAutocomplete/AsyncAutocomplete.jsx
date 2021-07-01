@@ -12,55 +12,51 @@ const AsyncAutocomplete = ({
   fetchOptions,
   prefetch,
   inputValueThrottleTimeout,
+  onInputChange,
   ...props
 }) => {
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const [options, setOptions] = React.useState({});
-
-  const setFormattingOptions = newOptions => {
-    // TODO: #28808
-    setOptions(
-      newOptions.reduce(
-        (acc, newOption) => ({
-          ...acc,
-          [newOption.key]: newOption,
-        }),
-        [],
-      ),
-    );
-  };
+  const [options, setOptions] = React.useState();
 
   const handleInputChange = React.useCallback(
     throttle(async (event, searchString) => {
+      if (onInputChange) onInputChange(event, searchString);
+
       setLoading(true);
 
       const newOptions = await fetchOptions(searchString);
 
       setLoading(false);
-      setFormattingOptions(newOptions);
+      setOptions(newOptions);
     }, inputValueThrottleTimeout),
     [open],
   );
 
   React.useEffect(() => {
     if (!isLoadingDefaultOptions && defaultOptions) {
-      setFormattingOptions(defaultOptions);
+      setOptions(defaultOptions);
     }
   }, [isLoadingDefaultOptions]);
 
   React.useEffect(() => {
-    (async () => {
-      if (prefetch) {
-        setFormattingOptions(await fetchOptions());
-      }
-    })();
+    if (prefetch) {
+      setLoading(true);
+
+      fetchOptions()
+        .then(newOptions => {
+          setOptions(newOptions);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   }, []);
 
   return (
     <Autocomplete
       {...props}
-      options={Object.values(options)}
+      options={options}
       loading={open && (isLoadingDefaultOptions || loading)}
       open={open}
       onOpen={() => {
@@ -85,19 +81,14 @@ AsyncAutocomplete.propTypes = {
   loading: PropTypes.bool,
   prefetch: PropTypes.bool,
   inputValueThrottleTimeout: PropTypes.number,
-  defaultOptions: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      value: PropTypes.any,
-    }),
-  ),
+  defaultOptions: PropTypes.arrayOf(PropTypes.any),
   /**
    * Функция получения новых данных
    *
    * (inputValue: string) => Promise<{key: string, label: string, value: any}>
    */
   fetchOptions: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func,
 };
 
 export default AsyncAutocomplete;

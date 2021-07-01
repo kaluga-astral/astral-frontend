@@ -54,3 +54,4 @@ export { default as SelectField } from './SelectField';
 export { default as SNILSField } from './SNILSField';
 export { default as SubmitButton } from './SubmitButton';
 export { default as TextField } from './TextField';
+export { default as AutocompleteField } from './AutocompleteField';

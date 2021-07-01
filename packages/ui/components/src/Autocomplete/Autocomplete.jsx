@@ -2,19 +2,23 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { CircularProgress } from '@astral-frontend/core';
-import MuiAutocomplete from '@material-ui/lab/Autocomplete';
+import { Autocomplete as MuiAutocomplete } from '@material-ui/lab';
 
 import TextField from '../TextField';
 
 const Autocomplete = ({
   className,
   value,
+  inputValue,
   disabled,
+  disableClearable,
   loading,
-  loadingText,
-  noOptionsText,
-  options,
+  freeSolo,
+  loadingText = 'Загрузка...',
+  noOptionsText = 'Ничего не найдено',
+  options = [],
   getOptionLabel,
+  getOptionSelected,
   open,
   filterOptions,
   onOpen,
@@ -28,8 +32,11 @@ const Autocomplete = ({
     <MuiAutocomplete
       className={className}
       disabled={disabled}
+      freeSolo={freeSolo}
       value={value}
+      inputValue={inputValue}
       loading={loading}
+      disableClearable={disableClearable}
       loadingText={loadingText}
       noOptionsText={noOptionsText}
       open={open}
@@ -37,7 +44,7 @@ const Autocomplete = ({
       filterOptions={filterOptions}
       forcePopupIcon={false}
       getOptionLabel={getOptionLabel}
-      getOptionSelected={option => options.find(v => v.key === option.key)}
+      getOptionSelected={getOptionSelected}
       onOpen={onOpen}
       onClose={onClose}
       onChange={onChange}
@@ -56,7 +63,6 @@ const Autocomplete = ({
           <TextField
             {...params}
             fullWidth
-            margin="none"
             {...MuiTextFieldProps}
             inputProps={inputProps}
             InputProps={{
@@ -77,25 +83,6 @@ const Autocomplete = ({
   );
 };
 
-Autocomplete.defaultProps = {
-  className: null,
-  disabled: false,
-  open: null,
-  loading: null,
-  loadingText: 'Загрузка...',
-  noOptionsText: 'Ничего не найдено',
-  getOptionLabel: option => option.label || '',
-  filterOptions: options => {
-    return options;
-  },
-  onChange: null,
-  onClose: null,
-  onInputChange: null,
-  onOpen: null,
-  value: null,
-  options: [],
-};
-
 Autocomplete.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
@@ -105,6 +92,7 @@ Autocomplete.propTypes = {
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    */
   getOptionLabel: PropTypes.func,
+  getOptionSelected: PropTypes.func,
   /**
    * If `true`, the component is in a loading state.
    */
@@ -149,26 +137,18 @@ Autocomplete.propTypes = {
    * Control the popup` open state.
    */
   open: PropTypes.bool,
+  freeSolo: PropTypes.bool,
+  disableClearable: PropTypes.bool,
   /**
    * Array of options.
    */
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string,
-      label: PropTypes.string,
-      value: PropTypes.any,
-    }),
-  ),
+  options: PropTypes.arrayOf(PropTypes.any),
   /**
    * The value of the autocomplete.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.shape({
-      key: PropTypes.string,
-      label: PropTypes.string,
-      value: PropTypes.any,
-    }),
-    PropTypes.string,
-  ]),
+  // eslint-disable-next-line react/forbid-prop-types
+  value: PropTypes.any,
+  inputValue: PropTypes.string,
 };
+
 export default Autocomplete;

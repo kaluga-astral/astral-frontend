@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import Autocomplete from './Autocomplete';
+import AsyncAutocomplete from './AsyncAutocomplete';
 
 const args = {
   freeSolo: false,
+  prefetch: true,
   disableClearable: false,
-  loading: false,
   label: 'Фрукты',
   options: [
     { value: 'orange', name: 'Апельсин' },
@@ -14,19 +14,28 @@ const args = {
 };
 
 export default {
-  title: 'components/Autocomplete',
-  component: Autocomplete,
+  title: 'components/AsyncAutocomplete',
+  component: AsyncAutocomplete,
   args,
 };
 
-const Template = props => {
+// eslint-disable-next-line react/prop-types
+const Template = ({ options, ...props }) => {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState('');
 
+  const fetchOptions = () =>
+    new Promise(resolve => {
+      setTimeout(() => {
+        resolve(options);
+      }, 1000);
+    });
+
   return (
     <>
-      <Autocomplete
+      <AsyncAutocomplete
         {...props}
+        fetchOptions={fetchOptions}
         inputValue={inputValue}
         value={value}
         getOptionLabel={({ name }) => name}

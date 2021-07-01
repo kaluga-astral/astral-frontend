@@ -16,7 +16,7 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "@astral-frontend/components": "^2.0.0",
+    "@astral-frontend/components": "^3.0.0",
     "react": ">= 16",
     "react-router-dom": "^5.1.2"
   },

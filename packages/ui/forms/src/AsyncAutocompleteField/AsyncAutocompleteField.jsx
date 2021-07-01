@@ -19,22 +19,23 @@ const AsyncAutocompleteField = ({
   const initialFieldValue = initialValues?.[name];
   const fieldValue = values?.[name];
   const editing = active === name;
+
   const validationFunction = React.useCallback(
     createValidationFunction(required, validate),
     [required, validate],
   );
+
   const { input, meta } = useField(name, {
     validate: validationFunction,
   });
-  const [value, setValue] = React.useState(null);
+
   const error = required && meta.touched && !meta.valid;
   const helperText = meta.error && meta.touched ? meta.error : null;
+
   const handleChange = React.useCallback((event, newValue) => {
     if (newValue) {
-      setValue(newValue);
-      input.onChange(newValue.value);
+      input.onChange(newValue);
     } else {
-      setValue(null);
       input.onChange(null);
     }
     if (onChange) {
@@ -44,15 +45,13 @@ const AsyncAutocompleteField = ({
 
   React.useEffect(() => {
     if (!editing) {
-      setValue(initialFieldValue);
-      input.onChange(initialFieldValue?.value);
+      input.onChange(initialFieldValue);
     }
   }, [JSON.stringify(initialFieldValue)]);
 
   React.useEffect(() => {
     if (!editing && isEqual(initialFieldValue, fieldValue)) {
-      setValue(initialFieldValue);
-      input.onChange(initialFieldValue?.value);
+      input.onChange(initialFieldValue);
     }
   }, [JSON.stringify(fieldValue)]);
 
@@ -63,7 +62,7 @@ const AsyncAutocompleteField = ({
       error={error}
       required={required}
       helperText={helperText}
-      value={value}
+      value={input.value || null}
       InputProps={{
         ...InputProps,
         ...omit(input, ['value', 'onChange']),
