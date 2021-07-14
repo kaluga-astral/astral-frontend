@@ -1,13 +1,13 @@
 {
   "name": "@astral-frontend/toolbox",
-  "version": "1.2.0-beta0",
+  "version": "1.2.0-beta15",
   "bin": {
     "toolbox": "./index.js"
   },
   "dependencies": {
-    "@astral-frontend/webpack-config": "^2.0.0",
+    "@astral-frontend/webpack-config": "2.1.0-beta10",
     "chalk": "^3.0.0",
-    "react-dev-utils": "^10.2.0",
+    "react-dev-utils": "^11.0.4",
     "webpack": "^5.44.0",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.10.3"

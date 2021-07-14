@@ -101,7 +101,7 @@ module.exports = {
     minimizer: [
       new TerserPlugin({
         parallel: true,
-        cache: true,
+        // cache: true,
         terserOptions: {
           parse: {
             ecma: 8,
