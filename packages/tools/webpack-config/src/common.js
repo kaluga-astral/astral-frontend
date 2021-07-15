@@ -85,16 +85,23 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
     new webpack.EnvironmentPlugin(process.env),
     new MiniCssExtractPlugin({
       filename: '[name].[chunkhash].css',
       chunkFilename: '[id].[chunkhash].css',
       ignoreOrder: false,
     }),
+    new webpack.ProgressPlugin({ percentBy: 'entries' }),
   ],
 
   resolve: {
     extensions: ['.js', '.jsx', '.css'],
+    alias: {
+      process: require.resolve('process/browser'),
+    },
   },
 
   optimization: {
@@ -127,5 +134,14 @@ module.exports = {
       chunks: 'all',
     },
     runtimeChunk: true,
+  },
+
+  cache: {
+    type: 'filesystem',
+    compression: 'brotli',
+
+    buildDependencies: {
+      config: [__filename],
+    },
   },
 };
