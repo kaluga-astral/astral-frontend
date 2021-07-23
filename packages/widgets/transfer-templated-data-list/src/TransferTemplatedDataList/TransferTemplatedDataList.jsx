@@ -45,7 +45,7 @@ export const TransferTemplatedDataList = ({
       display="flex"
       flexDirection="column"
       flexGrow={1}
-      css={{ overflowY: 'hidden' }}
+      sx={{ overflowY: 'hidden' }}
     >
       {queryResult.loading && <Placeholder state="loading" />}
       {!queryResult.loading && (

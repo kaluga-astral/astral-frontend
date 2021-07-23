@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Box,
   Collapse,
@@ -81,6 +82,12 @@ export const TransferTemplatedDataListSection = ({
       </Box>
     </Box>
   );
+};
+
+TransferTemplatedDataListSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default TransferTemplatedDataListSection;

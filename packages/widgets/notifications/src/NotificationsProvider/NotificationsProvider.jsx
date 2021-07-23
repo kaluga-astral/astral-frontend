@@ -15,32 +15,34 @@ const NotificationsProvider = ({
   marker,
   maxSnack,
   progressLine,
-  palette,
+  palette: paletteProp,
 }) => {
   const theme = useTheme();
-  const defaultPalette = React.useMemo(
-    () => ({
-      info: {
-        background: theme.palette.common.white,
-        color: theme.palette.common.black,
-        markerColor: theme.palette.primary.main,
-        progressLineColor: theme.palette.primary.main,
+  const palette = React.useMemo(() => {
+    return merge(
+      {
+        info: {
+          background: theme.palette.common.white,
+          color: theme.palette.common.black,
+          markerColor: theme.palette.primary.main,
+          progressLineColor: theme.palette.primary.main,
+        },
+        success: {
+          background: theme.palette.common.white,
+          color: theme.palette.common.black,
+          markerColor: theme.palette.success.main,
+          progressLineColor: theme.palette.success.main,
+        },
+        error: {
+          background: theme.palette.common.white,
+          color: theme.palette.common.black,
+          markerColor: theme.palette.error.main,
+          progressLineColor: theme.palette.error.main,
+        },
       },
-      success: {
-        background: theme.palette.common.white,
-        color: theme.palette.common.black,
-        markerColor: theme.palette.success.main,
-        progressLineColor: theme.palette.success.main,
-      },
-      error: {
-        background: theme.palette.common.white,
-        color: theme.palette.common.black,
-        markerColor: theme.palette.error.main,
-        progressLineColor: theme.palette.error.main,
-      },
-    }),
-    [],
-  );
+      paletteProp,
+    );
+  }, [paletteProp]);
 
   return (
     <NotificationsContext.Provider
@@ -48,7 +50,7 @@ const NotificationsProvider = ({
         autoHideDuration,
         marker,
         progressLine,
-        palette: merge({}, defaultPalette, palette),
+        palette,
       }}
     >
       <SnackbarProvider

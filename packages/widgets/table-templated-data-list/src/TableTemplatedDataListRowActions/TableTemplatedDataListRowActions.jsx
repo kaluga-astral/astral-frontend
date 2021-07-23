@@ -1,9 +1,8 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { fade } from '@astral-frontend/core';
 import { FlexContainer } from '@astral-frontend/components';
-import { makeStyles } from '@astral-frontend/styles';
+import { alpha, makeStyles } from '@astral-frontend/styles';
 import {
   DataListContext,
   DataListItemContext,
@@ -13,7 +12,7 @@ const useStyles = makeStyles(
   theme => ({
     '@keyframes highlight': {
       '0%': {
-        backgroundColor: fade(theme.palette.primary.light, 0.5),
+        backgroundColor: alpha(theme.palette.primary.light, 0.5),
       },
       '100%': {
         backgroundColor: theme.palette.common.white,
