@@ -99,7 +99,7 @@ module.exports = {
 
   resolve: {
     extensions: ['.js', '.jsx', '.css'],
-    alias: {
+    fallback: {
       process: require.resolve('process/browser'),
     },
   },

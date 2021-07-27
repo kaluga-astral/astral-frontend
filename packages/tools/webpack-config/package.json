@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/webpack-config",
-  "version": "2.1.0-beta25",
+  "version": "2.1.0",
   "main": "./src/index.js",
   "dependencies": {
     "@astral-frontend/babel-preset-react-app": "^1.2.0-beta4",

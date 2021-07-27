@@ -2,13 +2,26 @@ import PropTypes from 'prop-types';
 import { merge } from 'lodash-es';
 import React from 'react';
 import { SnackbarProvider } from 'notistack';
-import { useTheme } from '@astral-frontend/styles';
+import { makeStyles, useTheme } from '@astral-frontend/styles';
 
 import NotificationsContext from '../NotificationsContext';
 
 const DEFAULT_NOTIFICATION_DURATION = 5000;
 
-const NotificationsProvider = ({
+const useStyles = makeStyles(
+  () => {
+    return {
+      root: {
+        pointerEvents: 'all',
+      },
+    };
+  },
+  {
+    name: 'NotificationsProvider',
+  },
+);
+
+export const NotificationsProvider = ({
   anchorOrigin,
   autoHideDuration,
   children,
@@ -17,6 +30,7 @@ const NotificationsProvider = ({
   progressLine,
   palette: paletteProp,
 }) => {
+  const classes = useStyles();
   const theme = useTheme();
   const palette = React.useMemo(() => {
     return merge(
@@ -54,6 +68,7 @@ const NotificationsProvider = ({
       }}
     >
       <SnackbarProvider
+        classes={classes}
         maxSnack={maxSnack}
         anchorOrigin={anchorOrigin}
         autoHideDuration={null}
