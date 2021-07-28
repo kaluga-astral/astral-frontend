@@ -20,6 +20,12 @@ const astralEDOThemeOptions = {
     },
   },
   overrides: {
+    MuiFormControl: {
+      root: {
+        marginBottom: 0,
+        paddingBottom: 0,
+      },
+    },
     MuiInputLabel: {
       shrink: {
         transform: 'none',
