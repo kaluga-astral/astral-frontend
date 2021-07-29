@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es';
-import { createMuiTheme } from '@astral-frontend/core';
+import { createTheme } from '@astral-frontend/styles';
 
 const themeOptions = {
   typography: {
@@ -9,7 +9,7 @@ const themeOptions = {
 
 class Theme {
   constructor(options) {
-    return createMuiTheme(merge({}, themeOptions, options));
+    return createTheme(merge({}, themeOptions, options));
   }
 }
 

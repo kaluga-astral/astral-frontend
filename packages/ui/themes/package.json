@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/themes",
-  "version": "2.0.2",
+  "version": "2.0.7",
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
@@ -8,10 +8,8 @@
     "release": "assembly-scripts release"
   },
   "dependencies": {
-    "@astral-frontend/core": "*",
+    "@astral-frontend/styles": "^1.3.2",
     "lodash-es": "^4.17.11"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
   "sideEffects": false
 }

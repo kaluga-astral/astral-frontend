@@ -3,8 +3,7 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Box, useDropzone } from '@astral-frontend/components';
-import { makeStyles } from '@astral-frontend/styles';
-import { fade } from '@astral-frontend/core';
+import { alpha, makeStyles } from '@astral-frontend/styles';
 
 import FilesUploaderOverlayContext from '../FilesUploaderOverlayContext';
 
@@ -32,7 +31,7 @@ const useStyles = makeStyles(
       right: 0,
       bottom: 0,
       left: 0,
-      backgroundColor: fade(theme.palette.gray[800], 0.55),
+      backgroundColor: alpha(theme.palette.gray[800], 0.55),
       outlineColor: theme.palette.common.white,
       outlineOffset: '-20px',
       outlineStyle: 'dashed',
@@ -88,7 +87,7 @@ const FilesUploaderOverlay = ({
       key="overlay"
       value={{ openFileDialog }}
     >
-      <Box {...rootProps} css={{ outline: 'none' }}>
+      <Box {...rootProps} sx={{ outline: 'none' }}>
         {isDragActive && (
           <div className={cn(classes.root, className)}>
             {restrictionsMessage && (

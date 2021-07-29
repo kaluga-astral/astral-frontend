@@ -1,2 +1,2 @@
-export * from '@material-ui/styles';
+export * from '@astral-frontend/core/styles';
 export * from './mixins';
