@@ -26,11 +26,10 @@ const astralEDOThemeOptions = {
         paddingBottom: 0,
       },
     },
-    MuiInputLabel: {
-      shrink: {
-        transform: 'none',
-      },
-    },
+    MuiFormHelperText: null,
+    MuiInputLabel: null,
+    MuiInputBase: null,
+    MuiOutlinedInput: null,
   },
 };
 
