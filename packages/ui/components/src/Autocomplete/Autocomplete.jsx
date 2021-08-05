@@ -6,82 +6,88 @@ import { Autocomplete as MuiAutocomplete } from '@material-ui/lab';
 
 import TextField from '../TextField';
 
-const Autocomplete = ({
-  className,
-  value,
-  inputValue,
-  disabled,
-  disableClearable,
-  loading,
-  freeSolo,
-  loadingText = 'Загрузка...',
-  noOptionsText = 'Ничего не найдено',
-  options = [],
-  getOptionLabel,
-  getOptionSelected,
-  open,
-  filterOptions,
-  onOpen,
-  onInputChange,
-  onClose,
-  onChange,
-  // ======MUITextFieldProps=====
-  ...MuiTextFieldProps
-}) => {
-  return (
-    <MuiAutocomplete
-      className={className}
-      disabled={disabled}
-      freeSolo={freeSolo}
-      value={value}
-      inputValue={inputValue}
-      loading={loading}
-      disableClearable={disableClearable}
-      loadingText={loadingText}
-      noOptionsText={noOptionsText}
-      open={open}
-      options={options}
-      filterOptions={filterOptions}
-      forcePopupIcon={false}
-      getOptionLabel={getOptionLabel}
-      getOptionSelected={getOptionSelected}
-      onOpen={onOpen}
-      onClose={onClose}
-      onChange={onChange}
-      onInputChange={onInputChange}
-      renderInput={params => {
-        const InputProps = {
-          ...params.InputProps,
-          ...MuiTextFieldProps.InputProps,
-        };
-        const inputProps = {
-          ...params.inputProps,
-          ...MuiTextFieldProps.inputProps,
-        };
+const Autocomplete = React.forwardRef(
+  (
+    {
+      className,
+      value,
+      inputValue,
+      disabled,
+      disableClearable,
+      loading,
+      freeSolo,
+      loadingText = 'Загрузка...',
+      noOptionsText = 'Ничего не найдено',
+      options = [],
+      getOptionLabel,
+      getOptionSelected,
+      open,
+      filterOptions,
+      onOpen,
+      onInputChange,
+      onClose,
+      onChange,
+      // ======MUITextFieldProps=====
+      ...MuiTextFieldProps
+    },
+    ref,
+  ) => {
+    return (
+      <MuiAutocomplete
+        className={className}
+        disabled={disabled}
+        freeSolo={freeSolo}
+        value={value}
+        inputValue={inputValue}
+        loading={loading}
+        disableClearable={disableClearable}
+        loadingText={loadingText}
+        noOptionsText={noOptionsText}
+        open={open}
+        options={options}
+        filterOptions={filterOptions}
+        forcePopupIcon={false}
+        getOptionLabel={getOptionLabel}
+        getOptionSelected={getOptionSelected}
+        onOpen={onOpen}
+        onClose={onClose}
+        onChange={onChange}
+        onInputChange={onInputChange}
+        renderInput={params => {
+          const InputProps = {
+            ...params.InputProps,
+            ...MuiTextFieldProps.InputProps,
+          };
+          const inputProps = {
+            ...params.inputProps,
+            ...MuiTextFieldProps.inputProps,
+          };
 
-        return (
-          <TextField
-            {...params}
-            fullWidth
-            {...MuiTextFieldProps}
-            inputProps={inputProps}
-            InputProps={{
-              ...InputProps,
-              endAdornment: (
-                <>
-                  {loading ? (
-                    <CircularProgress color="inherit" size={20} />
-                  ) : null}
-                  {InputProps.endAdornment}
-                </>
-              ),
-            }}
-          />
-        );
-      }}
-    />
-  );
-};
+          return (
+            <TextField
+              {...params}
+              fullWidth
+              {...MuiTextFieldProps}
+              inputRef={ref}
+              inputProps={inputProps}
+              InputProps={{
+                ...InputProps,
+                endAdornment: (
+                  <>
+                    {loading ? (
+                      <CircularProgress color="inherit" size={20} />
+                    ) : null}
+                    {InputProps.endAdornment}
+                  </>
+                ),
+              }}
+            />
+          );
+        }}
+      />
+    );
+  },
+);
 
 Autocomplete.propTypes = {
   className: PropTypes.string,
