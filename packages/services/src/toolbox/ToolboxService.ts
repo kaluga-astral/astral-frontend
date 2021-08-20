@@ -1,9 +1,10 @@
-import { ToolboxCertificateInfoResult } from './types';
+import { ToolboxCertificateInfo, ToolboxCertificateInfoResult } from './types';
 import * as operations from './constants/operations';
 import { Event } from './constants/events';
 import ToolboxServiceManager, {
   ToolboxServiceManagerProps,
 } from './ToolboxServiceManager';
+import { formatCertificateListToClient } from './utils';
 
 export type ToolboxServiceError = Error;
 
@@ -30,10 +31,12 @@ export class ToolboxService extends ToolboxServiceManager {
   /**
    * Получение сертификатов
    */
-  getCertificates = (): Promise<ToolboxCertificateInfoResult[]> =>
-    super.sendMessage<void, ToolboxCertificateInfoResult[]>(
-      operations.GET_CERTIFICATE_LIST.id,
-    );
+  getCertificates = (): Promise<ToolboxCertificateInfo[]> =>
+    super
+      .sendMessage<void, ToolboxCertificateInfoResult[]>(
+        operations.GET_CERTIFICATE_LIST.id,
+      )
+      .then(formatCertificateListToClient);
 
   /**
    * Получение провайдеров
