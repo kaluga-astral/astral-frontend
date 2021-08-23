@@ -6,8 +6,8 @@ import {
   SubjectDecodedFields,
   ToolboxCertificateInfo,
   ToolboxCertificateInfoResult,
-} from './types';
-import { ISSUER_OID_LIST, SUBJECT_OID_LIST } from './constants/structure';
+} from '../types';
+import { ISSUER_OID_LIST, SUBJECT_OID_LIST } from '../constants/structure';
 
 export const formatOidsDecoded = <Keys extends string>(
   subjectNameDecoded: NameDecoded,

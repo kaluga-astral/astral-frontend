@@ -27,7 +27,7 @@ export type SubjectDecoderKeys =
   | 'ogrn'
   | 'ogrnip';
 
-export type IssuerDecoderKeys = 'authority';
+export type IssuerDecoderKeys = 'fullName';
 
 export type OidsList<Keys extends string> = { oid: string; name: Keys }[];
 

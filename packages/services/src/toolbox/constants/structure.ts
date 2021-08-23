@@ -19,5 +19,5 @@ export const SUBJECT_OID_LIST: OidsList<SubjectDecoderKeys> = [
 ];
 
 export const ISSUER_OID_LIST: OidsList<IssuerDecoderKeys> = [
-  { oid: '2.5.4.3', name: 'authority' },
+  { oid: '2.5.4.3', name: 'fullName' },
 ];
