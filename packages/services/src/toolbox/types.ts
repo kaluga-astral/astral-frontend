@@ -1,11 +1,5 @@
 export type NameDecoded = { value: string; oid: string }[];
 
-export enum CertificateState {
-  Work,
-  SoonExpire,
-  Expire,
-}
-
 export type ToolboxCertificateInfoResult = {
   notAfter: string;
   notBefore: string;
@@ -13,19 +7,27 @@ export type ToolboxCertificateInfoResult = {
   subjectNameDecoded: NameDecoded;
   issuerNameDecoded: NameDecoded;
   thumbprint: string;
+  algorithm: string;
 };
 
 export type SubjectDecoderKeys =
   | 'email'
   | 'inn'
+  | 'innle'
   | 'position'
   | 'department'
   | 'organization'
   | 'commonName'
   | 'namePatronymic'
-  | 'surname';
+  | 'surname'
+  | 'street'
+  | 'region'
+  | 'city'
+  | 'snils'
+  | 'ogrn'
+  | 'ogrnip';
 
-export type IssuerDecoderKeys = 'authority';
+export type IssuerDecoderKeys = 'fullName';
 
 export type OidsList<Keys extends string> = { oid: string; name: Keys }[];
 
@@ -35,19 +37,11 @@ export type SubjectDecodedFields<Keys extends string> = {
 
 export type ToolboxCertificateInfo = {
   skid: string;
-  commonName?: string;
-  name?: string;
-  surname?: string;
-  patronymic?: string;
-  organization?: string;
-  authority?: string;
   endDate: string;
   startDate: string;
-  state: CertificateState;
-} & Pick<SubjectDecodedFields<SubjectDecoderKeys>, 'inn'>;
-
-export type ConnectionStatus = {
-  open: boolean;
-  connect: boolean;
-  error: boolean;
-};
+  isNotInstall?: boolean;
+  name?: string;
+  patronymic?: string;
+  address?: string;
+  issuer?: SubjectDecodedFields<IssuerDecoderKeys>;
+} & SubjectDecodedFields<SubjectDecoderKeys>;
