@@ -61,8 +61,8 @@ export const formatCertificateListToClient = (
       const subject = formatOidsDecoded(subjectNameDecoded, SUBJECT_OID_LIST);
       const issuer = formatOidsDecoded(issuerNameDecoded, ISSUER_OID_LIST);
 
-      // фильтруются служебные серты
-      if (!subjectKeyId || !subject.inn) {
+      // фильтруются служебные сертификаты и срока действия
+      if (!subjectKeyId || !notAfter || !notBefore) {
         return res;
       }
 

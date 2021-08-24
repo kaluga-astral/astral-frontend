@@ -35,11 +35,14 @@ describe('formatCertificateListToClient', () => {
     ]);
   });
 
-  it('Проверка фильтрации служебных сертификатов', () => {
-    expect(
-      formatCertificateListToClient([
-        { ...TOOLBOX_CERTIFICATE_RESULTS, subjectKeyId: '' },
-      ]),
-    ).toStrictEqual([]);
-  });
+  it.each<string>(['subjectKeyId', 'notBefore', 'notAfter'])(
+    'Проверка фильтрации сертификатов с отсутствующим полем %s',
+    key => {
+      expect(
+        formatCertificateListToClient([
+          { ...TOOLBOX_CERTIFICATE_RESULTS, [key]: '' },
+        ]),
+      ).toStrictEqual([]);
+    },
+  );
 });
