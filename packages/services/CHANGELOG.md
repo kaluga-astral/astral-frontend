@@ -4,4 +4,5 @@
 
 # 1.0.4
 
-- Исправлена функция formatCertificateListToClient. Больше не фильтрует сертификаты при отсутствии inn
+- Исправлена функция formatCertificateListToClient. Больше не фильтрует сертификаты.
+- Добавлена функция filterServiceCertificate, которая фильтрует служебные сертификаты

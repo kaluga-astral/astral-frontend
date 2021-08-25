@@ -6,8 +6,8 @@ export type ToolboxCertificateInfoResult = {
   subjectKeyId: string;
   subjectNameDecoded: NameDecoded;
   issuerNameDecoded: NameDecoded;
-  thumbprint: string;
-  algorithm: string;
+  thumbprint?: string;
+  algorithm?: string;
 };
 
 export type SubjectDecoderKeys =
