@@ -30,7 +30,7 @@ export class ToolboxService extends ToolboxServiceManager {
   /**
    * Получение сертификатов
    */
-  getCertificates = (): Promise<ToolboxCertificateInfoResult[]> =>
+  getCertificates = (): Promise<Partial<ToolboxCertificateInfoResult>[]> =>
     super.sendMessage<void, ToolboxCertificateInfoResult[]>(
       operations.GET_CERTIFICATE_LIST.id,
     );

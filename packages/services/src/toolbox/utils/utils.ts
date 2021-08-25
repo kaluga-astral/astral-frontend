@@ -38,6 +38,21 @@ export const separateFieldNamePatronymic = (
   return { name, patronymic };
 };
 
+const CERTIFICATE_REQUIRED_KEYS: (keyof ToolboxCertificateInfoResult)[] = [
+  'notAfter',
+  'notBefore',
+  'subjectKeyId',
+  'issuerNameDecoded',
+  'subjectNameDecoded',
+];
+
+export const filterServiceCertificate = (
+  certificates: Partial<ToolboxCertificateInfoResult>[],
+): ToolboxCertificateInfoResult[] =>
+  // сертификат является служебным, если в нем отсутствует одно из обязательных полей
+  certificates.filter(certificate =>
+    CERTIFICATE_REQUIRED_KEYS.every(key => certificate[key]),
+  ) as ToolboxCertificateInfoResult[];
 /*
 Преобразует форму сертификата возвращаемого с Astral.Toolbox к клиентскому виду.
 Так же отбрасываются сертификаты без subjectKeyId
@@ -45,11 +60,8 @@ export const separateFieldNamePatronymic = (
 export const formatCertificateListToClient = (
   certificates: ToolboxCertificateInfoResult[],
 ): ToolboxCertificateInfo[] =>
-  certificates.reduce(
-    (
-      res: ToolboxCertificateInfo[],
-      certificate: ToolboxCertificateInfoResult,
-    ): ToolboxCertificateInfo[] => {
+  certificates.map(
+    (certificate: ToolboxCertificateInfoResult): ToolboxCertificateInfo => {
       const {
         notAfter,
         notBefore,
@@ -61,22 +73,19 @@ export const formatCertificateListToClient = (
       const subject = formatOidsDecoded(subjectNameDecoded, SUBJECT_OID_LIST);
       const issuer = formatOidsDecoded(issuerNameDecoded, ISSUER_OID_LIST);
 
-      // фильтруются служебные серты
-      if (!subjectKeyId || !subject.inn) {
-        return res;
-      }
-
       const { name, patronymic } = separateFieldNamePatronymic(
         subject.namePatronymic || '',
       );
 
-      const newItem: ToolboxCertificateInfo = {
+      return {
         endDate: notAfter,
         startDate: notBefore,
         skid: subjectKeyId,
         issuer,
         ...subject,
         // с 1.09.2012 вводится новое поля для хранения inn у ЮЛ
+        // в некоторых сертификатах может присутствовать 2 поля inn и innle,
+        // для корректной работы существующих приложений мы замещаем inn на innle
         inn: subject.innle || trimStart(subject.inn, '00'), // обрезает стартовые 00 для юр. лиц
         address: compact([subject.region, subject.city, subject.street]).join(
           ' ',
@@ -84,8 +93,6 @@ export const formatCertificateListToClient = (
         name,
         patronymic,
       };
-
-      return [...res, newItem];
     },
     [],
   );

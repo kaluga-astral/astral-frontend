@@ -3,7 +3,7 @@ import { IssuerDecoderKeys, OidsList, SubjectDecoderKeys } from '../types';
 export const SUBJECT_OID_LIST: OidsList<SubjectDecoderKeys> = [
   { oid: '1.2.840.113549.1.9.1', name: 'email' },
   { oid: '1.2.643.3.131.1.1', name: 'inn' },
-  { oid: '1.2.643.3.131.1.1', name: 'inn' },
+  { oid: '1.2.643.100.4', name: 'innle' },
   { oid: '2.5.4.12', name: 'position' },
   { oid: '2.5.4.11', name: 'department' },
   { oid: '2.5.4.10', name: 'organization' },
