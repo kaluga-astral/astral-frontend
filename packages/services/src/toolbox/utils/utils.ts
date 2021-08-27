@@ -1,12 +1,11 @@
 import { compact, trimStart } from 'lodash-es';
 
 import {
-  NameDecoded,
   OidsList,
   SubjectDecodedFields,
   ToolboxCertificateInfo,
-  ToolboxCertificateInfoResult,
 } from '../types';
+import { NameDecoded, ToolboxCertificateInfoDTO } from '../dto';
 import { ISSUER_OID_LIST, SUBJECT_OID_LIST } from '../constants/structure';
 
 export const formatOidsDecoded = <Keys extends string>(
@@ -38,7 +37,7 @@ export const separateFieldNamePatronymic = (
   return { name, patronymic };
 };
 
-const CERTIFICATE_REQUIRED_KEYS: (keyof ToolboxCertificateInfoResult)[] = [
+const CERTIFICATE_REQUIRED_KEYS: (keyof ToolboxCertificateInfoDTO)[] = [
   'notAfter',
   'notBefore',
   'subjectKeyId',
@@ -47,21 +46,21 @@ const CERTIFICATE_REQUIRED_KEYS: (keyof ToolboxCertificateInfoResult)[] = [
 ];
 
 export const filterServiceCertificate = (
-  certificates: Partial<ToolboxCertificateInfoResult>[],
-): ToolboxCertificateInfoResult[] =>
+  certificates: Partial<ToolboxCertificateInfoDTO>[],
+): ToolboxCertificateInfoDTO[] =>
   // сертификат является служебным, если в нем отсутствует одно из обязательных полей
   certificates.filter(certificate =>
     CERTIFICATE_REQUIRED_KEYS.every(key => certificate[key]),
-  ) as ToolboxCertificateInfoResult[];
+  ) as ToolboxCertificateInfoDTO[];
 /*
 Преобразует форму сертификата возвращаемого с Astral.Toolbox к клиентскому виду.
 Так же отбрасываются сертификаты без subjectKeyId
 */
 export const formatCertificateListToClient = (
-  certificates: ToolboxCertificateInfoResult[],
+  certificates: ToolboxCertificateInfoDTO[],
 ): ToolboxCertificateInfo[] =>
   certificates.map(
-    (certificate: ToolboxCertificateInfoResult): ToolboxCertificateInfo => {
+    (certificate: ToolboxCertificateInfoDTO): ToolboxCertificateInfo => {
       const {
         notAfter,
         notBefore,
