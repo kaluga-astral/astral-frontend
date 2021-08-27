@@ -1,4 +1,5 @@
-import { ToolboxCertificateInfo, ToolboxCertificateInfoResult } from '../types';
+import { ToolboxCertificateInfo } from '../types';
+import { ToolboxCertificateInfoDTO } from '../dto';
 
 export const TOOLBOX_CERTIFICATE_STUB: ToolboxCertificateInfo = {
   skid: 'string',
@@ -18,7 +19,7 @@ export const TOOLBOX_CERTIFICATES_STUB: ToolboxCertificateInfo[] = Array.from({
   length: 10,
 }).map((_, index) => ({ ...TOOLBOX_CERTIFICATE_STUB, skid: String(index) }));
 
-export const TOOLBOX_CERTIFICATE_RESULTS: ToolboxCertificateInfoResult = {
+export const TOOLBOX_CERTIFICATE_RESULTS: ToolboxCertificateInfoDTO = {
   notBefore: '10.09.2020',
   notAfter: '10.09.2021',
   thumbprint: 'EDDB3D83263879E6E54CB574651F4EA23A28BED3',

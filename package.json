@@ -19,6 +19,9 @@
       "jest --bail --findRelatedTests",
       "yaspeller",
       "git add"
+    ],
+    "*.{ts,tsx}": [
+      "tsc --noEmit"
     ]
   },
   "husky": {
