@@ -10,7 +10,7 @@ const FormAddressField = props => {
   return (
     <AsyncAutocompleteField
       {...props}
-      validate={mustBeAddress}
+      validate={({ value }) => mustBeAddress(value)}
       inputProps={{ maxLength: 200 }}
       fetchOptions={fetchAddressSuggestions}
     />
