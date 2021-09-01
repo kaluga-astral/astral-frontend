@@ -6,11 +6,14 @@ import DaDataContext from '../DaDataContext/DaDataContext';
 
 const FormAddressField = props => {
   const { fetchAddressSuggestions } = React.useContext(DaDataContext);
+  const validate = React.useCallback(({ value }) => {
+    return mustBeAddress(value);
+  }, []);
 
   return (
     <AsyncAutocompleteField
       {...props}
-      validate={({ value }) => mustBeAddress(value)}
+      validate={validate}
       inputProps={{ maxLength: 200 }}
       fetchOptions={fetchAddressSuggestions}
     />
