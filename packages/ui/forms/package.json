@@ -25,7 +25,7 @@
     "enzyme": "^3.11.0"
   },
   "peerDependencies": {
-    "@astral-frontend/components": "^3.0.0",
+    "@astral-frontend/components": "^3.0.1",
     "@astral-frontend/core": "*",
     "@astral-frontend/icons": "*",
     "react": ">=16.6.0"

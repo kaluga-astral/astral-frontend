@@ -24,30 +24,6 @@
   dependencies:
     tunnel "0.0.6"
 
-"@astral-frontend/components@^1.0.0":
-  version "1.4.3"
-  resolved "https://registry.npmjs.org/@astral-frontend/components/-/components-1.4.3.tgz#4aecd2c5523d4bb655cb7fea91e710c4bb644adf"
-  integrity sha512-w7MgnebCUBlxz3c7T+7XSfEKnuA7kMmpRZEKHTmgU0YyDk3ccwHj0IRpciID7x7ugs/QUqXoYA5aUwxGrTZM9g==
-  dependencies:
-    "@astral-frontend/core" "*"
-    "@astral-frontend/fonts" "*"
-    "@astral-frontend/icons" "^1.2.0"
-    "@astral-frontend/styles" "^1.0.0"
-    "@material-ui/lab" "^4.0.0-alpha.57"
-    "@researchgate/react-intersection-list" "3.0.8"
-    classnames "^2.2.6"
-    date-fns "^2.11.1"
-    downshift "^5.0.3"
-    intro.js "2.9.3"
-    intro.js-react "0.2.0"
-    lodash-es "^4.17.11"
-    material-ui-popup-state "^1.5.1"
-    prop-types "^15.7.2"
-    react-content-loader "^5.0.2"
-    react-dropzone "^11.0.1"
-    react-input-mask "^2.0.4"
-    react-js-pagination "^3.0.3"
-
 "@babel/cli@^7.8.4":
   version "7.14.8"
   resolved "https://registry.npmjs.org/@babel/cli/-/cli-7.14.8.tgz#fac73c0e2328a8af9fd3560c06b096bfa3730933"
@@ -1616,17 +1592,6 @@
   version "4.0.0-alpha.58"
   resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.58.tgz#c7ebb66f49863c5acbb20817163737caa299fafc"
   integrity sha512-GKHlJqLxUeHH3L3dGQ48ZavYrqGOTXkFkiEiuYMAnAvXAZP4rhMIqeHOPXSUQan4Bd8QnafDcpovOSLnadDmKw==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@material-ui/utils" "^4.11.2"
-    clsx "^1.0.4"
-    prop-types "^15.7.2"
-    react-is "^16.8.0 || ^17.0.0"
-
-"@material-ui/lab@^4.0.0-alpha.57":
-  version "4.0.0-alpha.60"
-  resolved "https://registry.npmjs.org/@material-ui/lab/-/lab-4.0.0-alpha.60.tgz#5ad203aed5a8569b0f1753945a21a05efa2234d2"
-  integrity sha512-fadlYsPJF+0fx2lRuyqAuJj7hAS1tLDdIEEdov5jlrpb5pp4b+mRDUqQTUxi4inRZHS1bEXpU8QWUhO6xX88aA==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@material-ui/utils" "^4.11.2"
@@ -6444,7 +6409,7 @@ date-fns@^1.27.2:
   resolved "https://registry.npmjs.org/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
   integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
 
-date-fns@^2.11.1, date-fns@^2.22.1:
+date-fns@^2.22.1:
   version "2.23.0"
   resolved "https://registry.npmjs.org/date-fns/-/date-fns-2.23.0.tgz#4e886c941659af0cf7b30fafdd1eaa37e88788a9"
   integrity sha512-5ycpauovVyAk0kXNZz6ZoB9AYMZB4DObse7P3BPWmyEjXNORTI8EJ6X0uaSAq4sCHzM1uajzrkr6HnsLQpxGXA==
