@@ -1,3 +1,7 @@
+# 4.0.2
+
+- Исправлена валидация компонента AddressField
+
 # 4.0.1
 
 - Добавлен forwardRef для AsyncAutocompleteField
