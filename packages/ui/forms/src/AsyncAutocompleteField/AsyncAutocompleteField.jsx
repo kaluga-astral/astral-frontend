@@ -8,7 +8,10 @@ import { createValidationFunction } from '../utils';
 
 // TODO: #28099
 const AsyncAutocompleteField = React.forwardRef(
-  ({ name, validate, required, InputProps, onChange, ...props }, ref) => {
+  (
+    { name, validate, required, InputProps, onChange, initialValue, ...props },
+    ref,
+  ) => {
     const { initialValues, values, active } = useFormState();
     const initialFieldValue = initialValues?.[name];
     const fieldValue = values?.[name];
@@ -20,6 +23,7 @@ const AsyncAutocompleteField = React.forwardRef(
     );
 
     const { input, meta } = useField(name, {
+      initialValue,
       validate: validationFunction,
     });
 
@@ -72,6 +76,7 @@ AsyncAutocompleteField.defaultProps = {
   validate: null,
   onChange: null,
   required: false,
+  initialValue: null,
   InputProps: {},
 };
 
@@ -100,6 +105,8 @@ AsyncAutocompleteField.propTypes = {
    * Пропсы компонента Input
    */
   InputProps: PropTypes.shape({}),
+  // eslint-disable-next-line react/forbid-prop-types
+  initialValue: PropTypes.any,
 };
 
 export default AsyncAutocompleteField;
