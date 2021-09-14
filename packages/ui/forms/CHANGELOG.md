@@ -1,3 +1,7 @@
+# 4.0.4
+
+- Добавлен props initialValue для AsyncAutocompleteField
+
 # 4.0.3
 
 - Исправлена валидация компонента AddressField
