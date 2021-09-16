@@ -1,9 +1,16 @@
-import { isBoolean, isEmpty, isNumber, isString, trim } from 'lodash-es';
+import {
+  isBoolean,
+  isDate,
+  isEmpty,
+  isNumber,
+  isString,
+  trim,
+} from 'lodash-es';
 
 export const ERROR_MESSAGE = 'Обязательно для заполнения';
 
 export const mustBePresent = value => {
-  if (isNumber(value)) {
+  if (isNumber(value) || isDate(value)) {
     return null;
   }
 
