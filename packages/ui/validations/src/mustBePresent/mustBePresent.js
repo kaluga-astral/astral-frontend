@@ -10,7 +10,7 @@ import {
 export const ERROR_MESSAGE = 'Обязательно для заполнения';
 
 export const mustBePresent = value => {
-  if (isNumber(value)) {
+  if (isNumber(value) || isDate(value)) {
     return null;
   }
 
@@ -18,7 +18,7 @@ export const mustBePresent = value => {
     return trim(value) ? null : ERROR_MESSAGE;
   }
 
-  if (isBoolean(value) || isDate(value)) {
+  if (isBoolean(value)) {
     return value ? null : ERROR_MESSAGE;
   }
 
