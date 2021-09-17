@@ -15,6 +15,7 @@ describe('formatCertificateListToClient', () => {
     email: 'test@mail.ty',
     endDate: '10.09.2021',
     inn: '9604183233',
+    innFl: '',
     issuer: {
       fullName: 'Тестовый УЦ АО "КАЛУГА АСТРАЛ"',
     },
@@ -40,6 +41,7 @@ describe('formatCertificateListToClient', () => {
 
   it('Проверка правильности формирование модели c innle', () => {
     const innle = '12456789';
+
     expect(
       formatCertificateListToClient([
         {
@@ -52,7 +54,13 @@ describe('formatCertificateListToClient', () => {
           ],
         },
       ]),
-    ).toStrictEqual([{ ...FORMED_CERTIFICATE, inn: innle, innle }]);
+    ).toStrictEqual([
+      {
+        ...FORMED_CERTIFICATE,
+        inn: innle,
+        innle,
+      },
+    ]);
   });
 
   it('Проверка правильности формирование модели c наличием 2 полей innle и inn', () => {
@@ -67,7 +75,14 @@ describe('formatCertificateListToClient', () => {
           ],
         },
       ]),
-    ).toStrictEqual([{ ...FORMED_CERTIFICATE, inn: innle, innle }]);
+    ).toStrictEqual([
+      {
+        ...FORMED_CERTIFICATE,
+        innFl: '009604183233',
+        inn: innle,
+        innle,
+      },
+    ]);
   });
 });
 

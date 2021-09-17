@@ -85,7 +85,8 @@ export const formatCertificateListToClient = (
         // с 1.09.2012 вводится новое поля для хранения inn у ЮЛ
         // в некоторых сертификатах может присутствовать 2 поля inn и innle,
         // для корректной работы существующих приложений мы замещаем inn на innle
-        inn: subject.innle || trimStart(subject.inn, '00'), // обрезает стартовые 00 для юр. лиц
+        innFl: subject.innle && subject.inn ? subject.inn : '',
+        inn: subject.innle || trimStart(subject.inn, '00'), // обрезает стартовые 00 для юр. лиц сделано для обратной совместимости
         address: compact([subject.region, subject.city, subject.street]).join(
           ' ',
         ),
