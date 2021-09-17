@@ -31,5 +31,6 @@ export type ToolboxCertificateInfo = {
   name?: string;
   patronymic?: string;
   address?: string;
+  innFl?: string; // Для сертификатов организации с 2 инн сюда будет записываться inn физ. лица хранящийся в inn
   issuer?: SubjectDecodedFields<IssuerDecoderKeys>;
 } & SubjectDecodedFields<SubjectDecoderKeys>;
