@@ -1,1 +1,1 @@
-# kaluga-astral / astral-frontend
+### Основной репозиторий пакетов ГК «Астрал»
