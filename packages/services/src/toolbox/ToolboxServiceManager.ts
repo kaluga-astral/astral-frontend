@@ -1,4 +1,3 @@
-import { noop } from 'lodash-es';
 import { camelizeKeys } from 'humps';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -45,7 +44,7 @@ class ToolboxServiceManager {
     } = props;
 
     this.url = url;
-    this.captureException = captureException || noop;
+    this.captureException = captureException || (() => '');
     this.autoReconnect = autoReconnect || false;
     this.autoReconnectTimeout = autoReconnectTimeout || AUTO_RECONNECT_TIMEOUT;
 
@@ -74,6 +73,7 @@ class ToolboxServiceManager {
       messageId?: string;
       data?: unknown;
       message?: string;
+      subjectKeyID?: string; // возвращается в методе createTokenCertRequest
     };
 
     if (typeof data === 'string') {
@@ -84,6 +84,7 @@ class ToolboxServiceManager {
       success,
       messageId,
       data: responseData,
+      subjectKeyID,
       message: errorMessage,
     } = response as ToolboxResponse; // у нас нет гарантий, что модель будет такой
 
@@ -93,7 +94,12 @@ class ToolboxServiceManager {
       // если сообщение найдено в this.messagesStorage значит сервис был его инициатором
       if (message) {
         if (success) {
-          message.resolve(responseData);
+          message.resolve(
+            // Костыль для получения subjectKeyID в методе createTokenCertRequest
+            subjectKeyID
+              ? { value: responseData as string, subjectKeyID }
+              : responseData,
+          );
         } else {
           const error = new Error(errorMessage);
 
