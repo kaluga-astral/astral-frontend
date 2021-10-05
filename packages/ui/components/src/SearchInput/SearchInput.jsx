@@ -21,7 +21,7 @@ const useStyles = makeStyles(
       transition: theme.transitions.create('width'),
     },
     icon: {
-      margin: '0 16px',
+      margin: '0 12px',
       zIndex: 1,
     },
     inputRoot: {
