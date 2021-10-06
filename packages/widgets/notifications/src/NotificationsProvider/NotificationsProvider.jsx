@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { merge } from 'lodash-es';
 import React from 'react';
-import { SnackbarProvider } from 'notistack';
+import { SnackbarProvider } from 'notistack-next';
 import { makeStyles, useTheme } from '@astral-frontend/styles';
 
 import NotificationsContext from '../NotificationsContext';

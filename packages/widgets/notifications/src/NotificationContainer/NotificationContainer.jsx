@@ -10,6 +10,9 @@ const useStyles = makeStyles(
         marginBottom: theme.spacing(2),
       },
     },
+    message: {
+      wordWrap: 'break-word',
+    },
   }),
   { name: 'NotificationContainer' },
 );
@@ -60,7 +63,7 @@ const NotificationContainer = ({
           </Box>
         </Box>
       </Box>
-      {message && <Box>{message}</Box>}
+      {message && <Box className={classes.message}>{message}</Box>}
     </Box>
   );
 };
