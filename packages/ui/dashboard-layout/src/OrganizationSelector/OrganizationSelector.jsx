@@ -41,6 +41,7 @@ const useStyles = makeStyles(
       position: 'sticky',
       bottom: 0,
       backgroundColor: theme.palette.common.white,
+      marginBottom: '6px'
     },
   }),
   { name: 'OrganizationSelector' },
