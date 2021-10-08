@@ -20,6 +20,7 @@ const useStyles = makeStyles(
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
+      lineHeight: '18px',
       textAlign: ({ align }) => align,
     },
   }),
