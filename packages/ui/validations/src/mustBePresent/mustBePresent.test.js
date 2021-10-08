@@ -24,6 +24,7 @@ describe('mustBePresent validation rule', () => {
     ${{ a: 1 }}
     ${[undefined]}
     ${NaN}
+    ${new Date()}
   `('value $value is valid, return null', () => {
     expect(mustBePresent(1)).toBeNull();
   });

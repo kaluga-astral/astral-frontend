@@ -7,75 +7,76 @@ import { AsyncAutocomplete } from '@astral-frontend/components';
 import { createValidationFunction } from '../utils';
 
 // TODO: #28099
-const AsyncAutocompleteField = ({
-  name,
-  validate,
-  required,
-  InputProps,
-  onChange,
-  ...props
-}) => {
-  const { initialValues, values, active } = useFormState();
-  const initialFieldValue = initialValues?.[name];
-  const fieldValue = values?.[name];
-  const editing = active === name;
+const AsyncAutocompleteField = React.forwardRef(
+  (
+    { name, validate, required, InputProps, onChange, initialValue, ...props },
+    ref,
+  ) => {
+    const { initialValues, values, active } = useFormState();
+    const initialFieldValue = initialValues?.[name];
+    const fieldValue = values?.[name];
+    const editing = active === name;
 
-  const validationFunction = React.useCallback(
-    createValidationFunction(required, validate),
-    [required, validate],
-  );
+    const validationFunction = React.useCallback(
+      createValidationFunction(required, validate),
+      [required, validate],
+    );
 
-  const { input, meta } = useField(name, {
-    validate: validationFunction,
-  });
+    const { input, meta } = useField(name, {
+      initialValue,
+      validate: validationFunction,
+    });
 
-  const error = required && meta.touched && !meta.valid;
-  const helperText = meta.error && meta.touched ? meta.error : null;
+    const error = required && meta.touched && !meta.valid;
+    const helperText = meta.error && meta.touched ? meta.error : null;
 
-  const handleChange = React.useCallback((event, newValue) => {
-    if (newValue) {
-      input.onChange(newValue);
-    } else {
-      input.onChange(null);
-    }
-    if (onChange) {
-      onChange(event, newValue);
-    }
-  }, []);
+    const handleChange = React.useCallback((event, newValue) => {
+      if (newValue) {
+        input.onChange(newValue);
+      } else {
+        input.onChange(null);
+      }
+      if (onChange) {
+        onChange(event, newValue);
+      }
+    }, []);
 
-  React.useEffect(() => {
-    if (!editing) {
-      input.onChange(initialFieldValue);
-    }
-  }, [JSON.stringify(initialFieldValue)]);
+    React.useEffect(() => {
+      if (!editing) {
+        input.onChange(initialFieldValue);
+      }
+    }, [JSON.stringify(initialFieldValue)]);
 
-  React.useEffect(() => {
-    if (!editing && isEqual(initialFieldValue, fieldValue)) {
-      input.onChange(initialFieldValue);
-    }
-  }, [JSON.stringify(fieldValue)]);
+    React.useEffect(() => {
+      if (!editing && isEqual(initialFieldValue, fieldValue)) {
+        input.onChange(initialFieldValue);
+      }
+    }, [JSON.stringify(fieldValue)]);
 
-  return (
-    <AsyncAutocomplete
-      {...props}
-      name={name}
-      error={error}
-      required={required}
-      helperText={helperText}
-      value={input.value || null}
-      InputProps={{
-        ...InputProps,
-        ...omit(input, ['value', 'onChange']),
-      }}
-      onChange={handleChange}
-    />
-  );
-};
+    return (
+      <AsyncAutocomplete
+        {...props}
+        name={name}
+        error={error}
+        required={required}
+        helperText={helperText}
+        value={input.value || null}
+        InputProps={{
+          ...InputProps,
+          ...omit(input, ['value', 'onChange']),
+        }}
+        onChange={handleChange}
+        ref={ref}
+      />
+    );
+  },
+);
 
 AsyncAutocompleteField.defaultProps = {
   validate: null,
   onChange: null,
   required: false,
+  initialValue: null,
   InputProps: {},
 };
 
@@ -104,6 +105,8 @@ AsyncAutocompleteField.propTypes = {
    * Пропсы компонента Input
    */
   InputProps: PropTypes.shape({}),
+  // eslint-disable-next-line react/forbid-prop-types
+  initialValue: PropTypes.any,
 };
 
 export default AsyncAutocompleteField;

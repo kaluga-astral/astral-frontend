@@ -10,6 +10,7 @@ const useStyles = makeStyles(
     root: {
       height: '100%',
       width: '100%',
+      margin: '6px 0px 0px'
     },
     listItem: {
       '&:hover $rowActions': {

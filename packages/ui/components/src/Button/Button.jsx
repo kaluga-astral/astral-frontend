@@ -109,7 +109,8 @@ const useStyles = makeStyles(
     },
 
     disabled: {
-      color: theme.palette.grey[400],
+      color: theme.palette.grey[500],
+      backgroundColor: theme.palette.grey[100],
     },
 
     loaderContainer: {

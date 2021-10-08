@@ -19,6 +19,9 @@
       "jest --bail --findRelatedTests",
       "yaspeller",
       "git add"
+    ],
+    "*.{ts,tsx}": [
+      "tsc --noEmit"
     ]
   },
   "husky": {
@@ -36,6 +39,7 @@
     "@storybook/addon-links": "^6.2.9",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.1",
     "@storybook/react": "^6.2.9",
+    "@types/jest": "^27.0.1",
     "acorn": "^7.1.0",
     "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
@@ -59,6 +63,6 @@
     "style-loader": "1.1.3",
     "webpack": "^4.41.6",
     "yaspeller": "^7.0.0",
-    "typescript": "4.2.4"
+    "typescript": "4.3.5"
   }
 }
