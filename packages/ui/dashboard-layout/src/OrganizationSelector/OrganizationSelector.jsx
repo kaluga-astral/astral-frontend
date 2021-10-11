@@ -31,6 +31,9 @@ const useStyles = makeStyles(
       boxShadow: theme.shadows[2],
       paddingTop: '10px',
     },
+    popperHint: {
+      fontSize: '12px',
+    },
     collapse: {
       position: 'absolute',
       top: '100%',
@@ -86,9 +89,9 @@ const OrganizationSelector = ({
         <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
           <FlexContainer>
             <Tooltip
+              className={classes.popperHint}
               placement="left"
               title={currentOrganizationName ?? defaultTooltipState}
-              style={{ fontSize: '12px' }}
             >
               <OrganizationSelectorCurrentOrganization
                 name={currentOrganizationName}
