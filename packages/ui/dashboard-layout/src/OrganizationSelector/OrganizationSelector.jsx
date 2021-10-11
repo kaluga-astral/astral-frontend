@@ -29,6 +29,10 @@ const useStyles = makeStyles(
       maxWidth: '300px',
       overflowY: 'auto',
       boxShadow: theme.shadows[2],
+      paddingTop: '10px',
+    },
+    popperHint: {
+      fontSize: '12px',
     },
     collapse: {
       position: 'absolute',
@@ -41,7 +45,7 @@ const useStyles = makeStyles(
       position: 'sticky',
       bottom: 0,
       backgroundColor: theme.palette.common.white,
-      marginBottom: '6px'
+      marginBottom: '6px',
     },
   }),
   { name: 'OrganizationSelector' },
@@ -85,6 +89,7 @@ const OrganizationSelector = ({
         <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
           <FlexContainer>
             <Tooltip
+              className={classes.popperHint}
               placement="left"
               title={currentOrganizationName ?? defaultTooltipState}
             >
@@ -141,7 +146,7 @@ OrganizationSelector.propTypes = {
     queryResult: PropTypes.shape({
       loading: PropTypes.bool,
       error: PropTypes.instanceOf(Error),
-      items: PropTypes.array,
+      items: PropTypes.arrayOf,
     }).isRequired,
   }).isRequired,
   ListItemComponent: PropTypes.func.isRequired,
