@@ -1,3 +1,3 @@
-import Box from '@material-ui/core/Box';
+import { Box } from '@astral-frontend/core';
 
 export default Box;
