@@ -1,1 +1,1 @@
-export { Skeleton as default } from '@mui/lab';
+export { Skeleton as default } from '@astral-frontend/core';
