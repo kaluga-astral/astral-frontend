@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { KeyboardDatePicker } from '@mui/lab';
+import { DatePicker as MuiDatePicker } from '@mui/lab';
 import { DEFAULT_VIEW_DATE_FORMAT } from '@astral-frontend/constants';
 import { formatISO, isValid } from 'date-fns';
 
@@ -26,7 +26,7 @@ const DatePicker = ({
   };
 
   return (
-    <KeyboardDatePicker
+    <MuiDatePicker
       {...props}
       autoOk={autoOk}
       minDate={minDate}
