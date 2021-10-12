@@ -72,7 +72,9 @@ const IconTableCell = ({
             <CircularProgress
               size={36}
               className={classes.progress}
-              variant={percentCompleted === null ? 'indeterminate' : 'static'}
+              variant={
+                percentCompleted === null ? 'indeterminate' : 'determinate'
+              }
               value={percentCompleted}
             />
           </div>

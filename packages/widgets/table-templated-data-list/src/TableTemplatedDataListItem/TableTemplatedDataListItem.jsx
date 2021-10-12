@@ -140,7 +140,7 @@ const TableTemplatedDataListItem = ({
       {loading && (
         <CircularProgress
           className={classes.circularProgress}
-          variant={percentCompleted === 0 ? 'indeterminate' : 'static'}
+          variant={percentCompleted === 0 ? 'indeterminate' : 'determinate'}
           value={percentCompleted}
         />
       )}
