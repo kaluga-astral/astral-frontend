@@ -7,3 +7,6 @@
 
 - Изменено апи Autocomplete не дефолтное mui
 - Изменено апи AsyncAutocomplete из-за связи с Autocomplete
+
+# 3.0.4 
+- Изменено цвет задизейбленнной кнопки
