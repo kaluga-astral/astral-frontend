@@ -22,7 +22,7 @@ const Autocomplete = React.forwardRef(
       noOptionsText = 'Ничего не найдено',
       options = [],
       getOptionLabel,
-      getOptionSelected,
+      isOptionEqualToValue,
       open,
       filterOptions,
       onOpen,
@@ -50,7 +50,7 @@ const Autocomplete = React.forwardRef(
         filterOptions={filterOptions}
         forcePopupIcon={false}
         getOptionLabel={getOptionLabel}
-        getOptionSelected={getOptionSelected}
+        isOptionEqualToValue={isOptionEqualToValue}
         onOpen={onOpen}
         onClose={onClose}
         onChange={onChange}
@@ -100,7 +100,7 @@ Autocomplete.propTypes = {
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    */
   getOptionLabel: PropTypes.func,
-  getOptionSelected: PropTypes.func,
+  isOptionEqualToValue: PropTypes.func,
   /**
    * If `true`, the component is in a loading state.
    */
