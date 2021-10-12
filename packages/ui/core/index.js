@@ -1,3 +1,3 @@
-export * from '@material-ui/core';
+export * from '@mui/material';
 
 require.resolve('./styles');
