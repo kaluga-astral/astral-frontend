@@ -1,1 +1,1 @@
-export { Skeleton as default } from '@material-ui/lab';
+export { Skeleton as default } from '@mui/lab';

@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { CircularProgress } from '@astral-frontend/core';
-import { Autocomplete as MuiAutocomplete } from '@material-ui/lab';
+import { Autocomplete as MuiAutocomplete } from '@mui/lab';
 
 import TextField from '../TextField';
 
