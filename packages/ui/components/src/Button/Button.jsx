@@ -97,7 +97,8 @@ const useStyles = makeStyles(
     },
 
     rootRegularDisabled: {
-      backgroundColor: theme.palette.grey[300],
+      color: theme.palette.grey[500],
+      backgroundColor: theme.palette.grey[100],
     },
 
     rootOutlined: {
