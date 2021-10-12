@@ -1,2 +1,2 @@
 export * from '@mui/material/styles';
-export { makeStyles } from '@mui/styles';
+export { makeStyles, withStyles } from '@mui/styles';
