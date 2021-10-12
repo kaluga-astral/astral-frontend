@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ruLocale from 'date-fns/locale/ru';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider } from '@mui/lab';
+import { LocalizationProvider } from '@mui/lab';
 
 const DatePickersUtilsProvider = ({ children }) => (
-  <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ruLocale}>
+  <LocalizationProvider utils={DateFnsUtils} locale={ruLocale}>
     {children}
-  </MuiPickersUtilsProvider>
+  </LocalizationProvider>
 );
 
 DatePickersUtilsProvider.propTypes = {
