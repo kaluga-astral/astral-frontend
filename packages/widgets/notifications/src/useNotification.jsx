@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { useSnackbar } from 'notistack-next';
+import { useSnackbar } from 'notistack';
 import React from 'react';
 
 import Notification from './Notification';

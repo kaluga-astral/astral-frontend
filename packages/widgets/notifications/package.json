@@ -14,7 +14,7 @@
     "@astral-frontend/styles": "^1.0.0",
     "classnames": "^2.2.6",
     "lodash-es": "^4.17.15",
-    "notistack-next": "^5.0.0-alpha.9",
+    "notistack": "^2.0.2",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
