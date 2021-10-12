@@ -31,7 +31,7 @@ export default {
 
 // eslint-disable-next-line react/prop-types
 const Template = ({ variant, ...props }) => (
-  <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
+  <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap="20px">
     <Button {...props} variant={variant} />
     <Button {...props} startIcon={<EditIcon />} variant={variant} />
   </Box>
@@ -40,7 +40,7 @@ const Template = ({ variant, ...props }) => (
 export const Default = Template.bind({});
 
 export const Variants = props => (
-  <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
+  <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap="20px">
     {Object.values(BUTTON_VARIANTS).map(variant => (
       <>
         <Button {...props} variant={variant}>
@@ -55,7 +55,7 @@ export const Variants = props => (
 );
 
 export const Sizes = props => (
-  <Box display="grid" gridTemplateColumns="repeat(2, 1fr)" gridGap="20px">
+  <Box display="grid" gridTemplateColumns="repeat(2, 1fr)" gap="20px">
     {Object.values(BUTTON_SIZES).map(size => (
       <>
         <Button {...props} size={size}>

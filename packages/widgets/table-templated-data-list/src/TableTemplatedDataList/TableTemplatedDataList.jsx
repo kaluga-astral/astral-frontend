@@ -21,7 +21,7 @@ const useStyles = makeStyles(
     },
     row: {
       display: 'grid',
-      gridGap: theme.spacing(2),
+      gap: theme.spacing(2),
       gridTemplateColumns: props => {
         return `50px ${props.columns
           .map(column => `minmax(0, ${column.fr || '1'}fr)`)

@@ -15,7 +15,7 @@ const useStyles = makeStyles(
     list: {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-      gridGap: theme.spacing(4),
+      gap: theme.spacing(4),
     },
   }),
   { name: 'GridTemplatedDataList' },

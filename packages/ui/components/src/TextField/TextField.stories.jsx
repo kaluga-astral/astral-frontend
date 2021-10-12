@@ -20,7 +20,7 @@ export default {
 };
 
 export const Default = props => (
-  <Box display="grid" gridGap="20px">
+  <Box display="grid" gap="20px">
     <TextField {...props} />
     <TextField
       InputProps={{
