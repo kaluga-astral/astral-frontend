@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { merge } from 'lodash-es';
-import { useSnackbar } from 'notistack-next';
+import { useSnackbar } from 'notistack';
 import React from 'react';
 import { Box } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
