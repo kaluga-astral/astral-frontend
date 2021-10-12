@@ -40,11 +40,7 @@ const DialogTitle = props => {
   const { onClose } = useContext(__Context);
 
   return (
-    <MuiDialogTitle
-      className={cn(classes.root, className)}
-      {...rootProps}
-      disableTypography
-    >
+    <MuiDialogTitle className={cn(classes.root, className)} {...rootProps}>
       <Box display="inline-flex" alignItems="center">
         {Icon && <Icon className={classes.icon} />}
         <h1 className={classes.title}>{children}</h1>

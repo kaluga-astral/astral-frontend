@@ -24,7 +24,11 @@ const Dialog = props => {
       <MuiDialog
         open={open}
         className={cn(className, classes.root)}
-        onClose={onClose}
+        onClose={(event, reason) => {
+          if (reason !== 'backdropClick') {
+            onClose(event, reason);
+          }
+        }}
         {...rootProps}
       />
     </DialogContext.Provider>
