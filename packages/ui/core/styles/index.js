@@ -1,1 +1,1 @@
-export * from '@mui/styles';
+export * from '@mui/material/styles';
