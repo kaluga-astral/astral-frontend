@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { KeyboardDatePicker } from '@material-ui/pickers';
+import { KeyboardDatePicker } from '@mui/lab';
 import { DEFAULT_VIEW_DATE_FORMAT } from '@astral-frontend/constants';
 import { formatISO, isValid } from 'date-fns';
 
