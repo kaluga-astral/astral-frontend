@@ -24,7 +24,7 @@ const useStyles = makeStyles(
       marginBottom: theme.spacing(1),
     },
     expandedDropdown: {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.light,
     },
     alwaysExpandedButton: {
       pointerEvents: 'none',
