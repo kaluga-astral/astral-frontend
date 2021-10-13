@@ -14,7 +14,6 @@ const useStyles = makeStyles(
     root: {
       display: 'flex',
       justifyContent: 'left',
-      marginRight: theme.spacing(5),
     },
     icon: {
       height: '48px',
