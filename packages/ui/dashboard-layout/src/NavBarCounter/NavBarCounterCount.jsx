@@ -38,11 +38,11 @@ const useStyles = makeStyles(
       textAlign: 'center',
       borderRadius: `${theme.shape.borderRadius}px`,
       backgroundColor: theme.palette.primary.light,
-      '&.active': {
+      '&$active': {
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.common.white,
       },
-      '&.loading': {
+      '&$loading': {
         // padding: 0,
         // backgroundColor: 'transparent',
       },

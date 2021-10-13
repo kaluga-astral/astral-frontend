@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     borderLeft: '4px solid transparent',
     transform: 'scale(1, 1)',
-    '&.hover:hover': {
+    '&$hover:hover': {
       borderLeft: `4px solid ${theme.palette.primary.main}`,
       backgroundColor: theme.palette.action.hover,
     },
