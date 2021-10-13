@@ -26,6 +26,7 @@ const IconButton = React.forwardRef(
 
     return (
       <MuiIconButton
+        size="small"
         ref={ref}
         disabled={disabled || loading || success}
         {...props}

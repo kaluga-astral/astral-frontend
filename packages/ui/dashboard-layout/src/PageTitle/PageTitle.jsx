@@ -34,7 +34,13 @@ const DashboardLayoutPageTitle = ({
   const history = useHistory();
 
   return (
-    <Box display="flex" alignSelf="center" flexGrow={1} {...props}>
+    <Box
+      display="flex"
+      alignSelf="center"
+      alignItems="center"
+      flexGrow={1}
+      {...props}
+    >
       {goBackURL && (
         <IconButton
           className={classes.goBackButton}
