@@ -1,19 +1,24 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@astral-frontend/styles';
+import {
+  ThemeProvider as MuiThemeProvider,
+  StyledEngineProvider,
+} from '@astral-frontend/styles';
 import { StylesProvider } from '@mui/styles';
 
 import GlobalCSS from './GlobalCSS';
 import FontsConnector from './FontsConnector';
 
 const ThemeProvider = ({ children, theme, ...props }) => (
-  <StylesProvider {...props}>
-    <MuiThemeProvider theme={theme}>
-      <GlobalCSS />
-      <FontsConnector />
-      {children}
-    </MuiThemeProvider>
-  </StylesProvider>
+  <StyledEngineProvider injectFirst>
+    <StylesProvider {...props}>
+      <MuiThemeProvider theme={theme}>
+        <GlobalCSS />
+        <FontsConnector />
+        {children}
+      </MuiThemeProvider>
+    </StylesProvider>
+  </StyledEngineProvider>
 );
 
 ThemeProvider.defaultProps = {
