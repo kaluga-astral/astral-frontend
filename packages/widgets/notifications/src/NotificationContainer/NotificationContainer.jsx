@@ -34,14 +34,14 @@ const NotificationContainer = ({
       py={4}
       bgcolor={background}
       color={color}
-      borderRadius={8}
+      borderRadius="8px"
     >
       <Box
         display="flex"
         justifyContent="space-between"
         className={classes.header}
       >
-        <Box 
+      <Box 
           fontWeight="bold"
           mr={4}
         >{title}</Box>
