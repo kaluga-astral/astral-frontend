@@ -34,7 +34,7 @@ const NotificationContainer = ({
       py={4}
       bgcolor={background}
       color={color}
-      borderRadius="8px"
+      borderRadius={2}
     >
       <Box
         display="flex"

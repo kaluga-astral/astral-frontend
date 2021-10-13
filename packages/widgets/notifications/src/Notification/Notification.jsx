@@ -153,7 +153,7 @@ const Notification = React.forwardRef(
         className={className}
         ref={ref}
         position="relative"
-        borderRadius="8px"
+        borderRadius={2}
         overflow="hidden"
         {...(!persist && {
           onMouseEnter: handleMouseEnter,
