@@ -16,6 +16,7 @@ const useStyles = makeStyles(
       overflow: 'hidden',
     },
     button: {
+      display: 'flex',
       width: '100%',
       justifyContent: 'left',
       color: theme.palette.gray[600],

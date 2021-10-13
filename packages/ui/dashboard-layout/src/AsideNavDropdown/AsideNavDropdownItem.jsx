@@ -12,6 +12,7 @@ import { __Context as SidebarContext } from '../Sidebar';
 const useStyles = makeStyles(
   theme => ({
     root: {
+      display: 'flex',
       justifyContent: 'left',
       marginRight: theme.spacing(5),
     },

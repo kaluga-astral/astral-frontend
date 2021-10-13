@@ -24,6 +24,7 @@ const useStyles = makeStyles(
       backgroundColor: theme.palette.gray[600],
     },
     button: {
+      display: 'flex',
       width: '100%',
       padding: theme.spacing(3, 4),
       overflow: 'hidden',

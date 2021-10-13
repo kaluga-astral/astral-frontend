@@ -30,6 +30,7 @@ const useStyles = makeStyles(
       pointerEvents: 'none',
     },
     button: {
+      display: 'flex',
       justifyContent: 'left',
       borderRadius: theme.shape.borderRadius,
       width: '100%',
