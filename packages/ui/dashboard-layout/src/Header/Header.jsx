@@ -9,7 +9,7 @@ const useStyles = makeStyles(
     root: {
       flexShrink: 0,
       height: '75px',
-      margin: `0 ${theme.spacing(4)}px`,
+      margin: `0 ${theme.spacing(4)}`,
       userSelect: 'none',
     },
   }),

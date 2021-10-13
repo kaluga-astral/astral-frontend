@@ -16,7 +16,7 @@ const useStyles = makeStyles(
         boxShadow: `0 0 0 0 ${theme.palette.primary.main}20`,
       },
       to: {
-        boxShadow: `0 0 0 ${theme.spacing(8)}px ${
+        boxShadow: `0 0 0 ${theme.spacing(8)} ${
           theme.palette.primary.main
         }20`,
       },

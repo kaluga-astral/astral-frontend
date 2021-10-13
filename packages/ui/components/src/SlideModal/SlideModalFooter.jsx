@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     borderTop: `1px solid ${theme.palette.primary.light}`,
   },
   padding: {
-    padding: `${theme.spacing(4)}px ${theme.spacing(12)}px`,
+    padding: `${theme.spacing(4)} ${theme.spacing(12)}`,
   },
 }));
 
