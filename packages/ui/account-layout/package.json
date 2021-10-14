@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/account-layout",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
@@ -8,14 +8,14 @@
     "release": "assembly-scripts release"
   },
   "dependencies": {
-    "@astral-frontend/icons": "^1.0.0",
-    "@astral-frontend/styles": "^1.0.0",
+    "@astral-frontend/icons": "^2.0.0",
+    "@astral-frontend/styles": "^2.0.0",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {},
   "peerDependencies": {
-    "@astral-frontend/components": "^3.0.1",
+    "@astral-frontend/components": "^4.0.0",
     "react": ">= 16",
     "react-dom": ">= 16",
     "react-router-dom": "^5.1.2"

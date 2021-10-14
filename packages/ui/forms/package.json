@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/forms",
-  "version": "4.0.4",
+  "version": "5.0.0",
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@astral-frontend/constants": "*",
-    "@astral-frontend/styles": "*",
+    "@astral-frontend/styles": "^2.0.0",
     "@astral-frontend/validations": "*",
     "final-form": "^4.18.7",
     "final-form-arrays": "^3.0.2",
@@ -25,9 +25,9 @@
     "enzyme": "^3.11.0"
   },
   "peerDependencies": {
-    "@astral-frontend/components": "^3.0.1",
-    "@astral-frontend/core": "*",
-    "@astral-frontend/icons": "*",
+    "@astral-frontend/components": "^4.0.0",
+    "@astral-frontend/core": "^2.0.0",
+    "@astral-frontend/icons": "^2.0.0",
     "react": ">=16.6.0"
   },
   "sideEffects": false

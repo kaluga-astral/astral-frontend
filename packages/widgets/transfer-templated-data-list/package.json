@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/transfer-templated-data-list",
-  "version": "1.1.4",
+  "version": "2.0.0",
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
@@ -8,10 +8,10 @@
     "release": "assembly-scripts release"
   },
   "dependencies": {
-    "@astral-frontend/components": "^3.0.1",
-    "@astral-frontend/data-list": "*",
-    "@astral-frontend/icons": "^1.0.0",
-    "@astral-frontend/styles": "^1.0.0",
+    "@astral-frontend/components": "^4.0.0",
+    "@astral-frontend/data-list": "^2.0.0",
+    "@astral-frontend/icons": "^2.0.0",
+    "@astral-frontend/styles": "^2.0.0",
     "classnames": "^2.2.6",
     "lodash-es": "^4.17.11",
     "prop-types": "^15.7.2"
