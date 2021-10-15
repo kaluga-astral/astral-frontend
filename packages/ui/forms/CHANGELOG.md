@@ -1,3 +1,7 @@
+# 4.0.5
+
+- Для TextField формы добавлена возможность пробрасывать helperText
+
 # 4.0.4
 
 - Добавлен props initialValue для AsyncAutocompleteField
