@@ -4,6 +4,8 @@ import { DatePicker as MuiDatePicker } from '@mui/lab';
 import { DEFAULT_VIEW_DATE_FORMAT } from '@astral-frontend/constants';
 import { formatISO, isValid } from 'date-fns';
 
+import TextField from '../TextField';
+
 const DatePicker = ({
   autoOk = true,
   pickerVariant = 'inline',
@@ -32,10 +34,11 @@ const DatePicker = ({
       minDate={minDate}
       maxDate={maxDate}
       variant={pickerVariant}
-      format={viewFormat}
+      inputFormat={viewFormat}
       value={value && new Date(value)}
       invalidDateMessage={invalidDateMessage}
       onChange={handleChange}
+      renderInput={inputProps => <TextField {...inputProps} />}
     />
   );
 };
