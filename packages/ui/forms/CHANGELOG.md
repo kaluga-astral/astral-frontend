@@ -1,3 +1,7 @@
+# 4.1.0
+
+- Обновлены пакеты: @astral-frontend/styles, @astral-frontend/components, @astral-frontend/core, @astral-frontend/icons
+
 # 4.0.4
 
 - Добавлен props initialValue для AsyncAutocompleteField
@@ -14,12 +18,10 @@
 
 - Добавлен forwardRef для AsyncAutocompleteField
 
-
 # 4.0.0
 
 - Добавлен AutocompleteField
 - Изменено апи AsyncAutocomplete из-за связи с Autocomplete из пакета components
-
 
 # 3.0.1
 
