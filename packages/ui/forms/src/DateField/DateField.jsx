@@ -8,6 +8,7 @@ import {
 import { DatePicker } from '@astral-frontend/components';
 
 import Field from '../Field';
+import TextField from '../TextField';
 
 const FormDateField = ({
   minDate = new Date('1000-01-01'),
@@ -33,13 +34,17 @@ const FormDateField = ({
     <Field
       {...props}
       validate={validateFunc}
-      render={({ value, error, ...fieldProps }) => (
+      render={({ value, error, label, onChange, ...fieldProps }) => (
         <DatePicker
-          {...fieldProps}
           error={Boolean(error)}
           minDate={minDate}
           maxDate={maxDate}
           value={value || null}
+          label={label}
+          onChange={onChange}
+          renderInput={(inputProps) => (
+            <TextField {...fieldProps} {...inputProps} />
+          )}
         />
       )}
     />
