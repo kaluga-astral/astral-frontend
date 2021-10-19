@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ruLocale from 'date-fns/locale/ru';
-import AdapterDateFns from '@date-io/date-fns';
 import { LocalizationProvider } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 const DatePickersUtilsProvider = ({ children }) => (
   <LocalizationProvider dateAdapter={AdapterDateFns} locale={ruLocale}>

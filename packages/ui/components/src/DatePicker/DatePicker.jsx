@@ -7,12 +7,10 @@ import { formatISO, isValid } from 'date-fns';
 import TextField from '../TextField';
 
 const DatePicker = ({
-  autoOk = true,
-  pickerVariant = 'inline',
   minDate = new Date('1000-01-01'),
   maxDate = new Date('9999-12-31'),
   viewFormat = DEFAULT_VIEW_DATE_FORMAT,
-  invalidDateMessage = 'Неверный формат даты',
+  // invalidDateMessage = 'Неверный формат даты',
   onChange,
   value,
   ...props
@@ -30,15 +28,17 @@ const DatePicker = ({
   return (
     <MuiDatePicker
       {...props}
-      autoOk={autoOk}
       minDate={minDate}
       maxDate={maxDate}
-      variant={pickerVariant}
       inputFormat={viewFormat}
       value={value && new Date(value)}
-      invalidDateMessage={invalidDateMessage}
       onChange={handleChange}
-      renderInput={inputProps => <TextField {...inputProps} />}
+      renderInput={inputProps => (
+        <TextField
+          {...inputProps}
+          // {...(inputProps.error && { helperText: invalidDateMessage })}
+        />
+      )}
     />
   );
 };
@@ -48,9 +48,7 @@ DatePicker.propTypes = {
   maxDate: PropTypes.instanceOf(Date),
   value: PropTypes.string,
   viewFormat: PropTypes.string,
-  pickerVariant: PropTypes.string,
   invalidDateMessage: PropTypes.string,
-  autoOk: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
 };
 

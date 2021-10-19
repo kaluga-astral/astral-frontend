@@ -13,7 +13,6 @@
     "@astral-frontend/fonts": "*",
     "@astral-frontend/icons": "^1.3.0",
     "@astral-frontend/styles": "^1.4.0",
-    "@date-io/date-fns": "1.3.13",
     "@mui/lab": "^5.0.0-alpha.50",
     "@mui/styles": "^5.0.1",
     "@researchgate/react-intersection-list": "3.0.8",

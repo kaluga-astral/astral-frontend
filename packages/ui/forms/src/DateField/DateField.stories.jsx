@@ -5,21 +5,9 @@ import Form from '../Form';
 
 import DateField from './DateField';
 
-const args = {
-  autoOk: true,
-  pickerVariant: 'inline',
-};
-
 export default {
   title: 'forms/DateField',
   component: DateField,
-  args,
-  argTypes: {
-    pickerVariant: {
-      options: ['dialog', 'inline', 'static'],
-      control: { type: 'radio' },
-    },
-  },
 };
 
 const Template = props => {
