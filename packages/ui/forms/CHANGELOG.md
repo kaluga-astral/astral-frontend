@@ -1,6 +1,9 @@
 # 4.1.0
 
 - Обновлены пакеты: @astral-frontend/styles, @astral-frontend/components, @astral-frontend/core, @astral-frontend/icons
+# 4.0.5
+
+- Для TextField формы добавлена возможность пробрасывать helperText
 
 # 4.0.4
 
