@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/forms",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
@@ -25,7 +25,7 @@
     "enzyme": "^3.11.0"
   },
   "peerDependencies": {
-    "@astral-frontend/components": "^3.0.1",
+    "@astral-frontend/components": "^3.0.5",
     "@astral-frontend/core": "*",
     "@astral-frontend/icons": "*",
     "react": ">=16.6.0"
