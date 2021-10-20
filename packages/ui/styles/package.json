@@ -11,6 +11,9 @@
     "@astral-frontend/core": "^1.3.0",
     "@material-ui/core": "^4.12.2"
   },
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "*"
+  },
   "peerDependencies": {
     "react": ">=16.6.0"
   },

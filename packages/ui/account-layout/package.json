@@ -13,7 +13,9 @@
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "*"
+  },
   "peerDependencies": {
     "@astral-frontend/components": "^3.0.5",
     "react": ">= 16",
