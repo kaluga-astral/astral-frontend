@@ -4,7 +4,7 @@ import DatePicker from './DatePicker';
 import DatePickerUtilsProvider from './DatePickerUtilsProvider';
 
 const args = {
-  viewFormat: 'dd.MM.yyyy',
+  inputFormat: 'dd.MM.yyyy',
 };
 
 export default {

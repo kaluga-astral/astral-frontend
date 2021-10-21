@@ -7,6 +7,7 @@
 - ExpansionPanel* переименован в Accorion*
 - Замененено свойство 'getOptionSelected' на 'isOptionEqualToValue' в Autocomplete
 - KeyboardDatePicker заменен на DatePicker
+- Заменено свойство 'viewFormat' на 'inputFormat' в DatePicker
 - MuiPickersUtilsProvider заменен на LocalizationProvider
 - Удалено свойство 'disableTypography' у DialogTitle
 - Заменено свойство 'static' на 'determinate' у CircularProgress
