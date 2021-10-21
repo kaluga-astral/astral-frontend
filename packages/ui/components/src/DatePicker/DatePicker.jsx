@@ -10,9 +10,8 @@ import {
 } from '@astral-frontend/constants';
 import { formatISO, isValid } from 'date-fns';
 
-import TextField from '../TextField';
-
 import DatePickersUtilsProvider from './DatePickerUtilsProvider';
+import DatePickerTextField from './DatePickerTextField';
 
 const DatePicker = ({
   minDate = DEFAULT_MIN_DATE,
@@ -25,7 +24,6 @@ const DatePicker = ({
   helperText,
   ...props
 }) => {
-  const [textFieldValue, setTextFieldValue] = React.useState(value);
   const helperTextMessage = React.useMemo(() => {
     if (error) {
       return helperText || DEFAULT_INVALID_DATE_MESSAGE;
@@ -34,8 +32,8 @@ const DatePicker = ({
     return helperText;
   }, [error, helperText]);
 
-  const handleChange = React.useCallback(
-    date => {
+  const handleDatePickerChange = React.useCallback(
+    (date) => {
       if (isValid(date)) {
         onChange(formatISO(date, { representation: 'date' }));
 
@@ -47,12 +45,6 @@ const DatePicker = ({
     [onChange],
   );
 
-  React.useEffect(() => {
-    if (!value) {
-      setTextFieldValue('');
-    }
-  }, [value]);
-
   return (
     <DatePickersUtilsProvider>
       <MuiDatePicker
@@ -62,24 +54,16 @@ const DatePicker = ({
         inputFormat={viewFormat}
         mask={mask}
         value={value}
-        onChange={handleChange}
-        renderInput={renderProps => {
-          const textFieldInputValue = value ? renderProps.inputProps.value : '';
-
-          return (
-            <TextField
-              {...props}
-              {...renderProps}
-              inputProps={{
-                ...renderProps.inputProps,
-                value: textFieldInputValue,
-              }}
-              value={textFieldValue}
-              error={error}
-              helperText={helperTextMessage}
-            />
-          );
-        }}
+        onChange={handleDatePickerChange}
+        renderInput={(renderProps) => (
+          <DatePickerTextField
+            {...props}
+            {...renderProps}
+            datePickerValue={value}
+            error={error}
+            helperText={helperTextMessage}
+          />
+        )}
       />
     </DatePickersUtilsProvider>
   );
