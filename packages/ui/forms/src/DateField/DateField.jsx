@@ -19,7 +19,7 @@ const FormDateField = ({
     const rules = [mustBeDate];
 
     if (minDate || maxDate) {
-      rules.push((ruleValue) =>
+      rules.push(ruleValue =>
         mustBeDatePeriod(String(minDate), ruleValue, String(maxDate)),
       );
     }

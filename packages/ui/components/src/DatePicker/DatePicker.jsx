@@ -35,7 +35,7 @@ const DatePicker = ({
   }, [error, helperText]);
 
   const handleChange = React.useCallback(
-    (date) => {
+    date => {
       if (isValid(date)) {
         onChange(formatISO(date, { representation: 'date' }));
 
@@ -63,7 +63,7 @@ const DatePicker = ({
         mask={mask}
         value={value}
         onChange={handleChange}
-        renderInput={(renderProps) => {
+        renderInput={renderProps => {
           const textFieldInputValue = value ? renderProps.inputProps.value : '';
 
           return (
