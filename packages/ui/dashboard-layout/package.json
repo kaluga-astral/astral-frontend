@@ -15,6 +15,9 @@
     "nanoid": "^2.1.11",
     "prop-types": "^15.7.2"
   },
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "*"
+  },
   "peerDependencies": {
     "@astral-frontend/components": "^4.0.0",
     "react": ">= 16",
