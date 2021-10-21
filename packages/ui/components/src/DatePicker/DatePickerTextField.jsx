@@ -13,7 +13,7 @@ const DatePickerTextField = ({ datePickerValue, inputProps, ...props }) => {
     return '';
   }, [textFieldValue, inputProps]);
 
-  const handleTextFieldChange = React.useCallback((event) => {
+  const handleTextFieldChange = React.useCallback(event => {
     setTextFieldValue(event.target.value);
   }, []);
 

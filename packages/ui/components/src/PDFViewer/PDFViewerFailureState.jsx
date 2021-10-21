@@ -20,6 +20,6 @@ const PDFViewerFailureState = ({ error }) => {
 
 PDFViewerFailureState.propTypes = {
   error: PropTypes.instanceOf(Error),
-}
+};
 
 export default PDFViewerFailureState;
