@@ -10,7 +10,7 @@
   "dependencies": {
     "@astral-frontend/constants": "*",
     "@astral-frontend/styles": "^1.4.0",
-    "@astral-frontend/validations": "*",
+    "@astral-frontend/validations": "^1.2.3",
     "final-form": "^4.18.7",
     "final-form-arrays": "^3.0.2",
     "format-string-by-pattern": "^1.2.2",
