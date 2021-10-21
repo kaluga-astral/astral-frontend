@@ -42,7 +42,7 @@ const DatePicker = ({
         return;
       }
 
-      onChange(date);
+      onChange(String(date));
     },
     [onChange],
   );

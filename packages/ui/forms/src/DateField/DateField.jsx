@@ -45,7 +45,6 @@ const FormDateField = ({
             maxDate={maxDate}
             error={isError}
             helperText={helperText}
-            clearable
           />
         );
       }}
