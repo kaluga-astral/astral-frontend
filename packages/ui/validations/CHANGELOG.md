@@ -1,3 +1,7 @@
+# 1.2.3
+
+- Исправлена реализация getDateWithoutTime в mustBeDatePeriod
+
 # 1.2.2
 
 - Поправлена работа mustBePresent при проверке Date
