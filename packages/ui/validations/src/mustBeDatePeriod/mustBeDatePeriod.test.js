@@ -3,6 +3,7 @@ import mustBeDatePeriod from './mustBeDatePeriod';
 describe('mustBeDatePeriod validation rule', () => {
   test.each([
     ['2019', '1000', '2017'],
+    ['0001', '1000', '2017'],
     ['02.11.2011', '02.09.2011', '02.10.2011'],
     ['10.02.2011', '11.02.2011', '11.02.2011'],
   ])(

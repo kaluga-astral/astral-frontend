@@ -1,38 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DatePicker as MuiDatePicker } from '@mui/lab';
-import { DEFAULT_VIEW_DATE_FORMAT } from '@astral-frontend/constants';
-import { formatISO, isMatch, isValid } from 'date-fns';
+import {
+  DEFAULT_DATE_MASK,
+  DEFAULT_INVALID_DATE_MESSAGE,
+  DEFAULT_MAX_DATE,
+  DEFAULT_MIN_DATE,
+  DEFAULT_VIEW_DATE_FORMAT,
+} from '@astral-frontend/constants';
+import { formatISO, isValid } from 'date-fns';
 
 import TextField from '../TextField';
 
 import DatePickersUtilsProvider from './DatePickerUtilsProvider';
 
 const DatePicker = ({
-  minDate = new Date('1000-01-01'),
-  maxDate = new Date('9999-12-31'),
+  minDate = DEFAULT_MIN_DATE,
+  maxDate = DEFAULT_MAX_DATE,
   viewFormat = DEFAULT_VIEW_DATE_FORMAT,
-  mask = '__.__.____',
-  invalidDateMessage = 'Неверный формат даты',
+  mask = DEFAULT_DATE_MASK,
   onChange,
   value,
-  renderInput = inputProps => (
-    <TextField
-      {...inputProps}
-      {...(inputProps.error && { helperText: invalidDateMessage })}
-    />
-  ),
+  error,
+  helperText,
   ...props
 }) => {
-  const handleChange = date => {
-    if (isValid(date) && isMatch(value, viewFormat)) {
-      onChange(formatISO(date, { representation: 'date' }));
-
-      return;
+  const [textFieldValue, setTextFieldValue] = React.useState(value);
+  const helperTextMessage = React.useMemo(() => {
+    if (error) {
+      return helperText || DEFAULT_INVALID_DATE_MESSAGE;
     }
 
-    onChange('Invalid Date');
-  };
+    return helperText;
+  }, [error, helperText]);
+
+  const handleChange = React.useCallback(
+    (date) => {
+      if (isValid(date)) {
+        onChange(formatISO(date, { representation: 'date' }));
+
+        return;
+      }
+
+      onChange(date);
+    },
+    [onChange],
+  );
+
+  React.useEffect(() => {
+    if (!value) {
+      setTextFieldValue('');
+    }
+  }, [value]);
 
   return (
     <DatePickersUtilsProvider>
@@ -42,9 +61,25 @@ const DatePicker = ({
         maxDate={maxDate}
         inputFormat={viewFormat}
         mask={mask}
-        value={value && new Date(value)}
+        value={value}
         onChange={handleChange}
-        renderInput={renderInput}
+        renderInput={(renderProps) => {
+          const textFieldInputValue = value ? renderProps.inputProps.value : '';
+
+          return (
+            <TextField
+              {...props}
+              {...renderProps}
+              inputProps={{
+                ...renderProps.inputProps,
+                value: textFieldInputValue,
+              }}
+              value={textFieldValue}
+              error={error}
+              helperText={helperTextMessage}
+            />
+          );
+        }}
       />
     </DatePickersUtilsProvider>
   );
@@ -59,6 +94,8 @@ DatePicker.propTypes = {
   invalidDateMessage: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   renderInput: PropTypes.func,
+  error: PropTypes.bool,
+  helperText: PropTypes.string,
 };
 
 export default DatePicker;

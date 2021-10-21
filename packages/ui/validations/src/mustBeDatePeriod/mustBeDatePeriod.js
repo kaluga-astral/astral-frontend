@@ -1,18 +1,21 @@
 import { formatISOToView } from '@astral-frontend/utils';
+import { formatISO, isValid } from 'date-fns';
 
-const getMinErrorMessage = minDate =>
+const getMinErrorMessage = (minDate) =>
   `Дата должна быть не меньше ${formatISOToView(minDate.toISOString())}`;
-const getMaxErrorMessage = maxDate =>
+const getMaxErrorMessage = (maxDate) =>
   `Дата должна быть не больше ${formatISOToView(maxDate.toISOString())}`;
 
-const getDateWithoutTime = dateString => {
-  const currentDate = new Date(dateString);
+const getDateWithoutTime = (dateString) => {
+  const date = new Date(dateString);
 
-  return new Date(
-    currentDate.getFullYear(),
-    currentDate.getMonth(),
-    currentDate.getDate(),
-  );
+  if (isValid(new Date(dateString))) {
+    return new Date(
+      formatISO(new Date(dateString), { representation: 'date' }),
+    );
+  }
+
+  return date;
 };
 
 export default (min, value, max) => {

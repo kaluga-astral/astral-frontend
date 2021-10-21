@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React from 'react';
 import {
   composeValidations,
   mustBeDate,
@@ -8,7 +8,6 @@ import {
 import { DatePicker } from '@astral-frontend/components';
 
 import Field from '../Field';
-import TextField from '../TextField';
 
 const FormDateField = ({
   minDate = new Date('1000-01-01'),
@@ -16,11 +15,11 @@ const FormDateField = ({
   validate,
   ...props
 }) => {
-  const validateFunc = useCallback((value, values) => {
+  const validateFunc = React.useCallback((value, values) => {
     const rules = [mustBeDate];
 
     if (minDate || maxDate) {
-      rules.push(ruleValue =>
+      rules.push((ruleValue) =>
         mustBeDatePeriod(String(minDate), ruleValue, String(maxDate)),
       );
     }
@@ -34,33 +33,30 @@ const FormDateField = ({
     <Field
       {...props}
       validate={validateFunc}
-      render={({ value, error, label, onChange, ...fieldProps }) => (
-        <DatePicker
-          error={Boolean(error)}
-          minDate={minDate}
-          maxDate={maxDate}
-          value={value || null}
-          label={label}
-          onChange={onChange}
-          renderInput={(inputProps) => (
-            <TextField {...fieldProps} {...inputProps} />
-          )}
-        />
-      )}
+      render={({ error, meta, helperText: helperTextProp, ...renderProps }) => {
+        const isError = meta.touched && meta.invalid;
+        const helperText = error || helperTextProp;
+
+        return (
+          <DatePicker
+            {...props}
+            {...renderProps}
+            minDate={minDate}
+            maxDate={maxDate}
+            error={isError}
+            helperText={helperText}
+            clearable
+          />
+        );
+      }}
     />
   );
 };
 
 FormDateField.propTypes = {
-  name: PropTypes.string.isRequired,
-  viewFormat: PropTypes.string,
   minDate: PropTypes.instanceOf(Date),
   maxDate: PropTypes.instanceOf(Date),
   validate: PropTypes.func,
-  inputProps: PropTypes.shape({
-    min: PropTypes.string,
-    max: PropTypes.string,
-  }),
 };
 
 export default FormDateField;
