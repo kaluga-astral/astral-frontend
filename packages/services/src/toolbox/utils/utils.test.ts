@@ -3,6 +3,7 @@ import { TOOLBOX_CERTIFICATE_RESULTS } from '../__stubs__/certificates';
 import {
   filterServiceCertificate,
   formatCertificateListToClient,
+  formatInn,
 } from './utils';
 
 describe('formatCertificateListToClient', () => {
@@ -104,4 +105,18 @@ describe('filterServiceCertificate', () => {
       filterServiceCertificate([TOOLBOX_CERTIFICATE_RESULTS]),
     ).toStrictEqual([TOOLBOX_CERTIFICATE_RESULTS]);
   });
+});
+
+describe('formatInn', () => {
+  it.each<[string, string]>([
+    ['1234567890', '1234567890'],
+    ['001234567890', '1234567890'],
+    ['021234567890', '021234567890'],
+    ['212345678900', '212345678900'],
+  ])(
+    'Проверка правильность форматирование %s инн к виду %s',
+    (inputInn, expectedInn) => {
+      expect(formatInn(inputInn)).toStrictEqual(expectedInn);
+    },
+  );
 });
