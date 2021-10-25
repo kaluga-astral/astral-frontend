@@ -1,4 +1,4 @@
-import { compact, trimStart } from 'lodash-es';
+import { compact } from 'lodash-es';
 
 import {
   OidsList,
@@ -36,6 +36,9 @@ export const separateFieldNamePatronymic = (
 
   return { name, patronymic };
 };
+
+// обрезает стартовые 00 для юр. лиц сделано для обратной совместимости
+export const formatInn = (inn: string) => inn.replace(/^00/, '');
 
 const CERTIFICATE_REQUIRED_KEYS: (keyof ToolboxCertificateInfoDTO)[] = [
   'notAfter',
@@ -86,7 +89,7 @@ export const formatCertificateListToClient = (
         // в некоторых сертификатах может присутствовать 2 поля inn и innle,
         // для корректной работы существующих приложений мы замещаем inn на innle
         innFl: subject.innle && subject.inn ? subject.inn : '',
-        inn: subject.innle || trimStart(subject.inn, '00'), // обрезает стартовые 00 для юр. лиц сделано для обратной совместимости
+        inn: subject.innle || formatInn(subject.inn || ''),
         address: compact([subject.region, subject.city, subject.street]).join(
           ' ',
         ),
