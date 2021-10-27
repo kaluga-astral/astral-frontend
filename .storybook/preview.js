@@ -1,16 +1,30 @@
 import { ThemeProvider } from '@astral-frontend/components';
-import { AstralEDOTheme } from '@astral-frontend/themes';
+
+import { themes, getTheme } from './themes';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
 };
 
-const theme = new AstralEDOTheme();
-
 export const decorators = [
-  Story => (
-    <ThemeProvider theme={theme}>
-      <Story />
-    </ThemeProvider>
-  ),
+  (Story, context) => {
+    return (
+      <ThemeProvider theme={getTheme(context.globals.theme).theme}>
+        <Story {...context} />
+      </ThemeProvider>
+    );
+  },
 ];
+
+export const globalTypes = {
+  theme: {
+    name: 'Theme',
+    description: 'Global theme for components',
+    defaultValue: themes[0].name,
+    toolbar: {
+      icon: 'circlehollow',
+      items: themes.map(theme => theme.name),
+      showName: true,
+    },
+  },
+};
