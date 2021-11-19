@@ -47,19 +47,26 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
       ),
     [items],
   );
-  const checked = items.length === selectedItems.length;
-  const handleCheckboxChange = () => {
+  const checked = React.useMemo(
+    () =>
+      items.filter(item => !item.isRowSelectionDisabled).length ===
+      selectedItems.filter(item => !item.isRowSelectionDisabled).length,
+    [items, selectedItems],
+  );
+
+  const handleCheckboxChange = React.useCallback(() => {
     if (checked) {
       setSelectedItems([]);
     } else {
       setSelectedItems(
         items.filter(
           item =>
-            item.percentCompleted == null || item.percentCompleted === 100,
+            (item.percentCompleted == null || item.percentCompleted === 100) &&
+            !item.isRowSelectionDisabled,
         ),
       );
     }
-  };
+  }, [items, checked]);
 
   return (
     <div className={cn(classes.root, className)}>
