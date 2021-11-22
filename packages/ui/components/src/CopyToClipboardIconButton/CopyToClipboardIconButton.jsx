@@ -4,10 +4,14 @@ import React from 'react';
 import IconButton from '../IconButton';
 import Tooltip from '../Tooltip';
 
-import CopyToClipboardIconButtonIcon from './CopyToClipboardIconButtonIcon';
-
-const CopyToClipboardIconButton = ({ text, tooltipProps, iconButtonProps }) => {
+const CopyToClipboardIconButton = ({
+  text,
+  tooltipProps,
+  iconButtonProps,
+  children,
+}) => {
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
+
   const handleClick = React.useCallback(() => {
     navigator.clipboard.writeText(text).then(() => {
       setTooltipOpen(true);
@@ -20,7 +24,7 @@ const CopyToClipboardIconButton = ({ text, tooltipProps, iconButtonProps }) => {
   return (
     <Tooltip open={tooltipOpen} {...tooltipProps}>
       <IconButton {...iconButtonProps} onClick={handleClick}>
-        <CopyToClipboardIconButtonIcon />
+        {children}
       </IconButton>
     </Tooltip>
   );
@@ -54,6 +58,7 @@ CopyToClipboardIconButton.propTypes = {
     ]),
   }),
   iconButtonProps: PropTypes.shape({}),
+  children: PropTypes.node.isRequired,
 };
 
 export default CopyToClipboardIconButton;
