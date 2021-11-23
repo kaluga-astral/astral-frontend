@@ -47,12 +47,17 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
       ),
     [items],
   );
-  const checked = React.useMemo(
-    () =>
-      items.filter(item => !item.isRowSelectionDisabled).length ===
-      selectedItems.filter(item => !item.isRowSelectionDisabled).length,
-    [items, selectedItems],
-  );
+  const checked = React.useMemo(() => {
+    const selectedItemsCount = selectedItems.filter(
+      item => !item.isRowSelectionDisabled,
+    ).length;
+    const itemsCount = items.filter(item => !item.isRowSelectionDisabled)
+      .length;
+
+    return (
+      itemsCount && selectedItemsCount && itemsCount === selectedItemsCount
+    );
+  }, [items, selectedItems]);
 
   const handleCheckboxChange = React.useCallback(() => {
     if (checked) {
