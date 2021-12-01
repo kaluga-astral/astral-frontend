@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/validations",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
