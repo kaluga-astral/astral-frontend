@@ -1,7 +1,6 @@
-import { ERROR_MESSAGE } from '../mustBeOGRN';
 import { ORGANIZATION_VALIDATIONS_PARAMS } from '../constants';
 
-import mustBeOGRNIPValidation from './mustBeOGRNIP';
+import mustBeOGRNIPValidation, { ERROR_MESSAGE } from './mustBeOGRNIP';
 
 describe('mustBeOGRNIP', () => {
   let mustBeOGRNIP;

@@ -1,6 +1,7 @@
 /* eslint-disable react/no-this-in-sfc */
 /* eslint-disable max-len */
-import { ERROR_MESSAGE } from '../mustBeOGRN';
+
+export const ERROR_MESSAGE = 'Неверный ОГРНИП. Введите корректный ОГРНИП.';
 
 /**
  * Функция валидации ОГРНИП
