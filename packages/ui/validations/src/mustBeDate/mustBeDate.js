@@ -1,7 +1,7 @@
 import { isValid } from 'date-fns';
 import { isString } from 'lodash-es';
 
-export const ERROR_MESSAGE = 'Дата имеет некорректный формат';
+export const ERROR_MESSAGE = 'Несуществующая дата';
 
 const mustBeDate = value => {
   if (!value) {

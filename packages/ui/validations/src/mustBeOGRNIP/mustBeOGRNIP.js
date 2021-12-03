@@ -1,7 +1,7 @@
 /* eslint-disable react/no-this-in-sfc */
 /* eslint-disable max-len */
 
-export const ERROR_MESSAGE = 'Неверный ОГРНИП. Введите корректный ОГРНИП.';
+export const ERROR_MESSAGE = 'Некорректный ОГРНИП';
 
 /**
  * Функция валидации ОГРНИП

@@ -1,6 +1,4 @@
-import mustBeSNILS from './mustBeSNILS';
-
-const ERROR_MESSAGE = 'Неверный СНИЛС. Введите корректный СНИЛС.';
+import mustBeSNILS, { ERROR_MESSAGE } from './mustBeSNILS';
 
 describe('mustBeSNILS', () => {
   it('должна возвращать сообщение об ошибке если CНИЛС в неверном формате', () => {

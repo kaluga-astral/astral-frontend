@@ -9,7 +9,7 @@ function mustBeMobilePhone(value) {
     return null;
   }
 
-  return 'Телефон должен начинаться с +7 (9**) *** ** - **';
+  return 'Начинается с +7 (9**)...';
 }
 
 export default mustBeMobilePhone;

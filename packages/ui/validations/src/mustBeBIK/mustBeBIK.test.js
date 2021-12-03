@@ -1,6 +1,4 @@
-import mustBeBIK from './mustBeBIK';
-
-const ERROR_MESSAGE = 'Неверный БИК. Введите корректный БИК.';
+import mustBeBIK, { ERROR_MESSAGE } from './mustBeBIK';
 
 describe('mustBeBIK validation rule', () => {
   test('должна возвращать сообщение об ошибке если value состоит не состоит из цифр', () => {

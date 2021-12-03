@@ -2,7 +2,7 @@
 import mustBeOGRNIP from '../mustBeOGRNIP';
 import mustBeOGRNUL from '../mustBeOGRNUL';
 
-export const ERROR_MESSAGE = 'Неверный ОГРН. Введите корректный ОГРН.';
+export const ERROR_MESSAGE = 'Некорректный ОГРН';
 
 /**
  * Функция валидации ОГРН
