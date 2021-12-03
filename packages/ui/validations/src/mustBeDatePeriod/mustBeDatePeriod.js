@@ -1,9 +1,9 @@
 import { formatISOToView } from '@astral-frontend/utils';
 
 const getMinErrorMessage = minDate =>
-  `Дата не раньше ${formatISOToView(minDate.toISOString())}`;
+  `Дата не раньше: ${formatISOToView(minDate.toISOString())}`;
 const getMaxErrorMessage = maxDate =>
-  `Дата не позже ${formatISOToView(maxDate.toISOString())}`;
+  `Дата не позже: ${formatISOToView(maxDate.toISOString())}`;
 
 const getDateWithoutTime = dateString => {
   const currentDate = new Date(dateString);
