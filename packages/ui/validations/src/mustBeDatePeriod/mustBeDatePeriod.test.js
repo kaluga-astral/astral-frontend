@@ -8,9 +8,7 @@ describe('mustBeDatePeriod validation rule', () => {
   ])(
     'Для значения %s при min: %s, max: %s, возвращает сообщение об ошибке',
     (value, min, max) => {
-      expect(
-        mustBeDatePeriod(min, value, max).includes('Дата должна быть не'),
-      ).toBeTruthy();
+      expect(mustBeDatePeriod(min, value, max)).not.toBeNull();
     },
   );
 

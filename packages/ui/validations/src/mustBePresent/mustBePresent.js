@@ -7,7 +7,7 @@ import {
   trim,
 } from 'lodash-es';
 
-export const ERROR_MESSAGE = 'Обязательно для заполнения';
+export const ERROR_MESSAGE = 'Поле не заполнено';
 
 export const mustBePresent = value => {
   if (isNumber(value) || isDate(value)) {

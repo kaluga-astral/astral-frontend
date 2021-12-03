@@ -2,7 +2,7 @@
 import mustBeINNIP from '../mustBeINNIP';
 import mustBeINNUL from '../mustBeINNUL';
 
-export const ERROR_MESSAGE = 'Неверный ИНН. Введите корректный ИНН.';
+export const ERROR_MESSAGE = 'Некорректный ИНН';
 
 /**
  * Проверка валидации ИНН на корректность

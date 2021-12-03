@@ -9,7 +9,7 @@ function mustBePhone(value) {
     return null;
   }
 
-  return 'Номер телефона имеет некорректный формат';
+  return 'Некорректный телефон';
 }
 
 export default mustBePhone;
