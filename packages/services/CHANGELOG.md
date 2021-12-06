@@ -6,3 +6,6 @@
 
 - Исправлена функция formatCertificateListToClient. Больше не фильтрует сертификаты.
 - Добавлена функция filterServiceCertificate, которая фильтрует служебные сертификаты
+
+# 1.1.5
+- Уточнен тип CreateTokenCertificateRequestInputDTO
