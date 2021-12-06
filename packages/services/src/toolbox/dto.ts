@@ -48,15 +48,41 @@ export type CreateCertificateRequestInputDTO = {
   notBefore: string;
   notAfter: string;
   containerName: string;
-  requestName: string;
+  requestName?: string; //  не знаю что это, на ЭТ не используется
   exportableKey: boolean; // экспорт ключа
 };
 
 export type CreateTokenCertificateRequestInputDTO = {
-  Pin: string;
-  TokenType: string;
+  pin: string;
+  tokenType: number;
   computeSKID: boolean; // в доке toolbox его нет, но в ЭТ он отправляется 🤷‍
-  RequestData: string; // Все данные для сертификата приведенные в json
+  requestData: {
+    AbonentType: number; // хз что это, пример "1"
+    CN: string; // commonName
+    ContainerName: string;
+    IdentKind: 0 | 1; // идентификатор подтверждения личности 0 - личное; 1 - удаленное по сертификату
+    NotAfter: '';
+    NotBefore: '';
+
+    INN: string; // для юр. лиц здесь может быть или inn организации, тогда отсутствует INNLE или инн физ. лица при наличии INNLE
+    INNLE: string | null; // для юр. лиц здесь может быть или inn организации
+    KPP: string | null; // пример "KPP=999901001"
+    OGRN: string | null;
+    OGRNIP: string | null;
+    O: string; // название организации, обычно короткое
+    OU: string | null; // название подразделения организации
+
+    E: string; // email
+    G: string; // имя и отчество в одной строке
+    SN: string; // фамилия
+    SNILS: string;
+    T: string | null; // должность
+
+    S: string; // регион, пример "22 Алтайский край"
+    C: string; // гражданство, пример "RU"
+    L: string; // город, пример "г. Барнаул"
+    Street: string; // улица, пример "ул 280-летия Барнаула"
+  };
 };
 
 export type CreateCertificateRequestDTO = {
