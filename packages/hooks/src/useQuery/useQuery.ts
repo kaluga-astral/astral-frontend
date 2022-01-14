@@ -18,6 +18,7 @@ export interface IUseQueryOptions<TResponse, TError = Error> {
   onError?: (err: TError) => void;
   responseFormatter?: (data: TResponse) => TResponse;
   staleTime?: number;
+  cacheTime?: number;
 }
 
 export type IUseQueryOptionsWithoutId<TResponse, TError = Error> = Omit<
