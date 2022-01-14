@@ -50,12 +50,13 @@ export type CreateCertificateRequestInputDTO = {
   containerName: string;
   requestName?: string; //  не знаю что это, на ЭТ не используется
   exportableKey: boolean; // экспорт ключа
+  computeSKID: boolean; // без данного флага в response не будет subjectKeyID
 };
 
 export type CreateTokenCertificateRequestInputDTO = {
   pin: string;
   tokenType: number;
-  computeSKID: boolean; // в доке toolbox его нет, но в ЭТ он отправляется 🤷‍
+  computeSKID: boolean; // без данного флага в response не будет subjectKeyID
   requestData: {
     AbonentType: number; // хз что это, пример "1"
     CN: string; // commonName
