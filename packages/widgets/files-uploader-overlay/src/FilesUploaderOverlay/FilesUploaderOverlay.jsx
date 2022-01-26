@@ -22,6 +22,9 @@ const useStyles = makeStyles(
       },
     },
     root: {
+      outline: 'none',
+    },
+    overlay: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -65,16 +68,17 @@ const useStyles = makeStyles(
   { name: 'FilesUploaderOverlay' },
 );
 
-const FilesUploaderOverlay = ({
-  className,
-  Icon,
-  children,
-  restrictionsMessage,
-  ...config
-}) => {
+export const FilesUploaderOverlay = props => {
+  const {
+    className,
+    Icon,
+    children,
+    restrictionsMessage,
+    ...restProps
+  } = props;
   const classes = useStyles();
   const { isDragActive, getRootProps, getInputProps, open } = useDropzone(
-    config,
+    restProps,
   );
   const inputProps = getInputProps();
   const rootProps = getRootProps();
@@ -87,9 +91,9 @@ const FilesUploaderOverlay = ({
       key="overlay"
       value={{ openFileDialog }}
     >
-      <Box {...rootProps} sx={{ outline: 'none' }}>
+      <Box {...rootProps} className={cn(classes.root, className)}>
         {isDragActive && (
-          <div className={cn(classes.root, className)}>
+          <div className={classes.overlay}>
             {restrictionsMessage && (
               <span className={classes.restrictionsMessage}>
                 {restrictionsMessage}
