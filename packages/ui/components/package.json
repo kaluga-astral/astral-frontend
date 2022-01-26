@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/components",
-  "version": "3.1.0",
+  "version": "3.1.1-beta.1",
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
