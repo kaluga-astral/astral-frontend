@@ -11,7 +11,6 @@ module.exports = {
     // TODO: вынести на обсуждение по style guid
     'import/prefer-default-export': 'off',
     'react/function-component-definition': 'off',
-    'no-restricted-exports': 'off',
 
     'prettier/prettier': ['error', { singleQuote: true, trailingComma: 'all' }],
 
