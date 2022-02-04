@@ -3,7 +3,7 @@ module.exports = {
     jest: true,
     browser: true,
   },
-  plugins: ['prettier', 'jest'],
+  plugins: ['prettier', 'jest', 'import', 'jsx-a11y', 'react'],
   extends: ['airbnb-typescript', 'plugin:prettier/recommended'],
   parserOptions: {
     project: ['tsconfig.json'],

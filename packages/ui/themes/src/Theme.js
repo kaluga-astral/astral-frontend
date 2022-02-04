@@ -9,7 +9,7 @@ const themeOptions = {
 
 class Theme {
   constructor(options) {
-    return createTheme(merge({}, themeOptions, options));
+    createTheme(merge({}, themeOptions, options));
   }
 }
 
