@@ -7,7 +7,7 @@
   "dependencies": {
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "4.0.0",
-    "babel-eslint": "10.1.0",
+    "@babel/eslint-parser": "^7.17.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jsx-a11y": "6.5.1",

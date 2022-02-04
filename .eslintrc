@@ -3,7 +3,11 @@
     "@astral-frontend/eslint-config-ui"
   ],
   "rules": {
-    "no-restricted-exports": "off"
+    "no-restricted-exports": "off",
+    "import/named": "off",
+    "import/no-named-as-default-member": "off",
+    "import/no-named-as-default": "off",
+    "react/jsx-uses-react": "off"
   },
-  "ignorePatterns": ["**/node_modules/**", "**/lib/**", "**/storybook-static/**"]
+  "ignorePatterns": ["**/node_modules/**", "**/lib/**", "**/storybook-static/**", "tools", "scripts"]
 }
