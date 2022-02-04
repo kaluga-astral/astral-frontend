@@ -15,6 +15,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/function-component-definition': 'off',
 
     'prettier/prettier': ['error', { singleQuote: true }],
 

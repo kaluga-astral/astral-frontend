@@ -5,7 +5,7 @@ module.exports = (err, stats) =>
     let messages;
     if (err) {
       if (!err.message) {
-        return reject(err);
+        reject(err);
       }
       messages = formatWebpackMessages({
         errors: [err.message],
@@ -20,9 +20,9 @@ module.exports = (err, stats) =>
       if (messages.errors.length > 1) {
         messages.errors.length = 1;
       }
-      return reject(new Error(messages.errors.join('\n\n')));
+      reject(new Error(messages.errors.join('\n\n')));
     }
-    return resolve(
+    resolve(
       stats.toString({
         colors: true,
         modules: true,

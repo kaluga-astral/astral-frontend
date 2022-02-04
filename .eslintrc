@@ -2,5 +2,8 @@
   "extends": [
     "@astral-frontend/eslint-config-ui"
   ],
+  "rules": {
+    "no-restricted-imports": "off"
+  },
   "ignorePatterns": ["**/node_modules/**", "**/lib/**", "**/storybook-static/**"]
 }
