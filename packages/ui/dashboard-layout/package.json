@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/dashboard-layout",
-  "version": "2.0.9",
+  "version": "2.0.14",
   "main": "./src/index.js",
   "scripts": {
     "build": "assembly-scripts build",
@@ -10,7 +10,7 @@
   "dependencies": {
     "@astral-frontend/icons": "^1.2.0",
     "@astral-frontend/styles": "^1.3.3",
-    "@astral-frontend/flat-templated-data-list": "^1.1.5",
+    "@astral-frontend/flat-templated-data-list": "^1.1.9",
     "classnames": "^2.2.6",
     "nanoid": "^2.1.11",
     "prop-types": "^15.7.2"
@@ -19,7 +19,7 @@
     "@astral-frontend/assembly-scripts": "*"
   },
   "peerDependencies": {
-    "@astral-frontend/components": "^3.0.5",
+    "@astral-frontend/components": "^3.1.4",
     "react": ">= 16",
     "react-router-dom": "^5.1.2"
   },
