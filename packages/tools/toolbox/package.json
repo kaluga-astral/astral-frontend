@@ -5,7 +5,7 @@
     "toolbox": "./index.js"
   },
   "dependencies": {
-    "@astral-frontend/webpack-config": "2.1.0",
+    "@astral-frontend/webpack-config": "2.2.0",
     "chalk": "^3.0.0",
     "react-dev-utils": "^11.0.4",
     "webpack": "^5.44.0",
