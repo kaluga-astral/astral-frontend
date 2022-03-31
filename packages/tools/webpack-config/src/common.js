@@ -52,6 +52,11 @@ module.exports = {
         ],
       },
       {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
           require.resolve('file-loader'),
@@ -98,7 +103,7 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['.js', '.jsx', '.css'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
     fallback: {
       process: require.resolve('process/browser'),
     },
