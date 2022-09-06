@@ -71,6 +71,8 @@ const TableTemplatedDataList = ({
   ListItemComponent,
   RowActionsComponent,
   disableSelect,
+  handleDraftsFiltersButtonClick,
+  filters,
   ...props
 }) => {
   const classes = useStyles({ columns });
@@ -79,6 +81,8 @@ const TableTemplatedDataList = ({
       <div className={classes.root}>
         <TableTemplatedDataListHeader
           className={classes.row}
+          handleDraftsFiltersButtonClick={handleDraftsFiltersButtonClick} 
+          filters={filters ?? []}
           columns={columns}
         />
         <ul className={classes.list} ref={ref}>

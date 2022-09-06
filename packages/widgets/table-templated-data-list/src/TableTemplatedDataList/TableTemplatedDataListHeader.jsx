@@ -2,13 +2,13 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
-import { Checkbox } from '@astral-frontend/components';
+import { Checkbox, DraftsFilterList } from '@astral-frontend/components';
 import { DataListContext } from '@astral-frontend/data-list';
 
 import TableTemplatedDataListHeaderItem from './TableTemplatedDataListHeaderItem';
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       position: 'sticky',
       top: 0,
@@ -32,21 +32,24 @@ const useStyles = makeStyles(
   { name: 'TableTemplatedDataListHeader' },
 );
 
-const TableTemplatedDataListHeader = ({ className, columns }) => {
+const TableTemplatedDataListHeader = ({
+  className,
+  columns,
+  handleDraftsFiltersButtonClick,
+  filters,
+}) => {
   const classes = useStyles();
-  const {
-    items,
-    selectedItems,
-    setSelectedItems,
-    disableSelect,
-  } = React.useContext(DataListContext);
+  const { items, selectedItems, setSelectedItems, disableSelect } =
+    React.useContext(DataListContext);
   const uploadingInProgress = React.useMemo(
     () =>
       items.some(
-        item => item.percentCompleted != null && item.percentCompleted !== 100,
+        (item) =>
+          item.percentCompleted != null && item.percentCompleted !== 100,
       ),
     [items],
   );
+
   const checked = items.length === selectedItems.length;
   const handleCheckboxChange = () => {
     if (checked) {
@@ -54,7 +57,7 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
     } else {
       setSelectedItems(
         items.filter(
-          item =>
+          (item) =>
             item.percentCompleted == null || item.percentCompleted === 100,
         ),
       );
@@ -63,7 +66,16 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
 
   return (
     <div className={cn(classes.root, className)}>
-      {!disableSelect ? (
+      {filters ? (
+        <DraftsFilterList
+          checked={checked}
+          data={{ items, selectedItems }}
+          disabled={uploadingInProgress}
+          onChange={handleCheckboxChange}
+          filters={filters}
+          handleDraftsFiltersButtonClick={handleDraftsFiltersButtonClick}
+        />
+      ) : !disableSelect ? (
         <Checkbox
           checked={checked}
           disabled={uploadingInProgress}
@@ -74,7 +86,7 @@ const TableTemplatedDataListHeader = ({ className, columns }) => {
         <div />
       )}
 
-      {columns.map(column => (
+      {columns.map((column) => (
         <TableTemplatedDataListHeaderItem
           key={column.title}
           title={column.title}
