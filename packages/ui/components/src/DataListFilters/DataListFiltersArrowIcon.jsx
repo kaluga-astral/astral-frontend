@@ -1,7 +1,6 @@
 import React from 'react';
 import { SvgIcon } from '@astral-frontend/core';
 
-
 const DataListFiltersArrowIcon = (props) => (
   <SvgIcon viewBox="0 0 12 6" {...props}>
     <path

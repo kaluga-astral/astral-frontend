@@ -86,6 +86,7 @@ const TableTemplatedDataListHeader = ({
         />
       );
     }
+
     return <div />;
   };
 
