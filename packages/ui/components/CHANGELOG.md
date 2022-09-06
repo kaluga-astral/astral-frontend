@@ -1,3 +1,6 @@
+
+# 3.2.5
+- Добавлен компонент DataListFilters 
 # 3.1.0
 
 - В CopyToClipboardIconButton добавлена возможность передавать иконку
