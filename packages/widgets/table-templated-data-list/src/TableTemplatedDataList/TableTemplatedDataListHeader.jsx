@@ -2,13 +2,13 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@astral-frontend/styles';
-import { Checkbox } from '@astral-frontend/components';
+import { Checkbox, DataListFilters } from '@astral-frontend/components';
 import { DataListContext } from '@astral-frontend/data-list';
 
 import TableTemplatedDataListHeaderItem from './TableTemplatedDataListHeaderItem';
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       position: 'sticky',
       top: 0,
@@ -32,61 +32,68 @@ const useStyles = makeStyles(
   { name: 'TableTemplatedDataListHeader' },
 );
 
-const TableTemplatedDataListHeader = ({ className, columns }) => {
+const TableTemplatedDataListHeader = ({
+  className,
+  columns,
+  handleDataListFiltersClick,
+  filters,
+}) => {
   const classes = useStyles();
-  const {
-    items,
-    selectedItems,
-    setSelectedItems,
-    disableSelect,
-  } = React.useContext(DataListContext);
+  const { items, selectedItems, setSelectedItems, disableSelect } =
+    React.useContext(DataListContext);
   const uploadingInProgress = React.useMemo(
     () =>
       items.some(
-        item => item.percentCompleted != null && item.percentCompleted !== 100,
+        (item) =>
+          item.percentCompleted != null && item.percentCompleted !== 100,
       ),
     [items],
   );
-  const checked = React.useMemo(() => {
-    const selectedItemsCount = selectedItems.filter(
-      item => !item.isRowSelectionDisabled,
-    ).length;
-    const itemsCount = items.filter(item => !item.isRowSelectionDisabled)
-      .length;
 
-    return (
-      itemsCount && selectedItemsCount && itemsCount === selectedItemsCount
-    );
-  }, [items, selectedItems]);
-
-  const handleCheckboxChange = React.useCallback(() => {
+  const checked = items.length === selectedItems.length;
+  const handleCheckboxChange = () => {
     if (checked) {
       setSelectedItems([]);
     } else {
       setSelectedItems(
         items.filter(
-          item =>
-            (item.percentCompleted == null || item.percentCompleted === 100) &&
-            !item.isRowSelectionDisabled,
+          (item) =>
+            item.percentCompleted == null || item.percentCompleted === 100,
         ),
       );
     }
-  }, [items, checked]);
-
-  return (
-    <div className={cn(classes.root, className)}>
-      {!disableSelect ? (
+  };
+  const renderCheckBox = () => {
+    if (filters) {
+      return (
+        <DataListFilters
+          checked={checked}
+          data={{ items, selectedItems }}
+          disabled={uploadingInProgress}
+          onChange={handleCheckboxChange}
+          filters={filters}
+          handleDataListFiltersClick={handleDataListFiltersClick}
+        />
+      );
+    }
+    if (!disableSelect) {
+      return (
         <Checkbox
           checked={checked}
           disabled={uploadingInProgress}
           onChange={handleCheckboxChange}
           className={classes.select}
         />
-      ) : (
-        <div />
-      )}
+      );
+    }
 
-      {columns.map(column => (
+    return <div />;
+  };
+
+  return (
+    <div className={cn(classes.root, className)}>
+     {renderCheckBox()}
+      {columns.map((column) => (
         <TableTemplatedDataListHeaderItem
           key={column.title}
           title={column.title}

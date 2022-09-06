@@ -110,3 +110,4 @@ export { default as RadioGroupField } from './RadioGroupField';
 export { default as DatePicker, DatePickerUtilsProvider } from './DatePicker';
 export { default as useDropzone } from './useDropzone';
 export { default as usePopupStateManager } from './usePopupStateManager';
+export { default as DataListFilters} from './DataListFilters'
