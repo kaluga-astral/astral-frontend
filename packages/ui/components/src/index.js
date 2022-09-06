@@ -108,4 +108,4 @@ export { default as Tooltip } from './Tooltip';
 export { default as Typography } from './Typography';
 export { default as useDropzone } from './useDropzone';
 export { default as usePopupStateManager } from './usePopupStateManager';
-export { default as DraftsFilters} from './DraftsFilters'
+export { default as DataListFilters} from './DataListFilters'

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MenuItem } from '@astral-frontend/core';
-import DraftArrowIcon from './DraftsFiltersArrowIcon';
+import DataListFiltersIcon from './DataListFiltersArrowIcon';
 import { FlexContainer } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 import { Checkbox } from '@astral-frontend/components';
@@ -34,10 +34,10 @@ const useStyles = makeStyles(
       boxShadow: theme.shadows[2],
     },
   }),
-  { name: 'DraftsFilters' },
+  { name: 'DataListFilters' },
 );
 
-const DraftsFilters = ({
+const DataListFilters = ({
   filters,
   disabled,
   checked,
@@ -87,7 +87,7 @@ const DraftsFilters = ({
         onClick={handleClick}
         className={classes.iconButton}
       >
-        <DraftArrowIcon className={classes.icon} />
+        <DataListFiltersIcon className={classes.icon} />
       </IconButton>
       <Popper
         placement="bottom-start"
@@ -117,7 +117,7 @@ const DraftsFilters = ({
 };
 
 
-DraftsFilters.propTypes = {
+DataListFilters.propTypes = {
   filters:PropTypes.arrayOf(PropTypes.shape({})),
   disabled:PropTypes.bool,
   checked:PropTypes.bool,
@@ -130,4 +130,4 @@ DraftsFilters.propTypes = {
 
 };
 
-export default DraftsFilters;
+export default DataListFilters;
