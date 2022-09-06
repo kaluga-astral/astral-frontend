@@ -1,5 +1,5 @@
 
-# 1.2
+# 1.2.0
 - Добавлен компонент DataListFilters в TableTemplatedDataListHeader 
 # 1.1.9
 
