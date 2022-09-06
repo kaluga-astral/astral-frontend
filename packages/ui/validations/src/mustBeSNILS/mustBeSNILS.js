@@ -1,6 +1,6 @@
 import { calcCheckSumForSNILS, removeSpecialCharacters } from '../utils/utils';
 
-const ERROR_MESSAGE = 'Неверный СНИЛС. Введите корректный СНИЛС.';
+export const ERROR_MESSAGE = 'Некорректный СНИЛС';
 const RESTRICTED_VALUES = ['00000000000'];
 const DEFAULT_CHECKED_SUM = [0, 100, 101];
 

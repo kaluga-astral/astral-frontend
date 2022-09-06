@@ -10,6 +10,9 @@ const useStyles = makeStyles(
         marginBottom: theme.spacing(2),
       },
     },
+    message: {
+      wordWrap: 'break-word',
+    },
   }),
   { name: 'NotificationContainer' },
 );
@@ -38,7 +41,10 @@ const NotificationContainer = ({
         justifyContent="space-between"
         className={classes.header}
       >
-        <Box fontWeight="bold">{title}</Box>
+        <Box 
+          fontWeight="bold"
+          mr={4}
+        >{title}</Box>
         <Box
           flexShrink={0}
           ml={2}
@@ -60,7 +66,7 @@ const NotificationContainer = ({
           </Box>
         </Box>
       </Box>
-      {message && <Box>{message}</Box>}
+      {message && <Box className={classes.message}>{message}</Box>}
     </Box>
   );
 };

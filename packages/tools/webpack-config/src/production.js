@@ -1,11 +1,9 @@
 const path = require('path');
-
-const merge = require('webpack-merge');
+const zlib = require('zlib');
+const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const BrotliPlugin = require('brotli-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const getPaths = require('./utils/getPaths');
 const commonConfig = require('./common');
@@ -35,27 +33,25 @@ module.exports = merge(commonConfig, {
         minifyURLs: true,
       },
     }),
-    new FaviconsWebpackPlugin({
-      logo: path.resolve(appSrc, 'logo.svg'),
-      background: 'transparent',
-      persistentCache: false,
-      icons: {
-        android: false,
-        appleIcon: false,
-        appleStartup: false,
-        coast: false,
-        favicons: true,
-        firefox: false,
-        opengraph: false,
-        twitter: false,
-        yandex: false,
-        windows: false,
-      },
+    new CompressionPlugin({
+      filename: '[path][base].gz',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
     new CompressionPlugin({
-      cache: true,
+      filename: '[path][base].br',
+      algorithm: 'brotliCompress',
+      test: /\.(js|css|html|svg)$/,
+      compressionOptions: {
+        params: {
+          [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
+        },
+      },
+      threshold: 10240,
+      minRatio: 0.8,
     }),
-    new BrotliPlugin(),
-    new OptimizeCSSAssetsPlugin({}),
+    new CssMinimizerPlugin(),
   ],
 });

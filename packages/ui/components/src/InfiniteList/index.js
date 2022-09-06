@@ -1,1 +1,1 @@
-export { default } from '@researchgate/react-intersection-list';
+export { default } from '@astral/react-intersection-list';

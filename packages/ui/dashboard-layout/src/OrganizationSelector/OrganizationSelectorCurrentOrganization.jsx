@@ -1,8 +1,7 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { Box, ButtonBase, Skeleton } from '@astral-frontend/components';
+import { Box, ButtonBase } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
 import { ArrowIcon } from '@astral-frontend/icons';
 
@@ -44,14 +43,6 @@ const DashboardLayoutOrganizationSelectorCurrentOrganization = React.forwardRef(
   (props, ref) => {
     const { className, name, open, ...rest } = props;
     const classes = useStyles({ name, open });
-    const location = useLocation();
-    const defaultSelectorState =
-      location.pathname === '/' ||
-      location.pathname.includes('registration-requests') ? (
-        'Выберите организацию'
-      ) : (
-        <Skeleton variant="text" width={160} />
-      );
 
     return (
       <Box
@@ -60,7 +51,7 @@ const DashboardLayoutOrganizationSelectorCurrentOrganization = React.forwardRef(
         className={cn(classes.root, className)}
         {...rest}
       >
-        <Box className={classes.name}>{name ?? defaultSelectorState}</Box>
+        <Box className={classes.name}>{name}</Box>
         <ArrowIcon className={classes.arrow} />
       </Box>
     );

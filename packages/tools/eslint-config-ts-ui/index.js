@@ -3,7 +3,7 @@ module.exports = {
     jest: true,
     browser: true,
   },
-  plugins: ['prettier', 'jest'],
+  plugins: ['prettier', 'jest', 'import', 'jsx-a11y', 'react'],
   extends: ['airbnb-typescript', 'plugin:prettier/recommended'],
   parserOptions: {
     project: ['tsconfig.json'],
@@ -15,6 +15,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/function-component-definition': 'off',
 
     'prettier/prettier': ['error', { singleQuote: true }],
 

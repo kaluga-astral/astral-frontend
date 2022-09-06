@@ -27,6 +27,7 @@ const FormField = ({
   validateFields,
   value,
   type,
+  helperText: defaultHelperText,
   onChange,
   // ======MUITextFieldProps=====
   ...MuiTextFieldProps
@@ -51,7 +52,7 @@ const FormField = ({
         type={type}
         render={({ input, meta }) => {
           const errorSubmitMessage = meta.error || !meta.modifiedSinceLastSubmit && meta.submitError;
-          const helperText = meta.touched && !meta.valid ? errorSubmitMessage : null;
+          const helperText = meta.touched && !meta.valid ? errorSubmitMessage : defaultHelperText;
           const error = meta.touched && errorSubmitMessage;
 
           if (render) {
@@ -68,7 +69,7 @@ const FormField = ({
             <MuiTextField
               {...input}
               {...MuiTextFieldProps}
-              error={error}
+              error={Boolean(error)}
               helperText={helperText}
             />
           );

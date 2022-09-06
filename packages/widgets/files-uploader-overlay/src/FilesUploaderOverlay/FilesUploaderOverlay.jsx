@@ -3,8 +3,7 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Box, useDropzone } from '@astral-frontend/components';
-import { makeStyles } from '@astral-frontend/styles';
-import { fade } from '@astral-frontend/core';
+import { alpha, makeStyles } from '@astral-frontend/styles';
 
 import FilesUploaderOverlayContext from '../FilesUploaderOverlayContext';
 
@@ -23,6 +22,9 @@ const useStyles = makeStyles(
       },
     },
     root: {
+      outline: 'none',
+    },
+    overlay: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -32,7 +34,7 @@ const useStyles = makeStyles(
       right: 0,
       bottom: 0,
       left: 0,
-      backgroundColor: fade(theme.palette.gray[800], 0.55),
+      backgroundColor: alpha(theme.palette.gray[800], 0.55),
       outlineColor: theme.palette.common.white,
       outlineOffset: '-20px',
       outlineStyle: 'dashed',
@@ -66,16 +68,17 @@ const useStyles = makeStyles(
   { name: 'FilesUploaderOverlay' },
 );
 
-const FilesUploaderOverlay = ({
-  className,
-  Icon,
-  children,
-  restrictionsMessage,
-  ...config
-}) => {
+export const FilesUploaderOverlay = props => {
+  const {
+    className,
+    Icon,
+    children,
+    restrictionsMessage,
+    ...restProps
+  } = props;
   const classes = useStyles();
   const { isDragActive, getRootProps, getInputProps, open } = useDropzone(
-    config,
+    restProps,
   );
   const inputProps = getInputProps();
   const rootProps = getRootProps();
@@ -88,9 +91,9 @@ const FilesUploaderOverlay = ({
       key="overlay"
       value={{ openFileDialog }}
     >
-      <Box {...rootProps} css={{ outline: 'none' }}>
+      <Box {...rootProps} className={cn(classes.root, className)}>
         {isDragActive && (
-          <div className={cn(classes.root, className)}>
+          <div className={classes.overlay}>
             {restrictionsMessage && (
               <span className={classes.restrictionsMessage}>
                 {restrictionsMessage}

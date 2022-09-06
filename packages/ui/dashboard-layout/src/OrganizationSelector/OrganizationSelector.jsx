@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   ButtonBase,
   ClickAwayListener,
@@ -29,6 +29,10 @@ const useStyles = makeStyles(
       maxWidth: '300px',
       overflowY: 'auto',
       boxShadow: theme.shadows[2],
+      paddingTop: '10px',
+    },
+    popperHint: {
+      fontSize: '12px',
     },
     collapse: {
       position: 'absolute',
@@ -41,6 +45,7 @@ const useStyles = makeStyles(
       position: 'sticky',
       bottom: 0,
       backgroundColor: theme.palette.common.white,
+      marginBottom: '6px',
     },
   }),
   { name: 'OrganizationSelector' },
@@ -60,19 +65,15 @@ const OrganizationSelector = ({
   ...props
 }) => {
   const classes = useStyles();
-  const location = useLocation();
   const [open, setOpen] = React.useState(false);
-  const handleTogglerButtonClick = () => {
+
+  const handleTogglerButtonClick = React.useCallback(() => {
     setOpen(prevValue => !prevValue);
-  };
-  const handleClickAwayListenerClickAway = () => {
+  }, []);
+
+  const handleClickAwayListenerClickAway = React.useCallback(() => {
     setOpen(false);
-  };
-  const defaultTooltipState =
-    location.pathname === '/' ||
-    location.pathname.includes('registration-requests')
-      ? 'Выберите организацию'
-      : 'Загрузка организации';
+  }, []);
 
   return (
     <FlexContainer
@@ -84,8 +85,9 @@ const OrganizationSelector = ({
         <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
           <FlexContainer>
             <Tooltip
+              className={classes.popperHint}
               placement="left"
-              title={currentOrganizationName ?? defaultTooltipState}
+              title={currentOrganizationName}
             >
               <OrganizationSelectorCurrentOrganization
                 name={currentOrganizationName}
@@ -131,7 +133,7 @@ OrganizationSelector.defaultProps = {
   addLinkHref: null,
   addLinkText: null,
   error: null,
-  currentOrganizationName: null,
+  currentOrganizationName: 'Выберите организацию',
   disabled: false,
 };
 
@@ -140,7 +142,7 @@ OrganizationSelector.propTypes = {
     queryResult: PropTypes.shape({
       loading: PropTypes.bool,
       error: PropTypes.instanceOf(Error),
-      items: PropTypes.array,
+      items: PropTypes.arrayOf(PropTypes.shape({})),
     }).isRequired,
   }).isRequired,
   ListItemComponent: PropTypes.func.isRequired,

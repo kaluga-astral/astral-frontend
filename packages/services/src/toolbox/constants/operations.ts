@@ -68,7 +68,3 @@ export const CHECK_CONTAINER = {
 export const FIND_CONTAINER = {
   id: 23,
 };
-
-export const GET_CRYPTO_PROVIDERS = {
-  id: 24,
-};

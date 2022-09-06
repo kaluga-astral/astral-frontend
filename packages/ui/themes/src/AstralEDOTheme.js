@@ -14,6 +14,23 @@ const astralEDOThemeOptions = {
       notification: '#fe5555',
     },
   },
+  props: {
+    MuiTextField: {
+      variant: 'standard',
+    },
+  },
+  overrides: {
+    MuiFormControl: {
+      root: {
+        marginBottom: 0,
+        paddingBottom: 0,
+      },
+    },
+    MuiFormHelperText: null,
+    MuiInputLabel: null,
+    MuiInputBase: null,
+    MuiOutlinedInput: null,
+  },
 };
 
 class AstralEDOTheme extends AstralTheme {

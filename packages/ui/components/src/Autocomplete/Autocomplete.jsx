@@ -2,99 +2,92 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { CircularProgress } from '@astral-frontend/core';
-import MuiAutocomplete from '@material-ui/lab/Autocomplete';
+import { Autocomplete as MuiAutocomplete } from '@material-ui/lab';
 
 import TextField from '../TextField';
 
-const Autocomplete = ({
-  className,
-  value,
-  disabled,
-  loading,
-  loadingText,
-  noOptionsText,
-  options,
-  getOptionLabel,
-  open,
-  filterOptions,
-  onOpen,
-  onInputChange,
-  onClose,
-  onChange,
-  // ======MUITextFieldProps=====
-  ...MuiTextFieldProps
-}) => {
-  return (
-    <MuiAutocomplete
-      className={className}
-      disabled={disabled}
-      value={value}
-      loading={loading}
-      loadingText={loadingText}
-      noOptionsText={noOptionsText}
-      open={open}
-      options={options}
-      filterOptions={filterOptions}
-      forcePopupIcon={false}
-      getOptionLabel={getOptionLabel}
-      getOptionSelected={option => options.find(v => v.key === option.key)}
-      onOpen={onOpen}
-      onClose={onClose}
-      onChange={onChange}
-      onInputChange={onInputChange}
-      renderInput={params => {
-        const InputProps = {
-          ...params.InputProps,
-          ...MuiTextFieldProps.InputProps,
-        };
-        const inputProps = {
-          ...params.inputProps,
-          ...MuiTextFieldProps.inputProps,
-        };
+const Autocomplete = React.forwardRef(
+  (
+    {
+      className,
+      value,
+      inputValue,
+      disabled,
+      disableClearable,
+      loading,
+      freeSolo,
+      loadingText = 'Загрузка...',
+      noOptionsText = 'Ничего не найдено',
+      options = [],
+      getOptionLabel,
+      getOptionSelected,
+      open,
+      filterOptions,
+      onOpen,
+      onInputChange,
+      onClose,
+      onChange,
+      // ======MUITextFieldProps=====
+      ...MuiTextFieldProps
+    },
+    ref,
+  ) => {
+    return (
+      <MuiAutocomplete
+        className={className}
+        disabled={disabled}
+        freeSolo={freeSolo}
+        value={value}
+        inputValue={inputValue}
+        loading={loading}
+        disableClearable={disableClearable}
+        loadingText={loadingText}
+        noOptionsText={noOptionsText}
+        open={open}
+        options={options}
+        filterOptions={filterOptions}
+        forcePopupIcon={false}
+        getOptionLabel={getOptionLabel}
+        getOptionSelected={getOptionSelected}
+        onOpen={onOpen}
+        onClose={onClose}
+        onChange={onChange}
+        onInputChange={onInputChange}
+        renderInput={params => {
+          const InputProps = {
+            ...params.InputProps,
+            ...MuiTextFieldProps.InputProps,
+          };
+          const inputProps = {
+            ...params.inputProps,
+            ...MuiTextFieldProps.inputProps,
+          };
 
-        return (
-          <TextField
-            {...params}
-            fullWidth
-            margin="none"
-            {...MuiTextFieldProps}
-            inputProps={inputProps}
-            InputProps={{
-              ...InputProps,
-              endAdornment: (
-                <>
-                  {loading ? (
-                    <CircularProgress color="inherit" size={20} />
-                  ) : null}
-                  {InputProps.endAdornment}
-                </>
-              ),
-            }}
-          />
-        );
-      }}
-    />
-  );
-};
-
-Autocomplete.defaultProps = {
-  className: null,
-  disabled: false,
-  open: null,
-  loading: null,
-  loadingText: 'Загрузка...',
-  noOptionsText: 'Ничего не найдено',
-  getOptionLabel: option => option.label || '',
-  filterOptions: options => {
-    return options;
+          return (
+            <TextField
+              {...params}
+              fullWidth
+              {...MuiTextFieldProps}
+              inputRef={ref}
+              inputProps={inputProps}
+              InputProps={{
+                ...InputProps,
+                endAdornment: (
+                  <>
+                    {loading ? (
+                      <CircularProgress color="inherit" size={20} />
+                    ) : null}
+                    {InputProps.endAdornment}
+                  </>
+                ),
+              }}
+            />
+          );
+        }}
+      />
+    );
   },
-  onChange: null,
-  onClose: null,
-  onInputChange: null,
-  onOpen: null,
-  value: null,
-  options: [],
-};
+);
 
 Autocomplete.propTypes = {
   className: PropTypes.string,
@@ -105,6 +98,7 @@ Autocomplete.propTypes = {
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    */
   getOptionLabel: PropTypes.func,
+  getOptionSelected: PropTypes.func,
   /**
    * If `true`, the component is in a loading state.
    */
@@ -149,26 +143,18 @@ Autocomplete.propTypes = {
    * Control the popup` open state.
    */
   open: PropTypes.bool,
+  freeSolo: PropTypes.bool,
+  disableClearable: PropTypes.bool,
   /**
    * Array of options.
    */
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string,
-      label: PropTypes.string,
-      value: PropTypes.any,
-    }),
-  ),
+  options: PropTypes.arrayOf(PropTypes.any),
   /**
    * The value of the autocomplete.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.shape({
-      key: PropTypes.string,
-      label: PropTypes.string,
-      value: PropTypes.any,
-    }),
-    PropTypes.string,
-  ]),
+  // eslint-disable-next-line react/forbid-prop-types
+  value: PropTypes.any,
+  inputValue: PropTypes.string,
 };
+
 export default Autocomplete;

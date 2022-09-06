@@ -155,6 +155,7 @@ const Notification = React.forwardRef(
         position="relative"
         borderRadius={8}
         overflow="hidden"
+        marginY={2}
         {...(!persist && {
           onMouseEnter: handleMouseEnter,
           onMouseLeave: handleMouseLeave,

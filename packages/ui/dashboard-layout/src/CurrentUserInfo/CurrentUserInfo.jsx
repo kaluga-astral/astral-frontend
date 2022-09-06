@@ -89,7 +89,7 @@ const DashboardLayoutCurrentUserInfo = ({
       <ClickAwayListener onClickAway={handleClickAway} {...props}>
         <ButtonBase
           className={classes.button}
-          buttonRef={buttonRef}
+          ref={buttonRef}
           onClick={handleTogglerButtonClick}
         >
           <Avatar className={classes.avatar} src={avatarSrc}>

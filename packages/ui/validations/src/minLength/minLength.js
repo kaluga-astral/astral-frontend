@@ -6,7 +6,7 @@ export const minLength = length => {
   return value => {
     // eslint-disable-next-line react/destructuring-assignment
     if (value && value.length < length) {
-      return `Минимальная длина поля ${length} символов.`;
+      return `Мин. символов: ${length}`;
     }
 
     return null;

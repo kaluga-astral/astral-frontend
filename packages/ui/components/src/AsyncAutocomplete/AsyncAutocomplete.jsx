@@ -6,73 +6,75 @@ import Autocomplete from '../Autocomplete';
 
 const INPUT_VALUE_THROTTLE_TIMEOUT = 300;
 
-const AsyncAutocomplete = ({
-  loading: isLoadingDefaultOptions,
-  defaultOptions,
-  fetchOptions,
-  prefetch,
-  inputValueThrottleTimeout,
-  ...props
-}) => {
-  const [open, setOpen] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
-  const [options, setOptions] = React.useState({});
+const AsyncAutocomplete = React.forwardRef(
+  (
+    {
+      loading: isLoadingDefaultOptions,
+      defaultOptions,
+      fetchOptions,
+      prefetch,
+      inputValueThrottleTimeout,
+      onInputChange,
+      ...props
+    },
+    ref,
+  ) => {
+    const [open, setOpen] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
+    const [options, setOptions] = React.useState();
 
-  const setFormattingOptions = newOptions => {
-    // TODO: #28808
-    setOptions(
-      newOptions.reduce(
-        (acc, newOption) => ({
-          ...acc,
-          [newOption.key]: newOption,
-        }),
-        [],
-      ),
+    const handleInputChange = React.useCallback(
+      throttle(async (event, searchString) => {
+        if (onInputChange) onInputChange(event, searchString);
+
+        setLoading(true);
+
+        const newOptions = await fetchOptions(searchString);
+
+        setLoading(false);
+        setOptions(newOptions);
+      }, inputValueThrottleTimeout),
+      [open],
     );
-  };
 
-  const handleInputChange = React.useCallback(
-    throttle(async (event, searchString) => {
-      setLoading(true);
-
-      const newOptions = await fetchOptions(searchString);
-
-      setLoading(false);
-      setFormattingOptions(newOptions);
-    }, inputValueThrottleTimeout),
-    [open],
-  );
-
-  React.useEffect(() => {
-    if (!isLoadingDefaultOptions && defaultOptions) {
-      setFormattingOptions(defaultOptions);
-    }
-  }, [isLoadingDefaultOptions]);
-
-  React.useEffect(() => {
-    (async () => {
-      if (prefetch) {
-        setFormattingOptions(await fetchOptions());
+    React.useEffect(() => {
+      if (!isLoadingDefaultOptions && defaultOptions) {
+        setOptions(defaultOptions);
       }
-    })();
-  }, []);
+    }, [isLoadingDefaultOptions]);
 
-  return (
-    <Autocomplete
-      {...props}
-      options={Object.values(options)}
-      loading={open && (isLoadingDefaultOptions || loading)}
-      open={open}
-      onOpen={() => {
-        setOpen(true);
-      }}
-      onClose={() => {
-        setOpen(false);
-      }}
-      onInputChange={handleInputChange}
-    />
-  );
-};
+    React.useEffect(() => {
+      if (prefetch) {
+        setLoading(true);
+
+        fetchOptions()
+          .then(newOptions => {
+            setOptions(newOptions);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }
+    }, []);
+
+    return (
+      <Autocomplete
+        {...props}
+        ref={ref}
+        options={options}
+        loading={open && (isLoadingDefaultOptions || loading)}
+        open={open}
+        onOpen={() => {
+          setOpen(true);
+        }}
+        onClose={() => {
+          setOpen(false);
+        }}
+        onInputChange={handleInputChange}
+      />
+    );
+  },
+);
 
 AsyncAutocomplete.defaultProps = {
   loading: false,
@@ -85,19 +87,14 @@ AsyncAutocomplete.propTypes = {
   loading: PropTypes.bool,
   prefetch: PropTypes.bool,
   inputValueThrottleTimeout: PropTypes.number,
-  defaultOptions: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      value: PropTypes.any,
-    }),
-  ),
+  defaultOptions: PropTypes.arrayOf(PropTypes.any),
   /**
    * Функция получения новых данных
    *
    * (inputValue: string) => Promise<{key: string, label: string, value: any}>
    */
   fetchOptions: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func,
 };
 
 export default AsyncAutocomplete;

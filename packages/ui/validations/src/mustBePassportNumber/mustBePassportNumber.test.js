@@ -1,13 +1,9 @@
-import mustBePassportNumber from './mustBePassportNumber';
+import mustBePassportNumber, { ERROR_MESSAGE } from './mustBePassportNumber';
 
 describe('`mustBePassportNumber` validation rule', () => {
   test('should return an error object if value is invalid', () => {
-    expect(mustBePassportNumber(12345678)).toEqual(
-      'Неверный номер. Введите корректный номер.',
-    );
-    expect(mustBePassportNumber(121)).toEqual(
-      'Неверный номер. Введите корректный номер.',
-    );
+    expect(mustBePassportNumber(12345678)).toEqual(ERROR_MESSAGE);
+    expect(mustBePassportNumber(121)).toEqual(ERROR_MESSAGE);
   });
 
   test('should return empty object if data is valid', () => {

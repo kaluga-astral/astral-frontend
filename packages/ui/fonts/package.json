@@ -8,6 +8,9 @@
     "release": "assembly-scripts release"
   },
   "dependencies": {},
+  "devDependencies": {
+    "@astral-frontend/assembly-scripts": "*"
+  },
   "peerDependencies": {},
   "sideEffects": false
 }

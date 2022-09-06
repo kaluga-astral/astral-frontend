@@ -1,7 +1,7 @@
 module.exports = {
   extends: ['airbnb', 'plugin:prettier/recommended'],
-  parser: 'babel-eslint',
-  plugins: ['prettier', 'jest'],
+  parser: '@babel/eslint-parser',
+  plugins: ['prettier', 'jest', 'import', 'jsx-a11y', 'react'],
   env: {
     browser: true,
     jest: true,
@@ -10,6 +10,7 @@ module.exports = {
     // проблема при экспорте одиночной константы
     // TODO: вынести на обсуждение по style guid
     'import/prefer-default-export': 'off',
+    'react/function-component-definition': 'off',
 
     'prettier/prettier': ['error', { singleQuote: true, trailingComma: 'all' }],
 
@@ -32,6 +33,7 @@ module.exports = {
       },
     ],
     'react/require-default-props': 'off',
+    'react/state-in-constructor': 'off',
 
     // смотрим, чтобы в линки не прокидывали лишнего, например onClick
     'jsx-a11y/anchor-is-valid': [
