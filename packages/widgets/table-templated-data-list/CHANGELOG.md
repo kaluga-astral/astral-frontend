@@ -1,3 +1,6 @@
+
+# 1.2
+- Добавлен компонент DataListFilters в TableTemplatedDataListHeader 
 # 1.1.9
 
 - Исправлен баг с неправильным отображение чекбокса в TableTemplatedDataList
