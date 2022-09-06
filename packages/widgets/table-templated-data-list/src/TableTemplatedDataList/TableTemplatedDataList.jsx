@@ -71,7 +71,7 @@ const TableTemplatedDataList = ({
   ListItemComponent,
   RowActionsComponent,
   disableSelect,
-  handleDraftsFiltersButtonClick,
+  handleDataListFiltersClick,
   filters,
   ...props
 }) => {
@@ -81,8 +81,8 @@ const TableTemplatedDataList = ({
       <div className={classes.root}>
         <TableTemplatedDataListHeader
           className={classes.row}
-          handleDraftsFiltersButtonClick={handleDraftsFiltersButtonClick} 
-          filters={filters ?? []}
+          handleDataListFiltersClick={handleDataListFiltersClick} 
+          filters={filters}
           columns={columns}
         />
         <ul className={classes.list} ref={ref}>

@@ -35,7 +35,7 @@ const useStyles = makeStyles(
 const TableTemplatedDataListHeader = ({
   className,
   columns,
-  handleDraftsFiltersButtonClick,
+  handleDataListFiltersClick,
   filters,
 }) => {
   const classes = useStyles();
@@ -63,29 +63,35 @@ const TableTemplatedDataListHeader = ({
       );
     }
   };
-
-  return (
-    <div className={cn(classes.root, className)}>
-      {filters ? (
+  const renderCheckBox = () => {
+    if (filters) {
+      return (
         <DataListFilters
           checked={checked}
           data={{ items, selectedItems }}
           disabled={uploadingInProgress}
           onChange={handleCheckboxChange}
           filters={filters}
-          handleDraftsFiltersButtonClick={handleDraftsFiltersButtonClick}
+          handleDataListFiltersClick={handleDataListFiltersClick}
         />
-      ) : !disableSelect ? (
+      );
+    }
+    if (!disableSelect) {
+      return (
         <Checkbox
           checked={checked}
           disabled={uploadingInProgress}
           onChange={handleCheckboxChange}
           className={classes.select}
         />
-      ) : (
-        <div />
-      )}
+      );
+    }
+    return <div />;
+  };
 
+  return (
+    <div className={cn(classes.root, className)}>
+     {renderCheckBox()}
       {columns.map((column) => (
         <TableTemplatedDataListHeaderItem
           key={column.title}

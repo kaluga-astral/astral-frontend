@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MenuItem } from '@astral-frontend/core';
 import DataListFiltersIcon from './DataListFiltersArrowIcon';
-import { FlexContainer } from '@astral-frontend/components';
+import { FlexContainer, Checkbox } from '@astral-frontend/components';
 import { makeStyles } from '@astral-frontend/styles';
-import { Checkbox } from '@astral-frontend/components';
-
 import {
   IconButton,
   Paper,
   ClickAwayListener,
   Popper,
+  MenuItem
 } from '@astral-frontend/core';
 
 const useStyles = makeStyles(
@@ -42,7 +40,7 @@ const DataListFilters = ({
   disabled,
   checked,
   onChange,
-  handleDraftsFiltersButtonClick,
+  handleDataListFiltersClick,
   data,
 }) => {
   const classes = useStyles();
@@ -50,17 +48,17 @@ const DataListFilters = ({
   const [anchorEl, setAnchorEl] = React.useState(null);
   const ref = React.useRef();
 
-  const handleClick = React.useCallback(() => {
+  const handleFiltersIconButtonClick  = React.useCallback(() => {
     setAnchorEl(ref.current);
     setOpen((previousOpen) => !previousOpen);
   }, [ref]);
-  const handleClickAwayListenerClickAway = React.useCallback(() => {
+  const handleClickAway = React.useCallback(() => {
     setOpen(false);
   }, [open]);
   const handleClose = React.useCallback(
     (value) => {
       setOpen(false);
-      handleDraftsFiltersButtonClick(data, value);
+      handleDataListFiltersClick(data, value);
     },
     [open],
   );
@@ -84,7 +82,7 @@ const DataListFilters = ({
       <IconButton
         disabled={disabled}
         aria-describedby={id}
-        onClick={handleClick}
+        onClick={handleFiltersIconButtonClick}
         className={classes.iconButton}
       >
         <DataListFiltersIcon className={classes.icon} />
@@ -97,13 +95,13 @@ const DataListFilters = ({
         transition
         className={classes.popper}
       >
-        <ClickAwayListener onClickAway={handleClickAwayListenerClickAway}>
+        <ClickAwayListener onClickAway={handleClickAway}>
           <Paper className={classes.paper}>
-            {filters.map(({ label, value, key }) => (
+            {filters.map(({ label, value, id }) => (
               <MenuItem
                 className={classes.menuItem}
                 onClick={() => handleClose(value)}
-                key={key}
+                key={id}
                 value={value}
               >
                 {label}
@@ -118,11 +116,15 @@ const DataListFilters = ({
 
 
 DataListFilters.propTypes = {
-  filters:PropTypes.arrayOf(PropTypes.shape({})),
+  filters:PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    value: PropTypes.string,
+    id: PropTypes.string,
+  })),
   disabled:PropTypes.bool,
   checked:PropTypes.bool,
   onChange: PropTypes.func,
-  handleDraftsFiltersButtonClick: PropTypes.func,
+  handleDataListFiltersClick: PropTypes.func,
   data: PropTypes.shape({
     items: PropTypes.arrayOf(PropTypes.shape({})),
     selectedItems:PropTypes.arrayOf(PropTypes.shape({})),
