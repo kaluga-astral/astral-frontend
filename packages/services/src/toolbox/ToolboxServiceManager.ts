@@ -1,6 +1,5 @@
 import { camelizeKeys } from 'humps';
 import { v4 as uuidv4 } from 'uuid';
-import { isString } from 'lodash-es';
 
 import { SocketReadyState } from './constants/socket';
 import { Event } from './constants/events';
@@ -96,8 +95,8 @@ class ToolboxServiceManager {
       if (message) {
         if (success) {
           message.resolve(
-            // Костыль для createTokenCertRequest, для токенов responseData присылается как строка, для остальных вариантов объект
-            isString(responseData)
+            // Костыль для получения subjectKeyID в методе createTokenCertRequest
+            subjectKeyID
               ? { value: responseData as string, subjectKeyID }
               : responseData,
           );
