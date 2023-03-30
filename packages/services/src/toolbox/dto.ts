@@ -4,6 +4,7 @@ export type ToolboxCertificateInfoDTO = {
   notAfter: string;
   notBefore: string;
   subjectKeyId: string;
+  serialNumber: string;
   subjectNameDecoded: NameDecoded;
   issuerNameDecoded: NameDecoded;
   thumbprint?: string;
@@ -20,6 +21,7 @@ export type ToolboxCryptoProvidersDTO = {
 export type GetDataSignatureInputDTO = {
   Base64Data: string; // Данный для подписи
   SubjectKeyId: string; // Идентификатор сертификата для подписи
+  Detached?: boolean; // Параметр открепленной подписи (по умолчанию true)
 };
 
 export type InstallCertInputDTO = {

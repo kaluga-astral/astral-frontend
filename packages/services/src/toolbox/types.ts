@@ -25,6 +25,7 @@ export type SubjectDecodedFields<Keys extends string> = {
 
 export type ToolboxCertificateInfo = {
   skid: string;
+  serialNumber: string;
   endDate: string;
   startDate: string;
   isNotInstall?: boolean;

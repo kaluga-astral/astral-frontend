@@ -70,6 +70,7 @@ export const formatCertificateListToClient = (
         subjectKeyId,
         subjectNameDecoded,
         issuerNameDecoded,
+        serialNumber,
       } = certificate;
 
       const subject = formatOidsDecoded(subjectNameDecoded, SUBJECT_OID_LIST);
@@ -83,6 +84,7 @@ export const formatCertificateListToClient = (
         endDate: notAfter,
         startDate: notBefore,
         skid: subjectKeyId,
+        serialNumber,
         issuer,
         ...subject,
         // с 1.09.2012 вводится новое поля для хранения inn у ЮЛ
