@@ -28,6 +28,7 @@ describe('formatCertificateListToClient', () => {
     position: 'ГЕНЕРАЛЬНЫЙ ДИРЕКТОР',
     region: '27 Хабаровский край',
     skid: 'CAAE96EEBA273F188D4A72DCADC2B2701E3A1A74',
+    serialNumber: 'aa78dsdka32902lsmandg',
     snils: '11463322623',
     startDate: '10.09.2020',
     street: 'ул. Лесозаводская, д. 6',

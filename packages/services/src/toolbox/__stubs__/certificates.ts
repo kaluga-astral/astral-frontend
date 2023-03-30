@@ -3,6 +3,7 @@ import { ToolboxCertificateInfoDTO } from '../dto';
 
 export const TOOLBOX_CERTIFICATE_STUB: ToolboxCertificateInfo = {
   skid: 'string',
+  serialNumber: 'string',
   commonName: 'LongstringtringLongstringtring string',
   name: 'LongstringtringLongstringtring string',
   surname: 'LongstringtringLongstringtring string',
@@ -121,4 +122,5 @@ export const TOOLBOX_CERTIFICATE_RESULTS: ToolboxCertificateInfoDTO = {
   ],
   algorithm: '1.2.643.7.1.1.1.1',
   subjectKeyId: 'CAAE96EEBA273F188D4A72DCADC2B2701E3A1A74',
+  serialNumber: 'aa78dsdka32902lsmandg',
 };
