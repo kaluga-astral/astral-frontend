@@ -26,10 +26,10 @@
   dependencies:
     tunnel "0.0.6"
 
-"@astral/react-intersection-list@3.0.13":
-  version "3.0.13"
-  resolved "https://registry.npmjs.org/@astral/react-intersection-list/-/react-intersection-list-3.0.13.tgz#c9f3e985e6b6797117542bffbdc713069b36a854"
-  integrity sha512-j/pQWkHUjxOJnLIh9ABsaJOdewDGIGQmgOrAIDymuePoPeoRsaqPiAeQ7OVwnAIxCwscpAlqsbU+IbhhAwcUSg==
+"@astral/react-intersection-list@3.0.14":
+  version "3.0.14"
+  resolved "https://registry.yarnpkg.com/@astral/react-intersection-list/-/react-intersection-list-3.0.14.tgz#539e26e49651f194a5acd4423048aa1cd1c71abb"
+  integrity sha512-b1yTGfzHsBIrgUGo2wQ4i5DhdZ6qLfUGaubBdZezbaKJgGaGUGq+hytq/UGQJGFOBUbupbcjli/w35tB5PKMhA==
   dependencies:
     "@researchgate/react-intersection-observer" "^1.1.2"
     prop-types "^15.7.2"
@@ -1218,7 +1218,7 @@
     core-js-pure "^3.16.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.5", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.0", "@babel/runtime@^7.14.8", "@babel/runtime@^7.15.3", "@babel/runtime@^7.15.4", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.0", "@babel/runtime@^7.6.2", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.5", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.0", "@babel/runtime@^7.14.8", "@babel/runtime@^7.15.3", "@babel/runtime@^7.15.4", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.0", "@babel/runtime@^7.6.2", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
   version "7.15.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
   integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
@@ -8254,12 +8254,12 @@ final-form-arrays@^3.0.2:
   resolved "https://registry.yarnpkg.com/final-form-arrays/-/final-form-arrays-3.0.2.tgz#9f3bef778dec61432357744eb6f3abef7e7f3847"
   integrity sha512-TfO8aZNz3RrsZCDx8GHMQcyztDNpGxSSi9w4wpSNKlmv2PfFWVVM8P7Yj5tj4n0OWax+x5YwTLhT5BnqSlCi+w==
 
-final-form@^4.18.7:
-  version "4.20.4"
-  resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.20.4.tgz#8d59e36d3248a227265cc731d76c0564dd2606f6"
-  integrity sha512-hyoOVVilPLpkTvgi+FSJkFZrh0Yhy4BhE6lk/NiBwrF4aRV8/ykKEyXYvQH/pfUbRkOosvpESYouFb+FscsLrw==
+final-form@4.18.7:
+  version "4.18.7"
+  resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.18.7.tgz#c30239ac9154cbfbf4f6d19e831f5fc9cbc1ba78"
+  integrity sha512-XdlYYGDcoUcKKVzRJxLg8N/ZG3wVLZvhO7K7PKQWVMjCiIUWdmtBwApw2NFS4P7RJvg8OdF73qGXhhE3K5PuDQ==
   dependencies:
-    "@babel/runtime" "^7.10.0"
+    "@babel/runtime" "^7.8.3"
 
 finalhandler@~1.1.2:
   version "1.1.2"
