@@ -33,8 +33,5 @@
     "@astral-frontend/icons": "*",
     "react": ">=16.6.0"
   },
-  "resolutions": {
-    "final-form": "4.20.6"
-  },
   "sideEffects": false
 }
