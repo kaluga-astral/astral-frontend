@@ -67,11 +67,20 @@ export const formatCertificateListToClient = (
       const {
         notAfter,
         notBefore,
+        notBeforeTime,
+        notAfterTime,
         subjectKeyId,
         subjectNameDecoded,
         issuerNameDecoded,
         serialNumber,
       } = certificate;
+
+      const startDate = notBeforeTime
+        ? `${notBefore}T${notBeforeTime}`
+        : `${notBefore}T00:00:00`;
+      const endDate = notAfterTime
+        ? `${notAfter}T${notAfterTime}`
+        : `${notAfter}T00:00:00`;
 
       const subject = formatOidsDecoded(subjectNameDecoded, SUBJECT_OID_LIST);
       const issuer = formatOidsDecoded(issuerNameDecoded, ISSUER_OID_LIST);
@@ -81,8 +90,8 @@ export const formatCertificateListToClient = (
       );
 
       return {
-        endDate: notAfter,
-        startDate: notBefore,
+        endDate,
+        startDate,
         skid: subjectKeyId,
         serialNumber,
         issuer,

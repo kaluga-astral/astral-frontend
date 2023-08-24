@@ -3,6 +3,8 @@ export type NameDecoded = { value: string; oid: string }[];
 export type ToolboxCertificateInfoDTO = {
   notAfter: string;
   notBefore: string;
+  notBeforeTime?: string;
+  notAfterTime?: string;
   subjectKeyId: string;
   serialNumber: string;
   subjectNameDecoded: NameDecoded;
@@ -49,6 +51,8 @@ export type CreateCertificateRequestInputDTO = {
   keyUsage: string;
   notBefore: string;
   notAfter: string;
+  notBeforeTime?: string;
+  notAfterTime?: string;
   containerName: string;
   requestName?: string; //  не знаю что это, на ЭТ не используется
   exportableKey: boolean; // экспорт ключа
@@ -66,6 +70,8 @@ export type CreateTokenCertificateRequestInputDTO = {
     IdentKind: 0 | 1; // идентификатор подтверждения личности 0 - личное; 1 - удаленное по сертификату
     NotAfter: '';
     NotBefore: '';
+    notBeforeTime?: '';
+    notAfterTime?: '';
 
     INN: string; // для юр. лиц здесь может быть или inn организации, тогда отсутствует INNLE или инн физ. лица при наличии INNLE
     INNLE: string | null; // для юр. лиц здесь может быть или inn организации
