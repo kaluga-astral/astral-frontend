@@ -14,7 +14,7 @@ describe('formatCertificateListToClient', () => {
     commonName: '_тест_09.04',
     department: 'наименование ОП',
     email: 'test@mail.ty',
-    endDate: '10.09.2021',
+    endDate: '10.09.2021T15:10:22',
     inn: '9604183233',
     innFl: '',
     issuer: {
@@ -30,7 +30,7 @@ describe('formatCertificateListToClient', () => {
     skid: 'CAAE96EEBA273F188D4A72DCADC2B2701E3A1A74',
     serialNumber: 'aa78dsdka32902lsmandg',
     snils: '11463322623',
-    startDate: '10.09.2020',
+    startDate: '10.09.2020T15:10:22',
     street: 'ул. Лесозаводская, д. 6',
     surname: 'Радина',
   };

@@ -9,8 +9,8 @@ export const TOOLBOX_CERTIFICATE_STUB: ToolboxCertificateInfo = {
   surname: 'LongstringtringLongstringtring string',
   patronymic: 'LongstringtringLongstringtring string',
   organization: 'LongstringtringLongstringtring string',
-  endDate: '11.11.2200',
-  startDate: '10.10.2000',
+  endDate: '11.11.2200T15:10:22',
+  startDate: '10.10.2000T10:20:11',
   inn: '3224234324',
   snils: '3224234324',
   ogrn: '3224234324',
@@ -23,6 +23,8 @@ export const TOOLBOX_CERTIFICATES_STUB: ToolboxCertificateInfo[] = Array.from({
 export const TOOLBOX_CERTIFICATE_RESULTS: ToolboxCertificateInfoDTO = {
   notBefore: '10.09.2020',
   notAfter: '10.09.2021',
+  notBeforeTime: '15:10:22',
+  notAfterTime: '15:10:22',
   thumbprint: 'EDDB3D83263879E6E54CB574651F4EA23A28BED3',
   subjectNameDecoded: [
     {
