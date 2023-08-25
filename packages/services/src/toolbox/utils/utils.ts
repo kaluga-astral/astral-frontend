@@ -75,6 +75,8 @@ export const formatCertificateListToClient = (
         serialNumber,
       } = certificate;
 
+      // добавление времени сертификата к дате для точного отсчета времени начала и прекращения действия
+      // для старых версий Тулбокса добавляется время 00:00:00
       const startDate = notBeforeTime
         ? `${notBefore}T${notBeforeTime}`
         : `${notBefore}T00:00:00`;
