@@ -86,6 +86,24 @@ describe('formatCertificateListToClient', () => {
       },
     ]);
   });
+
+  it('Проверка правильности формирование модели с отсутствием времени', () => {
+    expect(
+      formatCertificateListToClient([
+        {
+          ...TOOLBOX_CERTIFICATE_RESULTS,
+          notBeforeTime: undefined,
+          notAfterTime: undefined,
+        },
+      ]),
+    ).toStrictEqual([
+      {
+        ...FORMED_CERTIFICATE,
+        startDate: '10.09.2020T00:00:00',
+        endDate: '10.09.2021T00:00:00',
+      },
+    ]);
+  });
 });
 
 describe('filterServiceCertificate', () => {
