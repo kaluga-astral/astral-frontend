@@ -1,18 +1,23 @@
 export type NameDecoded = { value: string; oid: string }[];
 
-/**
- * Объект сертификата от Тулбокса
- *
- * @property notBefore - дата начала сертификата
- * @property notAfter - дата окончания сертификата
- * @property [notBeforeTime] - время начала сертификата
- * @property [notAfterTime] - время окончания сертификата
- * @property serialNumber - серийный номер сертификата
- */
 export type ToolboxCertificateInfoDTO = {
-  notAfter: string;
+  /**
+   * @description Дата создания сертификата
+   */
   notBefore: string;
+  /**
+   * @description Дата окончания сертификата
+   */
+  notAfter: string;
+  /**
+   * @description Время создания сертификата
+   * @default '00:00:00'
+   */
   notBeforeTime?: string;
+  /**
+   * @description Время окончания сертификата
+   * @default '00:00:00'
+   */
   notAfterTime?: string;
   subjectKeyId: string;
   serialNumber: string;
@@ -29,16 +34,19 @@ export type ToolboxCryptoProvidersDTO = {
   versionMinor: number;
 };
 
-/**
- * Объект подписанного файла
- *
- * @property Base64Data - Данный для подписи
- * @property SubjectKeyId - Идентификатор сертификата для подписи
- * @property [Detached] - Параметр открепленной подписи (по умолчанию true)
- */
 export type GetDataSignatureInputDTO = {
+  /**
+   * @description Данные для подписи
+   */
   Base64Data: string;
+  /**
+   * @description Идентификатор сертификата для подписи
+   */
   SubjectKeyId: string;
+  /**
+   * @description Параметр открепленной подписи
+   * @default 'true'
+   */
   Detached?: boolean;
 };
 
@@ -56,15 +64,6 @@ export type InstallTokenCertInputDTO = {
   CertData: string;
 };
 
-/**
- * Объект подписания сертификатом
- *
- * @property notBefore - дата начала сертификата
- * @property notAfter - дата окончания сертификата
- * @property [notBeforeTime] - время начала сертификата
- * @property [notAfterTime] - время окончания сертификата
- * @property exportableKey - является ли ключ экспортируемым
- */
 export type CreateCertificateRequestInputDTO = {
   providerCode: number;
   providerName: string;
@@ -74,89 +73,141 @@ export type CreateCertificateRequestInputDTO = {
   certPolicies: NameDecoded;
   certAltarnativeNames: [] | null; // В ЭТ мы не используем его, хз что в нем должно быть
   keyUsage: string;
+  /**
+   * @description Дата создания сертификата
+   */
   notBefore: string;
+  /**
+   * @description Дата окончания сертификата
+   */
   notAfter: string;
+  /**
+   * @description Время создания сертификата
+   * @default '00:00:00'
+   */
   notBeforeTime?: string;
+  /**
+   * @description Время окончания сертификата
+   * @default '00:00:00'
+   */
   notAfterTime?: string;
   containerName: string;
   requestName?: string; //  не знаю что это, на ЭТ не используется
+  /**
+   * @description Является ли ключ экспортируемым
+   * @default 'true'
+   */
   exportableKey: boolean;
   computeSKID: boolean; // без данного флага в response не будет subjectKeyID
 };
 
-/**
- * Объект подписания токеном
- *
- * @property requestData {
- *  @property CN - commonName
- *  @property IdentKind - идентификатор подтверждения личности 0 - личное; 1 - удаленное по сертификату
- *  @property NotBefore - дата начала сертификата
- *  @property NotAfter - дата окончания сертификата
- *  @property [NotBeforeTime] - время начала сертификата
- *  @property [NotAfterTime] - время окончания сертификата
- *
- *  @property INN - для юр. лиц здесь может быть или inn организации,
- *  тогда отсутствует INNLE или инн физ. лица при наличии INNLE
- *  @property INNLE - для юр. лиц здесь может быть или inn организации
- *  @property KPP - КПП, пример "KPP=999901001"
- *  @property OGRN - ОГРН
- *  @property OGRNIP - ОГРНИП
- *  @property O - название организации, обычно короткое
- *  @property OU - название подразделения организации
- *
- *  @property E - email
- *  @property G - имя и отчество в одной строке
- *  @property SN - фамилия
- *  @property T - должность
- *
- *  @property S - регион, пример "22 Алтайский край"
- *  @property C - гражданство, пример "RU"
- *  @property L - город, пример "г. Барнаул"
- *  @property Street - улица, пример "ул 280-летия Барнаула"
- * } - объект передаваемых данных
- */
 export type CreateTokenCertificateRequestInputDTO = {
   pin: string;
   tokenType: number;
   computeSKID: boolean; // без данного флага в response не будет subjectKeyID
   requestData: {
     AbonentType: number; // хз что это, пример "1"
+    /**
+     * @description commonName
+     */
     CN: string;
     ContainerName: string;
+    /**
+     * @description Идентификатор подтверждения личности
+     * @example '0 - личное; 1 - удаленное по сертификату'
+     */
     IdentKind: 0 | 1;
-    NotAfter: '';
+    /**
+     * @description Дата создания сертификата
+     */
     NotBefore: '';
+    /**
+     * @description Дата окончания сертификата
+     */
+    NotAfter: '';
+    /**
+     * @description Время создания сертификата
+     * @default '00:00:00'
+     */
     NotBeforeTime?: '';
+    /**
+     * @description Время окончания сертификата
+     * @default '00:00:00'
+     */
     NotAfterTime?: '';
 
+    /**
+     * @description // Для юр. лиц здесь может быть или inn организации, тогда отсутствует INNLE или инн физ. лица при наличии INNLE
+     */
     INN: string;
+    /**
+     * @description // Для юр. лиц здесь может быть или inn организации
+     */
     INNLE: string | null;
+    /**
+     * @description // КПП
+     * @example '999901001'
+     */
     KPP: string | null;
     OGRN: string | null;
     OGRNIP: string | null;
+    /**
+     * @description Название организации, обычно короткое
+     */
     O: string;
+    /**
+     * @description Название подразделения организации
+     */
     OU: string | null;
 
+    /**
+     * @description Email
+     */
     E: string;
+    /**
+     * @description Имя и отчество в одной строке
+     */
     G: string;
+    /**
+     * @description Фамилия
+     */
     SN: string;
     SNILS: string;
+    /**
+     * @description Должность
+     */
     T: string | null;
 
+    /**
+     * @description Регион
+     * @example '22 Алтайский край'
+     */
     S: string;
+    /**
+     * @description Гражданство
+     * @example 'RU'
+     */
     C: string;
+    /**
+     * @description Город
+     * @example 'г. Барнаул'
+     */
     L: string;
+    /**
+     * @description Улица
+     * @example 'ул 280-летия Барнаула'
+     */
     Street: string;
   };
 };
 
-/**
- * Объект созданного сертификата
- *
- * @property subjectKeyID - skid сгенерированного контейнера
- * @property value - строка запроса на получения сертификата для сформированного контейнера в base64
- */
 export type CreateCertificateRequestDTO = {
+  /**
+   * @description skid сгенерированного контейнера
+   */
   subjectKeyID: string;
+  /**
+   * @description Строка запроса на получения сертификата для сформированного контейнера в base64
+   */
   value: string;
 };
