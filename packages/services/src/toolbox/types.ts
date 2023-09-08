@@ -26,6 +26,11 @@ export type SubjectDecodedFields<Keys extends string> = {
 export type ToolboxCertificateInfo = {
   skid: string;
   serialNumber: string;
+  hasToken: boolean;
+  storeInfo: {
+    storeName: string;
+    serial: string | null;
+  };
   endDate: string;
   startDate: string;
   isNotInstall?: boolean;

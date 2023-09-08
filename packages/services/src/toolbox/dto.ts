@@ -19,6 +19,25 @@ export type ToolboxCertificateInfoDTO = {
    * @default '00:00:00'
    */
   notAfterTime?: string;
+  /**
+   * @description Подключен ли токен в компьютер
+   */
+  hasPrivateKey: boolean;
+  /**
+   * @description Информация о сертификате
+   */
+  storeInfo: {
+    /**
+     * @description Место хранения сертификата
+     * @example 'My - на компьютере; Token - на токене'
+     */
+    storeName: string;
+    /**
+     * @description Серийный номер
+     * @example 'null - отсутствует (не токен); 1080315700 - токен'
+     */
+    serial: string | null;
+  };
   subjectKeyId: string;
   serialNumber: string;
   subjectNameDecoded: NameDecoded;
@@ -48,6 +67,25 @@ export type GetDataSignatureInputDTO = {
    * @default 'true'
    */
   Detached?: boolean;
+};
+
+export type GetTokenDataSignatureInputDTO = {
+  /**
+   * @description Пин-код токена
+   */
+  Pin: string;
+  /**
+   * @description Данные для подписи
+   */
+  Base64Data: string;
+  /**
+   * @description Идентификатор сертификата для подписи
+   */
+  SubjectKeyId: string;
+  /**
+   * @description Имя контейнера
+   */
+  ContainerName?: string;
 };
 
 export type InstallCertInputDTO = {

@@ -1,9 +1,15 @@
 import { ToolboxCertificateInfo } from '../types';
 import { ToolboxCertificateInfoDTO } from '../dto';
+import { CERTIFICATE_PRIVATE_STORE } from '../constants/certificate';
 
 export const TOOLBOX_CERTIFICATE_STUB: ToolboxCertificateInfo = {
   skid: 'string',
   serialNumber: 'string',
+  hasToken: false,
+  storeInfo: {
+    storeName: CERTIFICATE_PRIVATE_STORE,
+    serial: null,
+  },
   commonName: 'LongstringtringLongstringtring string',
   name: 'LongstringtringLongstringtring string',
   surname: 'LongstringtringLongstringtring string',
@@ -123,6 +129,11 @@ export const TOOLBOX_CERTIFICATE_RESULTS: ToolboxCertificateInfoDTO = {
     },
   ],
   algorithm: '1.2.643.7.1.1.1.1',
+  hasPrivateKey: false,
+  storeInfo: {
+    storeName: CERTIFICATE_PRIVATE_STORE,
+    serial: null,
+  },
   subjectKeyId: 'CAAE96EEBA273F188D4A72DCADC2B2701E3A1A74',
   serialNumber: 'aa78dsdka32902lsmandg',
 };
