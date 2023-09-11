@@ -54,6 +54,7 @@ export const ENCRYPT_MSG = {
 };
 
 export const GET_TOKEN_DATA_SIGNATURE = {
+  // SIGN_DATA_WITH_TOKEN
   id: 15,
 };
 

@@ -8,6 +8,7 @@ import {
   CreateCertificateRequestInputDTO,
   CreateTokenCertificateRequestInputDTO,
   GetDataSignatureInputDTO,
+  GetTokenDataSignatureInputDTO,
   InstallCertInputDTO,
   InstallTokenCertInputDTO,
   ToolboxCertificateInfoDTO,
@@ -55,6 +56,15 @@ export class ToolboxService extends ToolboxServiceManager {
   getDataSignature = (data: GetDataSignatureInputDTO) =>
     super.sendMessage<GetDataSignatureInputDTO, string>(
       operations.GET_DATA_SIGNATURE.id,
+      data,
+    );
+
+  /**
+   * Подписание файлов через токен
+   */
+  getTokenDataSignature = (data: GetTokenDataSignatureInputDTO) =>
+    super.sendMessage<GetDataSignatureInputDTO, string>(
+      operations.GET_TOKEN_DATA_SIGNATURE.id,
       data,
     );
 

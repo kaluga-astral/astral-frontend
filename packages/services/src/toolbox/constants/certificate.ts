@@ -1,0 +1,1 @@
+export const CERTIFICATE_PRIVATE_STORE = 'My';

@@ -1,4 +1,5 @@
 import { TOOLBOX_CERTIFICATE_RESULTS } from '../__stubs__/certificates';
+import { CERTIFICATE_PRIVATE_STORE } from '../constants/certificate';
 
 import {
   filterServiceCertificate,
@@ -29,6 +30,11 @@ describe('formatCertificateListToClient', () => {
     region: '27 Хабаровский край',
     skid: 'CAAE96EEBA273F188D4A72DCADC2B2701E3A1A74',
     serialNumber: 'aa78dsdka32902lsmandg',
+    hasToken: false,
+    storeInfo: {
+      storeName: CERTIFICATE_PRIVATE_STORE,
+      serial: null,
+    },
     snils: '11463322623',
     startDate: '10.09.2020T15:10:22',
     street: 'ул. Лесозаводская, д. 6',

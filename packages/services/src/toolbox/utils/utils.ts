@@ -69,6 +69,8 @@ export const formatCertificateListToClient = (
         notBefore,
         notBeforeTime,
         notAfterTime,
+        hasPrivateKey,
+        storeInfo,
         subjectKeyId,
         subjectNameDecoded,
         issuerNameDecoded,
@@ -96,6 +98,8 @@ export const formatCertificateListToClient = (
         startDate,
         skid: subjectKeyId,
         serialNumber,
+        hasToken: hasPrivateKey,
+        storeInfo,
         issuer,
         ...subject,
         // с 1.09.2012 вводится новое поля для хранения inn у ЮЛ
