@@ -60,7 +60,7 @@ export class ToolboxService extends ToolboxServiceManager {
     );
 
   /**
-   * Подписание файлов по через токен
+   * Подписание файлов через токен
    */
   getTokenDataSignature = (data: GetTokenDataSignatureInputDTO) =>
     super.sendMessage<GetDataSignatureInputDTO, string>(
