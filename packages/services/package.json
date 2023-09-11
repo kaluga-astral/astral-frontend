@@ -1,6 +1,6 @@
 {
   "name": "@astral-frontend/services",
-  "version": "1.5.0",
+  "version": "1.5.4",
   "main": "./src/index.ts",
   "types": "./src/index.d.ts",
   "scripts": {
