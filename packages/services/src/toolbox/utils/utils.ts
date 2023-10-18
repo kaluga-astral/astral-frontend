@@ -142,7 +142,7 @@ export const formatCertificateListToClient = (
         startDate,
         skid: subjectKeyId,
         serialNumber,
-        hasToken: hasPrivateKey,
+        hasPrivateKey,
         storeInfo,
         issuer,
         ...subject,

@@ -5,7 +5,7 @@ import { CERTIFICATE_PRIVATE_STORE } from '../constants/certificate';
 export const TOOLBOX_CERTIFICATE_STUB: ToolboxCertificateInfo = {
   skid: 'string',
   serialNumber: 'string',
-  hasToken: false,
+  hasPrivateKey: false,
   storeInfo: {
     storeName: CERTIFICATE_PRIVATE_STORE,
     serial: null,

@@ -1,5 +1,8 @@
 import { TOOLBOX_CERTIFICATE_RESULTS } from '../__stubs__/certificates';
-import { CERTIFICATE_PRIVATE_STORE } from '../constants/certificate';
+import {
+  CERTIFICATE_PRIVATE_STORE,
+  CERTIFICATE_TOKEN_STORE,
+} from '../constants/certificate';
 
 import {
   filterServiceCertificate,
@@ -31,7 +34,7 @@ describe('formatCertificateListToClient', () => {
     region: '27 Хабаровский край',
     skid: 'CAAE96EEBA273F188D4A72DCADC2B2701E3A1A74',
     serialNumber: 'aa78dsdka32902lsmandg',
-    hasToken: false,
+    hasPrivateKey: false,
     storeInfo: {
       storeName: CERTIFICATE_PRIVATE_STORE,
       serial: null,
@@ -124,7 +127,7 @@ describe('filterTokenCertificate', () => {
   const tokenCertificate = {
     ...TOOLBOX_CERTIFICATE_RESULTS,
     storeInfo: {
-      storeName: 'Token',
+      storeName: CERTIFICATE_TOKEN_STORE,
       serial: '12345678',
     },
   };
