@@ -45,13 +45,13 @@ describe('formatCertificateListToClient', () => {
     surname: 'Радина',
   };
 
-  it('Проверка правильности формирование модели с inn', () => {
+  it('Проверяет правильность формирования модели с inn', () => {
     expect(
       formatCertificateListToClient([TOOLBOX_CERTIFICATE_RESULTS]),
     ).toStrictEqual([FORMED_CERTIFICATE]);
   });
 
-  it('Проверка правильности формирование модели c innle', () => {
+  it('Проверяет правильность формирования модели c innle', () => {
     const innle = '12456789';
 
     expect(
@@ -75,7 +75,7 @@ describe('formatCertificateListToClient', () => {
     ]);
   });
 
-  it('Проверка правильности формирование модели c наличием 2 полей innle и inn', () => {
+  it('Проверяет правильность формирования модели c наличием 2 полей innle и inn', () => {
     const innle = '12456789';
     expect(
       formatCertificateListToClient([
@@ -97,7 +97,7 @@ describe('formatCertificateListToClient', () => {
     ]);
   });
 
-  it('Проверка правильности формирование модели с отсутствием времени', () => {
+  it('Проверяет правильность формирования модели с отсутствием времени', () => {
     expect(
       formatCertificateListToClient([
         {
@@ -132,7 +132,7 @@ describe('filterTokenCertificate', () => {
     },
   };
 
-  it('Проверка фильтрации сертов, если в них присутствует сертификат с токеном', () => {
+  it('Проверяет фильтрацию сертификатов, если в них присутствует сертификат с токеном', () => {
     expect(
       filterTokenCertificate([
         TOOLBOX_CERTIFICATE_RESULTS,
@@ -142,7 +142,7 @@ describe('filterTokenCertificate', () => {
     ).toStrictEqual([tokenCertificate, anotherCertificate]);
   });
 
-  it('Проверка фильтрации сертов, если в них отсутствует сертификат с токеном', () => {
+  it('Проверяет фильтрацию сертификатов, если в них отсутствует сертификат с токеном', () => {
     expect(
       filterTokenCertificate([TOOLBOX_CERTIFICATE_RESULTS, anotherCertificate]),
     ).toStrictEqual([TOOLBOX_CERTIFICATE_RESULTS, anotherCertificate]);
@@ -156,13 +156,13 @@ describe('filterServiceCertificate', () => {
     'subjectKeyId',
     'issuerNameDecoded',
     'subjectNameDecoded',
-  ])('Проверка фильтрации сертификатов с отсутствующим полем %s', key => {
+  ])('Проверяет фильтрацию сертификатов с отсутствующим полем %s', key => {
     expect(
       filterServiceCertificate([{ ...TOOLBOX_CERTIFICATE_RESULTS, [key]: '' }]),
     ).toStrictEqual([]);
   });
 
-  it('Проверка отсутствия фильтрации при полной модели', () => {
+  it('Проверяет отсутствие фильтрации при полной модели', () => {
     expect(
       filterServiceCertificate([TOOLBOX_CERTIFICATE_RESULTS]),
     ).toStrictEqual([TOOLBOX_CERTIFICATE_RESULTS]);
@@ -176,7 +176,7 @@ describe('formatInn', () => {
     ['021234567890', '021234567890'],
     ['212345678900', '212345678900'],
   ])(
-    'Проверка правильность форматирование %s инн к виду %s',
+    'Проверяет правильность форматирования %s инн к виду %s',
     (inputInn, expectedInn) => {
       expect(formatInn(inputInn)).toStrictEqual(expectedInn);
     },
