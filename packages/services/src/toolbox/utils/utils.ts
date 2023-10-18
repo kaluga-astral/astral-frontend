@@ -50,11 +50,55 @@ const CERTIFICATE_REQUIRED_KEYS: (keyof ToolboxCertificateInfoDTO)[] = [
 
 export const filterServiceCertificate = (
   certificates: Partial<ToolboxCertificateInfoDTO>[],
-): ToolboxCertificateInfoDTO[] =>
+): ToolboxCertificateInfoDTO[] => {
   // сертификат является служебным, если в нем отсутствует одно из обязательных полей
-  certificates.filter(certificate =>
+  return certificates.filter(certificate =>
     CERTIFICATE_REQUIRED_KEYS.every(key => certificate[key]),
   ) as ToolboxCertificateInfoDTO[];
+};
+
+/*
+Фильтрует сертификаты с токеном, т.к. Тулбокс поставляет их в дублирующемся формате:
+один с токеном и один обычный и оба с одинаковым subjectKeyId. Обычный сертификат лишний
+*/
+export const filterTokenCertificate = (
+  certificates: ToolboxCertificateInfoDTO[],
+): ToolboxCertificateInfoDTO[] => {
+  return certificates.reduce(
+    (
+      acc: ToolboxCertificateInfoDTO[],
+      currentElem: ToolboxCertificateInfoDTO,
+    ) => {
+      const isAccCertificateContains = acc.some(
+        certificate => certificate.subjectKeyId === currentElem.subjectKeyId,
+      );
+
+      if (isAccCertificateContains) {
+        return acc;
+      }
+
+      const certificatesWithSameSkid = certificates.filter(
+        certificate => certificate.subjectKeyId === currentElem.subjectKeyId,
+      );
+
+      // если сертификатов больше 1, то среди них должен быть один с токеном
+      if (certificatesWithSameSkid.length > 1) {
+        const tokenCertificates = certificatesWithSameSkid.filter(certificate =>
+          Boolean(certificate.storeInfo.serial),
+        );
+        // защита, если сертификата с токеном нет, то берется дефолтный
+        const tokenCertificate =
+          tokenCertificates[0] ?? certificatesWithSameSkid[0];
+
+        return [...acc, tokenCertificate];
+      }
+
+      return [...acc, ...certificatesWithSameSkid];
+    },
+    [],
+  );
+};
+
 /*
 Преобразует форму сертификата возвращаемого с Astral.Toolbox к клиентскому виду.
 Так же отбрасываются сертификаты без subjectKeyId
@@ -98,7 +142,7 @@ export const formatCertificateListToClient = (
         startDate,
         skid: subjectKeyId,
         serialNumber,
-        hasToken: hasPrivateKey,
+        hasPrivateKey,
         storeInfo,
         issuer,
         ...subject,

@@ -1,8 +1,12 @@
 import { TOOLBOX_CERTIFICATE_RESULTS } from '../__stubs__/certificates';
-import { CERTIFICATE_PRIVATE_STORE } from '../constants/certificate';
+import {
+  CERTIFICATE_PRIVATE_STORE,
+  CERTIFICATE_TOKEN_STORE,
+} from '../constants/certificate';
 
 import {
   filterServiceCertificate,
+  filterTokenCertificate,
   formatCertificateListToClient,
   formatInn,
 } from './utils';
@@ -30,7 +34,7 @@ describe('formatCertificateListToClient', () => {
     region: '27 Хабаровский край',
     skid: 'CAAE96EEBA273F188D4A72DCADC2B2701E3A1A74',
     serialNumber: 'aa78dsdka32902lsmandg',
-    hasToken: false,
+    hasPrivateKey: false,
     storeInfo: {
       storeName: CERTIFICATE_PRIVATE_STORE,
       serial: null,
@@ -41,13 +45,13 @@ describe('formatCertificateListToClient', () => {
     surname: 'Радина',
   };
 
-  it('Проверка правильности формирование модели с inn', () => {
+  it('Проверяет правильность формирования модели с inn', () => {
     expect(
       formatCertificateListToClient([TOOLBOX_CERTIFICATE_RESULTS]),
     ).toStrictEqual([FORMED_CERTIFICATE]);
   });
 
-  it('Проверка правильности формирование модели c innle', () => {
+  it('Проверяет правильность формирования модели c innle', () => {
     const innle = '12456789';
 
     expect(
@@ -71,7 +75,7 @@ describe('formatCertificateListToClient', () => {
     ]);
   });
 
-  it('Проверка правильности формирование модели c наличием 2 полей innle и inn', () => {
+  it('Проверяет правильность формирования модели c наличием 2 полей innle и inn', () => {
     const innle = '12456789';
     expect(
       formatCertificateListToClient([
@@ -93,7 +97,7 @@ describe('formatCertificateListToClient', () => {
     ]);
   });
 
-  it('Проверка правильности формирование модели с отсутствием времени', () => {
+  it('Проверяет правильность формирования модели с отсутствием времени', () => {
     expect(
       formatCertificateListToClient([
         {
@@ -112,6 +116,39 @@ describe('formatCertificateListToClient', () => {
   });
 });
 
+describe('filterTokenCertificate', () => {
+  // другой сертификат с другим subjectKeyId
+  const anotherCertificate = {
+    ...TOOLBOX_CERTIFICATE_RESULTS,
+    subjectKeyId: 'CAAE96EEBA273F188D4A72DCADC2B2701E3A1A73',
+  };
+
+  // дублирующийся сертификат с признаками токена
+  const tokenCertificate = {
+    ...TOOLBOX_CERTIFICATE_RESULTS,
+    storeInfo: {
+      storeName: CERTIFICATE_TOKEN_STORE,
+      serial: '12345678',
+    },
+  };
+
+  it('Проверяет фильтрацию сертификатов, если в них присутствует сертификат с токеном', () => {
+    expect(
+      filterTokenCertificate([
+        TOOLBOX_CERTIFICATE_RESULTS,
+        anotherCertificate,
+        tokenCertificate,
+      ]),
+    ).toStrictEqual([tokenCertificate, anotherCertificate]);
+  });
+
+  it('Проверяет фильтрацию сертификатов, если в них отсутствует сертификат с токеном', () => {
+    expect(
+      filterTokenCertificate([TOOLBOX_CERTIFICATE_RESULTS, anotherCertificate]),
+    ).toStrictEqual([TOOLBOX_CERTIFICATE_RESULTS, anotherCertificate]);
+  });
+});
+
 describe('filterServiceCertificate', () => {
   it.each<string>([
     'notAfter',
@@ -119,13 +156,13 @@ describe('filterServiceCertificate', () => {
     'subjectKeyId',
     'issuerNameDecoded',
     'subjectNameDecoded',
-  ])('Проверка фильтрации сертификатов с отсутствующим полем %s', key => {
+  ])('Проверяет фильтрацию сертификатов с отсутствующим полем %s', key => {
     expect(
       filterServiceCertificate([{ ...TOOLBOX_CERTIFICATE_RESULTS, [key]: '' }]),
     ).toStrictEqual([]);
   });
 
-  it('Проверка отсутствия фильтрации при полной модели', () => {
+  it('Проверяет отсутствие фильтрации при полной модели', () => {
     expect(
       filterServiceCertificate([TOOLBOX_CERTIFICATE_RESULTS]),
     ).toStrictEqual([TOOLBOX_CERTIFICATE_RESULTS]);
@@ -139,7 +176,7 @@ describe('formatInn', () => {
     ['021234567890', '021234567890'],
     ['212345678900', '212345678900'],
   ])(
-    'Проверка правильность форматирование %s инн к виду %s',
+    'Проверяет правильность форматирования %s инн к виду %s',
     (inputInn, expectedInn) => {
       expect(formatInn(inputInn)).toStrictEqual(expectedInn);
     },
