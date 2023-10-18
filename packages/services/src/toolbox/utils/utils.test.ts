@@ -3,6 +3,7 @@ import { CERTIFICATE_PRIVATE_STORE } from '../constants/certificate';
 
 import {
   filterServiceCertificate,
+  filterTokenCertificate,
   formatCertificateListToClient,
   formatInn,
 } from './utils';
@@ -109,6 +110,39 @@ describe('formatCertificateListToClient', () => {
         endDate: '10.09.2021T00:00:00',
       },
     ]);
+  });
+});
+
+describe('filterTokenCertificate', () => {
+  // другой сертификат с другим subjectKeyId
+  const anotherCertificate = {
+    ...TOOLBOX_CERTIFICATE_RESULTS,
+    subjectKeyId: 'CAAE96EEBA273F188D4A72DCADC2B2701E3A1A73',
+  };
+
+  // дублирующийся сертификат с признаками токена
+  const tokenCertificate = {
+    ...TOOLBOX_CERTIFICATE_RESULTS,
+    storeInfo: {
+      storeName: 'Token',
+      serial: '12345678',
+    },
+  };
+
+  it('Проверка фильтрации сертов, если в них присутствует сертификат с токеном', () => {
+    expect(
+      filterTokenCertificate([
+        TOOLBOX_CERTIFICATE_RESULTS,
+        anotherCertificate,
+        tokenCertificate,
+      ]),
+    ).toStrictEqual([tokenCertificate, anotherCertificate]);
+  });
+
+  it('Проверка фильтрации сертов, если в них отсутствует сертификат с токеном', () => {
+    expect(
+      filterTokenCertificate([TOOLBOX_CERTIFICATE_RESULTS, anotherCertificate]),
+    ).toStrictEqual([TOOLBOX_CERTIFICATE_RESULTS, anotherCertificate]);
   });
 });
 
